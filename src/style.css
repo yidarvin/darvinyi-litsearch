@@ -1,0 +1,75 @@
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow:hidden}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:var(--accent);background:var(--elev);padding:1px 5px;border-radius:5px}
+
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:16px;
+  padding:0 18px;background:rgba(10,10,11,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:var(--fg);display:flex;align-items:center;gap:9px;letter-spacing:-.01em;text-decoration:none}
+.brand .sq{width:11px;height:11px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.sample{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);opacity:.8}
+.search{flex:0 0 220px;margin-left:auto}
+.search input{width:100%;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--fg);background:var(--panel);
+  border:1px solid var(--line);border-radius:8px;padding:8px 11px;outline:none}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{border-color:var(--accent)}
+.colorby{display:flex;align-items:center;gap:9px}
+.colorby .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.seg button{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);background:transparent;border:0;padding:7px 12px;cursor:pointer;border-left:1px solid var(--line);transition:.12s}
+.seg button:first-child{border-left:0}
+.seg button:hover{color:var(--dim)}
+.seg button.on{background:var(--accent);color:#06201c}
+
+#cy{position:fixed;top:56px;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 42%,#101015 0%,#0a0a0b 72%)}
+
+.legend{position:fixed;left:18px;bottom:18px;background:rgba(20,20,23,.9);border:1px solid var(--line);
+  border-radius:12px;padding:12px 14px;z-index:9;max-width:230px;backdrop-filter:blur(6px)}
+.legend h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:9px}
+.legend .row{display:flex;align-items:center;gap:9px;padding:3px 4px;border-radius:6px;cursor:pointer;font-size:12.5px;color:var(--dim)}
+.legend .row:hover{background:var(--elev)}
+.legend .sw{width:11px;height:11px;border-radius:3px;flex:0 0 auto;box-shadow:0 0 8px rgba(0,0,0,.4)}
+.hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--muted);background:rgba(20,20,23,.7);border:1px solid var(--line);border-radius:20px;padding:6px 14px;z-index:8}
+
+.panel{position:fixed;top:56px;right:0;bottom:0;width:380px;max-width:90vw;background:var(--panel);
+  border-left:1px solid var(--line);transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.7,.3,1);
+  z-index:11;overflow-y:auto;padding:26px 26px 40px}
+.panel.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.45)}
+.panel .close{position:absolute;top:16px;right:16px;border:0;background:transparent;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+.panel .close:hover{color:var(--fg)}
+.panel .kick{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent)}
+.panel h2{font-family:'Inter',sans-serif;font-weight:600;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin:9px 0 11px}
+.panel .meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);line-height:1.7}
+.panel .cites{display:inline-flex;align-items:baseline;gap:7px;margin:15px 0 4px}
+.panel .cites b{font-family:'Inter',sans-serif;font-size:25px;font-weight:700;color:var(--fg)}
+.panel .cites span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chip{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.chip .d{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.abstract{font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;color:var(--dim);margin:14px 0 20px;border-top:1px solid var(--line);padding-top:16px}
+.go{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;
+  color:#06201c;background:var(--accent);border-radius:9px;padding:11px 16px;text-decoration:none}
+.go:hover{filter:brightness(1.1)}
+.go.disabled{background:var(--elev);color:var(--muted);pointer-events:none}
+.gonote{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.55}
+.refs{margin-top:22px}
+.refs h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px}
+.refs a{display:block;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--dim);text-decoration:none;padding:5px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.refs a:hover{color:var(--accent)}
+
+/* empty state — shown when data/papers.json has no nodes yet */
+.empty{position:fixed;inset:56px 0 0 0;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 42%,#101015 0%,#0a0a0b 72%);z-index:5;padding:24px}
+.empty-card{max-width:430px;text-align:center}
+.empty-card .sq{display:inline-block;width:16px;height:16px;border-radius:4px;background:var(--accent);box-shadow:0 0 26px var(--accent-soft);margin-bottom:18px}
+.empty-card h1{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:22px;letter-spacing:-.01em;margin-bottom:10px}
+.empty-card .kick{color:var(--accent);font-size:12px;margin-bottom:18px}
+.empty-card p{font-size:14px;line-height:1.65;color:var(--dim)}
+
+@media(max-width:640px){ .colorby .lbl{display:none} .search{flex-basis:130px} }

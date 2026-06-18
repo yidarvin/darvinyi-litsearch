@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>paper_atlas — citation map (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow:hidden}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;display:flex;align-items:center;gap:16px;
+  padding:0 18px;background:rgba(10,10,11,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:var(--fg);display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
+.brand .sq{width:11px;height:11px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.sample{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);opacity:.8}
+.search{flex:0 0 220px;margin-left:auto}
+.search input{width:100%;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--fg);background:var(--panel);
+  border:1px solid var(--line);border-radius:8px;padding:8px 11px;outline:none}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{border-color:var(--accent)}
+.colorby{display:flex;align-items:center;gap:9px}
+.colorby .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.seg button{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);background:transparent;border:0;padding:7px 12px;cursor:pointer;border-left:1px solid var(--line);transition:.12s}
+.seg button:first-child{border-left:0}
+.seg button:hover{color:var(--dim)}
+.seg button.on{background:var(--accent);color:#06201c}
+
+#cy{position:fixed;top:56px;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 42%,#101015 0%,#0a0a0b 72%)}
+
+.legend{position:fixed;left:18px;bottom:18px;background:rgba(20,20,23,.9);border:1px solid var(--line);
+  border-radius:12px;padding:12px 14px;z-index:9;max-width:230px;backdrop-filter:blur(6px)}
+.legend h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:9px}
+.legend .row{display:flex;align-items:center;gap:9px;padding:3px 4px;border-radius:6px;cursor:pointer;font-size:12.5px;color:var(--dim)}
+.legend .row:hover{background:var(--elev)}
+.legend .sw{width:11px;height:11px;border-radius:3px;flex:0 0 auto;box-shadow:0 0 8px rgba(0,0,0,.4)}
+.hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--muted);background:rgba(20,20,23,.7);border:1px solid var(--line);border-radius:20px;padding:6px 14px;z-index:8}
+
+.panel{position:fixed;top:56px;right:0;bottom:0;width:380px;max-width:90vw;background:var(--panel);
+  border-left:1px solid var(--line);transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.7,.3,1);
+  z-index:11;overflow-y:auto;padding:26px 26px 40px}
+.panel.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.45)}
+.panel .close{position:absolute;top:16px;right:16px;border:0;background:transparent;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+.panel .close:hover{color:var(--fg)}
+.panel .kick{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent)}
+.panel h2{font-family:'Inter',sans-serif;font-weight:600;font-size:21px;line-height:1.22;letter-spacing:-.01em;margin:9px 0 11px}
+.panel .meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);line-height:1.7}
+.panel .cites{display:inline-flex;align-items:baseline;gap:7px;margin:15px 0 4px}
+.panel .cites b{font-family:'Inter',sans-serif;font-size:25px;font-weight:700;color:var(--fg)}
+.panel .cites span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chip{font-family:'JetBrains Mono',monospace;font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.chip .d{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.abstract{font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;color:var(--dim);margin:14px 0 20px;border-top:1px solid var(--line);padding-top:16px}
+.go{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;
+  color:#06201c;background:var(--accent);border-radius:9px;padding:11px 16px;text-decoration:none}
+.go:hover{filter:brightness(1.1)}
+.gonote{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.55}
+.refs{margin-top:22px}
+.refs h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px}
+.refs a{display:block;font-family:'Inter',sans-serif;font-size:13.5px;color:var(--dim);text-decoration:none;padding:5px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.refs a:hover{color:var(--accent)}
+@media(max-width:640px){ .colorby .lbl{display:none} .search{flex-basis:130px} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="sq"></span>paper_atlas</div>
+  <span class="sample">/* sample data */</span>
+  <div class="search"><input id="q" placeholder="search papers…" autocomplete="off"></div>
+  <div class="colorby">
+    <span class="lbl">color_by</span>
+    <div class="seg" id="seg">
+      <button data-dim="topic" class="on">topic</button>
+      <button data-dim="group">authors</button>
+      <button data-dim="venue">venue</button>
+    </div>
+  </div>
+</div>
+
+<div id="cy"></div>
+<div class="legend" id="legend"></div>
+<div class="hint">// click a node · scroll to zoom · drag to pan</div>
+
+<aside class="panel" id="panel">
+  <button class="close" id="close">×</button>
+  <div id="pbody"></div>
+</aside>
+
+<script>
+const PAPERS = [
+  {id:'p1', short:'Rubric Foundations', title:'Foundations of Rubric-Based Evaluation', authors:'Reyes, Okafor, Lindqvist', year:2022, venue:"NeurIPS '22", cites:1240, topic:'Benchmarks & Evals', group:'Lab Aurora', refs:[], abs:'Establishes rubric-based scoring as an alternative to exact-match metrics for open-ended model outputs, and the criteria-weighting scheme later work builds on.'},
+  {id:'p3', short:'Held-Out Survey', title:'A Survey of Held-Out Benchmarks', authors:'Marsh, Bianchi', year:2022, venue:'arXiv', cites:880, topic:'Benchmarks & Evals', group:'Academic', refs:['p1'], abs:'Surveys held-out test design and the failure modes of public benchmarks, framing contamination as the central threat to validity.'},
+  {id:'p4', short:'Reward Modeling', title:'Reward Modeling from Pairwise Human Judgments', authors:'Sato, Delacroix, Ngu', year:2022, venue:"ICML '23", cites:670, topic:'Post-training & RL', group:'Lab Aurora', refs:['p1'], abs:'A pairwise-preference reward model that becomes the default backbone for RLHF-style post-training.'},
+  {id:'p2', short:'Tool-Use Agents', title:'Measuring Tool-Use Competence in Language Agents', authors:'Vásquez, Hahn', year:2023, venue:"ICLR '24", cites:410, topic:'Agents', group:'Lab Borealis', refs:['p1'], abs:'Introduces a protocol for scoring whether agents call the right tools in the right order on multi-step tasks.'},
+  {id:'p5', short:'Verifiable Rewards', title:'Verifiable Rewards for Reasoning', authors:'Kowalski, Adeyemi', year:2023, venue:"NeurIPS '23", cites:520, topic:'Reasoning', group:'Lab Cascade', refs:['p4'], abs:'Defines reward signals that can be checked automatically, enabling RL on math and code without human labels.'},
+  {id:'p6', short:'Red-Teaming', title:'Red-Teaming Frontier Models at Scale', authors:'Iqbal, Fontaine, Park', year:2023, venue:'arXiv', cites:300, topic:'Safety & Red-teaming', group:'Lab Borealis', refs:['p1'], abs:'A model-assisted red-teaming pipeline and a taxonomy of elicited failures across capability domains.'},
+  {id:'p7', short:'Contamination', title:'Contamination in Public Benchmarks', authors:'Marsh, Oyelaran', year:2024, venue:"ACL '24", cites:210, topic:'Benchmarks & Evals', group:'Academic', refs:['p3','p1'], abs:'Quantifies train/test leakage across popular suites and shows held-out variants resist memorization.'},
+  {id:'p10', short:'Self-Preference', title:'Self-Preference in LLM Judges', authors:'Bianchi, Cho', year:2024, venue:"NeurIPS '24", cites:260, topic:'Safety & Red-teaming', group:'Academic', refs:['p4','p7'], abs:'Demonstrates that model judges systematically favor their own generations, biasing LLM-as-judge evaluations.'},
+  {id:'p9', short:'Multi-Turn Eval', title:'Multi-Turn Evaluation of Conversational Agents', authors:'Delacroix, Hahn, Reyes', year:2024, venue:"ICLR '25", cites:140, topic:'Agents', group:'Lab Cascade', refs:['p2','p6'], abs:'A realistic multi-turn benchmark that exposes instruction-drift failures single-turn tests miss.'},
+  {id:'p8', short:'Agentic Rubrics', title:'Agentic Rubrics as Verifiers', authors:'Ngu, Vásquez', year:2024, venue:"ICML '25", cites:95, topic:'Agents', group:'Lab Aurora', refs:['p2','p4','p5'], abs:'Uses rubric-following agents as contextual verifiers, bridging rubric evaluation and verifiable rewards.'},
+  {id:'p11', short:'RLVR Open-Domain', title:'Scaling Verifiable Rewards to Open Domains', authors:'Adeyemi, Kowalski', year:2025, venue:"ICML '25", cites:60, topic:'Post-training & RL', group:'Lab Cascade', refs:['p5','p8'], abs:'Extends verifiable-reward RL beyond math/code to rubric-scored open-ended domains.'},
+  {id:'p12', short:'Economic Tasks', title:'Benchmarks for Economic Task Value', authors:'Fontaine, Park', year:2025, venue:'arXiv', cites:45, topic:'Benchmarks & Evals', group:'Lab Borealis', refs:['p3','p7','p9'], abs:'Grounds evaluation in dollar-valued real-world deliverables rather than synthetic accuracy.'},
+  {id:'p13', short:'Process Supervision', title:'Process Supervision for Tool Agents', authors:'Hahn, Sato', year:2025, venue:"NeurIPS '24", cites:30, topic:'Reasoning', group:'Lab Aurora', refs:['p5','p8','p11'], abs:'Supervises intermediate steps of tool-using agents, improving reliability over outcome-only rewards.'},
+  {id:'p14', short:'Failure Map', title:'A Map of Evaluation Failures', authors:'Oyelaran, Cho', year:2025, venue:"ACL '24", cites:18, topic:'Benchmarks & Evals', group:'Academic', refs:['p7','p10','p12'], abs:'Synthesizes recurring evaluation failure modes into a single navigable taxonomy.'},
+];
+
+// literal hex (canvas can't read CSS vars) — distinct from the teal UI accent
+const PAL = {blue:'#60a5fa', amber:'#f59e0b', green:'#4ade80', violet:'#a78bfa', pink:'#f472b6', slate:'#8b96a8'};
+const ACCENT='#2dd4bf';
+const DIMS = {
+  topic:{vals:['Benchmarks & Evals','Post-training & RL','Reasoning','Agents','Safety & Red-teaming'],
+         colors:[PAL.blue,PAL.amber,PAL.green,PAL.violet,PAL.pink]},
+  group:{vals:['Lab Aurora','Lab Borealis','Lab Cascade','Academic'],
+         colors:[PAL.blue,PAL.amber,PAL.green,PAL.slate]},
+  venue:{vals:["NeurIPS '22","NeurIPS '23","NeurIPS '24","ICML '23","ICML '25","ICLR '24","ICLR '25","ACL '24","arXiv"],
+         colors:[PAL.blue,PAL.blue,PAL.blue,PAL.amber,PAL.amber,PAL.green,PAL.green,PAL.violet,PAL.slate]}
+};
+function colorFor(dim,val){const d=DIMS[dim];const i=d.vals.indexOf(val);return i<0?PAL.slate:d.colors[i];}
+function size(c){return Math.round(20 + Math.sqrt(c)*1.7);}
+
+const elements=[];
+PAPERS.forEach(p=>elements.push({data:{id:p.id, short:p.short, size:size(p.cites),
+  bg:colorFor('topic',p.topic), topicC:colorFor('topic',p.topic), groupC:colorFor('group',p.group), venueC:colorFor('venue',p.venue)}}));
+PAPERS.forEach(p=>p.refs.forEach(r=>elements.push({data:{id:p.id+'_'+r, source:p.id, target:r}})));
+
+const cy = cytoscape({
+  container:document.getElementById('cy'), elements, minZoom:.3, maxZoom:2.5, wheelSensitivity:.25,
+  style:[
+    {selector:'node',style:{
+      'background-color':'data(bg)','width':'data(size)','height':'data(size)',
+      'label':'data(short)','font-family':'JetBrains Mono, monospace','font-size':'9.5px',
+      'color':'#cfcfd6','text-margin-y':6,'text-valign':'bottom','min-zoomed-font-size':7,
+      'text-outline-width':2.5,'text-outline-color':'#0a0a0b',
+      'border-width':1.5,'border-color':'#0a0a0b'}},
+    {selector:'edge',style:{
+      'width':1.3,'line-color':'#34343c','target-arrow-color':'#34343c',
+      'target-arrow-shape':'triangle','arrow-scale':.8,'curve-style':'bezier','opacity':.7}},
+    {selector:'.faded',style:{'opacity':.08}},
+    {selector:'node.sel',style:{'border-width':3,'border-color':ACCENT,'border-style':'dashed'}},
+    {selector:'edge.hl',style:{'line-color':ACCENT,'target-arrow-color':ACCENT,'opacity':1,'width':2.4}}
+  ],
+  layout:{name:'cose',animate:false,nodeRepulsion:9000,idealEdgeLength:95,padding:60,nodeDimensionsIncludeLabels:true}
+});
+
+let curDim='topic';
+function applyColor(dim){
+  curDim=dim;
+  cy.nodes().forEach(n=>n.data('bg', n.data(dim==='topic'?'topicC':dim==='group'?'groupC':'venueC')));
+  document.querySelectorAll('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.dim===dim));
+  renderLegend();
+}
+document.getElementById('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)applyColor(b.dataset.dim);});
+
+function renderLegend(){
+  const d=DIMS[curDim], present=[...new Set(PAPERS.map(p=>p[curDim]))];
+  const el=document.getElementById('legend');
+  el.innerHTML='<h4>// '+(curDim==='group'?'author group':curDim)+'</h4>'+
+    d.vals.filter(v=>present.includes(v)).map(v=>
+      `<div class="row" data-val="${v}"><span class="sw" style="background:${colorFor(curDim,v)}"></span>${v}</div>`).join('');
+  el.querySelectorAll('.row').forEach(r=>{ r.onmouseenter=()=>highlightCategory(r.dataset.val); r.onmouseleave=clearHighlight; });
+}
+function highlightCategory(val){
+  cy.batch(()=>{cy.elements().addClass('faded');
+    cy.nodes().filter(n=>{const p=PAPERS.find(x=>x.id===n.id());return p&&p[curDim]===val;}).removeClass('faded');});
+}
+function clearHighlight(){ if(!cy.$('node.sel').length) cy.elements().removeClass('faded'); }
+
+const panel=document.getElementById('panel'), pbody=document.getElementById('pbody');
+function openPaper(p){
+  cy.batch(()=>{
+    cy.elements().removeClass('sel hl').addClass('faded');
+    const n=cy.$('#'+p.id); n.closedNeighborhood().removeClass('faded'); n.addClass('sel'); n.connectedEdges().addClass('hl').removeClass('faded');
+  });
+  const tags=[[p.topic,colorFor('topic',p.topic)],[p.group,colorFor('group',p.group)],[p.venue,colorFor('venue',p.venue)]];
+  pbody.innerHTML=`
+    <div class="kick">${p.year} · ${p.venue.toLowerCase()}</div>
+    <h2>${p.title}</h2>
+    <div class="meta">${p.authors}</div>
+    <div class="cites"><b>${p.cites.toLocaleString()}</b><span>citations</span></div>
+    <div class="chips">${tags.map(t=>`<span class="chip"><span class="d" style="background:${t[1]}"></span>${t[0]}</span>`).join('')}</div>
+    <div class="abstract">${p.abs}</div>
+    <a class="go" href="#" onclick="return false;">read the explainer&nbsp;→</a>
+    <div class="gonote">// links to this paper's generated explainer page<br>// (the patwardhan-2025-gdpval.html-style long-read)</div>
+    <div class="refs"><h4>// cites (${p.refs.length})</h4>${
+      p.refs.length? p.refs.map(r=>{const q=PAPERS.find(x=>x.id===r);return `<a data-id="${r}">${q.title}</a>`}).join('')
+      :'<div class="meta">— foundational node —</div>'}</div>`;
+  pbody.querySelectorAll('.refs a').forEach(a=>a.onclick=()=>{const q=PAPERS.find(x=>x.id===a.dataset.id);cy.animate({center:{eles:cy.$('#'+q.id)},zoom:1.1},{duration:300});openPaper(q);});
+  panel.classList.add('open');
+}
+cy.on('tap','node',e=>openPaper(PAPERS.find(p=>p.id===e.target.id())));
+cy.on('tap',e=>{ if(e.target===cy){ panel.classList.remove('open'); cy.elements().removeClass('sel hl faded'); }});
+document.getElementById('close').onclick=()=>{panel.classList.remove('open');cy.elements().removeClass('sel hl faded');};
+
+document.getElementById('q').addEventListener('input',e=>{
+  const v=e.target.value.trim().toLowerCase();
+  if(!v){ if(!cy.$('node.sel').length) cy.elements().removeClass('faded'); return; }
+  cy.batch(()=>{cy.elements().addClass('faded');
+    cy.nodes().filter(n=>{const p=PAPERS.find(x=>x.id===n.id());return p&&(p.title.toLowerCase().includes(v)||p.short.toLowerCase().includes(v)||p.authors.toLowerCase().includes(v));}).removeClass('faded');});
+});
+
+applyColor('topic');
+cy.ready(()=>cy.fit(undefined,70));
+</script>
+</body>
+</html>

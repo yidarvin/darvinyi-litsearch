@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>paper_atlas — citation map</title>
+<meta name="description" content="Paper Atlas — a dark citation map of ML / evaluation papers, with a long-read explainer behind every node.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+  <span class="sample mono" id="datanote">/* loading… */</span>
+  <div class="search"><input id="q" placeholder="search papers…" autocomplete="off"></div>
+  <div class="colorby">
+    <span class="lbl mono">color_by</span>
+    <div class="seg" id="seg">
+      <button data-dim="topic" class="on">topic</button>
+      <button data-dim="group">authors</button>
+      <button data-dim="venue">venue</button>
+    </div>
+  </div>
+</div>
+
+<div id="cy"></div>
+<div class="legend" id="legend"></div>
+<div class="hint mono" id="hint">// click a node · scroll to zoom · drag to pan</div>
+
+<aside class="panel" id="panel">
+  <button class="close" id="close">×</button>
+  <div id="pbody"></div>
+</aside>
+
+<div class="empty" id="empty" hidden>
+  <div class="empty-card">
+    <span class="sq"></span>
+    <h1 class="mono">paper_atlas</h1>
+    <p class="mono kick">// queue seeded · no explainers yet</p>
+    <p>The map renders from <code>data/papers.json</code>, which is still empty.
+       Run the first paper through <code>CLAUDE.md</code> &mdash;
+       say <em>&ldquo;run the next one&rdquo;</em> &mdash; and its node will appear here.</p>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
