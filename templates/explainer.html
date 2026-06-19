@@ -35,7 +35,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
-  -webkit-font-smoothing:antialiased}
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -132,7 +132,23 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
 .lb.open{display:flex}
 .lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
 
-@media(max-width:640px){ h1{font-size:29px} .nav{display:none} .hero{padding-top:80px} }
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
 </style>
 </head>
 <body>
