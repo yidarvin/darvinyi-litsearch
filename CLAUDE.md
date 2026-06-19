@@ -9,9 +9,12 @@ A local **queue** (`data/queue.json`) lists papers waiting to become explainers.
 
 You have web access, bash (curl/wget), and Python (PyMuPDF / Pillow). **Never auto-commit, push, or deploy.** End every task with a short summary of what changed and a reminder for me to review (`npm run dev`) and commit.
 
+**Semantic Scholar API key.** A key lives in the `$S2_API_KEY` env var (set in the gitignored `.claude/settings.local.json` — never hardcode or echo it). Send it on **every** Semantic Scholar request as a header: `curl -s -H "x-api-key: $S2_API_KEY" "https://api.semanticscholar.org/graph/v1/..."`. This raises the rate limit; without it the API throttles aggressively. If a call still 429s, back off and retry rather than dropping the key.
+
 ## Command routing
 - "run the next one" / "go down the queue" / "next paper" / "do the next one" → **Procedure A — Process next**
 - "add X to the queue" / "queue up X" / "add all papers by/from …" → **Procedure B — Add to queue**
+- "review the existing papers" / "audit the graph" / "refresh citations" / "recheck the connections" → **Procedure C — Audit the graph**
 
 If a message is ambiguous, ask one short question before acting.
 
@@ -82,7 +85,8 @@ Each `public/papers/<slug>.html` is one self-contained **dark** long-read built 
 8. **Update the graph (`data/papers.json`).** Add this paper's node (slug, short label, title, authors, year, venue, citation_count, topic, author_group, abstract, explainer path). Judge `topic` from the abstract (Benchmarks & Evals / Post-training & RL / Reasoning / Agents / Safety & Red-teaming / …) and set `author_group`. Add **edges**: for every reference that is already a node (match by arxiv_id/doi/title) add `{from: <this slug>, to: <ref slug>}`; for every existing node whose paper this one's `citations` list shows citing it, add the reverse edge. Write the file deterministically (stable key order) for clean diffs.
 9. **Grow the queue.** From this paper's references/citations, pick the most important papers **not already** in `papers.json` or `queue.json` (dedupe by arxiv_id/doi/title), ranked by citation count and by how many existing nodes cite them. List the top ~5 with one-line reasons and append them to `data/queue.json` (`source: "Cited by <this slug>"`).
 10. **Remove the processed paper** from `data/queue.json`.
-11. **Report.** "Built `papers/<slug>.html`; added 1 node + N edges; queued M new papers; removed 1 from the queue." Then remind me to `npm run dev` and commit.
+11. **Verify it actually renders.** A clean `papers.json` does **not** guarantee the map shows the node — the render is the source of truth. Run `npm run build` (must succeed) and load the site (`npm run dev`, or drive it with the browser tools): confirm the **new node appears on the map** and its **explainer page loads** self-contained. Pay special attention to UI state transitions you don't normally exercise (e.g. the empty→first-paper case). If the node is missing despite correct data, it's a site bug — fix it (and note the fix in the report).
+12. **Report.** "Built `papers/<slug>.html`; added 1 node + N edges; queued M new papers; removed 1 from the queue; verified it renders." Then remind me to `npm run dev` and commit.
 
 ---
 
@@ -106,8 +110,28 @@ Input is a phrase **X**. First classify it:
 
 ---
 
+## Procedure C — Audit the graph
+
+Reconcile `data/papers.json` against reality: every citation **between papers already in the graph** should be an edge, and every node's `citation_count` should be current. This adds **no new nodes** and writes **no explainers** — it only fixes edges and counts among existing nodes. (To find *new* papers to cover, that's Procedure B.)
+
+1. **Load the graph.** Read `data/papers.json`. List the nodes (slug · title · arxiv_id/doi) and note the current edge count. If there are no nodes, say so and stop. Build a lookup from arxiv_id / doi / normalized-title → slug so references and citations can be matched back to nodes.
+2. **Refresh each node's metadata + citation graph.** For every node, query Semantic Scholar `/paper/<id>` (fall back to OpenAlex) for the current `citationCount`, plus its `references` and `citations`. Cache each result — you'll need both directions. If a node can't be resolved, note it and keep its existing values rather than zeroing them.
+3. **Rebuild the expected edge set.** For every **ordered pair** of existing nodes (A, B): an edge `A → B` belongs in the graph if A's `references` include B **or** B's `citations` include A (match by arxiv_id/doi/title). Union both directions so an edge is caught even when only one paper's API record lists the link. This expected set is what the graph *should* contain.
+4. **Diff against the current edges.**
+   - **Missing edges** (expected but not present) → add them. These are the main point of the audit — citations that were not caught when each paper was first processed.
+   - **Duplicate edges** (same from/to listed more than once) → collapse to one.
+   - **Dangling edges** (an endpoint slug no longer exists) → remove them.
+   - Do **not** remove a real edge just because one API call now omits it; only drop edges that are dangling or duplicated. If an edge looks genuinely wrong (e.g., direction reversed), flag it in the report rather than silently deleting.
+5. **Update citation counts.** Set each node's `citation_count` to the refreshed value. If a count changed a lot, it's worth a line in the report. Leave a node untouched if it couldn't be resolved in step 2.
+6. **Write `data/papers.json` deterministically** (stable key order, edges sorted) so the diff is reviewable. Don't touch `slug`, `short`, `explainer`, or prose fields (`abstract`, `topic`, `author_group`) — those are owned by Procedure A.
+7. **Verify it renders.** Run `npm run build` (must succeed) and load the site (`npm run dev`, or the browser tools): confirm the map still renders and the **new connections actually appear** (node degrees/links changed as expected). The render is the source of truth — a clean JSON diff isn't enough.
+8. **Report.** "Audited N nodes; added E edges, removed D dangling/duplicate; refreshed C citation counts; verified it renders." Call out any nodes that couldn't be resolved and any edges you flagged but didn't change. Then remind me to `npm run dev` and commit (`data/papers.json` changed).
+
+---
+
 ## Conventions
 - Keep the identifier and slug consistent across the queue, the explainer filename, and the graph node.
 - Citation counts drift; they're refreshed whenever a paper is processed, and a page may note "as of <date>".
 - Write `data/*.json` deterministically (stable key order) so commits stay readable.
+- The rendered map is the source of truth, not the JSON — always confirm a new node actually appears before calling a run done (Procedure A, step 11).
 - Never auto-commit, push, or deploy — finish each run with a summary and "review and commit when ready."

@@ -66,6 +66,9 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 /* empty state — shown when data/papers.json has no nodes yet */
 .empty{position:fixed;inset:56px 0 0 0;display:flex;align-items:center;justify-content:center;
   background:radial-gradient(circle at 50% 42%,#101015 0%,#0a0a0b 72%);z-index:5;padding:24px}
+/* honor the [hidden] attribute — author display: above otherwise defeats it,
+   leaving the overlay painted over the graph once the first node exists. */
+.empty[hidden]{display:none}
 .empty-card{max-width:430px;text-align:center}
 .empty-card .sq{display:inline-block;width:16px;height:16px;border-radius:4px;background:var(--accent);box-shadow:0 0 26px var(--accent-soft);margin-bottom:18px}
 .empty-card h1{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:22px;letter-spacing:-.01em;margin-bottom:10px}

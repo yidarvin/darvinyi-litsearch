@@ -1,4 +1,112 @@
 {
-  "papers": [],
-  "edges": []
+  "papers": [
+    {
+      "slug": "raghavendra-2026-swe-atlas",
+      "short": "SWE Atlas",
+      "title": "SWE Atlas: Benchmarking Coding Agents Beyond Issue Resolution",
+      "authors": "Raghavendra, Dan, Romero Calvo, …, He",
+      "year": 2026,
+      "venue": "arXiv",
+      "citation_count": 0,
+      "topic": "Agents",
+      "author_group": "Scale AI",
+      "abstract": "A 284-task benchmark covering the software-engineering work that issue-resolution benchmarks ignore — Codebase Q&A, Test Writing, and Refactoring — across 18 real repos. It pairs programmatic checks with rubric-based LLM-as-judge grading and finds engineering quality lags functional correctness by 15–40 points even for frontier models (GPT-5.4 and Opus 4.7 lead at ~42–43% Pass@1).",
+      "explainer": "papers/raghavendra-2026-swe-atlas.html"
+    },
+    {
+      "slug": "sehwag-2026-scipredict",
+      "short": "SciPredict",
+      "title": "SciPredict: Can LLMs Predict the Outcomes of Scientific Experiments in Natural Sciences?",
+      "authors": "Sehwag, Lau, Ehsani Oskouie, …, Huang, Liu",
+      "year": 2026,
+      "venue": "arXiv",
+      "citation_count": 0,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Scale AI",
+      "abstract": "A 405-task benchmark drawn from physics, chemistry, and biology papers posted after March 2025 (no pretraining leakage, web search disabled) that asks 15 frontier LLMs to predict experimental outcomes. Models score just 14–26% — roughly matching ~20% human experts — but unlike experts, whose accuracy climbs from ~5% to ~80% as they judge a question more predictable, models stay flat at ~20% regardless of their own confidence, exposing a calibration gap that makes them untrustworthy for experiment planning.",
+      "explainer": "papers/sehwag-2026-scipredict.html"
+    },
+    {
+      "slug": "chiu-2025-morebench",
+      "short": "MoReBench",
+      "title": "MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models, More than Outcomes",
+      "authors": "Chiu, Lee, Calcott, …, Choi, Gordon, Levine",
+      "year": 2025,
+      "venue": "ICLR 2026",
+      "citation_count": 12,
+      "topic": "Reasoning",
+      "author_group": "Scale AI",
+      "abstract": "A process-focused moral-reasoning benchmark: 1,000 dilemmas paired with 23,018 criteria written by 53 moral philosophers, grading how a model's thinking trace reasons rather than which side it lands on. Across 14 frontier reasoning models, moral-reasoning skill is nearly uncorrelated with scaling and with math/code/Arena benchmarks (Pearson r between −0.245 and 0.216); models reliably avoid harm (72–85%) but are weakest at integrating competing considerations, and reason markedly better in Utilitarian/Deontological frames than in Virtue Ethics or Contractarianism. A sibling set, MoReBench-Theory (150 scenarios), tests reasoning within five normative frameworks.",
+      "explainer": "papers/chiu-2025-morebench.html"
+    },
+    {
+      "slug": "bandi-2026-mcp-atlas",
+      "short": "MCP-Atlas",
+      "title": "MCP-Atlas: A Large-Scale Benchmark for Tool-Use Competency with Real MCP Servers",
+      "authors": "Bandi, Dumitru, Hertzberg, …, Kenstler, Liu",
+      "year": 2026,
+      "venue": "arXiv",
+      "citation_count": 19,
+      "topic": "Agents",
+      "author_group": "Scale AI",
+      "abstract": "A 1,000-task benchmark over 36 production MCP servers and 220 real tools, scored by an answer-centric claims rubric that credits any valid tool path; distractors are baked in so 98.6% of tasks demand genuine tool discovery across two or more servers. Across 20 frontier models the agentic frontier is no longer tool-mechanics-bound — Muse Spark leads at 82.2% Pass@0.75 and open-weight GLM-5.1 reaches 75.6% — but 63.3% of ~6,900 diagnosed failures are cognitive (premature stopping, faulty synthesis) rather than tool-call errors, and o3 Pro lands at 44.5% by issuing no tool call on 40% of its failed tasks.",
+      "explainer": "papers/bandi-2026-mcp-atlas.html"
+    },
+    {
+      "slug": "akyurek-2025-prbench",
+      "short": "PRBench",
+      "title": "PRBench: Large-Scale Expert Rubrics for Evaluating High-Stakes Professional Reasoning",
+      "authors": "Akyürek, Gosai, Zhang, …, Liu, He",
+      "year": 2025,
+      "venue": "arXiv",
+      "citation_count": 16,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Scale AI",
+      "abstract": "The largest public rubric-based benchmark for law and finance: 1,100 expert-authored tasks and 19,356 weighted criteria from 182 credentialed professionals (JD/CFA/6+ yrs) spanning 114 countries and 47 US jurisdictions. Across 20 frontier models the best score only 0.39 (Finance) and 0.37 (Legal) on the Hard subsets — Instruction Following is near-solved while Supplemental Insight and Handling Uncertainty lag, models with similar overall scores diverge sharply by capability, and the dominant failure modes are inaccurate judgments, missing process transparency, and incomplete reasoning.",
+      "explainer": "papers/akyurek-2025-prbench.html"
+    },
+    {
+      "slug": "sharma-2025-researchrubrics",
+      "short": "ResearchRubrics",
+      "title": "ResearchRubrics: A Benchmark of Prompts and Rubrics For Evaluating Deep Research Agents",
+      "authors": "Sharma, Zhang, Bandi, …, Kenstler, Liu",
+      "year": 2025,
+      "venue": "ICLR 2026",
+      "citation_count": 57,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Scale AI",
+      "abstract": "A fully human-built benchmark for Deep Research agents: 101 open-ended prompts paired with 2,593 expert-written, weighted rubric criteria (2,800+ hours of labor) across nine domains, scored by LLM-as-judge over three-stage expert review. Even the strongest agents — Gemini DR (0.677) and OpenAI DR (0.664) — clear under 68% of criteria under ternary grading, with no system topping 70%; failures concentrate in implicit reasoning and cross-document synthesis (45–50% of all failures) rather than factual retrieval. Methodologically, binary grading aligns with human judges ~20 points better than ternary partial credit (0.76 vs 0.57 Macro-F1), and LLM-augmenting the expert rubrics degrades alignment by 15–20%.",
+      "explainer": "papers/sharma-2025-researchrubrics.html"
+    },
+    {
+      "slug": "mazeika-2025-rli",
+      "short": "RLI",
+      "title": "Remote Labor Index: Measuring AI Automation of Remote Work",
+      "authors": "Mazeika, Gatti, Menghini, …, Yue, Wang, Hendrycks",
+      "year": 2025,
+      "venue": "arXiv",
+      "citation_count": 13,
+      "topic": "Agents",
+      "author_group": "CAIS / Scale AI",
+      "abstract": "The first economically grounded measure of AI automation: 240 real freelance projects sourced from verified Upwork professionals — over 6,000 hours of work valued at $143,991, spanning 23 categories from video and CAD to game development — each paired with the human gold-standard deliverable and graded by holistic manual review (94.4% inter-annotator agreement). Frontier agents perform near the floor: the best, Manus, completes just 2.5% of projects to a client-acceptable standard and earns $1,720 of the bundle, with the rest between 0.8–2.1%. An Elo metric (human baseline = 1,000; best AI ≈ 510) and an 'autoflation' price index register steady relative progress even as absolute end-to-end automation stays near zero, and failures cluster on execution — poor quality (45.6%), incomplete deliverables (35.7%), corrupted files (17.6%) — rather than deep reasoning.",
+      "explainer": "papers/mazeika-2025-rli.html"
+    },
+    {
+      "slug": "rezaei-2025-onlinerubrics",
+      "short": "OnlineRubrics",
+      "title": "Online Rubrics Elicitation from Pairwise Comparisons",
+      "authors": "Rezaei, Vacareanu, Z. Wang, C. Wang, Liu, He, Akyürek",
+      "year": 2025,
+      "venue": "arXiv",
+      "citation_count": 29,
+      "topic": "Post-training & RL",
+      "author_group": "Scale AI",
+      "abstract": "Makes the RL rubric a living object: instead of grading long-form answers against a fixed, hand-written checklist, OnlineRubrics elicits new weighted criteria online by contrasting the current policy's responses with a control model's, closing the seams that let static rubrics be reward-hacked. Training Qwen-2.5-7B-Instruct with GRPO, it adds up to +8 points over human-rubric-only training (and +25 over the base model) on AlpacaEval, Arena-Hard, and GPQA, with pairwise extraction beating pointwise by 6–7 points — though gains concentrate on open-ended, LLM-judged quality while verifiable GSM8K/GPQA barely move.",
+      "explainer": "papers/rezaei-2025-onlinerubrics.html"
+    }
+  ],
+  "edges": [
+    { "from": "raghavendra-2026-swe-atlas", "to": "akyurek-2025-prbench" },
+    { "from": "raghavendra-2026-swe-atlas", "to": "sharma-2025-researchrubrics" }
+  ]
 }

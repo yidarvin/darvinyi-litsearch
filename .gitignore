@@ -1,7 +1,26 @@
+# Dependencies & build output
 node_modules
 dist
+
+# OS / editor
 .DS_Store
-/tmp
-figs
+
+# Python
 *.pyc
 __pycache__
+
+# Local tooling — Claude Code config (incl. the secret-bearing settings.local.json)
+# and Playwright MCP browser logs/snapshots. Not shareable project content.
+.claude/
+.playwright-mcp/
+
+# Scratch & intermediates — PDFs/figures/API dumps the procedures write while
+# building a paper. The real outputs are data/*.json and public/papers/*.html.
+/tmp
+figs
+*.log
+/paper.pdf
+/paper.txt
+/ss*.json
+/refs.json
+/cites.json
