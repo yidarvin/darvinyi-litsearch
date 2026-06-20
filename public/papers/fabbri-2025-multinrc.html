@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MultiNRC: A Challenging and Native Multilingual Reasoning Evaluation Benchmark for LLMs — paper_atlas</title>
+<meta name="description" content="A benchmark of 1,055 reasoning questions written from scratch by native French, Spanish, and Chinese speakers — not translated from English — where the best model, o3-pro, scores just 49%.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2025 · arXiv · Reasoning</div>
+      <h1>MultiNRC: A Challenging and Native Multilingual Reasoning Evaluation Benchmark for LLMs</h1>
+      <p class="dek">1,055 reasoning questions written from scratch by native French, Spanish, and Chinese speakers — not translated from English. Each one was kept only because frontier models already fail it. The best model, o3-pro, scores just 49%.</p>
+      <div class="authors mono">Alexander R. Fabbri, Diego Mares, Jorge Flores, Meher Mankikar, Ernesto Hernandez, Dean Lee, Bing Liu, Chen Xing · Scale AI</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>arXiv</b></span>
+        <span class="fact">citations&nbsp;<b>8</b></span>
+        <span class="fact">topic&nbsp;<b>Reasoning</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2507.17476">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of June 2026</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>English reasoning evaluation is rich — GSM8K, MATH, MMLU-Pro, GPQA — but the multilingual landscape is mostly a <strong>translation</strong> of it. MGSM is GSM8K translated into ten languages; MMLU-ProX is MMLU-Pro machine-translated and reviewed across 28 languages; BenchMAX renders GPQA into other tongues. Useful as these are, they inherit English's cultural framing: the entities, the units, the assumptions all stay Anglophone. A question's <em>reasoning</em> never actually depends on knowing how French gender agreement works, what a Chengyu is, or when Día de la Candelaria falls.</p>
+      <p>The other common route — repurposing real exams in other languages (e.g. M3Exam) — tends to produce multiple-choice <strong>knowledge recall</strong> rather than reasoning, and those questions are already easy for frontier models. The result is a blind spot: we genuinely did not know how state-of-the-art LLMs handle reasoning that is <strong>natively</strong> grounded in a language's grammar, wordplay, traditions, and number systems. MultiNRC is built to measure exactly that — and to make the comparison "does the model reason worse in French than in English?" precise by shipping human English equivalents of the translatable questions.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>MultiNRC (the <strong>Multi</strong>lingual <strong>N</strong>ative <strong>R</strong>easoning <strong>C</strong>hallenge) is <strong>1,055 questions authored from scratch</strong> by native speakers of French, Spanish, and Chinese, each with a short, objective ground-truth final answer (a word or a phrase). Every item belongs to one of four reasoning categories chosen to demand local knowledge, not translated context:</p>
+      <ul>
+        <li><strong>Language-specific linguistic reasoning</strong> — grammar, honorifics, word-formation rules that exist only in the target language (e.g. <em>délice</em> is masculine singular but feminine plural in French).</li>
+        <li><strong>Wordplay &amp; riddles</strong> — puns, homophones, idioms that cannot survive translation (a Chinese riddle answered with a homophonic Chengyu).</li>
+        <li><strong>Cultural / tradition reasoning</strong> — multi-step reasoning over local holidays, customs, and timelines (planning flights around Día de la Candelaria with two full weekends at the beach).</li>
+        <li><strong>Math with cultural relevance</strong> — calculations that hinge on a culture-specific calendar, currency, counting system, or institution (the French <em>viager</em> property scheme, dated against the Cannes Film Festival).</li>
+      </ul>
+      <p>The defining design choice is an <strong>adversarial difficulty filter</strong>: a candidate question is retained only if at least three of five then-current frontier models fail it. The filter panel was Gemini-2.5-pro, o4-mini, Claude-3.7-Sonnet, DeepSeek-R1, and Llama-4-Maverick.</p>
+
+      <div class="eq">
+        keep&nbsp;question&nbsp;<i>q</i>&nbsp;&nbsp;⟺&nbsp;&nbsp;<span class="frac"><span class="num">#{ m ∈ panel : m fails <i>q</i> }</span><span class="den">5</span></span>&nbsp;≥&nbsp;<span class="frac"><span class="num">3</span><span class="den">5</span></span>
+        <span class="note">// inclusion rule — panel = {Gemini-2.5-pro, o4-mini, Claude-3.7-Sonnet, DeepSeek-R1, Llama-4-Maverick}</span>
+      </div>
+
+      <p>Two native-speaker review passes follow: the first checks that each prompt and gold answer are correct and on-category; the second re-verifies that three of five models really do fail. Because every answer is short and objective, grading is automated with an <strong>LLM judge (GPT-4.1)</strong>, which reaches <strong>over 95% agreement with human judgments</strong> and a Scott's Pi of <strong>0.88</strong>. For the Cultural and Math categories, annotators also wrote <strong>English-equivalent</strong> prompts (translating the logic, not the words) so a model's native-language reasoning can be compared head-to-head with English on the same problem. Linguistic and wordplay items have no English equivalents — they would stop making sense. All results are <strong>pass@1</strong>, 32k max completion tokens, 16k thinking budget where applicable.</p>
+
+      <table>
+        <thead><tr><th>Language</th><th class="num">Total</th><th class="num">Linguistic</th><th class="num">Wordplay</th><th class="num">Cultural</th><th class="num">Math</th></tr></thead>
+        <tbody>
+          <tr><td>French</td><td class="num">338</td><td class="num">75</td><td class="num">79</td><td class="num">107</td><td class="num">77</td></tr>
+          <tr><td>Spanish</td><td class="num">392</td><td class="num">71</td><td class="num">93</td><td class="num">122</td><td class="num">106</td></tr>
+          <tr><td>Chinese</td><td class="num">325</td><td class="num">71</td><td class="num">86</td><td class="num">90</td><td class="num">78</td></tr>
+          <tr><td><strong>Total</strong></td><td class="num"><strong>1055</strong></td><td class="num">217</td><td class="num">258</td><td class="num">319</td><td class="num">261</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Across 14 frontier models, <strong>none clears 50%</strong>. o3-pro leads at <strong>49.00%</strong>, with o3-high (45.50%), Gemini-2.5-Pro (45.12%), and o3-medium (44.45%) close behind; everything else trails badly, down to Llama-4-Maverick at <strong>8.44%</strong>. The reasoning-effort and reasoning-model story is clean: thinking variants beat their non-thinking siblings (Claude-4-Opus-thinking 33.93% vs 29.00%), DeepSeek-R1-0528 improves on the original R1, and GPT-4.1 beats GPT-4o.</p>
+
+      <table>
+        <thead><tr><th>Model</th><th class="num">Original acc. (%)</th></tr></thead>
+        <tbody>
+          <tr><td>o3-pro-2025-06-10-high</td><td class="num">49.00 ±3.02</td></tr>
+          <tr><td>o3-2025-04-16-high</td><td class="num">45.50 ±3.00</td></tr>
+          <tr><td>Gemini-2.5-Pro-Preview-06-05</td><td class="num">45.12 ±3.00</td></tr>
+          <tr><td>o3-2025-04-16-medium</td><td class="num">44.45 ±3.00</td></tr>
+          <tr><td>Claude-4-Opus-thinking</td><td class="num">33.93 ±2.86</td></tr>
+          <tr><td>Claude-4-Opus</td><td class="num">29.00 ±2.74</td></tr>
+          <tr><td>Claude-3.7-Sonnet-thinking</td><td class="num">27.77 ±2.70</td></tr>
+          <tr><td>DeepSeek-R1-0528</td><td class="num">27.58 ±2.70</td></tr>
+          <tr><td>DeepSeek-R1</td><td class="num">24.27 ±2.59</td></tr>
+          <tr><td>o4-mini-high</td><td class="num">22.18 ±2.51</td></tr>
+          <tr><td>GPT-4.1</td><td class="num">21.23 ±2.47</td></tr>
+          <tr><td>Claude-4-Sonnet</td><td class="num">18.39 ±2.34</td></tr>
+          <tr><td>GPT-4o</td><td class="num">12.42 ±1.99</td></tr>
+          <tr><td>Llama-4-Maverick</td><td class="num">8.44 ±1.68</td></tr>
+        </tbody>
+      </table>
+
+      <h3>A single average hides the real structure</h3>
+      <p>Broken down by category and language, the difficulty is uneven. <strong>Math with cultural relevance is hardest</strong> (23.3% average across models), with Spanish math the single worst cell (18.7%). Linguistic (34.8%) and cultural (31.1%) reasoning score higher; wordplay stays hard everywhere but is easiest in French. <strong>Spanish is the most challenging language overall.</strong> Crucially, models <strong>re-rank across categories</strong>: Gemini-2.5-Pro is only third on average but <strong>first in math</strong>, while o3-pro spikes on French wordplay (75.9%). A leaderboard number, the authors argue, is less informative than the taxonomy.</p>
+
+      <table>
+        <thead><tr><th>Category (model avg.)</th><th class="num">French</th><th class="num">Spanish</th><th class="num">Chinese</th></tr></thead>
+        <tbody>
+          <tr><td>Cultural</td><td class="num">31.7</td><td class="num">26.2</td><td class="num">36.9</td></tr>
+          <tr><td>Math</td><td class="num">29.8</td><td class="num">18.7</td><td class="num">23.3</td></tr>
+          <tr><td>Linguistic</td><td class="num">36.1</td><td class="num">32.5</td><td class="num">35.7</td></tr>
+          <tr><td>Wordplay</td><td class="num">35.6</td><td class="num">25.3</td><td class="num">24.7</td></tr>
+        </tbody>
+      </table>
+
+      <h3>English is a crutch for math, not for culture</h3>
+      <p>The English-equivalent set isolates the language effect. For <strong>math</strong>, translating into English lifts accuracy by <strong>~10 points on average</strong> — and far more for Spanish (<strong>+19.1</strong>) and Chinese (<strong>+12.5</strong>). The case studies attribute this to retrieval: models surface the right background facts and values more reliably in English. But for <strong>cultural reasoning the gain is essentially zero on average</strong> (Spanish +3.5, Chinese +1.4, French −5.0) — the specific cultural knowledge is simply missing from the model regardless of the query language. The aggregate "Mother Tongue Effect" is −5.36 (models are slightly <em>worse</em> in the native language), within-model consistency between settings averages just ~35%, and the gap between a model's best and worst language averages 13.9 points (DeepSeek-R1 swings 29.1 points between Chinese and Spanish).</p>
+
+      <table>
+        <thead><tr><th>English − Original (model avg.)</th><th class="num">French</th><th class="num">Spanish</th><th class="num">Chinese</th></tr></thead>
+        <tbody>
+          <tr><td>Cultural</td><td class="num">−5.0</td><td class="num">+3.5</td><td class="num">+1.4</td></tr>
+          <tr><td>Math</td><td class="num">+1.0</td><td class="num">+19.1</td><td class="num">+12.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>This is a genuinely hard, hard-to-game benchmark, and the native-authoring premise is the right one. But the two headline claims — "<strong>no model passes 50%</strong>" and the leaderboard ordering — are entangled with the construction process in a way that deserves care.</p>
+      <p>The difficulty filter keeps a question only if <strong>≥3 of 5 specific models</strong> fail it. That guarantees the surviving set is adversarially selected against those five — so a low absolute ceiling is partly <em>built in</em>, not purely discovered. More pointedly, the filter panel was {Gemini-2.5-pro, o4-mini, Claude-3.7-Sonnet, DeepSeek-R1, Llama-4-Maverick} — and the <strong>o3 family (o3, o3-pro) was never in it</strong>. The models that top the leaderboard were exempt from the very filter that defines the dataset, while o4-mini, DeepSeek-R1, and Llama-4 were filtered against directly. That asymmetry plausibly inflates the o3 family's relative standing and deflates the panel members'; the ranking should be read as directional, not a clean capability ladder.</p>
+      <p>The per-language/category claims — the most interesting part — ride on small cells. The 1,055 items split into 12 language×category buckets of roughly 70–120 each, then again per model. Eye-catching results like o3-pro's 75.9% on French wordplay (79 items) or DeepSeek-R1's Chinese edge sit on samples where the binomial confidence interval is wide, and there is no run-to-run variance reported at all (everything is single-sample pass@1).</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">14 current frontier models, well chosen (o3-pro, Gemini-2.5-Pro, Claude-4, DeepSeek-R1-0528). But the difficulty <em>filter</em> used a different five-model panel that excluded the o3 family — so the leaderboard's winners were never filtered against, an asymmetry that biases the ranking.</p>
+        <span class="k">contamination</span><p class="v">Low for now — questions are newly authored in-language, not scraped. But the set is public on Hugging Face, so future training-data leakage is a real risk, and "3-of-5 fail" pins difficulty to mid-2025 model versions that will decay as models improve.</p>
+        <span class="k">what's missed</span><p class="v">Only three high-resource languages, chosen by author familiarity; no low-resource languages and no dialectal variation (Iberian vs Latin-American Spanish, etc.). The English-equivalent control covers only Cultural and Math — the two hardest categories (wordplay, linguistic) have no cross-lingual comparison, and the +10% math gain could partly reflect translation simplification rather than pure knowledge retrieval.</p>
+        <span class="k">would raise confidence</span><p class="v">A held-out filter panel that includes the top models (symmetric difficulty); pass@k or multi-sample variance, not just binomial CIs; per-cell sample sizes on the breakdowns; extending the English-equivalent control to all translatable items with a translation-difficulty ablation; and adding low-resource languages and dialect splits.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>Strong evidence that native, culturally grounded reasoning is unsolved — frontier models top out at 49% and lean on English to do math. Treat the specific "&lt;50% for everyone" figure and the exact model ordering as artifacts of an asymmetric, version-pinned difficulty filter, and the per-language/category spikes as suggestive rather than settled.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>Native authoring beats translation.</strong> Writing questions from scratch in-language surfaces linguistic and cultural reasoning that translated benchmarks erase — and on it, the best frontier model (o3-pro) reaches only 49%, with most models far lower.</li>
+        <li><strong>English helps math, not culture.</strong> Translating questions into English raises math accuracy ~10 points (Spanish +19.1, Chinese +12.5) because models retrieve quantitative background better in English — but cultural reasoning barely moves, because the specific knowledge is absent in any language.</li>
+        <li><strong>The taxonomy outranks the leaderboard.</strong> Models re-rank by category and language (Gemini is 3rd overall yet 1st in math; Spanish is the hardest language; within-model language gaps average 13.9 points) — and the headline "&lt;50%" is partly a property of an adversarial filter that exempted the very models that lead.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        MultiNRC: A Challenging and Native Multilingual Reasoning Evaluation Benchmark for LLMs<br>
+        Fabbri, Mares, Flores, Mankikar, Hernandez, Lee, Liu, Xing · 2025 · arXiv<br>
+        <a href="https://arxiv.org/abs/2507.17476">read the original ↗</a> · slug: fabbri-2025-multinrc
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
