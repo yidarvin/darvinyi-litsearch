@@ -6,8 +6,11 @@ A dark, static **citation map** of ML / evaluation papers, with a long-read
 
 Two tiers:
 
-- the **index map** (`index.html` + `src/`) — a cytoscape citation graph that
-  renders from [`data/papers.json`](data/papers.json);
+- the **index map** (`index.html` + `src/`) — a cytoscape citation **timeline**
+  that renders from [`data/papers.json`](data/papers.json): papers flow
+  left→right by publication date (quarter columns, ordered to minimize edge
+  crossings), coloured by topic/author/venue, with edges dimmed until you hover
+  a node;
 - one **explainer page per paper** at `public/papers/<slug>.html` — dark,
   self-contained long-reads built from [`templates/explainer.html`](templates/explainer.html).
 
@@ -44,14 +47,16 @@ commands:
 ## Layout
 
 ```
-index.html              # map entry (Vite)
-src/main.js             # graph build + interactions (imports data/papers.json)
-src/style.css           # dark theme, teal accent
-data/papers.json        # the graph the map renders (nodes + edges)
+index.html              # map entry (Vite); holds the #axis time-axis overlay
+src/main.js             # graph build + interactions; capped node size, hover-to-brighten edges
+src/timeline.js         # time-ordered layout: papers → quarter columns by `date`, crossing-minimized
+src/style.css           # dark theme, teal accent, #axis styling
+data/papers.json        # the graph the map renders (nodes + edges); each node has a `date` (YYYY-MM)
 data/queue.json         # papers waiting to become explainers
 templates/explainer.html# the dark long-read template ({{...}} placeholders)
 scripts/extract_figures.py  # auto-detect & crop figures from a PDF (PyMuPDF)
 scripts/inject_figures.py   # base64-inline {{FIGn}} into a filled page (Pillow)
+scripts/backfill_dates.py   # re-derive each node's `date` from its explainer's source link
 public/papers/          # generated explainers land here (served as static files)
 ```
 

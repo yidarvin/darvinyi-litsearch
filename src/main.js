@@ -1,5 +1,6 @@
 import cytoscape from 'cytoscape';
 import data from '../data/papers.json';
+import { computeTimeline } from './timeline.js';
 import './style.css';
 
 /* ---- data ----------------------------------------------------------------
@@ -40,7 +41,9 @@ function buildDim(field){
 const DIMS = { topic: buildDim('topic'), group: buildDim('author_group'), venue: buildDim('venue') };
 const valOf = (p, dim) => p[DIM_FIELD[dim]];
 function colorFor(dim, val){ const d = DIMS[dim]; return (d && d.colors[val]) || SLATE; }
-function size(c){ return Math.round(20 + Math.sqrt(Math.max(0, c || 0)) * 1.7); }
+// sqrt(citation_count), but capped so the ~26k-citation foundational nodes
+// (T5, CoT) don't blow out a whole timeline column. Range ≈ 14–60px.
+function size(c){ return Math.min(60, Math.round(14 + Math.sqrt(Math.max(0, c || 0)) * 1.4)); }
 
 /* ---- empty state ---------------------------------------------------------
    papers.json starts empty; show a friendly message instead of a blank canvas. */
@@ -56,22 +59,31 @@ if (!PAPERS.length){
 }
 
 function initGraph(){
+  // time-ordered positions: papers flow left→right by publication date, with
+  // each column ordered to minimize edge crossings (see timeline.js).
+  const { positions, bands } = computeTimeline(PAPERS, EDGES, {
+    sizeOf: p => size(p.citation_count), band: 'quarter', colGap: 185, vGap: 30,
+  });
+
   const elements = [];
-  PAPERS.forEach(p => elements.push({ data: {
-    id: p.slug, short: p.short || p.slug,
-    size: size(p.citation_count),
-    bg: colorFor('topic', valOf(p, 'topic')),
-    topicC: colorFor('topic', valOf(p, 'topic')),
-    groupC: colorFor('group', valOf(p, 'group')),
-    venueC: colorFor('venue', valOf(p, 'venue')),
-  }}));
+  PAPERS.forEach(p => elements.push({
+    data: {
+      id: p.slug, short: p.short || p.slug,
+      size: size(p.citation_count),
+      bg: colorFor('topic', valOf(p, 'topic')),
+      topicC: colorFor('topic', valOf(p, 'topic')),
+      groupC: colorFor('group', valOf(p, 'group')),
+      venueC: colorFor('venue', valOf(p, 'venue')),
+    },
+    position: positions.get(p.slug),
+  }));
   EDGES.forEach(e => {
     if (byId.has(e.from) && byId.has(e.to))
       elements.push({ data: { id: `${e.from}__${e.to}`, source: e.from, target: e.to } });
   });
 
   const cy = cytoscape({
-    container: document.getElementById('cy'), elements, minZoom: .3, maxZoom: 2.5, wheelSensitivity: .25,
+    container: document.getElementById('cy'), elements, minZoom: .16, maxZoom: 2.5, wheelSensitivity: .25,
     style: [
       { selector: 'node', style: {
         'background-color': 'data(bg)', 'width': 'data(size)', 'height': 'data(size)',
@@ -79,15 +91,18 @@ function initGraph(){
         'color': '#cfcfd6', 'text-margin-y': 6, 'text-valign': 'bottom', 'min-zoomed-font-size': 7,
         'text-outline-width': 2.5, 'text-outline-color': '#0a0a0b',
         'border-width': 1.5, 'border-color': '#0a0a0b' }},
+      // edges sit dim by default (a timeline of 170+ citations would be a hairball
+      // at full opacity); a node's edges brighten on hover/selection.
       { selector: 'edge', style: {
-        'width': 1.3, 'line-color': '#34343c', 'target-arrow-color': '#34343c',
-        'target-arrow-shape': 'triangle', 'arrow-scale': .8, 'curve-style': 'bezier', 'opacity': .7 }},
-      { selector: '.faded', style: { 'opacity': .08 }},
+        'width': 1.1, 'line-color': '#3a3a44', 'target-arrow-color': '#3a3a44',
+        'target-arrow-shape': 'triangle', 'arrow-scale': .8, 'curve-style': 'bezier', 'opacity': .13 }},
+      { selector: '.faded', style: { 'opacity': .06 }},
       { selector: 'node.sel', style: { 'border-width': 3, 'border-color': ACCENT, 'border-style': 'dashed' }},
-      { selector: 'edge.hl', style: { 'line-color': ACCENT, 'target-arrow-color': ACCENT, 'opacity': 1, 'width': 2.4 }},
+      { selector: 'edge.hl', style: { 'line-color': ACCENT, 'target-arrow-color': ACCENT, 'opacity': 1, 'width': 2.4, 'z-index': 9 }},
     ],
-    layout: { name: 'cose', animate: false, nodeRepulsion: 9000, idealEdgeLength: 95, padding: 60, nodeDimensionsIncludeLabels: true },
+    layout: { name: 'preset' },
   });
+  if (import.meta.env?.DEV) window.cy = cy; // dev-only handle for debugging/tests
 
   /* ---- color-by switch + legend ---- */
   let curDim = 'topic';
@@ -185,6 +200,39 @@ function initGraph(){
     });
   });
 
+  /* ---- hover: brighten a node's citations ---- */
+  const qEl = document.getElementById('q');
+  cy.on('mouseover', 'node', e => {
+    if (cy.$('node.sel').length || qEl.value.trim()) return; // selection/search win
+    const n = e.target;
+    cy.batch(() => {
+      cy.elements().addClass('faded');
+      n.closedNeighborhood().removeClass('faded');
+      n.connectedEdges().addClass('hl').removeClass('faded');
+    });
+  });
+  cy.on('mouseout', 'node', () => {
+    if (cy.$('node.sel').length || qEl.value.trim()) return; // don't clobber those states
+    cy.batch(() => { cy.elements().removeClass('faded'); cy.edges().removeClass('hl'); });
+  });
+
+  /* ---- time axis: a vertical tick + period label per band, kept in sync with
+     pan/zoom. Cytoscape has no native axis, so this is a DOM overlay. ---- */
+  const axisEl = document.getElementById('axis');
+  const ticks = bands.map((b, i) => {
+    const showYear = i === 0 || b.year !== bands[i - 1].year;
+    const t = document.createElement('div');
+    t.className = 'tick' + (showYear ? ' yr' : '');
+    t.innerHTML = `<span class="ln"></span><span class="lb">${showYear ? `<b>${b.year}</b> ` : ''}${b.sub}</span>`;
+    axisEl.appendChild(t);
+    return { x: b.x, el: t };
+  });
+  function placeAxis(){
+    const z = cy.zoom(), px = cy.pan().x;
+    ticks.forEach(t => { t.el.style.transform = `translateX(${(t.x * z + px).toFixed(1)}px)`; });
+  }
+  cy.on('pan zoom resize', placeAxis);
+
   applyColor('topic');
-  cy.ready(() => cy.fit(undefined, 70));
+  cy.ready(() => { cy.fit(undefined, 70); placeAxis(); });
 }
