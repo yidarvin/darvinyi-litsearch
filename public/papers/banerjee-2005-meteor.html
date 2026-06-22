@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments — paper_atlas</title>
+<meta name="description" content="BLEU counts n-gram precision and stops there. METEOR adds recall, stemming, and synonym matching over an explicit word alignment — and tracks human judgment one sentence at a time, where BLEU collapses to zero.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+tr.hi td{color:var(--fg)}
+tr.hi td.num{color:var(--accent)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2005 · ACL Workshop · Benchmarks &amp; Evals</div>
+      <h1>METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments</h1>
+      <p class="dek">BLEU counts n-gram precision and stops there. METEOR builds an explicit word-to-word alignment — matching on surface form, stem, <em>and</em> WordNet synonym — then scores it with recall weighted nine times over precision plus a fragmentation penalty for word order. The payoff: a metric that tracks human judgment one sentence at a time, where BLEU's geometric average collapses to zero.</p>
+      <div class="authors mono">Satanjeev Banerjee, Alon Lavie · Carnegie Mellon University (Language Technologies Institute)</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>ACL Workshop</b></span>
+        <span class="fact">citations&nbsp;<b>8,154</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://aclanthology.org/W05-0909/">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-06-22</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2005, <a href="papineni-2002-bleu.html">BLEU</a> (and its close relative NIST) had made automatic MT evaluation cheap, fast, and ubiquitous — the DARPA TIDES program ran on it. But the authors, who had been studying these metrics empirically, argued that BLEU has structural blind spots that hurt it most exactly where you most want a metric to work: <strong>scoring a single sentence</strong>. Four weaknesses motivate METEOR:</p>
+      <ul>
+        <li><strong>No recall.</strong> BLEU's core is n-gram <em>precision</em> — matched n-grams over candidate n-grams. It never measures recall (did the translation cover the reference's content?), because recall is awkward to define against multiple references. Instead it bolts on a <em>brevity penalty</em> as a crude proxy. The authors believed — and their experiments confirm — that this under-compensates, and that recall is the more important half.</li>
+        <li><strong>Higher-order n-grams as a stand-in for word order.</strong> BLEU uses 2-, 3-, 4-gram precision as an indirect signal of grammaticality. The authors argue an <em>explicit</em> measure of how well-ordered the matched words are would capture word order more faithfully.</li>
+        <li><strong>No explicit word-to-word matching.</strong> Counting n-grams doesn't pin each candidate word to a specific reference word, so it can credit spurious matches — especially of common function words.</li>
+        <li><strong>Geometric averaging zeroes out.</strong> BLEU combines its n-gram precisions with a geometric mean, so if any single order has zero matches the whole score is zero. Over a corpus that's rare; on one sentence it's common, which makes <strong>sentence-level BLEU largely meaningless</strong> — and BLEU was only ever intended for corpus-level aggregate scoring.</li>
+      </ul>
+      <p>That last point is the crux. A metric you can trust per sentence is what lets you detect small differences between systems, or between versions of one system during development. The authors note that segment-level correlations with humans were "still rather low" across the board — leaving real room to improve.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The name spells out the idea: <strong>M</strong>etric for <strong>E</strong>valuation of <strong>T</strong>ranslation with <strong>E</strong>xplicit <strong>OR</strong>dering. METEOR scores a candidate translation against a reference by first building an explicit <strong>alignment</strong> between their words, then scoring that alignment with a recall-heavy F-measure discounted by a word-order penalty.</p>
+
+      <h3>1 · Build a word-to-word alignment in stages</h3>
+      <p>An alignment maps every unigram in each string to <em>at most one</em> unigram in the other. METEOR builds it incrementally through a series of stages, each running two phases:</p>
+      <ul>
+        <li><strong>Phase 1 — propose.</strong> A mapping module lists all possible unigram matches between the two strings. Three modules, applied in order: <span class="mono">exact</span> (identical surface forms), <span class="mono">Porter stem</span> (identical after Porter stemming, so "computers" matches "computer"), and <span class="mono">WN synonymy</span> (the two words share a WordNet synset — a "poor-man's" synonymy with no sense disambiguation).</li>
+        <li><strong>Phase 2 — select.</strong> Choose the largest subset of proposed matches that still forms a valid alignment. If several subsets tie on size, keep the one with the fewest <em>crossing</em> matches. Two matches (t<sub>i</sub>→r<sub>j</sub>) and (t<sub>k</sub>→r<sub>l</sub>) cross when:</li>
+      </ul>
+      <div class="eq">
+        ( pos(t<sub>i</sub>) − pos(t<sub>k</sub>) ) · ( pos(r<sub>j</sub>) − pos(r<sub>l</sub>) ) &lt; 0
+        <span class="note">// a negative product means the lines drawn between matched words cross — penalised in phase 2 (a variant of Turian et al. 2003)</span>
+      </div>
+      <p>Each stage only maps words left unmapped by earlier stages, so the stage order imposes a priority: by default match exactly first, then by stem, then by synonym.</p>
+
+      <h3>2 · Score the alignment: recall-weighted F, then a penalty</h3>
+      <p>From the final alignment, precision <span class="mono">P</span> is matched unigrams over the candidate length, and recall <span class="mono">R</span> is matched unigrams over the reference length. METEOR combines them with a harmonic mean that puts <strong>nine times the weight on recall</strong>:</p>
+      <div class="eq">
+        F<sub>mean</sub>&nbsp;=&nbsp;<span class="frac"><span class="num">10 · P · R</span><span class="den">R + 9 · P</span></span>
+        <span class="note">// harmonic mean of P and R, weighted toward recall (van Rijsbergen, 1979)</span>
+      </div>
+      <p>F<sub>mean</sub> only sees unigrams, so it ignores word order entirely. To put order back in, METEOR groups the matched words into the <strong>fewest possible chunks</strong> — runs of words that are adjacent in <em>both</em> strings — and penalises fragmentation. For "the president spoke to the audience" vs. the reference "the president then spoke to the audience" there are two chunks ("the president" / "spoke to the audience"). The more chunks relative to matched words, the bigger the penalty:</p>
+      <div class="eq">
+        Penalty&nbsp;=&nbsp;0.5 · <span class="frac"><span class="num"># chunks</span><span class="den"># matched unigrams</span></span><sup>3</sup>
+        <span class="note">// one chunk (perfect order) → penalty near 0; many chunks → up to a maximum of 0.5</span>
+      </div>
+      <div class="eq">
+        Score&nbsp;=&nbsp;F<sub>mean</sub> · ( 1 − Penalty )
+        <span class="note">// no bigram-or-longer matches ⇒ penalty hits 0.5 ⇒ F<sub>mean</sub> is halved</span>
+      </div>
+      <p>With multiple references, METEOR scores the candidate against each one and keeps the best. A whole-system score is computed the same way, on precision, recall, and penalty <em>aggregated</em> over the test set — mirroring how BLEU aggregates. The 9:1 recall weight and the penalty's 0.5 coefficient and cube exponent were hand-set on development data; the paper flags learning them as future work.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>METEOR is evaluated on the DARPA/TIDES 2003 MT data released for the ACL 2005 workshop: <strong>Arabic→English (664 sentences, 6 systems)</strong> and <strong>Chinese→English (920 sentences, 7 systems)</strong>, each sentence with four reference translations and assessed by two human judges for adequacy and fluency (1–5). A translation's human score is the average of those; the metric's quality is the Pearson correlation between metric scores and human scores.</p>
+
+      <h3>System level: recall alone already beats BLEU</h3>
+      <p>Aggregating to one score per system on the Chinese data, METEOR and its sub-components correlate with human system rankings far better than BLEU or NIST. The striking result: plain <strong>recall</strong> — the thing BLEU refuses to measure — already lifts correlation from BLEU's 0.817 to 0.941.</p>
+      <table>
+        <thead><tr><th>System-level metric (Chinese)</th><th class="num">Pearson R</th></tr></thead>
+        <tbody>
+          <tr><td>BLEU</td><td class="num">0.817</td></tr>
+          <tr><td>NIST</td><td class="num">0.892</td></tr>
+          <tr><td>Precision</td><td class="num">0.752</td></tr>
+          <tr><td>Recall</td><td class="num">0.941</td></tr>
+          <tr><td>F1</td><td class="num">0.948</td></tr>
+          <tr><td>F<sub>mean</sub></td><td class="num">0.952</td></tr>
+          <tr class="hi"><td>METEOR</td><td class="num">0.964</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Segment level: every component adds a little</h3>
+      <p>The paper's real focus is per-sentence correlation. Here each piece of the scoring function contributes — recall &gt;&gt; precision, F<sub>mean</sub> beats either alone, and the fragmentation penalty adds a final nudge — but the absolute numbers are modest (≈0.33–0.35), which the authors openly call "still rather low."</p>
+      <table>
+        <thead><tr><th>Segment-level metric</th><th class="num">Arabic R</th><th class="num">Chinese R</th></tr></thead>
+        <tbody>
+          <tr><td>Precision</td><td class="num">0.287</td><td class="num">0.286</td></tr>
+          <tr><td>Recall</td><td class="num">0.334</td><td class="num">0.320</td></tr>
+          <tr><td>F<sub>mean</sub></td><td class="num">0.340</td><td class="num">0.327</td></tr>
+          <tr class="hi"><td>METEOR</td><td class="num">0.347</td><td class="num">0.331</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Which matching modules matter</h3>
+      <p>Ablating the mapping stages shows stemming gives the bigger jump and WordNet synonymy a smaller final increment — the bulk of the gain is recall plus stemming, not synonymy.</p>
+      <table>
+        <thead><tr><th>Mapping stages</th><th class="num">Arabic R</th><th class="num">Chinese R</th></tr></thead>
+        <tbody>
+          <tr><td>Exact</td><td class="num">0.312</td><td class="num">0.293</td></tr>
+          <tr><td>Exact + Porter</td><td class="num">0.329</td><td class="num">0.318</td></tr>
+          <tr><td>Exact + WN-Stem</td><td class="num">0.330</td><td class="num">0.312</td></tr>
+          <tr class="hi"><td>Exact + Porter + WN-Synonym</td><td class="num">0.347</td><td class="num">0.331</td></tr>
+        </tbody>
+      </table>
+
+      <p>One last diagnostic: when the human labels are <strong>denoised</strong> (normalized by a group at MITRE), METEOR's correlation jumps from 0.347 → <strong>0.403</strong> on Arabic and 0.331 → <strong>0.365</strong> on Chinese — evidence that a big chunk of the residual "error" is noise in the human judgments, not in the metric.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>METEOR's core diagnosis of BLEU is correct and has aged well — recall matters, explicit alignment beats blind n-gram counting, and sentence-level scoring is where it counts. But read the tables closely and the win is more measured than the legend.</p>
+      <p>The headline contrast — METEOR 0.964 vs. BLEU 0.817 — is the <em>system-level</em> table, and it carries two caveats. First, those correlations are computed over just <strong>seven systems</strong>; a Pearson R on seven points is high-variance, and the gaps between F1 (0.948), F<sub>mean</sub> (0.952) and METEOR (0.964) are almost certainly within noise, yet are reported to three decimals as if separable. Second, BLEU was explicitly designed for system-level aggregate scoring — the paper itself concedes that scoring sentences with BLEU "is unfair to those algorithms." So the place METEOR is built to win (the segment level, where BLEU's geometric averaging zeroes out) is also the place BLEU is handicapped by construction. That's a fair <em>motivation</em>, but the framing tilts the field toward METEOR's home turf.</p>
+      <p>At the segment level — where the comparison is fair — METEOR's edge over its own F<sub>mean</sub> is small (0.347 vs. 0.340 on Arabic, 0.331 vs. 0.327 on Chinese): the chunk penalty barely moves the needle, and the WordNet-synonymy stage adds only ~0.02 on top of exact+stemming. Most of the lift is recall, then stemming. And the parameters that do the work — the 9:1 recall weight, the 0.5 penalty coefficient, the cube exponent — were hand-set on a separate development set rather than learned, and, in the authors' own words, "have not yet been trained to be optimal" — so how well they generalize beyond this setup is an open question.</p>
+      <p>Finally, METEOR never escapes <strong>surface lexical matching</strong>. Stemming and WordNet synonyms widen the net, but a correct paraphrase outside WordNet earns nothing, a fluent-but-wrong translation that reuses reference words can still score well, and the synonymy module is English-only — so it can't help when the target language isn't English. This is the ceiling that learned, embedding-based metrics (BERTScore, BLEURT, COMET) and later LLM-as-judge evaluators (<a href="liu-2023-g-eval.html">G-Eval</a>) were built to break through.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">The right contrasts — BLEU, NIST, and a clean component ablation (Precision / Recall / F1 / F<sub>mean</sub> / +penalty). But the system-level comparison runs on only 6–7 systems with no significance tests on the deltas, and it pits BLEU on the segment level where its own geometric averaging cripples it.</p>
+        <span class="k">contamination</span><p class="v">No learned model, so no train/test leakage in the usual sense. The one caveat: the recall weight and penalty constants were hand-set on a separate development set and, the authors note, "have not yet been trained to be optimal" — a hand-tuning / generalization concern they flag for future work, not contamination.</p>
+        <span class="k">what's missed</span><p class="v">Still surface matching — no semantics beyond WordNet synonyms, no paraphrase, English-only synonymy, and absolute segment-level correlation only ≈0.33. The chunk penalty and synonymy stage each contribute little; recall and stemming do most of the work.</p>
+        <span class="k">would raise confidence</span><p class="v">Many more MT systems per language (n ≫ 7) plus significance tests for the system-level claim; parameters <em>learned</em> with held-out validation rather than hand-tuned; and evaluation across more domains and into non-English target languages.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>METEOR correctly named BLEU's blind spots — no recall, no explicit alignment, meaningless sentence-level scores — and fixed them with a recall-weighted, alignment-based score that tracks humans better, especially per sentence. The absolute correlations are modest and the parameters are hand-tuned, but the diagnosis was right and durable. It's the pivotal middle node of the automatic-metric lineage: the bridge from pure n-gram counting to the learned and LLM-based evaluators that followed, and still the standard lexical companion reported alongside BLEU two decades later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>Recall &gt; precision for MT eval.</strong> METEOR's biggest single lesson: plain recall correlated 0.941 with human system rankings vs. BLEU's 0.817, so METEOR's F<sub>mean</sub> weights recall nine times over precision.</li>
+        <li><strong>Explicit alignment + matching beyond exact strings + an order penalty makes a metric work per sentence.</strong> Stem and synonym matching over a crossing-minimised word alignment, scored by a recall-heavy F-mean discounted for fragmentation, succeeds at the segment level where BLEU's geometric average collapses to zero.</li>
+        <li><strong>It's hand-tuned surface matching with a low absolute ceiling (~0.33 segment-level R).</strong> That recognised ceiling is exactly what motivated learned (BERTScore / BLEURT / COMET) and LLM-as-judge (G-Eval) metrics — yet METEOR remains the lexical metric reported next to BLEU to this day.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments<br>
+        Satanjeev Banerjee, Alon Lavie · 2005 · ACL Workshop<br>
+        <a href="https://aclanthology.org/W05-0909/">read the original ↗</a> · slug: banerjee-2005-meteor
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

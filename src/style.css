@@ -44,6 +44,7 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 .legend h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:9px}
 .legend .row{display:flex;align-items:center;gap:9px;padding:3px 4px;border-radius:6px;cursor:pointer;font-size:12.5px;color:var(--dim)}
 .legend .row:hover{background:var(--elev)}
+.legend .row.active{background:var(--elev);color:var(--fg);box-shadow:inset 2px 0 0 var(--accent)}
 .legend .sw{width:11px;height:11px;border-radius:3px;flex:0 0 auto;box-shadow:0 0 8px rgba(0,0,0,.4)}
 .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;
   font-size:11px;color:var(--muted);background:rgba(20,20,23,.7);border:1px solid var(--line);border-radius:20px;padding:6px 14px;z-index:8}

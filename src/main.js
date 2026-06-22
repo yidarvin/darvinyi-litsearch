@@ -106,11 +106,17 @@ function initGraph(){
 
   /* ---- color-by switch + legend ---- */
   let curDim = 'topic';
+  // a *tapped* legend row pins that category's isolation. Tap works on touch
+  // (mobile has no hover), so this is what makes the legend usable on phones;
+  // desktop hover still previews on top of any pin. null = nothing pinned.
+  let pinnedCat = null;
   function applyColor(dim){
     curDim = dim;
+    clearPin();                       // a pin from another dimension is meaningless
     cy.nodes().forEach(n => n.data('bg', n.data(dim === 'topic' ? 'topicC' : dim === 'group' ? 'groupC' : 'venueC')));
     document.querySelectorAll('#seg button').forEach(b => b.classList.toggle('on', b.dataset.dim === dim));
     renderLegend();
+    if (!cy.$('node.sel').length) cy.elements().removeClass('faded');
   }
   document.getElementById('seg').addEventListener('click', e => {
     const b = e.target.closest('button'); if (b) applyColor(b.dataset.dim);
@@ -121,23 +127,39 @@ function initGraph(){
     const ordered = DIMS[curDim].vals.filter(v => present.includes(v));
     const el = document.getElementById('legend');
     el.innerHTML = '<h4>// ' + (curDim === 'group' ? 'author group' : curDim) + '</h4>' +
-      ordered.map(v => `<div class="row" data-val="${v}"><span class="sw" style="background:${colorFor(curDim, v)}"></span>${v}</div>`).join('');
+      ordered.map(v => `<div class="row${v === pinnedCat ? ' active' : ''}" data-val="${v}"><span class="sw" style="background:${colorFor(curDim, v)}"></span>${v}</div>`).join('');
     el.querySelectorAll('.row').forEach(r => {
-      r.onmouseenter = () => highlightCategory(r.dataset.val);
-      r.onmouseleave = clearHighlight;
+      r.onmouseenter = () => showCategory(r.dataset.val);   // desktop hover preview
+      r.onmouseleave = resetHighlight;
+      r.onclick = () => {                                    // tap = pin/unpin (touch + desktop)
+        pinnedCat = pinnedCat === r.dataset.val ? null : r.dataset.val;
+        el.querySelectorAll('.row').forEach(x => x.classList.toggle('active', x.dataset.val === pinnedCat));
+        resetHighlight();
+      };
     });
   }
-  function highlightCategory(val){
+  function showCategory(val){
     cy.batch(() => {
       cy.elements().addClass('faded');
       cy.nodes().filter(n => { const p = byId.get(n.id()); return p && valOf(p, curDim) === val; }).removeClass('faded');
     });
   }
-  function clearHighlight(){ if (!cy.$('node.sel').length) cy.elements().removeClass('faded'); }
+  // resting state: a node selection (panel) owns the fade if present; else a
+  // pinned category stays isolated; else show everything.
+  function resetHighlight(){
+    if (cy.$('node.sel').length) return;
+    if (pinnedCat) showCategory(pinnedCat);
+    else cy.elements().removeClass('faded');
+  }
+  function clearPin(){
+    pinnedCat = null;
+    document.querySelectorAll('#legend .row.active').forEach(r => r.classList.remove('active'));
+  }
 
   /* ---- side panel ---- */
   const panel = document.getElementById('panel'), pbody = document.getElementById('pbody');
   function openPaper(p){
+    clearPin();                       // selecting a node and pinning a legend category are exclusive modes
     cy.batch(() => {
       cy.elements().removeClass('sel hl').addClass('faded');
       const n = cy.$id(p.slug);
@@ -181,13 +203,13 @@ function initGraph(){
   }
 
   cy.on('tap', 'node', e => openPaper(byId.get(e.target.id())));
-  cy.on('tap', e => { if (e.target === cy){ panel.classList.remove('open'); cy.elements().removeClass('sel hl faded'); }});
-  document.getElementById('close').onclick = () => { panel.classList.remove('open'); cy.elements().removeClass('sel hl faded'); };
+  cy.on('tap', e => { if (e.target === cy){ panel.classList.remove('open'); clearPin(); cy.elements().removeClass('sel hl faded'); }});
+  document.getElementById('close').onclick = () => { panel.classList.remove('open'); clearPin(); cy.elements().removeClass('sel hl faded'); };
 
   /* ---- search ---- */
   document.getElementById('q').addEventListener('input', e => {
     const v = e.target.value.trim().toLowerCase();
-    if (!v){ if (!cy.$('node.sel').length) cy.elements().removeClass('faded'); return; }
+    if (!v){ resetHighlight(); return; }   // empty search → back to pin (if any) or full graph
     cy.batch(() => {
       cy.elements().addClass('faded');
       cy.nodes().filter(n => {
