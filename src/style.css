@@ -40,7 +40,8 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 #axis .tick .lb b{color:var(--dim);font-weight:600}
 
 .legend{position:fixed;left:18px;bottom:18px;background:rgba(20,20,23,.9);border:1px solid var(--line);
-  border-radius:12px;padding:12px 14px;z-index:9;max-width:230px;backdrop-filter:blur(6px)}
+  border-radius:12px;padding:12px 14px;z-index:9;max-width:230px;max-height:min(58vh,560px);
+  overflow-y:auto;backdrop-filter:blur(6px)}
 .legend h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:9px}
 .legend .row{display:flex;align-items:center;gap:9px;padding:3px 4px;border-radius:6px;cursor:pointer;font-size:12.5px;color:var(--dim)}
 .legend .row:hover{background:var(--elev)}

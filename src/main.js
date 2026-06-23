@@ -8,7 +8,7 @@ import './style.css';
      node id      = slug
      label        = short
      size         = sqrt(citation_count)
-     color dims   = topic / author_group / venue
+     color dims   = topic / institution (derived) / venue (derived)
      edges        = data.edges  ({from,to}  ->  cytoscape {source,target})
 --------------------------------------------------------------------------- */
 const PAPERS = Array.isArray(data.papers) ? data.papers : [];
@@ -22,28 +22,105 @@ EDGES.forEach(e => {
 });
 
 /* ---- color dimensions ----------------------------------------------------
-   Colors are assigned from a fixed palette in the order values first appear
-   in the data, so the legend stays correct as the graph grows. The three
-   switchable dimensions map onto these paper fields:                        */
-const DIM_FIELD = { topic: 'topic', group: 'author_group', venue: 'venue' };
+   Three switchable color dims: topic / institution / venue. `topic` is a raw
+   field, but `institution` and `venue` are DERIVED — the raw paper fields are
+   too fine-grained (author_group encodes every collaboration combo, venue
+   carries the year + track), which blew the legend up to ~90 / ~54 swatches.
+   We collapse both, then assign palette colors by descending paper count so
+   the most common categories read first.                                    */
 
 // literal hex (canvas can't read CSS vars) — distinct from the teal UI accent
 const PAL = ['#60a5fa','#f59e0b','#4ade80','#a78bfa','#f472b6','#22d3ee','#fb923c','#a3e635','#e879f9','#f87171'];
 const SLATE = '#8b96a8';
 const ACCENT = '#2dd4bf';
+// the two long-tail catch-alls get fixed greys (and always sort last)
+const OTHER_COLOR = { 'Other (industry)': '#6b7280', 'Other (academia)': '#475569' };
 
-function buildDim(field){
-  const vals = [...new Set(PAPERS.map(p => p[field]).filter(Boolean))];
-  const colors = {};
-  vals.forEach((v, i) => { colors[v] = PAL[i % PAL.length]; });
-  return { vals, colors };
+/* institution — collapse author_group ("A / B / …") to ONE institution: each
+   token is normalized to a canonical name, and the highest-prominence partner
+   wins, so "UMass Amherst / Meta" → Meta. Institutions with < MIN_NAMED papers
+   then fall into an industry/academia catch-all so the legend stays short. */
+const INST_ALIAS = {
+  'Google':'Google','Google DeepMind':'Google','DeepMind':'Google',
+  'Meta AI (FAIR)':'Meta','Meta AI':'Meta','Meta':'Meta','Meta Superintelligence Labs':'Meta',
+  'Microsoft':'Microsoft','Microsoft Research':'Microsoft','DeepSeek-AI':'DeepSeek',
+  'AI2':'AI2','Ai2':'AI2','Princeton NLP':'Princeton','Princeton':'Princeton',
+  'UC Berkeley':'UC Berkeley','Berkeley':'UC Berkeley','LMSYS':'UC Berkeley',
+  'MIT Media Lab':'MIT','MIT':'MIT','USC ISI':'USC','UMass Amherst':'UMass','UMass':'UMass',
+  'OSU NLP':'Ohio State','GAIR Lab':'SJTU','SJTU':'SJTU','OpenBMB':'Tsinghua','Tsinghua':'Tsinghua',
+  'Renmin University of China':'Renmin University','Renmin University':'Renmin University',
+  'National Taiwan University':'NTU','UKP Lab (TU Darmstadt)':'TU Darmstadt','KAIST AI':'KAIST',
+  'Inclusion AI':'Ant Group','Ant Group':'Ant Group','ByteDance Seed':'ByteDance',
+  'Tencent AI Lab':'Tencent','Alibaba DAMO':'Alibaba','Salesforce AI Research':'Salesforce',
+};
+const INST_WEIGHT = {};
+['OpenAI','Google','Meta','Microsoft','Anthropic','Amazon','Apple','IBM','Bloomberg',
+ 'ByteDance','Tencent','Alibaba','Salesforce','J.P. Morgan'].forEach(n => { INST_WEIGHT[n] = 100; });
+['Scale AI','DeepSeek','Ant Group','Zhipu AI','Shanghai AI Lab','MBZUAI','AI2'].forEach(n => { INST_WEIGHT[n] = 90; });
+['Stanford','MIT','UC Berkeley','CMU','Princeton','Oxford','ETH Zurich','Tsinghua',
+ 'Peking University','NYU','UCLA','UW','U Tokyo','KAIST','HKU','USTC','SJTU','NTU'].forEach(n => { INST_WEIGHT[n] = 70; });
+['CAIS','METR','Patronus AI','BigCode','FutureHouse','Mercor','TIGER-Lab','AE Studio',
+ 'ZeroEntropy','Grammarly','Upwork','The Fin AI','Laude Institute','Li Auto','Metastone'].forEach(n => { INST_WEIGHT[n] = 40; });
+// canonical institutions that are companies / industry labs (the rest are academic)
+const INDUSTRY = new Set(['OpenAI','Google','Meta','Microsoft','Anthropic','Amazon','Apple','IBM',
+  'Bloomberg','ByteDance','Tencent','Alibaba','Salesforce','J.P. Morgan','Scale AI','DeepSeek',
+  'Ant Group','Zhipu AI','Shanghai AI Lab','Metastone','Li Auto','METR','Patronus AI','FutureHouse',
+  'Mercor','AE Studio','ZeroEntropy','Grammarly','Upwork','The Fin AI','Laude Institute']);
+const MIN_NAMED = 3;   // an institution needs this many papers to earn its own legend row
+
+const canonTok = t => { t = t.trim(); return INST_ALIAS[t] || t; };
+function rawInstitution(p){   // the single canonical institution we attribute a paper to
+  const parts = (p.author_group || '').split('/').map(canonTok).filter(Boolean);
+  if (!parts.length) return null;
+  return parts.reduce((a, b) => (INST_WEIGHT[b] || 50) > (INST_WEIGHT[a] || 50) ? b : a);
 }
-const DIMS = { topic: buildDim('topic'), group: buildDim('author_group'), venue: buildDim('venue') };
-const valOf = (p, dim) => p[DIM_FIELD[dim]];
+const INST_COUNT = new Map();
+PAPERS.forEach(p => { const i = rawInstitution(p); if (i) INST_COUNT.set(i, (INST_COUNT.get(i) || 0) + 1); });
+function institutionOf(p){    // the legend bucket: the institution itself, or an "Other" catch-all
+  const i = rawInstitution(p);
+  if (!i) return null;
+  if ((INST_COUNT.get(i) || 0) >= MIN_NAMED) return i;
+  return INDUSTRY.has(i) ? 'Other (industry)' : 'Other (academia)';
+}
+
+/* venue — keep only the conference, dropping the year and track, so e.g.
+   "ICML 2024", "NeurIPS 2025 Workshop" and "NeurIPS Datasets & Benchmarks" all
+   collapse onto their conference; anything not a known venue → "arXiv". */
+const VENUE_CONF = [
+  ['NeurIPS',/neurips|nips/],['ICLR',/iclr/],['ICML',/icml/],['NAACL',/naacl/],['EMNLP',/emnlp/],
+  ['ACL',/acl/],['COLM',/colm/],['TACL',/tacl/],['TMLR',/tmlr/],['JMLR',/jmlr/],['CVPR',/cvpr/],
+  ['ICCV',/iccv/],['ECCV',/eccv/],['IJCV',/ijcv/],['FAccT',/fa[ac]ct/],['WMT',/\bwmt\b/],
+  ['AISec',/aisec/],['NLLP',/nllp/],['Nature',/nature/],['QJE',/qje/],
+];
+function venueOf(p){
+  const v = (p.venue || '').toLowerCase();
+  for (const [name, re] of VENUE_CONF) if (re.test(v)) return name;
+  return 'arXiv';
+}
+
+const DIM_GET = { topic: p => p.topic, group: institutionOf, venue: venueOf };
+const valOf = (p, dim) => DIM_GET[dim](p);
+
+// assign palette colors by descending paper count; the catch-all "Other"
+// buckets take fixed greys and always sort last.
+function buildDim(dim){
+  const counts = new Map();
+  PAPERS.forEach(p => { const v = valOf(p, dim); if (v) counts.set(v, (counts.get(v) || 0) + 1); });
+  const isOther = v => v in OTHER_COLOR;
+  const vals = [...counts.keys()].sort((a, b) =>
+    (isOther(a) - isOther(b)) || (counts.get(b) - counts.get(a)) || a.localeCompare(b));
+  const colors = {}; let pi = 0;
+  vals.forEach(v => { colors[v] = OTHER_COLOR[v] || PAL[pi++ % PAL.length]; });
+  return { vals, colors, counts };
+}
+const DIMS = { topic: buildDim('topic'), group: buildDim('group'), venue: buildDim('venue') };
 function colorFor(dim, val){ const d = DIMS[dim]; return (d && d.colors[val]) || SLATE; }
-// sqrt(citation_count), but capped so the ~26k-citation foundational nodes
-// (T5, CoT) don't blow out a whole timeline column. Range ≈ 14–60px.
-function size(c){ return Math.min(60, Math.round(14 + Math.sqrt(Math.max(0, c || 0)) * 1.4)); }
+
+// log-scaled node size: sqrt() flattened everything above ~1k citations onto
+// the same blob, so 500 / 5k / 50k were indistinguishable. log10 keeps the
+// whole range separated; the 14×/decade slope gives ~12px under 10 cites,
+// ~50px at 500, ~64px at 5k, up to ~80px at the 70k foundational hubs.
+function size(c){ return Math.round(12 + 14 * Math.log10(Math.max(0, c || 0) + 1)); }
 
 /* ---- empty state ---------------------------------------------------------
    papers.json starts empty; show a friendly message instead of a blank canvas. */
@@ -126,7 +203,7 @@ function initGraph(){
     const present = [...new Set(PAPERS.map(p => valOf(p, curDim)).filter(Boolean))];
     const ordered = DIMS[curDim].vals.filter(v => present.includes(v));
     const el = document.getElementById('legend');
-    el.innerHTML = '<h4>// ' + (curDim === 'group' ? 'author group' : curDim) + '</h4>' +
+    el.innerHTML = '<h4>// ' + (curDim === 'group' ? 'institution' : curDim) + '</h4>' +
       ordered.map(v => `<div class="row${v === pinnedCat ? ' active' : ''}" data-val="${v}"><span class="sw" style="background:${colorFor(curDim, v)}"></span>${v}</div>`).join('');
     el.querySelectorAll('.row').forEach(r => {
       r.onmouseenter = () => showCategory(r.dataset.val);   // desktop hover preview
@@ -168,9 +245,11 @@ function initGraph(){
       n.connectedEdges().addClass('hl').removeClass('faded');
     });
 
+    // the institution chip shows the specific institution we attribute to (not
+    // the "Other" bucket), but is coloured by its legend bucket for consistency.
     const tags = [
       [valOf(p, 'topic'), colorFor('topic', valOf(p, 'topic'))],
-      [valOf(p, 'group'), colorFor('group', valOf(p, 'group'))],
+      [rawInstitution(p), colorFor('group', valOf(p, 'group'))],
       [valOf(p, 'venue'), colorFor('venue', valOf(p, 'venue'))],
     ].filter(t => t[0]);
 
