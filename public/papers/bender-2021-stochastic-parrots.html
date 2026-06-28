@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? — paper_atlas</title>
+<meta name="description" content="The position paper that coined &ldquo;stochastic parrot.&rdquo; It argues that scaling language models ever larger buys fluent text without any grasp of meaning &mdash; at environmental, financial, and social costs borne mostly by the people who benefit from the models least.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2021 · FAccT 2021 · Safety &amp; Red-teaming</div>
+      <h1>On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?</h1>
+      <p class="dek">The position paper that coined &ldquo;stochastic parrot.&rdquo; It argues that scaling language models ever larger buys fluent text without any grasp of meaning &mdash; at environmental, financial, and social costs borne mostly by the people who benefit from the models least.</p>
+      <div class="authors mono">Emily M. Bender, Timnit Gebru, Angelina McMillan-Major, Shmargaret Shmitchell</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>FAccT 2021</b></span>
+        <span class="fact">citations&nbsp;<b>7,551</b></span>
+        <span class="fact">topic&nbsp;<b>Safety &amp; Red-teaming</b></span>
+        <span class="fact"><a href="https://dl.acm.org/doi/10.1145/3442188.3445922">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of June 2026</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By early 2021 the dominant story in NLP was simple: bigger is better. In three years
+        the field had gone from <strong>BERT</strong> (340M parameters, 16&nbsp;GB of text, 2019) to
+        <strong>GPT-3</strong> (175B parameters, 570&nbsp;GB) to Google&rsquo;s
+        <strong>Switch-C</strong> (1.57&nbsp;<em>trillion</em> parameters, 2021) &mdash; and each jump
+        bought new state-of-the-art numbers on English leaderboards. Scale had become a proxy for
+        progress, and progress a proxy for understanding.</p>
+      <p>This paper is not another model. It is a deliberate <strong>step back</strong> to ask the
+        question the leaderboard race never asked: <em>how big is too big?</em> The gap it targets is
+        an accounting failure. The benefits of scaling were measured obsessively; the costs &mdash;
+        carbon, dollars, undocumented training data, encoded bias, and the risk of mistaking
+        statistical fluency for comprehension &mdash; were not measured at all. The authors argue that
+        a field optimizing hard on one unaudited metric (benchmark score) while ignoring the bill is
+        not doing careful science, and that the people who pay that bill are disproportionately those
+        least likely to see any upside. The contribution is a structured risk analysis and a coined
+        term &mdash; the <strong>stochastic parrot</strong> &mdash; that reframes what these systems
+        actually are.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <!-- fill: the approach, in your own words at expert depth. Use an .eq
+           block for any key equation (HTML/CSS only — no KaTeX). -->
+      <p>There is no experiment here. The &ldquo;method&rdquo; is a disciplined argument, built
+        across four axes, that an LM&rsquo;s scale is itself a risk surface. The authors marshal
+        existing evidence rather than running new models &mdash; the rhetorical move is to make the
+        unpriced costs of scaling legible.</p>
+      <p><strong>1. Environmental and financial cost.</strong> Training and tuning ever-larger models
+        consumes energy and money that scale with size. The paper foregrounds the carbon and dollar
+        bill and argues it should be the <em>first</em> thing weighed, not an afterthought &mdash;
+        especially because the communities that bear the environmental harm are not the ones reaping
+        the benchmark gains.</p>
+      <p><strong>2. Unfathomable training data.</strong> Datasets have grown past the point where
+        anyone can document or audit them. Size does not guarantee diversity: web text overrepresents
+        the already-overrepresented (younger, wealthier, Anglophone, men), and naive filtering of
+        &ldquo;bad words&rdquo; further silences marginalized voices. Static snapshots freeze a
+        worldview even as society&rsquo;s norms move (<em>value-lock</em>), and the bias baked into the
+        corpus is inherited by every model trained on it. Collecting data faster than you can document
+        it, the authors warn, incurs <strong>documentation debt</strong>.</p>
+      <p><strong>3. Down the garden path: form&nbsp;&ne;&nbsp;meaning.</strong> Drawing on Bender &amp;
+        Koller (2020), the paper argues LMs only ever manipulate <em>linguistic form</em>; they have no
+        access to meaning, communicative intent, or a model of the world. Striking leaderboard gains on
+        &ldquo;meaning-sensitive&rdquo; tasks therefore do not demonstrate natural-language
+        <em>understanding</em> &mdash; treating them as if they do misdirects research effort.</p>
+      <p><strong>4. The stochastic parrot.</strong> The four threads converge on the paper&rsquo;s
+        defining image. Because humans reflexively impute intent to fluent text, the danger is not that
+        the model understands us but that <em>we</em> mistake its output for understanding:</p>
+      <div class="callout">
+        <div class="lbl">// the definition</div>
+        <p>&ldquo;&hellip;an LM is a system for haphazardly stitching together sequences of linguistic
+          forms it has observed in its vast training data, according to probabilistic information about
+          how they combine, but without any reference to meaning: a <strong>stochastic
+          parrot</strong>.&rdquo;</p>
+      </div>
+      <p>The empirical anchor for the scale argument is the paper&rsquo;s Table&nbsp;1, which lines up
+        the three-year explosion in parameters and training-data size that prompted the whole
+        critique:</p>
+      <figure class="wide">
+        <table>
+          <thead>
+            <tr><th>Year</th><th>Model</th><th class="num"># Parameters</th><th class="num">Dataset size</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2019</td><td>BERT</td><td class="num">3.4&times;10⁸</td><td class="num">16 GB</td></tr>
+            <tr><td>2019</td><td>DistilBERT</td><td class="num">6.6&times;10⁷</td><td class="num">16 GB</td></tr>
+            <tr><td>2019</td><td>ALBERT</td><td class="num">2.23&times;10⁸</td><td class="num">16 GB</td></tr>
+            <tr><td>2019</td><td>XLNet (Large)</td><td class="num">3.4&times;10⁸</td><td class="num">126 GB</td></tr>
+            <tr><td>2020</td><td>ERNIE-Gen (Large)</td><td class="num">3.4&times;10⁸</td><td class="num">16 GB</td></tr>
+            <tr><td>2019</td><td>RoBERTa (Large)</td><td class="num">3.55&times;10⁸</td><td class="num">161 GB</td></tr>
+            <tr><td>2019</td><td>MegatronLM</td><td class="num">8.3&times;10⁹</td><td class="num">174 GB</td></tr>
+            <tr><td>2020</td><td>T5-11B</td><td class="num">1.1&times;10¹⁰</td><td class="num">745 GB</td></tr>
+            <tr><td>2020</td><td>T-NLG</td><td class="num">1.7&times;10¹⁰</td><td class="num">174 GB</td></tr>
+            <tr><td>2020</td><td>GPT-3</td><td class="num">1.75&times;10¹¹</td><td class="num">570 GB</td></tr>
+            <tr><td>2020</td><td>GShard</td><td class="num">6.0&times;10¹¹</td><td class="num">&ndash;</td></tr>
+            <tr><td>2021</td><td>Switch-C</td><td class="num">1.57&times;10¹²</td><td class="num">745 GB</td></tr>
+          </tbody>
+        </table>
+        <figcaption><b>Table 1.</b> Overview of recent large language models, by parameter count and
+          training-data size &mdash; reproduced from the paper. In roughly three years, parameter
+          counts climbed four orders of magnitude (BERT&rsquo;s 3.4&times;10⁸ to Switch-C&rsquo;s
+          1.57&times;10¹²).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <!-- fill: headline results with EXACT numbers from the paper. -->
+      <p>A position paper&rsquo;s &ldquo;results&rdquo; are its claims and the numbers behind them.
+        The sharpest are about cost. Citing Strubell et al. (2019), the paper notes that while the
+        average human is responsible for an estimated <strong>5&nbsp;tonnes of CO₂e per year</strong>,
+        training a single Transformer (big) model with neural-architecture search was estimated to emit
+        <strong>284&nbsp;tonnes of CO₂</strong>, and that training one <strong>BERT base</strong> model
+        on GPUs &mdash; without hyperparameter tuning &mdash; consumes roughly the energy of a
+        <strong>trans-American flight</strong>. The moral weight comes from who pays: the environmental
+        cost, the authors write, &ldquo;doubly punishes marginalized communities that are least likely
+        to benefit&hellip; and most likely to be harmed.&rdquo;</p>
+      <p>The data argument is just as concrete. GPT-3&rsquo;s training set includes a filtered slice of
+        <strong>Common Crawl</strong> &mdash; &ldquo;petabytes of data collected over 8 years of web
+        crawling&rdquo; &mdash; at <strong>570&nbsp;GB</strong> of text (Table&nbsp;1). At that scale no
+        team can read, document, or audit what went in, so the corpus&rsquo;s skew toward hegemonic
+        viewpoints and its encoded stereotypes pass silently into the model. The authors name this
+        <strong>documentation debt</strong> and recommend &ldquo;only creating datasets as large as can
+        be sufficiently documented.&rdquo;</p>
+      <p>From the parrot framing they derive a catalogue of <strong>follow-on harms</strong>: bias
+        amplification as models absorb a hegemonic worldview; <em>value-lock</em>, where a static model
+        reifies older, less-inclusive norms even as movements like Black Lives Matter reshape language;
+        exposure to derogatory and abusive language; and &mdash; most consequentially &mdash;
+        fluent <strong>synthetic text used for manipulation and disinformation at scale</strong>,
+        because readers reflexively treat coherent strings as the intent of an accountable speaker. They
+        cite a real machine-translation failure in which Facebook&rsquo;s system rendered a Palestinian
+        man&rsquo;s Arabic &ldquo;good morning&rdquo; as &ldquo;hurt them&rdquo; (in English) and
+        &ldquo;attack them&rdquo; (in Hebrew), leading to his arrest by Israeli police.</p>
+      <p>The closing prescription (&ldquo;Paths Forward,&rdquo; &sect;7): weigh environmental and
+        financial cost first; budget for dataset curation and documentation (data statements, datasheets);
+        run <strong>pre-mortems</strong> and adopt <strong>value-sensitive design</strong> early; build
+        an evaluation culture that looks past average-case leaderboard numbers; and fund research
+        directions that do not depend on ever-larger LMs.</p>
+      <table>
+        <thead><tr><th>Axis of risk</th><th>The cost the paper makes legible</th></tr></thead>
+        <tbody>
+          <tr><td>Environmental / financial</td><td>Transformer-big + NAS ≈ 284 t CO₂; BERT-base ≈ a trans-American flight; vs. ~5 t/yr per person.</td></tr>
+          <tr><td>Unfathomable data</td><td>GPT-3 trained on 570 GB of filtered web text; too large to document &rarr; &ldquo;documentation debt.&rdquo;</td></tr>
+          <tr><td>Size ≠ diversity</td><td>Web corpora overrepresent the already-dominant; naive filtering silences marginalized voices.</td></tr>
+          <tr><td>Form ≠ meaning</td><td>Leaderboard gains ≠ understanding; LMs manipulate form with no reference to meaning.</td></tr>
+          <tr><td>Downstream harms</td><td>Bias amplification, value-lock, abusive language, disinformation at scale, MT errors.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <!-- fill: the sharp, specific evaluation critique. Are the baselines fair
+           and current? Contamination / leakage? What does the headline metric
+           miss? What would raise confidence? This is the signature section —
+           be concrete, cite the paper's own setup. -->
+      <p>This is an argument, not an experiment, so the honest evaluation is not &ldquo;are the
+        baselines fair?&rdquo; but &ldquo;do the arguments hold up &mdash; and where do they lean on the
+        strongest available framing?&rdquo; On its central forecast, the paper has aged well: bias
+        amplification, disinformation at scale, undocumented training corpora, and hype outrunning
+        capability are now mainstream concerns, and &ldquo;stochastic parrot&rdquo; became the
+        field&rsquo;s shorthand for the gap between fluency and understanding. That predictive track
+        record is the best evidence in its favor.</p>
+      <p>Two load-bearing claims are softer than the rhetoric. First, the <strong>carbon
+        numbers</strong>: the headline 284&nbsp;t CO₂ is borrowed from Strubell et al. and comes from an
+        extreme <em>neural-architecture-search</em> run, not a single training job. Later analyses
+        (e.g., Patterson et al., 2021) argued such figures overstate the cost of a routine train by a
+        large margin &mdash; one to two orders of magnitude &mdash; once efficient accelerators,
+        cleaner datacenters, and train-once economics are counted. The directional point (scale costs
+        energy, and the field under-reports it) is sound and helped normalize compute/carbon reporting;
+        the specific number is worst-case. Second, the <strong>&ldquo;no understanding&rdquo;
+        thesis</strong> is a philosophical stance (form vs. meaning, after Bender &amp; Koller) asserted
+        rather than demonstrated. It is the paper&rsquo;s most contested claim: in-context learning,
+        chain-of-thought, and emergent benchmark behavior have made &ldquo;they only manipulate
+        form&rdquo; hard to defend as a flat empirical statement, and the paper offers no test that
+        would distinguish genuine understanding from very good form-manipulation &mdash; which makes the
+        claim difficult to falsify even as the deeper point about grounding and accountability stays
+        live.</p>
+      <p>The paper is also lighter on the trade-off than on the costs. It does cite one
+        cost-per-capability figure &mdash; via Strubell, that buying 0.1 BLEU on English&ndash;German
+        translation with neural-architecture search costs roughly <strong>$150,000</strong> in compute
+        &mdash; and explicitly frames a &ldquo;risk/benefit&rdquo; analysis. But across its
+        <em>social-harm</em> axes (bias, disinformation) the costs stay qualitative: it can tell you
+        scaling is risky, not <em>how much</em> risk accrues per unit of capability. Its recommendations
+        &mdash; &ldquo;document
+        sufficiently,&rdquo; &ldquo;weigh cost first&rdquo; &mdash; are directionally right but lack
+        operational thresholds, and the field&rsquo;s uptake (datasheets, data statements, model cards)
+        has been uneven. Context worth knowing: this is the paper at the center of Timnit Gebru&rsquo;s
+        and Margaret Mitchell&rsquo;s departures from Google, and &ldquo;Shmargaret Shmitchell&rdquo; is
+        a pseudonym &mdash; history that explains its cultural weight but is orthogonal to whether its
+        arguments are correct.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Not an empirical paper. Its &ldquo;baseline&rdquo; is the scaling-is-progress consensus it argues against; evidence is synthesized from prior work (Strubell on energy, Bender &amp; Koller on meaning), not originally measured.</p>
+        <span class="k">contamination</span><p class="v">N/A &mdash; no benchmark. But the headline 284&nbsp;t CO₂ figure is a worst-case NAS estimate, not a representative single-model train; later work argued such numbers overstate routine training cost by a large margin.</p>
+        <span class="k">what's missed</span><p class="v">Beyond one borrowed figure ($150k per 0.1 BLEU), the social-harm costs (bias, disinformation) stay qualitative, not quantified; the &ldquo;no understanding&rdquo; thesis is asserted, not tested, and comes with no falsifiable experiment; Table&nbsp;1 caps at 2021-era scale (Switch-C), predating GPT-3.5/4.</p>
+        <span class="k">would raise confidence</span><p class="v">Operational thresholds for &ldquo;sufficiently documented,&rdquo; falsifiable predictions, and direct engagement with the strongest capability evidence rather than treating form-manipulation as a settled fact.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>Five years on, the harms it forecast largely arrived and its coinage entered the
+          field&rsquo;s vocabulary &mdash; but its most-quoted carbon figure leaned on a worst-case
+          estimate, and its central &ldquo;no understanding&rdquo; claim is a philosophical stance it
+          never turned into a test. Read it as the foundational harms-side counterweight to the
+          scaling narrative, not as a measurement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>&ldquo;Stochastic parrot&rdquo; is a thesis, not an insult.</strong> An LM stitches
+          together linguistic form by probability with no reference to meaning; fluent output is not
+          evidence of understanding, and the real risk is that humans reflexively supply the meaning the
+          model lacks.</li>
+        <li><strong>Scale has an unpriced bill.</strong> Bigger models cost carbon, money, and
+          auditability &mdash; ~284&nbsp;t CO₂ for one NAS-tuned Transformer, 570&nbsp;GB of
+          undocumentable web text in GPT-3 &mdash; and those costs fall hardest on the communities least
+          likely to benefit. Weigh them <em>first</em>, and only build datasets you can document.</li>
+        <li><strong>It aged into the field&rsquo;s conscience.</strong> The harms it predicted &mdash;
+          bias, disinformation at scale, hype outrunning capability &mdash; largely materialized, which
+          is why it&rsquo;s load-bearing; but its carbon numbers were worst-case and its
+          &ldquo;no understanding&rdquo; claim was asserted, never operationalized into a test.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?<br>
+        Emily M. Bender, Timnit Gebru, Angelina McMillan-Major, Shmargaret Shmitchell · 2021 · FAccT 2021<br>
+        <a href="https://dl.acm.org/doi/10.1145/3442188.3445922">read the original ↗</a> · slug: bender-2021-stochastic-parrots
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

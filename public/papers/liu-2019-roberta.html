@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoBERTa: A Robustly Optimized BERT Pretraining Approach — paper_atlas</title>
+<meta name="description" content="A careful replication of BERT shows the original was badly undertrained: train it longer, on 10× more data, with bigger batches and no next-sentence-prediction loss, and plain masked-LM pretraining matches or beats every method published after it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+caption{caption-side:bottom;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+  margin-top:10px;text-align:left;line-height:1.55}
+tr.hi td{color:var(--fg);background:var(--accent-soft)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2019 · arXiv · Reasoning</div>
+      <h1>RoBERTa: A Robustly Optimized BERT Pretraining Approach</h1>
+      <p class="dek">A replication study, not a new model. RoBERTa shows that BERT was badly <em>undertrained</em>: keep the architecture and the masked-language-model objective exactly as they were, but train longer, on ~10× more data, with much bigger batches, no next-sentence-prediction loss, and a fresh mask every pass — and the same old BERT recipe matches or beats every method published after it on GLUE, SQuAD and RACE.</p>
+      <div class="authors mono">Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis, Zettlemoyer, Stoyanov</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>arXiv</b></span>
+        <span class="fact">citations&nbsp;<b>30,046</b></span>
+        <span class="fact">topic&nbsp;<b>Reasoning</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1907.11692">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of June 2026</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By mid-2019 the post-BERT leaderboard was a thicket. ELMo, GPT, BERT, XLM and — most recently — <strong>XLNet</strong> had each claimed gains, and the story crystallizing in the field was that BERT's <em>masked-language-model</em> objective was the weak link: XLNet argued that <em>permuted autoregressive</em> pretraining was simply a better objective, and reported beating BERT to take the GLUE crown.</p>
+      <p>But that comparison was almost impossible to read cleanly. Pretraining is expensive, so each group tuned little and ran one big configuration. They trained on <strong>private corpora of different sizes</strong> — XLNet alone used roughly 10× more text than BERT — and changed several things at once: objective, data, batch size, training length, vocabulary. When XLNet beat BERT, was it the new objective, or just more data and compute? Nobody had held the confounders fixed.</p>
+      <p>RoBERTa asks the deflationary question: <strong>before we credit a new objective, did anyone actually train the old one properly?</strong> It is a controlled replication of BERT pretraining that freezes the architecture, sweeps the "boring" knobs one at a time, and re-measures. The punchline lands in the abstract: <em>"BERT was significantly undertrained, and can match or exceed the performance of every model published after it."</em></p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The model is unchanged: a Transformer encoder at exactly BERT's <span class="mono">BASE</span> (L=12, H=768, A=12, 110M params) and <span class="mono">LARGE</span> (L=24, H=1024, A=16, 355M params) sizes, reimplemented in <span class="mono">fairseq</span>. The only objective kept is BERT's masked-language-model loss — a cross-entropy over the tokens randomly hidden in the input:</p>
+
+      <div class="eq">
+        L<sub>MLM</sub>&nbsp;=&nbsp;−&nbsp;<span style="font-size:1.3em">Σ</span><sub style="vertical-align:-1.1em">i&nbsp;∈&nbsp;masked</sub>&nbsp;log&nbsp;P(&nbsp;x<sub>i</sub>&nbsp;|&nbsp;x<sub>\masked</sub>&nbsp;)
+        <span class="note">// 15% of tokens selected; of those, 80% → [MASK], 10% kept, 10% random. No new objective is introduced.</span>
+      </div>
+
+      <p>Everything RoBERTa changes is in the <em>recipe</em>. The four headline modifications:</p>
+      <ul>
+        <li><strong>Dynamic masking.</strong> The original BERT computed the mask <em>once</em> during preprocessing (then duplicated the data 10× so a sequence saw 10 masks across 40 epochs — i.e. the same mask four times). RoBERTa regenerates the mask <em>every time</em> a sequence is fed to the model. Essential once you train for far more passes.</li>
+        <li><strong>Drop Next Sentence Prediction (NSP).</strong> BERT fed two segments and added a binary "do these follow each other?" loss. RoBERTa removes it and instead packs inputs with <span class="mono">FULL-SENTENCES</span> — contiguous full sentences up to 512 tokens, allowed to cross document boundaries.</li>
+        <li><strong>Big batches.</strong> BERT's 1M steps at batch size 256 is compute-equivalent (via gradient accumulation) to 125K steps at 2K, or 31K steps at 8K. RoBERTa trains at <strong>8K sequences</strong> with a retuned learning rate.</li>
+        <li><strong>More data, longer.</strong> A new 160GB corpus and up to 500K steps — discussed in the results.</li>
+      </ul>
+
+      <p>Two supporting changes: a <strong>byte-level BPE vocabulary of 50K</strong> units (vs BERT's 30K character-level BPE), which never emits an "unknown" token but adds ~15M/20M params at BASE/LARGE; and per-setting tuning of the Adam ε and β<sub>2</sub>=0.98, found necessary for stability at large batch sizes. The whole point is discipline: change <em>one</em> knob, hold the rest, and read the dev-set delta.</p>
+
+      <h3>The ablations that justify the recipe</h3>
+      <p>Static vs dynamic masking is roughly a wash (dynamic comparable or slightly better — the win is efficiency, not accuracy). The input-format ablation is the load-bearing one: <strong>removing NSP does not hurt — it slightly helps</strong>, provided you keep full, long sequences. Feeding single sentences (<span class="mono">SENTENCE-PAIR</span>) is what actually hurts, because the model can't learn long-range dependencies — a confound that, the authors suggest, may have made NSP <em>look</em> necessary in the original BERT.</p>
+
+      <table>
+        <caption><b>Table 2 (dev).</b> Input format / NSP ablation at BERT<sub>BASE</sub>, BookCorpus+Wikipedia, 1M steps. F1 for SQuAD, accuracy otherwise; medians over 5 seeds.</caption>
+        <thead><tr><th>Setup</th><th class="num">SQuAD 1.1/2.0</th><th class="num">MNLI-m</th><th class="num">SST-2</th><th class="num">RACE</th></tr></thead>
+        <tbody>
+          <tr><td>segment-pair <span class="mono">+NSP</span></td><td class="num">90.4 / 78.7</td><td class="num">84.0</td><td class="num">92.9</td><td class="num">64.2</td></tr>
+          <tr><td>sentence-pair <span class="mono">+NSP</span></td><td class="num">88.7 / 76.2</td><td class="num">82.9</td><td class="num">92.1</td><td class="num">63.0</td></tr>
+          <tr class="hi"><td>full-sentences <span class="mono">−NSP</span></td><td class="num">90.4 / 79.1</td><td class="num">84.7</td><td class="num">92.5</td><td class="num">64.8</td></tr>
+          <tr class="hi"><td>doc-sentences <span class="mono">−NSP</span></td><td class="num">90.6 / 79.7</td><td class="num">84.7</td><td class="num">92.7</td><td class="num">65.6</td></tr>
+          <tr><td>BERT<sub>BASE</sub> (published)</td><td class="num">88.5 / 76.3</td><td class="num">84.3</td><td class="num">92.8</td><td class="num">64.3</td></tr>
+        </tbody>
+      </table>
+
+      <p>And large batches genuinely help optimization, not just throughput: at matched compute, batch size 2K (125K steps) reaches <strong>3.68 perplexity</strong> and 85.2 MNLI vs 3.99 / 84.7 at batch size 256 (1M steps).</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Aggregate the four changes, then turn the two knobs the field had under-emphasized — <strong>data</strong> and <strong>training length</strong> — and watch the curve climb. RoBERTa keeps BERT<sub>LARGE</sub>'s architecture and masked-LM training objective, but combines the full §4 recipe (dynamic masking, no NSP with full-sentences packing, 8K-sequence batches, byte-level BPE) with the same data <em>class</em> as BERT — then the later rows pile on more data and more steps. On 1024 V100 GPUs the initial 100K-step run takes about a day.</p>
+
+      <table>
+        <caption><b>Table 4 (dev).</b> Each row accumulates the change above it. RoBERTa uses BERT<sub>LARGE</sub>'s architecture + MLM objective. SQuAD shown as v1.1/v2.0 F1.</caption>
+        <thead><tr><th>Configuration</th><th class="num">data</th><th class="num">steps</th><th class="num">SQuAD 1.1/2.0</th><th class="num">MNLI-m</th><th class="num">SST-2</th></tr></thead>
+        <tbody>
+          <tr><td>RoBERTa · books+wiki</td><td class="num">16 GB</td><td class="num">100K</td><td class="num">93.6 / 87.3</td><td class="num">89.0</td><td class="num">95.3</td></tr>
+          <tr><td>+ more data (§3.2)</td><td class="num">160 GB</td><td class="num">100K</td><td class="num">94.0 / 87.7</td><td class="num">89.3</td><td class="num">95.6</td></tr>
+          <tr><td>+ pretrain longer</td><td class="num">160 GB</td><td class="num">300K</td><td class="num">94.4 / 88.7</td><td class="num">90.0</td><td class="num">96.1</td></tr>
+          <tr class="hi"><td>+ pretrain even longer</td><td class="num">160 GB</td><td class="num">500K</td><td class="num">94.6 / 89.4</td><td class="num">90.2</td><td class="num">96.4</td></tr>
+          <tr><td>BERT<sub>LARGE</sub> · books+wiki</td><td class="num">13 GB</td><td class="num">1M</td><td class="num">90.9 / 81.8</td><td class="num">86.6</td><td class="num">93.7</td></tr>
+          <tr><td>XLNet<sub>LARGE</sub> · + extra data</td><td class="num">126 GB</td><td class="num">500K</td><td class="num">94.5 / 88.8</td><td class="num">89.8</td><td class="num">95.6</td></tr>
+        </tbody>
+      </table>
+
+      <p>The single most damning comparison is the first RoBERTa row against the BERT<sub>LARGE</sub> row: <strong>same data class (BookCorpus+Wiki), same architecture, same objective</strong>, yet RoBERTa jumps SQuAD v2.0 from 81.8 to 87.3 F1 and MNLI from 86.6 to 89.0 — purely from the recipe. Then more data and more steps add the rest, and the longest model still "does not appear to overfit," meaning the ceiling wasn't found.</p>
+
+      <h3>Headline benchmarks</h3>
+      <p>On the <strong>GLUE</strong> leaderboard (ensembles, test set, as of July 25, 2019) RoBERTa posts an <strong>88.5</strong> average — edging XLNet's 88.4 and topping the board — with new state-of-the-art on 4 of 9 tasks (MNLI, QNLI, RTE, STS-B). Notably this is achieved with <em>single-task</em> finetuning, where most other top submissions used multi-task training. In the cleaner single-model dev setting, RoBERTa reports best-known results on all 9 GLUE dev sets, beating both BERT<sub>LARGE</sub> and XLNet<sub>LARGE</sub> with the same objective and architecture as BERT.</p>
+
+      <table>
+        <caption><b>Table 5 (GLUE test, ensembles).</b> Leaderboard as of July 25, 2019. Selected tasks + average.</caption>
+        <thead><tr><th>Model</th><th class="num">MNLI</th><th class="num">QNLI</th><th class="num">RTE</th><th class="num">SST</th><th class="num">STS</th><th class="num">Avg</th></tr></thead>
+        <tbody>
+          <tr><td>MT-DNN</td><td class="num">87.9</td><td class="num">96.0</td><td class="num">86.3</td><td class="num">96.5</td><td class="num">91.1</td><td class="num">87.6</td></tr>
+          <tr><td>XLNet</td><td class="num">90.2</td><td class="num">98.6</td><td class="num">86.3</td><td class="num">96.8</td><td class="num">91.6</td><td class="num">88.4</td></tr>
+          <tr class="hi"><td>RoBERTa</td><td class="num">90.8</td><td class="num">98.9</td><td class="num">88.2</td><td class="num">96.7</td><td class="num">92.2</td><td class="num">88.5</td></tr>
+        </tbody>
+      </table>
+
+      <p>On <strong>SQuAD</strong>, using <em>only</em> the provided training data (no QA-dataset augmentation, unlike BERT and XLNet), RoBERTa matches XLNet on v1.1 dev (94.6 vs 94.5 F1) and sets a new state-of-the-art on v2.0 dev — 86.5 EM / 89.4 F1, +0.4 EM / +0.6 F1 over XLNet. On <strong>RACE</strong> test it reaches <strong>83.2</strong> accuracy (86.5 middle / 81.3 high school), well above BERT (72.0) and XLNet (81.7).</p>
+
+      <div class="callout">
+        <div class="lbl">// the meta-point</div>
+        <p>RoBERTa wins on GLUE, SQuAD and RACE <em>without</em> introducing a new objective or architecture. That re-establishes that masked-LM pretraining is competitive with the autoregressive alternatives — and reframes XLNet's reported gains as plausibly attributable to data and compute rather than to the permuted objective. As the paper carefully notes, those methods "could also improve with more tuning"; the claim is about confounded comparisons, not that the alternatives are bad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>As a piece of measurement, RoBERTa is unusually honest — it is mostly an argument <em>against</em> over-reading benchmark wins, applied first to itself. The central finding (BERT was undertrained) is robust, reproducible, and has aged well: RoBERTa-large stayed a default encoder for years. But two things deserve scrutiny: the headline GLUE number, and the cleanliness of the "data and compute, not objective" conclusion.</p>
+
+      <p>The <strong>88.5 GLUE leaderboard average is the least clean number in the paper.</strong> It rests on ensembling 5–7 models per task <em>plus</em> task-specific machinery: RTE, STS and MRPC are finetuned starting from the MNLI model; QNLI uses a pairwise-ranking reformulation that "significantly simplifies the task"; and WNLI is handled with SuperGLUE's reformatted data and a margin-ranking loss that throws away more than half the training examples. None of that is hidden — but it means the headline 0.1-point edge over XLNet is not "just pretrain better," and the honest apples-to-apples comparison is the single-model dev numbers.</p>
+
+      <p>On the scientific claim, the paper conflates two variables it changed together. Going from 16GB to 160GB increases data <em>size and diversity at once</em> — the authors flag this in a footnote and leave the disentanglement to future work — so "more data helps" doesn't isolate which. The architecture is held fixed at BERT-LARGE by design, so "objective matters less than scale" is demonstrated only within one architecture and one scale band. And because the longest model never overfits, the comparison points against XLNet aren't matched at the compute frontier; we see RoBERTa is undertrained-no-longer, not where its own ceiling is.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Fair, even generous to the competition: XLNet/BERT numbers are their own published results, and RoBERTa beats them with a <em>simpler</em> setup (single-task GLUE, no SQuAD data augmentation). The weak spot is the ensembled, trick-laden GLUE leaderboard submission, not the dev comparisons.</p>
+        <span class="k">contamination</span><p class="v">Unexamined (era-appropriate). The 160GB crawl — CC-NEWS (Sep 2016–Feb 2019), OpenWebText, Stories — overlaps unknown amounts with downstream test domains; no leakage audit is reported.</p>
+        <span class="k">what's missed</span><p class="v">Data size vs diversity are confounded (paper's own caveat). No architecture scaling. No compute-matched curve vs XLNet. And since no variance is reported, it's hard to read how much of the smaller-task movement is seed noise — RTE and MRPC dev scores swing non-monotonically across the data/step rows (Appendix Table 8), the kind of bounce that hints at high variance even on 5-seed medians.</p>
+        <span class="k">would raise confidence</span><p class="v">Hold corpus size fixed while varying diversity; plot accuracy vs FLOPs against XLNet; report variance/CIs on the small, high-variance GLUE tasks; and a contamination check of CC-NEWS against the eval sets.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>A model of controlled ablation and a permanent caution for the field: a "new objective beats the old one" headline can be a hyperparameter-and-data story in disguise. The recipe (more data, bigger batches, longer training, no NSP, dynamic masking) is correct and durable; the leaderboard victory lap leans on ensembling and per-task tricks that the dev-set numbers happily don't need.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>BERT was undertrained.</strong> Same architecture, same masked-LM objective — just trained longer, on ~10× more data (16GB→160GB), with 8K-sequence batches, no NSP, and a fresh mask each pass — beats every post-BERT method on GLUE, SQuAD and RACE.</li>
+        <li><strong>The objective wasn't the bottleneck; the recipe was.</strong> RoBERTa reframes XLNet's reported gains as confounded by data and compute, re-establishing masked-LM pretraining as competitive with autoregressive alternatives — without claiming those alternatives are worse.</li>
+        <li><strong>Read leaderboards skeptically — even your own.</strong> The clean evidence is the single-model dev deltas; the 88.5 GLUE average rides on ensembling plus task-specific tricks (MNLI-init transfer, QNLI ranking, a WNLI hack). The paper's lasting contribution is methodological as much as empirical.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        RoBERTa: A Robustly Optimized BERT Pretraining Approach<br>
+        Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis, Zettlemoyer, Stoyanov · 2019 · arXiv<br>
+        <a href="https://arxiv.org/abs/1907.11692">read the original ↗</a> · slug: liu-2019-roberta
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
