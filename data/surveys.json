@@ -1,0 +1,10 @@
+{
+  "surveys": [
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "color": "#ffd166",
+      "description": "Core benchmark, evaluation-dataset, and agent-evaluation-environment papers — the named entries a survey of LLM & agent benchmarks would cite."
+    }
+  ]
+}

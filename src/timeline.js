@@ -40,7 +40,11 @@ function bandOf(p, gran) {
 }
 
 /* compute {x,y} for every paper plus the band metadata the axis overlay draws.
-   opts: { sizeOf(p)->px, band:'quarter'|'half', colGap, vGap, sweeps } */
+   opts: { sizeOf(p)->px, band:'quarter'|'half', colGap, vGap, sweeps, centerSet }
+   centerSet (optional Set<slug>): the "survey spine" view — those papers are
+   packed at the vertical centre of every column and the rest fan out above and
+   below, so the tagged subset reads as a bright horizontal spine through the map
+   while the left→right time order is preserved. */
 export function computeTimeline(papers, edges, opts = {}) {
   const sizeOf = opts.sizeOf || (() => 28);
   const gran   = opts.band   || 'quarter';
@@ -108,6 +112,31 @@ export function computeTimeline(papers, edges, opts = {}) {
         .map(t => t[0]);
     });
     cols.forEach(packColumn);
+  }
+
+  // survey "spine": re-pack so a tagged subset sits at each column's vertical
+  // centre (centred on y=0), with the rest split evenly above and below. The
+  // crossing-minimized order from the sweeps is preserved within each group.
+  const centerSet = opts.centerSet;
+  if (centerSet && centerSet.size) {
+    cols.forEach(c => {
+      const tagged = c.order.filter(p => centerSet.has(p.slug));
+      if (!tagged.length) { packColumn(c); return; }   // no spine node here → normal stack
+      const rest = c.order.filter(p => !centerSet.has(p.slug));
+      // tagged block, centred on 0
+      let h = -vGap; tagged.forEach(p => { h += sizeOf(p) + vGap; });
+      let cursor = -h / 2;
+      const topEdge = cursor;
+      tagged.forEach(p => { const r = sizeOf(p) / 2; cursor += r; pos.set(p.slug, { x: c.x, y: cursor }); cursor += r + vGap; });
+      const botEdge = cursor - vGap;
+      // fan the rest out: first half upward from the band's top, second half downward
+      const half = Math.ceil(rest.length / 2);
+      const above = rest.slice(0, half), below = rest.slice(half);
+      let up = topEdge - vGap;
+      for (let k = above.length - 1; k >= 0; k--) { const p = above[k], r = sizeOf(p) / 2; up -= r; pos.set(p.slug, { x: c.x, y: up }); up -= r + vGap; }
+      let dn = botEdge + vGap;
+      for (let k = 0; k < below.length; k++) { const p = below[k], r = sizeOf(p) / 2; dn += r; pos.set(p.slug, { x: c.x, y: dn }); dn += r + vGap; }
+    });
   }
 
   const bands = cols.map(c => ({ key: c.key, label: c.label, year: c.year, sub: c.sub, x: c.x }));

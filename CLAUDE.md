@@ -5,6 +5,8 @@ This repo is **Paper Atlas**: a dark, citation-map site of ML/eval papers, deplo
 - the **index map** — a citation **timeline** that reads `data/papers.json`: papers flow left→right by publication date (quarter bands, ordered to minimize edge crossings), nodes coloured by topic/author/venue, edges dimmed until you hover a node. The layout math lives in `src/timeline.js`; the renderer, hover behaviour, and the time-axis overlay in `src/main.js` + `index.html` (`#axis`) + `src/style.css`.
 - one **explainer page per paper** at `public/papers/<slug>.html` (dark, self-contained long-reads)
 
+On top of the map sits a **survey** overlay: a survey is a named tag (e.g. *Benchmarks*) defined in `data/surveys.json`, and a paper's membership lives in its node's `tags` array. The topbar `survey` dropdown lets a reader pick one — its tagged papers are pulled into a centred horizontal **spine**, ringed in the survey colour with their inter-citations lit, while everything else dims; the left→right timeline is otherwise unchanged. Surveys are the backbone of the actual survey papers you'll write: tag the core papers of a topic, then read them off the spine. (`scripts/tag_papers.py` is the tagging tool; see **Procedure D**.)
+
 A local **queue** (`data/queue.json`) lists papers waiting to become explainers. You (the agent) process them one at a time and grow the queue with newly-discovered papers.
 
 You have web access, bash (curl/wget), and Python (PyMuPDF / Pillow). **Never auto-commit, push, or deploy.** End every task with a short summary of what changed and a reminder for me to review (`npm run dev`) and commit.
@@ -15,6 +17,7 @@ You have web access, bash (curl/wget), and Python (PyMuPDF / Pillow). **Never au
 - "run the next one" / "go down the queue" / "next paper" / "do the next one" → **Procedure A — Process next**
 - "add X to the queue" / "queue up X" / "add all papers by/from …" → **Procedure B — Add to queue**
 - "review the existing papers" / "audit the graph" / "refresh citations" / "recheck the connections" → **Procedure C — Audit the graph**
+- "tag X as a benchmark" / "tag these for the <survey> survey" / "mark X as a <survey> paper" / "re-tag the graph for <survey>" / "create a new survey called …" → **Procedure D — Tag for a survey**
 
 If a message is ambiguous, ask one short question before acting.
 
@@ -55,13 +58,31 @@ If a message is ambiguous, ask one short question before acting.
       "topic": "Benchmarks & Evals",
       "author_group": "OpenAI",
       "abstract": "1–2 sentence summary for the side panel.",
-      "explainer": "papers/patwardhan-2025-gdpval.html"
+      "explainer": "papers/patwardhan-2025-gdpval.html",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [ { "from": "<citing slug>", "to": "<cited slug>" } ]
 }
 ```
 Edges are directed (citing → cited). The map lays papers out as a **left→right timeline** by publication date (`src/timeline.js`): papers are binned into quarter bands, and each column is ordered to minimize edge crossings. `date` is `"YYYY-MM"` (month precision, from the paper's arxiv id); the layout falls back to `year` mid-year if it's missing. Node size = `sqrt(citation_count)`, **capped** (see `size()` in `src/main.js`) so 26k-citation foundational nodes don't blow out a column. The color-by dimensions are `topic`, `author_group`, and `venue`. Edges sit dim and brighten on hover/selection. The map reads this file directly, so updating it **is** updating the map — no separate map edit.
+
+`tags` is **optional** and goes **last** in the node (after `explainer`); it is an array of survey ids (see `data/surveys.json`) — a paper can belong to several surveys. **Absent means untagged** — most papers have no `tags` key. It is written **inline** (`"tags": ["benchmarks"]`) and kept sorted & de-duplicated; let `scripts/tag_papers.py` own it so the canonical formatting (and the rest of `papers.json`) is preserved. Membership drives the survey spine (Procedure D); it is independent of `topic` (a paper's topic can be "Benchmarks & Evals" without being a *core* benchmark paper, and vice-versa).
+
+### `data/surveys.json` — survey (tag) definitions
+```json
+{
+  "surveys": [
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "color": "#ffd166",
+      "description": "Core benchmark, evaluation-dataset, and agent-evaluation-environment papers — the named entries a survey of LLM & agent benchmarks would cite."
+    }
+  ]
+}
+```
+`id` is the stable token stored in each node's `tags` (lowercase, hyphenated; never change it once papers reference it). `label` is the dropdown text, `color` the spine ring / lit-edge colour (pick one distinct from the teal selection accent), `description` the intent — *what makes a paper a core member*, which is the rubric Procedure D and the Procedure A tagging step apply. The site reads this file directly; adding a survey here makes it appear in the topbar `survey` dropdown.
 
 ### Slug
 `firstauthor-year-keywords`, lowercase, hyphenated. Generated once; it is the explainer filename **and** the graph node id. Never change a paper's slug.
@@ -86,10 +107,11 @@ Each `public/papers/<slug>.html` is one self-contained **dark** long-read built 
 6. **Extract figures.** `python scripts/extract_figures.py /tmp/paper.pdf figs/` — auto-detects every `Figure N:` and writes tight PNGs. You then choose which figures actually belong in the page.
 7. **Write the explainer.** Read the PDF (text + figures) and fill `templates/explainer.html` → `public/papers/<slug>.html`, per the explainer contract: write each section in your own words at expert depth, place the relevant real figures, quote exact numbers, and write the critique. Run `python scripts/inject_figures.py` to base64-inline the chosen figures. Verify the result is self-contained (no `{{FIG}}` placeholders remain; no external scripts but fonts).
 8. **Update the graph (`data/papers.json`).** Add this paper's node (slug, short label, title, authors, year, `date`, venue, citation_count, topic, author_group, abstract, explainer path). Set `date` to `"YYYY-MM"` (placed right after `year`) from the arXiv id you already resolved (`2510.xxxxx` → `"2025-10"`); it drives the timeline's quarter bands. For a non-arXiv paper, use the S2 `publicationDate` month, else `"<year>-07"` (mid-year). (To backfill a node that's missing it, `python scripts/backfill_dates.py` re-derives every node's `date` from its explainer's `source` link.) Judge `topic` from the abstract (Benchmarks & Evals / Post-training & RL / Reasoning / Agents / Safety & Red-teaming / …) and set `author_group`. Add **edges**: for every reference that is already a node (match by arxiv_id/doi/title) add `{from: <this slug>, to: <ref slug>}`; for every existing node whose paper this one's `citations` list shows citing it, add the reverse edge. Write the file deterministically (stable key order) for clean diffs.
+   - **Tag for surveys.** Check each survey in `data/surveys.json`: if this paper is a *core member* by that survey's `description` rubric, add its id to the node's `tags` (e.g. a core benchmark paper → `tags: ["benchmarks"]`). Be strict — a paper that merely *uses/reports* a benchmark is not a core benchmark paper (models, training methods, agent frameworks: no); tag only when the benchmark/eval is the paper's headline contribution. Most papers qualify for **none** (no `tags` key). Easiest is `python scripts/tag_papers.py add <survey_id> <slug>` once the node exists (it validates the id + slug and preserves formatting); or write the `tags` field directly as the last key, inline. State which surveys (if any) you tagged and why.
 9. **Grow the queue.** From this paper's references/citations, pick the most important papers **not already** in `papers.json` or `queue.json` (dedupe by arxiv_id/doi/title), ranked by citation count and by how many existing nodes cite them. List the top ~5 with one-line reasons and append them to `data/queue.json` (`source: "Cited by <this slug>"`).
 10. **Remove the processed paper** from `data/queue.json`.
 11. **Verify it actually renders — desktop *and* mobile.** A clean `papers.json` does **not** guarantee the map shows the node — the render is the source of truth. Run `npm run build` (must succeed) and load the site (`npm run dev`, or drive it with the browser tools): confirm the **new node appears on the map in its publication-quarter column** (the timeline places it by `date`, so a wrong/missing `date` lands it in the wrong column or — only as a `year` fallback — mid-year), that **hovering it brightens its citation edges**, and that its **explainer page loads** self-contained. Pay special attention to UI state transitions you don't normally exercise (e.g. the empty→first-paper case, or a `date` that opens a brand-new quarter band on the time axis). **Then check the explainer at a phone width (≈375px):** it must not scroll **horizontally** — the quickest signal is `document.documentElement.scrollWidth <= clientWidth` (anything wider means a child is overflowing; tables and the `.verdict` grid are the usual culprits — see the mobile contract above); the index map itself should also not cause sideways document scroll (it pans internally). If the node is missing/mis-placed or a page overflows sideways despite correct data, it's a site bug — fix it (and note the fix in the report).
-12. **Report.** "Built `papers/<slug>.html`; added 1 node + N edges; queued M new papers; removed 1 from the queue; verified it renders (desktop + mobile, no sideways scroll)." Then remind me to `npm run dev` and commit.
+12. **Report.** "Built `papers/<slug>.html`; added 1 node + N edges; tagged for <surveys or none>; queued M new papers; removed 1 from the queue; verified it renders (desktop + mobile, no sideways scroll)." Then remind me to `npm run dev` and commit.
 
 ---
 
@@ -126,9 +148,30 @@ Reconcile `data/papers.json` against reality: every citation **between papers al
    - **Dangling edges** (an endpoint slug no longer exists) → remove them.
    - Do **not** remove a real edge just because one API call now omits it; only drop edges that are dangling or duplicated. If an edge looks genuinely wrong (e.g., direction reversed), flag it in the report rather than silently deleting.
 5. **Update citation counts.** Set each node's `citation_count` to the refreshed value. If a count changed a lot, it's worth a line in the report. Leave a node untouched if it couldn't be resolved in step 2.
-6. **Write `data/papers.json` deterministically** (stable key order, edges sorted) so the diff is reviewable. Don't touch `slug`, `short`, `date`, `explainer`, or prose fields (`abstract`, `topic`, `author_group`) — those are owned by Procedure A. (If the audit surfaces a node with **no `date`**, that's the one exception: run `python scripts/backfill_dates.py` to give it one so it leaves the mid-year fallback column.)
+6. **Write `data/papers.json` deterministically** (stable key order, edges sorted) so the diff is reviewable. Don't touch `slug`, `short`, `date`, `explainer`, `tags`, or prose fields (`abstract`, `topic`, `author_group`) — those are owned by Procedures A/D. (If the audit surfaces a node with **no `date`**, that's the one exception: run `python scripts/backfill_dates.py` to give it one so it leaves the mid-year fallback column.)
 7. **Verify it renders.** Run `npm run build` (must succeed) and load the site (`npm run dev`, or the browser tools): confirm the timeline map still renders and the **new connections actually appear** — hover a node whose degree changed and check its citation edges light up as expected. The render is the source of truth — a clean JSON diff isn't enough.
 8. **Report.** "Audited N nodes; added E edges, removed D dangling/duplicate; refreshed C citation counts; verified it renders." Call out any nodes that couldn't be resolved and any edges you flagged but didn't change. Then remind me to `npm run dev` and commit (`data/papers.json` changed).
+
+---
+
+## Procedure D — Tag for a survey
+
+A **survey** is a named tag (`data/surveys.json`); membership lives in each node's `tags` array and drives the topbar `survey` spine. This procedure writes **only** `tags` (and, when creating a survey, `data/surveys.json`) — it adds **no nodes** and writes **no explainers**. Three shapes of request:
+- **Tag specific papers** — "tag SWE-Bench Pro as a benchmark", "mark these as benchmark papers" (a slug/title list).
+- **(Re)tag the whole graph** for a survey — "re-tag the graph for benchmarks", "find every benchmark paper" — classify every existing node against the rubric.
+- **Create a new survey** — "create a survey called Agents", then (usually) tag for it.
+
+0. **Know the rubric.** Read the target survey's `description` in `data/surveys.json` — that *is* the membership test. For **benchmarks**: a paper's **primary contribution** is a benchmark / eval dataset / eval suite / agent-evaluation environment that a survey would cite as a *named entry*; models, training/RL methods, reasoning techniques, agent frameworks, training datasets, and analysis/metric papers that merely **use** benchmarks are **out** (a "benchmark + method" paper is in only if the benchmark is a first-class named contribution). If **creating** a survey, add it to `data/surveys.json` first — unique lowercase `id`, `label`, a `color` distinct from the teal selection accent, and a sharp `description` that states what makes a paper a core member — then proceed.
+1. **Resolve the papers.**
+   - *Specific papers:* match each name/title to a node slug (the slug is the id; confirm ambiguous matches). Tagging applies only to **existing nodes** — if a paper isn't a node yet, queue it via Procedure B instead of tagging.
+   - *Whole-graph (re)tag:* classify every node against the rubric from its `title` + `abstract` (read the explainer/PDF when borderline). Be strict and **adversarially double-check the YES set** — the cheap failure is tagging a model/method/framework that merely names a benchmark. For a job this size, fan out (one classifier per ~20-node batch → a skeptical verify pass over the YES set → a completeness sweep over the NO set); a single pass both over-tags the borderline and misses the long tail.
+2. **Apply the tags** with the tool, so `papers.json` formatting stays canonical:
+   - `python scripts/tag_papers.py add <survey_id> <slug> [<slug> …]` — or pipe slugs: `… | python scripts/tag_papers.py add <survey_id> -`.
+   - `python scripts/tag_papers.py remove <survey_id> <slug> …` to untag; `list <survey_id>` / `surveys` to inspect.
+   It validates the survey id + every slug, keeps `tags` sorted & de-duplicated, drops the key when a paper has none left, and rewrites the file in its exact style.
+3. **Show the result for review.** List what you tagged (and untagged) with a one-line reason each, and **call out the borderline calls** you included/excluded so I can overrule them. For a whole-graph retag, give the count and the notable judgment calls.
+4. **Verify it renders.** `npm run build` (must succeed), then load the site and pick the survey in the topbar `survey` dropdown: confirm the tagged papers form the **centred spine** (ringed in the survey colour, inter-citations lit) with the rest dimmed, that hovering/selecting still works on top of it, and that there's no sideways document scroll at ≈375px. The render is the source of truth.
+5. **Report.** "Tagged N papers for `<survey>` (M total); verified the spine renders (desktop + mobile)." Remind me to `npm run dev` and commit (`data/papers.json`, plus `data/surveys.json` if a survey was added).
 
 ---
 
@@ -139,4 +182,5 @@ Reconcile `data/papers.json` against reality: every citation **between papers al
 - The rendered map is the source of truth, not the JSON — always confirm a new node actually appears (in its publication-quarter column) before calling a run done (Procedure A, step 11).
 - The map is a **timeline**: every node needs a `date` (`"YYYY-MM"`) to sit in the right quarter column — `scripts/backfill_dates.py` re-derives it from each explainer's hero `source` link, so keep that link canonical. Node size is **capped** in `src/main.js`. The layout (`src/timeline.js`), the time-axis overlay (`#axis` in `index.html` + `src/style.css`), and the renderer/hover (`src/main.js`) move together: if you change one — band granularity (quarter↔half), column spacing, the size cap, edge dimming — keep the others and this file in sync.
 - Every explainer must be mobile-safe (no horizontal scroll at ≤640px). The mobile rules live in `templates/explainer.html`'s `@media(max-width:640px)` block, mirrored identically across all `public/papers/*.html`; build new pages from the template and keep that block in sync if you ever touch it (see the explainer page contract). The index map must likewise not cause sideways **document** scroll on a phone (it pans/zooms internally; the axis collapses to year-only labels under 640px).
+- **Surveys** are tags, not a second graph: definitions in `data/surveys.json`, membership in each node's `tags`, the spine logic in `src/timeline.js` (`centerSet`) + `src/main.js` (the `applySurvey`/`showSurvey` block + the `.survey`/`.surveyEdge` styles) + the `#survey` dropdown in `index.html` + `.surveyby`/`.surveycap` in `src/style.css`. These move together — if you change the survey-spine behaviour, keep them and this file in sync. Always mutate `tags` through `scripts/tag_papers.py` (canonical formatting); pick `color`s distinct from the teal selection accent so a survey ring never reads as a selection. Tagging is part of Procedure A (step 8) — don't let a new core benchmark paper land untagged.
 - Never auto-commit, push, or deploy — finish each run with a summary and "review and commit when ready."

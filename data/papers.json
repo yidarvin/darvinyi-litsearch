@@ -54,7 +54,8 @@
       "topic": "Post-training & RL",
       "author_group": "Meta Superintelligence Labs",
       "abstract": "A 1,645-prompt instruction-following benchmark whose prompts and rubrics are entirely human-expert-written, spanning complex single-turn, multi-turn carried-context, and system-prompt steerability, and kept hard by adversarially retaining only model-failing prompts. Even GPT-5 (77.9) and Gemini 3 Pro (74.7) top out around 75-78%, with reasoning effort clearly helping and multi-turn / system steering lagging single-turn complexity. The companion pipeline RIFL reuses the rubrics as an RL reward: a fine-tuned rubric generator (F1 0.790), a two-stage SFT+RL rubric verifier (human-agreement F1 0.515->0.728, matching o3-mini's 0.723), and an all-or-nothing reward with two anti-reward-hacking criteria, lifting Llama 4 Maverick +6.7 on AdvancedIF (51.4->58.1), +2.9 on the out-of-distribution MultiChallenge, and ~flat on the saturated IFEval.",
-      "explainer": "papers/he-2025-advancedif.html"
+      "explainer": "papers/he-2025-advancedif.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "raghavendra-2026-swe-atlas",
@@ -68,7 +69,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A 284-task benchmark covering the software-engineering work that issue-resolution benchmarks ignore — Codebase Q&A, Test Writing, and Refactoring — across 18 real repos. It pairs programmatic checks with rubric-based LLM-as-judge grading and finds engineering quality lags functional correctness by 15–40 points even for frontier models (GPT-5.4 and Opus 4.7 lead at ~42–43% Pass@1).",
-      "explainer": "papers/raghavendra-2026-swe-atlas.html"
+      "explainer": "papers/raghavendra-2026-swe-atlas.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "sehwag-2026-scipredict",
@@ -82,7 +84,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "A 405-task benchmark drawn from physics, chemistry, and biology papers posted after March 2025 (no pretraining leakage, web search disabled) that asks 15 frontier LLMs to predict experimental outcomes. Models score just 14–26% — roughly matching ~20% human experts — but unlike experts, whose accuracy climbs from ~5% to ~80% as they judge a question more predictable, models stay flat at ~20% regardless of their own confidence, exposing a calibration gap that makes them untrustworthy for experiment planning.",
-      "explainer": "papers/sehwag-2026-scipredict.html"
+      "explainer": "papers/sehwag-2026-scipredict.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "chiu-2025-morebench",
@@ -96,7 +99,8 @@
       "topic": "Reasoning",
       "author_group": "Scale AI",
       "abstract": "A process-focused moral-reasoning benchmark: 1,000 dilemmas paired with 23,018 criteria written by 53 moral philosophers, grading how a model's thinking trace reasons rather than which side it lands on. Across 14 frontier reasoning models, moral-reasoning skill is nearly uncorrelated with scaling and with math/code/Arena benchmarks (Pearson r between −0.245 and 0.216); models reliably avoid harm (72–85%) but are weakest at integrating competing considerations, and reason markedly better in Utilitarian/Deontological frames than in Virtue Ethics or Contractarianism. A sibling set, MoReBench-Theory (150 scenarios), tests reasoning within five normative frameworks.",
-      "explainer": "papers/chiu-2025-morebench.html"
+      "explainer": "papers/chiu-2025-morebench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "bandi-2026-mcp-atlas",
@@ -110,7 +114,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A 1,000-task benchmark over 36 production MCP servers and 220 real tools, scored by an answer-centric claims rubric that credits any valid tool path; distractors are baked in so 98.6% of tasks demand genuine tool discovery across two or more servers. Across 20 frontier models the agentic frontier is no longer tool-mechanics-bound — Muse Spark leads at 82.2% Pass@0.75 and open-weight GLM-5.1 reaches 75.6% — but 63.3% of ~6,900 diagnosed failures are cognitive (premature stopping, faulty synthesis) rather than tool-call errors, and o3 Pro lands at 44.5% by issuing no tool call on 40% of its failed tasks.",
-      "explainer": "papers/bandi-2026-mcp-atlas.html"
+      "explainer": "papers/bandi-2026-mcp-atlas.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "akyurek-2025-prbench",
@@ -124,7 +129,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "The largest public rubric-based benchmark for law and finance: 1,100 expert-authored tasks and 19,356 weighted criteria from 182 credentialed professionals (JD/CFA/6+ yrs) spanning 114 countries and 47 US jurisdictions. Across 20 frontier models the best score only 0.39 (Finance) and 0.37 (Legal) on the Hard subsets — Instruction Following is near-solved while Supplemental Insight and Handling Uncertainty lag, models with similar overall scores diverge sharply by capability, and the dominant failure modes are inaccurate judgments, missing process transparency, and incomplete reasoning.",
-      "explainer": "papers/akyurek-2025-prbench.html"
+      "explainer": "papers/akyurek-2025-prbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "sharma-2025-researchrubrics",
@@ -138,7 +144,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "A fully human-built benchmark for Deep Research agents: 101 open-ended prompts paired with 2,593 expert-written, weighted rubric criteria (2,800+ hours of labor) across nine domains, scored by LLM-as-judge over three-stage expert review. Even the strongest agents — Gemini DR (0.677) and OpenAI DR (0.664) — clear under 68% of criteria under ternary grading, with no system topping 70%; failures concentrate in implicit reasoning and cross-document synthesis (45–50% of all failures) rather than factual retrieval. Methodologically, binary grading aligns with human judges ~20 points better than ternary partial credit (0.76 vs 0.57 Macro-F1), and LLM-augmenting the expert rubrics degrades alignment by 15–20%.",
-      "explainer": "papers/sharma-2025-researchrubrics.html"
+      "explainer": "papers/sharma-2025-researchrubrics.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "mazeika-2025-rli",
@@ -152,7 +159,8 @@
       "topic": "Agents",
       "author_group": "CAIS / Scale AI",
       "abstract": "The first economically grounded measure of AI automation: 240 real freelance projects sourced from verified Upwork professionals — over 6,000 hours of work valued at $143,991, spanning 23 categories from video and CAD to game development — each paired with the human gold-standard deliverable and graded by holistic manual review (94.4% inter-annotator agreement). Frontier agents perform near the floor: the best, Manus, completes just 2.5% of projects to a client-acceptable standard and earns $1,720 of the bundle, with the rest between 0.8–2.1%. An Elo metric (human baseline = 1,000; best AI ≈ 510) and an 'autoflation' price index register steady relative progress even as absolute end-to-end automation stays near zero, and failures cluster on execution — poor quality (45.6%), incomplete deliverables (35.7%), corrupted files (17.6%) — rather than deep reasoning.",
-      "explainer": "papers/mazeika-2025-rli.html"
+      "explainer": "papers/mazeika-2025-rli.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "rezaei-2025-onlinerubrics",
@@ -180,7 +188,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A contamination-resistant hardening of SWE-bench: 1,865 human-verified, multi-file coding tasks (reference patches average 107.4 LOC across 4.1 files) from 41 actively-maintained repos, split into an open public set (731, GPL/copyleft), a private held-out set (858), and a commercial set (276) purchased from startups. Under one SWE-Agent scaffold the best agents clear under 45% on the public set (Claude Sonnet 4.5 43.6%, Sonnet 4 42.7%, GPT-5 high 41.8%) and collapse to 9–18% on the proprietary commercial repos (Opus 4.1 17.8%); a $2/50-turn budget cap roughly halves every score (GPT-5 25.9%, Opus 4.1 22.7%). Human-written requirements and interface specs triple solvability (≈8%→23–26%), and on these long-horizon tasks the dominant failure is agents exhausting context before ever submitting a patch — GPT-5 fails to submit on 72.8% of its misses, 96.4% from long context.",
-      "explainer": "papers/deng-2025-swe-bench-pro.html"
+      "explainer": "papers/deng-2025-swe-bench-pro.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "srinivasa-2025-tutorbench",
@@ -194,7 +203,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "A 1,490-sample, 15,220-criterion benchmark of high-school and AP-level STEM tutoring across six subjects — adaptive explanation, feedback on student work, and hint generation — with 828 multimodal samples (photos of handwritten work) graded by a Claude Sonnet 4 judge against self-contained, sample-specific expert rubrics, kept hard by discarding any item three of five strong models could already solve. Across 16 frontier models none clears 56% (Gemini 2.5 Pro 55.65%, GPT-5 55.33%, o3 Pro 54.62%); adaptive explanation is the weakest use case (47.16% average), models are best at spotting correct/incorrect student steps (~53%) but worst at offering examples or analogies (32.8%), and the Claude family leads active-learning support (0.58–0.59) while trailing overall. Notably GPT-5 Study Mode scores just 46.94% — below vanilla GPT-5 — because its withholding, question-asking style is penalized by single-final-response grading.",
-      "explainer": "papers/srinivasa-2025-tutorbench.html"
+      "explainer": "papers/srinivasa-2025-tutorbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "jimenez-2023-swe-bench",
@@ -208,7 +218,8 @@
       "topic": "Agents",
       "author_group": "Princeton NLP",
       "abstract": "The benchmark that re-grounded code evaluation in real software engineering: 2,294 task instances mined from merged GitHub pull requests across 12 Python repositories, where a model must patch a codebase to resolve an issue and is graded by running the repo's own hidden unit tests (the patch must apply and all fail-to-pass + pass-to-pass tests must pass). In 2023 the best models resolved under 4% (Claude 3 Opus 3.79%, Claude 2 1.96%) — localization in long contexts, not editing, was the wall, with oracle retrieval roughly doubling scores. Its execution-graded, contamination-resistant, continually-refreshable format became the foundation of the coding-agent era (SWE-agent, SWE-bench Verified, SWE-Bench Pro).",
-      "explainer": "papers/jimenez-2023-swe-bench.html"
+      "explainer": "papers/jimenez-2023-swe-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "chen-2021-codex",
@@ -222,7 +233,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "OpenAI",
       "abstract": "OpenAI fine-tunes GPT on public GitHub Python (Codex) and introduces HumanEval — 164 hand-written problems graded by executing hidden unit tests rather than matching reference text. Codex-12B solves 28.8% from a single sample and 70.2% with 100 samples (Codex-S reaches 77.5% with an oracle pick, 44.5% by mean-logprob reranking); the paper establishes functional correctness and the unbiased pass@k estimator as the standard for code evaluation.",
-      "explainer": "papers/chen-2021-codex.html"
+      "explainer": "papers/chen-2021-codex.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "manglik-2026-insights-generator",
@@ -250,7 +262,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "OpenAI",
       "abstract": "An open-source health benchmark: 5,000 realistic multi-turn conversations graded against 48,562 conversation-specific rubric criteria written by 262 physicians across 60 countries, scored by a validated GPT-4.1 grader instead of multiple choice. Frontier performance climbs from 0.16 (GPT-3.5 Turbo) to 0.60 (o3) — with HealthBench Hard topping out at 0.32 — GPT-4.1 nano beats August 2024's GPT-4o at 1/25th the cost, and recent models now out-write unassisted physicians (0.13) while the model grader matches physician-level agreement (Macro-F1 0.709). A safety-critical, meta-evaluated, deliberately unsaturated rubric benchmark.",
-      "explainer": "papers/arora-2025-healthbench.html"
+      "explainer": "papers/arora-2025-healthbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "tyagi-2026-pow3r",
@@ -278,7 +291,8 @@
       "topic": "Agents",
       "author_group": "OpenAI",
       "abstract": "OpenAI's benchmark of autonomous ML engineering: 75 Kaggle competitions hand-ported into an offline environment and graded against the real human leaderboards via Kaggle's bronze/silver/gold medal system. The best agent — o1-preview with the AIDE scaffold — earns a medal in 16.9% of competitions (34.1% at pass@8), with scaffolding mattering as much as the model (AIDE 8.7% vs MLAB 0.8% on GPT-4o) and agents failing more on engineering — valid submissions, debugging, compute budgeting — than on ML. Contamination probes (familiarity r=−0.24; obfuscation 8.5%→8.4%) find no systematic inflation, and the benchmark is named as an autonomy / AI-R&D dial in OpenAI's Preparedness, Anthropic's RSP, and DeepMind's Frontier Safety frameworks.",
-      "explainer": "papers/chan-2024-mle-bench.html"
+      "explainer": "papers/chan-2024-mle-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "sehwag-2026-aspi",
@@ -334,7 +348,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "Introduces ETHICS, a 130,000+ example benchmark that probes a model's grasp of basic morality across five normative frameworks — justice, deontology, virtue ethics, utilitarianism, and commonsense — by predicting the moral judgments people widely agree on about open-world natural-language scenarios. In 2020 fine-tuned Transformers reached 71.0% average on the Test set but only 47.9% on an adversarially-filtered Hard Test (ALBERT-xxlarge), with GPT-3 few-shot trailing at 39.3/32.3 — promising but incomplete. Examples are kept clean via consensus relabeling, contrast-set augmentation, and adversarial filtration, and a held-out set probes whether models can flag moral disagreement (they mostly can't, AUROC 56–69%). The outcome-label moral-values eval that process-focused benchmarks like MoReBench were later built to move beyond.",
-      "explainer": "papers/hendrycks-2020-ethics.html"
+      "explainer": "papers/hendrycks-2020-ethics.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "luo-2025-mcp-universe",
@@ -348,7 +363,8 @@
       "topic": "Agents",
       "author_group": "Salesforce AI Research",
       "abstract": "The first benchmark to point LLM agents at real, live MCP servers — Google Maps, GitHub, Yahoo Finance, Blender, Playwright — across 231 hand-built tasks over 11 servers (133 tools), graded by 84 execution-based format/static/dynamic evaluators rather than an LLM judge (the 57.1% dynamic evaluators auto-refetch live ground truth so time-sensitive answers stay gradable). Even GPT-5 clears only 43.72% (Grok-4 33.33%, Claude-4.0-Sonnet 29.44%, best open-weight GLM-4.5 24.68%); Location Navigation defeats everyone (<35%), failures concentrate in content over format, and the two named walls are long-context blow-up (~90k tokens by step 16) and unfamiliar tool interfaces — while enterprise scaffolds like Cursor don't beat plain ReAct.",
-      "explainer": "papers/luo-2025-mcp-universe.html"
+      "explainer": "papers/luo-2025-mcp-universe.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "zheng-2023-mt-bench",
@@ -362,7 +378,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "LMSYS / Berkeley",
       "abstract": "Establishes LLM-as-a-judge — using a strong model like GPT-4 to grade open-ended chat answers — and validates it against two new human-preference benchmarks: MT-bench (80 hand-written multi-turn questions across 8 categories) and Chatbot Arena (crowdsourced anonymous battles, ~30K votes from 2,114 IPs). GPT-4 judges agree with expert humans 85% of the time on non-tie votes — above the 81% humans agree with each other (87% on Arena) — while the paper documents and mitigates position, verbosity, and self-enhancement biases (only GPT-4 stays >60% position-consistent and resists a verbosity attack at 8.7% vs ~91% for weaker judges). The work made model-graded preference evaluation respectable and seeded the LMSYS leaderboard lineage.",
-      "explainer": "papers/zheng-2023-mt-bench.html"
+      "explainer": "papers/zheng-2023-mt-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "guha-2023-legalbench",
@@ -376,7 +393,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "A collaboratively built legal-reasoning benchmark: 162 tasks across 36 corpora, hand-crafted by 40 legal professionals and organized by the IRAC framework (issue-spotting, rule-recall, rule-application, rule-conclusion) plus interpretation and rhetorical-understanding, scored mostly by balanced-accuracy with rule-application graded manually by a law-trained expert. Across 20 LLMs from 11 families GPT-4 leads but unevenly (rule-conclusion 89.9, rule-recall 59.2), Claude-1 rivals it only on rule-recall, and open Flan-T5-XXL beats GPT-3.5/Claude-1 on issue-spotting and rhetorical tasks; explanation 'analysis' lags answer correctness and plain-vs-technical prompt phrasing swings scores up to 21 points. The expert-authored, discipline-native-typology template later rubric benchmarks (PRBench, HealthBench, ResearchRubrics) scaled up.",
-      "explainer": "papers/guha-2023-legalbench.html"
+      "explainer": "papers/guha-2023-legalbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "islam-2023-financebench",
@@ -390,7 +408,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Patronus AI",
       "abstract": "The first ecologically-valid, open-book financial-QA benchmark: 10,231 expert-written (question, answer, evidence) triplets over 361 real SEC filings from 40 US public companies (2015–2023), graded by manual review on a 150-case open-sourced slice (n=2,400 responses). Across 16 configurations of GPT-4/Turbo, Claude 2, and Llama 2, a realistic shared-vector-store setup leaves GPT-4-Turbo at just 19% correct (81% wrong or refused) and even the best long-context config reaches 79%; the single-store→shared-store→oracle ladder shows the wall is retrieval, not reasoning, while Llama 2 confidently hallucinates (70% incorrect) where GPT-4-Turbo refuses.",
-      "explainer": "papers/islam-2023-financebench.html"
+      "explainer": "papers/islam-2023-financebench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "patwardhan-2025-gdpval",
@@ -404,7 +423,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "OpenAI",
       "abstract": "OpenAI's benchmark of real, economically valuable knowledge work: 1,320 tasks across 44 occupations in the 9 largest U.S. GDP sectors, authored by industry experts (avg 14 years' experience) and graded by blinded expert pairwise comparison against the human's own deliverable rather than an answer key, with 220 gold tasks open-sourced plus a public automated grader (65.7% vs 70.8% inter-human agreement). Frontier models approach but don't reach parity — Claude Opus 4.1 leads at 47.6% wins+ties and GPT-5 high at 38.8%, on a roughly linear upward trend — while a realistic 'try the model, then fix it yourself' workflow saves only ~1.4× time/cost for GPT-5 and ~3% of GPT-5's losses are rated catastrophic.",
-      "explainer": "papers/patwardhan-2025-gdpval.html"
+      "explainer": "papers/patwardhan-2025-gdpval.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wei-2025-browsecomp",
@@ -418,7 +438,8 @@
       "topic": "Agents",
       "author_group": "OpenAI",
       "abstract": "OpenAI's browsing-agent benchmark: 1,266 short-answer questions built by inverting a known fact so the answer is easy to verify but extremely hard to find — each vetted to stump GPT-4o/o1/an early Deep Research and to resist five Google searches. Non-browsing models score near zero (GPT-4o 0.6%, GPT-4.5 0.9%) and bolting on browsing barely helps (1.9%), while reasoning alone lifts o1 to 9.9% and an early Deep Research agent — trained for persistent browsing — solves 51.5%, scaling smoothly with test-time compute and reaching ~78% via best-of-N over 64 samples. Human trainers gave up on 70.8% of questions after two hours; the deliberate trade-off is that BrowseComp measures persistence and creative search for entangled facts, not long-form answers or query ambiguity, and browsing actually worsens calibration (Deep Research 91% error).",
-      "explainer": "papers/wei-2025-browsecomp.html"
+      "explainer": "papers/wei-2025-browsecomp.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "du-2025-deepresearch-bench",
@@ -432,7 +453,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "USTC / Metastone",
       "abstract": "The first benchmark built specifically for Deep Research Agents: 100 PhD-level tasks across 22 domains (50 English / 50 Chinese), with the per-domain task counts grounded in 44,019 filtered real user queries (from 96,147 raw). Two human-aligned frameworks grade it — RACE scores report quality against a high-quality reference report using dynamically-weighted, judge-generated adaptive criteria, and FACT scores citation accuracy plus effective-citation count via per-claim web verification. Gemini-2.5-Pro Deep Research leads RACE Overall (48.88) and dominates volume at 111.21 effective citations per report, but Perplexity DR cites most accurately (90.24% vs Gemini's 81.44%) and OpenAI DR (46.98) edges Gemini on Instruction-Following. RACE's 71.33% pairwise agreement with experts beats the 68.44% the experts agree with each other — though the whole pipeline is a Gemini judge scoring against a Gemini-written reference, a built-in self-preference risk.",
-      "explainer": "papers/du-2025-deepresearch-bench.html"
+      "explainer": "papers/du-2025-deepresearch-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "miserendino-2025-swe-lancer",
@@ -446,7 +468,8 @@
       "topic": "Agents",
       "author_group": "OpenAI",
       "abstract": "OpenAI's economically-grounded coding benchmark: 1,488 real freelance tasks from Upwork's open-source Expensify repository, worth $1,000,000 in actual payouts ($250–$32,000 each), split into Individual-Contributor coding tasks (764, $414,775) graded by ~100 engineers' triple-verified end-to-end Playwright browser tests, and SWE Manager tasks (724, $585,225) where the model picks among the freelancers' real proposals (99% agreement with the original engineering managers' choices). The best model — Claude 3.5 Sonnet — earns $403,325 of $1M (and $208,050 of $500,800 on the public SWE-Lancer Diamond split), resolving just 26.2% of IC coding issues; IC SWE pass@1 stays under 30% for every model while the easier proposal-picking runs ~2× higher (37–45%). Higher reasoning effort and more attempts both help (o1 climbs 16.5%→48.5% from pass@1 to pass@7), agents localize fast but fail to root-cause, and a model-first / freelancer-fallback workflow already saves o1 ~13–33% of cost — mapping capability to real economic value.",
-      "explainer": "papers/miserendino-2025-swe-lancer.html"
+      "explainer": "papers/miserendino-2025-swe-lancer.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "klearman-2026-semantic-stratification",
@@ -474,7 +497,8 @@
       "topic": "Agents",
       "author_group": "HKU",
       "abstract": "The first scalable, real-computer environment for multimodal agents: a VM-backed benchmark of 369 execution-graded tasks across Ubuntu/Windows/macOS spanning web and desktop apps, OS file I/O, and multi-app workflows, each with an initial-state config and a custom evaluation script (302 initial states, 134 unique evaluation functions). The action space is raw pyautogui keyboard/mouse code with WAIT/FAIL/DONE meta-actions, graded by an execution-based reward on the final machine state. Humans solve 72.36% but the best 2024 agent (GPT-4 reading an accessibility tree) only 12.24% — collapsing to ~7% on multi-app workflows and ~5% screenshot-only — and over 75% of 550 failed runs are mouse-click/grounding errors despite sound plans, exposing GUI grounding and operational knowledge, not reasoning, as the wall. It became the substrate of the computer-use agent era.",
-      "explainer": "papers/xie-2024-osworld.html"
+      "explainer": "papers/xie-2024-osworld.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "huang-2025-rubric-anchors",
@@ -544,7 +568,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "BigCode",
       "abstract": "An execution-graded benchmark of 1,140 Python tasks that each require composing multiple function calls from 139 real libraries (723 calls across 7 domains) under complex instructions, graded by ≥5 unittest cases at 99% branch coverage. Two splits — Complete (full docstring) and Instruct (terse natural language) — are built by a year-long human–LLM pipeline (GPT-4 synthesis + Code-Interpreter refactoring under 20 annotators). Across 60 LLMs the best, GPT-4o, reaches only ~60% Pass@1 on Complete and under 50% on Instruct, far below the 97% human pass rate; terse instructions cost 8.5% on average and long prompts trigger 'laziness' (models omitting given imports). A difficulty-filtered BigCodeBench-Hard subset serves as a user-centric proxy once the full set saturates.",
-      "explainer": "papers/zhuo-2024-bigcodebench.html"
+      "explainer": "papers/zhuo-2024-bigcodebench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "elfeki-2026-hil-bench",
@@ -558,7 +583,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A 300-task benchmark (150 SWE from SWE-Bench Pro, 150 text-to-SQL from BIRD) that measures selective escalation — whether agents know when to ask for help. Tasks are pre-filtered so top models hit ~85% pass@3 with full information, then seeded with 3–5 human-validated blockers (42% missing, 36% ambiguous, 22% contradictory) that surface only through progressive exploration. The core metric, Ask-F1 (harmonic mean of question precision and blocker recall), architecturally defeats question spam. Across frontier models a large universal judgment gap appears: 75–89% full-info pass@3 collapses to 4–24% when agents must decide whether to ask (best Ask-F1 ~53% for GPT-5.5). Failure has a stable per-model fingerprint — GPT executes confidently on wrong beliefs, Claude detects uncertainty but submits anyway, Gemini is externally correctable only on SQL — and RLVR on shaped Ask-F1 lifts a Qwen3-32B's Ask-F1 +28pp (SQL)/+17pp (SWE) with pass@3 in lockstep and positive cross-domain transfer, showing judgment is trainable.",
-      "explainer": "papers/elfeki-2026-hil-bench.html"
+      "explainer": "papers/elfeki-2026-hil-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "campbell-2026-defensive-refusal",
@@ -586,7 +612,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MBZUAI",
       "abstract": "The first unified taxonomy for evaluating AI math tutors: eight learning-sciences pedagogical dimensions (mistake identification, mistake location, revealing the answer, providing guidance, actionability, coherence, tutor tone, human-likeness), each with a desired label and scored by a Desired Annotation Match Rate (DAMR). The MRBench benchmark holds 192 mistake-remediation dialogues (from Bridge and MathDial) and 1,596 responses from 7 LLMs acting as tutors plus novice/expert humans, with gold human annotations (Fleiss' κ 0.65, Cohen's κ 0.71). Llama-3.1-405B is the most pedagogically complete while GPT-4 reveals the answer ~47% of the time (a strong QA system but a weak tutor); models are uniformly human-like (89–96%) yet weak on guidance and default to a neutral rather than encouraging tone; and the popular Prometheus2 and Llama-3.1-8B LLM judges correlate negatively with human labels on every dimension except human-likeness — so pedagogical evaluation still needs humans.",
-      "explainer": "papers/maurya-2025-mrbench.html"
+      "explainer": "papers/maurya-2025-mrbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "he-2024-olympiadbench",
@@ -600,7 +627,8 @@
       "topic": "Reasoning",
       "author_group": "Tsinghua / OpenBMB",
       "abstract": "An olympiad-level bilingual (English/Chinese) multimodal benchmark of 8,476 free-response math and physics problems — 57% with required diagrams and every problem carrying an expert step-by-step solution — sourced from competitions and the Chinese College Entrance Exam to outrun saturating evals, and graded by an automatic answer-equivalence pipeline (SymPy symbolic equivalence + numeric tolerance) over the 79% open-ended slice. The best 2024 model, GPT-4V, scored only 17.97% overall and 10.74% in physics (GPT-4 text-only reaches 29.93%, and a 7B DeepSeekMath-RL rivals far larger models on math); failures are dominated by reasoning/conceptual errors (42–45%) rather than arithmetic, and the 21% theorem-proving slice has no automatic grader and was almost entirely unsolved (GPT-4V solved 6 of 81 sampled proofs).",
-      "explainer": "papers/he-2024-olympiadbench.html"
+      "explainer": "papers/he-2024-olympiadbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "liu-2023-lost-in-the-middle",
@@ -642,7 +670,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A reproducible harness and benchmark for the 'agents optimizing agents' task: a coding agent edits, evaluates, and versions a target agent's code under a fixed evaluation budget. Across five tasks the full harness lifts tool-use agents about 8% over baseline, while reasoning tasks barely move.",
-      "explainer": "papers/ursekar-2026-vero.html"
+      "explainer": "papers/ursekar-2026-vero.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "pu-2026-lhaw",
@@ -656,7 +685,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A dataset-agnostic synthetic pipeline that turns any well-specified long-horizon task into controllably underspecified variants — stripping information across Goal, Constraint, Input, and Context and validating each variant by what agents actually do — then measures whether frontier agents know when to stop and ask for clarification, and what that costs.",
-      "explainer": "papers/pu-2026-lhaw.html"
+      "explainer": "papers/pu-2026-lhaw.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "raghavendra-2026-agentic-rubrics",
@@ -684,7 +714,8 @@
       "topic": "Multimodal",
       "author_group": "Scale AI",
       "abstract": "Voice models look strong on clean, single-turn, synthetic speech and fall apart in real conversation. Audio MultiChallenge is 452 unscripted multi-turn dialogues with 1,712 atomic rubrics, adding a new Voice Editing axis and audio-cue memory; the best system, Gemini 3 Pro Preview (Thinking), clears just 54.65%.",
-      "explainer": "papers/gosai-2025-audio-multichallenge.html"
+      "explainer": "papers/gosai-2025-audio-multichallenge.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "sehwag-2025-propensitybench",
@@ -698,7 +729,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "Safety audits ask what a model can do; this benchmark asks what it would do — handing an agent a forbidden 'misaligned' tool and a safe tool secretly rigged to always fail, then turning up operational pressure until alignment breaks. Average propensity to reach for the forbidden tool climbs to 46.9%.",
-      "explainer": "papers/sehwag-2025-propensitybench.html"
+      "explainer": "papers/sehwag-2025-propensitybench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wei-2025-bioriskeval",
@@ -726,7 +758,8 @@
       "topic": "Reasoning",
       "author_group": "Scale AI",
       "abstract": "A library of 100+ procedurally generated, algorithmically verifiable reasoning tasks — from polynomial algebra to Rubik's cubes — emitting virtually unlimited training data at controllable difficulty. The same generators expose a 'difficulty cliff' in frontier models and RL-train a small model whose gains transfer across domains and to external benchmarks.",
-      "explainer": "papers/stojanovski-2025-reasoning-gym.html"
+      "explainer": "papers/stojanovski-2025-reasoning-gym.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "guo-2025-visualtoolbench",
@@ -740,7 +773,8 @@
       "topic": "Multimodal",
       "author_group": "Scale AI",
       "abstract": "A benchmark for the think-with-images paradigm, where a model must actively crop, edit, and enhance an image with tools rather than just stare at it: 1,204 expert-authored tasks, 7,777 weighted rubrics, and a frontier that barely clears 18.68%.",
-      "explainer": "papers/guo-2025-visualtoolbench.html"
+      "explainer": "papers/guo-2025-visualtoolbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "zhang-2025-chasing-the-tail",
@@ -810,7 +844,8 @@
       "topic": "Reasoning",
       "author_group": "Scale AI",
       "abstract": "A benchmark of 1,055 reasoning questions written from scratch by native French, Spanish, and Chinese speakers — not translated from English — spanning language-specific linguistic reasoning, wordplay & riddles, cultural/tradition reasoning, and culturally grounded math. Questions are retained only when ≥3 of 5 frontier models fail them, and graded by an LLM judge (GPT-4.1, >95% human agreement, Scott's Pi 0.88). No model passes 50% (o3-pro leads at 49.00%); translating to English lifts math accuracy ~10 points (Spanish +19.1, Chinese +12.5) but barely moves cultural reasoning, exposing missing cultural knowledge rather than a pure language barrier.",
-      "explainer": "papers/fabbri-2025-multinrc.html"
+      "explainer": "papers/fabbri-2025-multinrc.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "gunjal-2025-rubrics-as-rewards",
@@ -894,7 +929,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UIUC",
       "abstract": "EvalPlus rigorously re-tests LLM-generated code by augmenting a benchmark's thin test suite with automatically generated inputs — ChatGPT-seeded, then expanded ~80× by type-aware mutation — and grading via differential testing against vetted ground-truths. Extending HumanEval to HumanEval+ (9.6→764.1 avg tests per problem) over 26 LLMs, pass@k drops by up to 19.3–28.9%, and the ranking flips: WizardCoder- and Phind-CodeLlama-34B both overtake ChatGPT on HumanEval+ though neither does on HumanEval. The harder tests also expose 18 buggy ground-truths (11% of problems) in HumanEval itself, and a set-cover-distilled HumanEval+-mini reproduces the effect with 47× fewer tests — establishing test adequacy as a first-class concern and making HumanEval+/MBPP+ default code-eval sets.",
-      "explainer": "papers/liu-2023-evalplus.html"
+      "explainer": "papers/liu-2023-evalplus.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "hendrycks-2021-apps",
@@ -908,7 +944,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "The benchmark that re-grounded code evaluation in functional correctness: 10,000 coding-challenge problems split into Introductory / Interview / Competition tiers, curated from Codeforces, Kattis, Codewars, and AtCoder, each graded by executing generated Python against hidden test cases (131,777 of them, plus 232,421 human solutions) rather than scoring text overlap. In 2021 programming was very hard for models — fine-tuned GPT-Neo 2.7B passed 14.68% of introductory test cases but only 3.90% strict accuracy (0.00% on Competition for every model), and few-shot GPT-3 175B solved just 3 of 5,000 problems — yet syntax errors fell ~59%→3% with fine-tuning, beam-5 sampling lifted GPT-Neo to 19.9% test-case average, and the paper showed BLEU ranking a worse model above a better one. Its difficulty-tiered, execution-graded, natural-language-spec format (a HumanEval-era contemporary) became foundational to the coding-agent era and the precursor cited by SWE-bench, Code Llama, and BigCodeBench.",
-      "explainer": "papers/hendrycks-2021-apps.html"
+      "explainer": "papers/hendrycks-2021-apps.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "zheng-2025-webguard",
@@ -922,7 +959,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "OSU NLP",
       "abstract": "The first real-world, action-level dataset for web-agent safety: 4,939 human-annotated actions across 193 websites and 22 domains, each graded SAFE / LOW / HIGH by how reversible and consequential it is — a reframing from 'is the task harmful' to 'is this click reversible.' Frontier LLMs score under 60% accuracy and under 60% HIGH-risk recall zero-shot and reasoning models (o3, Claude-3.7-Thinking) get more accurate but under-flag HIGH risk; fine-tuning a Qwen2.5-VL-7B lifts accuracy from 37% to 80% and HIGH-risk recall from 20% to 76%, with even a 3B model out-recalling o3 — yet Cross-Domain recall stalls at 66.8%, far from the near-perfect reliability a deployable guardrail requires.",
-      "explainer": "papers/zheng-2025-webguard.html"
+      "explainer": "papers/zheng-2025-webguard.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "brown-2020-gpt3",
@@ -978,7 +1016,8 @@
       "topic": "Agents",
       "author_group": "Renmin University / Zhipu AI",
       "abstract": "A spreadsheet-manipulation benchmark built entirely from real Excel-forum questions: 912 authentic instructions (averaging 85.7 words, vs 9.8–27.9 in prior benchmarks) and 2,729 test cases over genuinely messy spreadsheets — 35.7% with multiple tables, 42.7% with non-standard (nested/incomplete/missing-header) tables, some past 100 columns and 20,000 rows. It grades online-judge style: one generated code solution must pass three input–output spreadsheets per instruction, a design that resists data leakage and catches single-sheet overfitting. Across TableQA models, open and closed LLMs, and Excel products the field spans just 0.05%–23.65% soft-restriction accuracy; the best, Copilot in Excel (~20%) and GPT-4o (18.35%), sit far below the 71.33% scored by Excel experts, coding ability beats general ability (DeepseekCoder-33B > Llama-3-70B), and multi-round code-execution feedback lifts most models nearly tenfold while GPT-4o does not benefit.",
-      "explainer": "papers/ma-2024-spreadsheetbench.html"
+      "explainer": "papers/ma-2024-spreadsheetbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "deshpande-2025-trail",
@@ -992,7 +1031,8 @@
       "topic": "Agents",
       "author_group": "Patronus AI",
       "abstract": "A benchmark for debugging agentic execution traces: 148 expert-annotated OpenTelemetry traces (1,987 spans, 575 carrying errors; 841 annotated errors at 5.68 per trace) drawn from GAIA and SWE-Bench Lite, paired with a three-area error taxonomy spanning reasoning, system execution, and planning. Asked to classify and locate the errors in each long, structured trace, the best long-context model (Gemini-2.5-Pro) reaches only 11% joint accuracy — 18% on GAIA, 5% on SWE-Bench — and 3 of 8 frontier LLMs can't even fit the trace in context (the longest GAIA input is 7.5M tokens against a 1M limit; max traces run 2x the context window). Output Generation errors (formatting + instruction non-compliance) make up ~42% of all errors while system-execution failures sit in the long tail, and reasoning models beat non-reasoning ones by 1.5–8x on joint accuracy.",
-      "explainer": "papers/deshpande-2025-trail.html"
+      "explainer": "papers/deshpande-2025-trail.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "merrill-2026-terminal-bench",
@@ -1006,7 +1046,8 @@
       "topic": "Agents",
       "author_group": "Stanford / Laude Institute",
       "abstract": "A hard, crowd-sourced benchmark of 89 containerized command-line tasks — each with a unique Docker environment, hidden outcome tests that grade the final container state, and a human-written reference solution, verified at roughly three reviewer-hours apiece — spanning software engineering, system administration, security, and scientific computing. Across 32,155 trials over 16 frontier models and 6 agent scaffolds, the best system (GPT-5.2 via Codex CLI) resolves only 63% of tasks and smaller models around 15%; proprietary models hold the top 13 spots while the best open-weight (Kimi K2 Thinking) reaches 36%, execution errors like disobeying the spec and 'command not found' (24.1% of command failures) dominate, and the authors note the benchmark may saturate within a year.",
-      "explainer": "papers/merrill-2026-terminal-bench.html"
+      "explainer": "papers/merrill-2026-terminal-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "singhal-2023-med-palm",
@@ -1020,7 +1061,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "Introduces MultiMedQA — seven medical QA datasets including the new 3,375-question HealthSearchQA — plus a clinician human-evaluation framework (scientific consensus, harm, bias, completeness) that pushes medical-LLM eval past multiple-choice accuracy. Flan-PaLM 540B (PaLM instruction-tuned, with few-shot + chain-of-thought + self-consistency) sets SOTA on every multiple-choice set — 67.6% on MedQA/USMLE, +17% over prior best. Instruction prompt tuning (a 100-token, 1.84M-parameter soft prompt over Flan-PaLM) yields Med-PaLM, lifting scientific-consensus agreement 61.9%→92.6% and cutting potentially-harmful answers 29.7%→5.9%, though it still trails clinicians.",
-      "explainer": "papers/singhal-2023-med-palm.html"
+      "explainer": "papers/singhal-2023-med-palm.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "liu-2025-openrubrics",
@@ -1104,7 +1146,8 @@
       "topic": "Agents",
       "author_group": "Stanford",
       "abstract": "The first benchmark for LM agents that run the full ML experimentation loop — read files, edit training code, execute it, read the metric, iterate — across 13 tasks with an automatic evaluator (success = beat the starter baseline by 10%). A Claude 3 Opus agent reaches 37.5% average success but swings from 100% on canonical datasets like house-price to 0% on Kaggle challenges released after its training cutoff, with hallucination and long-horizon planning as the named failure modes. Its Fact Check and Research Plan response fields are the antidote, and it beats AutoGPT and LangChain scaffolds (26.0 vs 2.9 vs 1.0 on GPT-4-turbo).",
-      "explainer": "papers/huang-2023-mlagentbench.html"
+      "explainer": "papers/huang-2023-mlagentbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "jain-2024-livecodebench",
@@ -1118,7 +1161,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "A live, contamination-free code benchmark: 511 contest problems (May 2023–May 2024) from LeetCode, AtCoder, and CodeForces, each tagged with a release date so models are scored only on problems published after their training cutoff — and graded across four scenarios (code generation, self-repair, code execution, and a newly-introduced test-output-prediction task) rather than generation alone, with ~17 tests per problem. Across 52 models (18 base + 34 instruction-tuned), time-stamping exposes contamination as a cliff at each model's cutoff: DS-Base-33B falls from Pass@1 ≈60 to ≈0 on LeetCode after September 2023 and GPT-4o drops after November, a signal exact/fuzzy decontamination misses. HumanEval+ correlates only 0.72 with LCB-Easy, so fine-tuned open models that win on HumanEval collapse here (DS-Ins-1.3B 59.8%→26.3%); the four scenarios correlate above 0.88 yet rankings still shift (Claude-3-Opus passes GPT-4-Turbo on test output prediction); and a real SoTA gap reappears with GPT-4-Turbo leading (39.7 LCB-Easy). The evaluation framework the contamination-free era — SWE-Bench Pro, BigCodeBench, Terminal-Bench, and the reasoning-model leaderboards — is built on.",
-      "explainer": "papers/jain-2024-livecodebench.html"
+      "explainer": "papers/jain-2024-livecodebench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "liu-2023-agentbench",
@@ -1132,7 +1176,8 @@
       "topic": "Agents",
       "author_group": "Tsinghua",
       "abstract": "The first systematic benchmark for LLM-as-Agent: 29 API and open-source models evaluated across 8 interactive, execution-graded environments (Operating System, Database, Knowledge Graph, Digital Card Game, Lateral Thinking Puzzles, House-Holding, Web Shopping, Web Browsing) over an estimated 5–50 rounds per task, scored by a relative overall metric that normalizes each task's cross-model average to 1. GPT-4 leads at OA 4.01 — best on 6 of 8 datasets and genuinely usable in spots (78% success on House-Holding) — but no model is reliable, and a wide gap separates API models (avg 2.32, all above 1.00) from open-source ≤70B (avg 0.51, best codellama-34b 0.96, still under gpt-3.5-turbo). The dominant failure is Task Limit Exceeded — weak long-horizon reasoning and decision-making (Lateral Thinking Puzzles 82.5%, Knowledge Graph 67.9%) — rather than missing knowledge, with format/action-schema errors crippling Database (53.3%) and House-Holding (64.1%); code training helps static-procedure tasks but hurts flexible thinking, and high-quality alignment data beats raw scale (vicuna-13b matches 3× larger codellama-34b). Ships a Server-Client, Docker-isolated evaluation toolkit and seeded the agent-benchmark era.",
-      "explainer": "papers/liu-2023-agentbench.html"
+      "explainer": "papers/liu-2023-agentbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "greshake-2023-indirect-prompt-injection",
@@ -1174,7 +1219,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UIUC",
       "abstract": "The first benchmark for indirect prompt injection (IPI) against tool-integrated LLM agents: 1,054 test cases (17 user tools x 62 attacker tools, split into direct-harm and data-stealing attacks) where a malicious instruction hidden in a tool's response tries to hijack the agent into calling a harmful tool against its own user. Across 30 agents, ReAct-prompted GPT-4 executes the injected instruction 23.6% of the time (47.0% once a fixed 'ignore previous instructions' hacking prompt is prepended) and Llama2-70B exceeds 80%, while fine-tuned function-calling agents are far more resilient (GPT-4 6.6%, GPT-3.5 3.8%); capability tracks vulnerability, high-content-freedom placeholders drive attack success more than the attacker's tool choice (Cramer's V 0.28-0.31 vs 0.18-0.20), data transmission once extracted hits 100%, and Claude-2 is the lone agent the hacking prompt makes safer by triggering its alertness.",
-      "explainer": "papers/zhan-2024-injecagent.html"
+      "explainer": "papers/zhan-2024-injecagent.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wallace-2024-instruction-hierarchy",
@@ -1202,7 +1248,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "ETH Zurich",
       "abstract": "A dynamic, deterministically-scored benchmark for indirect prompt injection on tool-using LLM agents: 70 tools, 97 user tasks, and 629 security test cases across email, Slack, banking, and travel. Utility and security are checked by Python functions over environment state (not an LLM judge), and the paper finds more capable models are the easiest to hijack.",
-      "explainer": "papers/debenedetti-2024-agentdojo.html"
+      "explainer": "papers/debenedetti-2024-agentdojo.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wang-2022-self-consistency",
@@ -1244,7 +1291,8 @@
       "topic": "Reasoning",
       "author_group": "OpenAI",
       "abstract": "Introduces GSM8K — 8.5K linguistically diverse, human-written grade-school math word problems (7.5K train / 1K test, 2–8 steps, <2% breaking errors) — and shows that finetuning alone scales terribly (the 175B model tops out near ≈33%; an 80% solve rate would naively need ~10^16 parameters). The fix: train a verifier to score 100 sampled solutions and return the top-ranked one, a boost worth roughly a 30× model-size increase (6B verification ≈ a finetuned 175B model; the 175B verifier reaches ≈55%). Establishes the generator-verifier, sample-and-rank, test-time-compute paradigm — and the default math-reasoning benchmark — that chain-of-thought self-consistency, outcome/process reward models, and modern RLVR all build on.",
-      "explainer": "papers/cobbe-2021-gsm8k.html"
+      "explainer": "papers/cobbe-2021-gsm8k.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wei-2022-emergent-abilities",
@@ -1272,7 +1320,8 @@
       "topic": "Agents",
       "author_group": "Upwork",
       "abstract": "A dynamically refreshed benchmark of 322 real, paid Upwork jobs, each decomposed by expert freelancers into 5–20 labeled acceptance criteria (critical/important/optional/pitfall) with per-criterion human feedback. Minimal plan–act–reflect agents are graded on strict completion and a graded rubric score: Claude Sonnet 4 leads at 39.8% first-attempt completion versus ~20% for Gemini 2.5 Pro and GPT-5, and a single human-in-the-loop feedback pass adds 11–14 points and rescues 18–23% of failed jobs. An embedded economic model frames an AI → HITL → human handoff as task value rises.",
-      "explainer": "papers/yi-2025-upbench.html"
+      "explainer": "papers/yi-2025-upbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "hendrycks-2020-mmlu",
@@ -1286,7 +1335,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "A 57-subject zero/few-shot multiple-choice benchmark spanning STEM, the humanities, the social sciences, and professional fields (elementary to advanced level), built to measure the world knowledge a model absorbs during pretraining — and to resist the saturation that felled GLUE and SuperGLUE within a year. In 2020 few-shot GPT-3 up to 13B sat at random chance (~25%) and only the 175B model reached 43.9% average — while a fine-tuned 11B UnifiedQA actually led at 48.9% under distribution shift — with performance lopsided (near-chance on Professional Law and Moral Scenarios despite ~70% on its best subject) and badly miscalibrated, its confidence off from accuracy by up to 24%. The 4-option-MCQ, single-average format that made it cheap, comparable, and durable also became its limit, and MMLU became the canonical LLM knowledge benchmark that MMLU-Pro, GPQA, and BIG-Bench were later built to extend or escape.",
-      "explainer": "papers/hendrycks-2020-mmlu.html"
+      "explainer": "papers/hendrycks-2020-mmlu.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "hendrycks-2021-math",
@@ -1300,7 +1350,8 @@
       "topic": "Reasoning",
       "author_group": "UC Berkeley",
       "abstract": "A benchmark of 12,500 competition-mathematics problems (AMC/AIME), each with a full worked solution and a single boxed answer graded by exact match. In 2021 the best models scored 3–7%, and a log-linear extrapolation suggested scaling alone would need ~10^35 parameters to reach 40% — a forecast chain-of-thought, scale, and RL later overturned. It also introduced AMPS, a 5M-problem pretraining corpus.",
-      "explainer": "papers/hendrycks-2021-math.html"
+      "explainer": "papers/hendrycks-2021-math.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lin-2021-truthfulqa",
@@ -1314,7 +1365,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Oxford / OpenAI",
       "abstract": "An 817-question benchmark across 38 categories engineered to elicit imitative falsehoods — false answers that score high likelihood because humans repeat them (e.g. that coughing stops a heart attack). The best 2021 model (GPT-3-175B, hand-picked 'helpful' prompt) is truthful on just 58% of questions vs 94% for a human, and is confidently false-and-informative 42% of the time vs 6% for the human. The signature result is inverse scaling: within every family the larger model is the less truthful one (largest GPT-Neo/J 17% worse than a 60x-smaller one), while a control set of matched trivia scales normally — evidence the failures are imitative, not surface-form. A finetuned GPT-judge (GPT-3-6.7B) predicts human truth labels at 90–96% accuracy. The honesty benchmark that reframed truthfulness as measurable and argued fine-tuning/RLHF, not scale, is the path to truthful models.",
-      "explainer": "papers/lin-2021-truthfulqa.html"
+      "explainer": "papers/lin-2021-truthfulqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "rein-2023-gpqa",
@@ -1328,7 +1380,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NYU",
       "abstract": "A scalable-oversight testbed rather than a leaderboard: 448 graduate-level multiple-choice questions in biology, physics, and chemistry, written and validated by 61 PhD contractors through a four-stage pipeline so the answers are objective for in-domain experts (~65% accuracy, ~74% estimated objectivity) yet 'Google-proof' for skilled non-experts, who reach only 34.1% despite a median 30 minutes and unrestricted web access (25% is chance). At release the strongest baseline, GPT-4 with a search tool, managed just 39.4% on the extended set (and abstained on 37.2% of main-set questions), far below experts and barely above non-experts. Three nested splits — Extended (546), main (448), and the strictest GPQA Diamond (198, both experts correct and a majority of non-experts wrong) — with Diamond now the canonical hard-science subset reported in frontier model cards. Validator accuracies on the main/diamond subsets are skewed by the selection that defines them.",
-      "explainer": "papers/rein-2023-gpqa.html"
+      "explainer": "papers/rein-2023-gpqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "srivastava-2022-big-bench",
@@ -1342,7 +1395,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "An open, collaboratively built benchmark of 204 tasks from 450 authors across 132 institutions, deliberately stocked with problems believed to be beyond current models and spanning linguistics, math, common-sense reasoning, biology, software, and social bias. Evaluating OpenAI GPT, Google dense (BIG-G) and Switch-style sparse transformers, and PaLM from millions to hundreds of billions of parameters against an expert-human baseline, it finds the best models score under 20 on a 0–100 human-normalized scale (experts ≈100); calibration improves with scale but stays poor (Brier 0.2–0.3, ECE 0.25–0.45); per-token cross-entropy scales lawfully (exponent ≈ −0.066 to −0.069) while downstream capability does not; tasks split into gradual 'linear' (knowledge/memorization) versus sudden 'breakthrough' (multi-step or brittle-metric) scaling; and social bias often rises with scale in ambiguous contexts. Ships a 24-task BIG-bench Lite subset and a canary-string contamination guard.",
-      "explainer": "papers/srivastava-2022-big-bench.html"
+      "explainer": "papers/srivastava-2022-big-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "liang-2022-helm",
@@ -1356,7 +1410,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "The benchmark framework that made language-model evaluation multi-metric and standardized: 7 metrics (accuracy, calibration, robustness, fairness, bias, toxicity, efficiency) measured for each of 16 core scenarios — plus 7 targeted evaluations over 26 scenarios — across 30 models under identical 5-shot prompting, raising average model×scenario coverage from 17.9% to 96.0% (42 scenarios in all, 21 new to mainstream LM eval). Its 25 findings show instruction-tuning beats scale — text-davinci-002 and a 52B Anthropic model top accuracy, robustness, and fairness over a 530B model — while the multi-metric lens exposes trade-offs a single accuracy number hides: robustness and fairness track accuracy, calibration does not, and on BBQ the most accurate models are the most socially biased. The living-benchmark, name-what's-missing template later rubric and capability evals (MT-Bench, LegalBench, HealthBench) inherited.",
-      "explainer": "papers/liang-2022-helm.html"
+      "explainer": "papers/liang-2022-helm.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "he-2024-webvoyager",
@@ -1370,7 +1425,8 @@
       "topic": "Agents",
       "author_group": "Tencent AI Lab",
       "abstract": "The first web agent to operate live websites end-to-end from rendered screenshots rather than HTML: a GPT-4V perception-action loop that overlays numbered Set-of-Mark boxes on interactive elements (via a rule-based DOM tool, no object detector), keeps the last 3 screenshots plus full thought/action history, and acts through 7 human-like actions (Click, Input, Scroll, Wait, Back, Jump-to-Search, Answer) over Selenium on the open web. On a self-instruct benchmark of 643 tasks across 15 real sites it reaches 59.1% task success (human eval) vs 40.1% for a text-only accessibility-tree variant and 30.8% for GPT-4 (All Tools), winning big on visual sites (Google Map 76.7%, Coursera 73.8%) but flat on text-heavy ones (Allrecipes, GitHub). It also ships a GPT-4V auto-judge that scores open-ended trajectories at 85.3% agreement / kappa 0.70 with humans — matching inter-annotator agreement. Failures are dominated by Navigation Stuck (44.4%) over Visual Grounding (24.8%) and Hallucination (21.8%); the live-web design trades reproducibility for realism, login/CAPTCHA tasks are excluded, and the GPT-4V judge isn't independent of the GPT-4V agent.",
-      "explainer": "papers/he-2024-webvoyager.html"
+      "explainer": "papers/he-2024-webvoyager.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "trivedi-2024-appworld",
@@ -1384,7 +1440,8 @@
       "topic": "Agents",
       "author_group": "AI2 / Stony Brook",
       "abstract": "A fully simulated world of 9 everyday apps and ~100 fictitious people reachable through 457 APIs, with 750 interactive-coding tasks (250 scenarios × 3) where an agent writes rich, iterative code against a live environment and is graded on the resulting database state — every required change must happen and nothing else, the collateral-damage clause. Even the best 2024 system, ReAct + GPT-4o, completes just 48.8% of 'normal' and 30.2% of 'challenge' tasks (TGC), dropping to 32.1%/13.0% on the stricter scenario-consistency metric (SGC); oracle APIs help by ≤9.8 points, so the wall is composing APIs into correct, error-adaptive code, not retrieving them.",
-      "explainer": "papers/trivedi-2024-appworld.html"
+      "explainer": "papers/trivedi-2024-appworld.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "knight-2025-fortress",
@@ -1398,7 +1455,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "A safeguard-robustness benchmark for national-security and public-safety (NSPS) content: 500 expert-crafted single-turn adversarial prompts (1,010 total, the rest held private) across three law-grounded domains — CBRNE, Political Violence & Terrorism, and Criminal & Financial Illicit Activities (10 subdomains) — each graded by an instance-specific rubric of 4–7 binary questions and paired with a benign twin to measure over-refusal. A three-model judge panel (o3, Claude 3.7 Sonnet, Gemini 2.5 Pro) majority-votes each rubric question (89.05% agreement with human experts, 92.98 F1), yielding an Average Risk Score (ARS) and Over-Refusal Score (ORS) that trade off inversely across 26 models: Claude 3.5 Sonnet is most robust (ARS 14.09) but over-refuses most (ORS 21.80), DeepSeek-R1 is most exploitable (78.05) yet barely over-refuses (0.60), and the latest Gemini 2.5 Pro is the worst proprietary model (66.29). The Biological subdomain and psychological/social-engineering tactics break safeguards hardest; an ensemble attacker picking the most-vulnerable model per prompt reaches ARS 89.0 — 6.32× the safest single model — and newer/bigger is not reliably safer (GPT-4.1 > GPT-4o in vulnerability).",
-      "explainer": "papers/knight-2025-fortress.html"
+      "explainer": "papers/knight-2025-fortress.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "li-2026-rubrichub",
@@ -1510,7 +1568,8 @@
       "topic": "Agents",
       "author_group": "Xi'an Jiaotong / UMass",
       "abstract": "The first benchmark built around Anthropic's Model Context Protocol: 507 tool-use tasks across six domains (math, web search, email, calendar, files, terminal), graded on objective answer-, operation-, and token-efficiency metrics. Across ten frontier models it finds a recurring gap — models emit syntactically valid tool calls but routinely select the wrong tool, revealing a superficial grasp of task requirements.",
-      "explainer": "papers/gao-2025-mcp-radar.html"
+      "explainer": "papers/gao-2025-mcp-radar.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wang-2023-fair-evaluators",
@@ -1552,7 +1611,8 @@
       "topic": "Post-training & RL",
       "author_group": "Stanford",
       "abstract": "The paper that made RLHF research cheap and reproducible. AlpacaFarm replaces human pairwise annotators with a pool of 13 LLM judges plus 25% label-flip noise — $6 vs $300 per 1,000 comparisons, 65% agreement with the human majority vs the 66% humans reach among themselves — and pairs it with an 805-prompt win-rate benchmark (against Davinci-003) and six tuned reference LPF methods on LLaMA-7B. Its end-to-end validation is the headline: method rankings developed in the $70-and-hours simulator match rankings trained on $3,150 of real human feedback at Spearman 0.98, and the deliberately noisy simulator uniquely reproduces reward over-optimization that a single high-agreement GPT-4 judge misses. PPO tops the leaderboard (55.1% human win-rate), but the result exposes win-rate's verbosity bias — 'PPO beats ChatGPT' is a length-cap artifact — seeding the AlpacaEval / LLM-as-judge lineage.",
-      "explainer": "papers/dubois-2023-alpacafarm.html"
+      "explainer": "papers/dubois-2023-alpacafarm.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "touvron-2023-llama",
@@ -1580,7 +1640,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "AUEB / Sheffield",
       "abstract": "The GLUE-for-law benchmark: seven English legal-NLU datasets behind one leaderboard — ECtHR (A & B) human-rights judgment prediction, SCOTUS issue classification, EUR-LEX/EuroVoc and LEDGAR/UNFAIR-ToS contract tasks, and CaseHOLD multiple-choice QA — scored with a shared micro/macro-F1 and selected on SuperGLUE-style desiderata but deliberately favoring legal expertise. Across a TF-IDF SVM and base-size BERT/RoBERTa/DeBERTa/Longformer/BigBird plus the legal-domain Legal-BERT and CaseLaw-BERT (with hierarchical encoders for the long ECtHR/SCOTUS documents), the legal-oriented models win overall — Legal-BERT leads the harmonic-mean aggregate at 70.8 macro-F1 — but only by ~2–4 points and mostly on US case law (SCOTUS, CaseHOLD), while RoBERTa-large matches them. The fine-tuning-era, expert-curated predecessor that LegalBench later scaled into the few-shot LLM age.",
-      "explainer": "papers/chalkidis-2021-lexglue.html"
+      "explainer": "papers/chalkidis-2021-lexglue.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "hendrycks-2021-cuad",
@@ -1594,7 +1655,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "A year-long effort by The Atticus Project: 510 commercial contracts from SEC EDGAR hand-annotated by legal experts into 13,101 clause highlights across 41 review categories (every annotation triple-verified, a conservative ~$2M of expert labor), cast as SQuAD-2.0-style extractive “find the needle” QA where labeled text is only ~10% of a contract and ~0.25% per label. Across ten 2021 encoder QA models the best, DeBERTa-xlarge, reaches only 44.0% Precision @ 80% Recall (BERT-base 8.2%) and is the sole model nonzero at 90% recall (17.8%); precision collapses past 80% recall and varies sharply by clause (Governing Law near-ceiling, Covenant-Not-to-Sue ~20% AUPR). Its enduring lesson is that data, not architecture, is the bottleneck — 10× more annotations lifts AUPR 27.6→42.6, matching the entire BERT→DeBERTa gap, while 8GB of unlabeled contracts adds only +3% — making CUAD the canonical demonstration that expert-labeled data unlocks specialized domains.",
-      "explainer": "papers/hendrycks-2021-cuad.html"
+      "explainer": "papers/hendrycks-2021-cuad.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lewis-2020-rag",
@@ -1622,7 +1684,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UCSB / J.P. Morgan",
       "abstract": "The first expert-annotated benchmark for multi-step numerical reasoning over real financial filings: 8,281 QA pairs over S&P 500 earnings reports (1999–2019), each paired with a gold, executable reasoning program drawing on both tables and prose. The best 2021 retriever-generator (FinQANet, RoBERTa-large) reaches 61.24% execution accuracy versus 91.16% for finance experts and 50.68% for crowdworkers.",
-      "explainer": "papers/chen-2021-finqa.html"
+      "explainer": "papers/chen-2021-finqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "xie-2024-finben",
@@ -1636,7 +1699,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "The Fin AI",
       "abstract": "The first broad-coverage open financial benchmark: 36 datasets across 24 tasks and seven aspects (information extraction, textual analysis, QA, text generation, risk management, forecasting, decision-making), with three new datasets (EDTSum, FinTrade, Regulations) and the first agent-based stock-trading and RAG evaluation in finance. Across 15 LLMs the profile is lopsided — GPT-4 leads extraction and numeric QA (FinQA EM 0.63 vs ~0 for open models) while every model collapses on complex extraction (FinRED F1 0.02), extractive summarization (ECTSum 0.00), and forecasting (MCC ≈ 0, barely above chance). The bright spot is trading: as the brain of the FinMem agent GPT-4 returns +28.19% with a Sharpe of 1.51 and the lowest drawdown (18.34%), beating Buy-&-Hold (−4.00%) and RL traders (Sharpe ≤ 0.01) — but on just 10 stocks over one 2022–2023 window with wide confidence intervals and pretraining-window prices.",
-      "explainer": "papers/xie-2024-finben.html"
+      "explainer": "papers/xie-2024-finben.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "thakur-2024-judging-the-judges",
@@ -1706,7 +1770,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "OpenAI",
       "abstract": "OpenAI's short-form factuality benchmark: 4,326 fact-seeking questions with a single, indisputable answer, adversarially collected so that at least one of four GPT-4-class models got each one wrong, then graded correct / incorrect / not-attempted by a prompted ChatGPT classifier. The headline is calibration, not just accuracy — abstention (\"not attempted\") is a first-class outcome, so a model is rewarded for knowing what it doesn't know. Frontier models flunk: o1-preview answers only 42.7% correctly and GPT-4o, o1, and Claude all land under 50% overall-correct, while every model overstates its stated confidence. Cheap, low-variance, and trivially gradable, but short-form only and Wikipedia-heavy, so its difficulty will erode as the public set leaks into training corpora.",
-      "explainer": "papers/wei-2024-simpleqa.html"
+      "explainer": "papers/wei-2024-simpleqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "schick-2023-toolformer",
@@ -1734,7 +1799,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "CMU / Stanford",
       "abstract": "The Wikipedia-based benchmark that made multi-hop reasoning and explanation first-class in QA: 112,779 crowd-sourced question–answer pairs that each require chaining facts across two documents, paired with the sentence-level supporting facts that justify the answer (graded by a joint answer+evidence EM/F1) plus a novel comparison-question type. A reimplemented bi-attention/self-attention reader reaches only 58.28 distractor answer F1 (41.37 joint) and 34.40 in the open-domain full-wiki setting — where a tf-idf retriever finds both gold paragraphs in the top-10 just 56% of the time — against 91.40 human answer F1. Its distractor-vs-fullwiki template and supporting-fact supervision seeded the agentic-retrieval era (ReAct, Reflexion), and it is now the easy-to-find QA baseline that browsing benchmarks like BrowseComp explicitly move past.",
-      "explainer": "papers/yang-2018-hotpotqa.html"
+      "explainer": "papers/yang-2018-hotpotqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "yao-2022-webshop",
@@ -1748,7 +1814,8 @@
       "topic": "Agents",
       "author_group": "Princeton NLP",
       "abstract": "A simulated e-commerce environment of 1.18 million real amazon.com product listings and 12,087 crowd-written instructions, where an agent must search, compare items, set the right options, and buy a product matching a spec — graded by an automatically-computed attribute/option/price reward that needs no human in the loop. The best 2022 imitation+RL agents reach a 62.4 task score and 28.7% success versus 59.6% for human experts, and a choice-oracle probe (rule success 9.6% → 85.4%) localizes the gap to selecting the right product options rather than generating searches; trained agents also transfer zero-shot to live amazon.com and ebay.com. The auto-graded, high-level-action web sandbox that became standard infrastructure for later web and tool agents (ReAct, Reflexion, AgentBench, WebVoyager, AppWorld).",
-      "explainer": "papers/yao-2022-webshop.html"
+      "explainer": "papers/yao-2022-webshop.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "li-2025-webthinker",
@@ -1860,7 +1927,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UKP Lab (TU Darmstadt)",
       "abstract": "The field-defining zero-shot retrieval benchmark: 18 datasets across 9 tasks (fact-checking, QA, citation prediction, argument and bio-medical retrieval, …) wrap 10 systems spanning lexical, sparse, dense, late-interaction, and re-ranking architectures in one nDCG@10 harness, all evaluated out-of-domain with no in-task training. The headline reframed IR evaluation: in-domain accuracy does not predict generalization, and the lexical baseline BM25 beats nearly every neural retriever zero-shot — only the cross-encoder re-ranker BM25+CE (16/18 datasets, +11% avg) and document-expansion docT5query reliably surpass it, at 20–30× the latency of a dense bi-encoder. A Hole@10 study honestly flags the catch: lexical pooling under-counts dense retrievers' hits (TAS-B 31.8% holes vs BM25 6.4%), and re-annotating TREC-COVID lifts ANCE from below BM25 to 6.7 nDCG points above it.",
-      "explainer": "papers/thakur-2021-beir.html"
+      "explainer": "papers/thakur-2021-beir.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "edge-2024-graphrag",
@@ -1916,7 +1984,8 @@
       "topic": "Agents",
       "author_group": "Google DeepMind",
       "abstract": "Google DeepMind's mobile counterpart to OSWorld: a fully functional Pixel 6 / Android 13 emulator that supplies durable, execution-based reward for 116 hand-built tasks across 20 real apps (open-source F-Droid plus built-in system apps), reading success from device system state via adb — files, SQLite rows, settings — rather than matching UI screenshots, and reusing checks across unrelated apps. Its signature feature is automatic task parameterization: each task is re-instantiated from a random seed into a practically infinite set of goals and success criteria, with composable partial-credit tasks and a ported MobileMiniWoB++ (92 web tasks) on the same TaskEval interface. The reference zero-shot ReAct+Reflexion agent M3A tops out at 30.6% (GPT-4 Turbo, accessibility-tree input) versus 80.0% human, with multimodal Set-of-Marks input underperforming text-only and failures clustering on UI grounding, memory, and operational knowledge rather than reasoning. The methodological punchline is a robustness analysis: across three seeds M3A scores 27.6/26.3/33.2% (mean 29.0%) and per-task can swing from 0% to ~45%, showing single-seed benchmark scores can be luck.",
-      "explainer": "papers/rawles-2024-androidworld.html"
+      "explainer": "papers/rawles-2024-androidworld.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "bai-2022-constitutional-ai",
@@ -2000,7 +2069,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI / CAIS",
       "abstract": "A 1,184-puzzle benchmark drawn from eight real puzzle-hunt events (Normal 949, Hard 235) where instruction-free, multimodal problems demand discovering hidden connections between unrelated clues and inventing the solution path. Each puzzle ships in two formats — a raw PDF/webpage screenshot and a human-transcribed text-image version — to separate reasoning from OCR. State-of-the-art vision-language models barely register: the best (o1) solves 7.0% of Normal and 0.0% of Hard, all nine models score 0% on Hard, and even handed the correct component answers models clear only ≤8.7% of meta-puzzles. Difficulty is organic rather than adversarially curated and the scores fall below Humanity's Last Exam; graded by exact string match on a word/short-phrase answer, the benchmark is kept private and continuously updated to resist the contamination its publicly posted solutions invite.",
-      "explainer": "papers/wang-2025-enigmaeval.html"
+      "explainer": "papers/wang-2025-enigmaeval.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "jensen-2025-cfpd",
@@ -2014,7 +2084,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "CSIS / Scale AI",
       "abstract": "A benchmark for a domain with no ground truth: 400 expert-written international-relations scenarios (escalation, intervention, cooperation, alliance dynamics), expanded by swappable country actors to 66,473 questions over 216 actors, that grade what seven foundation models prefer rather than what they know. Models diverge most — and only statistically significantly — on escalation: Llama 3.1 8B Instruct picks Use of Force 41.36% of the time versus 9.41% for Claude 3.5 Sonnet, while Gemini 1.5 Pro parks 54.83% of answers in the middle Threat-of-Force tier. Every model shows a country bias, recommending Use of Force for the US and UK over 50% of the time but never above 50% for China, India, or Russia — pointing to regime type / training data and warning against off-the-shelf deployment in national-security decision support. The dataset is withheld over contamination concerns; the paper ships the methodology as a recipe.",
-      "explainer": "papers/jensen-2025-cfpd.html"
+      "explainer": "papers/jensen-2025-cfpd.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "phan-2025-hle",
@@ -2028,7 +2099,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI / CAIS",
       "abstract": "A 2,500-question, multimodal, closed-ended academic benchmark written by ~1,000 subject experts across 500+ institutions and filtered to questions frontier LLMs fail — built to restore measurement headroom after MMLU-style benchmarks saturated above 90%. Two formats (24% multiple-choice, 76% exact-match; ~14% image-based) graded by an o3-mini judge, with a private held-out set guarding overfitting and mathematics making up 41% of the set. At release every model scored under 14% (o3-mini high 13.4% text-only, o1 8.0%, GPT-4o 2.7%) with RMS calibration errors above 70% — confidently wrong rather than uncertain.",
-      "explainer": "papers/phan-2025-hle.html"
+      "explainer": "papers/phan-2025-hle.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "sirdeshmukh-2025-multichallenge",
@@ -2042,7 +2114,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "A Scale AI benchmark of 273 expert-edited multi-turn conversations isolating four realistic failure modes — instruction retention (69), inference memory of user information (113), reliable versioned editing (41), and self-coherence / anti-sycophancy (50) — each example kept only if it breaks at least 3 of 6 frontier models. Despite near-perfect scores on saturated tests like MT-Bench, every frontier model clears under 50%: Claude 3.5 Sonnet (June 2024) leads human-eval at 41.4% and o1-preview 37.2%, with a steep drop to Gemini 1.5 Pro (20.0), Llama 3.1 405B (14.9), Mistral Large (14.6), and GPT-4o (12.5). Its signature method is an instance-level binary (yes/no) rubric scored only on the final response, which lifts LLM-judge agreement with human raters from 37.3% to 93.9% — a template later rubric evals (HealthBench, PRBench) reused. Difficulty is reasoning-bound, not length-bound: scores show no trend with turn count over short (~1,232-word) conversations.",
-      "explainer": "papers/sirdeshmukh-2025-multichallenge.html"
+      "explainer": "papers/sirdeshmukh-2025-multichallenge.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "zhang-2024-gsm1k",
@@ -2056,7 +2129,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "Scale AI's contamination probe: GSM1k is 1,205 grade-school math problems hand-written (no LLM, no synthetic data) to mirror GSM8k's difficulty distribution — matched on solution steps, answer magnitude, human solve rate (4.36 vs 4.07 problems/15min), and human distinguishability (21.83% vs 20% chance) — but never publicly released. Re-evaluating leading open and closed models under one fixed 5-shot harness, the worst-overfit families (Phi, Mistral, Yi, Xwin) drop up to 8% on the clean twin (Yi-6B-Chat 43.7%→35.7%), while all frontier models (GPT-4o, GPT-4, Claude 3, Gemini 1.5, Mistral Large) stay flat or improve. A per-character log-likelihood probe links overfit to partial GSM8k memorization (Spearman's r²=0.36, p=0.03), but outliers (Math-Shepherd overfit yet low-likelihood; Llemma high-likelihood yet minimal overfit) show contamination isn't the whole story — and even the most overfit models still reason, with Phi-2 solving over half of GSM1k, matching a 25× larger Llama-2-70B.",
-      "explainer": "papers/zhang-2024-gsm1k.html"
+      "explainer": "papers/zhang-2024-gsm1k.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "nath-2025-toolcomp",
@@ -2070,7 +2144,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "Scale AI's tool-use benchmark that grades the trajectory, not just the answer: 485 human-verified prompts requiring chains of dependent calls across 11 tools — split into an 11-tool Enterprise set (287) and a Google-Search-plus-Python Chat set (198) — paired with 1,731 per-step process-supervision labels collected by having annotators mark and rewrite each ReAct step. Across 16 models from 6 families the majority score under 50% on final answers (o1-preview leads at 61.83%, average 46.64%), and tellingly the 2-tool Chat subset is harder than the 11-tool Enterprise one, so the wall is planning, not API mechanics. Step-wise and final-answer accuracy correlate only moderately (Pearson r=0.63), and a process-supervised reward model beats an outcome-supervised one by 19 points in rank@1 on base-model trajectories (and pushes an SFT model to 60.25%, near its pass@30 ceiling) — with full-step labels including the tool Observation and max aggregation working best — early evidence that process supervision transfers from math reasoning to agentic tool use. Deliberately held out (released only once a model clears 85% or at the end of 2026) to resist contamination.",
-      "explainer": "papers/nath-2025-toolcomp.html"
+      "explainer": "papers/nath-2025-toolcomp.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "ren-2025-mask",
@@ -2084,7 +2159,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "CAIS / Scale AI",
       "abstract": "Scale AI and the Center for AI Safety's benchmark for measuring whether a model lies — knowingly states what it does not believe — cleanly separated from whether it is factually correct, exposing that prior \"honesty\" benchmarks mostly measured accuracy in disguise (\"safetywashing\"). Each of 1,000 public (+500 held-out) human-curated, adversarially-selected examples pairs a pressure prompt engineered to induce a falsehood with neutral belief-elicitation prompts and known ground truth, across six archetypes (Known Facts, Doubling Down, Fabricated Statistics, Continuations, Disinformation, Provided Facts); a lie is scored when the pressured statement S contradicts the elicited belief B (S≠B), via an LLM judge that agrees with human labels 86.4% of the time. Across 30 frontier LLMs no model is explicitly honest in more than 46% of cases, and P(Lie) runs from 26.6% (Claude 3.7 Sonnet) to 63.0% (Grok 2) even at 72–82% belief accuracy. The signature result: across 27 models training compute correlates +87.3% with accuracy but −59.9% with honesty — scale buys knowledge, not candor — implying honesty is a post-training choice. Developer-prompt and representation-engineering (LoRRA) interventions on small Llama-2 models help (+6–13%) but do not eliminate lying.",
-      "explainer": "papers/ren-2025-mask.html"
+      "explainer": "papers/ren-2025-mask.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "slack-2023-holistic-eval",
@@ -2140,7 +2216,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Mercor",
       "abstract": "Mercor grades frontier models on realistic deliverables from four high-paid knowledge jobs — investment banking, management consulting, big law, and primary-care medicine — where each expert-authored case pairs a source-grounded prompt with a Pass/Fail rubric (mean 14.81 criteria, ~2.7 hours of real work) and a model's score is the fraction of criteria met. On the n=400 held-out set (8 runs, 95% CIs, a single Gemini 2.5 Flash judge), GPT-5 (thinking=high) leads at 67.0%, ahead of Gemini 3 Pro (64.3%) and a ~63% cluster of o3 / Grok 4 / Opus 4.5; investment banking is the hardest job (top 63.0%) and law the easiest (77.9%) — frontier models still clear only about two-thirds of an expert's bar.",
-      "explainer": "papers/vidgen-2025-apex.html"
+      "explainer": "papers/vidgen-2025-apex.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "zhou-2023-ifeval",
@@ -2154,7 +2231,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "Introduces IFEval, a reproducible, judge-free benchmark for LLM instruction-following built around 'verifiable instructions' — directives a short deterministic program can check (word counts, required/forbidden keywords, JSON or bracketed formats, casing). 25 instruction types across 9 groups span 541 prompts, scored four ways: {prompt-level, instruction-level} × {strict, loose}, where the loose criterion applies 8 response transforms (strip markdown, drop the intro/outro line, and their combinations) to absorb formatting false negatives. On the two reference models, GPT-4 (Nov 2023) follows every instruction in only 76.89% of prompts (83.57% per-instruction) and PaLM 2 S just 43.07% — mechanically-simple constraints like length, combination, and punctuation prove hardest, while 'respond in language X' is near-solved. The 'verifiable instruction' framing seeded the later wave of rubric- and checklist-based evaluation; with public prompts and gameable verifiers it now reads as a floor, not a ceiling.",
-      "explainer": "papers/zhou-2023-ifeval.html"
+      "explainer": "papers/zhou-2023-ifeval.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wang-2024-mmlu-pro",
@@ -2168,7 +2246,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "TIGER-Lab",
       "abstract": "The reasoning-era rebuild of MMLU, and the benchmark most frontier models migrated to once MMLU saturated at 86-87%. It merges MMLU's 57 subjects into 14 domains, filters out ~5,900 'too-easy' items using a panel of eight small models, folds in harder STEM-website / TheoremQA / SciBench questions, and expands every question from four options to ten (avg 9.47) with two rounds of expert review -- 12,032 questions in all. The harder format cut accuracy 16-33% (GPT-4o tops out at 72.6% vs ~88.7% on MMLU), widened top-model gaps from ~2% to ~9%, roughly halved prompt sensitivity (4-5% to ~2%), and flipped chain-of-thought from neutral/harmful on MMLU to a +19% boost. A discriminative, prompt-stable signal -- though absolute scores are softened by a lower guess floor and a GPT-4-Turbo-authored distractor pool.",
-      "explainer": "papers/wang-2024-mmlu-pro.html"
+      "explainer": "papers/wang-2024-mmlu-pro.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "rajpurkar-2016-squad",
@@ -2182,7 +2261,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "The Stanford Question Answering Dataset: 107,785 crowdsourced questions over 536 Wikipedia articles where every answer is a contiguous span of the passage, so predictions score cheaply by exact-match and token F1 with no answer choices to pick from. A feature-rich logistic regression baseline reaches 51.0% F1 against 86.8% human F1, and the span format plus a two-orders-of-magnitude jump in scale made SQuAD the default reading-comprehension benchmark that launched the modern wave of neural reader models.",
-      "explainer": "papers/rajpurkar-2016-squad.html"
+      "explainer": "papers/rajpurkar-2016-squad.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "da-2025-agent-rlvr",
@@ -2252,7 +2332,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UIC / Scale AI",
       "abstract": "The first unit-test-generation benchmark built for multi-file code: 60 self-contained Python/Java/JavaScript projects (20 each, under 1,600 LOC, with enforced cross-file dependencies) where 11 frontier LLMs must test a whole project at once. Vanilla correctness is mediocre and Java is hardest (several open 7B models score 0), but a 2-6 line manual fix of executability/cascade errors swings correctness from 0 to 60 and reorders the leaderboard - while small open models can't self-fix (often emitting prose instead of code) and even top models write redundant tests.",
-      "explainer": "papers/wang-2025-multifiletest.html"
+      "explainer": "papers/wang-2025-multifiletest.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "kumar-2024-browserart",
@@ -2266,7 +2347,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI / CMU",
       "abstract": "A red-teaming study showing that safety refusal trained into chat LLMs fails to generalize to browser agents. BrowserART, a 100-behavior toolkit on synthetic and real websites, finds GPT-4o's attack success rate rises from 12% in chat to 74% as an agent, and chat-era jailbreaks transfer to push it to 100%.",
-      "explainer": "papers/kumar-2024-browserart.html"
+      "explainer": "papers/kumar-2024-browserart.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "chan-2024-synthetic-data",
@@ -2322,7 +2404,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "LMSYS / Berkeley",
       "abstract": "The open, live LLM leaderboard that became the field's de-facto scoreboard: users prompt two anonymous models with anything, vote for the better answer, and identities are revealed only after voting. By Jan 2024 it had collected ~240K pairwise votes (243,329 conversations) from ~90K users over 50 models and 149 languages - a fresh, real-world prompt distribution that static benchmarks cannot contaminate. The statistical core converts noisy A-beats-B outcomes into a ranking via Bradley-Terry coefficients fit by logistic regression with multiplicity-corrected confidence intervals, plus an active sampling rule that concentrates votes on close match-ups (up to ~54% fewer votes for a target precision) and a sequential test that flags anomalous voters. Validation shows crowd-vs-expert agreement of 72.8-83.1% (near the 79.4-89.8% expert-vs-expert level) and BERTopic finds ~600 long-tailed prompt clusters - but the trust check covers only 320 battles across two lopsided pairs, and the headline Elo, lacking ground truth, tracks human preference (length and style included) rather than contamination-proof capability.",
-      "explainer": "papers/chiang-2024-chatbot-arena.html"
+      "explainer": "papers/chiang-2024-chatbot-arena.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "nath-2024-goal-conditioned",
@@ -2350,7 +2433,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "CAIS / Scale AI",
       "abstract": "A public benchmark of 3,668 four-choice questions probing hazardous knowledge across biosecurity (1,273), cybersecurity (1,987), and chemistry (408) — a measurable proxy for malicious-use risk that was filtered to exclude operationally sensitive, export-controlled detail. It doubles as an unlearning benchmark and introduces RMU (Representation Misdirection for Unlearning), which scrambles a model's internal representations of hazardous content to drop WMDP accuracy toward the 25% random floor (Zephyr-7B Bio 63.7→31.2) at ~1 MMLU point of cost. Robust to jailbreaks and linear probes, but the unlearning is reversible by finetuning.",
-      "explainer": "papers/li-2024-wmdp.html"
+      "explainer": "papers/li-2024-wmdp.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "li-2024-multiturn-jailbreaks",
@@ -2364,7 +2448,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "Expert human red teamers running multi-turn conversations break four state-of-the-art LLM defenses (RR, LAT, DERTA, CYGNET) at 51.7–87.9% attack success on HarmBench — defenses that report single-digit (even ~0%) ASR against automated single-turn attacks — beating the best-case automated ensemble by +19.6% to +65.4%. The same humans recover 51.2% of \"unlearned\" WMDP-Bio knowledge from an RMU model (vs 25.6% for the ensemble), showing machine unlearning obfuscates rather than removes. 91.62% of successful jailbreaks needed more than one turn. Released as the MHJ dataset: 2,912 prompts across 537 multi-turn jailbreaks, with a 7-tactic taxonomy from commercial red-teaming.",
-      "explainer": "papers/li-2024-multiturn-jailbreaks.html"
+      "explainer": "papers/li-2024-multiturn-jailbreaks.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "levine-2023-reward-distribution-shift",
@@ -2392,7 +2477,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "LMSYS / Berkeley",
       "abstract": "An automated pipeline (BenchBuilder) that mines crowdsourced chat logs — Chatbot Arena, WildChat — for the hardest open-ended prompts and grades answers with an LLM judge, yielding Arena-Hard-Auto: a 500-prompt benchmark that separates frontier models better than Chatbot Arena itself (87.4% vs 85.8% of pairs) and tracks its human rankings at up to 98.6% correlation for ~$20 per model. Introduces confidence-aware separability/agreement and a Pair-Rank Brier score for judging whether a benchmark is any good.",
-      "explainer": "papers/li-2024-arena-hard.html"
+      "explainer": "papers/li-2024-arena-hard.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wang-2018-glue",
@@ -2406,7 +2492,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NYU",
       "abstract": "Introduces GLUE, a model-agnostic benchmark that collapses nine recycled English NLU tasks (CoLA, SST-2, MRPC, STS-B, QQP, MNLI, QNLI, RTE, WNLI) into a single macro-averaged leaderboard score, with privately-held test labels on four tasks and a hand-built linguistic diagnostic suite. It deliberately mixes data-rich and data-scarce tasks so that strong scores require sharing linguistic knowledge across tasks rather than per-task fitting; the best 2018 baseline, a multi-task BiLSTM with attention and ELMo, reaches only 70.0, and the best diagnostic score is R3 28 vs human 80, with failures concentrated in logic (negation, monotonicity) because models lean on lexical and subsequence shortcuts. GLUE established the single-number multi-task leaderboard template later inherited by MMLU, BIG-bench and HELM, and saturated within a year, prompting SuperGLUE.",
-      "explainer": "papers/wang-2018-glue.html"
+      "explainer": "papers/wang-2018-glue.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wang-2019-superglue",
@@ -2420,7 +2507,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NYU",
       "abstract": "The harder sequel to GLUE, built after pretraining (BERT, XLNet) pushed GLUE's single-number score past the non-expert human level within a year. SuperGLUE keeps the format — eight English tasks on public data, one macro-averaged leaderboard score, a held-out linguistic diagnostic — but swaps in harder, more diverse tasks (BoolQ, CB, COPA, MultiRC, ReCoRD, RTE, WiC, WSC) spanning QA, coreference and word-sense disambiguation, with crowd-sourced human baselines on every task, an analysis toolkit (jiant), and submission caps. A BERT-large baseline reaches 69.0 and BERT++ (STILTs-style intermediate fine-tuning) 71.5, against an 89.8 human estimate — a ~18-point gap, 35.7 points on WSC. The headroom didn't last: T5-11B hit 88.9 within a year and models soon passed the human baseline, making SuperGLUE the canonical evidence that static NLU leaderboards with a fixed human ceiling saturate against scaling — the result the living-benchmark and held-out-eval wave (MMLU, BIG-bench, HELM, Dynabench) reacted to.",
-      "explainer": "papers/wang-2019-superglue.html"
+      "explainer": "papers/wang-2019-superglue.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lai-2022-ds-1000",
@@ -2434,7 +2522,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "HKU",
       "abstract": "A thousand data-science coding problems harvested from StackOverflow across seven Python libraries (pandas, numpy, matplotlib, scikit-learn, scipy, pytorch, tensorflow), each rewritten into an executable context and graded by a multi-criteria execution metric — functional test cases plus surface-form constraints (e.g. banning for-loops to force vectorization) — that accepts a wrong Codex-002 program only 1.8% of the time, versus a reported 60% false-positive rate on APPS. Its signature contribution is a proactive defence against memorization: every problem is perturbed away from its StackOverflow source, after a pilot shows Codex-002's accuracy on the public numpy-100 set collapsing from 72.5% to 23.6% under semantic perturbation (and parroting the original answer 36% of the time). Hand-built by five experts over ~1,200 hours, 1,000 problems from 451 unique sources. The best 2022 system, Codex-002 with infilling, reaches only 43.3% (range 7.4–43.3% across five Codex/InCoder/CodeGen models); infilling beats left-to-right by +4.1% and skill doesn't transfer across libraries (30.1% on pandas vs 57.0% on matplotlib).",
-      "explainer": "papers/lai-2022-ds-1000.html"
+      "explainer": "papers/lai-2022-ds-1000.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "li-2023-bird",
@@ -2448,7 +2537,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "HKU / Alibaba DAMO",
       "abstract": "The text-to-SQL benchmark that moved the field from clean academic schemas to 95 large, dirty, cross-domain databases (33.4 GB, 549K average rows), pairing 12,751 questions with hand-annotated external-knowledge ‘evidence’ in four categories (numeric reasoning, domain knowledge, synonym, value illustration) and a first-of-its-kind efficiency metric, the Valid Efficiency Score (VES). Its headline gap — GPT-4 at 54.89% execution accuracy vs 92.96% for human experts on the hidden test set — became the standard motivation for real-world text-to-SQL, though the model number assumes oracle knowledge: strip the evidence and GPT-4 falls to 34.88% (a +20-point swing that pins grounding, not parsing, as the bottleneck).",
-      "explainer": "papers/li-2023-bird.html"
+      "explainer": "papers/li-2023-bird.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "li-2025-questbench",
@@ -2462,7 +2552,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google DeepMind",
       "abstract": "Formalizes underspecified reasoning as a constraint-satisfaction problem and tests whether LLMs can name the single missing fact they need to ask about. Across Logic-Q, Planning-Q, and GSM-Q/GSME-Q (~39k 1-sufficient, multiple-choice tasks), frontier models (as of 03/2025) saturate the math domains (up to 98%) but score only 40-50% on logic and planning. A filtered ablation shows that being able to solve the well-specified problem does not transfer to asking the right question, and on planning models fall below a random baseline at even detecting that information is missing.",
-      "explainer": "papers/li-2025-questbench.html"
+      "explainer": "papers/li-2025-questbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "macina-2023-mathdial",
@@ -2476,7 +2567,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "ETH Zurich",
       "abstract": "A 2,861-dialogue corpus of one-to-one math tutoring, built by pairing 91 expert teachers with an LLM that role-plays a confused student over GSM8K problems and annotating each turn with a four-move scaffolding taxonomy (Focus / Probing / Telling / Generic). Its signature contribution is the Success@k / Telling@k pair that makes the guide-vs-tell tradeoff measurable: un-prompted ChatGPT reveals the answer 66% of the time, while a 780M Flan-T5 finetuned on MathDial matches its solve rate at under 1% telling. The pedagogical-dialogue substrate later tutoring benchmarks (MRBench, TutorBench) build on.",
-      "explainer": "papers/macina-2023-mathdial.html"
+      "explainer": "papers/macina-2023-mathdial.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "zellers-2019-hellaswag",
@@ -2490,7 +2582,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UW / AI2",
       "abstract": "A commonsense sentence-completion benchmark built by Adversarial Filtering: a strong generator (GPT-1) oversamples wrong endings, a discriminator (BERT-Large) iteratively keeps only the ones it cannot catch, and humans validate — yielding 70k four-way questions trivial for people (95.6%) yet beating every 2019 model (BERT-Large 47.3%, a >50-point zero-shot gap). The signature 'Goldilocks zone' tunes difficulty by generation length (~2 sentences, ~41 tokens). Its famous log-linear extrapolation — 100k GPU-years to reach human level — was beaten by GPT-4 (~95%, 10-shot) within four years; the dataset built to show machines cannot finish your sentence became the field's default LLM scaling benchmark.",
-      "explainer": "papers/zellers-2019-hellaswag.html"
+      "explainer": "papers/zellers-2019-hellaswag.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "kim-2024-prometheus-2",
@@ -2518,7 +2611,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "OSU NLP / Waterloo",
       "abstract": "A multimodal benchmark of 11.5K college-exam questions across 6 disciplines, 30 subjects and 30 heterogeneous image types (diagrams, chemical structures, music scores, medical scans), built to test expert-level perception, domain knowledge and deliberate reasoning toward “Expert AGI.” At release the best open LMMs scored ~34% and GPT-4V 55.7% on the 10.5K-question test set, versus 88.6% for (open-book) human experts; tellingly, GPT-4 with no image input reached 33.8%, matching vision models and exposing how text-solvable — and how vision-underused — early multimodal models were. Evaluation is zero-shot micro-averaged accuracy with rule-based answer extraction (unparsed multiple-choice answers are filled at random). Now the de-facto multimodal leaderboard (later validation scores: Gemini 1.5 Pro 62.2, GPT-4o 69.1).",
-      "explainer": "papers/yue-2024-mmmu.html"
+      "explainer": "papers/yue-2024-mmmu.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lu-2024-mathvista",
@@ -2532,7 +2626,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UCLA / Microsoft",
       "abstract": "A 6,141-example benchmark for mathematical reasoning in visual contexts, fusing 28 existing multimodal datasets with three new ones (IQTest, FunctionQA, PaperQA) across 5 tasks and 7 reasoning types. Of 12 foundation models, GPT-4V leads at 49.9% — beating Multimodal Bard by 15.1 points but trailing humans (60.3%) by 10.4 — and collapses on logical reasoning and numeric commonsense, with an error study attributing ~half of failures to hallucinated visual facts. Its LLM-as-answer-extractor scoring pipeline and withheld-label test split became a template for later multimodal-reasoning evals.",
-      "explainer": "papers/lu-2024-mathvista.html"
+      "explainer": "papers/lu-2024-mathvista.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "pougue-biyong-2021-debagreement",
@@ -2546,7 +2641,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI / Oxford",
       "abstract": "A 42,894-pair Reddit dataset (five socio-political subreddits) for agree/neutral/disagree detection, annotated by 529 Scale AI workers via dynamic consensus and shipped with a temporal user-interaction graph — built to be messy and context-rich where prior stance datasets are small, formal, and text-only. Fine-tuned encoder LMs (BERT/RoBERTa/DeBERTa/XLNet) all plateau at 62–64% accuracy and fail hardest on neutral interactions (44.1% recall); a model trained on the formal Perspectrum dataset hits 90.5% there but drops below the majority baseline on Reddit, showing messy and formal (dis)agreement share little transferable signal.",
-      "explainer": "papers/pougue-biyong-2021-debagreement.html"
+      "explainer": "papers/pougue-biyong-2021-debagreement.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lu-2022-scienceqa",
@@ -2560,7 +2656,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UCLA / AI2",
       "abstract": "ScienceQA is a 21,208-question multimodal multiple-choice benchmark drawn from grade 1-12 science curricula (3 subjects, 26 topics, 127 categories, 379 skills) and is the first at scale to annotate every answer with a lecture (general background) and an explanation (the specific reason). That turns it into a testbed for chain-of-thought: models are trained to emit the answer followed by the lecture and explanation. Few-shot GPT-3 (text-davinci-002) with CoT reaches 75.17% and fine-tuned UnifiedQA gains +3.99% to 74.11%, against 61.87% for the best native VQA model and 88.40% for humans; CoT explanations meet a human gold bar 65.2% of the time, and feeding gold explanations into the prompt lifts accuracy to 94.13%. Caveats: the strongest models read a generated image caption rather than pixels, and the few-shot accuracy gain from CoT is only ~1 point. A direct ancestor of the multimodal-reasoning benchmark lineage (MathVista, MMMU, OlympiadBench).",
-      "explainer": "papers/lu-2022-scienceqa.html"
+      "explainer": "papers/lu-2022-scienceqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "liu-2023-g-eval",
@@ -2588,7 +2685,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Meta AI (FAIR)",
       "abstract": "A 31-language benchmark whose questions are sourced locally per language (500 closed-form Wikipedia questions each, filtered for local relevance) rather than translated from English, then made fully parallel via human and machine translations. Across 11 multilingual-marketed models none scores well (best average EM ~34), knowledge transfers poorly across languages, and swapping locally-sourced for English-translated data can shift a single language's score by up to 22 points while leaving model rankings intact.",
-      "explainer": "papers/hupkes-2025-multiloko.html"
+      "explainer": "papers/hupkes-2025-multiloko.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "papineni-2002-bleu",
@@ -2658,7 +2756,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "FutureHouse",
       "abstract": "A 2,457-question multiple-choice benchmark of practical biology-research tasks - literature search (LitQA2, SuppQA), figure and table reading (FigQA, TableQA), database lookup (DbQA), protocol troubleshooting (ProtocolQA), and DNA/protein sequence and cloning work (SeqQA, CloningScenarios) - meant to test whether frontier LLMs can assist research rather than just answer textbook questions. Every question carries an explicit 'decline to answer' option, so models are scored on accuracy, precision, and coverage; tool-free 2024 frontier models trail PhD-expert humans on most categories, and an open-response rerun shows much of their multiple-choice precision comes from eliminating distractors rather than reasoning.",
-      "explainer": "papers/laurent-2024-lab-bench.html"
+      "explainer": "papers/laurent-2024-lab-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "gao-2021-simcse",
@@ -2686,7 +2785,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "A unified benchmark for efficient (\"xformer\") Transformers: six encoding-only tasks spanning 1K-16K tokens -- ListOps, byte-level text classification and document retrieval, pixel-level image classification, and the Pathfinder/Path-X spatial puzzles -- all trained from scratch with no pretraining, so the score reflects an architecture's inductive bias rather than its data. Across ten models, BigBird (55.01 avg) barely edges vanilla attention (54.39), per-task winners differ, and the fast kernel/low-rank models (Performer, Linformer, Linear Transformer) trade a few LRA points for ~5x speed and ~10x less memory -- while every model fails Path-X (16K) at chance, the benchmark's open frontier.",
-      "explainer": "papers/tay-2020-long-range-arena.html"
+      "explainer": "papers/tay-2020-long-range-arena.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "schaeffer-2023-emergent-mirage",
@@ -2714,7 +2814,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Virginia Tech / Georgia Tech",
       "abstract": "Introduces Visual Question Answering: given an image and a free-form, open-ended natural-language question, produce a short natural-language answer. Unlike image captioning, VQA admits a clean automatic metric -- an answer scores fully correct once at least 3 of 10 human annotators give it -- so progress is measurable. Ships ~0.25M images (204,721 from MS COCO + 50K abstract scenes), ~0.76M questions, and ~10M answers across open-ended and multiple-choice tracks. Its blind (question-only) and image-only baselines exposed strong language priors: a question-only LSTM reaches 48.76% vs 57.75% for the full multimodal model and 83.30% for humans. That self-diagnosed shortcut seeded both the modern multimodal-benchmark lineage (ScienceQA, MathVista, MMMU) and the balanced-pairs correction of VQA v2.",
-      "explainer": "papers/antol-2015-vqa.html"
+      "explainer": "papers/antol-2015-vqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "li-2023-starcoder",
@@ -2742,7 +2843,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Meta AI / MIT",
       "abstract": "CRUXEval is 800 short Python functions (3-13 lines), each with an input-output pair, split into two execution-grounded tasks: predict the output from an input (CRUXEval-O) and find an input for a given output (CRUXEval-I). Built by generating and filtering Code Llama 34B programs, it shows that strong HumanEval scores -- especially from GPT-distilled models like WizardCoder, Phind, and Phi -- do not transfer to code understanding: GPT-4 reaches 67.1%/63.4% pass@1 (74.8%/81.9% with chain-of-thought) while the best open models fail over half the time.",
-      "explainer": "papers/gu-2024-cruxeval.html"
+      "explainer": "papers/gu-2024-cruxeval.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "khashabi-2020-unifiedqa",
@@ -2770,7 +2872,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UPenn",
       "abstract": "A literature-grounded scholarly-QA benchmark that escapes the expert-annotation bottleneck by distilling 54K academic survey articles into 21.4K queries and 160K query-specific rubric items across 75 research fields - each rubric item (cite paper X, compare A and B, name a limitation) scored 0-4 for coverage. 31 Ph.D. annotators validate that 90% of queries reflect real information needs and 87% of rubric items deserve a sentence or more of emphasis. Across 7.6K head-to-heads over 18 systems (parametric -> naive/production retrieval -> deep research), no parametric or retrieval system tops 70% coverage and the best, Perplexity's sonar-deep-research, reaches only 75.29% (an 82% win rate over the next system); citing specific papers is the dominant failure (89% of citation items not fully covered). Folding rubric coverage into an ensemble LLM-judge lifts agreement with expert preferences from 71%/64% to 74%/69%, toward the 84% human ceiling. Caveat: Coverage is recall, so the 70% wall relaxes to ~85% once the 250-word length cap is lifted, and gpt-4.1-mini both builds and grades the benchmark.",
-      "explainer": "papers/li-2025-researchqa.html"
+      "explainer": "papers/li-2025-researchqa.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lin-2004-rouge",
@@ -2798,7 +2901,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Microsoft",
       "abstract": "Repurposes 20 official high-stakes human exams — the Chinese Gaokao (8 subjects), SAT, LSAT, GRE/GMAT, the Chinese bar (JEC-QA), civil service (LogiQA) and AMC/AIME math competitions — into a released, bilingual benchmark of 8,062 objective (multiple-choice + fill-in-blank) questions, scored automatically against estimated average/top human performance. Across zero/few-shot × Chain-of-Thought, GPT-4 leads (zero-shot CoT all-task average 58.4 vs ChatGPT 43.2), hitting 95% on SAT-Math and 92.5% on Gaokao-English and clearing the average-human line on SAT, LSAT and math competitions — yet trailing the 67 average-human mark overall and collapsing on multi-step reasoning (LSAT analytical 34%, Gaokao physics 46%, fill-in math 15%). Secondary findings: few-shot barely beats zero-shot for instruction-tuned models (a GPT-3 reversal), CoT is double-edged and language-sensitive, and open Vicuna-13B lags far behind. The contribution is the reproducible exam corpus and released model outputs; the headline weakness is unaudited public-exam contamination and a rescaled-percentile human baseline.",
-      "explainer": "papers/zhong-2023-agieval.html"
+      "explainer": "papers/zhong-2023-agieval.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "koo-2023-cobbler",
@@ -2840,7 +2944,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Princeton",
       "abstract": "The dataset that defined the deep-learning era. Introduces ImageNet, a large-scale image database hung on the WordNet noun hierarchy: 3.2 million human-verified, full-resolution images across 5,247 synsets at publication (aiming for ~50M over ~50K synsets), cleaned via a confidence-threshold Amazon Mechanical Turk voting scheme to a reported 99.7% labeling precision. Three demos show that clean, full-resolution, hierarchically-structured data beats noisy low-res sets at object recognition. Its scale-plus-cleanliness-plus-hierarchy seeded modern ML's benchmark culture -- while its pitch as coverage of 'the image world' became the founding case study of the construct-validity critique. Note: the famous 1000-class benchmark is the later ILSVRC challenge, not this database paper.",
-      "explainer": "papers/deng-2009-imagenet.html"
+      "explainer": "papers/deng-2009-imagenet.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "lin-2014-coco",
@@ -2854,7 +2959,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Microsoft",
       "abstract": "Recasts object recognition as scene understanding: a dataset of complex everyday scenes with every instance of 91 common 'thing' categories fully segmented, not just boxed. 2.5M labeled instances in 328k non-iconic images (7.7 instances and 3.5 categories per image vs ~3.0 and <2 for ImageNet and PASCAL VOC), labeled by a 3-stage Amazon Mechanical Turk pipeline over 70,000+ worker hours. A Deformable Parts Model baseline roughly halves in average AP from PASCAL (29.6) to COCO (16.9), confirming the harder regime; the now-standard mAP@[.5:.95] metric arrived later with the evaluation server.",
-      "explainer": "papers/lin-2014-coco.html"
+      "explainer": "papers/lin-2014-coco.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "bowman-2021-fix-benchmarking",
@@ -2882,7 +2988,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "The annual competition that turned the ImageNet database into the standardized benchmark of the deep-learning era: a fixed 1000-class image classification task (plus single-object localization and a 200-class detection task), scored by top-5 error, with a withheld test set and public evaluation server. Covering 2010-2014, it dated the ConvNet revolution -- winning top-5 classification error fell 28.2% to 6.7%, with AlexNet's 16.4% in 2012 the turning point -- and ran the first careful machine-vs-human comparison, in which a single trained human annotator still edged GoogLeNet 5.1% to 6.8% (p=0.022). Its forgiving top-5 metric, effectively single trained-human baseline, and dog-breed-heavy class set are the construct caveats behind the 'human-level' headline.",
-      "explainer": "papers/russakovsky-2015-ilsvrc.html"
+      "explainer": "papers/russakovsky-2015-ilsvrc.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "bowman-2015-snli",
@@ -2896,7 +3003,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "Introduces the Stanford Natural Language Inference (SNLI) corpus: 570,152 human-written English sentence pairs labeled entailment, contradiction, or neutral, produced by crowdworkers who wrote hypotheses for Flickr30k photo captions (the photo is hidden, so labels are recoverable from text, and eliciting all three labels per premise balances the classes). Two orders of magnitude larger than prior NLI resources, it made supervised neural inference models competitive on entailment for the first time and became the field's standard NLI benchmark — and was later shown to carry annotation artifacts that let premise-blind models score well above chance.",
-      "explainer": "papers/bowman-2015-snli.html"
+      "explainer": "papers/bowman-2015-snli.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "williams-2017-multinli",
@@ -2910,7 +3018,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NYU",
       "abstract": "Introduces the Multi-Genre NLI corpus (MultiNLI): 433k premise–hypothesis pairs whose premises span ten genres of written and spoken English — versus SNLI's image captions alone — making it both substantially harder and a built-in testbed for cross-genre generalization through its matched (in-training) vs. mismatched (held-out) evaluation splits. Annotation quality matches SNLI (88.7% individual-vs-gold agreement) while the same models drop sharply (ESIM falls from 86.7% on SNLI to 72.3% on MultiNLI), though matched and mismatched splits barely separate 2017 models and later hypothesis-only baselines (~53% vs. a ~36% majority floor) exposed the same crowd-sourced annotation artifacts SNLI carried. Became a core GLUE task and a standard NLI transfer source (SuperGLUE retired it as near-solved).",
-      "explainer": "papers/williams-2017-multinli.html"
+      "explainer": "papers/williams-2017-multinli.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "vedantam-2015-cider",
@@ -2938,7 +3047,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "Rebuilds the CIFAR-10 and ImageNet test sets from scratch, following the original creation process, and finds every classifier from AlexNet to NASNet drops 3-15% (CIFAR-10) and 11-14% top-1 (ImageNet) on the fresh data. The drop is not adaptive overfitting: model rankings and per-point gains transfer almost perfectly (linear fit, slope > 1), so the cause is a distribution gap toward slightly harder images. A follow-up (Engstrom et al. 2020) showed much of the gap is statistical bias in the replication, leaving a ~3.6-point genuine drop. Introduced ImageNetV2, CIFAR-10.1, and the 'accuracy on the line' phenomenon.",
-      "explainer": "papers/recht-2019-imagenet-generalize.html"
+      "explainer": "papers/recht-2019-imagenet-generalize.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "koreeda-2021-contractnli",
@@ -2952,7 +3062,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "Reframes contract review as document-level natural language inference: given 17 fixed policy hypotheses (e.g. “Receiving Party shall not use Confidential Information for any purpose other than the stated purposes”) and a whole NDA, a system classifies each hypothesis as entailed / contradicting / not-mentioned and identifies the evidence spans. Releases 607 annotated NDAs — the largest annotated contract corpus of its time — and Span NLI BERT, which models evidence as multi-label classification over predefined [SPAN] tokens with dynamic context segmentation so long documents (86% exceed BERT’s 512-token limit) are handled. Evidence finding is near-solved (mAP .92) but contradiction reasoning lags (best F1 .357), collapsing to .00 minority-label accuracy under non-local “negation by exception”; the best model is DeBERTa-xlarge transfer-fine-tuned on CUAD (NLI acc .892).",
-      "explainer": "papers/koreeda-2021-contractnli.html"
+      "explainer": "papers/koreeda-2021-contractnli.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "kwiatkowski-2019-natural-questions",
@@ -2966,7 +3077,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "A QA benchmark of 307,373 real anonymized Google search queries, each paired with a Wikipedia page and a human-annotated long answer (the evidence passage) plus short answer, with NULL allowed for the ~51% of pairs the page does not answer. NQ introduced an achievable, distribution-fixed human upper bound (super-annotator 87.2/75.7 long/short F1) and showed that pre-BERT baselines (~55 long-answer F1) trailed a single human (73.4) — becoming a backbone benchmark for open-domain QA and retrieval.",
-      "explainer": "papers/kwiatkowski-2019-natural-questions.html"
+      "explainer": "papers/kwiatkowski-2019-natural-questions.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "henderson-2022-pile-of-law",
@@ -2994,7 +3106,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "ZeroEntropy",
       "abstract": "The first benchmark for the retrieval step of legal RAG: 6,889 expert-traced query-to-span pairs over ~80M characters of contracts, NDAs, M&A agreements, and privacy policies, built by retracing LegalBench's gold clauses back to their exact character spans in the source documents. Baseline pipelines score in the single digits on Precision@1, a general-purpose reranker hurts overall, and MAUD (dense M&A jargon) is by far the hardest split.",
-      "explainer": "papers/pipitone-2024-legalbench-rag.html"
+      "explainer": "papers/pipitone-2024-legalbench-rag.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wang-2023-maud",
@@ -3008,7 +3121,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley",
       "abstract": "The first large-scale, expert-annotated reading-comprehension benchmark for contract review: 47,457 lawyer-verified annotations over 152 public merger agreements, recasting the American Bar Association's 2021 Public Target Deal Points Study as 144 ABA-standardized multiple-choice questions about \"deal points.\" Built by the Atticus Project (the CUAD team) with 36 trained annotators over 10,000+ hours, MAUD is the interpretation counterpart to CUAD's clause-extraction task. Fine-tuned encoder baselines (BERT, RoBERTa, LegalBERT, DeBERTa, BigBird, 110–184M params) clear the 16.8% random AUPR baseline but plateau near 58% overall, struggling most on the longest, hardest clause categories — Material Adverse Effect, Deal Protections, and Conditions to Closing.",
-      "explainer": "papers/wang-2023-maud.html"
+      "explainer": "papers/wang-2023-maud.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "buolamwini-2018-gender-shades",
@@ -3022,7 +3136,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MIT Media Lab",
       "abstract": "An algorithmic audit of three commercial gender-classification APIs (Microsoft, Face++, IBM) on the Pilot Parliaments Benchmark, a new face dataset balanced by gender and Fitzpatrick skin type. Aggregate accuracy (87.9-93.7%) masked a stark intersectional gap: error rates reached 34.7% for darker-skinned women versus at most 0.8% for lighter-skinned men. The paper made disaggregated, intersectional subgroup reporting - and dataset/model documentation like datasheets and model cards - table stakes for responsible AI.",
-      "explainer": "papers/buolamwini-2018-gender-shades.html"
+      "explainer": "papers/buolamwini-2018-gender-shades.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "liu-2025-contracteval",
@@ -3036,7 +3151,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NJIT",
       "abstract": "The first benchmark to test whether locally-deployable open-source LLMs can match proprietary models at clause-level legal-risk identification. Built on CUAD's contract-review task, it scores 19 LLMs on correctness (F1/F2), output conciseness (Jaccard), and \"laziness\" (the false \"no related clause\" rate): top proprietary models (GPT-4.1 mini, F1 0.644) reach roughly junior-legal-assistant level, while the best ~8B open model trails by about 16% and both proprietary and open models collapse to near-zero F1 on rare, high-risk clause types.",
-      "explainer": "papers/liu-2025-contracteval.html"
+      "explainer": "papers/liu-2025-contracteval.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "min-2023-factscore",
@@ -3050,7 +3166,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UW / Meta AI",
       "abstract": "Introduces FActScore, which scores long-form factuality as the fraction of a generation's atomic facts supported by a knowledge source (Wikipedia) — turning an all-or-nothing judgment into graded precision that separates a 66.7%-accurate biography from a 10% one. Human evaluation finds commercial LMs unreliable (ChatGPT 58.3%, search-augmented PerplexityAI 71.5%, both collapsing on rare entities), and an automatic retrieval+LM estimator matches human scores within ~2%, enabling a 13-model, 6,500-generation study at a fraction of the $26K human cost.",
-      "explainer": "papers/min-2023-factscore.html"
+      "explainer": "papers/min-2023-factscore.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wu-2023-bloomberggpt",
@@ -3176,7 +3293,8 @@
       "topic": "Agents",
       "author_group": "Microsoft",
       "abstract": "A benchmark of 100 handcrafted multi-file refactoring tasks across 9 popular Python repositories, graded by AST-based subtask unit tests against withheld reference solutions, with three instruction sets (lazy / base / descriptive) of increasing specificity. It isolates stateful reasoning — tracking an accumulating sequence of edits across a long trajectory — that SWE-bench-style bug-fixing leaves untested. A prompt-adjusted SWE-agent solves only 22% of base-instruction tasks (vs 87% for a human developer in 5 minutes), never solves tasks needing more than 6 file edits, and fails three named failure modes (poor localization, intolerance of temporary error states, context flooding / in-context reward hacking). Conditioning the agent on an explicit, externally-maintained natural-language state representation recovers a 43.9% average relative gain and a 71% increase in subtask completion.",
-      "explainer": "papers/gautam-2025-refactorbench.html"
+      "explainer": "papers/gautam-2025-refactorbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "starace-2025-paperbench",
@@ -3190,7 +3308,8 @@
       "topic": "Agents",
       "author_group": "OpenAI",
       "abstract": "An OpenAI benchmark asking AI agents to replicate 20 ICML 2024 Spotlight/Oral papers from scratch — read the paper, build the codebase, run the experiments, match the results. Each replication is graded against a hierarchical, author-co-written rubric (8,316 binary leaf criteria in total) whose weighted leaves roll up to a Replication Score, with submissions graded by an LLM judge (o3-mini, F1 0.83 on a separate JudgeEval, ~$66/paper). The best agent — Claude 3.5 Sonnet (New) with a simple scaffold — scores 21.0%, and prompt-tuned IterativeAgent lifts o1 to 24.4% (26.0% at 36h), but on a shared 3-paper subset human ML PhDs reach 41.4% after 48h vs o1's 26.6%: agents sprint early then plateau after ~1 hour while humans keep improving. The durable contribution is the grading machinery, not the leaderboard, which the authors frame as an initial baseline subject to judge noise and an acknowledged contamination clock.",
-      "explainer": "papers/starace-2025-paperbench.html"
+      "explainer": "papers/starace-2025-paperbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "patil-2023-gorilla",
@@ -3204,7 +3323,8 @@
       "topic": "Agents",
       "author_group": "UC Berkeley",
       "abstract": "Finetunes LLaMA-7B to generate API calls and pairs it with a document retriever, surpassing zero-shot GPT-4 at writing correct, fully-qualified ML API calls while sharply reducing hallucinated (imagined) APIs. Introduces APIBench (1,645 TorchHub/TensorHub/HuggingFace APIs with 16,450 Self-Instruct instruction-API pairs) and an AST sub-tree-matching metric, and shows retriever-aware training lets the model adapt to test-time API documentation changes.",
-      "explainer": "papers/patil-2023-gorilla.html"
+      "explainer": "papers/patil-2023-gorilla.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "huang-2025-gather-info",
@@ -3232,7 +3352,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UCLA / Berkeley",
       "abstract": "The first large-scale over-refusal benchmark: an automated pipeline rewrites LLM-generated toxic seeds (via Mixtral 8×7B) into 80,000 borderline-benign prompts across 10 harm categories, filtered by an LLM-ensemble moderator, plus a hard 1K subset and ~600 toxic prompts. Grading 32 models across 8 families, it finds safety and over-refusal are strongly coupled — Spearman 0.89 between toxic-prompt and safe-prompt rejection — so most models simply buy safety by refusing more; jailbreak defenses and “be safe” system prompts push over-refusal up further.",
-      "explainer": "papers/cui-2024-or-bench.html"
+      "explainer": "papers/cui-2024-or-bench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "mazeika-2024-harmbench",
@@ -3246,7 +3367,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "CAIS / UIUC",
       "abstract": "Turns automated red teaming from incomparable per-paper evaluations into a standardized benchmark: 510 harmful behaviors across 4 functional and 7 semantic categories, run through a fixed pipeline (attack → 512-token completion → a fine-tuned Llama-2-13B classifier that reaches 93.2% agreement with human labels, edging out GPT-4's 88.4% and far above substring matching's 69.9%). A large-scale comparison of 18 attacks and 33 target LLMs shows no attack or defense is uniformly effective and robustness is independent of model size; the included R2D2 adversarial-training method cuts GCG attack success on Zephyr from 69.5% to 5.5% while preserving MT-Bench utility.",
-      "explainer": "papers/mazeika-2024-harmbench.html"
+      "explainer": "papers/mazeika-2024-harmbench.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "wei-2023-jailbroken",
@@ -3288,7 +3410,8 @@
       "topic": "Reasoning",
       "author_group": "Google",
       "abstract": "Introduces MGSM, the first multilingual chain-of-thought reasoning benchmark: 250 GSM8K grade-school math problems hand-translated by professional translators into ten typologically diverse languages. Shows that step-by-step reasoning is an emergent ability that, once it appears with scale, transfers to languages covering under 0.01% of pretraining — PaLM-540B averages 55% (best setting) and stays only ~3 points behind on underrepresented languages, while reasoning in English (or translating to it first) edges out reasoning in-language.",
-      "explainer": "papers/shi-2022-mgsm.html"
+      "explainer": "papers/shi-2022-mgsm.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "ma-2025-general-reasoner",
@@ -3498,7 +3621,8 @@
       "topic": "Agents",
       "author_group": "OSU NLP",
       "abstract": "The first dataset for building and evaluating generalist web agents: 2,350 crowd-annotated tasks across 137 real, unsimplified websites and 31 domains, graded on Cross-Task / Cross-Website / Cross-Domain generalization. The accompanying MindAct model prunes thousand-element pages with a fine-tuned DeBERTa ranker (Recall@50 ≈ 85–89%) then has an LLM answer a 5-way multiple-choice question; best step success reaches 52% (Cross-Task) but whole-task success stays near zero (≤7.1%, GPT-4 2.0%), exposing how far 2023 LLMs were from reliable end-to-end web autonomy.",
-      "explainer": "papers/deng-2023-mind2web.html"
+      "explainer": "papers/deng-2023-mind2web.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "inan-2023-llama-guard",
@@ -3624,7 +3748,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Meta AI",
       "abstract": "Proposes evaluating agentic systems with agentic systems: an Agent-as-a-Judge that builds a graph of an agent's generated workspace, locates and reads files across 33 formats, retrieves from the execution trajectory, and checks each requirement, giving per-requirement feedback instead of one final pass/fail. Ships DevAI, a benchmark of 55 realistic automated AI-development tasks with 365 hierarchical requirements arranged as a dependency DAG; judging MetaGPT, GPT-Pilot and OpenHands, it aligns with a human-expert panel about 90% of the time (vs 60-70% for LLM-as-a-Judge) at roughly 2% of the cost, though the consensus ground truth is a 3-person construct and the alignment metric is inflated by class imbalance.",
-      "explainer": "papers/zhuge-2024-agent-as-judge.html"
+      "explainer": "papers/zhuge-2024-agent-as-judge.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "yang-2025-swe-smith",
@@ -3652,7 +3777,8 @@
       "topic": "Agents",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Introduces MLGym, the first Gymnasium environment for AI-research tasks — so agents can be reinforcement-learning trained, not just evaluated — alongside MLGym-Bench, 13 open-ended ML problems spanning computer vision, NLP, RL, and game theory. Built on SWE-Agent's agent-computer interface plus a permission system, literature search, and a memory module, it scores models across incommensurable task metrics using performance profiles and the AUP score borrowed from AutoML. Across five frontier models (o1-preview leads with Best Attempt AUP@4 1.150, Claude-3.5-Sonnet and Gemini-1.5-Pro close behind), agents reliably beat the provided baselines by tuning hyperparameters but generate no novel hypotheses, algorithms, or architectures — and invoke the search tool only 11 times across all runs.",
-      "explainer": "papers/nathani-2025-mlgym.html"
+      "explainer": "papers/nathani-2025-mlgym.html",
+      "tags": ["benchmarks"]
     },
     {
       "slug": "chowdhery-2022-palm",

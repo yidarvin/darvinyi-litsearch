@@ -1,5 +1,6 @@
 import cytoscape from 'cytoscape';
 import data from '../data/papers.json';
+import surveyData from '../data/surveys.json';
 import { computeTimeline } from './timeline.js';
 import './style.css';
 
@@ -20,6 +21,17 @@ const citesOf = new Map(PAPERS.map(p => [p.slug, []]));
 EDGES.forEach(e => {
   if (byId.has(e.from) && byId.has(e.to)) citesOf.get(e.from).push(e.to);
 });
+
+/* ---- surveys (tag overlays) ----------------------------------------------
+   A survey is a named tag defined in data/surveys.json; each paper node carries
+   a `tags` array of survey ids. Surveys are ORTHOGONAL to the color-by dims:
+   selecting one pulls its tagged papers into a centred horizontal spine (the
+   timeline `centerSet`), rings them in the survey colour, lights the citations
+   between them, and dims everything else. `none` restores the normal map.    */
+const SURVEYS = Array.isArray(surveyData?.surveys) ? surveyData.surveys : [];
+const surveyById = new Map(SURVEYS.map(s => [s.id, s]));
+const surveyMembers = new Map(SURVEYS.map(s =>
+  [s.id, new Set(PAPERS.filter(p => Array.isArray(p.tags) && p.tags.includes(s.id)).map(p => p.slug))]));
 
 /* ---- color dimensions ----------------------------------------------------
    Three switchable color dims: topic / institution / venue. `topic` is a raw
@@ -173,7 +185,14 @@ function initGraph(){
       { selector: 'edge', style: {
         'width': 1.1, 'line-color': '#3a3a44', 'target-arrow-color': '#3a3a44',
         'target-arrow-shape': 'triangle', 'arrow-scale': .8, 'curve-style': 'bezier', 'opacity': .13 }},
+      // survey: a member→member citation, lit in the survey colour. Declared
+      // BEFORE .faded so a hover-fade still dims it; .hl (below) still wins.
+      { selector: 'edge.surveyEdge', style: {
+        'line-color': 'data(surveyC)', 'target-arrow-color': 'data(surveyC)', 'opacity': .85, 'width': 1.7, 'z-index': 4 }},
       { selector: '.faded', style: { 'opacity': .06 }},
+      // survey: a tagged node gets a thick ring in the survey colour (kept
+      // before node.sel so a selection ring still overrides it).
+      { selector: 'node.survey', style: { 'border-width': 4, 'border-color': 'data(surveyC)', 'z-index': 6 }},
       { selector: 'node.sel', style: { 'border-width': 3, 'border-color': ACCENT, 'border-style': 'dashed' }},
       { selector: 'edge.hl', style: { 'line-color': ACCENT, 'target-arrow-color': ACCENT, 'opacity': 1, 'width': 2.4, 'z-index': 9 }},
     ],
@@ -187,13 +206,14 @@ function initGraph(){
   // (mobile has no hover), so this is what makes the legend usable on phones;
   // desktop hover still previews on top of any pin. null = nothing pinned.
   let pinnedCat = null;
+  let curSurvey = null;             // active survey spine (null = none); see applySurvey
   function applyColor(dim){
     curDim = dim;
     clearPin();                       // a pin from another dimension is meaningless
     cy.nodes().forEach(n => n.data('bg', n.data(dim === 'topic' ? 'topicC' : dim === 'group' ? 'groupC' : 'venueC')));
     document.querySelectorAll('#seg button').forEach(b => b.classList.toggle('on', b.dataset.dim === dim));
     renderLegend();
-    if (!cy.$('node.sel').length) cy.elements().removeClass('faded');
+    resetHighlight();                 // keep the resting state (selection / pin / survey)
   }
   document.getElementById('seg').addEventListener('click', e => {
     const b = e.target.closest('button'); if (b) applyColor(b.dataset.dim);
@@ -203,7 +223,13 @@ function initGraph(){
     const present = [...new Set(PAPERS.map(p => valOf(p, curDim)).filter(Boolean))];
     const ordered = DIMS[curDim].vals.filter(v => present.includes(v));
     const el = document.getElementById('legend');
-    el.innerHTML = '<h4>// ' + (curDim === 'group' ? 'institution' : curDim) + '</h4>' +
+    let cap = '';
+    if (curSurvey && surveyById.has(curSurvey)){
+      const s = surveyById.get(curSurvey);
+      const n = surveyMembers.get(curSurvey).size;
+      cap = `<div class="surveycap"><span class="dot" style="color:${s.color};background:${s.color}"></span>${s.label}<span class="n">· ${n} papers</span></div>`;
+    }
+    el.innerHTML = cap + '<h4>// ' + (curDim === 'group' ? 'institution' : curDim) + '</h4>' +
       ordered.map(v => `<div class="row${v === pinnedCat ? ' active' : ''}" data-val="${v}"><span class="sw" style="background:${colorFor(curDim, v)}"></span>${v}</div>`).join('');
     el.querySelectorAll('.row').forEach(r => {
       r.onmouseenter = () => showCategory(r.dataset.val);   // desktop hover preview
@@ -221,16 +247,75 @@ function initGraph(){
       cy.nodes().filter(n => { const p = byId.get(n.id()); return p && valOf(p, curDim) === val; }).removeClass('faded');
     });
   }
-  // resting state: a node selection (panel) owns the fade if present; else a
-  // pinned category stays isolated; else show everything.
+  // resting state, by priority: a node selection (panel) owns the fade if
+  // present; else a pinned legend category; else an active survey spine; else
+  // show everything.
   function resetHighlight(){
     if (cy.$('node.sel').length) return;
-    if (pinnedCat) showCategory(pinnedCat);
-    else cy.elements().removeClass('faded');
+    if (pinnedCat) { showCategory(pinnedCat); return; }
+    if (curSurvey) { showSurvey(); return; }
+    cy.elements().removeClass('faded');
   }
   function clearPin(){
     pinnedCat = null;
     document.querySelectorAll('#legend .row.active').forEach(r => r.classList.remove('active'));
+  }
+
+  /* ---- survey spine -------------------------------------------------------
+     Selecting a survey pulls its tagged papers to the vertical centre of each
+     time column (a bright spine) and dims the rest, while the left→right time
+     order is untouched. The persistent `.survey` / `.surveyEdge` classes carry
+     the ring + member-edge colour; showSurvey() owns only the resting fade, so
+     hover/selection/search still layer on top exactly as without a survey.    */
+  const surveyLayout = new Map();    // id -> Map(slug -> {x,y}), computed once
+  function layoutFor(id){
+    if (!surveyLayout.has(id)){
+      const { positions: sp } = computeTimeline(PAPERS, EDGES, {
+        sizeOf: p => size(p.citation_count), band: 'quarter', colGap: 185, vGap: 30,
+        centerSet: surveyMembers.get(id),
+      });
+      surveyLayout.set(id, sp);
+    }
+    return surveyLayout.get(id);
+  }
+  function showSurvey(){
+    cy.batch(() => {
+      cy.elements().addClass('faded');
+      cy.nodes('.survey').removeClass('faded');
+      cy.edges('.surveyEdge').removeClass('faded');
+    });
+  }
+  function applySurvey(id){
+    curSurvey = (id && surveyById.has(id)) ? id : null;
+    const target = curSurvey ? layoutFor(curSurvey) : positions;
+    cy.batch(() => {
+      cy.elements().removeClass('survey surveyEdge');
+      if (curSurvey){
+        const col = surveyById.get(curSurvey).color || ACCENT;
+        const mem = surveyMembers.get(curSurvey);
+        cy.nodes().filter(n => mem.has(n.id())).addClass('survey').data('surveyC', col);
+        cy.edges().filter(e => mem.has(e.source().id()) && mem.has(e.target().id())).addClass('surveyEdge').data('surveyC', col);
+      }
+    });
+    // glide every node to its layout (x unchanged → the time axis stays put)
+    cy.nodes().forEach(n => { const pp = target.get(n.id()); if (pp) n.animate({ position: pp }, { duration: 430, easing: 'ease-out' }); });
+    setTimeout(() => cy.animate({ fit: { padding: 60 }, duration: 360, easing: 'ease-out' }), 460);
+    const sel = document.getElementById('survey');
+    sel.classList.toggle('on', !!curSurvey);
+    sel.style.background = curSurvey ? surveyById.get(curSurvey).color : '';
+    renderLegend();
+    resetHighlight();
+  }
+  // populate + wire the survey dropdown (hidden when no surveys are defined)
+  if (SURVEYS.length){
+    const sel = document.getElementById('survey');
+    document.getElementById('surveyby').hidden = false;
+    SURVEYS.forEach(s => {
+      const o = document.createElement('option');
+      o.value = s.id; o.textContent = `${s.label} (${surveyMembers.get(s.id).size})`;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', e => applySurvey(e.target.value));
   }
 
   /* ---- side panel ---- */
@@ -252,6 +337,9 @@ function initGraph(){
       [rawInstitution(p), colorFor('group', valOf(p, 'group'))],
       [valOf(p, 'venue'), colorFor('venue', valOf(p, 'venue'))],
     ].filter(t => t[0]);
+    // survey membership chips (a paper can belong to several surveys)
+    const surveyChips = (p.tags || []).map(id => surveyById.get(id)).filter(Boolean)
+      .map(s => `<span class="chip survey"><span class="d" style="background:${s.color}"></span>${s.label}</span>`).join('');
 
     const cited = (citesOf.get(p.slug) || []).map(id => byId.get(id));
     const venue = p.venue || 'arXiv';
@@ -263,7 +351,7 @@ function initGraph(){
       <h2>${p.title}</h2>
       <div class="meta">${p.authors || ''}</div>
       <div class="cites"><b>${cc === null ? '—' : cc.toLocaleString()}</b><span>citations</span></div>
-      <div class="chips">${tags.map(t => `<span class="chip"><span class="d" style="background:${t[1]}"></span>${t[0]}</span>`).join('')}</div>
+      <div class="chips">${tags.map(t => `<span class="chip"><span class="d" style="background:${t[1]}"></span>${t[0]}</span>`).join('')}${surveyChips}</div>
       <div class="abstract">${p.abstract || '<em>No abstract yet.</em>'}</div>
       ${href
         ? `<a class="go" href="${href}">read the explainer&nbsp;→</a>`
@@ -282,8 +370,8 @@ function initGraph(){
   }
 
   cy.on('tap', 'node', e => openPaper(byId.get(e.target.id())));
-  cy.on('tap', e => { if (e.target === cy){ panel.classList.remove('open'); clearPin(); cy.elements().removeClass('sel hl faded'); }});
-  document.getElementById('close').onclick = () => { panel.classList.remove('open'); clearPin(); cy.elements().removeClass('sel hl faded'); };
+  cy.on('tap', e => { if (e.target === cy){ panel.classList.remove('open'); clearPin(); cy.elements().removeClass('sel hl faded'); resetHighlight(); }});
+  document.getElementById('close').onclick = () => { panel.classList.remove('open'); clearPin(); cy.elements().removeClass('sel hl faded'); resetHighlight(); };
 
   /* ---- search ---- */
   document.getElementById('q').addEventListener('input', e => {
@@ -314,7 +402,8 @@ function initGraph(){
   });
   cy.on('mouseout', 'node', () => {
     if (cy.$('node.sel').length || qEl.value.trim()) return; // don't clobber those states
-    cy.batch(() => { cy.elements().removeClass('faded'); cy.edges().removeClass('hl'); });
+    cy.edges().removeClass('hl');
+    resetHighlight();                 // back to full graph, a pinned category, or the survey spine
   });
 
   /* ---- time axis: a vertical tick + period label per band, kept in sync with
