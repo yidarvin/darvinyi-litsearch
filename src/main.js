@@ -185,13 +185,10 @@ function initGraph(){
       { selector: 'edge', style: {
         'width': 1.1, 'line-color': '#3a3a44', 'target-arrow-color': '#3a3a44',
         'target-arrow-shape': 'triangle', 'arrow-scale': .8, 'curve-style': 'bezier', 'opacity': .13 }},
-      // survey: a member→member citation, lit in the survey colour. Declared
-      // BEFORE .faded so a hover-fade still dims it; .hl (below) still wins.
-      { selector: 'edge.surveyEdge', style: {
-        'line-color': 'data(surveyC)', 'target-arrow-color': 'data(surveyC)', 'opacity': .85, 'width': 1.7, 'z-index': 4 }},
       { selector: '.faded', style: { 'opacity': .06 }},
-      // survey: a tagged node gets a thick ring in the survey colour (kept
-      // before node.sel so a selection ring still overrides it).
+      // survey: a tagged node just gets a bright ring in the survey colour —
+      // no dimming, no edge colouring (kept before node.sel so a selection
+      // ring still overrides it).
       { selector: 'node.survey', style: { 'border-width': 4, 'border-color': 'data(surveyC)', 'z-index': 6 }},
       { selector: 'node.sel', style: { 'border-width': 3, 'border-color': ACCENT, 'border-style': 'dashed' }},
       { selector: 'edge.hl', style: { 'line-color': ACCENT, 'target-arrow-color': ACCENT, 'opacity': 1, 'width': 2.4, 'z-index': 9 }},
@@ -248,12 +245,11 @@ function initGraph(){
     });
   }
   // resting state, by priority: a node selection (panel) owns the fade if
-  // present; else a pinned legend category; else an active survey spine; else
-  // show everything.
+  // present; else a pinned legend category; else show everything. (A survey
+  // doesn't dim anything — it only rings + centres its members.)
   function resetHighlight(){
     if (cy.$('node.sel').length) return;
     if (pinnedCat) { showCategory(pinnedCat); return; }
-    if (curSurvey) { showSurvey(); return; }
     cy.elements().removeClass('faded');
   }
   function clearPin(){
@@ -263,10 +259,11 @@ function initGraph(){
 
   /* ---- survey spine -------------------------------------------------------
      Selecting a survey pulls its tagged papers to the vertical centre of each
-     time column (a bright spine) and dims the rest, while the left→right time
-     order is untouched. The persistent `.survey` / `.surveyEdge` classes carry
-     the ring + member-edge colour; showSurvey() owns only the resting fade, so
-     hover/selection/search still layer on top exactly as without a survey.    */
+     time column (the spine) and rings them in the survey colour. The rest of
+     the map is left exactly as-is — no dimming, no edge colouring — so the only
+     change a reader sees is the centred, ringed subset. The persistent
+     `.survey` class carries the ring; hover/selection/search layer on top
+     unchanged.                                                                */
   const surveyLayout = new Map();    // id -> Map(slug -> {x,y}), computed once
   function layoutFor(id){
     if (!surveyLayout.has(id)){
@@ -278,23 +275,15 @@ function initGraph(){
     }
     return surveyLayout.get(id);
   }
-  function showSurvey(){
-    cy.batch(() => {
-      cy.elements().addClass('faded');
-      cy.nodes('.survey').removeClass('faded');
-      cy.edges('.surveyEdge').removeClass('faded');
-    });
-  }
   function applySurvey(id){
     curSurvey = (id && surveyById.has(id)) ? id : null;
     const target = curSurvey ? layoutFor(curSurvey) : positions;
     cy.batch(() => {
-      cy.elements().removeClass('survey surveyEdge');
+      cy.nodes().removeClass('survey');
       if (curSurvey){
         const col = surveyById.get(curSurvey).color || ACCENT;
         const mem = surveyMembers.get(curSurvey);
         cy.nodes().filter(n => mem.has(n.id())).addClass('survey').data('surveyC', col);
-        cy.edges().filter(e => mem.has(e.source().id()) && mem.has(e.target().id())).addClass('surveyEdge').data('surveyC', col);
       }
     });
     // glide every node to its layout (x unchanged → the time axis stays put)
