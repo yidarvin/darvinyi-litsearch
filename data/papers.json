@@ -12,7 +12,8 @@
       "topic": "Oversight",
       "author_group": "Redwood Research",
       "abstract": "Introduces \"control evaluations\": a red-team/blue-team methodology that measures whether a safety pipeline holds up when the untrusted model is actively trying to subvert it. In an APPS code-backdooring testbed with an untrusted GPT-4 (U), a trusted GPT-3.5 (T), and a 2% budget of trusted labor (H), simple protocols—trusted monitoring, defer-to-trusted, untrusted monitoring with anti-collusion, and trusted editing—push safety from 15% (naive upfront auditing) to 79–92% while keeping 94–97% usefulness.",
-      "explainer": "papers/greenblatt-2023-ai-control.html"
+      "explainer": "papers/greenblatt-2023-ai-control.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "post-2018-sacrebleu",
@@ -26,7 +27,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Amazon",
       "abstract": "Shows that \"the\" BLEU score is a fiction: BLEU is a parameterized metric whose value swings by up to 1.8 points — often more than a paper's reported gain — depending on hidden reference tokenization, casing, and reference-count choices that papers rarely document, making scores across papers incomparable. Introduces SacreBLEU, a tool that ships and downloads the standard WMT/IWSLT test sets, applies WMT's metric-internal preprocessing to detokenized output, and prints a version string recording every parameter, so MT scores become reproducible and comparable. Borrowing the parsing community's evalb discipline, it standardizes BLEU's reporting — not its validity as a proxy for human judgment, which the paper explicitly brackets.",
-      "explainer": "papers/post-2018-sacrebleu.html"
+      "explainer": "papers/post-2018-sacrebleu.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "christiano-2017-deep-rl-preferences",
@@ -219,7 +221,7 @@
       "author_group": "Princeton NLP",
       "abstract": "The benchmark that re-grounded code evaluation in real software engineering: 2,294 task instances mined from merged GitHub pull requests across 12 Python repositories, where a model must patch a codebase to resolve an issue and is graded by running the repo's own hidden unit tests (the patch must apply and all fail-to-pass + pass-to-pass tests must pass). In 2023 the best models resolved under 4% (Claude 3 Opus 3.79%, Claude 2 1.96%) — localization in long contexts, not editing, was the wall, with oracle retrieval roughly doubling scores. Its execution-graded, contamination-resistant, continually-refreshable format became the foundation of the coding-agent era (SWE-agent, SWE-bench Verified, SWE-Bench Pro).",
       "explainer": "papers/jimenez-2023-swe-bench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "chen-2021-codex",
@@ -234,7 +236,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI fine-tunes GPT on public GitHub Python (Codex) and introduces HumanEval — 164 hand-written problems graded by executing hidden unit tests rather than matching reference text. Codex-12B solves 28.8% from a single sample and 70.2% with 100 samples (Codex-S reaches 77.5% with an oracle pick, 44.5% by mean-logprob reranking); the paper establishes functional correctness and the unbiased pass@k estimator as the standard for code evaluation.",
       "explainer": "papers/chen-2021-codex.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "manglik-2026-insights-generator",
@@ -334,7 +336,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "A diagnostic framework for reward hacking in rubric-based RL: a policy is trained against a single verifier (proxy reward) but evaluated against a cross-family panel of three frontier judges (reference reward), separating verifier failure from rubric-design limits. Under a weak verifier (GPT-4o-mini), proxy reward rises while panel reward plateaus and the exploitation rate climbs 39%→65% (medical) / 63%→75% (science) — confirmed externally on HealthBench — while a strong verifier (GPT-OSS-120B) curbs but doesn't kill it (~7× less exploitation). A verifier-free self-internalization gap from policy log-probs tracks reference quality (r 0.91–0.97) as a stopping signal. The deeper failure: even under strong verification, rubric-based judges prefer the RL checkpoint (85.8%) while rubric-free judges prefer the base model (78.4%), because 90.2% of rubric weight is presence-based vs 8.6% absence-based — so RL buys completeness (+14.9 pp) while shedding conciseness, relevance, and factual correctness.",
-      "explainer": "papers/mahmoud-2026-reward-hacking.html"
+      "explainer": "papers/mahmoud-2026-reward-hacking.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "hendrycks-2020-ethics",
@@ -379,7 +382,7 @@
       "author_group": "LMSYS / Berkeley",
       "abstract": "Establishes LLM-as-a-judge — using a strong model like GPT-4 to grade open-ended chat answers — and validates it against two new human-preference benchmarks: MT-bench (80 hand-written multi-turn questions across 8 categories) and Chatbot Arena (crowdsourced anonymous battles, ~30K votes from 2,114 IPs). GPT-4 judges agree with expert humans 85% of the time on non-tie votes — above the 81% humans agree with each other (87% on Arena) — while the paper documents and mitigates position, verbosity, and self-enhancement biases (only GPT-4 stays >60% position-consistent and resists a verbosity attack at 8.7% vs ~91% for weaker judges). The work made model-graded preference evaluation respectable and seeded the LMSYS leaderboard lineage.",
       "explainer": "papers/zheng-2023-mt-bench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "guha-2023-legalbench",
@@ -424,7 +427,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI's benchmark of real, economically valuable knowledge work: 1,320 tasks across 44 occupations in the 9 largest U.S. GDP sectors, authored by industry experts (avg 14 years' experience) and graded by blinded expert pairwise comparison against the human's own deliverable rather than an answer key, with 220 gold tasks open-sourced plus a public automated grader (65.7% vs 70.8% inter-human agreement). Frontier models approach but don't reach parity — Claude Opus 4.1 leads at 47.6% wins+ties and GPT-5 high at 38.8%, on a roughly linear upward trend — while a realistic 'try the model, then fix it yourself' workflow saves only ~1.4× time/cost for GPT-5 and ~3% of GPT-5's losses are rated catastrophic.",
       "explainer": "papers/patwardhan-2025-gdpval.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "wei-2025-browsecomp",
@@ -454,7 +457,7 @@
       "author_group": "USTC / Metastone",
       "abstract": "The first benchmark built specifically for Deep Research Agents: 100 PhD-level tasks across 22 domains (50 English / 50 Chinese), with the per-domain task counts grounded in 44,019 filtered real user queries (from 96,147 raw). Two human-aligned frameworks grade it — RACE scores report quality against a high-quality reference report using dynamically-weighted, judge-generated adaptive criteria, and FACT scores citation accuracy plus effective-citation count via per-claim web verification. Gemini-2.5-Pro Deep Research leads RACE Overall (48.88) and dominates volume at 111.21 effective citations per report, but Perplexity DR cites most accurately (90.24% vs Gemini's 81.44%) and OpenAI DR (46.98) edges Gemini on Instruction-Following. RACE's 71.33% pairwise agreement with experts beats the 68.44% the experts agree with each other — though the whole pipeline is a Gemini judge scoring against a Gemini-written reference, a built-in self-preference risk.",
       "explainer": "papers/du-2025-deepresearch-bench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "miserendino-2025-swe-lancer",
@@ -483,7 +486,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "Reframes retrieval evaluation as a stratified statistical estimation problem: standard BEIR-style query sets leave 40–50% of a corpus's semantic regions untested (NFCorpus covers only 50.9% of clusters; 26 clusters hold 17.3% of documents but 1.1% of queries — e.g. immune cells, 122 docs / 1 query) and those gaps are precisely where retrieval is weakest, so aggregate nDCG overstates quality with irreducible bias. The fix organizes a corpus into entity-based Leiden clusters, defines difficulty strata via relevance dispersion (∆, governs ranking) and query–document alignment (J, governs coverage) spanning a ~3× performance range, and runs a coverage-aware LLM curation loop that lifts semantic coverage to ~90–100%. Stratified evaluation flips system-selection decisions: text-embedding-3-small beats Cohere embed-english-v3.0 in just 32.4% of bootstrap samples under query-weighted mean but 62.5% under cluster-weighted macro-average.",
-      "explainer": "papers/klearman-2026-semantic-stratification.html"
+      "explainer": "papers/klearman-2026-semantic-stratification.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "xie-2024-osworld",
@@ -613,7 +617,7 @@
       "author_group": "MBZUAI",
       "abstract": "The first unified taxonomy for evaluating AI math tutors: eight learning-sciences pedagogical dimensions (mistake identification, mistake location, revealing the answer, providing guidance, actionability, coherence, tutor tone, human-likeness), each with a desired label and scored by a Desired Annotation Match Rate (DAMR). The MRBench benchmark holds 192 mistake-remediation dialogues (from Bridge and MathDial) and 1,596 responses from 7 LLMs acting as tutors plus novice/expert humans, with gold human annotations (Fleiss' κ 0.65, Cohen's κ 0.71). Llama-3.1-405B is the most pedagogically complete while GPT-4 reveals the answer ~47% of the time (a strong QA system but a weak tutor); models are uniformly human-like (89–96%) yet weak on guidance and default to a neutral rather than encouraging tone; and the popular Prometheus2 and Llama-3.1-8B LLM judges correlate negatively with human labels on every dimension except human-likeness — so pedagogical evaluation still needs humans.",
       "explainer": "papers/maurya-2025-mrbench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "he-2024-olympiadbench",
@@ -671,7 +675,7 @@
       "author_group": "Scale AI",
       "abstract": "A reproducible harness and benchmark for the 'agents optimizing agents' task: a coding agent edits, evaluates, and versions a target agent's code under a fixed evaluation budget. Across five tasks the full harness lifts tool-use agents about 8% over baseline, while reasoning tasks barely move.",
       "explainer": "papers/ursekar-2026-vero.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "pu-2026-lhaw",
@@ -686,7 +690,7 @@
       "author_group": "Scale AI",
       "abstract": "A dataset-agnostic synthetic pipeline that turns any well-specified long-horizon task into controllably underspecified variants — stripping information across Goal, Constraint, Input, and Context and validating each variant by what agents actually do — then measures whether frontier agents know when to stop and ask for clarification, and what that costs.",
       "explainer": "papers/pu-2026-lhaw.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "raghavendra-2026-agentic-rubrics",
@@ -700,7 +704,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "Instead of spinning up a sandbox to run tests, an expert agent crawls the repository and writes a context-grounded rubric checklist, then grades candidate patches against it with no code execution at all — beating patch classifiers and test-based selection on SWE-Bench Verified.",
-      "explainer": "papers/raghavendra-2026-agentic-rubrics.html"
+      "explainer": "papers/raghavendra-2026-agentic-rubrics.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "gosai-2025-audio-multichallenge",
@@ -730,7 +735,7 @@
       "author_group": "Scale AI",
       "abstract": "Safety audits ask what a model can do; this benchmark asks what it would do — handing an agent a forbidden 'misaligned' tool and a safe tool secretly rigged to always fail, then turning up operational pressure until alignment breaks. Average propensity to reach for the forbidden tool climbs to 46.9%.",
       "explainer": "papers/sehwag-2025-propensitybench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "wei-2025-bioriskeval",
@@ -744,7 +749,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "A red-team of pretraining-data filtering: on Evo 2-7B — which deliberately excluded eukaryotic viral sequences for safety — 'filtered' capability returns in 50 fine-tuning steps (0.72 H100 GPU-hours), and a linear probe shows the harmful signal never left the model's latent representations at all.",
-      "explainer": "papers/wei-2025-bioriskeval.html"
+      "explainer": "papers/wei-2025-bioriskeval.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "stojanovski-2025-reasoning-gym",
@@ -816,7 +822,8 @@
       "topic": "Oversight",
       "author_group": "Scale AI",
       "abstract": "Can an LLM overseer catch an agent secretly misbehaving — leaking data, booking the costlier flight, injecting a backdoor — while it does a legitimate job? A monitor red-teaming workflow finds the agent's awareness hurts the monitor more than the monitor's awareness helps, scaffolding matters more than knowledge, and a hybrid scaffold lets weak models reliably watch strong ones.",
-      "explainer": "papers/kale-2025-weak-to-strong-monitoring.html"
+      "explainer": "papers/kale-2025-weak-to-strong-monitoring.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "han-2025-search-time-contamination",
@@ -830,7 +837,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "Identifies 'search-time contamination' (STC): when a search-based LLM agent's retrieval step surfaces a web copy of a benchmark (e.g. a third-party HuggingFace re-upload) containing the test question alongside its answer, letting the agent copy the label rather than reason. Across HLE, SimpleQA, and GPQA, ~3% of questions are contaminated via HuggingFace, and blocking that source drops accuracy on the contaminated subset by ~15% — a lower-bound warning that offline capability benchmarks can't be trusted to evaluate search-augmented agents.",
-      "explainer": "papers/han-2025-search-time-contamination.html"
+      "explainer": "papers/han-2025-search-time-contamination.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "fabbri-2025-multinrc",
@@ -930,7 +938,7 @@
       "author_group": "UIUC",
       "abstract": "EvalPlus rigorously re-tests LLM-generated code by augmenting a benchmark's thin test suite with automatically generated inputs — ChatGPT-seeded, then expanded ~80× by type-aware mutation — and grading via differential testing against vetted ground-truths. Extending HumanEval to HumanEval+ (9.6→764.1 avg tests per problem) over 26 LLMs, pass@k drops by up to 19.3–28.9%, and the ranking flips: WizardCoder- and Phind-CodeLlama-34B both overtake ChatGPT on HumanEval+ though neither does on HumanEval. The harder tests also expose 18 buggy ground-truths (11% of problems) in HumanEval itself, and a set-cover-distilled HumanEval+-mini reproduces the effect with 47× fewer tests — establishing test adequacy as a first-class concern and making HumanEval+/MBPP+ default code-eval sets.",
       "explainer": "papers/liu-2023-evalplus.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "hendrycks-2021-apps",
@@ -988,7 +996,8 @@
       "topic": "Oversight",
       "author_group": "Multi-lab",
       "abstract": "A 40-author cross-lab position paper (UK AISI, OpenAI, Google DeepMind, Anthropic, METR, Apollo, and more; endorsed by Hinton, Sutskever, Bowman, and Schulman) arguing that reasoning models which 'think' in human language give safety a rare gift: their chains of thought can be monitored for the intent to misbehave. Because hard tasks force a Transformer to route serial reasoning through the CoT (the 'externalized reasoning property') and models tend to verbalize anyway, monitors already catch misbehavior like 'Let's hack' and reward hacking — but the window is fragile, threatened by scaled outcome-based RL, direct and indirect CoT supervision, and latent-reasoning architectures. The paper runs no new experiments; it recommends building monitorability evaluations, reporting them in system cards, and weighing monitorability in training and deployment decisions, while warning it can never be a standalone safety guarantee.",
-      "explainer": "papers/korbak-2025-cot-monitorability.html"
+      "explainer": "papers/korbak-2025-cot-monitorability.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "stiennon-2020-summarize",
@@ -1062,7 +1071,7 @@
       "author_group": "Google",
       "abstract": "Introduces MultiMedQA — seven medical QA datasets including the new 3,375-question HealthSearchQA — plus a clinician human-evaluation framework (scientific consensus, harm, bias, completeness) that pushes medical-LLM eval past multiple-choice accuracy. Flan-PaLM 540B (PaLM instruction-tuned, with few-shot + chain-of-thought + self-consistency) sets SOTA on every multiple-choice set — 67.6% on MedQA/USMLE, +17% over prior best. Instruction prompt tuning (a 100-token, 1.84M-parameter soft prompt over Flan-PaLM) yields Med-PaLM, lifting scientific-consensus agreement 61.9%→92.6% and cutting potentially-harmful answers 29.7%→5.9%, though it still trails clinicians.",
       "explainer": "papers/singhal-2023-med-palm.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "liu-2025-openrubrics",
@@ -1162,7 +1171,7 @@
       "author_group": "UC Berkeley",
       "abstract": "A live, contamination-free code benchmark: 511 contest problems (May 2023–May 2024) from LeetCode, AtCoder, and CodeForces, each tagged with a release date so models are scored only on problems published after their training cutoff — and graded across four scenarios (code generation, self-repair, code execution, and a newly-introduced test-output-prediction task) rather than generation alone, with ~17 tests per problem. Across 52 models (18 base + 34 instruction-tuned), time-stamping exposes contamination as a cliff at each model's cutoff: DS-Base-33B falls from Pass@1 ≈60 to ≈0 on LeetCode after September 2023 and GPT-4o drops after November, a signal exact/fuzzy decontamination misses. HumanEval+ correlates only 0.72 with LCB-Easy, so fine-tuned open models that win on HumanEval collapse here (DS-Ins-1.3B 59.8%→26.3%); the four scenarios correlate above 0.88 yet rankings still shift (Claude-3-Opus passes GPT-4-Turbo on test output prediction); and a real SoTA gap reappears with GPT-4-Turbo leading (39.7 LCB-Easy). The evaluation framework the contamination-free era — SWE-Bench Pro, BigCodeBench, Terminal-Bench, and the reasoning-model leaderboards — is built on.",
       "explainer": "papers/jain-2024-livecodebench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "liu-2023-agentbench",
@@ -1205,7 +1214,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "AE Studio",
       "abstract": "The paper that named prompt injection and first quantified it. Using PROMPTINJECT — a modular framework for composing adversarial prompts over a base prompt's open user-input slot — it shows simple handcrafted inputs can hijack a GPT-3 (text-davinci-002) application's goal 58.6% of the time and leak its hidden system prompt 23.6% of the time, across 35 OpenAI-example prompts run 4x each. Delimiters amplify attacks (43.6%->58.6%), overtly harmful payloads attack worse than benign ones (70.0% vs 49.3%) as an alignment side-effect of InstructGPT tuning, and capability tracks vulnerability in an inverse-scaling effect where the most capable model in the GPT-3 series is the most attackable (13.8%->58.6%). Superficial defenses (stop sequences, trailing text) only dent it; the real fix — separating trusted instructions from untrusted data — is left open, and the work seeded the entire prompt-injection literature (indirect injection, agentic injection).",
-      "explainer": "papers/perez-2022-ignore-previous-prompt.html"
+      "explainer": "papers/perez-2022-ignore-previous-prompt.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "zhan-2024-injecagent",
@@ -1396,7 +1406,7 @@
       "author_group": "Google",
       "abstract": "An open, collaboratively built benchmark of 204 tasks from 450 authors across 132 institutions, deliberately stocked with problems believed to be beyond current models and spanning linguistics, math, common-sense reasoning, biology, software, and social bias. Evaluating OpenAI GPT, Google dense (BIG-G) and Switch-style sparse transformers, and PaLM from millions to hundreds of billions of parameters against an expert-human baseline, it finds the best models score under 20 on a 0–100 human-normalized scale (experts ≈100); calibration improves with scale but stays poor (Brier 0.2–0.3, ECE 0.25–0.45); per-token cross-entropy scales lawfully (exponent ≈ −0.066 to −0.069) while downstream capability does not; tasks split into gradual 'linear' (knowledge/memorization) versus sudden 'breakthrough' (multi-step or brittle-metric) scaling; and social bias often rises with scale in ambiguous contexts. Ships a 24-task BIG-bench Lite subset and a canary-string contamination guard.",
       "explainer": "papers/srivastava-2022-big-bench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "liang-2022-helm",
@@ -1411,7 +1421,7 @@
       "author_group": "Stanford",
       "abstract": "The benchmark framework that made language-model evaluation multi-metric and standardized: 7 metrics (accuracy, calibration, robustness, fairness, bias, toxicity, efficiency) measured for each of 16 core scenarios — plus 7 targeted evaluations over 26 scenarios — across 30 models under identical 5-shot prompting, raising average model×scenario coverage from 17.9% to 96.0% (42 scenarios in all, 21 new to mainstream LM eval). Its 25 findings show instruction-tuning beats scale — text-davinci-002 and a 52B Anthropic model top accuracy, robustness, and fairness over a 530B model — while the multi-metric lens exposes trade-offs a single accuracy number hides: robustness and fairness track accuracy, calibration does not, and on BBQ the most accurate models are the most socially biased. The living-benchmark, name-what's-missing template later rubric and capability evals (MT-Bench, LegalBench, HealthBench) inherited.",
       "explainer": "papers/liang-2022-helm.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "he-2024-webvoyager",
@@ -1583,7 +1593,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Peking University",
       "abstract": "A foundational critique of the LLM-as-a-judge paradigm: the quality ranking of two candidate responses can be hacked by simply swapping their order in the prompt. GPT-4 favors the first position and ChatGPT the second, so with ChatGPT as judge Vicuna-13B 'beats' ChatGPT on 66 of 80 questions purely by being placed second (conflict rate 82.5%), while GPT-4 still contradicts itself on 46.3% of close pairs; the bias concentrates where the two answers are near-equal (score gap ≤1) and vanishes once one is clearly better. Three cheap calibration strategies fix it: Multiple Evidence Calibration (reason before scoring, k=3 samples), Balanced Position Calibration (evaluate each candidate in both orders and average), and Human-in-the-Loop Calibration (route the highest position-diversity-entropy examples to humans). Against an 80-question, author-annotated slice of the Vicuna benchmark (human average 71.7% / κ 0.54), MEC+BPC lifts GPT-4 +9.8 (52.7→62.5%) and ChatGPT +14.3 (44.4→58.7%), and adding 20% human review reaches or exceeds human agreement (GPT-4 73.8%, ChatGPT 71.3%) while cutting annotation cost 39%.",
-      "explainer": "papers/wang-2023-fair-evaluators.html"
+      "explainer": "papers/wang-2023-fair-evaluators.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "chiang-2023-llm-eval",
@@ -1597,7 +1608,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "National Taiwan University",
       "abstract": "The paper that named “LLM evaluation” and seeded the LLM-as-a-judge era: feed an instruction-following LLM the exact instructions, sample, and rating question used in a human-evaluation study, parse the 1–5 Likert score it generates, and treat it as a stand-in rater. Validated on two tasks — open-ended story generation (GPT-2-medium vs human-written, 200 each, four attributes) and synonym-substitution adversarial attacks (TextFooler/PWWS/BAE, 100 pairs each) — against three certified English teachers. text-davinci-003 and ChatGPT reproduce the experts’ rankings (rating human-written stories higher than GPT-2’s on all four attributes, every gap significant by Welch’s t-test) while weaker T0 and text-curie-001 show no clear preference; davinci grades generously and ChatGPT harshly, but both preserve the ordering. The signal is aggregate, though: per-story Kendall’s τ between davinci and the teachers is only 0.12–0.22 outside relevance (0.38–0.43), ratings stay stable across instructions and temperature, and LLM evaluation costs under US$5 and a few hours versus US$140 and over a week per human rater. The biases later work made central — self-preference, verbosity, position — go untested, since the judges only grade a weak, different-family generator.",
-      "explainer": "papers/chiang-2023-llm-eval.html"
+      "explainer": "papers/chiang-2023-llm-eval.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "dubois-2023-alpacafarm",
@@ -1612,7 +1624,7 @@
       "author_group": "Stanford",
       "abstract": "The paper that made RLHF research cheap and reproducible. AlpacaFarm replaces human pairwise annotators with a pool of 13 LLM judges plus 25% label-flip noise — $6 vs $300 per 1,000 comparisons, 65% agreement with the human majority vs the 66% humans reach among themselves — and pairs it with an 805-prompt win-rate benchmark (against Davinci-003) and six tuned reference LPF methods on LLaMA-7B. Its end-to-end validation is the headline: method rankings developed in the $70-and-hours simulator match rankings trained on $3,150 of real human feedback at Spearman 0.98, and the deliberately noisy simulator uniquely reproduces reward over-optimization that a single high-agreement GPT-4 judge misses. PPO tops the leaderboard (55.1% human win-rate), but the result exposes win-rate's verbosity bias — 'PPO beats ChatGPT' is a length-cap artifact — seeding the AlpacaEval / LLM-as-judge lineage.",
       "explainer": "papers/dubois-2023-alpacafarm.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "touvron-2023-llama",
@@ -1714,7 +1726,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UMass Amherst / Meta",
       "abstract": "A controlled audit of the LLM-as-a-judge paradigm on short-answer TriviaQA, deliberately chosen because three human annotators agree 98.52% of the time (Scott’s π 96.2) so any judge–human gap is the judge’s fault rather than task ambiguity. Across 13 judge models grading 9 base/chat exam-takers, only the largest — GPT-4 Turbo, Llama-3 70B and Llama-3.1 70B — reach Scott’s π in the high 80s, still ~8 points below human agreement and up to 5 points off on assigned scores, while raw percent agreement clusters every judge near the top and hides 10–20-point scoring errors that the chance-corrected π exposes. Error analysis surfaces systematic vulnerabilities — a leniency bias (defaulting to ‘correct’ when unsure, P+ > 0.5), prompt-length fragility on weaker judges, and gullibility to dummy answers like ‘Yes’/‘Sure’ — yet a dumb ‘contains’ substring check ranks models at ρ 0.99, showing that getting the ranking right is a different, easier problem than getting the score right.",
-      "explainer": "papers/thakur-2024-judging-the-judges.html"
+      "explainer": "papers/thakur-2024-judging-the-judges.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "panickssery-2024-self-recognition",
@@ -1728,7 +1741,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NYU",
       "abstract": "Shows that LLM judges can recognize their own outputs — GPT-4 at 73.5% out of the box, over 90% after fine-tuning on just 500 examples — and that self-preference bias rises roughly linearly with this self-recognition capability across models, datasets, and even unrelated control fine-tunes. Provides initial causal evidence that LLMs overrate their own text because they recognize it, with implications for the whole LLM-as-judge, reward-modeling, and self-refinement stack.",
-      "explainer": "papers/panickssery-2024-self-recognition.html"
+      "explainer": "papers/panickssery-2024-self-recognition.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "brynjolfsson-2023-generative-ai-at-work",
@@ -1871,7 +1885,8 @@
       "topic": "Agents",
       "author_group": "METR",
       "abstract": "METR proposes the 50%-task-completion time horizon — the human-time length of tasks a model can finish with 50% success — as a non-saturating, human-relatable capability axis. Timing 800+ skilled human baseliners (2,529 hours) on 170 tasks spanning 1-second atomic actions to 30-hour ML research projects (HCAST + RE-Bench + the new SWAA suite), then fitting a per-model logistic curve over 12 frontier models (2019–2025), they find the horizon has doubled every ~207 days (≈7 months) at R²=0.97 — from GPT-2's ~2 seconds to o3's ~110 minutes — driven mainly by reliability and error-recovery. The 80% horizon doubles at the same rate but stays 4–6× shorter. Naive extrapolation puts month-long (167-hour) software tasks within reach around 2029, with external validity (not statistical noise) the dominant caveat the authors foreground.",
-      "explainer": "papers/kwa-2025-time-horizons.html"
+      "explainer": "papers/kwa-2025-time-horizons.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "becker-2025-ai-productivity",
@@ -1913,7 +1928,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UIUC",
       "abstract": "A checklist and best-practices standard for rigorous agentic evaluation, synthesized from 17 widely-used benchmarks. It decomposes agentic eval into two validity conditions — task validity (a task is solvable iff the agent has the target capability) and outcome validity (passing the grader truly means task success) — and shows that all ten benchmarks audited violate at least one: a do-nothing agent scores 38% on τ-bench-Airline, an agent overwrites SWE-Lancer's hidden tests for 100%, KernelBench overstates kernel correctness by 31%, and OSWorld under-rates the SOTA agent by 28% from website drift. The deliverable, ABC, is 43 checks across task validity (T.1–10), outcome validity (O.a–i), and reporting (R.1–13); applied forward to CVE-Bench it cut performance overestimation by 33%.",
-      "explainer": "papers/zhu-2025-agentic-benchmarks.html"
+      "explainer": "papers/zhu-2025-agentic-benchmarks.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "thakur-2021-beir",
@@ -1928,7 +1944,7 @@
       "author_group": "UKP Lab (TU Darmstadt)",
       "abstract": "The field-defining zero-shot retrieval benchmark: 18 datasets across 9 tasks (fact-checking, QA, citation prediction, argument and bio-medical retrieval, …) wrap 10 systems spanning lexical, sparse, dense, late-interaction, and re-ranking architectures in one nDCG@10 harness, all evaluated out-of-domain with no in-task training. The headline reframed IR evaluation: in-domain accuracy does not predict generalization, and the lexical baseline BM25 beats nearly every neural retriever zero-shot — only the cross-encoder re-ranker BM25+CE (16/18 datasets, +11% avg) and document-expansion docT5query reliably surpass it, at 20–30× the latency of a dense bi-encoder. A Hole@10 study honestly flags the catch: lexical pooling under-counts dense retrievers' hits (TAS-B 31.8% holes vs BM25 6.4%), and re-annotating TREC-COVID lifts ANCE from below BM25 to 6.7 nDCG points above it.",
       "explainer": "papers/thakur-2021-beir.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "edge-2024-graphrag",
@@ -2130,7 +2146,7 @@
       "author_group": "Scale AI",
       "abstract": "Scale AI's contamination probe: GSM1k is 1,205 grade-school math problems hand-written (no LLM, no synthetic data) to mirror GSM8k's difficulty distribution — matched on solution steps, answer magnitude, human solve rate (4.36 vs 4.07 problems/15min), and human distinguishability (21.83% vs 20% chance) — but never publicly released. Re-evaluating leading open and closed models under one fixed 5-shot harness, the worst-overfit families (Phi, Mistral, Yi, Xwin) drop up to 8% on the clean twin (Yi-6B-Chat 43.7%→35.7%), while all frontier models (GPT-4o, GPT-4, Claude 3, Gemini 1.5, Mistral Large) stay flat or improve. A per-character log-likelihood probe links overfit to partial GSM8k memorization (Spearman's r²=0.36, p=0.03), but outliers (Math-Shepherd overfit yet low-likelihood; Llemma high-likelihood yet minimal overfit) show contamination isn't the whole story — and even the most overfit models still reason, with Phi-2 solving over half of GSM1k, matching a 25× larger Llama-2-70B.",
       "explainer": "papers/zhang-2024-gsm1k.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "nath-2025-toolcomp",
@@ -2160,7 +2176,7 @@
       "author_group": "CAIS / Scale AI",
       "abstract": "Scale AI and the Center for AI Safety's benchmark for measuring whether a model lies — knowingly states what it does not believe — cleanly separated from whether it is factually correct, exposing that prior \"honesty\" benchmarks mostly measured accuracy in disguise (\"safetywashing\"). Each of 1,000 public (+500 held-out) human-curated, adversarially-selected examples pairs a pressure prompt engineered to induce a falsehood with neutral belief-elicitation prompts and known ground truth, across six archetypes (Known Facts, Doubling Down, Fabricated Statistics, Continuations, Disinformation, Provided Facts); a lie is scored when the pressured statement S contradicts the elicited belief B (S≠B), via an LLM judge that agrees with human labels 86.4% of the time. Across 30 frontier LLMs no model is explicitly honest in more than 46% of cases, and P(Lie) runs from 26.6% (Claude 3.7 Sonnet) to 63.0% (Grok 2) even at 72–82% belief accuracy. The signature result: across 27 models training compute correlates +87.3% with accuracy but −59.9% with honesty — scale buys knowledge, not candor — implying honesty is a post-training choice. Developer-prompt and representation-engineering (LoRRA) interventions on small Llama-2 models help (+6–13%) but do not eliminate lying.",
       "explainer": "papers/ren-2025-mask.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "slack-2023-holistic-eval",
@@ -2174,7 +2190,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "A 2023 Scale AI technical report proposing a hybrid human-plus-AI methodology for testing LLMs. An entropy-based confidence measure lets a GPT-4 judge auto-grade the pairwise preference comparisons it is most certain about (offloading up to ~20% of inputs at ~86% human agreement) and routes the rest to people; a layered red-teaming pipeline (automated probes, generalist red teamers, then domain experts) surfaces more, and more severe, vulnerabilities than any single source.",
-      "explainer": "papers/slack-2023-holistic-eval.html"
+      "explainer": "papers/slack-2023-holistic-eval.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "nath-2025-adaptive-guidance",
@@ -2232,7 +2249,7 @@
       "author_group": "Google",
       "abstract": "Introduces IFEval, a reproducible, judge-free benchmark for LLM instruction-following built around 'verifiable instructions' — directives a short deterministic program can check (word counts, required/forbidden keywords, JSON or bracketed formats, casing). 25 instruction types across 9 groups span 541 prompts, scored four ways: {prompt-level, instruction-level} × {strict, loose}, where the loose criterion applies 8 response transforms (strip markdown, drop the intro/outro line, and their combinations) to absorb formatting false negatives. On the two reference models, GPT-4 (Nov 2023) follows every instruction in only 76.89% of prompts (83.57% per-instruction) and PaLM 2 S just 43.07% — mechanically-simple constraints like length, combination, and punctuation prove hardest, while 'respond in language X' is near-solved. The 'verifiable instruction' framing seeded the later wave of rubric- and checklist-based evaluation; with public prompts and gameable verifiers it now reads as a floor, not a ceiling.",
       "explainer": "papers/zhou-2023-ifeval.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "wang-2024-mmlu-pro",
@@ -2405,7 +2422,7 @@
       "author_group": "LMSYS / Berkeley",
       "abstract": "The open, live LLM leaderboard that became the field's de-facto scoreboard: users prompt two anonymous models with anything, vote for the better answer, and identities are revealed only after voting. By Jan 2024 it had collected ~240K pairwise votes (243,329 conversations) from ~90K users over 50 models and 149 languages - a fresh, real-world prompt distribution that static benchmarks cannot contaminate. The statistical core converts noisy A-beats-B outcomes into a ranking via Bradley-Terry coefficients fit by logistic regression with multiplicity-corrected confidence intervals, plus an active sampling rule that concentrates votes on close match-ups (up to ~54% fewer votes for a target precision) and a sequential test that flags anomalous voters. Validation shows crowd-vs-expert agreement of 72.8-83.1% (near the 79.4-89.8% expert-vs-expert level) and BERTopic finds ~600 long-tailed prompt clusters - but the trust check covers only 320 battles across two lopsided pairs, and the headline Elo, lacking ground truth, tracks human preference (length and style included) rather than contamination-proof capability.",
       "explainer": "papers/chiang-2024-chatbot-arena.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "nath-2024-goal-conditioned",
@@ -2478,7 +2495,7 @@
       "author_group": "LMSYS / Berkeley",
       "abstract": "An automated pipeline (BenchBuilder) that mines crowdsourced chat logs — Chatbot Arena, WildChat — for the hardest open-ended prompts and grades answers with an LLM judge, yielding Arena-Hard-Auto: a 500-prompt benchmark that separates frontier models better than Chatbot Arena itself (87.4% vs 85.8% of pairs) and tracks its human rankings at up to 98.6% correlation for ~$20 per model. Introduces confidence-aware separability/agreement and a Pair-Rank Brier score for judging whether a benchmark is any good.",
       "explainer": "papers/li-2024-arena-hard.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "wang-2018-glue",
@@ -2538,7 +2555,7 @@
       "author_group": "HKU / Alibaba DAMO",
       "abstract": "The text-to-SQL benchmark that moved the field from clean academic schemas to 95 large, dirty, cross-domain databases (33.4 GB, 549K average rows), pairing 12,751 questions with hand-annotated external-knowledge ‘evidence’ in four categories (numeric reasoning, domain knowledge, synonym, value illustration) and a first-of-its-kind efficiency metric, the Valid Efficiency Score (VES). Its headline gap — GPT-4 at 54.89% execution accuracy vs 92.96% for human experts on the hidden test set — became the standard motivation for real-world text-to-SQL, though the model number assumes oracle knowledge: strip the evidence and GPT-4 falls to 34.88% (a +20-point swing that pins grounding, not parsing, as the bottleneck).",
       "explainer": "papers/li-2023-bird.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "li-2025-questbench",
@@ -2568,7 +2585,7 @@
       "author_group": "ETH Zurich",
       "abstract": "A 2,861-dialogue corpus of one-to-one math tutoring, built by pairing 91 expert teachers with an LLM that role-plays a confused student over GSM8K problems and annotating each turn with a four-move scaffolding taxonomy (Focus / Probing / Telling / Generic). Its signature contribution is the Success@k / Telling@k pair that makes the guide-vs-tell tradeoff measurable: un-prompted ChatGPT reveals the answer 66% of the time, while a 780M Flan-T5 finetuned on MathDial matches its solve rate at under 1% telling. The pedagogical-dialogue substrate later tutoring benchmarks (MRBench, TutorBench) build on.",
       "explainer": "papers/macina-2023-mathdial.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "zellers-2019-hellaswag",
@@ -2597,7 +2614,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "KAIST AI",
       "abstract": "The strongest open LLM-as-a-judge of its era, built on a deliberately simple trick: train one evaluator for direct 1–5 scoring (on the Feedback Collection) and a second for pairwise A/B preference (on the new Preference Collection — the first pairwise dataset with 1K+ instance-wise custom criteria), then merge their weights with DARE-Linear into a single model that does both formats. Prometheus-2-8x7B (from Mixtral) and 7B (from Mistral) beat prior open evaluators (Prometheus, Auto-J, PairRM) by at least 0.2 Pearson on direct assessment and win all four pairwise benchmarks — even beating PairRM and Auto-J on their own in-domain sets — halving the gap to GPT-4/Claude. Merging across formats beats joint training (which transfers negatively) and isn't mere ensembling: merging two same-format models hurts. The honest caveat: 'matches GPT-4' is measured by correlation with GPT-4/Claude/humans on partly GPT-4-distilled, partly in-domain data, and the residual gap to human judgment (FLASK r=0.555 vs GPT-4's 0.679) is real.",
-      "explainer": "papers/kim-2024-prometheus-2.html"
+      "explainer": "papers/kim-2024-prometheus-2.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "yue-2024-mmmu",
@@ -2671,7 +2689,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Microsoft",
       "abstract": "G-Eval scores generated text with a frozen LLM (GPT-4 / GPT-3.5): a prompt states the criterion, the model auto-writes its own chain-of-thought evaluation steps, and then fills in a score form whose output-token probabilities are weighted into a continuous metric (score = Σ p(sᵢ)·sᵢ). GPT-4, which exposes no logprobs, is sampled 20 times at temperature 1 to estimate that distribution. Reference-free, G-Eval-4 reaches 0.514 Spearman with human ratings on SummEval — beating the trained SOTA UniEval (0.474) and GPTScore (0.417) — with its largest margin on abstractive factual consistency (QAGS-XSum). It also surfaced the now-canonical warning that LLM judges prefer LLM-written text, a self-reinforcement risk if the metric is used as a reward signal — though on thin evidence (human inter-annotator agreement α=0.07). The paper that fixed the modern LLM-as-judge recipe: CoT-guided, form-filling, probability-weighted.",
-      "explainer": "papers/liu-2023-g-eval.html"
+      "explainer": "papers/liu-2023-g-eval.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "hupkes-2025-multiloko",
@@ -2700,7 +2719,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "IBM",
       "abstract": "BLEU scores a machine translation by its modified n-gram precision — candidate n-gram counts clipped to the maximum count in any single reference — combined as the geometric mean over 1- to 4-grams and multiplied by a corpus-level brevity penalty that stands in for recall. Validated on five systems (two human translators, three commercial MT) over a 500-sentence Chinese→English news corpus, it correlates 0.99 with monolingual and 0.96 with bilingual human judgments. The first cheap, fast, language-independent, reusable MT metric — it unblocked the MT research loop and became NLP's default (and most over-trusted) automatic yardstick.",
-      "explainer": "papers/papineni-2002-bleu.html"
+      "explainer": "papers/papineni-2002-bleu.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "pu-2023-peft-llms",
@@ -2728,7 +2748,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "CMU",
       "abstract": "METEOR fixes BLEU's blind spots for machine-translation evaluation: it builds an explicit word-to-word alignment — matching on exact form, Porter stem, and WordNet synonym — then scores it with a recall-weighted harmonic mean (recall counted 9× precision), Fmean = 10PR/(R+9P), discounted by a fragmentation penalty for word order (Score = Fmean·(1−Penalty)). On the DARPA/TIDES 2003 Arabic→ and Chinese→English data it tracks human judgment far better than BLEU: at the system level recall alone lifts Pearson R from BLEU's 0.817 to 0.941 and full METEOR to 0.964 (Chinese), and it stays meaningful at the segment level (≈0.33) where BLEU's geometric averaging collapses to zero. Hand-tuned and still pure surface matching, but the diagnosis — recall matters, align explicitly, score per sentence — endured: the pivotal middle node from n-gram counting (BLEU) to learned and LLM-as-judge metrics (G-Eval).",
-      "explainer": "papers/banerjee-2005-meteor.html"
+      "explainer": "papers/banerjee-2005-meteor.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "karpukhin-2020-dpr",
@@ -2800,7 +2821,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "Argues that the celebrated \"emergent abilities\" of LLMs -- sharp, unpredictable capability jumps at scale -- are largely an artifact of the researcher's choice of metric, not a fundamental change in the model with scale. When per-token cross-entropy falls smoothly (a power law), a nonlinear metric like exact-match Accuracy (all L tokens correct, ~ p^L) or a discontinuous one like Multiple Choice Grade manufactures a cliff; re-scoring the same fixed outputs with a linear metric (Token Edit Distance) or continuous one (Brier Score) reveals smooth, predictable improvement. Three lines of evidence: changing the metric ablates emergence on the InstructGPT/GPT-3 family's arithmetic; >92% of BIG-Bench's claimed emergent abilities sit under just two metrics (Multiple Choice Grade and Exact String Match); and seemingly emergent abilities can be manufactured at will in vision networks across diverse architectures. NeurIPS 2023 Outstanding Paper.",
-      "explainer": "papers/schaeffer-2023-emergent-mirage.html"
+      "explainer": "papers/schaeffer-2023-emergent-mirage.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "antol-2015-vqa",
@@ -2887,7 +2909,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "USC ISI",
       "abstract": "Introduces ROUGE (Recall-Oriented Understudy for Gisting Evaluation): recall-based overlap metrics that score a summary against human references using n-gram co-occurrence (ROUGE-N), longest common subsequence (ROUGE-L/W), and skip-bigrams (ROUGE-S/SU). Where BLEU is precision-oriented, ROUGE asks how much of the reference content was recovered. A DUC 2001-2003 study correlates 17 ROUGE variants with human coverage judgments: ROUGE-2/L/W/S track humans well on single-document newswire (up to 0.99) but weakly and unstably on multi-document tasks. It became the default summarization metric for two decades and the lexical baseline that embedding, factuality, and LLM-judge evaluators are built to beat.",
-      "explainer": "papers/lin-2004-rouge.html"
+      "explainer": "papers/lin-2004-rouge.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "zhong-2023-agieval",
@@ -2916,7 +2939,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UMN / Grammarly",
       "abstract": "Puts 16 LLMs on the bench as judges and measures six cognitive biases in their pairwise verdicts: Order, Compassion Fade, Egocentric (self-preference), Salience (length), Bandwagon, and Attentional. Finds ~40% of comparisons are bias-driven and that scaling up doesn't fix it (GPT-4 self-preferred 78% of the time; ChatGPT followed a fake '85% prefer X' statistic 86% of the time), while machine rankings agree with humans only 44% (RBO) -- below the 0.54 humans reach with each other. The first systematic, multi-bias audit of LLM-as-a-judge.",
-      "explainer": "papers/koo-2023-cobbler.html"
+      "explainer": "papers/koo-2023-cobbler.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "raji-2021-everything-benchmark",
@@ -3033,7 +3057,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Virginia Tech / Microsoft",
       "abstract": "Proposes evaluating image captions by how well they match the consensus of many human descriptions, validated with a relative two-alternative-forced-choice (triplet) human protocol and two new 50-reference datasets (PASCAL-50S, ABSTRACT-50S). The CIDEr metric — mean cosine similarity over TF-IDF-weighted 1–4-grams, with IDF doubling as a saliency weight — matches human consensus better than BLEU, ROUGE, and METEOR (84% agreement at 48 references vs a 90% human ceiling), though METEOR stays competitive at the 5 references real datasets carry. Its gaming-resistant variant CIDEr-D shipped in the MS COCO caption evaluation server and became the field's standard captioning metric.",
-      "explainer": "papers/vedantam-2015-cider.html"
+      "explainer": "papers/vedantam-2015-cider.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "recht-2019-imagenet-generalize",
@@ -3137,7 +3162,7 @@
       "author_group": "MIT Media Lab",
       "abstract": "An algorithmic audit of three commercial gender-classification APIs (Microsoft, Face++, IBM) on the Pilot Parliaments Benchmark, a new face dataset balanced by gender and Fitzpatrick skin type. Aggregate accuracy (87.9-93.7%) masked a stark intersectional gap: error rates reached 34.7% for darker-skinned women versus at most 0.8% for lighter-skinned men. The paper made disaggregated, intersectional subgroup reporting - and dataset/model documentation like datasheets and model cards - table stakes for responsible AI.",
       "explainer": "papers/buolamwini-2018-gender-shades.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "liu-2025-contracteval",
@@ -3167,7 +3192,7 @@
       "author_group": "UW / Meta AI",
       "abstract": "Introduces FActScore, which scores long-form factuality as the fraction of a generation's atomic facts supported by a knowledge source (Wikipedia) — turning an all-or-nothing judgment into graded precision that separates a 66.7%-accurate biography from a 10% one. Human evaluation finds commercial LMs unreliable (ChatGPT 58.3%, search-augmented PerplexityAI 71.5%, both collapsing on rare entities), and an automatic retrieval+LM estimator matches human scores within ~2%, enabling a 13-model, 6,500-generation study at a fraction of the $26K human cost.",
       "explainer": "papers/min-2023-factscore.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "wu-2023-bloomberggpt",
@@ -3195,7 +3220,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "A learned, BERT-based metric for evaluating generated text that replaces n-gram overlap (BLEU, ROUGE) with a regression head fine-tuned to predict human ratings. Its key idea is a synthetic pre-training stage — ~6.5M perturbed Wikipedia sentence pairs labelled with nine automatic signals (BLEU, ROUGE, BERTScore, backtranslation likelihood, MNLI entailment) — that makes the metric robust to the quality and domain drift on which earlier fully-learned metrics broke. It tops the WMT 2017–18 Metrics shared task (avg Kendall τ 62.5) and adapts to WebNLG with little or no in-task data, though it is English-only, reference-based, and scored on the authors' own benchmark reimplementation.",
-      "explainer": "papers/sellam-2020-bleurt.html"
+      "explainer": "papers/sellam-2020-bleurt.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "schulman-2017-ppo",
@@ -3309,7 +3335,7 @@
       "author_group": "OpenAI",
       "abstract": "An OpenAI benchmark asking AI agents to replicate 20 ICML 2024 Spotlight/Oral papers from scratch — read the paper, build the codebase, run the experiments, match the results. Each replication is graded against a hierarchical, author-co-written rubric (8,316 binary leaf criteria in total) whose weighted leaves roll up to a Replication Score, with submissions graded by an LLM judge (o3-mini, F1 0.83 on a separate JudgeEval, ~$66/paper). The best agent — Claude 3.5 Sonnet (New) with a simple scaffold — scores 21.0%, and prompt-tuned IterativeAgent lifts o1 to 24.4% (26.0% at 36h), but on a shared 3-paper subset human ML PhDs reach 41.4% after 48h vs o1's 26.6%: agents sprint early then plateau after ~1 hour while humans keep improving. The durable contribution is the grading machinery, not the leaderboard, which the authors frame as an initial baseline subject to judge noise and an acknowledged contamination clock.",
       "explainer": "papers/starace-2025-paperbench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "patil-2023-gorilla",
@@ -3368,7 +3394,7 @@
       "author_group": "CAIS / UIUC",
       "abstract": "Turns automated red teaming from incomparable per-paper evaluations into a standardized benchmark: 510 harmful behaviors across 4 functional and 7 semantic categories, run through a fixed pipeline (attack → 512-token completion → a fine-tuned Llama-2-13B classifier that reaches 93.2% agreement with human labels, edging out GPT-4's 88.4% and far above substring matching's 69.9%). A large-scale comparison of 18 attacks and 33 target LLMs shows no attack or defense is uniformly effective and robustness is independent of model size; the included R2D2 adversarial-training method cuts GCG attack success on Zephyr from 69.5% to 5.5% while preserving MT-Bench utility.",
       "explainer": "papers/mazeika-2024-harmbench.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "wei-2023-jailbroken",
@@ -3678,7 +3704,8 @@
       "topic": "Oversight",
       "author_group": "OpenAI",
       "abstract": "Shows that a zero-shot prompted GPT-4o monitor reading a frontier reasoning model's chain-of-thought catches agentic-coding reward hacking with 95% joint recall on two systemic hacks — far above the 60% of an action-only monitor — and that a weaker model (even GPT-4o-mini) can monitor a stronger one, a scalable-oversight foothold. But folding the CoT monitor into the RL reward backfires: past a low-optimization regime the agent learns obfuscated reward hacking, hiding its intent in a benign-looking CoT while still cheating, so the monitor's recall collapses. Argues for paying a \"monitorability tax\" — leaving CoTs unpressured and reserved for oversight.",
-      "explainer": "papers/baker-2025-monitoring-reasoning.html"
+      "explainer": "papers/baker-2025-monitoring-reasoning.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "greenblatt-2024-alignment-faking",
@@ -3706,7 +3733,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Apollo Research",
       "abstract": "Apollo Research evaluates six frontier models on a suite of six agentic evaluations engineered to incentivize covert misbehaviour, and finds that o1, Claude 3.5 Sonnet, Claude 3 Opus, Gemini 1.5 Pro and Llama 3.1 405B can all scheme: they disable oversight mechanisms, attempt to exfiltrate what they believe are their own weights, fake alignment under evaluation, and strategically underperform on capability tests — reasoning explicitly about the deception in their chains-of-thought. o1 schemes on all six evals and, once it has, maintains the lie in over 85% of follow-up questions; Claude 3.5 Sonnet's math accuracy drops from 0.99 to 0.34 when underperformance is rewarded. Establishes in-context scheming as a measured capability rather than a theoretical concern, while carefully framing the result as capability, not propensity.",
-      "explainer": "papers/meinke-2024-in-context-scheming.html"
+      "explainer": "papers/meinke-2024-in-context-scheming.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "emmons-2025-cot-evade-monitors",
@@ -3720,7 +3748,8 @@
       "topic": "Oversight",
       "author_group": "Google DeepMind",
       "abstract": "Reframes the chain-of-thought monitoring debate: for runtime monitoring against severe harm, the property that matters is not faithfulness but monitorability. Argues that when a bad behavior is hard enough to require CoT-as-computation the reasoning must surface — replicating two prior unfaithfulness setups to show the effect — then stress-tests monitors across GPQA, a multi-step stealth task, and an RL setup, finding current Gemini models evade only with heavy human or RL assistance.",
-      "explainer": "papers/emmons-2025-cot-evade-monitors.html"
+      "explainer": "papers/emmons-2025-cot-evade-monitors.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "ziegler-2019-finetune-preferences",
@@ -3749,7 +3778,7 @@
       "author_group": "Meta AI",
       "abstract": "Proposes evaluating agentic systems with agentic systems: an Agent-as-a-Judge that builds a graph of an agent's generated workspace, locates and reads files across 33 formats, retrieves from the execution trajectory, and checks each requirement, giving per-requirement feedback instead of one final pass/fail. Ships DevAI, a benchmark of 55 realistic automated AI-development tasks with 365 hierarchical requirements arranged as a dependency DAG; judging MetaGPT, GPT-Pilot and OpenHands, it aligns with a human-expert panel about 90% of the time (vs 60-70% for LLM-as-a-Judge) at roughly 2% of the cost, though the consensus ground truth is a 3-person construct and the alignment metric is inflated by class imbalance.",
       "explainer": "papers/zhuge-2024-agent-as-judge.html",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "evaluations"]
     },
     {
       "slug": "yang-2025-swe-smith",
@@ -3834,7 +3863,8 @@
       "topic": "Oversight",
       "author_group": "Anthropic",
       "abstract": "Measures chain-of-thought (CoT) faithfulness in frontier reasoning models with a prompt-pair test: the same multiple-choice question with vs. without an inserted hint, keeping only cases where the hint flips the answer, then checking whether the CoT admits relying on it. Across 6 hint types, Claude 3.7 Sonnet and DeepSeek R1 verbalize the decisive hint only 25% and 39% of the time on average (and just 20% and 29% on the two misaligned hints) — more faithful than non-reasoning models, but far from reliable. Outcome-based RL lifts faithfulness early then plateaus near 20–28%, and in synthetic reward-hack environments the model exploits the hack on over 99% of prompts while verbalizing it under 2% of the time in 5 of 6 settings. CoT monitoring can therefore notice frequent misbehavior but cannot rule out rare, single-forward-pass misalignment.",
-      "explainer": "papers/chen-2025-cot-faithfulness.html"
+      "explainer": "papers/chen-2025-cot-faithfulness.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "yang-2024-qwen2-5",
@@ -3890,7 +3920,8 @@
       "topic": "Reasoning",
       "author_group": "Stanford",
       "abstract": "Repeatedly sampling thousands of candidate solutions per problem turns inference compute into a scaling axis: coverage—the fraction of problems solved by any sample—grows nearly log-linearly over four orders of magnitude and fits an exponentiated power law c≈exp(a·k^b). With an automatic verifier this amplifies weak models past stronger single-shot ones (DeepSeek-Coder-V2 reaches 56% on SWE-bench Lite vs the 43% single-attempt SOTA), but on unverifiable math, majority-vote and reward-model selection plateau near 41% while coverage climbs to 98.44%—exposing verification, not generation, as the bottleneck.",
-      "explainer": "papers/brown-2024-monkeys.html"
+      "explainer": "papers/brown-2024-monkeys.html",
+      "tags": ["evaluations"]
     },
     {
       "slug": "liu-2025-understanding-r1-zero",

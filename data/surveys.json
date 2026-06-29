@@ -5,6 +5,12 @@
       "label": "Benchmarks",
       "color": "#ffd166",
       "description": "Core benchmark, evaluation-dataset, and agent-evaluation-environment papers — the named entries a survey of LLM & agent benchmarks would cite."
+    },
+    {
+      "id": "evaluations",
+      "label": "Evaluations",
+      "color": "#c792ea",
+      "description": "Papers whose primary or notable contribution is a novel evaluation methodology, framework, metric, protocol, or paradigm — a new *way to evaluate* models. In scope: automatic judges & metrics (LLM-as-a-judge, G-Eval, FActScore), holistic evaluation frameworks & harnesses (HELM, BIG-bench, lm-eval-harness), human-preference / pairwise protocols (Chatbot Arena, Elo, MT-Bench), evaluation paradigms (repeated-sampling/pass@k as an eval, agent-as-a-judge), and concept evaluations (chain-of-thought faithfulness, scheming/sandbagging, contamination/leakage detection, propensity). Distinct from Benchmarks (named datasets/suites/environments): a plain benchmark dataset is NOT a member unless it also introduced a genuinely new way of evaluating. Models, training/RL methods, reasoning techniques, and agent frameworks that merely get evaluated are out, even if they report many benchmarks. A paper may carry both tags when it is genuinely both a dataset and a methodological contribution."
     }
   ]
 }
