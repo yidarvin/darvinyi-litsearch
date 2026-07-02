@@ -105,7 +105,7 @@ li{margin:0 0 8px}
 .tblwrap{margin:0 calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;margin-left:auto;margin-right:auto;
   overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:11px;background:var(--panel)}
 @media(min-width:1100px){ .tblwrap{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
-.ptable{width:100%;border-collapse:collapse;font-size:13px;min-width:880px}
+.ptable{width:100%;border-collapse:collapse;font-size:13px;min-width:980px}
 .ptable th{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);font-weight:500;
   text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
 .ptable td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
@@ -120,6 +120,34 @@ li{margin:0 0 8px}
 
 footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center;margin-top:46px}
 footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- the tree ---- */
+.kingdom{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--kc);
+  border-radius:11px;padding:16px 17px;margin:16px 0}
+.khead{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.klet{width:30px;height:30px;border-radius:8px;background:var(--kc);color:#0a0a0b;font-weight:700;
+  font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.kt{min-width:0}
+.knm{font-weight:600;font-size:16px;color:var(--fg)}
+.kq{font-size:12.5px;color:var(--muted);font-style:italic}
+.kn{margin-left:auto;font-size:12px;color:var(--muted)}
+.fam{margin-top:13px}
+.fnm{font-size:11px;color:var(--kc);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.fnm .fdef{color:var(--muted);font-size:10.5px}
+.fnm .fn{margin-left:auto;color:var(--muted)}
+.tchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.tchip{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:14px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev);text-decoration:none;white-space:nowrap}
+.tchip:hover{border-color:var(--kc);color:var(--fg);text-decoration:none}
+.tchip span{color:var(--muted);margin-left:4px;font-size:9.5px}
+
+/* ---- connections ---- */
+.story{margin:28px 0;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:11px}
+.story .snum{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:6px}
+.story h3{margin:0 0 10px;font-size:17.5px}
+.story p{font-size:15px;margin-bottom:12px}
+.story p:last-child{margin-bottom:0}
+.story .fig{margin-top:16px;margin-bottom:6px}
 
 /* ---- mobile: nothing may scroll the document sideways. Wide SVGs and the
    paper table keep a legible min-width and scroll inside their own boxes. ---- */
@@ -142,8 +170,10 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <nav class="nav" id="nav">
       <a href="#corpus">corpus</a>
       <a href="#prior">prior work</a>
-      <a href="#taxonomy">taxonomy</a>
+      <a href="#taxonomy">facets</a>
+      <a href="#tree">tree</a>
       <a href="#findings">findings</a>
+      <a href="#connections">connections</a>
       <a href="#table">the 126</a>
       <a href="#method">method</a>
     </nav>
@@ -157,13 +187,13 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="kick">// paper_atlas · survey · benchmarks</div>
       <h1>The Anatomy of a Benchmark</h1>
-      <p class="dek">Every benchmark on the atlas — 126 evaluation papers spanning ImageNet (2009) to MCP-Atlas (2026) — classified along eight dimensions: what it tests, how it grades, how long the task would take a person, what the model is allowed to touch, where the items came from, and how it defends itself against contamination. Read one paper and you learn a benchmark; cross-tabulate all of them and you can watch evaluation itself evolve.</p>
+      <p class="dek">Every benchmark on the atlas — 126 evaluation papers spanning ImageNet (2009) to MCP-Atlas (2026) — classified along eight facets, then placed in a single taxonomy tree by the question each was built to answer, with lineage mined from the citation graph itself. Read one paper and you learn a benchmark; put all of them in one structure and you can see what no single paper shows — including nine connections that only appear across papers.</p>
       <div class="facts">
         <span class="fact">papers&nbsp;<b>126</b></span>
         <span class="fact">span&nbsp;<b>2009–2026</b></span>
-        <span class="fact">dimensions&nbsp;<b>8</b></span>
-        <span class="fact">grading families&nbsp;<b>6</b></span>
-        <span class="fact">horizon ladder&nbsp;<b>L1–L5</b></span>
+        <span class="fact">facets&nbsp;<b>8</b></span>
+        <span class="fact">tree&nbsp;<b>7 kingdoms · 25 families</b></span>
+        <span class="fact">deep connections&nbsp;<b>9</b></span>
         <span class="fact"><a href="/?survey=benchmarks">view the spine on the map&nbsp;↗</a></span>
       </div>
     </div>
@@ -194,9 +224,9 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
   <!-- ════════════ TAXONOMY ════════════ -->
   <section id="taxonomy">
     <div class="wrap">
-      <div class="tag">// the taxonomy</div>
+      <div class="tag">// the facets</div>
       <h2>Eight questions you can ask of any benchmark</h2>
-      <p>Each of the 126 papers was classified along eight dimensions — eight questions with closed answer sets. Two of them (<a href="#horizon">task horizon</a> and <a href="#grading">grading family</a>) do enough analytical work that they get their own definitions below.</p>
+      <p>Each of the 126 papers was classified along eight facets — eight questions with closed answer sets. Two of them (<a href="#horizon">task horizon</a> and <a href="#grading">grading family</a>) do enough analytical work that they get their own definitions below. Facets classify along independent axes; they don't <em>place</em> — for the single-address taxonomy, see <a href="#tree">the tree</a>.</p>
 
       <div class="cards">
         <div class="card"><div class="nm">1 · domain</div><div class="q">What capability does it chiefly measure?</div><div class="chips">@@CHIPS_DOMAIN@@</div></div>
@@ -223,6 +253,20 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="fig">@@CHART_GRLADDER@@</div>
       <p class="figcap"><b>The grading-cost ladder.</b> Ordered by what it costs to grade one item. The reliability annotations are from the papers themselves: MT-Bench measured GPT-4-judge/human agreement at 85% (humans agree with each other 81%); PaperBench's judge reaches F1 0.83 against expert grading; the ABC audit found unsound graders in 7 of 10 agentic benchmarks it checked.</p>
       <p>Two structural notes. First, the left end of the ladder is what the RL-with-verifiable-rewards era trains on — a benchmark whose grader is mechanical is also a reward function, which means the most verifiable benchmarks are precisely the ones models are being optimized against (Goodhart exposure is a property of the grading family, not the dataset). Second, the model-graded middle created a regress the field is still funding: judges are now benchmarked by meta-benchmarks (JudgeBench, RewardBench), and rubric-based grading is the current attempt to make judge error inspectable by decomposing it into checkable criteria.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ THE TREE ════════════ -->
+  <section id="tree">
+    <div class="wrap">
+      <div class="tag">// the tree</div>
+      <h2>A taxonomy by evolutionary role</h2>
+      <p>Sorting benchmarks by what they test reproduces the domain facet; sorting them by <em>why they exist</em> produces a different — and more honest — structure. The placement question used here: <strong>“What question was this benchmark built to answer, in the ecosystem of models and benchmarks that existed at its birth?”</strong> Judged from each paper's own problem statement, that question has seven answers — seven kingdoms — and every one of the 126 papers sits at exactly one address.</p>
+      <div class="fig">@@CHART_TREE@@</div>
+      <p class="figcap"><b>The tree.</b> Seven kingdoms, twenty-five families, 126 leaves. Bars are family sizes.</p>
+      <p>The tree's shape is itself a finding. Only <strong>56 of 126 papers (44%) are capability probes</strong> — the thing "benchmark" is usually assumed to mean — and the share is falling: 64% of pre-2021 entries asked "can the model do X?", against 35% of 2024–25 entries. The majority of the modern corpus is doing something more reflexive: auditing other measurements (15), rehearsing deployments (23), probing hazards (14), building walls designed not to fall (7), manufacturing training signal (3), or working out how to evaluate at all (8). Benchmarking has become an ecosystem with predators, parasites, and decomposers — not a row of thermometers.</p>
+      <p>Placement is by role at birth, not later use — so HellaSwag sits in <em>de-saturation sequels</em> (it was built to resurrect a solved benchmark, and its adversarial-filtering construction matters more than its commonsense content — see <a href="#connections">connection 3</a>), SWE-bench sits in <em>program synthesis</em> (the agents came later), and GSM8K sits in <em>closed-form reasoning</em> even though its deepest legacy is the verifier paradigm (<a href="#connections">connection 7</a>). Hover any chip for the one-line placement reason; every chip links to the paper's explainer.</p>
+      @@TREE_BLOCKS@@
     </div>
   </section>
 
@@ -284,6 +328,70 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     </div>
   </section>
 
+  <!-- ════════════ DEEP CONNECTIONS ════════════ -->
+  <section id="connections">
+    <div class="wrap">
+      <div class="tag">// connections</div>
+      <h2>Nine things no single paper shows</h2>
+      <p>These were mined by tracing the corpus's internal citation graph (598 edges among the 126) against the full text of every explainer, then checking each claim's quotes and citation-structure assertions mechanically. Each is a connection you cannot see from inside any one paper.</p>
+
+      <div class="story"><div class="snum">connection 01 · the twin transplant</div>
+        <h3>GSM1k is ImageNetV2 re-run on LLM math — and the method's flaw transplanted with it, sign-flipped</h3>
+        <p><a href="/papers/zhang-2024-gsm1k.html">GSM1k</a> (2024) is <a href="/papers/recht-2019-imagenet-generalize.html">Recht et al.'s 2019 CV experiment</a> — rebuild a benchmark's test set by replicating its creation process, measure the drop — transplanted to LLM arithmetic five years later; its explainer says the move is “borrowed straight” from the CIFAR/ImageNet rebuilds. What transplanted along with the method is its central hazard: a reconstructed twin never lands exactly on the original distribution. But the bias flipped sign in transit. ImageNetV2's construction mismatch <em>inflated</em> its headline drop — Engstrom et al. later showed roughly two-thirds of it was artifact — while GSM1k's twin came out slightly <em>easier</em> than GSM8k, so its measured overfitting is plausibly understated.</p>
+        <p>Same method, same flaw, opposite error bars — and, strikingly, the same meta-verdict about two different eras: rankings mostly transfer, progress is mostly real, and inflation concentrates in specific model families rather than the frontier.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 02 · the audit shadow</div>
+        <h3>Every gravity well acquires an audit — and the lag is collapsing</h3>
+        <div class="fig">@@CHART_AUDITSHADOW@@</div>
+        <p>Every benchmark that mattered in this corpus eventually acquired an audit, twin, or corrective sequel — and the wait has collapsed by an order of magnitude: ImageNet went unaudited for 10 years; MMLU, GSM8K, and HumanEval got 2–4; MT-Bench got one; MultiChallenge got its modality twin within months. A benchmark's expected unaudited lifetime is now shorter than a typical review-to-camera-ready cycle, which means every headline number carries a known depreciation schedule.</p>
+        <p>The mechanism of the shrink is visible in who runs the audits: early ones were third-party forensics (Berkeley auditing ImageNet), but by 2024–25 the shadow moved in-house and turned pre-emptive — OpenAI hardened its own <a href="/papers/wei-2024-simpleqa.html">SimpleQA</a> into <a href="/papers/wei-2025-browsecomp.html">BrowseComp</a>, LMSYS distilled its own Arena into <a href="/papers/li-2024-arena-hard.html">Arena-Hard</a>, Scale extended its own <a href="/papers/sirdeshmukh-2025-multichallenge.html">MultiChallenge</a> into audio. Quality control became contemporaneous with publication.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 03 · the filter-model trap</div>
+        <h3>HellaSwag's construction step became the 2024–25 standard — its documented failure mode got re-derived from scratch each time</h3>
+        <p>Filter-by-model-failure — keep only items a reference model gets wrong — is <a href="/papers/zellers-2019-hellaswag.html">HellaSwag</a>'s 2019 adversarial-filtering recipe, and it is the load-bearing construction step of three flagship evals in three domains: <a href="/papers/wang-2024-mmlu-pro.html">MMLU-Pro</a> drops questions that 5+ of an 8-model panel answer correctly, <a href="/papers/phan-2025-hle.html">HLE</a> admits an item only if frontier models already fail it (70,000+ logged attempts), and <a href="/papers/li-2024-arena-hard.html">Arena-Hard</a>'s BenchBuilder keeps only prompts a GPT-4 annotator scores ≥6. The lineage is contiguous in the citation graph — MMLU-Pro and Arena-Hard cite HellaSwag, HLE cites MMLU-Pro — yet none of the three names adversarial filtering.</p>
+        <p>The method propagated while its caveat got rediscovered independently each time: difficulty defined against a reference model is not intrinsic difficulty, so each benchmark is guaranteed to be climbed by anything stronger than its filter. HellaSwag's own ablation said so in 2019, and each descendant aged exactly as predicted — HellaSwag's “100,000 GPU-years to human level” fell in four years; HLE's sub-10% launch scores were tripled within months.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 04 · the pendulum forks</div>
+        <h3>Web-agent evaluation swings between realism and gradability — and on the third swing it split in two</h3>
+        <p>Each paper in the web lineage names the previous pole's grading failure as its motivation. <a href="/papers/deng-2023-mind2web.html">Mind2Web</a> (2023) buys exact-match gradability with static snapshots and pays in false negatives; <a href="/papers/he-2024-webvoyager.html">WebVoyager</a> (2024) swings to the live web with a GPT-4V judge and pays in irreproducibility and judge error. Then the retreat to verifiability happens <em>twice, in incompatible directions</em>: <a href="/papers/xie-2024-osworld.html">OSWorld</a> keeps a live machine but gives up the open web (a controlled VM with per-task execution checks), while <a href="/papers/wei-2025-browsecomp.html">BrowseComp</a> keeps the open web but gives up realistic tasks (questions inverted until the answer is a short verifiable string).</p>
+        <p>The pendulum doesn't return to one point — it forks, each branch sacrificing a different slice of realism. That fork is why GUI-agent evaluation and deep-research evaluation, both descended from a WebVoyager-shaped ancestor, no longer look related.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 05 · grader recursion</div>
+        <h3>The same judging machinery scores ~90% at verdicts and 11% at explanations</h3>
+        <p><a href="/papers/zhuge-2024-agent-as-judge.html">Agent-as-a-Judge</a>'s machinery — hierarchical requirements checked one by one by an agentic judge that reads the workspace — was absorbed as <a href="/papers/starace-2025-paperbench.html">PaperBench</a>'s rubric-tree grading infrastructure (which cites it). Then <a href="/papers/deshpande-2025-trail.html">TRAIL</a> (which also cites it) inverted the paradigm: the judge became the benchmarked system, asked not to check requirements but to localize faults inside real agent traces — and the ~90% human-alignment success story collapsed to 11% joint accuracy.</p>
+        <p>Verdict-checking and fault-explanation look like the same skill from a distance. The citation chain documents the field discovering, one paper at a time, that they are not — with direct implications for how much rubric-graded scores (finding 01) can be trusted when the rubric items get harder than the checkable kind.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 06 · the rubric fork</div>
+        <h3>Per-task rubrics were invented twice in three months — and the two branches disagree about what the expensive part buys</h3>
+        <p>2025's rubric wave is usually told as one movement; the citation graph splits it. <a href="/papers/starace-2025-paperbench.html">PaperBench</a> (April) and <a href="/papers/arora-2025-healthbench.html">HealthBench</a> (May) are genuine descent — linked papers, same lab, expert-written per-instance criteria (author-co-written rubric trees; 262 physicians). <a href="/papers/du-2025-deepresearch-bench.html">DeepResearch Bench</a>'s RACE (June) cites neither and is cited by neither: an independent convergence on per-task criteria that resolved the cost problem the opposite way — the judge writes its own criteria at evaluation time.</p>
+        <p><a href="/papers/sharma-2025-researchrubrics.html">ResearchRubrics</a> then ran the experiment that adjudicates the fork: letting an LLM augment expert rubrics <em>degrades</em> human alignment by 15–20%, while RACE's own ablation concedes its adaptive judge-written criteria buy only ~3 points over static ones. Expert-grounded versus judge-generated rubrics is now a falsifiable methodological fight between rival benchmarks — grader design has become an experimental science with adversaries.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 07 · the benchmark is the reward</div>
+        <h3>The training flip was there from the start — and contamination travels through graders, not just test sets</h3>
+        <p>The canonical benchmarks were never eval-only artifacts. <a href="/papers/cobbe-2021-gsm8k.html">GSM8K</a> shipped as verifier-training infrastructure — a 7.5K train split plus a learned verifier, with the launch paper already documenting the verifier being reward-hacked. <a href="/papers/chen-2021-codex.html">HumanEval</a> arrived inside the Codex training paper with unit tests doubling as a sample-selection oracle; <a href="/papers/jimenez-2023-swe-bench.html">SWE-bench</a> shipped 19K training instances and its own fine-tunes. When <a href="/papers/zhang-2024-gsm1k.html">GSM1k</a> audited the ecosystem, its most telling overfit case was contaminated through the <em>grader lineage</em> — a process-reward model leaking reasoning chains — with no test-set leak an n-gram checker could see.</p>
+        <p>Validity then had to be re-purchased, each time by moving the grader further from the training corpus: <a href="/papers/liu-2023-evalplus.html">EvalPlus</a> densified HumanEval's tests 80×; <a href="/papers/deng-2025-swe-bench-pro.html">SWE-bench Pro</a> bought commercial code models could never have seen — and its ~25–30-point public→commercial collapse, same models, same harness, is the field's cleanest single measurement of what training against a public grader family costs. By 2025 the flip is doctrine: <a href="/papers/nathani-2025-mlgym.html">MLGym</a>'s complaint about prior benchmarks is that they <em>can't</em> be trained on, and <a href="/papers/stojanovski-2025-reasoning-gym.html">Reasoning Gym</a> publishes its reward function. Goodhart doesn't disappear under procedural generation — it migrates into the grader's blind spots.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 08 · gravity selects portability</div>
+        <h3>APPS was bigger, denser-tested, and tiered — HumanEval got the 43 citations. Wells get renovated, never abandoned</h3>
+        <p><a href="/papers/hendrycks-2021-apps.html">APPS</a> and <a href="/papers/chen-2021-codex.html">HumanEval</a> are same-year, mutually-citing, execution-graded code benchmarks; APPS was 60× larger with twice the tests per problem. HumanEval became this corpus's biggest gravity well (43 in-corpus citations to APPS's 12) because what the field reused was the <em>measurement kit</em> — the unbiased pass@k estimator plus 164 cheap, self-contained tasks scoring in the discriminative range — while APPS's grader vocabulary failed to travel (its lenient metric flattered; its strict metric floored at 0.00% on the whole Competition tier). The clincher: when <a href="/papers/liu-2023-evalplus.html">EvalPlus</a> proved HumanEval's thin tests inflate pass@k by up to ~29%, the field patched HumanEval in place rather than migrate to APPS — which already had denser tests.</p>
+        <p>The pattern repeats one generation down: <a href="/papers/deng-2025-swe-bench-pro.html">SWE-bench Pro</a>'s forkable Docker harness is already substrate for third-generation benchmarks, while <a href="/papers/miserendino-2025-swe-lancer.html">SWE-Lancer</a>'s more rigorous but unforkable grader (triple-verified end-to-end tests on one proprietary repo) has no coding descendants — its <em>framing</em> (real-dollar difficulty) instead seeded the economic-rehearsal family (<a href="/papers/patwardhan-2025-gdpval.html">GDPval</a>, <a href="/papers/mazeika-2025-rli.html">RLI</a>, <a href="/papers/yi-2025-upbench.html">UpBench</a>). Benchmark genes travel through cheap reproducible harnesses; the ecosystem structurally selects reproducibility over rigor.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 09 · the noiseless human</div>
+        <h3>AlpacaFarm proved a simulated human must be noisy to be faithful — the lineage then built noiseless ones</h3>
+        <p><a href="/papers/dubois-2023-alpacafarm.html">AlpacaFarm</a>'s deepest result is that fidelity means reproducing human <em>imperfection</em>: it rejected a single GPT-4 judge with higher raw agreement in favor of 13 disagreeing judges plus deliberate label noise, because only the noisy simulator reproduces reward over-optimization — the phenomenon the sandbox existed to study. The later simulated humans quietly inverted this. <a href="/papers/macina-2023-mathdial.html">MathDial</a>'s simulated student errs in GPT-3.5's failure modes, not children's; by <a href="/papers/elfeki-2026-hil-bench.html">HiL-Bench</a> (2026) the simulated collaborator is explicitly an oracle — instant, correct, and free — which its own authors concede makes every reported number a ceiling-free floor.</p>
+        <p>A fake human that never lies, stalls, or charges cannot surface the failure modes that only human noise reveals — the exact category of blindness AlpacaFarm demonstrated in 2023. The founding fidelity lesson of the simulated-human lineage was traded away, one convenience at a time.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════ THE 126 ════════════ -->
   <section id="table">
     <div class="wrap">
@@ -292,6 +400,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p>The full classified corpus. Filter by any dimension; every name links to that paper's explainer. (Horizon: L1 &lt;1 min · L2 1–30 min · L3 30 min–1 day · L4 1 day–2 wks.)</p>
       <div class="filters">
         <input id="fq" type="search" placeholder="search papers…" autocomplete="off">
+        <select id="fk"><option value="">kingdom: all</option>@@KING_OPTS@@</select>
         <select id="fd"><option value="">domain: all</option>@@DOM_OPTS@@</select>
         <select id="fg"><option value="">grading: all</option>@@GR_OPTS@@</select>
         <select id="fc"><option value="">horizon: all</option>@@LEV_OPTS@@</select>
@@ -302,7 +411,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     </div>
     <div class="tblwrap">
       <table class="ptable">
-        <thead><tr><th>paper</th><th>domain</th><th>horizon</th><th>grading</th><th>shape</th><th>tools</th><th>what it is</th></tr></thead>
+        <thead><tr><th>paper</th><th>family</th><th>domain</th><th>horizon</th><th>grading</th><th>shape</th><th>tools</th><th>what it is</th></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
@@ -315,6 +424,8 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <h2>How this was built, and what to distrust</h2>
       <p><strong>Corpus.</strong> The 126 papers are the atlas's <span class="mono">benchmarks</span> survey tag — the same set you see ringed on the <a href="/?survey=benchmarks">timeline map</a>. Membership follows the tag rubric (benchmark as headline contribution), applied when each paper joined the atlas. The corpus over-represents what the atlas covers deeply (LLM, agent, and safety evaluation, 2023–2026) and thins out toward classic CV/NLU; era-level trends should be read as trends <em>within this kind of corpus</em>, not a census of all benchmarks ever built.</p>
       <p><strong>Classification.</strong> Each paper was classified from its atlas explainer (and the paper itself where the explainer underdetermined a dimension) by a language-model pipeline: one full-schema pass over every paper, then a fully independent second pass re-classifying the six judgment-heavy dimensions with different paper groupings. The two passes agreed on 94.8% of the 750 compared values; all 39 disagreements (on 32 papers) were adjudicated by a third read of the source text. Saturation was the noisiest dimension (16 of 39 conflicts) — treat individual saturation calls as softer than the aggregate.</p>
+      <p><strong>Tree placement.</strong> Each paper's kingdom/family address was assigned by the same two-pass protocol, judging role-at-birth from the paper's own problem statement, with lineage restricted to citation edges that exist inside the corpus (598 edges among the 126). The independent second pass covered 78 of 126 papers before rate-limiting; it disagreed on 5 placements, each re-adjudicated against the source text. Borderline calls worth knowing: ResearchRubrics and DeepResearch Bench sit in <em>research execution</em> rather than <em>grader benchmarks</em> (their headline is agent evaluation, their machinery is rubric methodology); MultiNLI sits in <em>de-saturation sequels</em> as SNLI's coverage-restoring successor; HellaSwag's placement is argued in the tree section itself.</p>
+      <p><strong>Connections.</strong> The nine connection stories were mined by lens-directed search over the corpus and its internal citation graph, then verified two ways: every quotation was machine-checked against the explainer texts (all anchor phrases verified; elided quotes marked), and every citation-structure assertion ("X cites Y", "X and Y share no edge") was checked mechanically against the graph. Claims that survived only partially were corrected or dropped. Numbers inside the stories are the papers' own.</p>
       <p><strong>Known soft spots.</strong> (1) Task-horizon rungs are estimates of the <em>typical</em> instance from the papers' own task descriptions; only a few papers measure human time. (2) Saturation reflects the frontier scores quoted in each explainer at the time it was written (through mid-2026) — it ages. (3) <span class="mono">grading_primary</span> records the headline metric only; many benchmarks ship secondary graders. (4) Item counts are approximate. (5) One dimension a future pass should add: whether each benchmark's grader was itself adversarially audited — the ABC finding suggests that column would be mostly empty.</p>
       <p>The classification data is embedded in this page (view source) and the tags live in the atlas's <span class="mono">papers.json</span>; both regenerate deterministically from the corpus.</p>
     </div>
@@ -354,7 +465,7 @@ const spy = new IntersectionObserver((entries) => {
     }
   });
 }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-['corpus','prior','taxonomy','findings','table','method'].forEach(id => {
+['corpus','prior','taxonomy','tree','findings','connections','table','method'].forEach(id => {
   const el = document.getElementById(id); if (el) spy.observe(el);
 });
 links.forEach(a => a.addEventListener('click', (e) => {
@@ -368,17 +479,19 @@ const DATA = @@TABLE_JSON@@;
 const COLORS = @@JS_COLORS@@;
 const LABELS = @@JS_LABELS@@;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const F = { q: document.getElementById('fq'), d: document.getElementById('fd'), g: document.getElementById('fg'),
-            c: document.getElementById('fc'), sh: document.getElementById('fsh') };
+const F = { q: document.getElementById('fq'), k: document.getElementById('fk'), d: document.getElementById('fd'),
+            g: document.getElementById('fg'), c: document.getElementById('fc'), sh: document.getElementById('fsh') };
 function render(){
   const q = F.q.value.trim().toLowerCase();
   const rows = DATA.filter(r =>
+    (!F.k.value || r.k === F.k.value) &&
     (!F.d.value || r.d === F.d.value) && (!F.g.value || r.g === F.g.value) &&
     (!F.c.value || r.c === F.c.value) && (!F.sh.value || r.sh === F.sh.value) &&
-    (!q || (r.n + ' ' + r.s + ' ' + r.o).toLowerCase().includes(q)));
+    (!q || (r.n + ' ' + r.s + ' ' + r.o + ' ' + r.f).toLowerCase().includes(q)));
   document.getElementById('tcount').textContent = rows.length + ' / ' + DATA.length;
   document.getElementById('tbody').innerHTML = rows.map(r =>
     '<tr><td class="pname"><a href="/papers/' + r.s + '.html">' + esc(r.n) + '</a><span class="yr">' + r.y + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.k[r.k] || '') + '">' + esc(LABELS.f[r.f] || r.f) + '</span></td>' +
     '<td><span class="pill">' + esc(LABELS.d[r.d] || r.d) + '</span></td>' +
     '<td><span class="pill" style="color:' + (COLORS.c[r.c] || '') + '">' + esc(LABELS.c[r.c] || r.c) + '</span></td>' +
     '<td><span class="pill" style="color:' + (COLORS.g[r.g] || '') + '">' + esc(LABELS.g[r.g] || r.g) + '</span></td>' +

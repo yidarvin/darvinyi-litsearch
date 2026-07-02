@@ -224,6 +224,54 @@ chips = {
     'sat': chip_counts(lambda r: r['saturation'], {'saturated': 'saturated', 'closing': 'closing', 'open': 'open', 'not-applicable': 'n/a'}, SAT_C),
 }
 
+# ---------------- the tree: kingdoms / families ----------------
+KING_C = {'A-capability': '#2dd4bf', 'B-audit': '#f472b6', 'C-frontier-walls': '#f87171',
+          'D-deployment': '#ffd166', 'E-hazard': '#fb923c', 'F-reward-factories': '#c084fc',
+          'G-meta-evaluation': '#22d3ee'}
+KING_L = {
+    'A-capability': ('capability probes', 'Can models do X yet?'),
+    'B-audit': ('audit instruments', 'Is our measurement lying?'),
+    'C-frontier-walls': ('frontier walls', 'Can we build something that stays unsolved?'),
+    'D-deployment': ('deployment rehearsals', 'What happens when we ship it into this job?'),
+    'E-hazard': ('hazard probes', 'What could go wrong?'),
+    'F-reward-factories': ('reward factories', 'Can the benchmark generate its own training signal?'),
+    'G-meta-evaluation': ('meta-evaluation & protocols', 'How should we evaluate at all?'),
+}
+FAM_L = {
+    'A1-perception-parsing': ('A1 · perception & parsing', 'recognize, parse, entail, retrieve'),
+    'A2-knowledge-exams': ('A2 · knowledge & exams', 'recall and apply knowledge under exam conditions'),
+    'A3-closed-form-reasoning': ('A3 · closed-form reasoning', 'math, logic, puzzles with checkable answers'),
+    'A4-program-synthesis': ('A4 · program synthesis', 'write, repair, and reason about code'),
+    'A5-embodied-operation': ('A5 · embodied operation', 'operate an interactive environment'),
+    'A6-tool-orchestration': ('A6 · tool orchestration', 'select and sequence external tools & APIs'),
+    'A7-communication': ('A7 · communication', 'follow instructions, converse, clarify'),
+    'A8-research-execution': ('A8 · research execution', 'conduct open-ended knowledge work end-to-end'),
+    'B1-contamination-twins': ('B1 · contamination twins', 'rebuilt withheld twins that measure overfitting'),
+    'B2-grader-hardening': ('B2 · grader hardening', 'fix a broken grader of an existing benchmark'),
+    'B3-desaturation-sequels': ('B3 · de-saturation sequels', 'same construct, headroom restored'),
+    'B4-construct-audits': ('B4 · construct audits', 'expose that a score means something else'),
+    'C1-summit-exams': ('C1 · summit exams', 'expert-authored, maximally hard, static'),
+    'C2-inverse-verification': ('C2 · inverse verification', 'hard to solve, engineered easy to verify'),
+    'C3-living-walls': ('C3 · living walls', 'unsaturable by construction — refresh by design'),
+    'D1-economic-rehearsals': ('D1 · economic rehearsals', 'real paid work, dollar-weighted'),
+    'D2-occupational-probes': ('D2 · occupational probes', 'professional-domain competence suites'),
+    'D3-collaboration-rehearsals': ('D3 · collaboration rehearsals', 'the human stays in the loop'),
+    'E1-attack-surfaces': ('E1 · attack surfaces', 'jailbreaks, injections, agent hijacking'),
+    'E2-dangerous-capability-propensity': ('E2 · dangerous capability & propensity', 'hazardous knowledge, deception, unsafe preference'),
+    'E3-values-judgment': ('E3 · values & judgment', 'moral, ethical, social judgment quality'),
+    'F1-reward-factories': ('F1 · reward factories', 'generators and sandboxes meant to be trained on'),
+    'G1-panoramas': ('G1 · panoramas', 'holistic aggregations of the eval landscape'),
+    'G2-preference-protocols': ('G2 · preference protocols', 'arenas, Elo, pairwise judging as the contribution'),
+    'G3-grader-benchmarks': ('G3 · grader benchmarks', 'judge protocols and error taxonomies'),
+}
+KINGS = list(KING_L)
+by_family = collections.defaultdict(list)
+for r in merged:
+    by_family[r['family']].append(r)
+for f in by_family:
+    by_family[f].sort(key=lambda r: (r['year'], r['short'].lower()))
+
+
 # ---------------- table data ----------------
 tbl = []
 for r in sorted(merged, key=lambda r: (-r['year'], r['short'].lower())):
@@ -231,6 +279,7 @@ for r in sorted(merged, key=lambda r: (-r['year'], r['short'].lower())):
         's': r['slug'], 'n': r['short'], 'y': r['year'],
         'd': r['domain_primary'], 'g': r['grading_primary'], 'c': r['complexity'].split('-')[0],
         'sh': r['task_shape'], 't': '·'.join(TOOL_L[t] for t in r['tool_access']),
+        'k': r['kingdom'], 'f': r['family'],
         'o': r['one_line'],
     })
 TABLE_JSON = json.dumps(tbl, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
@@ -239,13 +288,113 @@ DOM_OPTS = ''.join(f"<option value='{k}'>{v}</option>" for k, v in sorted(DOM_L.
 GR_OPTS = ''.join(f"<option value='{k}'>{GR_L[k]}</option>" for k in GR)
 LEV_OPTS = ''.join(f"<option value='{l.split('-')[0]}'>{LEV_L[l]}</option>" for l in LEV[:4])
 SH_OPTS = ''.join(f"<option value='{k}'>{SH_L[k]}</option>" for k in SHAPES)
+KING_OPTS = ''.join(f"<option value='{k}'>{KING_L[k][0]}</option>" for k in KINGS)
 
 # colour maps for the table renderer
 JS_COLORS = json.dumps({'d': {k: '#9aa0aa' for k in DOM_L}, 'g': GR_C,
                         'c': {l.split('-')[0]: LEV_C[l] for l in LEV},
-                        'sh': SH_C}, separators=(',', ':'))
-JS_LABELS = json.dumps({'d': DOM_L, 'g': GR_L, 'c': {l.split('-')[0]: LEV_L[l] for l in LEV}, 'sh': SH_L},
+                        'sh': SH_C, 'k': KING_C}, separators=(',', ':'))
+JS_LABELS = json.dumps({'d': DOM_L, 'g': GR_L, 'c': {l.split('-')[0]: LEV_L[l] for l in LEV}, 'sh': SH_L,
+                        'f': {f: FAM_L[f][0] for f in FAM_L}},
                        ensure_ascii=False, separators=(',', ':'))
+
+def tree_skeleton_svg():
+    fams = [f for k in KINGS for f in FAM_L if f[0] == k[0]]
+    row_h, top = 25, 16
+    H = top + len(fams) * row_h + 18
+    W = 860
+    kx, fx = 250, 520
+    out = [f"<svg viewBox='0 0 {W} {H}' xmlns='http://www.w3.org/2000/svg' role='img'>"]
+    rooty = top + len(fams) * row_h / 2
+    out.append(f"<text x='18' y='{rooty + 4:.0f}' font-size='12.5' font-weight='700' fill='{sc.FG}' {sc.MONO}>126</text>")
+    out.append(f"<text x='18' y='{rooty + 20:.0f}' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>benchmarks</text>")
+    y = top
+    for k in KINGS:
+        kf = [f for f in fams if f[0] == k[0]]
+        n = sum(len(by_family[f]) for f in kf)
+        y0, y1 = y, y + len(kf) * row_h
+        ky = (y0 + y1) / 2
+        col = KING_C[k]
+        out.append(f"<path d='M62 {rooty:.0f} C 120 {rooty:.0f} 120 {ky:.0f} {kx - 96} {ky:.0f}' fill='none' stroke='{sc.LINE}' stroke-width='1.4'/>")
+        out.append(f"<text x='{kx - 88}' y='{ky + 4:.0f}' font-size='11.5' font-weight='700' fill='{col}' {sc.MONO}>{KING_L[k][0]}</text>")
+        out.append(f"<text x='{kx + 116}' y='{ky + 4:.0f}' font-size='10' fill='{sc.MUTED}' {sc.MONO}>{n}</text>")
+        for f in kf:
+            fy = y + row_h / 2
+            out.append(f"<path d='M{kx + 136} {ky:.0f} C {kx + 190} {ky:.0f} {kx + 190} {fy:.0f} {fx - 12} {fy:.0f}' fill='none' stroke='{sc.LINE}' stroke-width='1'/>")
+            cnt = len(by_family[f])
+            out.append(f"<text x='{fx}' y='{fy + 3.5:.0f}' font-size='10.5' fill='{sc.DIM}' {sc.MONO}>{FAM_L[f][0]}</text>")
+            out.append(f"<rect x='{fx + 250}' y='{fy - 5:.0f}' width='{cnt * 5.5:.0f}' height='10' rx='2.5' fill='{col}' fill-opacity='0.55'/>")
+            out.append(f"<text x='{fx + 256 + cnt * 5.5:.0f}' y='{fy + 3.5:.0f}' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>{cnt}</text>")
+            y += row_h
+    out.append('</svg>')
+    return ''.join(out)
+charts['tree'] = tree_skeleton_svg()
+
+def tree_blocks():
+    out = []
+    for k in KINGS:
+        col = KING_C[k]
+        name, q = KING_L[k]
+        kf = [f for f in FAM_L if f[0] == k[0]]
+        n = sum(len(by_family[f]) for f in kf)
+        fams_html = []
+        for f in kf:
+            chips = ''.join(
+                f"<a class='tchip' href='/papers/{r['slug']}.html' title='{html.escape(r.get('placement_reason', ''), quote=True)}'>{html.escape(r['short'])}<span>’{str(r['year'])[2:]}</span></a>"
+                for r in by_family[f])
+            lbl, dfn = FAM_L[f]
+            fams_html.append(f"<div class='fam'><div class='fnm mono'>{lbl} <span class='fdef'>— {dfn}</span><span class='fn'>{len(by_family[f])}</span></div><div class='tchips'>{chips}</div></div>")
+        out.append(f"<div class='kingdom' style='--kc:{col}'><div class='khead'><span class='klet mono'>{k[0]}</span><div class='kt'><div class='knm'>{name}</div><div class='kq'>{q}</div></div><span class='kn mono'>{n}</span></div>{''.join(fams_html)}</div>")
+    return ''.join(out)
+
+# audit-shadow timeline (verified pairs from the connections pass)
+AUDIT_PAIRS = [
+    ('ImageNet', 2009, 'ImageNetV2', 2019, 'fresh twin'),
+    ('GLUE', 2018, 'SuperGLUE', 2019, 'harder sequel'),
+    ('Natural Questions', 2019, 'SimpleQA', 2024, 'adversarial'),
+    ('MMLU', 2020, 'MMLU-Pro', 2024, 'filtered rebuild'),
+    ('HumanEval', 2021, 'EvalPlus', 2023, 'test audit'),
+    ('HumanEval', 2021, 'LiveCodeBench', 2024, 'contamination'),
+    ('GSM8K', 2021, 'GSM1k', 2024, 'private twin'),
+    ('CUAD', 2021, 'ContractEval', 2025, 're-audit'),
+    ('MT-Bench', 2023, 'Arena-Hard', 2024, 'separability'),
+    ('LegalBench', 2023, 'LegalBench-RAG', 2024, 'inversion'),
+    ('GPQA', 2023, 'HLE', 2025, 'replacement'),
+    ('IFEval', 2023, 'AdvancedIF', 2025, 'harder sequel'),
+    ('SWE-bench', 2023, 'SWE-Bench Pro', 2025, 'hardening'),
+    ('SimpleQA', 2024, 'BrowseComp', 2025, 'same-lab'),
+    ('MultiChallenge', 2025, 'Audio MultiChallenge', 2025, 'modality twin'),
+    ('MCP-Universe', 2025, 'MCP-Atlas', 2026, 'verifier audit'),
+]
+def audit_shadow_svg():
+    W = 960
+    row_h, top, pad_l, pad_r = 25, 34, 200, 250
+    H = top + len(AUDIT_PAIRS) * row_h + 40
+    y0, y1 = 2008.5, 2026.5
+    def X(yr):
+        return pad_l + (yr - y0) / (y1 - y0) * (W - pad_l - pad_r)
+    out = [f"<svg viewBox='0 0 {W} {H}' xmlns='http://www.w3.org/2000/svg' role='img'>"]
+    for yr in range(2009, 2027, 2):
+        x = X(yr)
+        out.append(f"<line x1='{x:.0f}' y1='{top - 12}' x2='{x:.0f}' y2='{H - 30}' stroke='{sc.LINE}' stroke-width='1'/>")
+        out.append(f"<text x='{x:.0f}' y='{top - 18}' text-anchor='middle' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>{yr}</text>")
+    for i, (t, ty, a, ay, mode) in enumerate(AUDIT_PAIRS):
+        y = top + i * row_h + row_h / 2
+        lag = ay - ty
+        col = '#f87171' if lag >= 5 else ('#fb923c' if lag >= 2 else '#4ade80')
+        x1, x2 = X(ty), X(ay)
+        out.append(f"<text x='{pad_l - 10}' y='{y + 3.5:.0f}' text-anchor='end' font-size='10' fill='{sc.DIM}' {sc.MONO}>{t}</text>")
+        out.append(f"<circle cx='{x1:.0f}' cy='{y:.0f}' r='3.5' fill='{col}'/>")
+        if x2 - x1 > 8:
+            out.append(f"<line x1='{x1 + 4:.0f}' y1='{y:.0f}' x2='{x2 - 5:.0f}' y2='{y:.0f}' stroke='{col}' stroke-width='1.8'/>")
+            out.append(f"<path d='M{x2 - 5:.0f} {y - 3.5:.0f} L{x2 + 1:.0f} {y:.0f} L{x2 - 5:.0f} {y + 3.5:.0f} Z' fill='{col}'/>")
+        else:
+            out.append(f"<circle cx='{x2:.0f}' cy='{y:.0f}' r='3.5' fill='none' stroke='{col}' stroke-width='1.6'/>")
+        out.append(f"<text x='{x2 + 8:.0f}' y='{y + 3.5:.0f}' font-size='9.5' fill='{sc.DIM}' {sc.MONO}>{a} <tspan fill='{sc.MUTED}'>({lag}y · {mode})</tspan></text>")
+    out.append(f"<text x='{pad_l}' y='{H - 10}' font-size='10' fill='{sc.MUTED}' {sc.MONO}>target ● ──▶ audit/sequel · red ≥5y, orange 2–4y, green ≤1y — the shadow arrives faster every generation</text>")
+    out.append('</svg>')
+    return ''.join(out)
+charts['auditshadow'] = audit_shadow_svg()
 
 page = open(HERE / 'survey_template.html').read()
 for k, v in charts.items():
@@ -255,6 +404,8 @@ for k, v in chips.items():
 page = (page.replace('@@TABLE_JSON@@', TABLE_JSON)
             .replace('@@DOM_OPTS@@', DOM_OPTS).replace('@@GR_OPTS@@', GR_OPTS)
             .replace('@@LEV_OPTS@@', LEV_OPTS).replace('@@SH_OPTS@@', SH_OPTS)
+            .replace('@@KING_OPTS@@', KING_OPTS)
+            .replace('@@TREE_BLOCKS@@', tree_blocks())
             .replace('@@JS_COLORS@@', JS_COLORS).replace('@@JS_LABELS@@', JS_LABELS))
 
 assert '@@' not in page, 'unresolved token: ' + page[page.index('@@'):page.index('@@') + 40]
