@@ -224,7 +224,9 @@ function initGraph(){
     if (curSurvey && surveyById.has(curSurvey)){
       const s = surveyById.get(curSurvey);
       const n = surveyMembers.get(curSurvey).size;
-      cap = `<div class="surveycap"><span class="dot" style="color:${s.color};background:${s.color}"></span>${s.label}<span class="n">· ${n} papers</span></div>`;
+      // optional survey write-up page (surveys.json `page`) → "read →" link
+      const rd = s.page ? `<a class="rd mono" href="${s.page}" style="color:${s.color};border-color:${s.color}">read&nbsp;→</a>` : '';
+      cap = `<div class="surveycap"><span class="dot" style="color:${s.color};background:${s.color}"></span>${s.label}<span class="n">· ${n} papers</span>${rd}</div>`;
     }
     el.innerHTML = cap + '<h4>// ' + (curDim === 'group' ? 'institution' : curDim) + '</h4>' +
       ordered.map(v => `<div class="row${v === pinnedCat ? ' active' : ''}" data-val="${v}"><span class="sw" style="background:${colorFor(curDim, v)}"></span>${v}</div>`).join('');
@@ -305,6 +307,9 @@ function initGraph(){
       sel.appendChild(o);
     });
     sel.addEventListener('change', e => applySurvey(e.target.value));
+    // deep link: /?survey=<id> opens with that spine active (survey pages link here)
+    const want = new URLSearchParams(location.search).get('survey');
+    if (want && surveyById.has(want)){ sel.value = want; applySurvey(want); }
   }
 
   /* ---- side panel ---- */

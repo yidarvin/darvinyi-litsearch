@@ -66,6 +66,10 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
   padding-bottom:9px;margin-bottom:9px;border-bottom:1px solid var(--line)}
 .surveycap .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 9px currentColor}
 .surveycap .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
+/* link to the survey's write-up page (surveys.json `page`), colour set inline */
+.surveycap .rd{margin-left:auto;font-size:10px;font-weight:600;text-decoration:none;
+  border:1px solid;border-radius:14px;padding:2px 9px;opacity:.85;white-space:nowrap}
+.surveycap .rd:hover{opacity:1;background:rgba(255,255,255,.06)}
 .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;
   font-size:11px;color:var(--muted);background:rgba(20,20,23,.7);border:1px solid var(--line);border-radius:20px;padding:6px 14px;z-index:8}
 

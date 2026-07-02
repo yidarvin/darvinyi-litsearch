@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Anatomy of a Benchmark — paper_atlas</title>
+<meta name="description" content="A taxonomy of 126 AI benchmark papers (2009–2026): what they test, how they grade, how long the tasks are, and what the cross-tabs say about where evaluation is going.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%23ffd166'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
+  --gold:#ffd166; --gold-soft:rgba(255,209,102,.10);
+  --warn:#f59e0b; --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--gold);box-shadow:0 0 12px var(--gold-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--gold);background:var(--gold-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+.hero{padding-top:96px}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.fact a{color:var(--gold)}
+
+/* ---- figures: every chart sits in its own horizontal scroll box so a wide
+   SVG can never force the page to scroll sideways on a phone ---- */
+.fig{margin:26px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;margin-left:auto;margin-right:auto;
+  overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(min-width:1100px){ .fig.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+.fig svg{display:block;width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.figcap{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin:11px auto 0;
+  line-height:1.55;max-width:var(--col);padding:0 10px}
+.figcap b{color:var(--dim)}
+
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+
+/* ---- taxonomy dimension cards ---- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 17px;min-width:0}
+.card .nm{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;color:var(--gold);margin-bottom:4px}
+.card .q{font-size:13.5px;color:var(--dim);margin-bottom:11px;line-height:1.45}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:14px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev);white-space:nowrap}
+.chip b{color:var(--fg);font-weight:600}
+.chip .d{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.chip.more{color:var(--muted);border-style:dashed}
+
+/* ---- findings ---- */
+.fnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin:34px 0 6px}
+.findings h3{margin-top:6px;font-size:20px}
+
+/* ---- the 126 table ---- */
+.filters{display:flex;gap:8px;margin:20px 0 12px;flex-wrap:wrap;align-items:center}
+.filters input,.filters select{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--fg);
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;outline:none}
+.filters input{flex:1 1 170px;min-width:130px}
+.filters input::placeholder{color:var(--muted)}
+.filters input:focus,.filters select:focus{border-color:var(--gold)}
+.filters select{-webkit-appearance:none;appearance:none;padding-right:26px;cursor:pointer;color:var(--dim);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2382828c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 9px center}
+.tcount{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+.treset{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:none;border:0;cursor:pointer;padding:4px}
+.treset:hover{color:var(--gold)}
+.tblwrap{margin:0 calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;margin-left:auto;margin-right:auto;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:11px;background:var(--panel)}
+@media(min-width:1100px){ .tblwrap{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+.ptable{width:100%;border-collapse:collapse;font-size:13px;min-width:880px}
+.ptable th{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);font-weight:500;
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
+.ptable td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+.ptable tr:last-child td{border-bottom:0}
+.ptable tr:hover td{background:var(--elev)}
+.pname a{font-weight:600;color:var(--fg);white-space:nowrap}
+.pname a:hover{color:var(--gold);text-decoration:none}
+.pname .yr{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+.pill{font-family:'JetBrains Mono',monospace;font-size:10px;white-space:nowrap;color:var(--dim)}
+.oneline{font-size:12px;color:var(--muted);min-width:230px;line-height:1.45}
+.tools{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap}
+
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center;margin-top:46px}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- mobile: nothing may scroll the document sideways. Wide SVGs and the
+   paper table keep a legible min-width and scroll inside their own boxes. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  .cards{grid-template-columns:1fr}
+  .fig svg{min-width:620px}
+  .ptable{min-width:820px}
+  .filters select{flex:1 1 44%}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#corpus">corpus</a>
+      <a href="#prior">prior work</a>
+      <a href="#taxonomy">taxonomy</a>
+      <a href="#findings">findings</a>
+      <a href="#table">the 126</a>
+      <a href="#method">method</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">// paper_atlas · survey · benchmarks</div>
+      <h1>The Anatomy of a Benchmark</h1>
+      <p class="dek">Every benchmark on the atlas — 126 evaluation papers spanning ImageNet (2009) to MCP-Atlas (2026) — classified along eight dimensions: what it tests, how it grades, how long the task would take a person, what the model is allowed to touch, where the items came from, and how it defends itself against contamination. Read one paper and you learn a benchmark; cross-tabulate all of them and you can watch evaluation itself evolve.</p>
+      <div class="facts">
+        <span class="fact">papers&nbsp;<b>126</b></span>
+        <span class="fact">span&nbsp;<b>2009–2026</b></span>
+        <span class="fact">dimensions&nbsp;<b>8</b></span>
+        <span class="fact">grading families&nbsp;<b>6</b></span>
+        <span class="fact">horizon ladder&nbsp;<b>L1–L5</b></span>
+        <span class="fact"><a href="/?survey=benchmarks">view the spine on the map&nbsp;↗</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CORPUS ════════════ -->
+  <section id="corpus">
+    <div class="wrap">
+      <div class="tag">// the corpus</div>
+      <h2>What counts as a benchmark here</h2>
+      <p>The atlas tags a paper <span class="mono" style="color:var(--gold)">benchmarks</span> when a named benchmark, evaluation dataset, or evaluation environment is its <strong>headline contribution</strong> — the thing a survey would cite it for. Models, training methods, and agent frameworks that merely <em>report</em> benchmark numbers don't qualify. That rubric yields 126 papers, every one of which has a full explainer on this site; this page is built from those explainers.</p>
+      <p>The corpus is curated, not exhaustive: it is centred on LLM, agent, and safety evaluation, with the classic CV and NLU generations (ImageNet, COCO, SQuAD, GLUE) present as ancestry rather than in full. 28 of the 126 also carry the <span class="mono">evaluations</span> tag — papers that shipped a new <em>way</em> to evaluate along with their dataset (Chatbot Arena's Elo protocol, HELM's scenario grid, FActScore's atomic-fact decomposition). Where the corpus skews, the findings inherit the skew; the <a href="#method">method section</a> spells this out.</p>
+      <div class="chips">@@CHIPS_DOMAIN@@</div>
+    </div>
+  </section>
+
+  <!-- ════════════ PRIOR WORK ════════════ -->
+  <section id="prior">
+    <div class="wrap">
+      <div class="tag">// prior work</div>
+      <h2>Two shelves of benchmark surveys, and the gap between them</h2>
+      <p>Existing surveys of AI evaluation sit on two shelves that barely touch. The first shelf taxonomizes <strong>what benchmarks measure</strong>: <a href="https://arxiv.org/abs/2307.03109">Chang et al. (2023)</a> organize the field by <em>what / where / how</em> to evaluate, <a href="https://arxiv.org/abs/2310.19736">Guo et al. (2023)</a> by evaluated property (knowledge, alignment, safety, domain), and <a href="https://arxiv.org/abs/2211.09110">HELM (2022)</a> — the most rigorous of the family — by a scenario × metric grid it then deliberately fills. The second shelf grades <strong>how well benchmarks are built</strong>: <a href="https://arxiv.org/abs/2411.12990">BetterBench (2024)</a> scores 24 benchmarks on 46 lifecycle criteria, <a href="https://arxiv.org/abs/2402.09880">McIntosh et al. (2024)</a> find 22 of 23 prominent benchmarks vulnerable on the same integrity grounds, <a href="https://arxiv.org/abs/2511.04703">Bean et al. (2025)</a> audit construct validity across 445 benchmarks, and the <a href="https://arxiv.org/abs/2507.02825">Agentic Benchmark Checklist (2025)</a> shows that 7 of 10 audited agentic benchmarks had unsound graders.</p>
+      <p>The agent-evaluation surveys that appeared in 2025 — <a href="https://arxiv.org/abs/2503.16416">Yehudai et al.</a>, <a href="https://arxiv.org/abs/2407.01502">Kapoor et al.'s <em>AI Agents That Matter</em></a> — added structural vocabulary (dataset vs. environment, offline vs. online, tool access) but each survey coins its own terms, and none quantifies the axes it names. Meanwhile the dimension that turns out to matter most for where benchmarks are going — <strong>how long the task is</strong> — was only made measurable by <a href="https://arxiv.org/abs/2503.14499">METR's time-horizon work (2025)</a>, and has never been applied to a benchmark corpus.</p>
+      <p>What no prior survey does is <strong>cross the shelves at paper level</strong>: place every benchmark in a capability map <em>and</em> record its grading machinery, task horizon, tool surface, provenance, and contamination posture — then look at the joint distribution over time. That cross is what this page contributes, on a corpus that is small (126) but densely annotated: every paper here has been read, summarized, and critiqued individually, and the underlying citation graph is <a href="/?survey=benchmarks">browsable as a timeline</a>. Two further anchors for what follows: <a href="https://arxiv.org/abs/2405.14782">Biderman et al.'s reproducibility lessons (2024)</a> and the <a href="https://arxiv.org/abs/2602.16763">benchmark-saturation study (2026)</a>, which finds roughly half of all benchmarks saturated — a number this corpus reproduces almost exactly for its pre-2021 cohort.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ TAXONOMY ════════════ -->
+  <section id="taxonomy">
+    <div class="wrap">
+      <div class="tag">// the taxonomy</div>
+      <h2>Eight questions you can ask of any benchmark</h2>
+      <p>Each of the 126 papers was classified along eight dimensions — eight questions with closed answer sets. Two of them (<a href="#horizon">task horizon</a> and <a href="#grading">grading family</a>) do enough analytical work that they get their own definitions below.</p>
+
+      <div class="cards">
+        <div class="card"><div class="nm">1 · domain</div><div class="q">What capability does it chiefly measure?</div><div class="chips">@@CHIPS_DOMAIN@@</div></div>
+        <div class="card"><div class="nm">2 · task shape</div><div class="q">How does the model meet the task — one shot, a dialogue, or an act-observe loop?</div><div class="chips">@@CHIPS_SHAPE@@</div></div>
+        <div class="card"><div class="nm">3 · grading family</div><div class="q">Who or what decides the answer is right (headline metric)?</div><div class="chips">@@CHIPS_GRADING@@</div></div>
+        <div class="card"><div class="nm">4 · task horizon</div><div class="q">How long would one typical task instance take a competent human expert?</div><div class="chips">@@CHIPS_COMPLEXITY@@</div></div>
+        <div class="card"><div class="nm">5 · tool access</div><div class="q">What is the evaluated model allowed to touch — an interpreter, a browser, a whole OS?</div><div class="chips">@@CHIPS_TOOLS@@</div></div>
+        <div class="card"><div class="nm">6 · provenance</div><div class="q">Where did the task items come from?</div><div class="chips">@@CHIPS_PROV@@</div></div>
+        <div class="card"><div class="nm">7 · contamination defense</div><div class="q">What is the strongest mechanism keeping it out of training sets?</div><div class="chips">@@CHIPS_CONTAM@@</div></div>
+        <div class="card"><div class="nm">8 · saturation</div><div class="q">Is there headroom left, judged by the scores each explainer quotes?</div><div class="chips">@@CHIPS_SAT@@</div></div>
+      </div>
+
+      <h3 id="horizon">Defining “complexity”: the task horizon</h3>
+      <p>“Complexity” is the word everyone reaches for and nobody defines. The literature operationalizes it at least five incommensurable ways — reasoning steps, compositional depth, context length, search-space size, IRT difficulty — none of which lets you compare a multiple-choice exam to a week of freelance software work. The definition used here is the one that does:</p>
+      <div class="callout">
+        <div class="lbl">// definition</div>
+        <p><strong>Task horizon</strong> — the wall-clock time a competent human domain-expert would need to complete one <em>typical</em> task instance, reading and artifact production included. It is the only complexity currency that spans the whole corpus, and it is the axis METR showed frontier-model ability climbs along at a measurable rate (a ~7-month doubling time). Five buckets: <strong>L1</strong> &lt;1 minute · <strong>L2</strong> 1–30 minutes · <strong>L3</strong> 30 minutes–1 day · <strong>L4</strong> 1 day–2 weeks · <strong>L5</strong> &gt;2 weeks.</p>
+      </div>
+      <div class="fig">@@CHART_LADDER@@</div>
+      <p class="figcap"><b>The horizon ladder.</b> Counts and canonical examples per rung, across all 126 papers. Only a handful of papers (GDPval, RE-Bench, the METR suites) <em>measure</em> human time; everywhere else the rung is estimated from the paper's own task descriptions — see <a href="#method">method</a>.</p>
+
+      <h3 id="grading">The six grading families</h3>
+      <p>Every benchmark answers “who says the output is right?” with one of six mechanisms, and the choice is less methodological free will than economics: each step right on the ladder below buys generality — the ability to grade open-ended work — and pays for it in cost per item and in grader error that must itself be audited.</p>
+      <div class="fig">@@CHART_GRLADDER@@</div>
+      <p class="figcap"><b>The grading-cost ladder.</b> Ordered by what it costs to grade one item. The reliability annotations are from the papers themselves: MT-Bench measured GPT-4-judge/human agreement at 85% (humans agree with each other 81%); PaperBench's judge reaches F1 0.83 against expert grading; the ABC audit found unsound graders in 7 of 10 agentic benchmarks it checked.</p>
+      <p>Two structural notes. First, the left end of the ladder is what the RL-with-verifiable-rewards era trains on — a benchmark whose grader is mechanical is also a reward function, which means the most verifiable benchmarks are precisely the ones models are being optimized against (Goodhart exposure is a property of the grading family, not the dataset). Second, the model-graded middle created a regress the field is still funding: judges are now benchmarked by meta-benchmarks (JudgeBench, RewardBench), and rubric-based grading is the current attempt to make judge error inspectable by decomposing it into checkable criteria.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ FINDINGS ════════════ -->
+  <section id="findings" class="findings">
+    <div class="wrap">
+      <div class="tag">// findings</div>
+      <h2>What the cross-tabs say</h2>
+      <p>Seven findings, each read off a chart below. All numbers are shares of the 126-paper corpus by <em>publication era</em>; per-era counts are small enough that you should read slopes, not decimals.</p>
+
+      <div class="fnum">finding 01</div>
+      <h3>The grading waves — and the 2025 rubric turn</h3>
+      <div class="fig wide">@@CHART_WAVES@@</div>
+      <p class="figcap"><b>Headline grading mechanism by era.</b> Eras pool small years (≤2018 n=10, 2019–20 n=7, 2021–22 n=17); single years from 2023 (n=18, 28, 39, 7).</p>
+      <p>Grading has moved in waves: proxy metrics gave way to exact-match (14 of 17 papers up to 2020), execution-based programmatic grading surged with the code benchmarks (8 of 18 in 2023), holistic LLM-judging peaked in 2024 — and then, in 2025, <strong>rubric-scored judging became the single largest grading family for new benchmarks</strong>: 14 of 39 papers (36%), up from two papers <em>total</em> before 2025 (FActScore 2023, Agent-as-a-Judge 2024). HealthBench, PaperBench, ResearchRubrics, FORTRESS, and the 2026 cohort (MCP-Atlas, SWE Atlas, HIL-Bench) all grade by expert-written, per-item criteria applied by a model.</p>
+      <p>The wave structure has a single driver: each new capability regime produced outputs the previous grader couldn't score. Exact match broke on generation; unit tests broke on anything that isn't code; holistic judges broke on expert domains where “sounds good” diverges from “is correct.” The rubric turn is the field's current answer — decompose expert judgment into criteria a model <em>can</em> check — and it is also a quiet confession that the thing we now want to measure no longer has an answer key.</p>
+
+      <div class="fnum">finding 02</div>
+      <h3>The verifiability frontier</h3>
+      <div class="fig wide">@@CHART_FRONTIER@@</div>
+      <p class="figcap"><b>Task horizon × grading family</b>, all 126 papers. Hollow cells are empty. The deterministic families (exact match, programmatic) die out above L2; L4 is graded only by humans and rubrics.</p>
+      <p>Read the grid diagonally and a boundary appears: <strong>cheap grading does not survive long horizons</strong>. Exact-match grading owns L1 (21 of 24 papers) and thins to exactly two papers at L3 — and both are deliberate exceptions: BrowseComp <em>engineered</em> its questions to be hard-to-find but easy-to-verify, and TRAIL grades long agent traces against a fixed error taxonomy. Programmatic grading peaks at L2–L3 (unit tests, environment end-states) and vanishes at L4: nobody has built a test harness for “produce a competitive research paper.” Above the frontier, only judges, rubrics, and humans remain.</p>
+      <p>This is the survey's central claim: <strong>a benchmark can only pose tasks as long as it can afford to grade</strong>. Verification asymmetry — tasks that are hard to do but cheap to check — is the scarce resource of benchmark design, and the L4 row shows what happens when it runs out: GDPval pays experts for &gt;1 hour of pairwise grading per item, PaperBench amortizes 33 person-weeks of rubric authoring. The grading-cost ladder from the taxonomy section is not a menu; at high horizons it is a budget constraint.</p>
+
+      <div class="fnum">finding 03</div>
+      <h3>The horizon climb — three rungs in seventeen years, top rung empty</h3>
+      <div class="fig">@@CHART_CLIMB@@</div>
+      <p class="figcap"><b>Share of new benchmark papers per era posing L3+ tasks</b> (≥30 expert-minutes per instance).</p>
+      <p>Benchmarks are climbing the ladder their subjects climb. Before 2021 no paper in the corpus posed a task above L2; the L3+ share was 6–11% through 2023–24, then jumped to 36% in 2025 and 5 of 7 papers in 2026. The mean rung moved from 1.2 (≤2018) to 2.7 (2026). That tracks the capability curve METR measured — as models' 50%-success horizon doubles every ~7 months, benchmarks below the frontier stop discriminating and the field re-builds one rung up.</p>
+      <p>But the climb is running out of ladder. L4 — day-to-week projects — contains exactly three papers (GDPval, PaperBench, RLI), all from 2025, and <strong>L5 is empty</strong>: no benchmark in this corpus poses work beyond two expert-weeks. The binding constraints are the two graders left at that altitude (finding 02) and item economics — a 1,000-item benchmark of week-long tasks is a thousand expert-weeks of ground truth. Whoever solves cheap verification of long-horizon work gets to write the first L5 benchmark, and probably the reward signal for the next training era with it.</p>
+
+      <div class="fnum">finding 04</div>
+      <h3>The interactive turn — and the missing middle</h3>
+      <div class="fig wide">@@CHART_SHAPE@@</div>
+      <p class="figcap"><b>Task shape by era.</b> Interactive environments: the model acts, the environment responds, repeat. Multi-turn: dialogue without an environment.</p>
+      <p>The corpus's first interactive environment is WebShop (2022). Three years later, interactive environments are 38% of new benchmarks (15 of 39 in 2025) and 6 of 7 in 2026 — the static single-turn dataset, 100% of the corpus through 2020, is on its way to being the minority format. This is the static→interactive migration the agent surveys narrate; the timeline lets you date it.</p>
+      <p>The anomaly is what got skipped: <strong>multi-turn dialogue is 7 papers out of 126</strong> — MT-Bench, MathDial, the multi-turn jailbreak studies, MultiChallenge, AdvancedIF, Audio MultiChallenge — and never exceeds ~8% in any era. The field jumped from one-shot prompts straight to autonomous tool loops, mostly skipping the thing users actually do with these systems: talk to them, clarify, correct, change their minds mid-task. τ-bench-style simulated users exist inside a few agentic environments, but conversation as the <em>object of evaluation</em> remains a gap — the missing middle of task shape.</p>
+
+      <div class="fnum">finding 05</div>
+      <h3>Benchmarks stopped being scraped and started being commissioned</h3>
+      <div class="fig wide">@@CHART_PROV@@</div>
+      <p class="figcap"><b>Provenance of task items by era.</b> “Expert-authored” means items written or curated for the benchmark by recruited domain experts; “real-work-mined” means harvested from artifacts of real work (GitHub issues, freelance jobs, filed contracts).</p>
+      <p>Through 2018, benchmarks were built from what could be collected cheaply: crowdworkers and scraped exams (8 of 10 papers). By 2025, <strong>54% of new benchmarks are expert-authored</strong> — physicians writing HealthBench criteria, IMO medalists writing FrontierMath-class problems, industry professionals with 14-year average experience writing GDPval deliverables — and another 15% are mined from real work products (SWE-bench's GitHub issues, SWE-Lancer's paid freelance jobs, RLI's real projects). The era of the annotation farm is over at the frontier.</p>
+      <p>The driver is the same as in finding 01: models passed the crowd. When the evaluated system outperforms a Mechanical Turk worker at the task, crowd-sourced ground truth stops being ground truth, and item-writing becomes skilled labor — which is why benchmark construction industrialized (Scale, Mercor, Surge are all in this corpus's author lists) and why item counts fall as horizons rise. The economics of expertise, not dataset fashion, is what moved this chart.</p>
+
+      <div class="fnum">finding 06</div>
+      <h3>The contamination cycle: the field forgot the private test set, then re-learned it</h3>
+      <div class="fig wide">@@CHART_CONTAM@@</div>
+      <p class="figcap"><b>Strongest shipped contamination defense by era.</b> “Private holdout” includes hidden test sets and evaluation servers; “live refresh” means post-cutoff or continuously regenerated items by design.</p>
+      <p>The most surprising row in the data is the oldest one. <strong>The CV era already had the answer</strong>: 7 of 10 pre-2018 papers shipped a hidden test set or an evaluation server (ILSVRC, COCO, VQA, SQuAD, GLUE's leaderboard). The web-scrape training era then abandoned it — 16 of 17 papers in 2021–22 published everything, MMLU and BIG-bench included, and the contamination crisis of 2023–24 (GSM1k measured up to 8-point inflation on GSM8k) was the bill for that amnesia. From 2024 the defenses return and diversify: private holdouts (15 of 39 in 2025), live refresh (LiveCodeBench, SciPredict's post-cutoff sourcing, Arena's user traffic), procedural generation (Reasoning Gym), canaries. In 2025, for the first time since 2018, more than half of new benchmarks shipped <em>some</em> defense; in 2026 it's 6 of 7.</p>
+      <p>The defenses also work differently well. Of the 8 live-refresh benchmarks, <strong>zero are saturated</strong>; private holdouts saturate at the corpus base rate (~26%) — a hidden test set stops leakage but not progress. Refresh-by-design is the only defense that also buys longevity, which is why the newest entries (SciPredict's “no paper before March 2025,” UPBench's live freelance feed) build refresh into the sampling frame rather than bolting privacy onto a frozen set.</p>
+
+      <div class="fnum">finding 07</div>
+      <h3>What saturates: horizon is destiny</h3>
+      <div class="fig">@@CHART_SATBARS@@</div>
+      <p class="figcap"><b>Saturation status by task horizon</b>, judged from the frontier scores each explainer quotes (mid-2026). Counts inside bars.</p>
+      <p>Saturation is almost perfectly ordered by the ladder: <strong>62% of L1 benchmarks are saturated, 21% of L2, and 0% of L3 and above</strong>. Every saturated benchmark in this corpus poses tasks a human expert finishes inside half an hour. Domain matters less than you'd think and defense matters less than refresh (finding 06); what predicts whether a benchmark is still discriminating in 2026 is simply how much expert time its tasks embody.</p>
+      <p>That gives benchmark builders a clean actuarial rule — <em>expected lifespan is bought in human-minutes per item</em> — and it explains the corpus's own shape: the L1 rows are the field's history, the L2 rows its present workhorses (with a third already closing), and the L3–L4 rows, where every benchmark still has headroom, are where evaluation currently lives. The ladder from finding 03 isn't just being climbed; it's being consumed from the bottom.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ THE 126 ════════════ -->
+  <section id="table">
+    <div class="wrap">
+      <div class="tag">// the 126</div>
+      <h2>Every paper, every dimension</h2>
+      <p>The full classified corpus. Filter by any dimension; every name links to that paper's explainer. (Horizon: L1 &lt;1 min · L2 1–30 min · L3 30 min–1 day · L4 1 day–2 wks.)</p>
+      <div class="filters">
+        <input id="fq" type="search" placeholder="search papers…" autocomplete="off">
+        <select id="fd"><option value="">domain: all</option>@@DOM_OPTS@@</select>
+        <select id="fg"><option value="">grading: all</option>@@GR_OPTS@@</select>
+        <select id="fc"><option value="">horizon: all</option>@@LEV_OPTS@@</select>
+        <select id="fsh"><option value="">shape: all</option>@@SH_OPTS@@</select>
+        <span class="tcount mono" id="tcount"></span>
+        <button class="treset" id="treset">× reset</button>
+      </div>
+    </div>
+    <div class="tblwrap">
+      <table class="ptable">
+        <thead><tr><th>paper</th><th>domain</th><th>horizon</th><th>grading</th><th>shape</th><th>tools</th><th>what it is</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ METHOD ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// method &amp; caveats</div>
+      <h2>How this was built, and what to distrust</h2>
+      <p><strong>Corpus.</strong> The 126 papers are the atlas's <span class="mono">benchmarks</span> survey tag — the same set you see ringed on the <a href="/?survey=benchmarks">timeline map</a>. Membership follows the tag rubric (benchmark as headline contribution), applied when each paper joined the atlas. The corpus over-represents what the atlas covers deeply (LLM, agent, and safety evaluation, 2023–2026) and thins out toward classic CV/NLU; era-level trends should be read as trends <em>within this kind of corpus</em>, not a census of all benchmarks ever built.</p>
+      <p><strong>Classification.</strong> Each paper was classified from its atlas explainer (and the paper itself where the explainer underdetermined a dimension) by a language-model pipeline: one full-schema pass over every paper, then a fully independent second pass re-classifying the six judgment-heavy dimensions with different paper groupings. The two passes agreed on 94.8% of the 750 compared values; all 39 disagreements (on 32 papers) were adjudicated by a third read of the source text. Saturation was the noisiest dimension (16 of 39 conflicts) — treat individual saturation calls as softer than the aggregate.</p>
+      <p><strong>Known soft spots.</strong> (1) Task-horizon rungs are estimates of the <em>typical</em> instance from the papers' own task descriptions; only a few papers measure human time. (2) Saturation reflects the frontier scores quoted in each explainer at the time it was written (through mid-2026) — it ages. (3) <span class="mono">grading_primary</span> records the headline metric only; many benchmarks ship secondary graders. (4) Item counts are approximate. (5) One dimension a future pass should add: whether each benchmark's grader was itself adversarially audited — the ABC finding suggests that column would be mostly empty.</p>
+      <p>The classification data is embedded in this page (view source) and the tags live in the atlas's <span class="mono">papers.json</span>; both regenerate deterministically from the corpus.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a> · <a href="/?survey=benchmarks">open the survey spine on the map ↗</a><br>
+        The Anatomy of a Benchmark — a Paper Atlas survey · 126 papers · built 2026-07<br>
+        classifications reflect explainer-quoted scores as of mid-2026
+      </p>
+    </div>
+  </footer>
+</main>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['corpus','prior','taxonomy','findings','table','method'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* ---- the 126: filterable table ---- */
+const DATA = @@TABLE_JSON@@;
+const COLORS = @@JS_COLORS@@;
+const LABELS = @@JS_LABELS@@;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const F = { q: document.getElementById('fq'), d: document.getElementById('fd'), g: document.getElementById('fg'),
+            c: document.getElementById('fc'), sh: document.getElementById('fsh') };
+function render(){
+  const q = F.q.value.trim().toLowerCase();
+  const rows = DATA.filter(r =>
+    (!F.d.value || r.d === F.d.value) && (!F.g.value || r.g === F.g.value) &&
+    (!F.c.value || r.c === F.c.value) && (!F.sh.value || r.sh === F.sh.value) &&
+    (!q || (r.n + ' ' + r.s + ' ' + r.o).toLowerCase().includes(q)));
+  document.getElementById('tcount').textContent = rows.length + ' / ' + DATA.length;
+  document.getElementById('tbody').innerHTML = rows.map(r =>
+    '<tr><td class="pname"><a href="/papers/' + r.s + '.html">' + esc(r.n) + '</a><span class="yr">' + r.y + '</span></td>' +
+    '<td><span class="pill">' + esc(LABELS.d[r.d] || r.d) + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.c[r.c] || '') + '">' + esc(LABELS.c[r.c] || r.c) + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.g[r.g] || '') + '">' + esc(LABELS.g[r.g] || r.g) + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.sh[r.sh] || '') + '">' + esc(LABELS.sh[r.sh] || r.sh) + '</span></td>' +
+    '<td class="tools">' + esc(r.t) + '</td>' +
+    '<td class="oneline">' + esc(r.o) + '</td></tr>').join('');
+}
+Object.values(F).forEach(el => el.addEventListener('input', render));
+document.getElementById('treset').addEventListener('click', () => {
+  Object.values(F).forEach(el => { el.value = ''; }); render();
+});
+render();
+</script>
+</body>
+</html>
