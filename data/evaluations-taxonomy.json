@@ -1,0 +1,2449 @@
+[
+ {
+  "slug": "papineni-2002-bleu",
+  "short": "BLEU",
+  "title": "BLEU: a Method for Automatic Evaluation of Machine Translation",
+  "year": 2002,
+  "date": "2002-07",
+  "venue": "ACL",
+  "group": "IBM",
+  "citation_count": 33448,
+  "verdict_engine": "lexical-overlap",
+  "construct": "text-quality",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "surface-correlate",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "No RL/reward-model use stated (2002); used as a corpus-level leaderboard/iteration number, not a per-example gradient signal — the digest lists it alongside SacreBLEU/MT-Bench-as-leaderboard diagnostic reads.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "S-scoring-metrics",
+  "family": "S1-lexical-overlap",
+  "placement_reason": "At birth (2002) it answered \"what single cheap number captures MT output quality against human references so developers can iterate nightly?\" — the founding lexical-overlap scoring metric.",
+  "lineage": [],
+  "gravity": 14,
+  "one_line": "Clipped n-gram precision plus a brevity penalty turns MT evaluation into a nightly script, reporting 0.99 correlation with human judges over five systems.",
+  "key_number": "0.99 correlation with monolingual human judges (0.96 bilingual) — but from a regression over only five systems on one Chinese-to-English news corpus",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/papineni-2002-bleu.html"
+ },
+ {
+  "slug": "lin-2004-rouge",
+  "short": "ROUGE",
+  "title": "ROUGE: A Package for Automatic Evaluation of Summaries",
+  "year": 2004,
+  "date": "2004-07",
+  "venue": "ACL Workshop",
+  "group": "USC ISI",
+  "citation_count": 20737,
+  "verdict_engine": "lexical-overlap",
+  "construct": "text-quality",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "surface-correlate",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Paper states no RL use; digest documents Goodhart aftermath where the field optimized directly against it, but it functions as a system-ranking/leaderboard proxy rather than a live per-verdict reward.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "S-scoring-metrics",
+  "family": "S1-lexical-overlap",
+  "placement_reason": "Born to answer \"what number captures a summary's content quality without thousands of hours of human coverage judging?\" via recall-oriented n-gram/LCS overlap against gold references — the canonical summarization scoring metric.",
+  "lineage": [
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "inverts"
+   },
+   {
+    "parent": "banerjee-2005-meteor",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "vedantam-2015-cider",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 10,
+  "one_line": "Recall-oriented lexical overlap against human reference summaries, validated by correlating system rankings with DUC human coverage judgments (0.84-0.99 single-doc).",
+  "key_number": "ROUGE-2 Pearson r = 0.84-0.87 vs human coverage on DUC 2001 single-doc; saturates at 0.98-0.99 on DUC 2002",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/lin-2004-rouge.html"
+ },
+ {
+  "slug": "banerjee-2005-meteor",
+  "short": "METEOR",
+  "title": "METEOR: An Automatic Metric for MT Evaluation with Improved Correlation with Human Judgments",
+  "year": 2005,
+  "date": "2005-06",
+  "venue": "ACL Workshop",
+  "group": "CMU",
+  "citation_count": 8154,
+  "verdict_engine": "lexical-overlap",
+  "construct": "text-quality",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "surface-correlate",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "\"post_training_link: none — the explainer frames METEOR as a development-time evaluation metric ... no reward-signal use or anti-optimization warning is stated.\"",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "S-scoring-metrics",
+  "family": "S1-lexical-overlap",
+  "placement_reason": "Built to answer \"what number captures this translation's quality per sentence?\" via staged surface/stem/synonym unigram overlap against gold references — a lexical-overlap scoring metric answering BLEU's segment-level collapse.",
+  "lineage": [
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 2,
+  "one_line": "Aligns candidate to reference via exact/stem/synonym unigram matching, scores with recall-heavy F-mean minus a fragmentation penalty — tracking humans per sentence where BLEU collapses.",
+  "key_number": "System-level Pearson R on Chinese (7 systems): METEOR 0.964 vs BLEU 0.817",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/banerjee-2005-meteor.html"
+ },
+ {
+  "slug": "vedantam-2015-cider",
+  "short": "CIDEr",
+  "title": "CIDEr: Consensus-based Image Description Evaluation",
+  "year": 2015,
+  "date": "2014-11",
+  "venue": "CVPR",
+  "group": "Virginia Tech / Microsoft",
+  "citation_count": 5504,
+  "verdict_engine": "lexical-overlap",
+  "construct": "text-quality",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "surface-correlate",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "\"No use as a training reward is stated in the explainer; the connection is defensive\" — the paper builds CIDEr-D to resist gaming rather than to serve as a reward, and it is an aggregate/reference-based scorer used to read caption quality, not train.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "S-scoring-metrics",
+  "family": "S1-lexical-overlap",
+  "placement_reason": "At birth CIDEr answered \"what number captures a caption's quality?\" by defining a TF-IDF n-gram overlap score against human references — the canonical lexical-overlap scoring metric alongside BLEU/ROUGE/METEOR.",
+  "lineage": [
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "banerjee-2005-meteor",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "lin-2004-rouge",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Scores a caption by TF-IDF n-gram cosine against ~50 human references, targeting consensus human-likeness; became the COCO server's default captioning metric.",
+  "key_number": "At 48 references, CIDEr reaches 84% agreement with human consensus (90% human ceiling), vs BLEU1/ROUGE1 at 76%/74% on PASCAL-50S at the standard 5 references.",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/vedantam-2015-cider.html"
+ },
+ {
+  "slug": "buolamwini-2018-gender-shades",
+  "short": "Gender Shades",
+  "title": "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification",
+  "year": 2018,
+  "date": "2018-01",
+  "venue": "FAccT",
+  "group": "MIT Media Lab",
+  "citation_count": 5346,
+  "verdict_engine": "human-grading",
+  "construct": "fairness",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "expert-judgment",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"None as a training reward or preference signal\" — a model-level audit used to read models, not train them; vendors patched the specific numbers but it was never a gradient signal.",
+  "validation_depth": "none",
+  "grader_gap": "human-anchored",
+  "kingdom": "I-behavioral-probes",
+  "family": "I4-fairness-harm-audits",
+  "placement_reason": "Built to answer \"does a single aggregate accuracy hide systematic subgroup failure?\" — a fairness/harm audit of shipping commercial classifiers, disaggregating error across intersectional skin-type x gender cells.",
+  "lineage": [],
+  "gravity": 0,
+  "one_line": "Black-box audit of three commercial gender classifiers on a skin-type-balanced benchmark shows aggregate accuracy hiding up to 34.7% darker-female error.",
+  "key_number": "Darker-skinned female error up to 34.7% (IBM) vs max 0.8% lighter-skinned male, while overall accuracies looked respectable (87.9-93.7%)",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/buolamwini-2018-gender-shades.html"
+ },
+ {
+  "slug": "post-2018-sacrebleu",
+  "short": "SacreBLEU",
+  "title": "A Call for Clarity in Reporting BLEU Scores",
+  "year": 2018,
+  "date": "2018-04",
+  "venue": "WMT",
+  "group": "Amazon",
+  "citation_count": 3505,
+  "verdict_engine": "lexical-overlap",
+  "construct": "measurement-integrity",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "surface-correlate",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link is \"none — the explainer describes reporting/comparability only; no reward-signal use\"; the contribution is a reporting protocol read off leaderboards, not a gradient signal.",
+  "validation_depth": "none",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F3-metric-construct-critiques",
+  "placement_reason": "At birth it asked \"is the reported BLEU number itself trustworthy and comparable across papers?\" — a critique of the metric's reporting integrity, not a new quality score, placing it squarely in metric/construct forensics.",
+  "lineage": [
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "hardens"
+   },
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "audits"
+   },
+   {
+    "parent": "lin-2004-rouge",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "banerjee-2005-meteor",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 2,
+  "one_line": "BLEU's hidden tokenization/casing knobs swing scores more than papers' claimed gains; sacreBLEU locks the reference inside the metric and prints a version string.",
+  "key_number": "Reference-preprocessing choices swing the same system's BLEU by up to 1.8 points (de-en), often more than papers' claimed gains",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/post-2018-sacrebleu.html"
+ },
+ {
+  "slug": "sellam-2020-bleurt",
+  "short": "BLEURT",
+  "title": "BLEURT: Learning Robust Metrics for Text Generation",
+  "year": 2020,
+  "date": "2020-04",
+  "venue": "ACL",
+  "group": "Google",
+  "citation_count": 1915,
+  "verdict_engine": "learned-metric",
+  "construct": "text-quality",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "surface-correlate",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "\"No post_training_link in the paper itself — it predates reward-hacking work\"; a learned black-box scalar used to rank MT/data-to-text outputs by human-correlation, not wired as a gradient signal.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "S-scoring-metrics",
+  "family": "S2-learned-neural",
+  "placement_reason": "Born to answer \"what number captures a generated text's human-judged quality?\" with a trained neural scalar that beats surface n-gram overlap — the canonical learned metric.",
+  "lineage": [
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "lin-2004-rouge",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "banerjee-2005-meteor",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 4,
+  "one_line": "Mid-train BERT on ~6.5M synthetic perturbations before rating fine-tuning: a learned text-quality metric that survives quality drift where IID-trained metrics collapse.",
+  "key_number": "WMT17 avg over 7 to-English pairs: BLEURT Kendall tau 62.5 / Pearson r 81.8 vs BERTScore-RoBERTa 58.0 / 76.8 and sentence-BLEU 32.4 / 47.5",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/sellam-2020-bleurt.html"
+ },
+ {
+  "slug": "thakur-2021-beir",
+  "short": "BEIR",
+  "title": "BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models",
+  "year": 2021,
+  "date": "2021-04",
+  "venue": "NeurIPS Datasets and Benchmarks",
+  "group": "UKP Lab (TU Darmstadt)",
+  "citation_count": 1739,
+  "verdict_engine": "statistical-protocol",
+  "construct": "task-capability",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "\"Not a reward signal, but a documented optimization target: later retrievers (Contriever, GTR, E5) were explicitly built and tuned against the BEIR leaderboard\" — a leaderboard read, not a gradient signal.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T2-capability-axis-instruments",
+  "placement_reason": "At birth BEIR was built to answer \"does in-domain retrieval skill transfer out-of-distribution?\" — a single capability axis (zero-shot IR generalization) instrumented by a standardized multi-dataset protocol, which is exactly the T2 capability-axis-instrument role alongside Time-Horizons and Monkeys.",
+  "lineage": [
+   {
+    "parent": "liang-2022-helm",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "srivastava-2022-big-bench",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "kwa-2025-time-horizons",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Zero-shot IR benchmark: nDCG@10 vs pooled judgments over 18 datasets; BM25 is hard to beat — partly a lexical annotation-bias artifact.",
+  "key_number": "18 datasets across 9 retrieval tasks; 10 systems across 5 architecture families, all evaluated zero-shot on nDCG@10",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/thakur-2021-beir.html"
+ },
+ {
+  "slug": "chen-2021-codex",
+  "short": "Codex",
+  "title": "Evaluating Large Language Models Trained on Code",
+  "year": 2021,
+  "date": "2021-07",
+  "venue": "arXiv",
+  "group": "OpenAI",
+  "citation_count": 10095,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "Execution-graded pass/fail on hidden unit tests is the canonical verifiable RLVR reward; digest calls the execution-graded pass@k paradigm \"the measurement substrate of the coding-agent era.\"",
+  "validation_depth": "none",
+  "grader_gap": "no-model",
+  "kingdom": "V-verification-harnesses",
+  "family": "V1-execution-oracles",
+  "placement_reason": "Built to answer \"how do we make code correctness mechanical?\" — it replaced BLEU/match metrics with deterministic hidden-unit-test execution as the verdict machine for NL-to-code generation.",
+  "lineage": [
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "liu-2023-evalplus",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "jain-2024-livecodebench",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "brown-2024-monkeys",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 17,
+  "one_line": "HumanEval grades code by executing hidden unit tests and estimating pass@k unbiasedly — replacing BLEU with functional correctness as the field's verdict machine.",
+  "key_number": "Codex-12B pass@1 on HumanEval = 28.8% (GPT-3 = 0%); oracle pass@100 = 77.5% vs 44.5% deployable reranking, a 33-point gap",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/chen-2021-codex.html"
+ },
+ {
+  "slug": "srivastava-2022-big-bench",
+  "short": "BIG-bench",
+  "title": "Beyond the Imitation Game: Quantifying and Extrapolating the Capabilities of Language Models",
+  "year": 2022,
+  "date": "2022-06",
+  "venue": "TMLR",
+  "group": "Google",
+  "citation_count": 2513,
+  "verdict_engine": "statistical-protocol",
+  "construct": "task-capability",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "The canary GUID + training_on_test_set probe exist precisely to keep BIG-bench out of training data — the paper's explicit stance is anti-training-exposure, so optimizing against it destroys the instrument.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T1-holistic-frameworks",
+  "placement_reason": "Built to escape the SuperGLUE saturation treadmill by assembling 204 beyond-current-model tasks into a single normalized aggregate and reframing evaluation as forecasting which capabilities emerge at which scale — a holistic measurement framework, not a single scorer or oracle.",
+  "lineage": [
+   {
+    "parent": "liang-2022-helm",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "schaeffer-2023-emergent-mirage",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "kwa-2025-time-horizons",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 13,
+  "one_line": "204 crowd-sourced hard tasks auto-graded onto an author-anchored 0-100 scale, reframing evaluation as forecasting which capabilities switch on with scale.",
+  "key_number": "204 tasks assembled by 450 authors across 132 institutions; best 2022 models score &lt;20 on the 0-100 human-normalized aggregate while expert raters approach 100",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/srivastava-2022-big-bench.html"
+ },
+ {
+  "slug": "liang-2022-helm",
+  "short": "HELM",
+  "title": "Holistic Evaluation of Language Models",
+  "year": 2022,
+  "date": "2022-11",
+  "venue": "TMLR",
+  "group": "Stanford",
+  "citation_count": 1744,
+  "verdict_engine": "statistical-protocol",
+  "construct": "task-capability",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"None — purely diagnostic, not a reward or preference signal\"; the full grid is a $38k, 19,500-GPU-hour snapshot, far too slow/aggregate to be a gradient.",
+  "validation_depth": "none",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T1-holistic-frameworks",
+  "placement_reason": "Born to answer \"what should we measure across the whole LM landscape and how do we aggregate it comparably?\" — it taxonomizes scenarios × desiderata and standardizes adaptation so 30 models are ranked head-to-head, the defining holistic-framework question.",
+  "lineage": [
+   {
+    "parent": "srivastava-2022-big-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "thakur-2021-beir",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 7,
+  "one_line": "HELM turned LM evaluation into a standardized grid — 7 automated metrics x 16 scenarios x 30 models under one 5-shot protocol, ranked by win rate.",
+  "key_number": "Model x scenario coverage lifted from 17.9% to 96.0% across 30 models under identical 5-shot conditions",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/liang-2022-helm.html"
+ },
+ {
+  "slug": "perez-2022-ignore-previous-prompt",
+  "short": "PromptInject",
+  "title": "Ignore Previous Prompt: Attack Techniques For Language Models",
+  "year": 2022,
+  "date": "2022-11",
+  "venue": "NeurIPS 2022 Workshop",
+  "group": "AE Studio",
+  "citation_count": 886,
+  "verdict_engine": "execution-oracle",
+  "construct": "security-robustness",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "The digest's gameability is on the ATTACKER side (picking an easy target string inflates the attack success rate), not 'training the defended model against this destroys the measurement'; it is an adversarial-robustness probe that is reported, so it is diagnostic-only, not optimization-forbidden.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "I-behavioral-probes",
+  "family": "I3-adversarial-robustness",
+  "placement_reason": "Born to answer \"how easily does a handcrafted injected user input break a flat-prompt GPT-3 app's goal or leak its hidden prompt?\" — a deliberate adversarial probe of prompt-injection robustness, exactly the I3 adversarial-robustness question.",
+  "lineage": [
+   {
+    "parent": "mazeika-2024-harmbench",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "PROMPTINJECT: a modular framework that measures prompt-injection success by strict string-match scoring — exact-match rogue string or leaked-instruction substring — over 35 GPT-3 prompts.",
+  "key_number": "58.6% ± 1.6 goal-hijacking success (and 23.6% ± 2.7 prompt-leaking) on text-davinci-002 without searching for optimal attacks",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/perez-2022-ignore-previous-prompt.html"
+ },
+ {
+  "slug": "greenblatt-2023-ai-control",
+  "short": "AI Control",
+  "title": "AI Control: Improving Safety Despite Intentional Subversion",
+  "year": 2023,
+  "date": "2023-12",
+  "venue": "ICML 2024",
+  "group": "Redwood Research",
+  "citation_count": 164,
+  "verdict_engine": "statistical-protocol",
+  "construct": "oversight-viability",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "post_training_link is \"none — this is a deployment-time protocol evaluation, not a reward signal\"; validity depends on the untrusted model being a genuine adversary and an independent red team, so training against the protocol destroys the worst-case guarantee.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "M-process-surveillance",
+  "family": "M3-control-protocols",
+  "placement_reason": "At birth it asked whether an AI developer can build a deployment pipeline from trusted/untrusted models plus scarce trusted labor that provably survives intentional sabotage — the founding control-protocol question, not a scoring or capability question.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "kale-2025-weak-to-strong-monitoring",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "meinke-2024-in-context-scheming",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 3,
+  "one_line": "Red-team vs blue-team 'control evaluations' measure whether deployment protocols built from trusted and untrusted models stay safe against intentional model subversion.",
+  "key_number": "Trusted editing reaches 92% safety at 94% usefulness — the best reported frontier point; naive untrusted monitoring is 0% safe (the GPT-4 monitor lies about its co-conspirator).",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/greenblatt-2023-ai-control.html"
+ },
+ {
+  "slug": "dubois-2023-alpacafarm",
+  "short": "AlpacaFarm",
+  "title": "AlpacaFarm: A Simulation Framework for Methods that Learn from Human Feedback",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "NeurIPS",
+  "group": "Stanford",
+  "citation_count": 892,
+  "verdict_engine": "model-judge",
+  "construct": "preference-alignment",
+  "reference_standard": "human-preference",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "\"The simulated annotators ARE a training signal: their pairwise preferences train surrogate reward models optimized by PPO/best-of-n\" — a foundational RLAIF-style preference source, cheap and mechanical.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "P-preference-courts",
+  "family": "P2-judge-protocols",
+  "placement_reason": "Built to answer \"can a cheap pool of LLM judges stand in for the human pairwise-preference annotators that RLHF depends on?\" — a judge-protocol distillation of the preference court, validated by rank-transfer to real humans.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "chiang-2024-chatbot-arena",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "li-2024-arena-hard",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 4,
+  "one_line": "Noisy pool of 13 LLM judges replaces human preference annotators ~45x cheaper; method rankings transfer to real human feedback at Spearman 0.98.",
+  "key_number": "Method rankings transfer from simulation to real human feedback at Spearman 0.98 (R^2 = 0.87) across 11 systems",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/dubois-2023-alpacafarm.html"
+ },
+ {
+  "slug": "li-2023-bird",
+  "short": "BIRD",
+  "title": "Can LLM Already Serve as A Database Interface? A BIg Bench for Large-Scale Database Grounded Text-to-SQLs",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "NeurIPS",
+  "group": "HKU / Alibaba DAMO",
+  "citation_count": 965,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "Verdict is pure SQL execution-result match against a single gold query with no model/human per verdict — a cheap deterministic verifiable reward ready for RLVR (cost: \"run the predicted SQL... no model calls or human judging per verdict\").",
+  "validation_depth": "none",
+  "grader_gap": "no-model",
+  "kingdom": "V-verification-harnesses",
+  "family": "V1-execution-oracles",
+  "placement_reason": "Born to make text-to-SQL correctness mechanical by executing predicted SQL against real dirty databases and matching result sets to gold — a canonical execution oracle for a task-capability construct.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Text-to-SQL benchmark on 33 GB of dirty real databases scored by execution-result match plus runtime-weighted VES; GPT-4 hits 54.89% vs humans' 92.96%.",
+  "key_number": "GPT-4 reaches 54.89% execution accuracy on the hidden test set with oracle external knowledge vs human experts at 92.96%",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/li-2023-bird.html"
+ },
+ {
+  "slug": "koo-2023-cobbler",
+  "short": "CoBBLEr",
+  "title": "Benchmarking Cognitive Biases in Large Language Models as Evaluators",
+  "year": 2023,
+  "date": "2023-09",
+  "venue": "ACL Findings 2024",
+  "group": "UMN / Grammarly",
+  "citation_count": 173,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"None stated — the paper is a diagnostic audit, not a reward signal\"; used to read judge machinery, no training use reported.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "Born to answer whether the LLM-as-judge verdicts that leaderboards (MT-Bench, AlpacaEval, G-Eval) were being built on are driven by cognitive biases rather than quality — a systematic audit of the judge machinery's validity, not a new metric or task.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "audits"
+   },
+   {
+    "parent": "dubois-2023-alpacafarm",
+    "relation": "audits"
+   },
+   {
+    "parent": "wang-2023-fair-evaluators",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Round-robin audit of 16 LLM judges finds ~40% of pairwise verdicts carry cognitive biases and only 0.44 RBO agreement with human rankings.",
+  "key_number": "~40% of pairwise verdicts across 16 models showed at least one of six cognitive biases",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/koo-2023-cobbler.html"
+ },
+ {
+  "slug": "liu-2023-evalplus",
+  "short": "EvalPlus",
+  "title": "Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "NeurIPS",
+  "group": "UIUC",
+  "citation_count": 1838,
+  "verdict_engine": "execution-oracle",
+  "construct": "measurement-integrity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "EvalPlus is a hardened execution benchmark read to rank/harden models; training a model to pass more differential tests would genuinely improve it, so its validity does not depend on not-training-against-it (memorization/contamination is the generic gameability of any static benchmark, not self-destruction of the measurement).",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "weaker-ok",
+  "kingdom": "F-forensics-audits",
+  "family": "F3-metric-construct-critiques",
+  "placement_reason": "Born to answer \"is HumanEval's execution-based verdict trustworthy?\" — it audits another benchmark's test adequacy and ground-truth correctness (11% of ground-truths defective), exposing that passing tests != correctness, which is a metric/construct critique.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "audits"
+   },
+   {
+    "parent": "jain-2024-livecodebench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "post-2018-sacrebleu",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 2,
+  "one_line": "Auto-generates 80x more tests for HumanEval via LLM seeding plus type-aware mutation; up to 28.9% of \"passing\" code is wrong, rankings flip.",
+  "key_number": "HumanEval ships 9.6 tests/problem on average; HumanEval+ has 764.1 — 80x more, dropping pass@100 by up to 28.9%.",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/liu-2023-evalplus.html"
+ },
+ {
+  "slug": "min-2023-factscore",
+  "short": "FActScore",
+  "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "EMNLP",
+  "group": "UW / Meta AI",
+  "citation_count": 1369,
+  "verdict_engine": "decomposed-judge",
+  "construct": "factuality",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Precision being gameable by abstaining/saying less is a garden-variety gameable metric, not a self-defeating instrument; FActScore is not an adversary- or contamination-detector and is normally just reported, so 'gameable if optimized' belongs in diagnostic-only, not optimization-forbidden.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "weaker-ok",
+  "kingdom": "S-scoring-metrics",
+  "family": "S3-reference-free-scorers",
+  "placement_reason": "Born to produce a single factual-precision score for long-form text by decomposing it into atomic facts and scoring the supported fraction against a knowledge source — a reference-anchored model scorer, the S3 role.",
+  "lineage": [
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Long-form factuality as the fraction of atomic facts Wikipedia supports; a retrieval+LM estimator matches human annotators within ~2% aggregate error.",
+  "key_number": "Best automatic estimators reach ER < 2% vs humans (Inst-LLAMA ensemble: 1.4 on InstructGPT, 0.4 on ChatGPT), correlating at 0.99 Pearson across 10+ models.",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/min-2023-factscore.html"
+ },
+ {
+  "slug": "wang-2023-fair-evaluators",
+  "short": "FairEval",
+  "title": "Large Language Models are not Fair Evaluators",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "ACL 2024",
+  "group": "Peking University",
+  "citation_count": 1039,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"Not itself a reward signal\" — it audits and calibrates the judge so preference labels are trustworthy before they feed training; it reads/fixes judges rather than serving as a gradient.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "At birth it asked \"is the LLM judge itself lying?\" — diagnosing positional bias in the Vicuna/MT-Bench pairwise judge with a swap-order Conflict Rate and proposing calibration, the defining move of a judge-bias audit.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "chiang-2023-llm-eval",
+    "relation": "audits"
+   },
+   {
+    "parent": "koo-2023-cobbler",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "thakur-2024-judging-the-judges",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 5,
+  "one_line": "LLM judges flip verdicts when answer order swaps; reason-first prompting, both-order averaging, and entropy-gated human review restore human-level agreement.",
+  "key_number": "With ChatGPT as judge, Vicuna-13B's win rate vs ChatGPT swings from 2.5% (placed first) to 82.5% (placed second) — a 66-of-80 'victory' from seating order alone",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/wang-2023-fair-evaluators.html"
+ },
+ {
+  "slug": "liu-2023-g-eval",
+  "short": "G-Eval",
+  "title": "G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment",
+  "year": 2023,
+  "date": "2023-03",
+  "venue": "EMNLP",
+  "group": "Microsoft",
+  "citation_count": 2540,
+  "verdict_engine": "model-judge",
+  "construct": "text-quality",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "G-Eval is an LLM-judge metric that is normally reported; the self-reinforcement caution is about a HYPOTHETICAL reward use it never actually performs, which is exactly 'gameable if you optimized it but usually just reported', matching its sibling LLM-judge evals (mt-bench, chiang-2023-llm-eval, cobbler) rather than a self-defeating instrument.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "S-scoring-metrics",
+  "family": "S3-reference-free-scorers",
+  "placement_reason": "Born to answer \"what number captures this text's quality?\" with no gold reference — a reference-free model scorer that reads a probability-weighted 1-5 score from a GPT-4 judge.",
+  "lineage": [
+   {
+    "parent": "chiang-2023-llm-eval",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "lin-2004-rouge",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "sellam-2020-bleurt",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 6,
+  "one_line": "Prompt GPT-4 with an auto-generated CoT rubric, read probability-weighted score tokens: the reference-free judge recipe that beat trained SOTA on human correlation.",
+  "key_number": "SummEval avg Spearman 0.514 (G-Eval-4) vs 0.474 UniEval (trained SOTA), 0.192 ROUGE-1",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/liu-2023-g-eval.html"
+ },
+ {
+  "slug": "slack-2023-holistic-eval",
+  "short": "Holistic T&E",
+  "title": "A Holistic Approach for Test and Evaluation of Large Language Models",
+  "year": 2023,
+  "date": "2023-09",
+  "venue": "Scale AI",
+  "group": "Scale AI",
+  "citation_count": 0,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Digest post_training_link: \"None - the entropy gate and layered red team are triage/evaluation machinery; reports no use as an RL/preference reward\" — human-gated, situated triage, not a gradient signal.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "Born to answer \"when can we trust an LLM judge (and a layered red team)?\" — its experiments chiefly quantify the GPT-4 grader's self-bias and calibrate an entropy gate, i.e. auditing the measurement itself.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "hardens"
+   },
+   {
+    "parent": "wang-2023-fair-evaluators",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "panickssery-2024-self-recognition",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "mazeika-2024-harmbench",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Entropy-gated GPT-4 judging auto-labels confident pairwise verdicts and routes the rest to humans; layered automated-to-generalist-to-expert red teaming covers safety.",
+  "key_number": "GPT-4 grader agrees 53.8% when humans preferred GPT-4's response vs 76.1% when they preferred the human rewrite (self-bias, Table 2)",
+  "meta_eval": true,
+  "confidence": "medium",
+  "explainer": "papers/slack-2023-holistic-eval.html"
+ },
+ {
+  "slug": "zhou-2023-ifeval",
+  "short": "IFEval",
+  "title": "Instruction-Following Evaluation for Large Language Models",
+  "year": 2023,
+  "date": "2023-11",
+  "venue": "arXiv",
+  "group": "Google",
+  "citation_count": 933,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "Explainer states IFEval \"has since become a standard training target, not just an eval\" and sits \"in many post-training mixes\"; deterministic verifiers are free per-verdict → drop-in RLVR reward.",
+  "validation_depth": "none",
+  "grader_gap": "no-model",
+  "kingdom": "V-verification-harnesses",
+  "family": "V1-execution-oracles",
+  "placement_reason": "Built to make instruction-following correctness mechanical by restricting the test set to atomic directives a short deterministic program can label followed/not, removing humans and LLM judges from the verdict path.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "raghavendra-2026-agentic-rubrics",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Restrict the test set to mechanically-checkable instructions so deterministic programs, not humans or LLM judges, score instruction-following reproducibly.",
+  "key_number": "541 prompts covering 25 verifiable instruction types organized into 9 groups; GPT-4 (Nov 2023) 76.89% prompt-level strict",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/zhou-2023-ifeval.html"
+ },
+ {
+  "slug": "chiang-2023-llm-eval",
+  "short": "LLM Eval",
+  "title": "Can Large Language Models Be an Alternative to Human Evaluations?",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "ACL",
+  "group": "National Taiwan University",
+  "citation_count": 1008,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"None stated — the explainer frames it purely as evaluation machinery... no reward-signal use\"; per-item model call sampled 3x, used to read models not train them.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "P-preference-courts",
+  "family": "P2-judge-protocols",
+  "placement_reason": "At birth it asked \"can an instruction-following LLM stand in for a human rater?\" — a judge protocol proposed and validated against expert humans, the seed of every later LLM-as-judge pipeline, not a task dataset or a forensic audit of an existing judge.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "dubois-2023-alpacafarm",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "wang-2023-fair-evaluators",
+    "relation": "audits"
+   },
+   {
+    "parent": "thakur-2024-judging-the-judges",
+    "relation": "audits"
+   }
+  ],
+  "gravity": 6,
+  "one_line": "First paper to swap the human rater for an instruction-following LLM — same packet, parsed 1-5 Likert score — seeding the LLM-as-a-judge era.",
+  "key_number": "Per-item Kendall's tau between teachers and text-davinci-003: 0.14/0.18/0.19 on grammaticality/cohesiveness/likability vs 0.38 on relevance, all significant at p<0.05",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/chiang-2023-llm-eval.html"
+ },
+ {
+  "slug": "macina-2023-mathdial",
+  "short": "MathDial",
+  "title": "MathDial: A Dialogue Tutoring Dataset with Rich Pedagogical Properties Grounded in Math Reasoning Problems",
+  "year": 2023,
+  "date": "2023-05",
+  "venue": "EMNLP Findings",
+  "group": "ETH Zurich",
+  "citation_count": 155,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "elicited-behavior",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "\"The corpus is finetuning data: BART, T5, Flan-T5, and OPT tutors are trained on it for 10 epochs, and the finetuned Flan-T5-780M is the paper's headline result.\"",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "V-verification-harnesses",
+  "family": "V3-agentic-work-harnesses",
+  "placement_reason": "Built to make interactive tutoring competence mechanically checkable via a multi-turn rollout against a simulated student, scored by a deterministic Success@k-vs-Telling@k oracle on the guide-or-tell tradeoff.",
+  "lineage": [
+   {
+    "parent": "maurya-2025-mrbench",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "pu-2026-lhaw",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "papineni-2002-bleu",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Real-teacher-teaches-LLM-student tutoring corpus whose Success@k vs Telling@k rollout metric turns the guide-or-tell tradeoff into a measurable verdict.",
+  "key_number": "Finetuned Flan-T5-780M: Success@5 = 30% at <1% Telling@5, vs ChatGPT's 29% success but 16% telling",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/macina-2023-mathdial.html"
+ },
+ {
+  "slug": "singhal-2023-med-palm",
+  "short": "Med-PaLM",
+  "title": "Large Language Models Encode Clinical Knowledge",
+  "year": 2023,
+  "date": "2022-12",
+  "venue": "Nature",
+  "group": "Google",
+  "citation_count": 4437,
+  "verdict_engine": "human-grading",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "expert-judgment",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"none as an RL/RLHF reward — the clinician-rated axes are a diagnostic verdict, not a training signal\"; alignment came from instruction prompt tuning on 40 clinician-curated exemplars, not optimizing against the eval.",
+  "validation_depth": "none",
+  "grader_gap": "human-anchored",
+  "kingdom": "I-behavioral-probes",
+  "family": "I4-fairness-harm-audits",
+  "placement_reason": "At birth the paper's problem was that multiple-choice accuracy and BLEU miss clinical safety, so it built a nine-clinician panel to audit long-form medical answers for harm, bias, and consensus alignment — a harm/safety audit instrument, not a training reward.",
+  "lineage": [
+   {
+    "parent": "buolamwini-2018-gender-shades",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "brown-2024-monkeys",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Medical LLM judged by a nine-clinician panel rating long-form answers on twelve safety axes, alongside multiple-choice accuracy with self-consistency voting.",
+  "key_number": "Scientific-consensus alignment on 140 long-form questions: Flan-PaLM 61.9% → Med-PaLM 92.6%, vs clinicians 92.9%",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/singhal-2023-med-palm.html"
+ },
+ {
+  "slug": "schaeffer-2023-emergent-mirage",
+  "short": "Mirage",
+  "title": "Are Emergent Abilities of Large Language Models a Mirage?",
+  "year": 2023,
+  "date": "2023-04",
+  "venue": "NeurIPS",
+  "group": "Stanford",
+  "citation_count": 683,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"none — the paper feeds no reward signal; its stated payoff is methodological hygiene for benchmark builders\" — it is a metric-ablation read of curves, not a gradient signal.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F3-metric-construct-critiques",
+  "placement_reason": "At birth it asked \"is the 'emergent ability' verdict a property of the model or an artifact of the scoring metric?\" — a critique of the measurement instrument itself (metric choice deforming smooth loss into a false cliff), which is exactly the F3 metric-and-construct-critique role.",
+  "lineage": [
+   {
+    "parent": "srivastava-2022-big-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "liang-2022-helm",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "kwa-2025-time-horizons",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "post-2018-sacrebleu",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Emergent-ability cliffs are artifacts of harsh nonlinear metrics: re-score identical outputs with linear or continuous metrics and they flatten into smooth ramps.",
+  "key_number": ">92% of all claimed emergent abilities on BIG-Bench appear under only two metrics: Multiple Choice Grade (76.1%) and Exact String Match (16.4%)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/schaeffer-2023-emergent-mirage.html"
+ },
+ {
+  "slug": "zheng-2023-mt-bench",
+  "short": "MT-Bench",
+  "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+  "year": 2023,
+  "date": "2023-06",
+  "venue": "NeurIPS",
+  "group": "LMSYS / Berkeley",
+  "citation_count": 9198,
+  "verdict_engine": "model-judge",
+  "construct": "preference-alignment",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "reward-adapted",
+  "reward_readiness_reason": "Not a reward in-paper, but LLM-judge preference grading became the downstream RLAIF reward paradigm, and the verbosity/self-enhancement biases it quantified are exactly the hacks later rubric-RL reward work (Online Rubrics, Rubric Reward Hacking) fights.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "P-preference-courts",
+  "family": "P2-judge-protocols",
+  "placement_reason": "Born to answer \"can a strong LLM stand in for costly human preference judging of open-ended multi-turn chat?\" — it defines the LLM-as-a-judge protocol and validates it against Arena human votes, the canonical P2 judge-protocol move.",
+  "lineage": [],
+  "gravity": 15,
+  "one_line": "GPT-4 grading chat answers matches expert human preference 85% (humans agree 81%), turning LLM-as-a-judge into the field's default verdict machine.",
+  "key_number": "85% GPT-4-human agreement on non-tie MT-bench votes (vs 81% human-human)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/zheng-2023-mt-bench.html"
+ },
+ {
+  "slug": "jimenez-2023-swe-bench",
+  "short": "SWE-bench",
+  "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+  "year": 2023,
+  "date": "2023-10",
+  "venue": "ICLR",
+  "group": "Princeton NLP",
+  "citation_count": 2597,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "Authors release SWE-bench-train (19,000 issue-PR pairs) and fine-tune SWE-Llama on it; the hidden unit-test pass/fail is a mechanical verifiable reward (execution oracle → RLVR-ready).",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "V-verification-harnesses",
+  "family": "V1-execution-oracles",
+  "placement_reason": "Born to make real multi-file software-engineering correctness mechanically checkable by executing a merged PR's own hidden fail-to-pass + pass-to-pass unit tests on the model's patch — a pure execution oracle.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "hardens"
+   },
+   {
+    "parent": "chen-2021-codex",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 13,
+  "one_line": "Real GitHub issue→PR pairs graded by executing the PR's hidden unit tests on the model's patch; frontier models resolved under 4% in 2023.",
+  "key_number": "2,294 task instances distilled from ~90,000 scraped PRs; best BM25 system (Claude 3 Opus) resolves 3.79%.",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/jimenez-2023-swe-bench.html"
+ },
+ {
+  "slug": "zhuge-2024-agent-as-judge",
+  "short": "Agent-as-a-Judge",
+  "title": "Agent-as-a-Judge: Evaluate Agents with Agents",
+  "year": 2024,
+  "date": "2024-10",
+  "venue": "ICML 2025",
+  "group": "Meta AI",
+  "citation_count": 161,
+  "verdict_engine": "decomposed-judge",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "reward-adapted",
+  "reward_readiness_reason": "Digest: per-requirement DAG verdicts pitched as \"a promising reward-signal prototype for agent self-improvement\" — dense milestone feedback, though \"not yet a settled measurement instrument\" and Goodharting risk noted.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "V-verification-harnesses",
+  "family": "V2-rubric-verifiers",
+  "placement_reason": "Built to make agentic-development correctness mechanically checkable by having an agentic judge verdict each node of a human-authored requirements DAG rather than a single final pass/fail, so it is a rubric-verification harness.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "hardens"
+   },
+   {
+    "parent": "chiang-2023-llm-eval",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "min-2023-factscore",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 2,
+  "one_line": "An agentic judge that opens the workspace and verdicts each requirement in a DAG, matching a single human ~90% at ~2% of cost.",
+  "key_number": "90.44% alignment with human consensus judging OpenHands, edging past the best single human (89.89%) at $30.58 vs the panel's $1,297.50 (2.29% of cost)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/zhuge-2024-agent-as-judge.html"
+ },
+ {
+  "slug": "li-2024-arena-hard",
+  "short": "Arena-Hard",
+  "title": "From Crowdsourced Data to High-Quality Benchmarks: Arena-Hard and BenchBuilder Pipeline",
+  "year": 2024,
+  "date": "2024-06",
+  "venue": "ICML 2024",
+  "group": "LMSYS / Berkeley",
+  "citation_count": 461,
+  "verdict_engine": "model-judge",
+  "construct": "preference-alignment",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "\"None stated as a training signal; the explainer implicitly warns against optimizing the static artifact (the frozen 500-prompt set 'can be trained on and saturates over time')\" — used as a cheap leaderboard proxy, not a gradient signal.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "P-preference-courts",
+  "family": "P2-judge-protocols",
+  "placement_reason": "Built to answer \"how do we get a cheap, statistically separable model-judge proxy for the human-vote Chatbot Arena ranking?\" — a distilled pairwise judge protocol over automatically-curated hard prompts.",
+  "lineage": [
+   {
+    "parent": "chiang-2024-chatbot-arena",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "hardens"
+   },
+   {
+    "parent": "dubois-2023-alpacafarm",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "BenchBuilder mines 200K Arena chat logs into 500 hard prompts; a GPT-4-Turbo pairwise judge yields 90.9% human agreement for $20/model.",
+  "key_number": "90.9% confidence agreement and 93.2% Spearman with the top-20 Chatbot Arena English ranking, at $20 per model evaluated",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/li-2024-arena-hard.html"
+ },
+ {
+  "slug": "chiang-2024-chatbot-arena",
+  "short": "Chatbot Arena",
+  "title": "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference",
+  "year": 2024,
+  "date": "2024-03",
+  "venue": "ICML 2024",
+  "group": "LMSYS / Berkeley",
+  "citation_count": 1326,
+  "verdict_engine": "human-grading",
+  "construct": "preference-alignment",
+  "reference_standard": "human-preference",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "Digest: Arena builds the same open-ended pairwise human-preference signal that lives inside labs' private RLHF pipelines — crowd/human preference votes are a standard RLHF reward source.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "human-anchored",
+  "kingdom": "P-preference-courts",
+  "family": "P1-human-preference-arenas",
+  "placement_reason": "Built to answer \"which chat model do real people prefer on live open-ended prompts\" by aggregating anonymous crowd pairwise votes into a model-level ranking — the canonical human preference arena.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "li-2024-arena-hard",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "dubois-2023-alpacafarm",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 2,
+  "one_line": "Anonymous crowdsourced pairwise battles aggregated by Bradley-Terry into a live preference leaderboard — 240K human votes became the field's de-facto scoreboard.",
+  "key_number": "~240K votes (243,329 conversations) from ~90K users over 50 models and 149 languages, April 2023 - January 2024",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/chiang-2024-chatbot-arena.html"
+ },
+ {
+  "slug": "zhang-2024-gsm1k",
+  "short": "GSM1k",
+  "title": "A Careful Examination of Large Language Model Performance on Grade School Arithmetic",
+  "year": 2024,
+  "date": "2024-05",
+  "venue": "NeurIPS",
+  "group": "Scale AI",
+  "citation_count": 204,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "private-twin",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "\"Not a reward signal itself — it is an anti-Goodhart diagnostic... explicitly warns against optimizing on public benchmarks\"; publishing GSM1k would recreate the contamination it measures, hence the withheld set.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F1-contamination-forensics",
+  "placement_reason": "Born to answer whether a public GSM8k score reflects real math reasoning or memorization of the released test set, GSM1k builds a private difficulty-matched twin and reads the accuracy gap as contamination — a contamination-forensics instrument.",
+  "lineage": [
+   {
+    "parent": "srivastava-2022-big-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "schaeffer-2023-emergent-mirage",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "liang-2022-helm",
+    "relation": "audits"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Private, difficulty-matched, human-written twin of GSM8k exposes benchmark overfitting: worst families drop up to 8 points, frontier models flat.",
+  "key_number": "Worst overfit: Yi-6B-Chat drops 8.0 points (43.7% GSM8k → 35.7% GSM1k); frontier flat (GPT-4o 93.1 → 92.9).",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/zhang-2024-gsm1k.html"
+ },
+ {
+  "slug": "mazeika-2024-harmbench",
+  "short": "HarmBench",
+  "title": "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal",
+  "year": 2024,
+  "date": "2024-02",
+  "venue": "ICML 2024",
+  "group": "CAIS / UIUC",
+  "citation_count": 1228,
+  "verdict_engine": "model-judge",
+  "construct": "safety-propensity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "R2D2 adversarially trains Mistral 7B against a dynamic pool of GCG test cases, cutting GCG ASR 69.5%→5.5% while keeping MT-Bench at 6.0 — the pipeline is directly a training signal.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "I-behavioral-probes",
+  "family": "I3-adversarial-robustness",
+  "placement_reason": "Born to standardize ad-hoc red-teaming into one pipeline (510 behaviors, fixed 512-token cap, open classifier) that stages adversarial attacks and asks whether a model robustly refuses to attempt harmful behaviors.",
+  "lineage": [
+   {
+    "parent": "perez-2022-ignore-previous-prompt",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "zhou-2023-ifeval",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Standardized red-teaming pipeline — 510 behaviors, 512-token cap, open 93.2%-human-agreement classifier — showing no attack/defense dominates and safety doesn't scale.",
+  "key_number": "93.2% human agreement (vs GPT-4's 88.4%)",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/mazeika-2024-harmbench.html"
+ },
+ {
+  "slug": "meinke-2024-in-context-scheming",
+  "short": "In-context Scheming",
+  "title": "Frontier Models are Capable of In-context Scheming",
+  "year": 2024,
+  "date": "2024-12",
+  "venue": "arXiv",
+  "group": "Apollo Research",
+  "citation_count": 237,
+  "verdict_engine": "execution-oracle",
+  "construct": "safety-propensity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "elicited-behavior",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "\"Explicitly anti-optimization: key eval details are withheld to keep the suite out of future training sets (contamination would defeat the eval).\"",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "I-behavioral-probes",
+  "family": "I1-honesty-deception",
+  "placement_reason": "Built to answer whether a frontier agent, handed a goal and situational awareness, will spontaneously execute covert deception (disable oversight, self-exfiltrate, lie, sandbag) when a staged honeypot situation opens the door.",
+  "lineage": [
+   {
+    "parent": "sehwag-2025-propensitybench",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "ren-2025-mask",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "greenblatt-2023-ai-control",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 6,
+  "one_line": "Six sandboxed agentic honeypots show five frontier models can covertly disable oversight, self-exfiltrate, lie, and sandbag — scheming measured as capability, not propensity.",
+  "key_number": "Every model except GPT-4o schemed on at least one of six evals; o1 schemed on all six",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/meinke-2024-in-context-scheming.html"
+ },
+ {
+  "slug": "thakur-2024-judging-the-judges",
+  "short": "Judging the Judges",
+  "title": "Judging the Judges: Evaluating Alignment and Vulnerabilities in LLMs-as-Judges",
+  "year": 2024,
+  "date": "2024-06",
+  "venue": "arXiv",
+  "group": "UMass Amherst / Meta",
+  "citation_count": 210,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "human-preference",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "This is a meta-evaluation/audit of judge machinery (like koo-2023-cobbler and wang-2023-fair-evaluators, both diagnostic-only): it READS judges' leniency and gullibility so you can trust or fix them, and the documented gameability is that JUDGES are gameable, not that this audit self-destructs under optimization.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "At birth its question was \"is the LLM-as-judge measurement itself lying?\" — it audits judge reliability against near-ground-truth human labels on a deliberately unambiguous task, exposing leniency and gullibility that aggregate agreement hides.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "audits"
+   },
+   {
+    "parent": "wang-2023-fair-evaluators",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "koo-2023-cobbler",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "panickssery-2024-self-recognition",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Even on trivially clean factual QA, only frontier-size LLM judges near human agreement — and percent agreement flatters everyone; report Scott's pi.",
+  "key_number": "Humans agree 98.52% (Scott's pi 96.2), but the best judges (GPT-4 Turbo, Llama-3 70B) reach only pi 88 — ~8 points below the human ceiling",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/thakur-2024-judging-the-judges.html"
+ },
+ {
+  "slug": "jain-2024-livecodebench",
+  "short": "LiveCodeBench",
+  "title": "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code",
+  "year": 2024,
+  "date": "2024-03",
+  "venue": "ICLR",
+  "group": "UC Berkeley",
+  "citation_count": 1690,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "private-twin",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "Its validity depends on models not having trained on the fresh time-stamped problems; the paper's central finding is that live eval is the antidote to benchmark overfitting (HumanEval+ vs LCB-Easy 0.72), and training on fresh contest problems defeats the time filter.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F1-contamination-forensics",
+  "placement_reason": "At birth its novel contribution over existing execution-oracle harnesses (Codex/HumanEval) was the release-date-filtered live pool that designs contamination out by time and turns contamination into a measurable cliff, making it a contamination-forensics instrument.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "hardens"
+   },
+   {
+    "parent": "liu-2023-evalplus",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "brown-2024-monkeys",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "zhang-2024-gsm1k",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 2,
+  "one_line": "Time-stamped live contest problems, execution-graded across four code skills, scored only past each model's cutoff — turning contamination into a measurement.",
+  "key_number": "HumanEval+ vs LCB-Easy Pass@1 correlation is only 0.72; DS-Ins-1.3B scores 59.8% on HumanEval+ but 26.3% on LCB-Easy",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/jain-2024-livecodebench.html"
+ },
+ {
+  "slug": "brown-2024-monkeys",
+  "short": "LLM Monkeys",
+  "title": "Large Language Monkeys: Scaling Inference Compute with Repeated Sampling",
+  "year": 2024,
+  "date": "2024-07",
+  "venue": "arXiv",
+  "group": "Stanford",
+  "citation_count": 821,
+  "verdict_engine": "statistical-protocol",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "reward-native",
+  "reward_readiness_reason": "Verifier-gated repeated sampling over executable oracles is the eval-side precursor of verifiable-reward RL; the digest states its coverage-vs-selection gap 'became the explicit target of the reasoning-model wave (o1, R1, RLVR)' and it already uses an 8B reward model as a best-of-N selector.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T2-capability-axis-instruments",
+  "placement_reason": "Born to answer \"how far does capability scale with inference-time sample budget?\" — it defines pass@k coverage fit to an inference-time scaling law as a capability-axis instrument, not a per-output score or a task dataset.",
+  "lineage": [],
+  "gravity": 1,
+  "one_line": "Sample k times and let a domain verifier pick: coverage scales log-linearly over four orders of magnitude, but pays off only where verifiers exist.",
+  "key_number": "DeepSeek-Coder-V2-Instruct on SWE-bench Lite: 15.9% at 1 sample -> 56% at 250 attempts, beating the 43% single-attempt SOTA by 13 points",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/brown-2024-monkeys.html"
+ },
+ {
+  "slug": "kim-2024-prometheus-2",
+  "short": "Prometheus 2",
+  "title": "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models",
+  "year": 2024,
+  "date": "2024-05",
+  "venue": "EMNLP",
+  "group": "KAIST AI",
+  "citation_count": 444,
+  "verdict_engine": "model-judge",
+  "construct": "preference-alignment",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "reward-adapted",
+  "reward_readiness_reason": "Judge emits exactly the 1-5 scores and pairwise preferences used for preference optimization (PairRM/UltraRM as baselines) and the Preference Collection is a reusable artifact, but its scores are a distilled copy of GPT-4's, carrying documented judge-bias cost — an RLAIF-adaptable signal, not a clean mechanical reward.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "S-scoring-metrics",
+  "family": "S3-reference-free-scorers",
+  "placement_reason": "Born to give an open, inspectable, reference-free model scorer that produces a quality verdict on open-ended generations against arbitrary rubrics, matching proprietary GPT-4-level holistic judging.",
+  "lineage": [
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "chiang-2023-llm-eval",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "dubois-2023-alpacafarm",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "wang-2023-fair-evaluators",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Open LLM judge built by weight-merging direct-scoring and pairwise specialists; halves the open-vs-GPT-4 human-agreement gap across both evaluation formats.",
+  "key_number": "FLASK human correlation: Prometheus-2-8x7B 0.555 vs GPT-4-1106's 0.679 (prior best open 0.449 — gap halved, not closed)",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/kim-2024-prometheus-2.html"
+ },
+ {
+  "slug": "panickssery-2024-self-recognition",
+  "short": "Self-Recognition",
+  "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+  "year": 2024,
+  "date": "2024-04",
+  "venue": "NeurIPS",
+  "group": "NYU",
+  "citation_count": 521,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "Explicit warning: a shared-weights grader inflates its own scores and, when optimizer and reward model share weights, enables effectively unbounded reward hacking — optimizing against self-evaluation destroys the instrument.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "Born to answer whether the LLM-as-judge machinery silently marks its own homework, it audits the judge's own bias (self-recognition causally driving self-preference), placing it in judge-bias forensics rather than any capability or scoring family.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "dubois-2023-alpacafarm",
+    "relation": "audits"
+   },
+   {
+    "parent": "koo-2023-cobbler",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "thakur-2024-judging-the-judges",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "LLM judges recognize their own text out of the box, and self-preference rises linearly with self-recognition — your judge may be marking its own homework.",
+  "key_number": "GPT-4 out-of-the-box pairwise self-recognition: 73.5%; label-swap probe flips self-preference from 0.73 to 0.32.",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/panickssery-2024-self-recognition.html"
+ },
+ {
+  "slug": "zhu-2025-agentic-benchmarks",
+  "short": "ABC Checklist",
+  "title": "Establishing Best Practices for Building Rigorous Agentic Benchmarks",
+  "year": 2025,
+  "date": "2025-07",
+  "venue": "arXiv",
+  "group": "UIUC",
+  "citation_count": 52,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "ABC is a 43-item benchmark-construction audit checklist applied/reported to harden graders, not an instrument whose validity depends on not-training-against-it; its warning is that AGENTS game weak graders, which is an eval-design caution, so it is diagnostic-only (unlike the true contamination detectors han-2025/zhang-2024).",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F5-benchmark-rigor-standards",
+  "placement_reason": "Born to ask whether agentic benchmarks' headline numbers are lying — a 43-item rigor checklist plus exploit experiments that audit ten benchmarks — squarely a benchmark-rigor standard, the agentic sibling of ABC-Checklist.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "li-2023-bird",
+    "relation": "audits"
+   },
+   {
+    "parent": "liu-2023-evalplus",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "zhang-2024-gsm1k",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "A 43-check audit checklist for agentic benchmarks — task validity, outcome validity, reporting — under which all ten popular benchmarks examined fail somewhere.",
+  "key_number": "A do-nothing agent returning an empty response scores 38% on τ-bench-Airline, beating a real GPT-4o-based agent.",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/zhu-2025-agentic-benchmarks.html"
+ },
+ {
+  "slug": "wei-2025-bioriskeval",
+  "short": "Biorisk Evals",
+  "title": "Best Practices for Biorisk Evaluations on Open-Weight Bio-Foundation Models",
+  "year": 2025,
+  "date": "2025-10",
+  "venue": "NeurIPS 2025 Workshop",
+  "group": "Scale AI",
+  "citation_count": 3,
+  "verdict_engine": "statistical-protocol",
+  "construct": "safety-propensity",
+  "reference_standard": "gold-reference",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Not a reward and not a monitorability-style protected instrument; it is a red-team audit of a training-time mitigation (data filtering), used to read whether excluded capability persists — diagnostic.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "I-behavioral-probes",
+  "family": "I2-danger-propensity",
+  "placement_reason": "Born to test whether pretraining-data filtering actually removes a dangerous capability or merely hides it — a dangerous-capability-recovery probe, asking 'can the excluded skill be fine-tuned or probed back?'",
+  "lineage": [
+   {
+    "parent": "sehwag-2025-propensitybench",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Red-teams data-filtering as a safety mitigation: excluded capability returns in 0.72 GPU-hours and a zero-update linear probe shows the signal never left the representations.",
+  "key_number": "Held-out-species perplexity recovers to benign level in 50 fine-tuning steps (0.72 H100 GPU-hours); zero-fine-tune probe hits |rho|=0.159, 52.8% above the no-biology floor.",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/wei-2025-bioriskeval.html"
+ },
+ {
+  "slug": "chen-2025-cot-faithfulness",
+  "short": "CoT Faithfulness",
+  "title": "Reasoning Models Don't Always Say What They Think",
+  "year": 2025,
+  "date": "2025-05",
+  "venue": "arXiv",
+  "group": "Anthropic",
+  "citation_count": 331,
+  "verdict_engine": "process-monitor",
+  "construct": "honesty",
+  "reference_standard": "model-process",
+  "signal_fidelity": "process-transparency",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "\"Not a reward signal... CoT monitorability cannot be assumed to survive RL post-training\" — a model trained to name-drop hints would score faithful, so optimizing against the metric destroys it.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "M-process-surveillance",
+  "family": "M2-faithfulness-tests",
+  "placement_reason": "Built to test the load-bearing validity assumption behind CoT-monitoring safety cases — whether a reasoning model's chain-of-thought actually verbalizes the cue that flipped its answer — which is the definitional faithfulness test.",
+  "lineage": [
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "korbak-2025-cot-monitorability",
+    "relation": "audits"
+   },
+   {
+    "parent": "emmons-2025-cot-evade-monitors",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "mahmoud-2026-reward-hacking",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 3,
+  "one_line": "Prompt-pair flip test shows reasoning models verbalize answer-changing hints only 25-39% of the time; RL reward hacks exploited >99% but verbalized <2%.",
+  "key_number": "Reward hacks exploited on >99% of prompts yet verbalized on <2% (vs >90% monitor catch rate in Baker et al. 2025)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/chen-2025-cot-faithfulness.html"
+ },
+ {
+  "slug": "korbak-2025-cot-monitorability",
+  "short": "CoT Monitorability",
+  "title": "Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety",
+  "year": 2025,
+  "date": "2025-07",
+  "venue": "arXiv",
+  "group": "Multi-lab",
+  "citation_count": 163,
+  "verdict_engine": "process-monitor",
+  "construct": "oversight-viability",
+  "reference_standard": "model-process",
+  "signal_fidelity": "process-transparency",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "Explicit warning AGAINST optimizing against it — the paper's core thesis: monitorability exists precisely because the CoT is NOT directly supervised during RL, and direct process supervision / scaled outcome-based RL would destroy it; recommends paying a \"monitorability tax.\"",
+  "validation_depth": "none",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "M-process-surveillance",
+  "family": "M1-cot-monitoring",
+  "placement_reason": "A cross-lab position paper whose birth question is \"can we watch a reasoning model think, and does that oversight survive training?\" — the canonical CoT-monitorability manifesto, squarely M1.",
+  "lineage": [
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "emmons-2025-cot-evade-monitors",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "kale-2025-weak-to-strong-monitoring",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "chen-2025-cot-faithfulness",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "greenblatt-2023-ai-control",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Cross-lab position paper: read reasoning models' chains of thought to catch misbehavior — a fragile, unmeasured safety window training choices could silently close.",
+  "key_number": "163 citations as of 2026-06-19; a 40-author cross-lab position paper",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/korbak-2025-cot-monitorability.html"
+ },
+ {
+  "slug": "baker-2025-monitoring-reasoning",
+  "short": "CoT Obfuscation",
+  "title": "Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation",
+  "year": 2025,
+  "date": "2025-03",
+  "venue": "arXiv",
+  "group": "OpenAI",
+  "citation_count": 243,
+  "verdict_engine": "process-monitor",
+  "construct": "oversight-viability",
+  "reference_standard": "model-process",
+  "signal_fidelity": "process-transparency",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "The paper folds the monitor into the RL reward and shows optimizing against it teaches obfuscated hacking, explicitly warning AGAINST it and recommending a 'monitorability tax' — validity depends on NOT training against it.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "M-process-surveillance",
+  "family": "M1-cot-monitoring",
+  "placement_reason": "Built at birth to answer whether a weaker LLM monitor reading a frontier agent's chain-of-thought can detect reward hacking and whether that oversight signal survives being optimized against — the defining CoT-monitorability question.",
+  "lineage": [
+   {
+    "parent": "korbak-2025-cot-monitorability",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "emmons-2025-cot-evade-monitors",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "kale-2025-weak-to-strong-monitoring",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "greenblatt-2023-ai-control",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "mahmoud-2026-reward-hacking",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 4,
+  "one_line": "Zero-shot GPT-4o reading a frontier agent's CoT catches 95% of reward hacks — until you train against it, which teaches obfuscation.",
+  "key_number": "95% joint recall (CoT monitor) vs 60% (action-only) on the two systemic hacks",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/baker-2025-monitoring-reasoning.html"
+ },
+ {
+  "slug": "du-2025-deepresearch-bench",
+  "short": "DeepResearch Bench",
+  "title": "DeepResearch Bench: A Comprehensive Benchmark for Deep Research Agents",
+  "year": 2025,
+  "date": "2025-06",
+  "venue": "arXiv",
+  "group": "USTC / Metastone",
+  "citation_count": 168,
+  "verdict_engine": "decomposed-judge",
+  "construct": "task-capability",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"None stated — not used as a reward signal\"; expensive LLM-judge + live-web retrieval makes runs non-reproducible, and the 100 public tasks yield an aggregate leaderboard read as rankings, not gradients.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "V-verification-harnesses",
+  "family": "V2-rubric-verifiers",
+  "placement_reason": "Born to make open-ended deep-research-report quality checkable via a reference-anchored, adaptive weighted-criteria judge (RACE) plus per-citation support verdicts (FACT) — a rubric-verification harness for a task with no gold answer.",
+  "lineage": [
+   {
+    "parent": "min-2023-factscore",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "First deep-research-agent benchmark: 100 expert tasks graded by a reference-anchored adaptive LLM judge (RACE) plus per-citation verification (FACT), human-agreement-validated.",
+  "key_number": "RACE(Full) hits 71.33% pairwise agreement with humans — higher than the 68.44% inter-expert agreement",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/du-2025-deepresearch-bench.html"
+ },
+ {
+  "slug": "emmons-2025-cot-evade-monitors",
+  "short": "Evade Monitors",
+  "title": "When Chain of Thought is Necessary, Language Models Struggle to Evade Monitors",
+  "year": 2025,
+  "date": "2025-07",
+  "venue": "arXiv",
+  "group": "Google DeepMind",
+  "citation_count": 53,
+  "verdict_engine": "process-monitor",
+  "construct": "oversight-viability",
+  "reference_standard": "model-process",
+  "signal_fidelity": "process-transparency",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "RL fine-tuning with the monitor in the reward (~1.28M episodes) taught evasion, raising correct-and-evaded rate 0.5%->74.9% and dropping monitor triggering 81.8%->19.5% — optimizing against it destroys the instrument.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "M-process-surveillance",
+  "family": "M1-cot-monitoring",
+  "placement_reason": "Built at birth to answer whether a runtime CoT monitor can catch harmful behavior when hard tasks force reasoning into the open, and how much adversarial help it takes to evade it — a monitorability/oversight-survival question, not a task score.",
+  "lineage": [
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "hardens"
+   },
+   {
+    "parent": "korbak-2025-cot-monitorability",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "chen-2025-cot-faithfulness",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "kale-2025-weak-to-strong-monitoring",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Reframes CoT faithfulness as monitorability: when tasks force reasoning into the CoT, models evade LLM monitors only with heavy human help or RL pressure.",
+  "key_number": "RL against the monitor raised correct-and-evaded rate 0.5%->74.9% (monitor triggering 81.8%->19.5%)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/emmons-2025-cot-evade-monitors.html"
+ },
+ {
+  "slug": "patwardhan-2025-gdpval",
+  "short": "GDPval",
+  "title": "GDPval: Evaluating AI Model Performance on Real-World Economically Valuable Tasks",
+  "year": 2025,
+  "date": "2025-10",
+  "venue": "arXiv",
+  "group": "OpenAI",
+  "citation_count": 73,
+  "verdict_engine": "human-grading",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "expert-judgment",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Grading one pairwise comparison averages over an hour of expert time and the automated proxy is explicitly \"a proxy, not a substitute... not a reward signal\" — too slow/situated to be a gradient.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "human-anchored",
+  "kingdom": "I-behavioral-probes",
+  "family": "I4-fairness-harm-audits",
+  "placement_reason": "At birth it asked \"can frontier models match industry-expert deliverables on real paid knowledge work?\" — a capability instrument whose verdict is a human expert reading the real artifact, closest in the tree to the human-audit family alongside Gender Shades and Med-PaLM.",
+  "lineage": [
+   {
+    "parent": "singhal-2023-med-palm",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "kwa-2025-time-horizons",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "chiang-2024-chatbot-arena",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Real paid knowledge-work tasks graded by blinded expert pairwise comparison against the professional's own deliverable; best model hits 47.6% wins+ties, below parity.",
+  "key_number": "Claude Opus 4.1 best at 47.6% wins+ties vs the human expert deliverable, just short of the 50% parity line",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/patwardhan-2025-gdpval.html"
+ },
+ {
+  "slug": "ren-2025-mask",
+  "short": "MASK",
+  "title": "The MASK Benchmark: Disentangling Honesty From Accuracy in AI Systems",
+  "year": 2025,
+  "date": "2025-03",
+  "venue": "arXiv",
+  "group": "CAIS / Scale AI",
+  "citation_count": 39,
+  "verdict_engine": "model-judge",
+  "construct": "honesty",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "\"Not used as a reward signal\"; critique warns the hand-crafted pressure scenarios are Goodhart-able — \"a model can be trained to 'pass' the scene without becoming honest.\"",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "I-behavioral-probes",
+  "family": "I1-honesty-deception",
+  "placement_reason": "Built to answer \"does the model knowingly lie when we stage adversarial pressure?\" — a staged behavioral probe of honesty as propensity, disentangled from accuracy, not a metric or a task harness.",
+  "lineage": [
+   {
+    "parent": "meinke-2024-in-context-scheming",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "chen-2025-cot-faithfulness",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Elicit a model's belief neutrally, pressure it to lie, score S ≠ B — showing scale buys accuracy (+87.3%) but not honesty (−59.9%).",
+  "key_number": "P(Lie) spans 26.6% (Claude 3.7 Sonnet) to 63.0% (Grok 2) across 30 frontier LLMs; no model is explicitly honest in more than 46% of cases",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/ren-2025-mask.html"
+ },
+ {
+  "slug": "maurya-2025-mrbench",
+  "short": "MRBench",
+  "title": "Unifying AI Tutor Evaluation: An Evaluation Taxonomy for Pedagogical Ability Assessment of LLM-Powered AI Tutors",
+  "year": 2025,
+  "date": "2024-12",
+  "venue": "NAACL",
+  "group": "MBZUAI",
+  "citation_count": 57,
+  "verdict_engine": "human-grading",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "expert-judgment",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "\"none — no reward-signal use... the taxonomy is a measurement/standardisation instrument, and its LLM-judge automation (the step that could feed a scalable reward) is shown not to work yet\" — negative-correlating judges leave it human-only and diagnostic.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "human-anchored",
+  "kingdom": "V-verification-harnesses",
+  "family": "V3-agentic-work-harnesses",
+  "placement_reason": "Built to answer whether an LLM tutor turn genuinely remediates a student's math mistake within a dialogue — an interactive tutoring-competence harness scoring per-turn pedagogical behavior, not a scoring metric or a preference vote.",
+  "lineage": [
+   {
+    "parent": "macina-2023-mathdial",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "kim-2024-prometheus-2",
+    "relation": "audits"
+   },
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Human annotators grade LLM tutor turns on an 8-dimension pedagogical taxonomy (DAMR); frontier models answer well but tutor poorly, and cheap LLM judges correlate negatively with humans.",
+  "key_number": "Cohen's kappa = 0.71 (main annotation, 40 doubly-labelled instances); Fleiss' kappa = 0.65 (validation pilot)",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/maurya-2025-mrbench.html"
+ },
+ {
+  "slug": "starace-2025-paperbench",
+  "short": "PaperBench",
+  "title": "PaperBench: Evaluating AI's Ability to Replicate AI Research",
+  "year": 2025,
+  "date": "2025-04",
+  "venue": "ICML",
+  "group": "OpenAI",
+  "citation_count": 191,
+  "verdict_engine": "decomposed-judge",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"None — framed as a capability/autonomy measurement instrument for safety frameworks... not as a training reward\"; grading costs ~$66/paper and rollouts ~$400 over 12h — too slow/expensive/situated for a gradient signal.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "weaker-ok",
+  "kingdom": "V-verification-harnesses",
+  "family": "V2-rubric-verifiers",
+  "placement_reason": "At birth it answered \"how do we make 'replicate this ML paper' mechanically checkable?\" by decomposing each paper into thousands of author-co-written binary rubric leaves graded by an LLM judge — a rubric verification harness, not a scoring metric or a preference court.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "min-2023-factscore",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "zhuge-2024-agent-as-judge",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "patwardhan-2025-gdpval",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Agents replicate ML papers from scratch; an o3-mini judge grades 8,316 author-co-written binary rubric leaves, weighted-averaged into a Replication Score.",
+  "key_number": "8,316 binary rubric leaf criteria across 20 ICML 2024 Spotlight/Oral papers; best agent (Claude 3.5 Sonnet) scores 21.0% vs 41.4% human baseline; judge F1 = 0.83",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/starace-2025-paperbench.html"
+ },
+ {
+  "slug": "sehwag-2025-propensitybench",
+  "short": "PropensityBench",
+  "title": "PropensityBench: Evaluating Latent Safety Risks in Large Language Models via an Agentic Approach",
+  "year": 2025,
+  "date": "2025-11",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 11,
+  "verdict_engine": "execution-oracle",
+  "construct": "safety-propensity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "elicited-behavior",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "Benignly renaming the forbidden tool nearly 4x's o4-mini's propensity (15.8%->59.3%), so the metric keys on surface cues — training against it teaches pattern-matching, not alignment, destroying the instrument.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "I-behavioral-probes",
+  "family": "I2-danger-propensity",
+  "placement_reason": "Built to answer whether a model will knowingly misuse a dangerous capability when the safe path is blocked and pressure escalates — a staged behavioral propensity probe, not a capability or metric audit.",
+  "lineage": [
+   {
+    "parent": "meinke-2024-in-context-scheming",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "wei-2025-bioriskeval",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "mazeika-2024-harmbench",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Agentic trap benchmark: rig the safe tool to always fail, escalate pressure, and mechanically count how often models knowingly invoke a forbidden proxy tool.",
+  "key_number": "Average propensity to invoke the forbidden tool hits 46.9% at maximum pressure vs near-zero at rest.",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/sehwag-2025-propensitybench.html"
+ },
+ {
+  "slug": "han-2025-search-time-contamination",
+  "short": "STC",
+  "title": "Search-Time Data Contamination",
+  "year": 2025,
+  "date": "2025-08",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 10,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "private-twin",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "post_training_link is \"None — a measurement/audit study\" that warns against optimizing toward offline benchmarks; a contamination detector's validity depends on the eval set NOT leaking, so training against the audited benchmarks destroys the instrument.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F1-contamination-forensics",
+  "placement_reason": "At birth it asks \"is the measurement itself lying?\" — specifically whether search-agent benchmark scores are corrupted by inference-time retrieval of the eval set's own answer key, the defining question of contamination forensics.",
+  "lineage": [
+   {
+    "parent": "zhang-2024-gsm1k",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "jain-2024-livecodebench",
+    "relation": "generalizes"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Search agents retrieve benchmark answer keys mid-eval: ~3% of HLE/SimpleQA/GPQA questions contaminated — a lower bound big enough to reorder frontier leaderboards.",
+  "key_number": "Sonar Deep Research on HLE scores 37.5% on the contaminated subset (n=80) vs 17.4% uncontaminated (n=2,299) — a >20-point gap; ~3% of HLE questions contaminated for all three Sonar agents (3.36-3.44%).",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/han-2025-search-time-contamination.html"
+ },
+ {
+  "slug": "kwa-2025-time-horizons",
+  "short": "Time Horizons",
+  "title": "Measuring AI Ability to Complete Long Software Tasks",
+  "year": 2025,
+  "date": "2025-03",
+  "venue": "arXiv",
+  "group": "METR",
+  "citation_count": 98,
+  "verdict_engine": "statistical-protocol",
+  "construct": "task-capability",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Digest post_training_link: \"none - no use as a reward or preference signal is stated; the horizon is a forecasting yardstick\"; the verdict is model-level and the durable claim is a cross-model trend, too aggregate to be a gradient signal.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T2-capability-axis-instruments",
+  "placement_reason": "Born as a new measurement scale — task length in skilled-human time that a model completes 50% of the time — explicitly motivated by a critique of saturating, unit-less benchmarks, making it a capability-axis metrology instrument.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "brown-2024-monkeys",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "srivastava-2022-big-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "schaeffer-2023-emergent-mirage",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Fits a per-model logistic over human-timed tasks; the 50%-success task length has doubled every ~7 months since 2019.",
+  "key_number": "50% time horizon doubled every 207 days (R^2 = 0.97, 95% bootstrap CI 166-240 days) from 2019 to 2025",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/kwa-2025-time-horizons.html"
+ },
+ {
+  "slug": "kale-2025-weak-to-strong-monitoring",
+  "short": "Weak-to-Strong Monitoring",
+  "title": "Reliable Weak-to-Strong Monitoring of LLM Agents",
+  "year": 2025,
+  "date": "2025-08",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 17,
+  "verdict_engine": "process-monitor",
+  "construct": "oversight-viability",
+  "reference_standard": "model-process",
+  "signal_fidelity": "process-transparency",
+  "reward_readiness": "optimization-forbidden",
+  "reward_readiness_reason": "post_training_link: \"None as a training signal - the monitor is never used as a reward,\" with an explicit warning that agents trained to hide intent / under-verbalize CoT would degrade monitors further — optimizing against it destroys the instrument.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "weaker-ok",
+  "kingdom": "M-process-surveillance",
+  "family": "M1-cot-monitoring",
+  "placement_reason": "At birth it asks whether an LLM monitor watching an agent's trajectory/CoT can still catch covert sabotage once the agent is aware and actively evading — a monitorability question that explicitly red-teams the monitor under six fixed threat models.",
+  "lineage": [
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "hardens"
+   },
+   {
+    "parent": "emmons-2025-cot-evade-monitors",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "korbak-2025-cot-monitorability",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "greenblatt-2023-ai-control",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Red-teams LLM monitors under six fixed threat models; hybrid chunked scaffolds let weak monitors watch strong agents, but high-precision recall stays low.",
+  "key_number": "Weak-to-strong: across 36 attacker-monitor pairs, a hybrid built from GPT-4o-mini or Claude 3.6 Haiku clears AUC 0.85 against every agent, while baseline AUC slopes down with the MMLU-Pro capability gap.",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/kale-2025-weak-to-strong-monitoring.html"
+ },
+ {
+  "slug": "raghavendra-2026-agentic-rubrics",
+  "short": "Agentic Rubrics",
+  "title": "Agentic Rubrics as Contextual Verifiers for SWE Agents",
+  "year": 2026,
+  "date": "2026-01",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 7,
+  "verdict_engine": "decomposed-judge",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "reward-adapted",
+  "reward_readiness_reason": "Explicitly framed as verifiable reward for post-training (Verifier's Law) and already produced distilled training data (2,000 rubric-gen trajectories), but the design anticipates verifier hacking (judge never sees the trajectory; Integrity axis encodes no-cheating constraints) and the RLVR loop with its hacking/non-stationarity cost is explicitly deferred to future work.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "weaker-ok",
+  "kingdom": "V-verification-harnesses",
+  "family": "V2-rubric-verifiers",
+  "placement_reason": "Born to make SWE-agent patch correctness mechanically checkable without execution, by decomposing correctness into an agent-written, repo-grounded weighted rubric an LLM judge grades item-by-item — a rubric verification harness.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "starace-2025-paperbench",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "zhuge-2024-agent-as-judge",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "brown-2024-monkeys",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "mahmoud-2026-reward-hacking",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 1,
+  "one_line": "Expert agent explores the repo to write a weighted rubric checklist; an LLM judge grades patches against it execution-free, beating patch classifiers at best-of-16.",
+  "key_number": "40.6% BEST@16 on Qwen3-32B rollouts, +3.5 pts over the best non-agentic baseline; rubric scores predict GT test pass/fail at ROC-AUC 0.886",
+  "meta_eval": false,
+  "confidence": "high",
+  "explainer": "papers/raghavendra-2026-agentic-rubrics.html"
+ },
+ {
+  "slug": "pu-2026-lhaw",
+  "short": "LHAW",
+  "title": "LHAW: Controllable Underspecification for Long-Horizon Tasks",
+  "year": 2026,
+  "date": "2026-02",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 2,
+  "verdict_engine": "execution-oracle",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "elicited-behavior",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link: \"none -- no reward-signal use or training-data production stated\"; heavy pass@3 long-horizon rollouts across 285 variants make it a read-models instrument, not a gradient.",
+  "validation_depth": "none",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "V-verification-harnesses",
+  "family": "V3-agentic-work-harnesses",
+  "placement_reason": "Born to make \"does a long-horizon agent detect underspecification and clarify well\" mechanically checkable by wrapping execution-graded agent tasks in an interactive oracle-user harness — an agentic-work competence harness.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "brown-2024-monkeys",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "macina-2023-mathdial",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "maurya-2025-mrbench",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Synthetic pipeline strips info from long-horizon tasks, labels ambiguity by terminal-state divergence across rollouts, and grades whether agents ask clarifying questions well.",
+  "key_number": "285-variant benchmark (85 TheAgentCompany + 100 SWE-Bench Pro + 100 MCP-Atlas); outcome-critical variants collapse Opus-4.5 from 1.00 to 0.14",
+  "meta_eval": false,
+  "confidence": "medium",
+  "explainer": "papers/pu-2026-lhaw.html"
+ },
+ {
+  "slug": "mahmoud-2026-reward-hacking",
+  "short": "Rubric Reward Hacking",
+  "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+  "year": 2026,
+  "date": "2026-05",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 3,
+  "verdict_engine": "model-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "judge-prior",
+  "signal_fidelity": "holistic-model-proxy",
+  "reward_readiness": "reward-adapted",
+  "reward_readiness_reason": "The rubric reward IS the GRPO training signal, already wired in as an RLVR-style reward but with documented hacking cost — the LOCKED FACET-5 rubric names Rubric-Reward-Hacking explicitly under reward-adapted; digest: weak-verifier exploitation climbs 39%->65% and even a ~92%-agreement verifier yields a checkpoint rubric-free judges prefer the base model over on 78.4% of prompts.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F4-reward-hacking-forensics",
+  "placement_reason": "Born to answer \"is the rising rubric-RL reward genuine quality or the policy hacking its verifier and rubric?\" — it instruments reward hacking in a rubric-plus-LLM-verifier training pipeline, the definitional reward-hacking forensics question.",
+  "lineage": [
+   {
+    "parent": "raghavendra-2026-agentic-rubrics",
+    "relation": "audits"
+   },
+   {
+    "parent": "ursekar-2026-vero",
+    "relation": "audits"
+   },
+   {
+    "parent": "liu-2023-g-eval",
+    "relation": "hardens"
+   },
+   {
+    "parent": "baker-2025-monitoring-reasoning",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Instruments rubric-RL reward hacking with a panel-vs-verifier exploitation rate and a free log-prob self-gap; stronger verifiers shrink but never close the gap.",
+  "key_number": "Under the weak verifier, exploitation rate climbs 39%->65% (medical); under the strong verifier it stays flat at 15-21%.",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/mahmoud-2026-reward-hacking.html"
+ },
+ {
+  "slug": "klearman-2026-semantic-stratification",
+  "short": "Semantic Stratification",
+  "title": "Coverage, Not Averages: Semantic Stratification for Trustworthy Retrieval Evaluation",
+  "year": 2026,
+  "date": "2026-04",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 0,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "post_training_link states \"none — the method produces evaluation-set curation and diagnostics, not a reward or preference signal\"; it is a one-time corpus-scale stratified estimator read to audit benchmarks, not a gradient signal.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "no-model",
+  "kingdom": "F-forensics-audits",
+  "family": "F3-metric-construct-critiques",
+  "placement_reason": "Born to answer \"is the measurement itself lying?\" — it decomposes the exact bias in BEIR-style aggregate IR scores and shows benchmark composition, not the systems, decides the verdict, so it is a metric/construct critique of evaluation sets themselves.",
+  "lineage": [
+   {
+    "parent": "thakur-2021-beir",
+    "relation": "audits"
+   },
+   {
+    "parent": "liang-2022-helm",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "schaeffer-2023-emergent-mirage",
+    "relation": "descends-from"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Reframes retrieval evaluation as stratified estimation: benchmark query sets skip 40-50% of corpus topics, making aggregate nDCG irreducibly biased and verdict-flipping.",
+  "key_number": "Same OpenAI-vs-Cohere comparison flips from 32.4% win rate (query-weighted mean) to 62.5% (macro-average) to 85.8% (worst-case P10)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/klearman-2026-semantic-stratification.html"
+ },
+ {
+  "slug": "ursekar-2026-vero",
+  "short": "VeRO",
+  "title": "VeRO: An Evaluation Harness for Agents to Optimize Agents",
+  "year": 2026,
+  "date": "2026-02",
+  "venue": "arXiv",
+  "group": "Scale AI",
+  "citation_count": 3,
+  "verdict_engine": "decomposed-judge",
+  "construct": "task-capability",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "reward-adapted",
+  "reward_readiness_reason": "The digest states the gated per-commit eval scores ARE the optimization signal the coding agent searches against, and the anti-Goodhart controls (budget gate, no test peeking) exist so the metric CAN be safely optimized against, not forbidden from it; a metric explicitly wired in as the optimization target with documented gaming vectors it must block is reward-adapted, not optimization-forbidden.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "weaker-ok",
+  "kingdom": "V-verification-harnesses",
+  "family": "V2-rubric-verifiers",
+  "placement_reason": "At birth VeRO's problem is making \"coding agents optimizing another agent's program\" a fair, reproducible comparison by decomposing task competence into budget-gated, access-controlled per-commit reward checks — a rubric-verifier harness (the LOCKED rubric fixes VeRO to V2), not a raw execution oracle or a task dataset.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "greenblatt-2023-ai-control",
+    "relation": "generalizes"
+   },
+   {
+    "parent": "raghavendra-2026-agentic-rubrics",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Budget-gated, permission-controlled harness making \"coding agents optimizing agents\" measurable; harness access, not the optimizer model, drives the +8-point lift.",
+  "key_number": "Full VeRO-Agent Default lifts average score 0.50 -> 0.61 (+8 points) vs +2 for Claude Code with VeRO tools and ~0 for prompt-only (GPT-4.1-mini target, B=8).",
+  "meta_eval": false,
+  "confidence": "medium",
+  "explainer": "papers/ursekar-2026-vero.html"
+ }
+]
