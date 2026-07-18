@@ -14,6 +14,10 @@ __pycache__
 .claude/
 .playwright-mcp/
 
+# Critique-run workspace (checkpointed scratch state for the repo-critique skill;
+# the deliverable is /CRITIQUE.md at the root, not this directory).
+.critique/
+
 # Scratch & intermediates — PDFs/figures/API dumps the procedures write while
 # building a paper. The real outputs are data/*.json and public/papers/*.html.
 /tmp
