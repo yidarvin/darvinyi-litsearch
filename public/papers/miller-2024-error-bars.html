@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations — paper_atlas</title>
+<meta name="description" content="A single-author statistics primer that turns eval leaderboards into experiments: standard errors via the CLT, clustered SEs for grouped questions, paired significance tests, and a sample-size formula — showing Llama 3's published confidence intervals were sometimes too narrow, sometimes too wide.">
+<meta property="og:title" content="Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations">
+<meta property="og:description" content="A single-author statistics primer that turns eval leaderboards into experiments: standard errors via the CLT, clustered SEs for grouped questions, paired significance tests, and a sample-size formula — showing Llama 3's published confidence intervals were sometimes too narrow, sometimes too wide.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/miller-2024-error-bars.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2024 · arXiv · Benchmarks &amp; Evals</div>
+      <h1>Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations</h1>
+      <p class="dek">Eval leaderboards report a single number per model and call the higher one better. This paper asks the obvious question nobody was asking: how much of the gap between two numbers is signal, and how much is noise? It builds the statistical machinery to answer that — and then uses it to show that the confidence intervals in Meta's own Llama 3 report were too narrow on some evals and too wide on others.</p>
+      <div class="authors mono">Evan Miller · Anthropic</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>arXiv</b></span>
+        <span class="fact">citations&nbsp;<b>96</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2411.00640">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-18</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>Evals are, in a literal sense, experiments: you sample a set of questions, run a model over them, and compute a summary statistic. Every other experimental science — medicine, economics, social psychology — treats a summary statistic as an <strong>estimate</strong> with an associated uncertainty, and refuses to declare a winner until that uncertainty has been accounted for. Language model evaluation, as this paper's introduction bluntly puts it, has instead settled into a "highest number is best" mentality: industry practice is to bold the state-of-the-art result in a table, but not necessarily to test that result for any kind of statistical significance. Chatbot Arena is a partial exception — it reports confidence intervals on its Elo scores — but traditional multiple-choice and free-response evals (MMLU-style benchmarks, MATH, HumanEval, and the rest of the leaderboard menagerie) have shipped for years as bare point estimates. The one notable counter-example the paper calls out is Meta's Llama 3 technical report, which does include simple confidence intervals on a number of evals — and, as the paper goes on to demonstrate, gets some of them wrong in both directions.</p>
+      <p>Miller motivates the gap with a small hypothetical. Two fictional models, code-named "Galleon" and "Dreadnought," are being weighed for a coding-and-math-leaning deployment. Three popular evals are run: MATH (mathematical reasoning), HumanEval (Python coding), and MGSM (multilingual grade-school math). The fictional results:</p>
+
+      <table>
+        <thead><tr><th>Eval</th><th class="num">"Galleon"</th><th class="num">"Dreadnought"</th><th class="num">Difference</th></tr></thead>
+        <tbody>
+          <tr><td>MATH</td><td class="num">65.5%</td><td class="num">63.0%</td><td class="num">+2.5%</td></tr>
+          <tr><td>HumanEval</td><td class="num">83.6%</td><td class="num">87.7%</td><td class="num">−3.1%</td></tr>
+          <tr><td>MGSM</td><td class="num">75.3%</td><td class="num">78.0%</td><td class="num">−2.7%</td></tr>
+        </tbody>
+      </table>
+
+      <p>On its face this table conflicts: Galleon wins MATH by 2.5 points, but Dreadnought wins the other two by slightly wider margins. Is Dreadnought "generally better," 2-out-of-3? Or does something in the data give us pause — different eval sizes, different question structures, different amounts of noise? Without a standard error attached to each number, the table cannot actually answer this question, and the paper's whole contribution is to supply the missing statistical vocabulary: how to compute a standard error correctly for a given eval's structure, how to reduce that error without changing the underlying model, how to compare two models' scores rigorously (including when their scores are correlated), and how to plan an eval's size in advance so it can actually detect the effect you care about. Applied to Table 1's numbers, this machinery reverses the naive read: once real standard errors and appropriate clustering are applied to eval data structured like MATH, HumanEval, and MGSM, only the MATH gap survives as statistically distinguishable from noise — while HumanEval and MGSM's differences turn out to be indistinguishable from chance. The superficial 2-out-of-3 story for Dreadnought inverts into a clean win for Galleon on the one eval where the gap is real.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The paper's central conceptual move is to imagine that the questions in an eval were not exhaustively hand-picked, but drawn at random from a hypothetical, infinite, unseen <strong>super-population</strong> of possible questions probing some underlying skill. This is the same move behind survey sampling and randomized experiments generally: it lets you reason about "the true score a model would get if you could ask it every possible question of this kind," and treat the eval's actual score as a noisy estimate of that quantity.</p>
+      <p>Formally, for an eval of <em>n</em> independently drawn questions, each observed score <code class="mono">s_i</code> is decomposed into a <strong>conditional mean</strong> <code class="mono">x_i</code> (the model's true expected score on question <em>i</em>) and a zero-mean random component <code class="mono">ε_i</code> (the noise from a single sampled answer): <code class="mono">s_i = x_i + ε_i</code>. Averaging over the whole eval gives the estimator <code class="mono">μ̂ = s̄</code>, and the Central Limit Theorem gives its standard error directly from the sample variance of the scores:</p>
+
+      <div class="eq">
+        SE<sub>C.L.T.</sub>&nbsp;=&nbsp;<span class="frac"><span class="num">√Var(s)</span><span class="den">√n</span></span>&nbsp;=&nbsp;√[ (1/(n−1)) Σᵢ(sᵢ − s̄)² / n ]
+        <span class="note">// Eq. 1 — the standard error of the mean eval score, from the C.L.T.</span>
+      </div>
+
+      <p>When scores are binary — the ordinary case for exact-match and multiple-choice evals — this collapses to the familiar Bernoulli standard error <code class="mono">SE = √(s̄(1−s̄)/n)</code>. Miller flags a specific, concrete error here: the Llama 3 technical report uses this Bernoulli formula for <em>every</em> eval, including ones scored with fractional metrics like F1 — where it is conservative (too wide) rather than wrong, but still not the correct <code class="mono">SE_C.L.T.</code>. He also notes that bootstrapping the standard error, common practice in frameworks like OpenAI Evals, is unnecessary overhead once you have the closed-form CLT estimator — bootstrapping only earns its keep for a genuinely complicated sampling scheme or estimator. The paper's first concrete recommendation, accordingly, is to report the standard error in parentheses beneath every eval score, the way other experimental sciences routinely do, and it proposes exactly this format, including the number of questions in the eval:</p>
+
+      <table>
+        <thead><tr><th></th><th class="num"># Questions</th><th class="num">"Galleon"</th><th class="num">"Dreadnought"</th></tr></thead>
+        <tbody>
+          <tr><td>MATH</td><td class="num">5,000</td><td class="num">65.5% (0.7%)</td><td class="num">63.0% (0.7%)</td></tr>
+          <tr><td>HumanEval</td><td class="num">164</td><td class="num">83.6% (3.2%)</td><td class="num">86.7% (3.0%)</td></tr>
+          <tr><td>MGSM</td><td class="num">2,500</td><td class="num">75.3% (0.9%)</td><td class="num">78.0% (0.9%)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Clustered questions</h3>
+      <p>The CLT formula assumes independent questions, but a large share of real evals violate that assumption by construction. DROP, QuAC, RACE, and SQuAD ask multiple questions about the same underlying reading passage; MGSM and other multilingual evals ask the <em>same</em> question translated into many languages. Both are <strong>clusters</strong>: once you know a model handled one question in the cluster well, you already know something about how it will do on the sibling questions, so the questions are not independent draws and a naive <code class="mono">SE_C.L.T.</code> understates the true uncertainty. Miller imports <strong>clustered standard errors</strong>, a technique from econometrics and the social sciences, treating each cluster (each passage, each source question) as the unit that is drawn independently, while allowing arbitrary correlation among the scores within a cluster:</p>
+
+      <div class="eq">
+        SE<sub>clustered</sub>&nbsp;=&nbsp;[ SE²<sub>C.L.T.</sub>&nbsp;+&nbsp;(1/n²) Σ<sub>c</sub> Σᵢ Σ<sub>j≠i</sub> (sᵢ,c − s̄)(sⱼ,c − s̄) ]<sup>1/2</sup>
+        <span class="note">// Eq. 4 — clustered standard error; the triple sum is zero for uncorrelated questions, recovering SE_C.L.T.</span>
+      </div>
+
+      <p>The clustered term acts as a sliding scale: if scores within a cluster are perfectly correlated, each cluster behaves like one independent observation (the effective sample size shrinks toward the number of clusters); if scores within a cluster are uncorrelated, the formula collapses back to the plain CLT standard error. The paper reports real, non-fictional numbers computed on two popular evals using Anthropic's own models: on DROP, the clustered standard error is roughly <strong>3.05×</strong> the naive one; on RACE-H it is a milder <strong>1.10×</strong>; on MGSM it is <strong>1.88×</strong>. The DROP result is the sharpest warning in the paper — failing to cluster on an eval like DROP means reporting a confidence interval three times too narrow, which is exactly the kind of error that makes a noisy difference look statistically "real." Miller states directly that the confidence intervals reported for reading-comprehension evals in the Llama 3 report are likely <strong>anti-conservative (too narrow)</strong> because they did not cluster on passage structure.</p>
+
+      <h3>Reducing variance without touching the model</h3>
+      <p>Section 3 turns from measuring uncertainty to shrinking it. The total variance of <code class="mono">μ̂</code> decomposes additively (by the law of total variance) into the variance of the conditional mean across the super-population, <code class="mono">Var(x)</code> — a fixed property of the eval's question distribution that cannot be reduced except by writing more questions — and the mean conditional variance <code class="mono">E[σᵢ²]</code>, the noise in any single sampled answer, which <em>can</em> be engineered down. Two levers do this:</p>
+      <ul>
+        <li><strong>Resampling.</strong> Answer each question <em>K</em> times and average; because the K draws share the same conditional mean, resampling divides the conditional-variance term by <em>K</em>. In a worked example with binary scores and uniformly distributed difficulty (<code class="mono">Var(x)=1/12</code>, <code class="mono">E[σᵢ²]=1/6</code>), going from K=1 to K=2 cuts total variance by a third; K=4 cuts it in half; K=6 achieves 5/9; the theoretical ceiling as K→∞ is a 2/3 reduction — because <code class="mono">Var(x)</code> itself is untouched by resampling.</li>
+        <li><strong>Next-token probabilities.</strong> For evals that don't require chain-of-thought — a multiple-choice prompt that induces the answer in the first token — the conditional variance can be eliminated entirely rather than merely shrunk, by scoring the model's probability on the correct token instead of a single sampled completion. If the correct token gets probability <code class="mono">p_i</code>, set <code class="mono">s_i = x_i = p_i</code> and the residual is exactly zero, so <code class="mono">Var(μ̂) = Var(p)/n</code> — matching resampling's asymptotic best case (a full 2/3 reduction over K=1 in the worked example) without needing multiple samples at all.</li>
+      </ul>
+      <p>A third section — "Don't touch the thermostat!" — is a pointed warning against a tempting shortcut: lowering the sampling temperature to reduce noise. Miller shows with two clean examples that cooling the temperature doesn't remove variance so much as relocate and sometimes amplify it. In one example, a true/false eval with conditional means uniformly distributed on [0,1] has <code class="mono">Var(x_{T=1})=1/12</code> at temperature 1; forcing greedy (T=0) decoding rounds each conditional mean to a hard 0/1 Bernoulli outcome with <code class="mono">p=0.5</code>, tripling the variance of the conditional means to <code class="mono">1/4</code>. In a second example with means uniform on [1/3, 1], cooling the temperature doesn't just increase variance roughly five-fold (from 3/16 to 3/4) — it also shifts the expected score itself, from 2/3 down to 3/5, silently changing what the eval measures. The recommendation: use next-token probabilities where the eval structure allows it, use resampling with a well-chosen K everywhere else, and never adjust temperature purely to chase a tighter error bar.</p>
+
+      <h3>Comparing two models</h3>
+      <p>The paper's most consequential section addresses what practitioners actually want: is Model A really better than Model B? A naive comparison takes the difference of the two means, <code class="mono">μ̂_{A−B} = μ̂_A − μ̂_B</code>, with combined standard error <code class="mono">SE_{A−B} = √(SE_A² + SE_B²)</code>, feeding a 95% interval and a z-score (<code class="mono">z = μ̂_{A−B}/SE_{A−B}</code>). But this "unpaired" analysis throws away a free source of precision whenever the two models are scored on the <em>same</em> set of questions: because question difficulty is correlated across models (a hard question tends to be hard for both), the question-level differences <code class="mono">s_{A−B,i} = s_{A,i} − s_{B,i}</code> have lower variance than the unpaired combination would suggest. The paired standard error uses those differences directly:</p>
+
+      <div class="eq">
+        SE<sub>A−B,paired</sub>&nbsp;=&nbsp;√( Var(s<sub>A−B</sub>)/n )&nbsp;=&nbsp;√[ (1/(n−1)) Σᵢ(s<sub>A−B,i</sub> − s̄<sub>A−B</sub>)² / n ]
+        <span class="note">// Eq. 7 — paired standard error, computed on per-question score differences</span>
+      </div>
+
+      <p>Algebraically, <code class="mono">Var(μ̂_{A−B,paired}) = Var(μ̂_{A−B,unpaired}) − 2 Cov(x_A, x_B)/n</code>: the paired estimator is never worse than the unpaired one, and strictly better whenever the two models' conditional means are positively correlated — which, empirically, they almost always are. In a worked example with a correlation of 0.5 between two models' scores, pairing cuts the variance of the estimated difference by a third (from 1/6 to 1/9) relative to the naive unpaired comparison. Because this is a "free" precision gain, Miller recommends that technical reports always include pairwise differences, their standard errors, and the score correlation whenever two or more models are evaluated on the same questions — and gives the general formula for reconstructing the paired SE from single-model SEs and their correlation alone, <code class="mono">SE_{A−B,paired} = √(SE_A² + SE_B² − 2·SE_A·SE_B·Corr(s_A,s_B))</code>, useful when only summary statistics (not raw per-question scores) are available. A clustered version of the paired SE (Equation 8) extends the same idea to grouped evals like DROP or MGSM.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The recommendations, applied</h2>
+      <p>This is a methods paper, not an empirical benchmark run, so its "results" are the demonstrated consequences of applying the framework to real numbers and to the paper's own running example — plus a fifth tool, power analysis, that lets researchers plan an eval's size rather than just diagnose one after the fact.</p>
+
+      <h3>The hypothetical resolved</h3>
+      <p>Returning to Galleon vs. Dreadnought with the full toolkit — pairwise analysis and, where the eval structure demands it, cluster adjustment on MGSM — the paper presents a suggested reporting table for exactly this situation:</p>
+
+      <table>
+        <thead><tr><th>Eval</th><th>Model</th><th>Baseline</th><th class="num">Model − Baseline</th><th>95% Conf. Interval</th><th class="num">Correlation</th></tr></thead>
+        <tbody>
+          <tr><td>MATH</td><td>Galleon</td><td>Dreadnought</td><td class="num">+2.5% (0.7%)</td><td>(+1.2%, +3.8%)</td><td class="num">0.50</td></tr>
+          <tr><td>HumanEval</td><td>Galleon</td><td>Dreadnought</td><td class="num">−3.1% (2.1%)</td><td>(−7.2%, +1.0%)</td><td class="num">0.64</td></tr>
+          <tr><td>MGSM</td><td>Galleon</td><td>Dreadnought</td><td class="num">−2.7% (1.7%)</td><td>(−6.1%, +0.7%)</td><td class="num">0.37</td></tr>
+        </tbody>
+      </table>
+
+      <p>Reading the confidence intervals settles the question the raw percentages could not: MATH's interval sits entirely on the positive side (+1.2% to +3.8%), so Galleon's edge there is statistically significant at the 5% level. HumanEval's interval (−7.2% to +1.0%) and MGSM's interval (−6.1% to +0.7%) both straddle zero — their apparent Dreadnought advantages are statistically indistinguishable from noise once paired analysis and, on MGSM, clustering are applied correctly. The naive reading of Table 1 — "Dreadnought wins 2 of 3" — inverts under correct statistical treatment into "only Galleon's MATH lead is real; the other two are noise." That reversal is the paper's thesis in miniature: without the machinery in Sections 2–4, an analyst comparing two models is liable to reach the opposite of the statistically supportable conclusion.</p>
+
+      <h3>Power analysis: sizing an eval before you run it</h3>
+      <p>The paper's fifth and final analytic tool answers a forward-looking question: given a hypothesized true effect size, how many questions does an eval need in order to reliably detect it? Writing <code class="mono">ω² = Var(x_A) + Var(x_B) − 2Cov(x_A,x_B)</code> for the paired variance of the conditional means, and <code class="mono">σ_A²</code>, <code class="mono">σ_B²</code> for the two models' mean conditional variances, the sample-size formula (for a paired analysis with resampling counts <code class="mono">K_A</code>, <code class="mono">K_B</code>, significance level α, power 1−β, and a Minimum Detectable Effect δ) is:</p>
+
+      <div class="eq">
+        n&nbsp;=&nbsp;(z<sub>α/2</sub>&nbsp;+&nbsp;z<sub>β</sub>)²&nbsp;(ω²&nbsp;+&nbsp;σ<sub>A</sub>²/K<sub>A</sub>&nbsp;+&nbsp;σ<sub>B</sub>²/K<sub>B</sub>)&nbsp;/&nbsp;δ²
+        <span class="note">// Eq. 9 — required question count n, given a target Minimum Detectable Effect δ</span>
+      </div>
+
+      <p>Plugging in a simple, reasonable-but-fictional example — <code class="mono">σ_A²=σ_B²=0</code> (next-token probabilities, no conditional variance), <code class="mono">ω²=1/9</code>, a target Minimum Detectable Effect of <code class="mono">δ=0.03</code>, 80% power (β=0.20), and a 5% false-positive rate (α=0.05) — yields <code class="mono">n ≈ 969</code> questions. The paper's takeaway from this worked number: a new eval intending to reliably distinguish model differences on the order of a few points needs on the order of <strong>at least 1,000 questions</strong>, not the 164 that HumanEval ships with. Inverting the formula gives the Minimum Detectable Effect for a fixed n instead: with <code class="mono">σ_A²=σ_B²=1/6</code>, <code class="mono">ω²=1/9</code>, <code class="mono">Corr(x_A,x_B)=0.5</code>, and n=198, increasing the per-question resample count <code class="mono">K_A=K_B</code> from 1 to 10 shrinks the Minimum Detectable Effect from <strong>13.2% down to 7.5%</strong> — a concrete illustration that resampling buys real detection power on a fixed-size eval, at the cost of more inference compute rather than more questions. Cluster-adjusted versions of both the sample-size and MDE formulas are derived in an appendix for evals like DROP, RACE, and MGSM where questions arrive in correlated groups rather than independently.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>This is a methods paper whose entire purpose is to raise the rigor bar on evals, so it invites the obvious question in return: does its own statistical apparatus hold up, and what does it leave unaddressed? The core math (CLT standard errors, clustered standard errors borrowed from Abadie et al.'s econometrics literature, paired differences, power analysis) is standard, correctly derived — full derivations are given in three appendices — and genuinely useful; the "don't touch the thermostat" result and the demonstration that clustering can triple a standard error are both sharp, non-obvious, and immediately actionable. But a few gaps are worth naming precisely because the paper positions itself as the field's missing statistics primer.</p>
+      <p><strong>Independence is doing a lot of work, and the paper only partially relaxes it.</strong> Section 2.1's baseline assumption — questions are i.i.d. draws from a super-population — is exactly the assumption most real evals violate, and Section 2.2's clustering fix only handles one specific violation: groups of questions sharing a passage or a source item translated across languages. It does not address other common sources of cross-question correlation that don't fit the "cluster" shape — near-duplicate or template-generated questions scattered non-adjacently through an eval, systematic difficulty drift across an eval's construction history, or correlation induced by a shared answer-extraction regex failing in a correlated way across superficially unrelated questions. A researcher who dutifully clusters on passage but has silently correlated errors from parsing brittleness will still under-estimate uncertainty, and the paper gives no diagnostic for detecting that case.</p>
+      <p><strong>Grading noise is treated as either absent or resampling-shaped — never as judge variance.</strong> The two variance-reduction levers (resampling identical questions, or reading off next-token probabilities) both assume the source of conditional variance is the model's own answer stochasticity on a fixed, exactly-gradable question. Neither lever addresses the now-dominant failure mode in open-ended and rubric-graded evals: variance introduced by an LLM-as-judge or a human rater scoring the <em>same</em> model answer differently on different passes. That is a distinct noise source from <code class="mono">ε_i</code> as defined here, it does not average away the same way K-fold resampling of the answerer does, and it is arguably the more urgent problem for the current generation of open-ended, rubric-based evaluations this paper's own reference list gestures at (Chatbot Arena, "Challenges in evaluating AI systems") but does not formally model.</p>
+      <p><strong>No treatment of multiple comparisons.</strong> Every worked example in the paper computes one confidence interval or one z-score for one pairwise comparison. In practice, technical reports (including the Llama 3 report this paper critiques) publish dozens of eval comparisons across many models and many benchmarks simultaneously. Applying a 5% per-comparison false-positive rate across, say, 30 simultaneous model-vs-baseline comparisons in a leaderboard table gives a near-certain chance that at least one "statistically significant" green cell is pure noise, and nothing in the paper's five recommendations — nor its conclusion, which restates the five techniques without qualification — addresses family-wise error control (Bonferroni, Benjamini-Hochberg, or otherwise). A reader who applies Equation 3's 95% CI naively across an entire leaderboard, exactly as the paper's own reporting template invites, will still overstate how many of the "significant" results are real.</p>
+      <p><strong>The clustering fix assumes independent clusters, which can itself fail.</strong> Section 2.2 explicitly assumes "draws of clusters are independent" — reasonable for passages within DROP, less clearly true for, say, an eval whose clusters are themselves drawn from a small number of source documents or curricula that share systematic biases. The paper doesn't flag this second-order dependence as a further caveat, even though its own worked example (RACE-H's relatively modest 1.10× clustering ratio versus DROP's 3.05×) shows empirically how much this structural assumption matters in practice — it just isn't discussed as an assumption that could itself be wrong.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">There's no baseline to compare against in the usual eval-paper sense — this is a statistics methodology paper. Its "baseline" is the status quo of unreported uncertainty, and the comparison (naive vs. corrected reading of the Galleon/Dreadnought table, naive vs. clustered SE on real Anthropic-model data) is fair and clearly presented.</p>
+        <span class="k">contamination</span><p class="v">Not applicable in the usual data-leakage sense; the "real-world" DROP/RACE-H/MGSM standard-error numbers in Table 4 are stated to come from Anthropic's own models, but the underlying raw scores aren't published, so a reader cannot independently reproduce the 3.05×/1.10×/1.88× ratios.</p>
+        <span class="k">what's missed</span><p class="v">Judge/rater variance in open-ended and rubric-graded evals; correlation structures that don't fit the "cluster" shape (parsing brittleness, near-duplicate questions, non-independent clusters); any multiple-comparison correction for leaderboards that report many simultaneous pairwise tests; and non-stationarity — the paper's variance estimates are all computed as if the super-population and the model are fixed, with no discussion of eval drift over model updates or repeated peeking during iterative development.</p>
+        <span class="k">would raise confidence</span><p class="v">A worked extension modeling judge/grader noise as a second variance component alongside the conditional variance already defined; an explicit family-wise error-rate recommendation for multi-eval, multi-model report tables; a diagnostic test for whether a "cluster" assumption is itself valid (e.g., checking cross-cluster residual correlation); and released code or a public replication of the Table 4 real-world clustering ratios so the headline "3× narrower than it should be" claim about Llama 3 could be checked independently.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>The core statistics are correct, well-derived, and fill a real, embarrassing gap in how the field reports eval numbers — the clustering result alone (standard errors up to 3× too narrow on a reading-comprehension eval) is a concrete, checkable claim about a widely-cited technical report. But the paper's scope is narrower than "the" statistical approach to evals: it models sampling noise from question selection and answer stochasticity, not grader/judge noise, and it stops one step short of the multiple-comparisons problem that its own recommended reporting format (one CI per cell, across many cells) will immediately create for anyone who adopts it wholesale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>An eval score without a standard error is an unfinished sentence.</strong> The CLT gives a closed-form SE for free (Eq. 1); bootstrapping is unnecessary overhead for the common case, and using the Bernoulli formula on non-binary metrics like F1 (as Llama 3's report does) makes intervals too wide, not wrong.</li>
+        <li><strong>Question structure changes the math.</strong> Reading-comprehension evals (DROP, QuAC, RACE, SQuAD) and translated evals (MGSM) draw questions in correlated clusters, not independently — ignoring that inflates confidence by up to <strong>3.05×</strong> on DROP in the paper's own real-model numbers, and the paper argues Llama 3's reading-comprehension intervals are anti-conservative as a result.</li>
+        <li><strong>Pair your comparisons, and plan your sample size.</strong> When two models answer the same questions, paired differences are a free variance reduction (Eq. 7) that can flip a leaderboard's naive "2-of-3 wins" read into "only one gap is real" — and the sample-size formula (Eq. 9) says a new eval aiming to reliably detect a few-point gap needs on the order of 1,000 questions, not 164.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations<br>
+        Evan Miller · 2024 · arXiv<br>
+        <a href="https://arxiv.org/abs/2411.00640">read the original ↗</a> · slug: miller-2024-error-bars
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

@@ -2445,5 +2445,256 @@
   "meta_eval": false,
   "confidence": "medium",
   "explainer": "papers/ursekar-2026-vero.html"
+ },
+ {
+  "slug": "yao-2024-tau-bench",
+  "short": "τ-bench",
+  "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+  "year": 2024,
+  "date": "2024-06",
+  "venue": "arXiv",
+  "group": "Sierra",
+  "citation_count": 814,
+  "verdict_engine": "statistical-protocol",
+  "construct": "task-capability",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "pass^k is a repeated-trials reliability statistic reported on top of an existing task-success oracle; no RL/reward-model use is stated — it's a benchmark score, not a training signal.",
+  "validation_depth": "none",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T2-capability-axis-instruments",
+  "placement_reason": "Introduces pass^k — the fraction of tasks an agent solves on ALL of k independent trials, a non-saturating reliability axis distinct from Codex's pass@k (at least one of k) — a new capability-axis measuring stick for consistency rather than raw solve rate.",
+  "lineage": [
+   {
+    "parent": "chen-2021-codex",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 3,
+  "one_line": "Introduces pass^k, a reliability statistic measuring whether an agent succeeds on ALL of k repeated trials rather than at least one — gpt-4o's τ-bench pass^8 falls below 25% even though its single-trial success rate is 48.2%.",
+  "key_number": "gpt-4o pass^1 48.2% vs. pass^8 <25% on τ-bench — reliability collapses far faster than single-trial success would suggest",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/yao-2024-tau-bench.html"
+ },
+ {
+  "slug": "lambert-2024-rewardbench",
+  "short": "RewardBench",
+  "title": "RewardBench: Evaluating Reward Models for Language Modeling",
+  "year": 2024,
+  "date": "2024-03",
+  "venue": "NAACL 2025 Findings",
+  "group": "AI2 / University of Washington",
+  "citation_count": 450,
+  "verdict_engine": "execution-oracle",
+  "construct": "measurement-integrity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "RewardBench scores whether a reward model correctly ranks a pre-existing chosen/rejected pair; it diagnoses RM quality but the benchmark itself is a static test suite, not a live reward signal used in training.",
+  "validation_depth": "human-agreement",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "Reward models are graders — the classifiers and DPO checkpoints that decide which response is better during RLHF. RewardBench is the audit that tests whether those graders themselves get it right, exposing a wide, previously invisible chat/reasoning/safety accuracy gap between classifier-trained and DPO-derived reward models.",
+  "lineage": [
+   {
+    "parent": "christiano-2017-deep-rl-preferences",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "tan-2024-judgebench",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "A common evaluation codebase for reward models spanning chat, reasoning, safety, and legacy preference data across 80+ open models, exposing a wide, previously invisible gap between classifier-trained and DPO-derived reward models.",
+  "key_number": "80+ reward models scored across 4 category subsets (chat, chat-hard, safety, reasoning); no single model near-ceiling on all four",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/lambert-2024-rewardbench.html"
+ },
+ {
+  "slug": "tan-2024-judgebench",
+  "short": "JudgeBench",
+  "title": "JudgeBench: A Benchmark for Evaluating LLM-based Judges",
+  "year": 2024,
+  "date": "2024-10",
+  "venue": "ICLR 2025",
+  "group": "UC Berkeley / WashU",
+  "citation_count": 288,
+  "verdict_engine": "execution-oracle",
+  "construct": "measurement-integrity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "Tests whether an LLM judge's verdict matches an objectively correct label drawn from each source dataset's own verifier; diagnostic of judge quality, not itself a training-time reward signal.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "peer-or-stronger",
+  "kingdom": "F-forensics-audits",
+  "family": "F2-judge-bias-audits",
+  "placement_reason": "Where MT-Bench and Arena-Hard test whether a judge's verdict matches human style preference, JudgeBench tests whether the judge can tell objectively correct from incorrect at all on deliberately style-matched, hard pairs — most vanilla judges can't beat chance.",
+  "lineage": [
+   {
+    "parent": "zheng-2023-mt-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "li-2024-arena-hard",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "350 objectively correct-vs-incorrect response pairs across knowledge, reasoning, math, and coding, sampled from a single strong model so pairs are style-matched — vanilla-prompted GPT-4o scores just 50.86% at telling right from wrong.",
+  "key_number": "Vanilla GPT-4o: 50.86% (near chance); best reasoning-heavy judge o3-mini-high: 80.86%",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/tan-2024-judgebench.html"
+ },
+ {
+  "slug": "kapoor-2024-ai-agents-that-matter",
+  "short": "Agents That Matter",
+  "title": "AI Agents That Matter",
+  "year": 2024,
+  "date": "2024-07",
+  "venue": "TMLR",
+  "group": "Princeton",
+  "citation_count": 158,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "expert-judgment",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "A methodology critique of agent-evaluation practice (cost-accuracy reporting, baseline selection, holdout design); not itself a reward or training signal.",
+  "validation_depth": "adversarial-stress",
+  "grader_gap": "human-anchored",
+  "kingdom": "F-forensics-audits",
+  "family": "F5-benchmark-rigor-standards",
+  "placement_reason": "Shows that trivial baselines (retry, escalation, temperature warming) match or beat published complex agent architectures on HumanEval at up to 55x less cost — a best-practices audit of how agent benchmarks are built, baselined, and reported, in the same family as BetterBench and zhu-2025-agentic-benchmarks.",
+  "lineage": [
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "audits"
+   },
+   {
+    "parent": "huang-2023-mlagentbench",
+    "relation": "audits"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "Three trivial baselines (retry, escalation, temperature warming) match or beat three published complex agent architectures on HumanEval at up to 55x less cost — a cost-blind-evaluation critique with conflated model/downstream evaluation and missing holdouts as recurring root causes.",
+  "key_number": "Trivial re-implementation matches published complex-agent HumanEval accuracy at up to 55x lower inference cost",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/kapoor-2024-ai-agents-that-matter.html"
+ },
+ {
+  "slug": "reuel-2024-betterbench",
+  "short": "BetterBench",
+  "title": "BetterBench: Assessing AI Benchmarks, Uncovering Issues, and Establishing Best Practices",
+  "year": 2024,
+  "date": "2024-11",
+  "venue": "NeurIPS 2024 Datasets and Benchmarks",
+  "group": "Stanford",
+  "citation_count": 129,
+  "verdict_engine": "decomposed-judge",
+  "construct": "measurement-integrity",
+  "reference_standard": "expert-rubric",
+  "signal_fidelity": "decomposed-proxy",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "A 46-criteria design/implementation/documentation/maintenance checklist scored by expert reviewers; a benchmark-construction audit, not a reward or training signal.",
+  "validation_depth": "none",
+  "grader_gap": "human-anchored",
+  "kingdom": "F-forensics-audits",
+  "family": "F5-benchmark-rigor-standards",
+  "placement_reason": "A 46-criteria assessment framework audits 24 widely-used AI benchmarks across their full lifecycle — design, implementation, documentation, maintenance — finding MMLU scores lowest of all 24 while GPQA scores among the highest, and that most benchmarks lack replication scripts or significance reporting.",
+  "lineage": [
+   {
+    "parent": "raji-2021-everything-benchmark",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "zhu-2025-agentic-benchmarks",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "A 46-criteria assessment framework audits 24 widely-used AI benchmarks across their design, implementation, documentation, and maintenance lifecycle, finding large quality gaps and that most lack replication scripts or statistical-significance reporting.",
+  "key_number": "24 benchmarks scored against 46 criteria; MMLU scores lowest of all 24, GPQA among the highest",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/reuel-2024-betterbench.html"
+ },
+ {
+  "slug": "singh-2025-leaderboard-illusion",
+  "short": "Leaderboard Illusion",
+  "title": "The Leaderboard Illusion",
+  "year": 2025,
+  "date": "2025-04",
+  "venue": "NeurIPS 2025 D&B",
+  "group": "Cohere Labs",
+  "citation_count": 56,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "none-self-referential",
+  "signal_fidelity": "aggregate-inference",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "An observational audit of Chatbot Arena's own operational data (testing volume, data access, deprecation); not a reward or training signal.",
+  "validation_depth": "none",
+  "grader_gap": "human-anchored",
+  "kingdom": "F-forensics-audits",
+  "family": "F5-benchmark-rigor-standards",
+  "placement_reason": "An audit of 2M Chatbot Arena battles across 243 models and 42 providers finding undisclosed private testing, asymmetric data access, and silent model deprecation that systematically favor a handful of proprietary providers — a rigor audit of the field's most-cited human-preference leaderboard.",
+  "lineage": [
+   {
+    "parent": "chiang-2024-chatbot-arena",
+    "relation": "audits"
+   },
+   {
+    "parent": "li-2024-arena-hard",
+    "relation": "responds-to"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "An audit of 2M Chatbot Arena battles across 243 models and 42 providers finds undisclosed private testing (Meta tested 27 variants before Llama 4), asymmetric data access, and silent deprecation of 205 of 243 models.",
+  "key_number": "Google and OpenAI received an estimated 19.2% and 20.4% of all Arena battle data respectively; 205 of 243 models silently deprecated",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/singh-2025-leaderboard-illusion.html"
+ },
+ {
+  "slug": "miller-2024-error-bars",
+  "short": "Error Bars for Evals",
+  "title": "Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations",
+  "year": 2024,
+  "date": "2024-11",
+  "venue": "arXiv",
+  "group": "Anthropic",
+  "citation_count": 96,
+  "verdict_engine": "statistical-protocol",
+  "construct": "measurement-integrity",
+  "reference_standard": "test-oracle",
+  "signal_fidelity": "direct-outcome",
+  "reward_readiness": "diagnostic-only",
+  "reward_readiness_reason": "A post-hoc statistical framework (standard errors, clustered variance, paired significance tests, sample-size planning) applied to existing eval scores; no relationship to RL/reward signals stated.",
+  "validation_depth": "bias-audited",
+  "grader_gap": "no-model",
+  "kingdom": "T-measurement-theory",
+  "family": "T2-capability-axis-instruments",
+  "placement_reason": "Treats eval questions as draws from an unseen super-population, giving closed-form standard errors, clustered-variance corrections, and a sample-size/power-analysis formula — a general-purpose statistical-rigor instrument applicable across any eval, used to show Llama 3's published confidence intervals were too narrow on some evals and too wide on others.",
+  "lineage": [
+   {
+    "parent": "chiang-2024-chatbot-arena",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "gravity": 0,
+  "one_line": "A statistical framework giving closed-form standard errors, clustered-variance corrections, paired significance tests, and sample-size planning for eval scores — used to show Llama 3's published confidence intervals were too narrow on some evals and too wide on others.",
+  "key_number": "Re-analysis shows Llama 3's own published confidence intervals were miscalibrated in both directions (too narrow on some evals, too wide on others)",
+  "meta_eval": true,
+  "confidence": "high",
+  "explainer": "papers/miller-2024-error-bars.html"
  }
 ]
