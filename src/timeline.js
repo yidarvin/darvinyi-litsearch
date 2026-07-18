@@ -19,13 +19,6 @@
    stays owned by main.js.
 --------------------------------------------------------------------------- */
 
-// fractional year, e.g. "2023-10" -> 2023.75 ; falls back to mid-year on `year`
-export function timeOf(p) {
-  const m = /^(\d{4})-(\d{2})$/.exec(p && p.date ? p.date : '');
-  if (m) return Number(m[1]) + (Number(m[2]) - 1) / 12;
-  return (p && Number.isFinite(p.year)) ? p.year + 0.5 : 0;
-}
-
 // band key + label for a paper, at quarter or half granularity
 function bandOf(p, gran) {
   const m = /^(\d{4})-(\d{2})$/.exec(p && p.date ? p.date : '');

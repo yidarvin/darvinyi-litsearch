@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Self-Consistency Improves Chain of Thought Reasoning in Language Models — paper_atlas</title>
 <meta name="description" content="Replace greedy chain-of-thought decoding with sample-many-paths-and-vote: a training-free decoding change that lifts GSM8K by +17.9 on PaLM-540B and seeds the maj@k / cons@k test-time-compute era.">
+<meta property="og:title" content="Self-Consistency Improves Chain of Thought Reasoning in Language Models">
+<meta property="og:description" content="Replace greedy chain-of-thought decoding with sample-many-paths-and-vote: a training-free decoding change that lifts GSM8K by +17.9 on PaLM-540B and seeds the maj@k / cons@k test-time-compute era.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/wang-2022-self-consistency.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,7 +213,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <p>Across four models spanning a 27× range of scale — <strong>UL2-20B, LaMDA-137B, GPT-3 (code-davinci-001/002, 175B), and PaLM-540B</strong> — self-consistency improves chain-of-thought reasoning on every model and nearly every task, with no fine-tuning. The headline gains over greedy CoT: <strong>GSM8K +17.9, AQuA +12.2, SVAMP +11.0, StrategyQA +6.4, ARC-challenge +3.9.</strong></p>
+      <p>Across four models spanning a 27× range of scale — <strong>UL2-20B, LaMDA-137B, GPT-3 (code-davinci-001/002, 175B), and PaLM-540B</strong> — self-consistency improves chain-of-thought reasoning on every model and nearly every task, with no fine-tuning. The paper's own headline gains over greedy CoT, best model per task: <strong>GSM8K +17.9, AQuA +12.2, SVAMP +11.0, StrategyQA +6.4, ARC-challenge +3.9.</strong> PaLM-540B alone — the model in the table below — runs a touch lower on three of the five (Δ +12.5/+7.6/+3.5 on AQuA/SVAMP/ARC-c), since the abstract's per-task figures each draw from whichever of the four models scored best.</p>
       <p>The most striking pattern is that <strong>the gains grow with scale.</strong> On the small UL2-20B the lift is a modest +3–6 points, but on LaMDA-137B and GPT-3 it jumps to +9–23 points — and even on the already-strong PaLM-540B and GPT-3 code-davinci-002, which start above 56% on GSM8K, self-consistency still adds +12–18 points on the hardest tasks (AQuA, GSM8K). On PaLM-540B, GSM8K climbs <strong>56.5 → 74.4</strong> and on GPT-3 code-davinci-002 it climbs <strong>60.1 → 78.0</strong>. Despite being unsupervised, these set new state-of-the-art on almost every task — beating prior results that required task-specific fine-tuning with thousands of examples plus a trained verifier.</p>
 
       <table>

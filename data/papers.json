@@ -878,7 +878,7 @@
       "date": "2019-10",
       "venue": "JMLR",
       "citation_count": 26135,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Google's systematic survey of NLP transfer learning, built on one idea: cast every task — translation, classification, QA, even regression — as text-to-text so a single model, loss, and decoding procedure can compare pre-training objectives, architectures, and corpora apples-to-apples. The bake-off favors the original encoder-decoder with a short-target span-corruption objective (83.28 vs 74.70 GLUE over a same-size decoder-only LM) and a large, diverse corpus over repeated in-domain data; scaling those insights with the 750 GB C4 corpus and an 11B-parameter model trained on ~1 trillion tokens set state-of-the-art on 18 of 24 tasks (GLUE 90.3, SuperGLUE 88.9 vs the 89.8 human baseline, SQuAD 91.26 EM). Reported with statistical care — the baseline is trained 10× from scratch with reported standard deviations — though English-only pre-training never reached SOTA on WMT translation and the ablations run at base scale rather than at 11B.",
       "explainer": "papers/raffel-2020-t5.html"
@@ -906,7 +906,7 @@
       "date": "2022-05",
       "venue": "NeurIPS",
       "citation_count": 4524,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Stanford",
       "abstract": "An IO-aware exact-attention algorithm that uses tiling and recomputation to compute softmax(QKᵀ)V without ever materializing the N×N attention matrix in GPU HBM, cutting HBM accesses from Θ(Nd+N²) to Θ(N²d²M⁻¹) and using memory linear in sequence length. The fused CUDA kernel runs up to 7.6× faster than standard attention (9× less HBM traffic — 4.4 vs 40.3 GB), trains BERT-large 15% faster than the MLPerf 1.1 record and GPT-2 3× faster than HuggingFace at identical perplexity, and by making long context affordable yields the first Transformers to beat chance on Path-X (16K) and Path-256 (64K). It became the efficiency backbone of the long-context era, with a matching IO lower bound proving no exact-attention algorithm can asymptotically do fewer HBM accesses.",
       "explainer": "papers/dao-2022-flashattention.html"
@@ -979,7 +979,7 @@
       "date": "2020-05",
       "venue": "NeurIPS",
       "citation_count": 59482,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "OpenAI scales a GPT-2-style autoregressive Transformer to 175 billion parameters (eight sizes from 125M), trained on ~300B tokens of filtered Common Crawl plus books and Wikipedia, to show that task-specific fine-tuning isn't required: given a natural-language description and a few demonstrations in its context window — no gradient updates — GPT-3 performs new tasks 'in-context'. Few-shot ability scales smoothly and steeply with model size across 42 benchmarks, reaching 86.4% on LAMBADA, 71.2% on TriviaQA, and 100% on 2-digit addition (an emergent skill near the top of the size range), with humans detecting its generated news articles at just ~52% (chance). It still trails fine-tuned SOTA on SuperGLUE (71.8 vs 89.0) and NLI, and the paper candidly flags train/test contamination from web-scale pre-training. The work that reframed 'training a model for a task' as 'writing a prompt'.",
       "explainer": "papers/brown-2020-gpt3.html"
@@ -1017,7 +1017,7 @@
       "slug": "ma-2024-spreadsheetbench",
       "short": "SpreadsheetBench",
       "title": "SpreadsheetBench: Towards Challenging Real World Spreadsheet Manipulation",
-      "authors": "Ma, Zhang, Zhang, Yu, …, Wang, Tang",
+      "authors": "Zeyao Ma, Bohan Zhang, Jing Zhang, Jifan Yu, Xiaokang Zhang, Xiaohan Zhang, Sijia Luo, Xi Wang, Jie Tang",
       "year": 2024,
       "date": "2024-06",
       "venue": "NeurIPS 2024 D&B",
@@ -1635,7 +1635,7 @@
       "date": "2023-02",
       "venue": "arXiv",
       "citation_count": 20394,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Meta's family of four publicly-trained foundation models (7B/13B/33B/65B) that reoriented scaling around inference cost rather than training compute: since a smaller model trained on far more tokens is cheaper to serve, LLaMA trains on 1.0-1.4T tokens of exclusively public data (CommonCrawl, C4, GitHub, Wikipedia, ArXiv, Stack Exchange). LLaMA-13B outperforms GPT-3 (175B) on most benchmarks despite being >10x smaller and runnable on a single GPU, and LLaMA-65B is competitive with Chinchilla-70B and PaLM-540B - though it trails both on MMLU (63.4 vs 67.5/69.3), which the authors attribute to a thin academic-data mix (only 177GB of books+ArXiv). It bundled the now-standard open-LLM stack (pre-norm RMSNorm, SwiGLU, RoPE), and its release - then leak - of the weights launched Alpaca, Vicuna, and the open-weights ecosystem.",
       "explainer": "papers/touvron-2023-llama.html"
@@ -1679,7 +1679,7 @@
       "date": "2020-05",
       "venue": "NeurIPS",
       "citation_count": 14936,
-      "topic": "Reasoning",
+      "topic": "Retrieval & RAG",
       "author_group": "Meta AI (FAIR)",
       "abstract": "The paper that coined retrieval-augmented generation: pair a frozen Wikipedia index (21M 100-word passages, retrieved by a DPR bi-encoder via maximum inner-product search) with a BART-large seq2seq generator, treat the retrieved document as a latent variable, and fine-tune both end-to-end on the negative marginal log-likelihood — with no supervision on what to retrieve. Two variants marginalize differently: RAG-Sequence fixes one document for the whole output, while RAG-Token can switch documents per generated token. RAG set the state of the art on open Natural Questions (44.5 EM), WebQuestions (45.2) and CuratedTrec (52.2) — beating REALM and the 11B-parameter T5+SSM with only a 400M generator — and produced more factual, specific and diverse text than BART (humans judged it more factual in 42.7% of Jeopardy generations vs BART's 7.1%). Because knowledge lives in a swappable index rather than the weights, hot-swapping a 2016 Wikipedia dump for a 2018 one updated the model's answers about world leaders with no retraining.",
       "explainer": "papers/lewis-2020-rag.html"
@@ -1955,7 +1955,7 @@
       "date": "2024-04",
       "venue": "arXiv",
       "citation_count": 1607,
-      "topic": "Reasoning",
+      "topic": "Retrieval & RAG",
       "author_group": "Microsoft Research",
       "abstract": "Conventional vector RAG retrieves the top-k chunks nearest a query, so it fails on global 'sensemaking' questions over a whole corpus (e.g. 'what are the main themes?') — inherently a query-focused summarization task, not retrieval. GraphRAG uses an LLM to build an entity knowledge graph from the source text, partitions it into a hierarchy of communities (Leiden), pre-summarizes every community, and at query time map-reduces those summaries into a single global answer. On two ~1M-token corpora it beats vector RAG on comprehensiveness (72–83% win) and diversity, with root-level summaries delivering most of the gain at ~2.6% of the token cost.",
       "explainer": "papers/edge-2024-graphrag.html"
@@ -2332,7 +2332,7 @@
       "date": "2025-04",
       "venue": "ICLR",
       "citation_count": 2,
-      "topic": "Reasoning",
+      "topic": "Retrieval & RAG",
       "author_group": "Scale AI / Microsoft",
       "abstract": "Shows that RAG rerankers which maximize context relevance alone hit an information bottleneck — higher retrieval precision but lower answer quality (Cohere Rerank and zero-shot LLM Rerank fall below doing no reranking on a 0–5 answer-similarity metric). REBEL ('RErank BEyond reLevance') fixes this purely in the prompt: score each retrieved document on secondary criteria (depth, diversity, clarity, authoritativeness, recency) via chain-of-thought, optionally inferring the criteria per query through a two-turn meta-prompt. On a 107-question AI-arXiv QA benchmark (GPT-4o generator, GPT-4 judge, 10 runs), two-turn REBEL reaches the best retrieval precision (≈0.945) and answer similarity (≈4.34/5) of any method tested, opening a new tradeoff curve where more inference-time compute buys both better retrieval and better answers.",
       "explainer": "papers/levine-2025-rebel.html"
@@ -3462,7 +3462,7 @@
       "date": "2018-10",
       "venue": "NAACL",
       "citation_count": 116264,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Introduces BERT, a deep bidirectional Transformer pre-trained with a masked language model — predict 15% of randomly masked tokens from both-sided context (80/10/10 mask/random/unchanged) — plus next-sentence prediction, then fine-tuned end-to-end with one added output layer per task. The masked objective sidesteps the \"a token sees itself\" leakage that blocks bidirectional language models, so every layer fuses left and right context, unlike ELMo's shallow LSTM concatenation or GPT's left-to-right Transformer. Set new state of the art on eleven tasks: GLUE 82.1 average (80.5 leaderboard, +7.7 points), SQuAD v1.1 93.2 F1 and v2.0 83.1 F1, SWAG 86.3. An MLM-vs-left-to-right ablation (SQuAD dev 88.5→77.8) isolates bidirectionality as the cause; subsequent work (RoBERTa) later showed NSP and the short training budget were suboptimal.",
       "explainer": "papers/devlin-2019-bert.html"
@@ -3476,7 +3476,7 @@
       "date": "2019-07",
       "venue": "arXiv",
       "citation_count": 30046,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Meta AI (FAIR)",
       "abstract": "A controlled replication of BERT pretraining showing the original was significantly undertrained. Holding BERT's architecture and masked-language-model objective fixed, RoBERTa trains longer on ~10× more data (16GB→160GB) with 8K-sequence batches, drops next-sentence prediction, uses full-length sequences with dynamic masking and a 50K byte-level BPE vocabulary — reaching state of the art on GLUE (88.5 leaderboard average), SQuAD v2.0 (89.4 F1) and RACE (83.2). The result reframes post-BERT gains such as XLNet's as plausibly driven by data and compute rather than a new objective, re-establishing masked-LM pretraining as competitive — a caution that benchmark wins can be hyperparameter-and-data stories in disguise.",
       "explainer": "papers/liu-2019-roberta.html"
@@ -3490,7 +3490,7 @@
       "date": "2019-09",
       "venue": "ICLR 2020",
       "citation_count": 7521,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Cuts BERT's parameter count with two tricks — a factorized embedding that unties the embedding size E from the hidden size H, and weights shared across all Transformer layers — so an ALBERT-large matches BERT-large's shape with 18M parameters instead of 334M. Reinvests the saved budget on width and swaps BERT's next-sentence-prediction loss for a harder sentence-order-prediction loss, setting new state of the art on GLUE (89.4), SQuAD 2.0 (92.2 F1), and RACE (89.4) — though the winning ALBERT-xxlarge is wider and ~3× slower to run than BERT-large.",
       "explainer": "papers/lan-2019-albert.html"
@@ -3504,7 +3504,7 @@
       "date": "2019-02",
       "venue": "OpenAI",
       "citation_count": 29054,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "OpenAI's 1.5-billion-parameter decoder-only Transformer, trained only to predict the next token over WebText (8M+ Reddit-linked documents, 40GB), shows that task ability emerges from unsupervised language modeling alone: framed as text continuation, GPT-2 does reading comprehension, translation, summarization and question answering zero-shot, with performance climbing log-linearly with model size. It sets zero-shot state of the art on 7 of 8 language-modeling benchmarks (LAMBADA 99.8→8.63 perplexity, Penn Treebank 46.54→35.76) while still underfitting WebText — the observation that seeded GPT-3 — and reaches 55 F1 on CoQA without any of its 127,000+ training examples. The paper also pioneered web-scale contamination analysis, using 8-gram Bloom filters to bound train/test overlap. The model that made 'task = prompt' plausible.",
       "explainer": "papers/radford-2019-gpt2.html"
@@ -3518,7 +3518,7 @@
       "date": "2019-11",
       "venue": "CVPR",
       "citation_count": 15126,
-      "topic": "Reasoning",
+      "topic": "Representation Learning",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Momentum Contrast (MoCo) reframes contrastive self-supervised learning as dictionary look-up and builds the dictionary as a FIFO queue of encoded keys decoupled from the mini-batch, with keys produced by a momentum moving-average key encoder (m=0.999) so they stay consistent across thousands of past steps. This lets the number of negatives reach K=65,536 with an ordinary 256-image batch. On ImageNet linear classification a vanilla ResNet-50 reaches 60.6% top-1, but the headline result is transfer: MoCo features outperform supervised ImageNet pre-training on 7 detection/segmentation tasks (e.g. +2.4 AP on PASCAL VOC with the C4 backbone, more with 1B-image IG-1B pre-training) — the first strong signal that the supervised-vs-unsupervised gap had largely closed in vision. The queue+momentum recipe later carried into text retrieval (Contriever).",
       "explainer": "papers/he-2019-moco.html"
@@ -3532,7 +3532,7 @@
       "date": "2020-02",
       "venue": "ICML",
       "citation_count": 24819,
-      "topic": "Reasoning",
+      "topic": "Representation Learning",
       "author_group": "Google",
       "abstract": "Reduces self-supervised visual representation learning to four parts — augment an image into two views, encode with a plain ResNet, project with a small MLP, and contrast the pair against every other in-batch example via the NT-Xent loss — with no memory bank or specialized architecture. Shows that composing random crop with color distortion, adding a nonlinear projection head that is discarded after training, and training with very large batches lets a linear probe on the learned features reach 76.5% ImageNet top-1 (matching a supervised ResNet-50) and 85.8% top-5 with only 1% of labels.",
       "explainer": "papers/chen-2020-simclr.html"
@@ -3546,7 +3546,7 @@
       "date": "2019-09",
       "venue": "arXiv",
       "citation_count": 2858,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "NVIDIA",
       "abstract": "Introduces tensor (intra-layer) model parallelism: by column-splitting the first GEMM and row-splitting the second inside each transformer block, a whole layer needs only two all-reduces per forward/backward pass — a few primitives in native PyTorch, no custom compiler. Trains an 8.3B-parameter GPT-2 and a 3.9B BERT on 512 V100s at 15.1 PetaFLOP/s (76% scaling efficiency), sets zero-shot SOTA on WikiText103 (10.8 ppl) and LAMBADA (66.5%), and shows that reordering layer normalization is what lets BERT scale past BERT-Large.",
       "explainer": "papers/shoeybi-2019-megatron-lm.html"
@@ -3560,7 +3560,7 @@
       "date": "2021-11",
       "venue": "ICLR",
       "citation_count": 3747,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Stanford",
       "abstract": "Reparameterizes the state space model (SSM) as a normal-plus-low-rank matrix, cutting its cost from O(N²L) to near-linear Õ(N+L) so one model can run as a parallel convolution for training and a stateful recurrence for 60× faster generation. S4 set state-of-the-art on all six Long Range Arena tasks — the first model to solve Path-X at length 16,384 — while staying as fast as efficient Transformers.",
       "explainer": "papers/gu-2021-s4.html"
@@ -3574,7 +3574,7 @@
       "date": "2020-04",
       "venue": "arXiv",
       "citation_count": 5560,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "AI2",
       "abstract": "Replaces the Transformer's O(n²) self-attention with a pattern that scales linearly: a sliding local window (optionally dilated) plus a few task-placed global tokens, still propagating information document-wide across stacked layers. Dropped into a pretrained RoBERTa by copying its 512 position embeddings out to 4,096, it consistently beats RoBERTa on long-document QA, classification, and coreference, sets new SOTA on WikiHop (81.9 F1) and TriviaQA (77.3 F1), and — as the LED encoder-decoder variant reading 16K tokens — tops arXiv summarization. An ablation shows the hand-placed global attention does most of the work (−8.3 on WikiHop without it). The drop-in design made long context a finetuning detail rather than a from-scratch retrain.",
       "explainer": "papers/beltagy-2020-longformer.html"
@@ -3602,7 +3602,7 @@
       "date": "2023-03",
       "venue": "arXiv",
       "citation_count": 25298,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "OpenAI's GPT-4: a large multimodal model (image+text in, text out) that reaches human-level scores on professional and academic exams — ~90th percentile on a simulated bar exam (vs GPT-3.5's bottom 10%), 86.4% on MMLU, 95.3% on HellaSwag, 67.0% on HumanEval — and beats the prior English-language state of the art on translated MMLU in 24 of 26 languages. Its real methodological contribution is predictable scaling: power-law fits on models trained with up to 10,000× less compute forecast GPT-4's final loss, and a HumanEval pass-rate metric on the easiest subset, before the full run — de-risking a multi-million-dollar training job. RLHF leaves base capability essentially unchanged (73.7%→74.0% averaged across exams) but degrades calibration roughly 10× (ECE 0.007→0.074). Citing \"the competitive landscape and the safety implications,\" the report discloses no architecture, model size, data, compute, or training method — the point at which frontier-model technical reports stopped being reproducible.",
       "explainer": "papers/openai-2023-gpt4.html"
@@ -3616,7 +3616,7 @@
       "date": "2023-10",
       "venue": "arXiv",
       "citation_count": 3575,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Mistral AI",
       "abstract": "A 7B-parameter open (Apache-2.0) language model that outperforms Llama 2 13B on every benchmark tested and Llama 1 34B on math, code, and reasoning, while staying cheap to serve via grouped-query attention plus sliding-window attention (a 4096-token window that compounds across layers to a ~131K theoretical span) and a rolling buffer cache that cuts cache memory ~8x. Ships a lightly instruction-tuned chat variant, but discloses no pretraining data or training details — so its \"small model, big quality\" result is demonstrated, not explained.",
       "explainer": "papers/jiang-2023-mistral-7b.html"
@@ -3673,7 +3673,7 @@
       "date": "2018-06",
       "venue": "OpenAI",
       "citation_count": 14928,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "Introduces GPT (Generative Pre-Training): a 12-layer decoder-only Transformer trained with a plain next-token language-modeling objective on BooksCorpus, then discriminatively fine-tuned on each target task with task-aware input transformations that need only a single linear head — no bespoke per-task architecture. This one semi-supervised recipe sets a new state of the art on 9 of 12 NLU benchmarks (e.g. +8.9 on Story Cloze, +5.7 on RACE, GLUE 72.8 vs 68.9), and the paper's analysis shows zero-shot task ability emerging steadily over pre-training — the template GPT-2 and GPT-3 would scale up.",
       "explainer": "papers/radford-2018-gpt1.html"
@@ -3687,7 +3687,7 @@
       "date": "2018-02",
       "venue": "NAACL",
       "citation_count": 12178,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "AI2",
       "abstract": "Introduces ELMo (Embeddings from Language Models): deep contextualized word representations computed as a task-specific learned linear combination of all internal layers of a pretrained bidirectional LSTM language model, so each token's vector is a function of the whole sentence rather than a fixed per-word embedding. Swapping ELMo in for word2vec/GloVe lifted the single-model state of the art across six NLP tasks — question answering, entailment, semantic role labeling, coreference, NER, and sentiment — and showed that lower LM layers encode syntax while higher layers encode word sense.",
       "explainer": "papers/peters-2018-elmo.html"
@@ -3818,7 +3818,7 @@
       "date": "2022-04",
       "venue": "JMLR",
       "citation_count": 8104,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Google's 540-billion-parameter dense, decoder-only Transformer, trained on 780B tokens across two TPU v4 pods via the Pathways system. It set few-shot SOTA on 28 of 29 English benchmarks, edged Chinchilla on MMLU (69.3 vs 67.5), beat the average-human aggregate on BIG-bench, and showed chain-of-thought plus scale can match finetuned reasoning SOTA (58% on GSM8K).",
       "explainer": "papers/chowdhery-2022-palm.html"
@@ -3832,7 +3832,7 @@
       "date": "2022-03",
       "venue": "NeurIPS 2022",
       "citation_count": 3394,
-      "topic": "Reasoning",
+      "topic": "Foundation Models",
       "author_group": "DeepMind",
       "abstract": "Re-derives the compute-optimal frontier for LLM training from over 400 models and three independent fits, finding that model size and training tokens should scale roughly equally (≈20 tokens per parameter) rather than scaling parameters alone. Validates it by training Chinchilla (70B, 1.4T tokens), which beats Gopher (280B) and larger models at equal compute, reaching 67.5% on MMLU.",
       "explainer": "papers/hoffmann-2022-chinchilla.html"
@@ -4295,7 +4295,6 @@
     { "from": "guo-2025-visualtoolbench", "to": "gunjal-2025-rubrics-as-rewards" },
     { "from": "liu-2023-lost-in-the-middle", "to": "dao-2022-flashattention" },
     { "from": "liu-2023-evalplus", "to": "chen-2021-codex" },
-    { "from": "liu-2023-evalplus", "to": "jimenez-2023-swe-bench" },
     { "from": "liu-2023-evalplus", "to": "roziere-2023-code-llama" },
     { "from": "jimenez-2023-swe-bench", "to": "liu-2023-evalplus" },
     { "from": "zhuo-2024-bigcodebench", "to": "liu-2023-evalplus" },
@@ -4999,7 +4998,7 @@
     { "from": "wang-2025-enigmaeval", "to": "hendrycks-2021-math" },
     { "from": "wang-2025-enigmaeval", "to": "rein-2023-gpqa" },
     { "from": "stojanovski-2025-reasoning-gym", "to": "wang-2025-enigmaeval" },
-    { "from": "phan-2025-hle", "to": "arora-2025-healthbench" },
+    { "from": "arora-2025-healthbench", "to": "phan-2025-hle" },
     { "from": "phan-2025-hle", "to": "bai-2022-hh-rlhf" },
     { "from": "phan-2025-hle", "to": "chan-2024-mle-bench" },
     { "from": "phan-2025-hle", "to": "chen-2021-codex" },

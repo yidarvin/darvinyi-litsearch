@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena — paper_atlas</title>
 <meta name="description" content="The paper that made LLM-as-a-judge a method: GPT-4 agrees with human preference 85% of the time — above the 81% humans agree with each other.">
+<meta property="og:title" content="Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena">
+<meta property="og:description" content="The paper that made LLM-as-a-judge a method: GPT-4 agrees with human preference 85% of the time — above the 81% humans agree with each other.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/zheng-2023-mt-bench.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,7 +121,17 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
 .lb.open{display:flex}
 .lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
 
-@media(max-width:640px){ h1{font-size:29px} .nav{display:none} .hero{padding-top:80px} table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch} .verdict{grid-template-columns:1fr;gap:0} .verdict>*{min-width:0} .verdict .k{white-space:normal;margin-top:16px} .verdict .k:first-child{margin-top:0} .verdict .v{overflow-wrap:anywhere;margin-top:3px} }
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
 </style>
 </head>
 <body>
@@ -139,17 +154,17 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
   <!-- ════════════ HERO ════════════ -->
   <section class="hero" id="hero">
     <div class="wrap">
-      <div class="kick">2023 · NeurIPS (Datasets & Benchmarks) · Benchmarks &amp; Evals</div>
+      <div class="kick">2023 · NeurIPS (Datasets &amp; Benchmarks) · Benchmarks &amp; Evals</div>
       <h1>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</h1>
       <p class="dek">The paper that turned "ask a strong model to grade" into a method. On open-ended chat, a GPT-4 judge agrees with expert humans <b>85%</b> of the time — <i>above</i> the <b>81%</b> humans agree with each other — and the two benchmarks it shipped, MT-bench and Chatbot Arena, became the default way the field ranks chat models.</p>
       <div class="authors mono">Zheng, Chiang, Sheng, Zhuang, Wu, Y. Zhuang, Lin, Li, Li, Xing, Zhang, Gonzalez, Stoica</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS 2023</b></span>
-        <span class="fact">citations&nbsp;<b>9,197</b></span>
+        <span class="fact">citations&nbsp;<b>9,198</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2306.05685">source&nbsp;↗</a></span>
       </div>
-      <div class="asof mono">// citation count as of June 2026</div>
+      <div class="asof mono">// citation count as of 2026-06</div>
     </div>
   </section>
 

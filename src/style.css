@@ -28,7 +28,8 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 .seg button.on{background:var(--accent);color:#06201c}
 
 /* survey selector — orthogonal to color_by: pick a survey to pull its tagged
-   papers into a centred spine and dim the rest. */
+   papers into a centred, ringed spine. No dimming — the rest of the map is
+   left exactly as-is. */
 .surveyby{display:flex;align-items:center;gap:9px}
 .surveyby[hidden]{display:none}
 .surveyby .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
@@ -52,6 +53,10 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 #axis .tick .lb{position:absolute;top:8px;left:0;transform:translateX(-50%);white-space:nowrap;
   font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:.02em}
 #axis .tick .lb b{color:var(--dim);font-weight:600}
+/* zoomed out far enough that adjacent quarter labels would overlap (set by
+   placeAxis() in main.js): drop to year-boundary labels only, same rule the
+   ≤640px media query below already applies for narrow screens. */
+#axis.dense .tick:not(.yr) .lb{display:none}
 
 .legend{position:fixed;left:18px;bottom:18px;background:rgba(20,20,23,.9);border:1px solid var(--line);
   border-radius:12px;padding:12px 14px;z-index:9;max-width:230px;max-height:min(58vh,560px);

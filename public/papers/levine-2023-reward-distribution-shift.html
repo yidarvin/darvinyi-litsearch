@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Baseline Analysis of Reward Models Under Distribution Shift — paper_atlas</title>
 <meta name="description" content="Scale AI stress-tests an RLHF reward model under distribution shift: out-of-distribution responses break accuracy and calibration far more than out-of-distribution prompts, and a logits-only energy score can flag it.">
+<meta property="og:title" content="A Baseline Analysis of Reward Models Under Distribution Shift">
+<meta property="og:description" content="Scale AI stress-tests an RLHF reward model under distribution shift: out-of-distribution responses break accuracy and calibration far more than out-of-distribution prompts, and a logits-only energy score can flag it.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/levine-2023-reward-distribution-shift.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,7 +161,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
   <section class="hero" id="hero">
     <div class="wrap">
       <div class="kick">2023 · arXiv · Post-training &amp; RL</div>
-      <h1>A Baseline Analysis of Reward Models Under Distribution Shift</h1>
+      <h1>A Baseline Analysis of Reward Models' Ability To Accurately Analyze Foundation Models Under Distribution Shift</h1>
       <p class="dek">Reward models are the linchpin of RLHF — yet every measurement that they "work" comes from test data drawn from the training distribution. Scale AI dials a reward model off-distribution and finds it breaks <em>asymmetrically</em>: out-of-distribution responses crater accuracy and calibration, while out-of-distribution prompts barely register — then borrows a classification energy score, using only the output logits, to flag when the reward model can no longer be trusted.</p>
       <div class="authors mono">Will LeVine, Benjamin Pikus, Anthony Chen, Sean Hendryx · Scale AI</div>
       <div class="facts">
@@ -165,7 +170,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2311.14743">source&nbsp;↗</a></span>
       </div>
-      <div class="asof mono">// citation count as of June 2026</div>
+      <div class="asof mono">// citation count as of 2026-06</div>
     </div>
   </section>
 

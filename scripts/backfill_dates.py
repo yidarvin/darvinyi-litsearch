@@ -12,10 +12,20 @@ The arxiv id encodes the month (YYMM.NNNNN -> 20YY-MM), so we can recover a
 `"date"` field right after `"year"` on each node via a targeted text edit, so the
 diff is date-only and the (compact, one-line) edges block stays byte-identical.
 
-Idempotent: re-running rewrites the same dates and never duplicates the field.
+For a non-arXiv source (no arXiv id to read a month from), Procedure A sets the
+node's initial `date` from Semantic Scholar's `publicationDate` month — often
+more precise than this script's own "<year>-07" mid-year guess. So on a re-run,
+a non-arXiv node's EXISTING date is preserved rather than overwritten with the
+cruder guess; the mid-year fallback is used only when a node has no date yet.
+
+Idempotent: re-running rewrites only nodes missing a date, and never
+duplicates the field or regresses an existing non-arXiv date.
 Usage:  python scripts/backfill_dates.py
 """
+from __future__ import annotations
+
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -29,26 +39,31 @@ SOURCE_RE = re.compile(r'href="([^"]+)"\s*>\s*source', re.I)
 ARXIV_RE = re.compile(r"arxiv\.org/(?:abs|pdf)/(\d{2})(\d{2})\.\d{4,5}", re.I)
 
 
-def date_from_explainer(slug: str, year: int):
+def date_from_explainer(slug: str, year: int, existing: str | None):
     """Return ("YYYY-MM", note) for a node, parsed from its explainer source link.
 
-    Falls back to mid-year ("<year>-07") when the source link isn't an arxiv URL.
+    Falls back to the node's EXISTING date (preserved, since it may be a more
+    precise S2-derived month than any generic guess) when the source link isn't
+    an arXiv URL; only guesses mid-year ("<year>-07") when there's no existing
+    date at all (a genuinely new, never-backfilled node).
     """
     f = EXPLAINER_DIR / f"{slug}.html"
-    if not f.exists():
-        return f"{year}-07", "WARN no explainer file -> mid-year fallback"
-    html = f.read_text(encoding="utf-8")
-    m = SOURCE_RE.search(html)
-    if m:
-        a = ARXIV_RE.search(m.group(1))
-        if a:
-            yy, mm = int(a.group(1)), int(a.group(2))
-            yr, mo = 2000 + yy, max(1, min(12, mm))
-            note = ""
-            if yr > year:
-                note = f"WARN arxiv year {yr} > node year {year}"
-            return f"{yr:04d}-{mo:02d}", note
-    return f"{year}-07", "WARN source link not arxiv -> mid-year fallback"
+    if f.exists():
+        html = f.read_text(encoding="utf-8")
+        m = SOURCE_RE.search(html)
+        if m:
+            a = ARXIV_RE.search(m.group(1))
+            if a:
+                yy, mm = int(a.group(1)), int(a.group(2))
+                yr, mo = 2000 + yy, max(1, min(12, mm))
+                note = ""
+                if yr > year:
+                    note = f"WARN arxiv year {yr} > node year {year}"
+                return f"{yr:04d}-{mo:02d}", note
+    if existing:
+        return existing, ""
+    reason = "no explainer file" if not f.exists() else "source link not arxiv"
+    return f"{year}-07", f"WARN {reason} and no existing date -> mid-year fallback"
 
 
 def main():
@@ -59,7 +74,7 @@ def main():
     # 1) resolve a date for every node
     dates, warnings = {}, []
     for p in papers:
-        d, note = date_from_explainer(p["slug"], p.get("year"))
+        d, note = date_from_explainer(p["slug"], p.get("year"), p.get("date"))
         dates[p["slug"]] = d
         if note:
             warnings.append(f"  {p['slug']}: {note} (date={d})")
@@ -92,7 +107,9 @@ def main():
     out.append(raw[pos:])
     result = "".join(out)
 
-    PAPERS_JSON.write_text(result, encoding="utf-8")
+    tmp = PAPERS_JSON.with_suffix(".json.tmp")
+    tmp.write_text(result, encoding="utf-8")
+    os.replace(tmp, PAPERS_JSON)
 
     # 3) report
     print(f"backfilled date on {len(papers)} nodes")

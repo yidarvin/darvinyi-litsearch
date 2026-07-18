@@ -156,7 +156,7 @@ FAM_L = {
     'I1-honesty-deception': ('I1 · honesty & deception probes', 'stage a temptation to lie or scheme'),
     'I2-danger-propensity': ('I2 · dangerous-capability & propensity', 'would it, and can the skill be recovered?'),
     'I3-adversarial-robustness': ('I3 · adversarial-robustness probes', 'attack the model and score what breaks'),
-    'I4-fairness-harm-audits': ('I4 · fairness & harm audits', 'disaggregate accuracy or clinical harm'),
+    'I4-fairness-harm-audits': ('I4 · expert-panel audits', 'a human expert panel judges fairness, clinical, or professional stakes'),
     'M1-cot-monitoring': ('M1 · CoT monitoring & monitorability', 'read the reasoning trace for intent'),
     'M2-faithfulness-tests': ('M2 · faithfulness tests', 'does the CoT reflect the real computation?'),
     'M3-control-protocols': ('M3 · control protocols', 'worst-case safety of a deployment protocol'),

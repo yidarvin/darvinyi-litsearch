@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism — paper_atlas</title>
 <meta name="description" content="NVIDIA's tensor (intra-layer) model parallelism — split each transformer layer's matmuls across GPUs with only two all-reduces per layer, in plain PyTorch — trains an 8.3B GPT-2 on 512 V100s at 76% scaling efficiency.">
+<meta property="og:title" content="Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism">
+<meta property="og:description" content="NVIDIA's tensor (intra-layer) model parallelism — split each transformer layer's matmuls across GPUs with only two all-reduces per layer, in plain PyTorch — trains an 8.3B GPT-2 on 512 V100s at 76% scaling efficiency.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/shoeybi-2019-megatron-lm.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,17 +160,17 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
   <!-- ════════════ HERO ════════════ -->
   <section class="hero" id="hero">
     <div class="wrap">
-      <div class="kick">2019 · arXiv · Reasoning</div>
+      <div class="kick">2019 · arXiv · Foundation Models</div>
       <h1>Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism</h1>
       <p class="dek">A transformer layer is mostly matrix multiplies. Split them across GPUs the right way and the whole layer needs just <b>two all-reduces</b> per pass — in vanilla PyTorch, no compiler. That trick breaks the single-GPU memory wall and trains an 8.3B-parameter GPT-2 on 512 V100s at 76% scaling efficiency.</p>
       <div class="authors mono">Mohammad Shoeybi, Mostofa Patwary, Raul Puri, Patrick LeGresley, Jared Casper, Bryan Catanzaro · NVIDIA</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>arXiv</b></span>
         <span class="fact">citations&nbsp;<b>2,858</b></span>
-        <span class="fact">topic&nbsp;<b>Reasoning</b></span>
+        <span class="fact">topic&nbsp;<b>Foundation Models</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1909.08053">source&nbsp;↗</a></span>
       </div>
-      <div class="asof mono">// citation count as of June 2026</div>
+      <div class="asof mono">// citation count as of 2026-06</div>
     </div>
   </section>
 

@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Install Python test dependencies
+        run: pip install -r scripts/requirements-dev.txt
+
+      - name: Build (must succeed)
+        run: npm run build
+
+      - name: JS tests (computeTimeline invariants)
+        run: npm test
+
+      - name: Python tests (data integrity + script round-trips)
+        run: python -m pytest scripts/tests/ -v
+
+      - name: Page↔node lint (citation sync, title match, as-of format, escaping)
+        run: python scripts/lint_pages.py

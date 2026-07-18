@@ -104,7 +104,9 @@ def cmd_mutate(d, sd, action, sid, slugs):
             del p['tags']
         if new:
             p['tags'] = sorted(new)   # re-add last, sorted & deduped
-    open(PAPERS, 'w').write(dumps_papers(d))
+    tmp = PAPERS + '.tmp'
+    open(tmp, 'w').write(dumps_papers(d))
+    os.replace(tmp, PAPERS)
     total = sum(1 for p in d['papers'] if sid in p.get('tags', []))
     print(f"{action}: {changed} paper(s) changed; survey '{sid}' now has {total} member(s).")
 

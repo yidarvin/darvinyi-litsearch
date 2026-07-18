@@ -8,7 +8,7 @@ import './style.css';
    Built at build time from data/papers.json (see CLAUDE.md for the shape):
      node id      = slug
      label        = short
-     size         = sqrt(citation_count)
+     size         = log10(citation_count), capped (see `size()` below)
      color dims   = topic / institution (derived) / venue (derived)
      edges        = data.edges  ({from,to}  ->  cytoscape {source,target})
 --------------------------------------------------------------------------- */
@@ -26,8 +26,9 @@ EDGES.forEach(e => {
    A survey is a named tag defined in data/surveys.json; each paper node carries
    a `tags` array of survey ids. Surveys are ORTHOGONAL to the color-by dims:
    selecting one pulls its tagged papers into a centred horizontal spine (the
-   timeline `centerSet`), rings them in the survey colour, lights the citations
-   between them, and dims everything else. `none` restores the normal map.    */
+   timeline `centerSet`) and rings them in the survey colour — deliberately
+   minimal, no dimming and no edge colouring, so the rest of the map is left
+   exactly as-is. `none` restores the normal (uncentred) map.                */
 const SURVEYS = Array.isArray(surveyData?.surveys) ? surveyData.surveys : [];
 const surveyById = new Map(SURVEYS.map(s => [s.id, s]));
 const surveyMembers = new Map(SURVEYS.map(s =>
@@ -84,6 +85,10 @@ const canonTok = t => { t = t.trim(); return INST_ALIAS[t] || t; };
 function rawInstitution(p){   // the single canonical institution we attribute a paper to
   const parts = (p.author_group || '').split('/').map(canonTok).filter(Boolean);
   if (!parts.length) return null;
+  // an institution with no explicit weight defaults to 50 — between the 40 and
+  // 70 tiers above — so an unlisted collaborator currently outranks tier-40
+  // names (METR, Patronus AI, …) in attribution; add it to a tier instead of
+  // relying on this default if that's ever the wrong call for a real paper.
   return parts.reduce((a, b) => (INST_WEIGHT[b] || 50) > (INST_WEIGHT[a] || 50) ? b : a);
 }
 const INST_COUNT = new Map();
@@ -133,6 +138,13 @@ function colorFor(dim, val){ const d = DIMS[dim]; return (d && d.colors[val]) ||
 // whole range separated; the 14×/decade slope gives ~12px under 10 cites,
 // ~50px at 500, ~64px at 5k, up to ~80px at the 70k foundational hubs.
 function size(c){ return Math.round(12 + 14 * Math.log10(Math.max(0, c || 0) + 1)); }
+
+// touch devices have no hover-to-preview — the hint's "hover a node · tap to
+// open" is two desktop-only steps; touch only has the one (tap opens directly).
+if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+  const hintEl = document.getElementById('hint');
+  hintEl.textContent = '// older ← time → newer · tap a node to open · drag to pan';
+}
 
 /* ---- empty state ---------------------------------------------------------
    papers.json starts empty; show a friendly message instead of a blank canvas. */
@@ -188,8 +200,10 @@ function initGraph(){
       { selector: '.faded', style: { 'opacity': .06 }},
       // survey: a tagged node just gets a bright ring in the survey colour —
       // no dimming, no edge colouring (kept before node.sel so a selection
-      // ring still overrides it).
-      { selector: 'node.survey', style: { 'border-width': 4, 'border-color': 'data(surveyC)', 'z-index': 6 }},
+      // ring still overrides it). Ring width is zoom-compensated (data(surveyBW),
+      // kept live by the 'zoom' handler below) so it stays legible at the map's
+      // default fit-out zoom instead of shrinking to a sub-pixel line.
+      { selector: 'node.survey', style: { 'border-width': 'data(surveyBW)', 'border-color': 'data(surveyC)', 'z-index': 6 }},
       { selector: 'node.sel', style: { 'border-width': 3, 'border-color': ACCENT, 'border-style': 'dashed' }},
       { selector: 'edge.hl', style: { 'line-color': ACCENT, 'target-arrow-color': ACCENT, 'opacity': 1, 'width': 2.4, 'z-index': 9 }},
     ],
@@ -277,6 +291,14 @@ function initGraph(){
     }
     return surveyLayout.get(id);
   }
+  // Ring width in model units so it renders at a legible fixed screen size
+  // regardless of zoom (a flat px width shrinks to sub-pixel at the map's
+  // default fit-out zoom, which made the whole feature look inert).
+  const ringWidth = () => Math.min(22, Math.max(4, 3 / cy.zoom()));
+  cy.on('zoom', () => {
+    const survey = cy.$('node.survey');
+    if (survey.nonempty()) survey.data('surveyBW', ringWidth());
+  });
   function applySurvey(id){
     curSurvey = (id && surveyById.has(id)) ? id : null;
     const target = curSurvey ? layoutFor(curSurvey) : positions;
@@ -285,12 +307,19 @@ function initGraph(){
       if (curSurvey){
         const col = surveyById.get(curSurvey).color || ACCENT;
         const mem = surveyMembers.get(curSurvey);
-        cy.nodes().filter(n => mem.has(n.id())).addClass('survey').data('surveyC', col);
+        cy.nodes().filter(n => mem.has(n.id())).addClass('survey').data('surveyC', col).data('surveyBW', ringWidth());
       }
     });
     // glide every node to its layout (x unchanged → the time axis stays put)
     cy.nodes().forEach(n => { const pp = target.get(n.id()); if (pp) n.animate({ position: pp }, { duration: 430, easing: 'ease-out' }); });
-    setTimeout(() => cy.animate({ fit: { padding: 60 }, duration: 360, easing: 'ease-out' }), 460);
+    // Fit to the ringed subset when a survey is active (padded generously) so
+    // the spine actually lands at a zoom where its ring and labels read —
+    // fitting the whole graph, as before, left the ring at a near-invisible
+    // sub-pixel width and the spine looked like nothing had happened.
+    setTimeout(() => {
+      const fitTarget = curSurvey ? { eles: cy.$('node.survey'), padding: 90 } : { padding: 60 };
+      cy.animate({ fit: fitTarget, duration: 360, easing: 'ease-out' });
+    }, 460);
     const sel = document.getElementById('survey');
     sel.classList.toggle('on', !!curSurvey);
     sel.style.background = curSurvey ? surveyById.get(curSurvey).color : '';
@@ -411,12 +440,51 @@ function initGraph(){
     axisEl.appendChild(t);
     return { x: b.x, el: t };
   });
+  // model-unit gap between adjacent ticks (columns are evenly spaced — see
+  // timeline.js), used below to know when zoomed-out labels would overlap.
+  const tickGap = ticks.length > 1 ? ticks[1].x - ticks[0].x : 0;
   function placeAxis(){
     const z = cy.zoom(), px = cy.pan().x;
     ticks.forEach(t => { t.el.style.transform = `translateX(${(t.x * z + px).toFixed(1)}px)`; });
+    // sub-labels ("Q2", "Q3", …) start to overlap below ~70px of screen space
+    // per tick; past that, keep only the year-boundary labels (same rule the
+    // ≤640px media query already applies for narrow screens).
+    axisEl.classList.toggle('dense', tickGap * z < 70);
   }
   cy.on('pan zoom resize', placeAxis);
 
+  // Fit — to the active survey's ringed subset if one is selected (matches
+  // applySurvey's own fit target, so a deferred fit here, e.g. from the
+  // resize retry below, can't clobber a deep-linked `/?survey=` view with a
+  // full-graph fit), otherwise to the whole graph. Then check whether the
+  // configured zoom floor clamped it: the timeline's bounding box needs a
+  // lower zoom to fit than `minZoom` allows on a narrow viewport (e.g. a
+  // phone), which would otherwise crop most of the map. Lower the floor once
+  // and re-fit so the whole timeline is always reachable.
+  function fitNow(){
+    const eles = curSurvey ? cy.$('node.survey') : cy.elements();
+    const pad = curSurvey ? 90 : 70;
+    cy.fit(eles, pad);
+    if (cy.zoom() === cy.minZoom()){
+      const bb = eles.boundingBox();
+      const need = Math.min((cy.width() - pad * 2) / bb.w, (cy.height() - pad * 2) / bb.h);
+      if (need > 0 && need < cy.minZoom()){
+        cy.minZoom(need * 0.9);
+        cy.fit(eles, pad);
+      }
+    }
+    placeAxis();
+  }
+
   applyColor('topic');
-  cy.ready(() => { cy.fit(undefined, 70); placeAxis(); });
+  cy.ready(() => {
+    if (cy.width() && cy.height()){ fitNow(); return; }
+    // The container can measure 0×0 at ready time (a backgrounded tab, an
+    // embedded preview) — cy.fit() silently no-ops there and the map is stuck
+    // at zoom 1. Retry once, the first time the container reports a real size.
+    const onFirstResize = () => {
+      if (cy.width() && cy.height()){ cy.off('resize', onFirstResize); fitNow(); }
+    };
+    cy.on('resize', onFirstResize);
+  });
 }

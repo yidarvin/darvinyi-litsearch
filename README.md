@@ -21,7 +21,20 @@ npm install
 npm run dev      # local preview at http://localhost:5173
 npm run build    # → dist/  (pure static)
 npm run preview  # serve the built dist/
+npm test         # vitest: computeTimeline layout invariants (src/tests/)
 ```
+
+Python-side checks (data integrity, script round-trips, and the page↔node
+linter) need `pytest`, on top of the figure-extraction deps:
+
+```bash
+pip install -r scripts/requirements.txt -r scripts/requirements-dev.txt
+python -m pytest scripts/tests/ -v
+python scripts/lint_pages.py            # --fix applies the mechanical fixes
+```
+
+CI (`.github/workflows/ci.yml`) runs the build, both test suites, and the
+linter on every push/PR.
 
 `data/papers.json` starts empty, so a fresh checkout shows a friendly
 empty-state map. Nodes appear as papers are processed.

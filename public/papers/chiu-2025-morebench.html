@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models — paper_atlas</title>
 <meta name="description" content="MoReBench grades how reasoning models argue through 1,000 moral dilemmas against 23,018 philosopher-written rubric criteria — and finds moral reasoning is orthogonal to the math/code/scaling trends we use to predict capability.">
+<meta property="og:title" content="MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models">
+<meta property="og:description" content="MoReBench grades how reasoning models argue through 1,000 moral dilemmas against 23,018 philosopher-written rubric criteria — and finds moral reasoning is orthogonal to the math/code/scaling trends we use to predict capability.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/chiu-2025-morebench.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,7 +121,17 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
 .lb.open{display:flex}
 .lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
 
-@media(max-width:640px){ h1{font-size:29px} .nav{display:none} .hero{padding-top:80px} table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch} .verdict{grid-template-columns:1fr;gap:0} .verdict>*{min-width:0} .verdict .k{white-space:normal;margin-top:16px} .verdict .k:first-child{margin-top:0} .verdict .v{overflow-wrap:anywhere;margin-top:3px} }
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
 </style>
 </head>
 <body>
@@ -140,7 +155,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
   <section class="hero" id="hero">
     <div class="wrap">
       <div class="kick">2025 · ICLR 2026 · Reasoning</div>
-      <h1>MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models</h1>
+      <h1>MoReBench: Evaluating Procedural and Pluralistic Moral Reasoning in Language Models, More than Outcomes</h1>
       <p class="dek">Most evals grade the <em>answer</em>. MoReBench grades the <em>argument</em> — scoring how a model reasons through 1,000 moral dilemmas against 23,018 criteria written by 53 moral philosophers. The headline: moral-reasoning skill is almost uncorrelated with the math, code, and scaling signals we use to rank models.</p>
       <div class="authors mono">Yu Ying Chiu*, Michael S. Lee*, Rachel Calcott, Brandon Handoko, … Mantas Mazeika, Bing Liu, Yejin Choi, Mitchell Gordon△, Sydney Levine△ — UW · NYU · Scale AI · Harvard · MIT · Oxford · Stanford</div>
       <div class="facts">

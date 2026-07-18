@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness — paper_atlas</title>
 <meta name="description" content="An IO-aware exact-attention algorithm that tiles and recomputes to avoid writing the N×N attention matrix to GPU HBM — same math, far fewer memory accesses, and a measured wall-clock speedup.">
+<meta property="og:title" content="FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness">
+<meta property="og:description" content="An IO-aware exact-attention algorithm that tiles and recomputes to avoid writing the N×N attention matrix to GPU HBM — same math, far fewer memory accesses, and a measured wall-clock speedup.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/dao-2022-flashattention.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,14 +160,14 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
   <!-- ════════════ HERO ════════════ -->
   <section class="hero" id="hero">
     <div class="wrap">
-      <div class="kick">2022 · NeurIPS · Reasoning</div>
+      <div class="kick">2022 · NeurIPS · Foundation Models</div>
       <h1>FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness</h1>
       <p class="dek">Attention is slow not because it does too much math, but because it shuttles a giant <span class="mono">N×N</span> matrix in and out of GPU memory. FlashAttention computes the <em>exact</em> same attention while never writing that matrix to HBM — turning a memory-bound operation into a fused, on-chip kernel that runs up to 7.6× faster and uses linear memory.</p>
       <div class="authors mono">Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, Christopher Ré</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS 2022</b></span>
         <span class="fact">citations&nbsp;<b>4,524</b></span>
-        <span class="fact">topic&nbsp;<b>Reasoning</b></span>
+        <span class="fact">topic&nbsp;<b>Foundation Models</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2205.14135">source&nbsp;↗</a></span>
       </div>
       <div class="asof mono">// citation count as of 2026-06-19</div>

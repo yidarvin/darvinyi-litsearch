@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VeRO: An Evaluation Harness for Agents to Optimize Agents — paper_atlas</title>
 <meta name="description" content="A reproducible harness and benchmark for the 'agents optimizing agents' task: a coding agent edits, evaluates, and versions a target agent under a fixed budget. The harness drives an ~8% lift on tool-use tasks but barely moves reasoning ones.">
+<meta property="og:title" content="VeRO: An Evaluation Harness for Agents to Optimize Agents">
+<meta property="og:description" content="A reproducible harness and benchmark for the 'agents optimizing agents' task: a coding agent edits, evaluates, and versions a target agent under a fixed budget. The harness drives an ~8% lift on tool-use tasks but barely moves reasoning ones.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/ursekar-2026-vero.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,7 +224,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <p>The benchmark study compares <strong>8 optimizer configurations across 5 tasks</strong> (MATH, TAU-Bench Retail, GAIA, SimpleQA, GPQA), averaging over N&nbsp;=&nbsp;3 iterations — 120 experiments in all. The target agent is always <strong>GPT-4.1 mini</strong>, the budget is fixed at B&nbsp;=&nbsp;8, and the best commit is selected on validation. The headline number: holding the optimizer model constant at Claude Sonnet 4.5, the <strong>full VeRO harness lifts average score from a 0.50 baseline to 0.61</strong> (+8 points), versus only +2 for Claude Code given just VeRO's tools, and ~0 for prompt-only optimization.</p>
+      <p>The benchmark study compares <strong>8 optimizer configurations across 5 tasks</strong> (MATH, TAU-Bench Retail, GAIA, SimpleQA, GPQA), averaging over N&nbsp;=&nbsp;3 iterations — 120 experiments in all. The target agent is always <strong>GPT-4.1 mini</strong>, the budget is fixed at B&nbsp;=&nbsp;8, and the best commit is selected on validation. The headline number: holding the optimizer model constant at Claude Sonnet 4.5, the <strong>full VeRO harness lifts average score to 0.61</strong>, +8 points over the 0.53 no-VeRO Claude Code Pure baseline (+11 over the raw 0.50 initial-commit score) — versus only +2 for Claude Code given just VeRO's tools, and ~0 for prompt-only optimization.</p>
 
       <h3>The harness — not the model — is what drives gains</h3>
       <p>The external baseline <strong>GEPA</strong> reaches 0.54, essentially tied with VeRO's prompt-restricted <em>Resources Only</em> variant (also 0.54) and well below <em>Default</em> (0.61). Since GEPA and Resources Only mutate the <em>same</em> components (prompts, tool descriptions, parameters), their convergence pins the <strong>+7-point gap to Default on the broader harness changes</strong> — adding tools, restructuring control flow, delegating to sub-agents — that only the full harness permits.</p>
@@ -290,7 +295,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <h2>What to remember</h2>
       <ol>
         <li>VeRO turns "agents optimizing agents" into a controlled task — versioned git snapshots, a gated evaluation budget <em>B</em>, permission control over test data and files, and standardized trace observations — so different coding agents can be compared without one cheating on compute or peeking at test data.</li>
-        <li>The harness, not the model, drives the gains: holding Sonnet 4.5 fixed, the full VeRO-Agent lifts average score +8 points over baseline (0.50→0.61), versus +2 for Claude Code with VeRO tools alone and ~0 for prompt-only optimizers (GEPA and Resources Only both land at 0.54).</li>
+        <li>The harness, not the model, drives the gains: holding Sonnet 4.5 fixed, the full VeRO-Agent reaches 0.61 — +8 over the 0.53 no-VeRO Claude Code Pure baseline (+11 over the raw 0.50 initial commit) — versus +2 for Claude Code with VeRO tools alone and ~0 for prompt-only optimizers (GEPA and Resources Only both land at 0.54).</li>
         <li>Optimization is tool-use-shaped: ~+0.08–0.09 mean lift on GAIA / TAU-Bench Retail / SimpleQA but ~0 on GPQA / MATH (flat across budgets 2–32), and headroom shrinks as the base agent gets more sophisticated — a minimal Pawn gains +11–13% where a polished Knight gains only +4–7%.</li>
       </ol>
     </div>

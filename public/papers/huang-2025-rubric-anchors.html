@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reinforcement Learning with Rubric Anchors — paper_atlas</title>
 <meta name="description" content="RLVR only learns where answers are checkable. Rubric Anchors turns weighted rubrics into the reward, extending RL to open-ended writing and empathy — the largest rubric reward bank to date (10,000+) trains a 30B model (Rubicon) past a 671B baseline on humanities with just 5K samples.">
+<meta property="og:title" content="Reinforcement Learning with Rubric Anchors">
+<meta property="og:description" content="RLVR only learns where answers are checkable. Rubric Anchors turns weighted rubrics into the reward, extending RL to open-ended writing and empathy — the largest rubric reward bank to date (10,000+) trains a 30B model (Rubicon) past a 671B baseline on humanities with just 5K samples.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/huang-2025-rubric-anchors.html">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,7 +123,17 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
 .lb.open{display:flex}
 .lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
 
-@media(max-width:640px){ h1{font-size:29px} .nav{display:none} .hero{padding-top:80px} table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch} .verdict{grid-template-columns:1fr;gap:0} .verdict>*{min-width:0} .verdict .k{white-space:normal;margin-top:16px} .verdict .k:first-child{margin-top:0} .verdict .v{overflow-wrap:anywhere;margin-top:3px} }
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
 </style>
 </head>
 <body>
@@ -151,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2508.12790">source&nbsp;↗</a></span>
       </div>
-      <div class="asof mono">// citation count as of June 19, 2026</div>
+      <div class="asof mono">// citation count as of 2026-06-19</div>
     </div>
   </section>
 
