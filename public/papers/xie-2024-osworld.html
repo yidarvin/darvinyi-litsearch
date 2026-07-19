@@ -162,7 +162,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Xie, Zhang, Chen, Li, Zhao, Cao, Hua, Cheng, Shin, Lei, Liu, Xu, Zhou, Savarese, Xiong, Zhong, Yu · HKU · CMU · Salesforce · Waterloo</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS 2024</b></span>
-        <span class="fact">citations&nbsp;<b>805</b></span>
+        <span class="fact">citations&nbsp;<b>916</b></span>
         <span class="fact">topic&nbsp;<b>Agents</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2404.07972">source&nbsp;↗</a></span>
       </div>
@@ -210,7 +210,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p>The grade is <strong>execution-based</strong>, not a string match or an LLM judge. A reward function ℛ : 𝒮 × 𝒜 → [0, 1] inspects the final machine state and returns 1 (or a partial decimal) when the goal is met — or rewards a correct <span class="mono">FAIL</span> on an infeasible task — and 0 otherwise. Because "did the cookies get deleted?" and "is the copied sheet renamed and placed before Sheet 2?" don't reduce to one metric, the team wrote <strong>nearly per-task</strong> checks built from a library of getter functions (read a file, query the a11y tree, fetch a cloud file, even decrypt a Thunderbird account) feeding shared comparators like <span class="mono">compare_table</span> and <span class="mono">check_a11y_tree</span>. For tasks with live answers (a paper's current citation count, a blog's contents), <em>dynamic</em> getters re-fetch ground truth at evaluation time.</p>
 
       <div class="eq">
-        ℛ(s,a) = <span class="frac"><span class="num">1</span><span class="den"></span></span> if final state ⊨ goal&nbsp;&nbsp;·&nbsp;&nbsp;∈ (0,1) if partial&nbsp;&nbsp;·&nbsp;&nbsp;0 otherwise
+        ℛ(s,a) = 1 if final state ⊨ goal&nbsp;&nbsp;·&nbsp;&nbsp;∈ (0,1) if partial&nbsp;&nbsp;·&nbsp;&nbsp;0 otherwise
         <span class="note">// per-task, execution-based reward — 134 unique evaluation functions across the suite</span>
       </div>
 

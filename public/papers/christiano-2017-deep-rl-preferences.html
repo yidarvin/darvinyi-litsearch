@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Paul F. Christiano · Jan Leike · Tom B. Brown · Miljan Martic · Shane Legg · Dario Amodei &nbsp;|&nbsp; OpenAI &amp; DeepMind</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS 2017</b></span>
-        <span class="fact">citations&nbsp;<b>5,414</b></span>
+        <span class="fact">citations&nbsp;<b>5,632</b></span>
         <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1706.03741">source&nbsp;↗</a></span>
       </div>
@@ -227,7 +227,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <figcaption><b>Figure 2.</b> Eight MuJoCo tasks, scored on each task's true reward. <b>Real human feedback</b> (purple, ~700 queries, a single run) tracks <b>RL on the true reward</b> (orange) and the method's <b>synthetic-oracle</b> runs at 350/700/1,400 queries (blues). On Ant the human run runs away from the pack via better reward shaping. All curves average 5 runs except the single human run.</figcaption>
       </figure>
 
-      <p>On the <strong>seven Atari games</strong> it is harder to match RL, but the method still shows substantial learning on most. With <strong>5,500 human comparisons</strong> (and synthetic budgets of 3,300 / 5,600 / 10,000), <strong>BeamRider</strong> and <strong>Pong</strong> reach or approach RL with as few as 3,300 synthetic labels; <strong>Seaquest</strong> and <strong>Qbert</strong> get near RL but more slowly; <strong>SpaceInvaders</strong> and <strong>Breakout</strong> never match it but improve a lot. Real human feedback often matches synthetic feedback that had ~40% more labels. The clean win is <strong>Enduro</strong>: human labelers reward any incremental progress toward passing a car, shaping the reward so well that the agent <em>outperforms</em> A3C and rivals DQN — a goal A3C struggles to reach by random exploration. (The clean loss: on Qbert, real human feedback fails to clear level 1, because short Qbert clips are genuinely hard to judge.)</p>
+      <p>On the <strong>seven Atari games</strong> it is harder to match RL, but the method still shows substantial learning on most. With <strong>5,500 human comparisons</strong> (and synthetic budgets of 3,300 / 5,600 / 10,000), <strong>BeamRider</strong> and <strong>Pong</strong> reach or approach RL with as few as 3,300 synthetic labels; <strong>Seaquest</strong> and <strong>Qbert</strong> get near RL but more slowly; <strong>SpaceInvaders</strong> and <strong>Breakout</strong> never match it but improve a lot. Real human feedback often needs about 40% more labels than a clean synthetic oracle to reach the same performance — contractor noise and inconsistency cost real sample-efficiency. The clean win is <strong>Enduro</strong>: human labelers reward any incremental progress toward passing a car, shaping the reward so well that the agent <em>outperforms</em> A3C and rivals DQN — a goal A3C struggles to reach by random exploration. (The clean loss: on Qbert, real human feedback fails to clear level 1, because short Qbert clips are genuinely hard to judge.)</p>
       <p>The part that made the paper famous is the <strong>novel behaviors</strong> — tasks with no reward function at all, where the only evaluation is "does it look right." Using the very same hyperparameters, about <strong>an hour of human time each</strong> teaches the Hopper a <strong>repeated backflip</strong> that lands upright (~900 comparisons), the Half-Cheetah to <strong>run forward on one leg</strong> (~800 comparisons), and an Enduro car to <strong>stay alongside other cars</strong> (~1,300 comparisons). None of these has a reward you could reasonably hand-engineer.</p>
 
       <figure class="wide">
@@ -235,7 +235,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <figcaption><b>Figure 4.</b> A backflip, learned from ~900 human comparisons in under an hour — a behavior with no hand-written reward. The labeler simply kept choosing the clip that looked more like a clean backflip-and-land.</figcaption>
       </figure>
 
-      <p>And it is cheap on both axes. Contractors answered the average query in <strong>3–5 seconds</strong>; whole experiments used between <strong>30 minutes and 5 hours</strong> of human time. For the Atari runs the authors put real numbers on it: roughly <strong>$25 of compute versus ~$36 of human labor</strong> (5 hours at US minimum wage) — meaning the human and the machine already cost about the same, and further sample-efficiency gains are hitting diminishing returns.</p>
+      <p>And it is cheap on both axes: whole experiments used between <strong>fifteen minutes and five hours</strong> of human time. For the Atari runs the authors put real numbers on it: roughly <strong>$25 of compute versus ~$36 of human labor</strong> (5 hours at US minimum wage) — meaning the human and the machine already cost about the same, and further sample-efficiency gains are hitting diminishing returns.</p>
 
       <table>
         <thead><tr><th>Task</th><th class="num">Human comparisons</th><th class="num">Human time</th><th>Outcome (vs. true-reward RL)</th></tr></thead>
