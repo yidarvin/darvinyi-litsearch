@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams — paper_atlas</title>
+<meta name="description" content="61,097 multiple-choice questions lifted from real medical board exams in the US, mainland China, and Taiwan, paired with a 12.7M-token textbook corpus to retrieve from — the dataset that became the default 'can this model practice medicine' benchmark.">
+<meta property="og:title" content="What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams">
+<meta property="og:description" content="61,097 multiple-choice questions lifted from real medical board exams in the US, mainland China, and Taiwan, paired with a 12.7M-token textbook corpus to retrieve from — the dataset that became the default 'can this model practice medicine' benchmark.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/jin-2020-medqa.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2020 · Applied Sciences · Benchmarks &amp; Evals</div>
+      <h1>What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams</h1>
+      <p class="dek">61,097 multiple-choice questions pulled straight from professional medical board exams in the
+        US, mainland China, and Taiwan, paired with a multi-million-token corpus of medical textbooks to search
+        for evidence in — the paper that introduced <b>MedQA</b>, now the field's default "can a model practice
+        medicine" benchmark.</p>
+      <div class="authors mono">Di Jin, Eileen Pan, Nassim Oufattole, Wei-Hung Weng, Hanyi Fang, Peter Szolovits</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>Applied Sciences</b></span>
+        <span class="fact">citations&nbsp;<b>1,889</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2009.13081">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-19</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2020, pretrained models like BERT, RoBERTa, and ALBERT had "achieved nearly saturated performance on
+        most of the popular [reading-comprehension] datasets" — but those datasets hand the model a passage
+        already known to contain the answer. Real question answering rarely works that way: a system has to both
+        <b>find</b> relevant evidence in a large text collection and <b>reason</b> over it, which is the harder
+        setting the field calls open-domain QA (OpenQA). Existing free-form multiple-choice OpenQA sets such as
+        <b>ARC</b> and <b>OpenBookQA</b> pushed in that direction, but the authors note their questions "require
+        only elementary or middle school level knowledge" — e.g. "Which object would let the most heat travel
+        through?" — a ceiling too low to stress a model that has already saturated on easier benchmarks.</p>
+      <p>The paper's answer is to source questions from an environment explicitly designed to be hard for domain
+        experts: professional medical board examinations. A model attempting <b>MedQA</b> must retrieve the right
+        evidence from a large medical-textbook corpus <em>and</em> perform the kind of multi-hop clinical reasoning
+        a real exam-taker needs — read a patient vignette, identify the relevant findings, and rule out plausible
+        but wrong diagnoses. Unlike consumer-health QA sets (LiveQA, MedicationQA) that retrieve an answer snippet
+        from health websites, or span-extraction sets like BioASQ, MedQA is — per the paper's own comparison table
+        — the only one of its contemporaries formulated as OpenQA with a multiple-choice answer format, sourced from
+        real professional exams rather than consumer queries or automatically-mined records.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>Each MedQA instance has three parts: a <b>question</b> (either a single fact lookup or a full patient
+        vignette), several <b>answer candidates</b>, and access to a shared <b>document collection</b> the model
+        must search for evidence. The questions and candidate answers were scraped from the National Medical Board
+        Examination in three jurisdictions — the USA (<b>USMLE</b>), mainland China (<b>MCMLE</b>), and Taiwan
+        (<b>TWMLE</b>) — from both real exams and freely-available mock tests. To comply with fair-use law, the
+        authors shuffle each question's option order and randomly delete one wrong option for the USMLE and MCMLE
+        sets, which "results in four options with one right option and three wrong options" (down from the
+        original exams' five). Questions were split <b>80% / 10% / 10%</b> into train / dev / test.</p>
+
+      <table>
+        <thead><tr><th>Metric</th><th class="num">USMLE</th><th class="num">MCMLE</th><th class="num">TWMLE</th></tr></thead>
+        <tbody>
+          <tr><td>Total questions</td><td class="num">12,723</td><td class="num">34,251</td><td class="num">14,123</td></tr>
+          <tr><td>Options per question</td><td class="num">4</td><td class="num">4</td><td class="num">4</td></tr>
+          <tr><td>Avg. / max. question length (tokens/chars)</td><td class="num">116.6 / 530</td><td class="num">45.7 / 333</td><td class="num">61.0 / 1,950</td></tr>
+          <tr><td>Avg. / max. option length</td><td class="num">3.5 / 45</td><td class="num">7.3 / 100</td><td class="num">20.6 / 210</td></tr>
+        </tbody>
+      </table>
+
+      <p>The document collection is the other half of the dataset. For USMLE (and TWMLE, which shares it), the
+        authors assembled <b>18 English medical textbooks</b> widely used by USMLE takers, OCR'd into <b>231,581
+        paragraphs</b> and <b>12,727,711 tokens</b>. For MCMLE they collected <b>33 official simplified-Chinese
+        licensing-exam textbooks</b>, OCR'd into <b>116,216 paragraphs</b> and <b>14,730,364 characters</b>.
+        TWMLE questions, originally in traditional Chinese, are machine-translated to English via Google Translate
+        and then answered against the same English textbook corpus as USMLE.</p>
+
+      <p>Two families of baseline are implemented. The <b>rule-based</b> methods score each answer option without
+        training: <b>PMI</b> measures how strongly question n-grams and option n-grams co-occur in the document
+        collection, and two <b>information-retrieval</b> variants (<b>IR-ES</b>, off-the-shelf Elasticsearch/BM25;
+        <b>IR-CUSTOM</b>, a re-weighted BM25 with English MetaMap-based medical-term filtering) send "question +
+        option" as a query and rank options by retrieval score. The <b>neural</b> family follows the DrQA
+        recipe — a <b>Document Retriever</b> (the best IR system) surfaces the top-N passages, which a
+        <b>Document Reader</b> then scores; readers tested range from a non-pretrained BiGRU max-pooling model
+        (<b>MAX-OUT</b>) to fine-tuned <b>BERT</b>, <b>RoBERTa</b>, <b>BioBERT</b>, and <b>ClinicalBERT</b>
+        variants for English, and BERT/RoBERTa variants with whole-word masking for Chinese.</p>
+
+      <div class="eq">
+        p(q,&nbsp;a<sub>i</sub>&nbsp;|&nbsp;c)&nbsp;=&nbsp;W<sub>1</sub>(tanh(W<sub>2</sub>h)),&nbsp;&nbsp;h&nbsp;=&nbsp;[h<sub>c</sub>;&nbsp;h<sub>qai</sub>;&nbsp;h<sub>c</sub>·h<sub>qai</sub>;&nbsp;|h<sub>c</sub>&nbsp;−&nbsp;h<sub>qai</sub>|]
+        <span class="note">// MAX-OUT's scoring function — the retrieved-context and question+option encodings are concatenated into h, passed through a hidden tanh layer (W₂), then linearly scored (W₁); softmax over all options selects the answer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Every baseline struggles. The best method overall — <b>BioBERT-Large</b> on USMLE/TWMLE and
+        <b>RoBERTa-Large-WWM-EXT</b> on MCMLE — reaches only <b>36.7%</b> (USMLE test), <b>42.0%</b> (TWMLE test),
+        and <b>70.1%</b> (MCMLE test) accuracy, against a four-option chance baseline of <b>25.0%</b>. The gap
+        between languages is stark: MCMLE is far more tractable than USMLE for every method tested.</p>
+
+      <table>
+        <thead><tr><th>Method</th><th class="num">MCMLE dev</th><th class="num">MCMLE test</th></tr></thead>
+        <tbody>
+          <tr><td>Chance</td><td class="num">25.0</td><td class="num">25.0</td></tr>
+          <tr><td>PMI</td><td class="num">36.6</td><td class="num">36.9</td></tr>
+          <tr><td>IR-ES</td><td class="num">38.3</td><td class="num">37.2</td></tr>
+          <tr><td>IR-CUSTOM</td><td class="num">39.1</td><td class="num">37.8</td></tr>
+          <tr><td>MAX-OUT</td><td class="num">51.8</td><td class="num">50.9</td></tr>
+          <tr><td>BERT-Base-ZH</td><td class="num">66.5</td><td class="num">65.8</td></tr>
+          <tr><td>MBERT-Base</td><td class="num">62.1</td><td class="num">62.3</td></tr>
+          <tr><td>RoBERTa-Large-WWM-EXT</td><td class="num">69.3</td><td class="num">70.1</td></tr>
+        </tbody>
+      </table>
+
+      <p>On USMLE and TWMLE, pretrained language models barely beat — and sometimes lose to — the plain IR
+        baseline, which the paper flags as its most surprising result:</p>
+      <table>
+        <thead><tr><th>Method</th><th class="num">USMLE test</th><th class="num">TWMLE test</th></tr></thead>
+        <tbody>
+          <tr><td>Chance</td><td class="num">25.0</td><td class="num">25.0</td></tr>
+          <tr><td>IR-CUSTOM</td><td class="num">36.1</td><td class="num">34.8</td></tr>
+          <tr><td>MAX-OUT</td><td class="num">28.6</td><td class="num">27.8</td></tr>
+          <tr><td>BERT-Base-EN</td><td class="num">34.3</td><td class="num">33.3</td></tr>
+          <tr><td>ClinicalBERT-Base</td><td class="num">32.4</td><td class="num">32.1</td></tr>
+          <tr><td>BioRoBERTa-Base</td><td class="num">36.1</td><td class="num">36.9</td></tr>
+          <tr><td>BioBERT-Large</td><td class="num">36.7</td><td class="num">42.0</td></tr>
+        </tbody>
+      </table>
+
+      <p>The paper's own error analysis pins the bottleneck on <b>retrieval</b>, not reasoning. Having two medical
+        doctors annotate whether the top-25 retrieved paragraphs contain the evidence needed, they find:</p>
+      <table>
+        <thead><tr><th>Dataset</th><th class="num">Full evidence</th><th class="num">Partial evidence</th><th class="num">No evidence</th></tr></thead>
+        <tbody>
+          <tr><td>USMLE</td><td class="num">24.0%</td><td class="num">8.0%</td><td class="num">68.0%</td></tr>
+          <tr><td>MCMLE</td><td class="num">75.0%</td><td class="num">21.0%</td><td class="num">4.0%</td></tr>
+          <tr><td>TWMLE</td><td class="num">60.0%</td><td class="num">16.7%</td><td class="num">23.3%</td></tr>
+        </tbody>
+      </table>
+      <p>For <b>68%</b> of sampled USMLE questions, the retriever surfaces <em>no</em> usable evidence in its top 25
+        paragraphs at all — versus just <b>4%</b> for MCMLE — which the authors trace to USMLE's much higher share
+        of multi-hop "patient case" questions: <b>98.0%</b> of sampled USMLE questions are this harder "Type 2"
+        format (describe a patient, infer the diagnosis or next step) versus <b>25.0%</b> for MCMLE and
+        <b>31.0%</b> for TWMLE, and Type 2 questions require chaining symptoms to a diagnosis before the retriever
+        can even find the right textbook passage.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>MedQA's rigor is real for what it was designed to test in 2020 — but it carries structural properties
+        that matter a great deal more now that it is a routine line in 2026-era medical-LLM model cards than they
+        did as a 2020 retrieval-augmented-reading benchmark.</p>
+      <p><b>No human baseline, by the authors' own admission.</b> The paper states plainly: "we did not include
+        human performance for comparison due to the high variance of scores for human examinees (best medical
+        students can earn almost full marks while worse ones cannot pass the exams)." That is a defensible call
+        for 2020's retrieval-pipeline baselines, but it means MedQA ships with no anchor at all for "how hard is
+        this for a person" — every later paper reporting a MedQA score against an implied human ceiling is
+        importing an assumption this paper never measured.</p>
+      <p><b>The exam format was altered for copyright, changing item difficulty.</b> To comply with fair-use law,
+        USMLE and MCMLE questions had one of their original five options <em>removed</em> and the rest reshuffled,
+        producing four-option items with a <b>25% chance floor</b> instead of the real exam's 20%. That is a small
+        but real distortion: the actual USMLE is harder per-item than the MedQA version of it, and every reported
+        accuracy number is against the easier, modified item set rather than the exam a real physician would sit.</p>
+      <p><b>Provenance is now a contamination liability the 2020 paper never had to think about.</b> USMLE and
+        MCMLE questions were scraped from public, previously-indexed question-bank sites — the appendix names
+        <span class="mono">step1.medbullets.com</span>, <span class="mono">amboss.com</span>, and
+        <span class="mono">lecturio.com</span> for USMLE — the same kind of sites that large-scale web crawls used
+        to pretrain today's frontier LLMs are likely to have ingested. A 2020 retrieval baseline had no way to
+        "memorize" these questions; a 2024-era LLM pretrained on a fresh Common Crawl snapshot plausibly can, and
+        this paper (reasonably, given when it was written) neither anticipated nor mitigates that.</p>
+      <p><b>The retrieval bottleneck means the headline score under-measures reasoning ability.</b> With <b>68%</b>
+        of sampled USMLE questions returning no usable evidence in the top 25 retrieved paragraphs, the reported
+        36.7% conflates "the reader failed to reason" with "the retriever never found the right passage" — the
+        paper's own error analysis shows this, but the headline accuracy number doesn't separate the two, so it
+        systematically understates what a reader model could do if retrieval were solved (or if a model instead
+        answers from parametric medical knowledge with no retrieval step at all, which is exactly how MedQA is
+        used in most modern LLM evaluations).</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Reasonable for 2020 — rule-based IR, a non-pretrained neural reader, and fine-tuned BERT/RoBERTa/BioBERT/ClinicalBERT variants — but the retrieve-then-read framing the paper evaluates is not how MedQA is used today, where models answer directly from parametric knowledge with no retrieval stage at all.</p>
+        <span class="k">contamination</span><p class="v">Not addressed in the paper (pre-dates contamination-era practice); questions were scraped from public exam-prep websites now plausibly present in web-scale LLM pretraining corpora, and the full labeled dataset ships with no held-out private split or canary.</p>
+        <span class="k">what's missed</span><p class="v">Any human baseline; an oracle-retrieval ceiling to isolate reader accuracy from retrieval failure; acknowledgment that the modified 4-option format changes difficulty relative to the real exam.</p>
+        <span class="k">would raise confidence</span><p class="v">A held-out, never-web-published test split; an oracle-retrieval control condition; a documented human-expert accuracy anchor; and a contamination audit given the dataset's public exam-site provenance and its heavy reuse in post-2022 model cards.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>MedQA is a well-constructed retrieval-and-reasoning benchmark for the OpenQA setting it was built to
+          test, with an honest error analysis that correctly diagnoses its own retrieval bottleneck. What it
+          lacks — a human baseline, an unmodified item format, and any contamination safeguard for its
+          web-scraped questions — matters far more today, now that MedQA is reported directly (usually without
+          retrieval at all) as a headline "medical knowledge" number in frontier model cards it was never
+          designed to support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><b>Real board-exam questions, not consumer health FAQs.</b> MedQA's 61,097 questions (12,723 USMLE
+          English + 34,251 MCMLE simplified Chinese + 14,123 TWMLE traditional Chinese) come from actual medical
+          licensing exams, paired with a 12.7M-token English and 14.7M-character Chinese textbook corpus to
+          retrieve evidence from — an OpenQA setting, not reading comprehension.</li>
+        <li><b>Even the best 2020 baseline barely cleared chance on English.</b> BioBERT-Large scored <b>36.7%</b>
+          on USMLE test (chance is 25%) versus <b>70.1%</b> on MCMLE with RoBERTa-Large-WWM-EXT — and the paper's
+          own analysis traces most of that gap to retrieval: for USMLE's harder, multi-hop patient-case questions
+          (98% of the USMLE sample), the retriever surfaces no usable evidence at all 68% of the time.</li>
+        <li><b>No human baseline, and the format was altered for copyright</b> — a real exam-difficulty distortion
+          worth remembering every time a modern model card reports a MedQA number as if it were an unmodified
+          medical-licensing exam.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams<br>
+        Di Jin, Eileen Pan, Nassim Oufattole, Wei-Hung Weng, Hanyi Fang, Peter Szolovits · 2020 · Applied Sciences<br>
+        <a href="https://arxiv.org/abs/2009.13081">read the original ↗</a> · slug: jin-2020-medqa
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
