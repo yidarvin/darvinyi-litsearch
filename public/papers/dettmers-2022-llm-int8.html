@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Tim Dettmers, Mike Lewis, Younes Belkada, Luke Zettlemoyer — University of Washington / Meta AI / Hugging Face</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS 2022</b></span>
-        <span class="fact">citations&nbsp;<b>1,130</b></span>
+        <span class="fact">citations&nbsp;<b>1,131</b></span>
         <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2208.07339">source&nbsp;↗</a></span>
       </div>
@@ -238,7 +238,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         </tbody>
       </table>
 
-      <p>Runtime is a secondary result the paper is careful to frame correctly: because it prioritizes memory over speed, the quantize/dequantize overhead can actually <em>slow down</em> inference for models under about 6.7B parameters relative to a plain fp16 baseline (those models fit comfortably on a single GPU anyway, so the paper argues this matters less in practice). Where it does pay off is at the scale the method targets: raw int8 matmul in cuBLASLt becomes about <strong>2×</strong> faster than 16-bit cuBLAS once the model dimension reaches roughly 5140 (the scale of a 175B-class model), and even after including quantization/dequantization overhead, LLM.int8() runs about <strong>two times faster</strong> for matrix multiplications at that 175B scale.</p>
+      <p>Runtime is a secondary result the paper is careful to frame correctly: because it prioritizes memory over speed, the quantize/dequantize overhead can actually <em>slow down</em> inference for models under about 6.7B parameters relative to a plain fp16 baseline (those models fit comfortably on a single GPU anyway, so the paper argues this matters less in practice). Where it does pay off is at the scale the method targets: raw int8 matmul in cuBLASLt becomes about <strong>2×</strong> faster than 16-bit cuBLAS once the model dimension reaches roughly 5140 — the paper's 13B-parameter GPT-3-sized model, not 175B — and the paper is explicit that stacking the mixed-precision decomposition on top slows things down further, so only the 13B and 175B models end up with a net speedup at all once quantize/dequantize overhead is included (Table 5): 1.22× at 13B (model dimension 5140) and <strong>1.81×</strong> at the full 175B scale (model dimension 12288), short of a clean 2× but still a real win at the scale the paper is built for.</p>
     </div>
   </section>
 

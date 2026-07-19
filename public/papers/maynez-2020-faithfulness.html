@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Joshua Maynez · Shashi Narayan · Bernd Bohnet · Ryan McDonald · Google Research</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ACL 2020</b></span>
-        <span class="fact">citations&nbsp;<b>1,575</b></span>
+        <span class="fact">citations&nbsp;<b>1,583</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2005.00661">source&nbsp;↗</a></span>
       </div>
@@ -233,7 +233,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         </tbody>
       </table>
 
-      <p>(All percentages are of the 500 human-judged summaries per system; "Hallucinated" and "Faithful" sum to 100. GOLD was excluded from the factual follow-up study — the authors "presumably" treated human-written references as factual by default.) A few things stand out. <strong>PTGEN's copy mechanism trades intrinsic error for extrinsic error</strong>: it has the lowest extrinsic hallucination (63.3%) because copying straight from the source is hard to get factually wrong, but the highest-tied intrinsic rate (19.9%) because copying without real document-level inference is exactly what produces misrepresentations. <strong>BERTS2S is best on every axis</strong> — least hallucinated overall (73.1%), most faithful (26.9%), and by far the most faithful-or-factual (34.7%, 7.8 points ahead of PTGEN) — which the paper attributes to pretraining exposing the model to enough world knowledge that its extrinsic guesses land true more often (6.6% of its hallucinations were factual, vs. 2.2% for PTGEN). <strong>Even so, over 90% of BERTS2S's hallucinations were still erroneous.</strong> And the GOLD row is the sobering baseline: human journalists' own intro sentences are only 23.1% strictly faithful, because XSum gold summaries are allowed to import outside context the article body never states.</p>
+      <p>(All percentages are of the 500 human-judged summaries per system; "Hallucinated" and "Faithful" sum to 100. GOLD was excluded from the factual follow-up study — the authors "presumably" treated human-written references as factual by default.) A few things stand out. <strong>PTGEN's copy mechanism trades intrinsic error for extrinsic error</strong>: it has the lowest extrinsic hallucination (63.3%) because copying straight from the source is hard to get factually wrong, but the highest intrinsic rate (19.9%) because copying without real document-level inference is exactly what produces misrepresentations. <strong>BERTS2S is best on every axis</strong> — least hallucinated overall (73.1%), most faithful (26.9%), and by far the most faithful-or-factual (34.7%, 7.4 points ahead of PTGEN) — which the paper attributes to pretraining exposing the model to enough world knowledge that its extrinsic guesses land true more often (6.6% of its hallucinations were factual, vs. 2.2% for PTGEN). <strong>Even so, over 90% of BERTS2S's hallucinations were still erroneous.</strong> And the GOLD row is the sobering baseline: human journalists' own intro sentences are only 23.1% strictly faithful, because XSum gold summaries are allowed to import outside context the article body never states.</p>
 
       <p>The correlation study is the paper's second headline. Spearman's |r<sub>s</sub>| between each automatic metric and the human faithful/factual scores:</p>
 

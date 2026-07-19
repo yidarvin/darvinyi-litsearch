@@ -163,11 +163,11 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2020 · ACL 2020 · Benchmarks &amp; Evals</div>
       <h1>Adversarial NLI: A New Benchmark for Natural Language Understanding</h1>
       <p class="dek">A three-round, human-and-model-in-the-loop adversarial collection procedure for NLI: annotators try to fool the current best model, a second annotator verifies the failures, the verified examples become the next round's train/dev/test split, and a stronger model is retrained to be the next round's adversary.</p>
-      <div class="authors mono">Nie, Williams, Dinan, Bansal, Weston, Kiela</div>
+      <div class="authors mono">Yixin Nie, Adina Williams, Emily Dinan, Mohit Bansal, Jason Weston, Douwe Kiela</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ACL 2020</b></span>
         <span class="fact">citations&nbsp;<b>1,244</b></span>
-        <span class="fact">topic&nbsp;<b>Benchmarks & Evals</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1910.14599">source&nbsp;↗</a></span>
       </div>
       <div class="asof mono">// citation count as of 2026-07</div>
@@ -233,7 +233,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <figcaption><b>Figures 2–3.</b> Left: RoBERTa dev accuracy across S/M/MM/A1/A2/A3 as more rounds are added to training (downsampled to equal training size); each round's own test accuracy is visibly lower than the last. Right: training on verified-only examples generalizes better to later, harder rounds than training on unverified or combined data — the human verification step is pulling real signal, not just noise.</figcaption>
       </figure>
 
-      <p>Training on ANLI also transfers to benchmarks it was never designed for. On the pre-existing NLI stress tests (Naik et al., 2018) and SNLI-Hard, RoBERTa trained on everything including ANLI reaches 84.7% on SNLI-Hard (versus 72.7% for prior models), 80.6% on the Numerical Reasoning stress test (versus 28.8%), and clear gains on Negation (62.2%/61.9% vs. 48.8%/46.6%) and Word Overlap (67.4%/65.6% vs. 50.0%/50.2%). A hypothesis-only ablation — training a model on ANLI hypotheses with the premise hidden — performs close to chance on ANLI (highest 51.0% on A1) versus 71.4%–92.6% when trained the same way on SNLI/MNLI, evidence that ANLI resists the hypothesis-only artifact exploitation that motivated the whole project in the first place.</p>
+      <p>Training on ANLI also transfers to benchmarks it was never designed for. On the pre-existing NLI stress tests (Naik et al., 2018) and SNLI-Hard, RoBERTa trained on everything including ANLI reaches 84.7% on SNLI-Hard (versus 72.7% for prior models), 80.6% on the Numerical Reasoning stress test (versus 28.8%), and clear gains on Negation (62.2%/61.9% vs. 48.8%/46.6%) and Word Overlap (67.4%/65.6% vs. 50.0%/50.2%). A hypothesis-only ablation — training a model on ANLI hypotheses with the premise hidden — performs far worse on ANLI (highest 51.0% on A1, dropping to 41–43% on A2/A3) than the same hypothesis-only setup trained on SNLI/MNLI-inclusive data reaches on SNLI/MNLI itself (59.8–71.8%), evidence that ANLI resists the hypothesis-only artifact exploitation that motivated the whole project in the first place.</p>
     </div>
   </section>
 
@@ -277,7 +277,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p class="mono">
         <a href="/">← back to the atlas</a><br>
         Adversarial NLI: A New Benchmark for Natural Language Understanding<br>
-        Nie, Williams, Dinan, Bansal, Weston, Kiela · 2020 · ACL 2020<br>
+        Yixin Nie, Adina Williams, Emily Dinan, Mohit Bansal, Jason Weston, Douwe Kiela · 2020 · ACL 2020<br>
         <a href="https://arxiv.org/abs/1910.14599">read the original ↗</a> · slug: nie-2020-anli
       </p>
     </div>

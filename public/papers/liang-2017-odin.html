@@ -163,7 +163,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2018 · ICLR 2018 · Benchmarks &amp; Evals</div>
       <h1>Enhancing The Reliability of Out-of-distribution Image Detection in Neural Networks</h1>
       <p class="dek">The MSP baseline gave OOD detection a free score to compute, but a leaky one. ODIN keeps the network frozen and adds two test-time-only tricks — dividing the logits by a large temperature before the softmax, and nudging the input in the direction that raises its own predicted-class score — and cuts the false-positive rate at 95% true-positive rate from 34.7% to 4.3% on DenseNet / CIFAR-10 vs. TinyImageNet.</p>
-      <div class="authors mono">Liang, Li, Srikant</div>
+      <div class="authors mono">Shiyu Liang, Yixuan Li, R. Srikant</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ICLR 2018</b></span>
         <span class="fact">citations&nbsp;<b>2,545</b></span>
@@ -240,7 +240,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
           <tr><td>Gaussian noise</td><td class="num">12.3 → 0.0</td><td class="num">4.7 → 0.2</td><td class="num">97.5 → 100.0</td></tr>
         </tbody>
       </table>
-      <p>On the harder CIFAR-100-trained classifier — a smaller-margin, more crowded 100-class softmax — the baseline starts from a much worse place and ODIN's relative gain is even larger: on TinyImageNet (crop), FPR@95%TPR falls from 67.8% to 26.9% and AUROC rises from 83.0% to 94.5%; on the synthetic uniform-noise set, FPR collapses from 100.0% to 17.9%. The paper reports T=1000 for every setting, with ε=0.0014 for the CIFAR-10 model and ε=0.002 for the CIFAR-100 model (tuned on iSUN held out as the validation set). A parameter-transferability check (Table 3) shows hyperparameters tuned on one OOD validation dataset generalize reasonably well when evaluated against the other, held-out OOD test datasets.</p>
+      <p>On the harder CIFAR-100-trained classifier — a smaller-margin, more crowded 100-class softmax — the baseline starts from a much worse place and ODIN's relative gain is even larger: on TinyImageNet (crop), FPR@95%TPR falls from 67.8% to 26.9% and AUROC rises from 83.0% to 94.5%; on the synthetic uniform-noise set, FPR@95%TPR is pinned at 100.0% for both baseline and ODIN, but detection error falls from 35.9% to 17.9% and AUROC leaps from 43.1% to 99.5%. The paper reports T=1000 for every setting, with ε=0.0014 for the CIFAR-10 model and ε=0.002 for the CIFAR-100 model (tuned on iSUN held out as the validation set). A parameter-transferability check (Table 3) shows hyperparameters tuned on one OOD validation dataset generalize reasonably well when evaluated against the other, held-out OOD test datasets.</p>
     </div>
   </section>
 
@@ -285,7 +285,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p class="mono">
         <a href="/">← back to the atlas</a><br>
         Enhancing The Reliability of Out-of-distribution Image Detection in Neural Networks<br>
-        Liang, Li, Srikant · 2018 · ICLR 2018<br>
+        Shiyu Liang, Yixuan Li, R. Srikant · 2018 · ICLR 2018<br>
         <a href="https://arxiv.org/abs/1706.02690">read the original ↗</a> · slug: liang-2017-odin
       </p>
     </div>
