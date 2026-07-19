@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, Jacob Steinhardt</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS D&amp;B 2021</b></span>
-        <span class="fact">citations&nbsp;<b>5,629</b></span>
+        <span class="fact">citations&nbsp;<b>5,893</b></span>
         <span class="fact">topic&nbsp;<b>Reasoning</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2103.03874">source&nbsp;↗</a></span>
       </div>
@@ -263,8 +263,8 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="verdict">
         <span class="k">baselines</span><p class="v">GPT-2 (0.1–1.5B) and GPT-3 Curie/Davinci, evaluated few-shot <em>without</em> chain-of-thought (solutions omitted, temp 0, ≤20 tokens) — a harness that suppresses the reasoning the task requires.</p>
         <span class="k">contamination</span><p class="v">Test items are public AMC/AIME problems scraped from AoPS and widely mirrored; modern web-trained models have likely seen them, so today's MATH scores partly measure memorization.</p>
-        <span class="k">what's missed</span><p class="v">Exact-match grades only the final boxed answer — it credits right-answer/wrong-derivation cases (their Fig 3) and is blind to whether the reasoning is valid.</p>
-        <span class="k">would raise confidence</span><p class="v">A contamination-controlled / refreshed test split, CoT-enabled evaluation of large models (impossible at the time), step-level (process) grading, and a larger, better-controlled human study.</p>
+        <span class="k">what's missed</span><p class="v">Exact-match grades only the final boxed answer — it credits right-answer/wrong-derivation cases (their Fig 3) and is blind to whether the reasoning is valid. The human baseline is also non-independent: of the six university-student participants, four are the paper's own authors (the study explicitly couldn't use crowdsourcing given the math background required), so the 40%–90% human range is self-reported, not blind third-party data.</p>
+        <span class="k">would raise confidence</span><p class="v">A contamination-controlled / refreshed test split, CoT-enabled evaluation of large models (impossible at the time), step-level (process) grading, and a larger human study with independent, non-author participants.</p>
       </div>
 
       <div class="callout">

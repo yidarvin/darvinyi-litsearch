@@ -38,7 +38,7 @@ MONTHYEAR_RE = re.compile(
 KICK_RE = re.compile(r'<div class="kick">(.*?)</div>')
 CHIP_VENUE_RE = re.compile(r'<span class="fact">venue&nbsp;<b>([^<]+)</b></span>')
 CHIP_CITE_RE = re.compile(r'<span class="fact">citations&nbsp;<b>([\d,]+)</b></span>')
-BYLINE_RE = re.compile(r'<div class="meta">([^<]+)</div>')
+BYLINE_RE = re.compile(r'<div class="authors mono">([^<]+)</div>')
 H1_RE = re.compile(r'<h1>(.*?)</h1>', re.S)
 
 
