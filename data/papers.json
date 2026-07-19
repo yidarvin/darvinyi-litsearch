@@ -5857,8 +5857,7 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley / TTIC / Oregon State",
       "abstract": "Proposes Outlier Exposure (OE): fine-tune an OOD detector's own loss with an auxiliary term evaluated on a large, generic outlier dataset (disjoint from the real, unknown test-time OOD distribution), teaching a general 'this doesn't look like mine' heuristic that generalizes to unseen anomalies across vision and NLP tasks, and also improves calibration and density estimation.",
-      "explainer": "papers/hendrycks-2018-outlier-exposure.html",
-      "tags": ["evaluations"]
+      "explainer": "papers/hendrycks-2018-outlier-exposure.html"
     },
     {
       "slug": "rezende-2014-stochastic-backprop",
