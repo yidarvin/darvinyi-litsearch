@@ -1,0 +1,18 @@
+arxiv.sty in this directory is vendored, unmodified, from:
+
+  https://github.com/kourgeorge/arxiv-style
+  commit b7906ff477 (2023-04-16), the latest commit touching arxiv.sty as of
+  the vendoring date below.
+
+License: MIT (per the GitHub repository's declared license,
+`https://api.github.com/repos/kourgeorge/arxiv-style` -> `license.spdx_id: MIT`).
+The repository itself does not ship a standalone LICENSE file at the path
+GitHub's API reports — the MIT declaration comes from the repo's registered
+license metadata, checked 2026-07-18. Compatible with vendoring into this
+repository and redistributing.
+
+Vendored: 2026-07-18, for PIPELINE_PLAN.md milestone M6 (the /survey
+pipeline's LaTeX/PDF companion). Do not hand-edit arxiv.sty — if the upstream
+style needs a change, either take a newer upstream commit (re-run this same
+provenance check) or make repo-specific overrides in the per-survey
+`paper/<id>/main.tex` instead, not in this shared file.

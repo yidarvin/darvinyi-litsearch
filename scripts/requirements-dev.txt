@@ -1,1 +1,8 @@
 pytest>=8.0
+
+# cairosvg (SVG -> PDF, used by scripts/survey_scaffold/ for LaTeX survey-PDF
+# figures) is deliberately NOT listed here: on macOS its native cairo dylib
+# (`brew install cairo`) can't be found by the system/CommandLineTools python3
+# because macOS SIP strips DYLD_* env vars for that SIP-protected interpreter,
+# and Homebrew's own python3 refuses a bare `pip install` (PEP 668). The
+# working setup is a dedicated venv — see scripts/requirements-tex.txt.

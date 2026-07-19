@@ -238,9 +238,12 @@ function initGraph(){
     if (curSurvey && surveyById.has(curSurvey)){
       const s = surveyById.get(curSurvey);
       const n = surveyMembers.get(curSurvey).size;
-      // optional survey write-up page (surveys.json `page`) → "read →" link
+      // optional survey write-up page (surveys.json `page`) → "read →" link,
+      // and optional companion PDF (surveys.json `pdf`) → "pdf ↓" link
       const rd = s.page ? `<a class="rd mono" href="${s.page}" style="color:${s.color};border-color:${s.color}">read&nbsp;→</a>` : '';
-      cap = `<div class="surveycap"><span class="dot" style="color:${s.color};background:${s.color}"></span>${s.label}<span class="n">· ${n} papers</span>${rd}</div>`;
+      const pd = s.pdf ? `<a class="pd mono" href="${s.pdf}" style="color:${s.color};border-color:${s.color}">pdf&nbsp;↓</a>` : '';
+      const links = (rd || pd) ? `<span class="capLinks">${rd}${pd}</span>` : '';
+      cap = `<div class="surveycap"><span class="dot" style="color:${s.color};background:${s.color}"></span>${s.label}<span class="n">· ${n} papers</span>${links}</div>`;
     }
     el.innerHTML = cap + '<h4>// ' + (curDim === 'group' ? 'institution' : curDim) + '</h4>' +
       ordered.map(v => `<div class="row${v === pinnedCat ? ' active' : ''}" data-val="${v}"><span class="sw" style="background:${colorFor(curDim, v)}"></span>${v}</div>`).join('');

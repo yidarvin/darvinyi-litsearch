@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PAGE_TITLE}} — paper_atlas</title>
+<meta name="description" content="{{DEK}}">
+<meta property="og:title" content="{{PAGE_TITLE}}">
+<meta property="og:description" content="{{DEK}}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/surveys/{{ID}}.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%23{{ACCENT_HEX}}'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
+  --gold:#{{ACCENT_HEX}}; --gold-soft:{{ACCENT_SOFT}};
+  --warn:#f59e0b; --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--gold);box-shadow:0 0 12px var(--gold-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--gold);background:var(--gold-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+.hero{padding-top:96px}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.fact a{color:var(--gold)}
+
+.fig{margin:26px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;margin-left:auto;margin-right:auto;
+  overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(min-width:1100px){ .fig.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+.fig svg{display:block;width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.figcap{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin:11px auto 0;
+  line-height:1.55;max-width:var(--col);padding:0 10px}
+.figcap b{color:var(--dim)}
+
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 17px;min-width:0}
+.card .nm{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;color:var(--gold);margin-bottom:4px}
+.card .q{font-size:13.5px;color:var(--dim);margin-bottom:11px;line-height:1.45}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:14px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev);white-space:nowrap}
+.chip b{color:var(--fg);font-weight:600}
+.chip .d{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.chip.more{color:var(--muted);border-style:dashed}
+
+.fnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin:34px 0 6px}
+.findings h3{margin-top:6px;font-size:20px}
+
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0}
+@media(min-width:1100px){ .tblwrap{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.filters select,.filters input{font-family:'JetBrains Mono',monospace;font-size:11.5px;background:var(--elev);
+  color:var(--dim);border:1px solid var(--line);border-radius:7px;padding:6px 9px}
+table.ptable{width:100%;border-collapse:collapse;font-size:12.5px}
+.ptable th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);
+  padding:7px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.ptable td{padding:7px 10px;border-bottom:1px solid var(--line);color:var(--dim);white-space:nowrap}
+.ptable a{color:var(--fg)}
+.ptable tr:hover td{background:var(--elev)}
+
+footer{padding:36px 0 64px;color:var(--muted);font-size:12px;font-family:'JetBrains Mono',monospace}
+footer a{color:var(--dim)}
+
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  .cards{grid-template-columns:1fr}
+  /* charts stay at a legible fixed width rather than shrinking to illegible
+     text — that means they scroll horizontally in their .fig box, so make
+     that explicit instead of leaving it to be discovered by accident. */
+  .fig svg{min-width:640px}
+  .fig::before{content:'· scroll for full chart →';display:block;font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;color:var(--muted);text-align:right;margin-bottom:6px}
+  .ptable{min-width:860px}
+  .filters select{flex:1 1 44%}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#corpus">corpus</a>
+      <a href="#facets">facets</a>
+      <a href="#tree">tree</a>
+      <a href="#findings">findings</a>
+      <a href="#table">the papers</a>
+      <a href="#method">method</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">// paper_atlas · survey · {{ID}}</div>
+      <h1>{{PAGE_TITLE}}</h1>
+      <p class="dek">{{DEK}}</p>
+      <div class="facts">
+        <span class="fact">papers&nbsp;<b>@@N@@</b></span>
+        <span class="fact"><a href="/?survey={{ID}}">view the spine on the map&nbsp;↗</a></span>
+        <!-- TODO(survey-author): once this survey has a compiled PDF (paper/{{ID}}/, the
+             `tex`/`pdf` build steps, and "pdf": "surveys/{{ID}}.pdf" registered in
+             data/surveys.json), uncomment the line below — see
+             scripts/benchmarks_survey/survey_template.html for the pattern in production. -->
+        <!-- <span class="fact"><a href="{{ID}}.pdf">download pdf&nbsp;↓</a></span> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CORPUS ════════════ -->
+  <section id="corpus">
+    <div class="wrap">
+      <div class="tag">// the corpus</div>
+      <h2>What counts as a member here</h2>
+      <!-- TODO(survey-author): restate the survey's membership rubric from data/surveys.json in
+           your own words, then describe the corpus's shape (date range, what it deliberately
+           excludes). Every number below is a computed token — never hand-type one. -->
+      <p>TODO: describe the corpus. @@N@@ papers, classified against the rubric in
+      <code>data/surveys.json</code>.</p>
+      <div class="chips">@@CHIPS_EXAMPLE@@</div>
+    </div>
+  </section>
+
+  <!-- ════════════ FACETS ════════════ -->
+  <section id="facets">
+    <div class="wrap">
+      <div class="tag">// the facets</div>
+      <h2>TODO: name your facets</h2>
+      <!-- TODO(survey-author): one <div class="card"> per facet — a closed-vocabulary question
+           you can ask of every paper. Design 4-7 facets for THIS survey's subject; don't reuse
+           another survey's facets by default. At least one facet should be a genuinely NOVEL
+           organizing axis (see CLAUDE.md: the evaluations survey's "reward-readiness" is the
+           bar — it should say something about the field, not just re-bucket the obvious). -->
+      <div class="cards">
+        <div class="card"><div class="nm">1 · TODO facet name</div><div class="q">TODO: the question this facet asks</div><div class="chips">@@CHIPS_EXAMPLE@@</div></div>
+      </div>
+      <div class="fig wide">@@CHART_EXAMPLE@@</div>
+      <p class="figcap"><b>TODO chart caption.</b> Replace `chart_example` in build_survey_page.py with a real cross-tab.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ THE TREE (optional — remove this section if your survey doesn't need a
+       kingdom/family taxonomy; a flat facet set is fine for a smaller or less structurally
+       diverse corpus) ════════════ -->
+  <section id="tree">
+    <div class="wrap">
+      <div class="tag">// the tree</div>
+      <h2>TODO: a taxonomy by what the paper was built to answer</h2>
+      <!-- TODO(survey-author): if you build a kingdom/family tree (see
+           data/benchmarks-taxonomy.json / data/evaluations-taxonomy.json for the pattern —
+           kingdom = single-letter-prefixed top category, family = kingdom-prefixed subcategory,
+           every paper placed at exactly one family), render it here. Otherwise delete this
+           section and its nav link. -->
+      <p>TODO: taxonomy narrative + @@TREE_BLOCKS@@ if used.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ FINDINGS ════════════ -->
+  <section id="findings" class="findings">
+    <div class="wrap">
+      <div class="tag">// findings</div>
+      <h2>What the cross-tabs say</h2>
+      <!-- TODO(survey-author): one <div class="fnum">finding NN</div> + <h3> + chart + prose
+           block per finding, mirroring the evaluations survey's pattern
+           (scripts/evaluations_survey/survey_template.html) — each finding should be read off
+           a real chart below it, not asserted from memory. -->
+      <div class="fnum">finding 01</div>
+      <h3>TODO</h3>
+      <p>TODO</p>
+    </div>
+  </section>
+
+  <!-- ════════════ TABLE ════════════ -->
+  <section id="table">
+    <div class="wrap">
+      <div class="tag">// the papers</div>
+      <h2>Every paper, filterable</h2>
+      <div class="filters" id="filters">
+        <!-- TODO(survey-author): add <select> filters matching your facets; see the
+             *_OPTS build-time tokens and the render()/onScroll() JS below for the wiring
+             pattern (scripts/evaluations_survey/survey_template.html has a worked example). -->
+      </div>
+      <div class="tblwrap">
+        <table class="ptable" id="ptable">
+          <thead><tr><th>paper</th><th>year</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ METHOD ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// method</div>
+      <h2>How this was built</h2>
+      <p>Every paper here was read individually and already has a full explainer on this site;
+      this page is generated from <code>data/{{ID}}-taxonomy.json</code> — the classification
+      behind it — via <code>scripts/{{ID}}_survey/build_survey_page.py</code>, so every count
+      and percentage above is computed at build time, never hand-typed. Rebuild after
+      re-tagging or re-classifying with <code>python scripts/{{ID}}_survey/build_survey_page.py</code>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">paper_atlas · <a href="/">back to the map</a></div>
+</footer>
+
+<script>
+const TABLE = @@TABLE_JSON@@;
+function onScroll(){
+  const y = window.scrollY, h = document.body.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = (h > 0 ? Math.min(100, 100 * y / h) : 0) + '%';
+  let active = null;
+  document.querySelectorAll('main section[id]').forEach(s => {
+    if (s.getBoundingClientRect().top < 140) active = s.id;
+  });
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+  });
+}
+window.addEventListener('scroll', onScroll, {passive: true});
+onScroll();
+
+function render(){
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = TABLE.map(r =>
+    `<tr><td><a href="/papers/${r.s}.html">${r.n}</a></td><td>${r.y}</td></tr>`
+  ).join('');
+  // TODO(survey-author): read filter <select> values here and filter TABLE before rendering,
+  // matching the pattern in scripts/evaluations_survey/survey_template.html's render().
+}
+render();
+</script>
+</body>
+</html>

@@ -6761,5 +6761,103 @@
   ],
   "dynasty": "Realistic-web-environment dynasty",
   "gravity": 0
+ },
+ {
+  "slug": "maharana-2024-locomo",
+  "short": "LoCoMo",
+  "title": "Evaluating Very Long-Term Conversational Memory of LLM Agents",
+  "year": 2024,
+  "date": "2024-02",
+  "venue": "ACL 2024",
+  "group": "UNC Chapel Hill / Snap",
+  "citations": 635,
+  "explainer": "papers/maharana-2024-locomo.html",
+  "evals_tag": false,
+  "domain_primary": "conversation",
+  "domain_secondary": [
+   "long-context",
+   "reasoning",
+   "multimodal"
+  ],
+  "task_shape": "multi-turn",
+  "grading_primary": "proxy-metric",
+  "grading_all": [
+   "exact-match",
+   "proxy-metric"
+  ],
+  "complexity": "L2-minutes",
+  "human_time": "A few minutes per question: given the ~9,200-token, ~300-turn, ~19-session transcript, locate the relevant turn(s) and answer one recall / temporal-reasoning question - humans reach 87.9 QA-F1 this way.",
+  "tool_access": [
+   "none"
+  ],
+  "provenance": "synthetic-generated",
+  "contamination_defense": "none-public",
+  "saturation": "open",
+  "frontier_score": "GPT-4-turbo 32.1 QA-F1 vs 87.9 human (best of the models tested; worst on temporal / multi-hop recall)",
+  "items_count": 7512,
+  "one_line": "50 very-long-term dialogues (avg 300 turns, 19 sessions, spanning months) with 7,512 questions plus event-summary and multimodal-generation tasks, probing cross-session memory.",
+  "confidence": "high",
+  "notes": "Provenance is machine-human: two persona- and temporal-event-graph-conditioned LLM agents generate each dialogue, then annotators edit ~15% for long-range consistency. grading_primary is the QA task's word-overlap F1 (the 32.1-vs-87.9 headline); the event-summarization and multimodal-dialogue-generation tasks add ROUGE / MMRelevance-style proxy metrics. Images are inputs, not tools (tool_access none).",
+  "kingdom": "A-capability",
+  "family": "A7-communication",
+  "placement_reason": "Headline is a capability verdict - even GPT-4-turbo answers very-long-term recall/temporal-reasoning questions at 32.1 F1 against 87.9 human, so cross-session conversational memory is unsolved. A multi-turn conversation-ability probe (converse and remember across dozens of sessions), i.e. A7 'communication' extended to a months-long horizon, not a grader audit (B) or a durability wall (C).",
+  "lineage": [
+   {
+    "parent": "xu-2022-msc",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "park-2023-generative-agents",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "dynasty": "multi-session-chat lineage",
+  "gravity": 0
+ },
+ {
+  "slug": "xu-2022-msc",
+  "short": "MSC",
+  "title": "Beyond Goldfish Memory: Long-Term Open-Domain Conversation",
+  "year": 2022,
+  "date": "2021-07",
+  "venue": "ACL 2022",
+  "group": "Meta AI (FAIR)",
+  "citations": 108,
+  "explainer": "papers/xu-2022-msc.html",
+  "evals_tag": false,
+  "domain_primary": "conversation",
+  "domain_secondary": [
+   "long-context"
+  ],
+  "task_shape": "multi-turn",
+  "grading_primary": "proxy-metric",
+  "grading_all": [
+   "proxy-metric",
+   "human"
+  ],
+  "complexity": "L2-minutes",
+  "human_time": "A few minutes: read the up-to-5-session (~1,600-token) history and produce or judge one context-appropriate next utterance.",
+  "tool_access": [
+   "none"
+  ],
+  "provenance": "crowdsourced",
+  "contamination_defense": "none-public",
+  "saturation": "not-applicable",
+  "frontier_score": "Retrieval- and summary-memory-augmented BST 2.7B beat plain encoder-decoder fine-tuning on validation perplexity and human preference (no single accuracy ceiling - perplexity/preference-graded)",
+  "items_count": null,
+  "one_line": "First public multi-session dialogue-memory dataset: crowdsourced human-human chats over up to 5 sessions (hours-to-days apart) with per-turn persona summaries.",
+  "confidence": "medium",
+  "notes": "Dataset-plus-modeling paper: it introduces the Multi-Session Chat crowdsourcing protocol (~5,001 collected episodes; session 1 is a PersonaChat conversation, personas from Zhang et al. 2018) and the retrieval-/summary-memory models built on it. Graded by validation perplexity (proxy) and human preference, with no fixed accuracy ceiling, so saturation is not-applicable and items_count is null. Effectively superseded as a memory probe by LoCoMo (2024), which is ~9x longer.",
+  "kingdom": "A-capability",
+  "family": "A7-communication",
+  "placement_reason": "First public probe of whether a dialogue model can hold a coherent conversation across multiple sessions using earlier context - a conversation-ability question (A7 'communication'), not an audit of a grader or a frontier wall. Its retrieval-/summary-memory models are the paper's proposed fix to that capability gap, not the object being classified.",
+  "lineage": [
+   {
+    "parent": "lewis-2020-rag",
+    "relation": "transplants-method-of"
+   }
+  ],
+  "dynasty": "multi-session-chat lineage",
+  "gravity": 1
  }
 ]

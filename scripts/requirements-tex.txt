@@ -1,0 +1,37 @@
+# Dependencies for the LaTeX/PDF survey pipeline (scripts/survey_scaffold/,
+# PIPELINE_PLAN.md M6). Two native-toolchain pieces, installed once:
+#
+#   brew install tectonic cairo
+#
+# `tectonic` (LaTeX engine — self-contained, fetches TeX packages on first
+# use, no separate TeX Live install) needs no further setup.
+#
+# `cairosvg` (SVG -> PDF for survey chart figures) is a pip package, but on
+# macOS it cannot be installed into the system/CommandLineTools python3 used
+# elsewhere in this repo: cairosvg's native cairo dylib (installed above via
+# `brew install cairo`) is unreachable from that interpreter because macOS
+# SIP strips DYLD_* environment variables for SIP-protected executables —
+# verified 2026-07-18, both DYLD_LIBRARY_PATH and DYLD_FALLBACK_LIBRARY_PATH
+# fail identically. Homebrew's own python3 (`brew install python3`) isn't
+# SIP-restricted, but PEP 668 blocks a bare `pip install` into it. The
+# working combination is a dedicated venv built from Homebrew's python3:
+#
+#   /opt/homebrew/bin/python3 -m venv .venv-cairo
+#   .venv-cairo/bin/pip install -r scripts/requirements-tex.txt
+#
+# Any script that imports cairosvg must be run with `.venv-cairo/bin/python3`,
+# not the bare `python3` the rest of this repo's scripts use. `.venv-cairo/`
+# is gitignored — recreate it with the two commands above after a fresh
+# clone if you need to touch survey PDFs.
+#
+# TRAP (hit and fixed 2026-07-18): `brew install python3` links its own
+# python3 onto PATH ahead of the system/CommandLineTools one, silently
+# redirecting every *other* script in this repo's bare `python3` invocations
+# — including the pytest suite and PyMuPDF-based figure extraction — to an
+# interpreter that has none of their dependencies installed. If Homebrew's
+# python3 is ever installed here again, immediately `brew unlink python@X.Y`
+# afterward (verify with `which python3` -> should stay
+# `/usr/bin/python3` / CommandLineTools). The venv above is unaffected
+# either way — `.venv-cairo/bin/python3` resolves straight to the Cellar
+# path, not through the unlinked PATH symlink.
+cairosvg>=2.7

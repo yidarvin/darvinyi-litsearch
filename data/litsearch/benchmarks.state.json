@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "survey": "benchmarks",
+  "topic": "LLM and Agent benchmarks",
+  "created": "2026-07-18",
+  "phase": "processing",
+  "config": {
+    "max_rounds": 3,
+    "builder": {
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "critic": {
+      "model": "opus",
+      "effort": "xhigh"
+    },
+    "process_foundational": false
+  },
+  "seeding": {
+    "done": true,
+    "date": "2026-07-18",
+    "queries": [
+      "LLM agent benchmark",
+      "language model agent evaluation environment",
+      "tool use benchmark language model",
+      "web agent benchmark browsing",
+      "computer use agent benchmark GUI",
+      "web search: survey of LLM agent benchmarks 2025"
+    ],
+    "seeded": 18
+  },
+  "current": null,
+  "completed": [
+    {
+      "slug": "maharana-2024-locomo",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-18"
+    },
+    {
+      "slug": "xu-2022-msc",
+      "rounds": 1,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-18"
+    }
+  ],
+  "skipped": [],
+  "survey_build": {
+    "step": null,
+    "round": 0,
+    "open_blockers": [],
+    "taxonomy": true,
+    "site": true,
+    "pdf": false
+  },
+  "log": [
+    "2026-07-18T14:11 initialized (topic: 'LLM and Agent benchmarks')",
+    "2026-07-18T14:24 seeding done: 18 paper(s) queued",
+    "2026-07-18T14:31 started maharana-2024-locomo ('Evaluating Very Long-Term Conversational Memory of LLM Agents')",
+    "2026-07-18T14:35 maharana-2024-locomo: step -> fetch",
+    "2026-07-18T14:35 maharana-2024-locomo: step -> figures",
+    "2026-07-18T14:41 maharana-2024-locomo: step -> draft",
+    "2026-07-18T14:50 maharana-2024-locomo: step -> critique (round 1)",
+    "2026-07-18T14:57 maharana-2024-locomo: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-18T14:57 maharana-2024-locomo: step -> revise",
+    "2026-07-18T15:00 maharana-2024-locomo: step -> critique (round 2)",
+    "2026-07-18T15:04 maharana-2024-locomo: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-18T15:04 maharana-2024-locomo: step -> verify",
+    "2026-07-18T15:08 maharana-2024-locomo: step -> queue-ops",
+    "2026-07-18T15:09 completed maharana-2024-locomo (verdict=approved, rounds=2)",
+    "2026-07-18T15:09 started xu-2022-msc ('Beyond Goldfish Memory: Long-Term Open-Domain Conversation')",
+    "2026-07-18T15:11 xu-2022-msc: step -> fetch",
+    "2026-07-18T15:12 xu-2022-msc: step -> figures",
+    "2026-07-18T15:13 xu-2022-msc: step -> draft",
+    "2026-07-18T15:38 xu-2022-msc: step -> critique (round 1)",
+    "2026-07-18T15:45 xu-2022-msc: 0 open blocker(s) from round 1 (verdict: approve)",
+    "2026-07-18T15:45 xu-2022-msc: step -> verify",
+    "2026-07-18T15:46 xu-2022-msc: step -> queue-ops",
+    "2026-07-18T15:46 completed xu-2022-msc (verdict=approved, rounds=1)",
+    "2026-07-18T16:09 survey_build: step -> corpus",
+    "2026-07-18T16:48 survey_build: step -> taxonomy",
+    "2026-07-18T16:48 survey_build: step -> site",
+    "2026-07-18T16:48 survey_build: step -> critique",
+    "2026-07-18T16:59 survey_build: 1 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-18T16:59 survey_build: step -> revise",
+    "2026-07-18T17:02 survey_build: step -> critique",
+    "2026-07-18T17:03 survey_build: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-18T17:03 survey_build: step -> verify",
+    "2026-07-18T17:04 survey_build completed (verdict=approved, rounds=2)",
+    "2026-07-18T18:25 survey_build: step -> corpus",
+    "2026-07-18T18:25 survey_build: step -> taxonomy",
+    "2026-07-18T18:25 survey_build: step -> site",
+    "2026-07-18T18:25 survey_build: step -> tex",
+    "2026-07-18T18:46 survey_build: step -> pdf",
+    "2026-07-18T18:46 survey_build: step -> critique",
+    "2026-07-18T18:52 survey_build: 0 open blocker(s) from round 1 (verdict: approve)",
+    "2026-07-18T18:52 survey_build: step -> verify",
+    "2026-07-18T18:55 survey_build completed (verdict=approved, rounds=1)"
+  ]
+}

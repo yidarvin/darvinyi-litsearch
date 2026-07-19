@@ -306,7 +306,7 @@ def tree_skeleton_svg():
     kx, fx = 250, 520
     out = [f"<svg viewBox='0 0 {W} {H}' xmlns='http://www.w3.org/2000/svg' role='img'>"]
     rooty = top + len(fams) * row_h / 2
-    out.append(f"<text x='18' y='{rooty + 4:.0f}' font-size='12.5' font-weight='700' fill='{sc.FG}' {sc.MONO}>126</text>")
+    out.append(f"<text x='18' y='{rooty + 4:.0f}' font-size='12.5' font-weight='700' fill='{sc.FG}' {sc.MONO}>{N}</text>")
     out.append(f"<text x='18' y='{rooty + 20:.0f}' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>benchmarks</text>")
     y = top
     for k in KINGS:
@@ -407,6 +407,15 @@ page = (page.replace('@@TABLE_JSON@@', TABLE_JSON)
             .replace('@@KING_OPTS@@', KING_OPTS)
             .replace('@@TREE_BLOCKS@@', tree_blocks())
             .replace('@@JS_COLORS@@', JS_COLORS).replace('@@JS_LABELS@@', JS_LABELS))
+
+# numeric tokens computed from the corpus (so prose never drifts from data) —
+# kept as a module-level `tokens` dict (not just consumed in the loop) so
+# scripts/survey_scaffold/tokens_to_tex.py can reuse the exact same computation
+# for the survey's LaTeX PDF instead of hand-typing the numbers a second time.
+import stats_tokens as st
+tokens = st.compute(merged, era, ERAS)
+for k, v in tokens.items():
+    page = page.replace(f'@@{k}@@', str(v))
 
 assert '@@' not in page, 'unresolved token: ' + page[page.index('@@'):page.index('@@') + 40]
 OUT.parent.mkdir(parents=True, exist_ok=True)

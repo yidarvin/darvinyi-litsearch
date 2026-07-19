@@ -1,0 +1,470 @@
+\documentclass{article}
+\usepackage{arxiv}
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,citecolor=teal,urlcolor=teal]{hyperref}
+
+% the auto-generated tokens (\TokSpan's en-dash) and refs.bib carry a few Unicode
+% typographic glyphs the T1 Times font can't render directly; map them to LaTeX.
+\usepackage{newunicodechar}
+\newunicodechar{–}{--}
+\newunicodechar{—}{---}
+\newunicodechar{…}{\ldots}
+
+\graphicspath{{figures/}}
+
+\input{tokens.tex}
+
+\title{The Anatomy of a Benchmark: A Role Taxonomy of \TokN{} AI Evaluation Benchmarks and the Grading Economics That Bounds Them}
+
+\author{Darvin Yi\thanks{Companion to the live, interactive survey at
+\url{https://research.darvinyi.com/surveys/benchmarks.html}, from which the corpus,
+every figure, and every statistic in this paper are generated. This preprint is a
+condensation of that page; where a number appears here it is the same value the page
+computes from the classified corpus.} \\
+\texttt{research.darvinyi.com}}
+
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We survey \TokN{} artificial-intelligence evaluation benchmarks spanning \TokSpan{} ---
+from ImageNet to the 2026 agent-protocol suites --- each read individually and then
+classified along eight facets: domain, task shape, grading family, task horizon, tool
+access, provenance, contamination defense, and saturation. Instead of sorting benchmarks
+by \emph{what} they measure, we place each at a single address in a taxonomy of seven
+\emph{kingdoms} defined by the question a benchmark was built to answer at its birth.
+The shape of that tree is itself a result: only \TokPctKingCap\% of the corpus are
+capability probes --- the thing ``benchmark'' is usually taken to mean --- and that share
+is falling as the field turns to auditing its own measurements, rehearsing deployments,
+probing hazards, and manufacturing training signal. Our organizing thesis is a
+grading-economics constraint: \emph{a benchmark can only pose tasks as long as it can
+afford to grade them}. Cheap, mechanical grading does not survive long task horizons, so
+the reach of evaluation is bounded by the cost of its grader, and a benchmark's expected
+lifespan is bought in human-minutes per item. We support this with five findings read off
+cross-tabulations of the corpus by publication era, and close with three cross-paper
+connections --- the 2025 rubric turn, the collapse of the boundary between benchmarks and
+reward functions, and the ecosystem's structural selection for reproducible graders ---
+that are visible only across papers, not within any one of them.
+\end{abstract}
+
+\keywords{benchmarks \and evaluation \and large language models \and agents \and taxonomy \and contamination \and reward hacking}
+
+\section{Introduction}
+
+Read one benchmark paper and you learn a benchmark: its task, its metric, its headline
+score. Read all of them at once and a different object comes into view --- an ecosystem of
+instruments that measure each other, feed each other's training, and decay on a schedule.
+This survey takes \TokN{} AI evaluation benchmarks, each already read and summarized as an
+individual explainer, and asks what the collection shows that no single paper can.
+
+We include a paper when a named benchmark, evaluation dataset, or evaluation environment
+is its \textbf{headline contribution} --- the thing a survey would cite it for. Models,
+training methods, and agent frameworks that merely \emph{report} benchmark numbers are
+excluded. That rubric yields \TokN{} papers spanning \TokSpan{}. The corpus is curated,
+not exhaustive: it is centered on language-model, agent, and safety evaluation, with the
+classic computer-vision and natural-language-understanding generations
+(ImageNet~\citep{deng-2009-imagenet}, and their descendants) present as ancestry rather
+than in full. \TokNEvalsTag{} of the \TokN{} additionally shipped a new \emph{way} to
+evaluate alongside their data --- an Elo protocol, a scenario grid, an atomic-fact
+decomposition --- and so also carry an \texttt{evaluations} tag. Where the corpus skews,
+the findings inherit the skew; Section~\ref{sec:method} states this plainly.
+
+Existing surveys of AI evaluation sit on two shelves that barely touch. One taxonomizes
+\emph{what benchmarks measure} --- organizing the field by task type, evaluated property,
+or, most rigorously, a scenario-by-metric grid the survey then deliberately fills, as in
+HELM~\citep{liang-2022-helm}. The other grades \emph{how well benchmarks are built} ---
+lifecycle scorecards, construct-validity audits across hundreds of benchmarks, and the
+agentic-benchmark audit that found unsound graders in 7 of 10 suites it checked. What no
+prior survey does is cross the shelves at the level of the individual paper: place every
+benchmark in a capability map \emph{and} record its grading machinery, task horizon, tool
+surface, provenance, and contamination posture, then read the joint distribution over
+time. That cross is this survey's contribution, on a corpus that is small but densely
+annotated --- every paper here has been read, summarized, and critiqued individually, and
+the underlying citation graph is browsable as a timeline. The dimension that turns out to
+organize the most --- \emph{how long the task is} --- was only made measurable recently by
+time-horizon work reporting a roughly seven-month doubling of frontier models'
+50\%-success horizon, and has never before been applied to a benchmark corpus.
+
+\section{The corpus and its facets}
+\label{sec:facets}
+
+Each of the \TokN{} papers was classified along eight facets, each a question with a
+closed answer set. Six are descriptive and we treat them briefly: \emph{domain} (seventeen
+values, from coding and math to safety and forecasting); \emph{task shape} (single-turn,
+multi-turn dialogue, or interactive environment); \emph{tool access} (what the evaluated
+model may touch --- nothing, a code interpreter, a browser, a whole operating system);
+\emph{provenance} (where the task items came from); \emph{contamination defense} (the
+strongest mechanism keeping items out of training sets); and \emph{saturation} (whether
+headroom remains, judged from the frontier scores each explainer quotes). Two facets do
+enough analytical work to deserve their own definitions, and together they carry the
+paper's thesis.
+
+\paragraph{Task horizon.} ``Complexity'' is the word everyone reaches for and nobody
+defines; the literature operationalizes it at least five incommensurable ways --- reasoning
+steps, compositional depth, context length, search-space size, item-response difficulty ---
+none of which lets you compare a multiple-choice exam to a week of freelance software work.
+We use the one currency that spans the whole corpus: the \textbf{wall-clock time a
+competent human domain-expert would need to complete one \emph{typical} task instance},
+reading and artifact production included. This is the axis along which frontier ability was
+shown to climb at a measurable rate, and it sorts the corpus into five rungs (Figure~\ref{fig:ladder}):
+\textbf{L1} under one minute, \textbf{L2} one to thirty minutes, \textbf{L3} thirty minutes
+to a day, \textbf{L4} a day to two weeks, and \textbf{L5} beyond two weeks. Only a handful
+of papers (GDPval, the METR suites) actually \emph{measure} human time; elsewhere the rung
+is estimated from the paper's own task descriptions.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{ladder.pdf}
+  \caption{The horizon ladder: count and canonical examples per rung across all \TokN{}
+  papers. The corpus clusters heavily at L2, the top rung (L5) is empty, and no paper
+  before 2021 posed a task above L2.}
+  \label{fig:ladder}
+\end{figure}
+
+\paragraph{Grading family.} Every benchmark answers ``who says the output is right?'' with
+one of six mechanisms, and the choice is less methodological free will than economics
+(Figure~\ref{fig:grladder}). Ordered by the cost to grade a single item, they run:
+\emph{proxy metric} (BLEU/ROUGE-style scores, now largely distrusted and sitting outside
+the ladder), \emph{exact match} (the answer key is the grader, effectively free),
+\emph{programmatic} (unit tests, checkers, environment end-states --- build a harness once),
+\emph{LLM judge} (one holistic model call), \emph{rubric + judge} (experts author per-item
+criteria a model then applies), and \emph{human} (expert or preference grading, at
+expert-hours per item). Each step up the ladder buys generality --- the ability to grade
+more open-ended work --- and pays for it in cost per item and in grader error that must
+itself be audited.
+
+Two structural notes follow from this ladder. First, its cheap end is exactly what the
+era of reinforcement learning with verifiable rewards trains on: a benchmark whose grader
+is mechanical is also a reward function, so the most verifiable benchmarks are precisely
+the ones models are optimized against. Goodhart exposure is a property of the grading
+family, not of the dataset. Second, the model-graded middle opened a regress the field is
+still funding --- judges are now themselves benchmarked by meta-benchmarks such as
+RewardBench~\citep{lambert-2024-rewardbench} and JudgeBench~\citep{tan-2024-judgebench},
+and rubric grading is the current attempt to make judge error inspectable by decomposing it
+into checkable criteria.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{grladder.pdf}
+  \caption{The grading-cost ladder, ordered by what it costs to grade one item. The
+  reliability annotations are the papers' own: MT-Bench measured GPT-4-judge/human
+  agreement at 85\% (humans agree with each other 81\%); the agentic-benchmark audit found
+  unsound graders in 7 of 10 suites. The two brackets mark the mechanically verifiable
+  families (reusable as RL rewards) and the model-graded families (which raise the
+  question of who grades the grader).}
+  \label{fig:grladder}
+\end{figure}
+
+\section{A taxonomy by evolutionary role}
+\label{sec:tree}
+
+Sorting benchmarks by what they test merely reproduces the domain facet. Sorting them by
+\emph{why they exist} produces a different --- and, we argue, more honest --- structure. The
+placement question is: \textbf{what question was this benchmark built to answer, in the
+ecosystem of models and benchmarks that existed at its birth?} Judged from each paper's own
+problem statement, that question has seven answers --- seven \emph{kingdoms} --- and every
+one of the \TokN{} papers sits at exactly one address. The kingdoms subdivide into
+twenty-five families; Figure~\ref{fig:tree} shows the whole tree.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{tree.pdf}
+  \caption{The role taxonomy: seven kingdoms, twenty-five families, \TokN{} leaves. Bars
+  are family sizes. Placement is by role at birth, not later use, so HellaSwag sits under
+  de-saturation sequels (kingdom B) rather than commonsense reasoning, and SWE-bench sits
+  under program synthesis (kingdom A) rather than agents.}
+  \label{fig:tree}
+\end{figure}
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{clcl}
+    \toprule
+    & \textbf{Kingdom} & \textbf{\#} & \textbf{The question it was built to answer} \\
+    \midrule
+    A & capability probes           & \TokNKingCap{}    & Can models do X yet? \\
+    B & audit instruments           & \TokNKingAudit{}  & Is our measurement lying? \\
+    C & frontier walls              & \TokNKingWalls{}  & Can we build something that stays unsolved? \\
+    D & deployment rehearsals       & \TokNKingDeploy{} & What happens when we ship it into this job? \\
+    E & hazard probes               & \TokNKingHazard{} & What could go wrong? \\
+    F & reward factories            & \TokNKingReward{} & Can the benchmark generate its own training signal? \\
+    G & meta-evaluation \& protocols & \TokNKingMeta{}   & How should we evaluate at all? \\
+    \bottomrule
+  \end{tabular}
+  \caption{The seven kingdoms, their sizes, and the one-line question each answers.}
+  \label{tab:kingdoms}
+\end{table}
+
+The tree's shape is a finding in its own right. Only \TokNKingCap{} of the \TokN{} papers
+(\TokPctKingCap\%) are capability probes --- benchmarks that ask ``can the model do X?'' ---
+and that share is in decline: \TokPctCapPreTwoZeroTwoOne\% of pre-2021 entries were
+capability probes, against \TokPctCapTwoFourTwoFive\% of 2024--25 entries. The majority of
+the modern corpus is doing something more reflexive: auditing other measurements
+(\TokNKingAudit{} papers), rehearsing deployments (\TokNKingDeploy{}), probing hazards
+(\TokNKingHazard{}), building walls designed not to fall (\TokNKingWalls{}), manufacturing
+training signal (\TokNKingReward{}), or working out how to evaluate at all
+(\TokNKingMeta{}). Benchmarking has become an ecosystem with predators, parasites, and
+decomposers --- not a row of thermometers.
+
+Placement is by role at birth, not later use, which is what makes the taxonomy
+informative rather than a restatement of topic. HellaSwag~\citep{zellers-2019-hellaswag}
+sits among the de-saturation sequels because it was built to resurrect a solved benchmark,
+and its adversarial-filtering construction matters more than its commonsense content (a
+point we return to in Section~\ref{sec:connections}). SWE-bench~\citep{jimenez-2023-swe-bench}
+sits under program synthesis because the agents came later. GSM8K~\citep{cobbe-2021-gsm8k}
+sits under closed-form reasoning even though its deepest legacy is the verifier paradigm.
+The tree records what each benchmark was \emph{for}, and it is the reflexive kingdoms ---
+B, C, F, G --- that a topic-based taxonomy renders invisible.
+
+\section{Findings}
+\label{sec:findings}
+
+We read five findings off cross-tabulations of the corpus by publication era. Because
+per-era counts are small, these should be read as slopes, not decimals; the eras pool
+sparse early years (\TokNEraLeTwoZeroOneEight{} papers through 2018, \TokNEraOneNineTwoZero{}
+in 2019--20, \TokNEraTwoOneTwoTwo{} in 2021--22) and break out single years thereafter
+(\TokNTwoZeroTwoThree{}, \TokNTwoZeroTwoFour{}, \TokNTwoZeroTwoFive{}, and
+\TokNTwoZeroTwoSix{} papers for 2023 through 2026).
+
+\subsection{The grading waves, and the 2025 rubric turn}
+
+Grading has moved in waves. Proxy metrics gave way to exact match
+(\TokNEmUptoTwoZeroTwoZero{} of the \TokNPreTwoZeroTwoOne{} pre-2021 papers grade by exact
+match); execution-based programmatic grading surged with the code benchmarks
+(\TokNProgTwoZeroTwoThree{} of \TokNTwoZeroTwoThree{} papers in 2023); holistic LLM-judging
+peaked in 2024. Then, in 2025, \textbf{rubric-scored judging became the single largest
+grading family for new benchmarks}: \TokNRubTwoZeroTwoFive{} of \TokNTwoZeroTwoFive{} papers
+(\TokPctRubTwoZeroTwoFive\%), up from \TokNRubPreTwoZeroTwoFive{} papers \emph{total} before
+2025 (FActScore~\citep{min-2023-factscore} in 2023 and
+Agent-as-a-Judge~\citep{zhuge-2024-agent-as-judge} in 2024). HealthBench~\citep{arora-2025-healthbench},
+PaperBench~\citep{starace-2025-paperbench}, and the 2026 cohort including
+MCP-Atlas~\citep{bandi-2026-mcp-atlas} all grade by expert-written, per-item criteria
+applied by a model.
+
+The wave structure has a single driver: each new capability regime produced outputs the
+previous grader could not score. Exact match broke on free-form generation; unit tests
+broke on anything that is not code; holistic judges broke on expert domains where
+``sounds good'' diverges from ``is correct.'' The rubric turn is the field's current
+answer --- decompose expert judgment into criteria a model \emph{can} check --- and it is
+also a quiet confession that the thing we now want to measure no longer has an answer key.
+
+\subsection{The verifiability frontier}
+\label{sec:frontier}
+
+Cross-tabulating task horizon against grading family exposes a boundary:
+\textbf{cheap grading does not survive long horizons}. Exact-match grading owns L1
+(\TokNEmLOne{} of the \TokNLOne{} L1 papers) and thins to exactly \TokNEmLThree{} papers at
+L3 --- and both survivors are deliberate exceptions:
+BrowseComp~\citep{wei-2025-browsecomp} \emph{engineered} its questions to be hard to find
+but trivial to verify, and TRAIL~\citep{deshpande-2025-trail} grades long agent traces
+against a fixed error taxonomy. Programmatic grading peaks at L2--L3 and vanishes at L4:
+nobody has built a test harness for ``produce a competitive research paper.'' Above the
+frontier, only judges, rubrics, and humans remain.
+
+This is the survey's central claim: \textbf{a benchmark can only pose tasks as long as it
+can afford to grade them.} Verification asymmetry --- tasks that are hard to do but cheap to
+check --- is the scarce resource of benchmark design, and the L4 row shows what happens when
+it runs out. GDPval~\citep{patwardhan-2025-gdpval} pays experts for more than an hour of
+pairwise grading per item; PaperBench amortizes thirty-three person-weeks of rubric
+authoring. The grading-cost ladder of Section~\ref{sec:facets} is not a menu of equally
+available options; at high horizons it is a budget constraint.
+
+\subsection{The horizon climb, and the empty top rung}
+
+Benchmarks are climbing the same ladder their subjects climb. Before 2021 no paper in the
+corpus posed a task above L2. The L3+ share was \TokPctLThreeTwoZeroTwoThree{}--\TokPctLThreeTwoZeroTwoFour\%
+through 2023--24, then jumped to \TokPctLThreeTwoZeroTwoFive\% in 2025 and reached
+\TokNLThreePlusTwoZeroTwoSix{} of \TokNTwoZeroTwoSix{} papers in 2026; the mean rung moved
+from \TokMeanRungLeTwoZeroOneEight{} ($\leq$2018) to \TokMeanRungTwoZeroTwoSix{} (2026). That
+tracks the measured capability curve: as a model's 50\%-success horizon doubles roughly
+every seven months, benchmarks below the frontier stop discriminating and the field
+rebuilds one rung up.
+
+But the climb is running out of ladder. L4 --- day-to-week projects --- contains exactly
+\TokNLFour{} papers (GDPval, PaperBench, and RLI~\citep{mazeika-2025-rli}), all from 2025,
+and \textbf{L5 is empty}: no benchmark in this corpus poses work beyond two expert-weeks.
+The binding constraints are the two graders left at that altitude (Section~\ref{sec:frontier})
+and item economics --- a thousand-item benchmark of week-long tasks is a thousand
+expert-weeks of ground truth. Whoever solves cheap verification of long-horizon work gets
+to write the first L5 benchmark, and probably the reward signal for the next training era
+with it.
+
+\subsection{The contamination cycle}
+\label{sec:contam}
+
+The most surprising row in the data is the oldest. The computer-vision era already had the
+answer to contamination: \TokNPrivholdTwoZeroOneEight{} of the \TokNEraLeTwoZeroOneEight{}
+pre-2018 papers shipped a hidden test set or an evaluation server. The web-scrape training
+era then abandoned it --- \TokNNonpubTwoOneTwoTwo{} of the \TokNEraTwoOneTwoTwo{} papers in
+2021--22 published everything, MMLU~\citep{hendrycks-2020-mmlu} and
+BIG-bench~\citep{srivastava-2022-big-bench} included --- and the contamination crisis of
+2023--24 (GSM1k~\citep{zhang-2024-gsm1k} measured up to eight points of inflation on GSM8K)
+was the bill for that amnesia. From 2024 the defenses return and diversify: private holdouts
+(\TokNPrivholdTwoZeroTwoFive{} of \TokNTwoZeroTwoFive{} papers in 2025), live refresh
+(LiveCodeBench~\citep{jain-2024-livecodebench}), procedural generation
+(Reasoning Gym~\citep{stojanovski-2025-reasoning-gym}), and canary strings. In 2025, for the
+first time since 2018, more than half of new benchmarks shipped \emph{some} defense; in 2026
+it was \TokNDefTwoZeroTwoSix{} of \TokNTwoZeroTwoSix{}.
+
+The defenses also work differently well. Of the \TokNLiverefresh{} live-refresh benchmarks,
+\textbf{zero are saturated}; private holdouts saturate at the corpus base rate
+(about \TokPctSatCorpus\%). A hidden test set stops leakage but not progress;
+refresh-by-design is the only defense that also buys longevity, which is why the newest
+entries build refresh into the sampling frame rather than bolting privacy onto a frozen set.
+
+\subsection{Horizon is destiny}
+
+Saturation is almost perfectly ordered by the ladder: \textbf{\TokPctSatLOne\% of L1
+benchmarks are saturated, \TokPctSatLTwo\% of L2, and \TokPctSatLThreePlus\% of L3 and
+above.} Every saturated benchmark in this corpus poses tasks a human expert finishes inside
+half an hour. Domain matters less than one might expect, and defense matters less than
+refresh (Section~\ref{sec:contam}); what predicts whether a benchmark is still discriminating
+in 2026 is simply how much expert time its tasks embody. That gives builders a clean
+actuarial rule --- \emph{expected lifespan is bought in human-minutes per item} --- and it
+explains the corpus's own shape. The consistency of this ordering is why the pre-2021 cohort,
+every entry of which poses an L1 or L2 task, is saturated at \TokPctSatPreTwoZeroTwoOne\%
+(\TokNSatPreTwoZeroTwoOne{} of \TokNPreTwoZeroTwoOne{}) against \TokPctSatCorpus\% corpus-wide.
+The ladder of the previous finding is not merely being climbed; it is being consumed from the
+bottom.
+
+\paragraph{Two further shifts, in brief.} Two era-trends we do not develop at length
+reinforce the same economics. \emph{Task shape} has migrated from static single-turn datasets
+(\TokPctSingleThruTwoZeroTwoZero\% of the corpus through 2020) toward interactive
+environments, which reach \TokPctIeTwoZeroTwoFive\% of new benchmarks in 2025
+(\TokNIeTwoZeroTwoFive{} of \TokNTwoZeroTwoFive{}) and \TokNIeTwoZeroTwoSix{} of
+\TokNTwoZeroTwoSix{} in 2026 --- while multi-turn dialogue, the thing users actually do with
+these systems, remains a conspicuous gap at \TokNMultiturn{} papers total and never more than
+about \TokPctMultiturnMax\% of any era. And \emph{provenance} has shifted from cheaply collected
+crowd-work and scraped exams (\TokNCrowdexamTwoZeroOneEight{} of \TokNEraLeTwoZeroOneEight{}
+pre-2018 papers) to commissioned labor: \TokPctExpertTwoZeroTwoFive\% of new benchmarks in
+2025 are expert-authored and another \TokPctRwmTwoZeroTwoFive\% are mined from real work
+products. Both moves share finding~4.1's driver --- once the evaluated model outperforms a
+crowd-worker at the task, crowd-sourced ground truth stops being ground truth, and
+item-writing becomes skilled labor.
+
+\section{Cross-paper connections}
+\label{sec:connections}
+
+The survey page reports nine connections mined by tracing the corpus's internal citation
+graph against the full text of every explainer; we detail three here, chosen because each
+sharpens a finding above. Each is visible only across papers.
+
+\subsection{The benchmark is the reward}
+
+The canonical benchmarks were never eval-only artifacts. GSM8K shipped as
+verifier-training infrastructure --- a 7.5K training split plus a learned verifier, with the
+launch paper already documenting that verifier being reward-hacked.
+HumanEval~\citep{chen-2021-codex} arrived inside the Codex training paper, its unit tests
+doubling as a sample-selection oracle; SWE-bench shipped 19K training instances and its own
+fine-tunes. When GSM1k later audited the ecosystem, its most telling overfitting case was
+contaminated through the \emph{grader lineage} --- a process-reward model leaking reasoning
+chains --- with no test-set leak an $n$-gram checker could see. Validity then had to be
+re-purchased, each time by moving the grader further from the training corpus:
+EvalPlus~\citep{liu-2023-evalplus} densified HumanEval's tests roughly eightyfold;
+SWE-bench Pro~\citep{deng-2025-swe-bench-pro} bought commercial code models could never have
+seen, and its 25-to-30-point public-to-commercial score collapse --- same models, same
+harness --- is the field's cleanest single measurement of what training against a public
+grader family costs. By 2025 the flip is doctrine:
+MLGym's~\citep{nathani-2025-mlgym} complaint about prior benchmarks is that they
+\emph{cannot} be trained on, and Reasoning Gym publishes its reward function outright.
+Goodhart does not vanish under procedural generation; it migrates into the grader's blind
+spots.
+
+\subsection{Gravity selects portability}
+
+APPS~\citep{hendrycks-2021-apps} and HumanEval are same-year, mutually citing,
+execution-graded code benchmarks; APPS was some sixty times larger, with twice the tests
+per problem. Yet HumanEval became this corpus's single largest gravity well ---
+\TokGravHumaneval{} in-corpus citations to APPS's \TokGravApps{} --- because what the field
+reused was the \emph{measurement kit}: the unbiased pass@$k$ estimator plus 164 cheap,
+self-contained tasks scoring in the discriminative range. APPS's grader vocabulary failed to
+travel (its lenient metric flattered, its strict metric floored at zero on the hardest tier).
+The clincher: when EvalPlus proved HumanEval's thin tests inflate pass@$k$ by up to about
+29\%, the field patched HumanEval in place rather than migrate to APPS --- which already had
+denser tests. The pattern repeats a generation down. SWE-bench Pro's forkable Docker harness
+is already substrate for third-generation benchmarks, while
+SWE-Lancer's~\citep{miserendino-2025-swe-lancer} more rigorous but unforkable grader
+(triple-verified end-to-end tests on one proprietary repository) has no coding descendants;
+its \emph{framing} --- real-dollar difficulty --- instead seeded the economic-rehearsal
+family (GDPval, RLI, UpBench~\citep{yi-2025-upbench}). Benchmark genes travel through cheap,
+reproducible harnesses: the ecosystem structurally selects reproducibility over rigor.
+
+\subsection{The audit shadow}
+
+Every benchmark that mattered in this corpus eventually acquired an audit, twin, or
+corrective sequel --- and the wait has collapsed by an order of magnitude. ImageNet went
+unaudited for ten years; MMLU, GSM8K, and HumanEval got two to four; MT-Bench~\citep{zheng-2023-mt-bench}
+got one; MultiChallenge got its modality twin within months. A benchmark's expected
+unaudited lifetime is now shorter than a typical review-to-camera-ready cycle, which means
+every headline number carries a known depreciation schedule. The mechanism of the shrink is
+visible in who runs the audits: early ones were third-party forensics (a Berkeley group
+rebuilding ImageNet's test set), but by 2024--25 the shadow moved in-house and turned
+pre-emptive --- OpenAI hardened its own SimpleQA~\citep{wei-2024-simpleqa} into BrowseComp,
+LMSYS distilled its own arena into Arena-Hard~\citep{li-2024-arena-hard}, and Scale extended
+its own MultiChallenge into an audio twin. Quality control became contemporaneous with
+publication. This is the same lifespan clock as ``horizon is destiny,'' read from the
+supply side: the shorter a benchmark's discriminating life, the sooner its successor must
+already be in press.
+
+\section{Method and caveats}
+\label{sec:method}
+
+\paragraph{Corpus.} The \TokN{} papers are the atlas's \texttt{benchmarks} survey tag,
+applied when each paper joined the atlas under the headline-contribution rubric above. The
+set over-represents what the atlas covers deeply --- language-model, agent, and safety
+evaluation from 2023 onward --- and thins toward the classic vision and language-understanding
+generations, so era-level trends should be read as trends \emph{within this kind of corpus},
+not a census of all benchmarks ever built. The corpus is papers only; the 2026 model-card canon
+also includes non-paper instruments this survey does not cover (SWE-bench Verified, Aider
+Polyglot, AIME-as-eval, the ARC-AGI leaderboards, needle-in-a-haystack probes), an exclusion
+of form rather than a judgment that they do not matter.
+
+\paragraph{Classification.} Each paper was classified from its atlas explainer (and the paper
+itself where the explainer underdetermined a dimension) by a language-model pipeline: one
+full-schema pass over every paper, then a fully independent second pass re-classifying the
+judgment-heavy dimensions with different paper groupings. The two passes agreed on 94.8\% of
+the 750 compared values; all 39 disagreements, on 32 papers, were adjudicated by a third read
+of the source text. Saturation was the noisiest dimension (16 of the 39 conflicts), so
+individual saturation calls should be treated as softer than the aggregate. Kingdom and family
+placements were assigned by the same two-pass protocol, judging role at birth from each paper's
+own problem statement.
+
+\paragraph{Connections.} The connection stories were mined by lens-directed search over the
+corpus and its internal citation graph, then verified two ways: every quotation was checked
+against the explainer texts, and every citation-structure assertion (``X cites Y,'' ``X and Y
+share no edge'') was checked mechanically against the graph. Claims that survived only partially
+were corrected or dropped; the numbers inside the stories are the source papers' own.
+
+\paragraph{Known soft spots.} Task-horizon rungs are estimates of the \emph{typical} instance
+from the papers' own task descriptions; only a few papers measure human time directly.
+Saturation reflects the frontier scores quoted in each explainer through mid-2026, and it ages.
+The recorded grading family is the headline metric only; many benchmarks ship secondary graders.
+Item counts are approximate. And one dimension a future pass should add is whether each
+benchmark's grader was itself adversarially audited --- the agentic-benchmark audit's 7-of-10
+finding suggests that column would be mostly empty.
+
+\section{Conclusion}
+
+Placed in a single structure, \TokN{} benchmarks stop looking like a scoreboard and start
+looking like an ecosystem governed by one economics. A benchmark can only pose tasks as long as
+it can afford to grade them, so the reach of evaluation is bounded by the cost of its grader; the
+verifiable, cheap-to-grade benchmarks are also the reward functions models train against; and a
+benchmark's lifespan is bought in human-minutes per item, which is why the field is climbing the
+horizon ladder and consuming it from the bottom at the same time. Only \TokPctKingCap\% of the
+corpus are the capability probes ``benchmark'' usually connotes; the rest audit, rehearse,
+wall off, and manufacture signal --- a reflexive ecosystem a topic-based taxonomy cannot see. The
+corpus, every figure, and every statistic in this paper are generated from the live companion
+survey and regenerate deterministically as the corpus grows.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

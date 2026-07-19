@@ -66,15 +66,23 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 .legend .row:hover{background:var(--elev)}
 .legend .row.active{background:var(--elev);color:var(--fg);box-shadow:inset 2px 0 0 var(--accent)}
 .legend .sw{width:11px;height:11px;border-radius:3px;flex:0 0 auto;box-shadow:0 0 8px rgba(0,0,0,.4)}
-/* survey caption: shown atop the legend while a survey spine is active */
-.surveycap{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg);font-weight:600;
+/* survey caption: shown atop the legend while a survey spine is active.
+   flex-wrap because the legend panel is a fixed ~230px — label + count +
+   two link pills (once a survey has both a page and a PDF) don't reliably
+   fit on one line; wrapping the links down to their own line beats the
+   alternative of silently overflowing the panel (verified: two pills at
+   139-papers-worth of label width overflowed by ~43px before this rule). */
+.surveycap{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:var(--fg);font-weight:600;
   padding-bottom:9px;margin-bottom:9px;border-bottom:1px solid var(--line)}
 .surveycap .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 9px currentColor}
 .surveycap .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);font-weight:500}
-/* link to the survey's write-up page (surveys.json `page`), colour set inline */
-.surveycap .rd{margin-left:auto;font-size:10px;font-weight:600;text-decoration:none;
+/* links to the survey's write-up page (surveys.json `page`) and/or its
+   companion PDF (surveys.json `pdf`) — grouped so either or both can appear
+   flush to the right edge, colour set inline per-link to match the survey */
+.surveycap .capLinks{margin-left:auto;display:flex;gap:6px}
+.surveycap .rd,.surveycap .pd{font-size:10px;font-weight:600;text-decoration:none;
   border:1px solid;border-radius:14px;padding:2px 9px;opacity:.85;white-space:nowrap}
-.surveycap .rd:hover{opacity:1;background:rgba(255,255,255,.06)}
+.surveycap .rd:hover,.surveycap .pd:hover{opacity:1;background:rgba(255,255,255,.06)}
 .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;
   font-size:11px;color:var(--muted);background:rgba(20,20,23,.7);border:1px solid var(--line);border-radius:20px;padding:6px 14px;z-index:8}
 

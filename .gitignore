@@ -1,6 +1,10 @@
 # Dependencies & build output
 node_modules
 dist
+# paper/<id>/main.pdf is tectonic's raw build output — re-derivable with one
+# `tectonic paper/<id>/main.tex` command; the tracked, deployed copy is
+# public/surveys/<id>.pdf (same split as node_modules/dist above).
+paper/*/main.pdf
 
 # OS / editor
 .DS_Store
@@ -8,10 +12,17 @@ dist
 # Python
 *.pyc
 __pycache__
+.venv-cairo/
 
-# Local tooling — Claude Code config (incl. the secret-bearing settings.local.json)
-# and Playwright MCP browser logs/snapshots. Not shareable project content.
-.claude/
+# Local tooling — Claude Code config. Skills/agents/launch config are versioned
+# (the /litsearch pipeline's skills+agents live here); settings.local.json stays
+# local-only (secret-bearing, incl. $S2_API_KEY) and Playwright MCP browser
+# logs/snapshots are not shareable project content.
+.claude/*
+!.claude/skills/
+!.claude/agents/
+!.claude/launch.json
+!.claude/settings.json
 .playwright-mcp/
 
 # Critique-run workspace (checkpointed scratch state for the repo-critique skill;
@@ -20,8 +31,11 @@ __pycache__
 
 # Scratch & intermediates — PDFs/figures/API dumps the procedures write while
 # building a paper. The real outputs are data/*.json and public/papers/*.html.
+# work/<slug>/ is the /litsearch pipeline's per-paper scratch (paper.pdf,
+# paper.txt, meta.json, figs/, critique-rN.json, response-rN.md, report.json).
 /tmp
 figs
+work/
 *.log
 /paper.pdf
 /paper.txt
