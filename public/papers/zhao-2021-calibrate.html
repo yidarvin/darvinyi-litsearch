@@ -163,10 +163,10 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2021 · ICML 2021 · Benchmarks &amp; Evals</div>
       <h1>Calibrate Before Use: Improving Few-Shot Performance of Language Models</h1>
       <p class="dek">GPT-3's few-shot accuracy can swing from near-chance to near-state-of-the-art on nothing but the order of the same four training examples. This paper traces that swing to three concrete biases in the model's output distribution — and fixes it with a calibration step that needs zero labeled data.</p>
-      <div class="authors mono">Zhao, Wallace, Feng, Klein, Singh</div>
+      <div class="authors mono">Tony Z. Zhao, Eric Wallace, Shi Feng, Dan Klein, Sameer Singh</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ICML 2021</b></span>
-        <span class="fact">citations&nbsp;<b>1,959</b></span>
+        <span class="fact">citations&nbsp;<b>1,963</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2102.09690">source&nbsp;↗</a></span>
       </div>
@@ -221,7 +221,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="tag">// what they found</div>
       <h2>The results</h2>
       <p>They test contextual calibration across three GPT-3 sizes (2.7B, 13B, 175B) plus GPT-2 1.5B, on 13 datasets across three task families: text classification (SST-2, AGNews, TREC, CB, RTE, DBPedia), fact retrieval (LAMA), and information extraction (ATIS airline/departure-date, MIT Movies genre/director). Across nearly every cell of that grid, calibration improves both mean and worst-case accuracy — by up to 30.0 points absolute — and it does so consistently enough that GPT-3 2.7B with calibration sometimes beats the uncalibrated 175B baseline by up to 19.3 points, despite being more than 50× smaller.</p>
-      <p>Beyond raw accuracy, calibration also reduces the standard deviation of accuracy across different random choices of training examples in a majority of task/shot combinations (their Figure 6), without meaningfully increasing it in the rest. It fixes three of the four observed 0-shot→1-shot accuracy drops (TREC, AGNews, DBPedia — not CB), consistent with the majority-label-bias explanation. It transfers cleanly to prompt <em>format</em> variation too: across 15 hand-written SST-2 formats and 15 LAMA paraphrase templates, calibration again raises mean and worst-case accuracy and shrinks the spread. And it works "out of the box" on GPT-2 1.5B as well, suggesting the underlying biases are a general property of autoregressive LMs, not a GPT-3 quirk.</p>
+      <p>Beyond raw accuracy, calibration also reduces the standard deviation of accuracy across different random choices of training examples in a majority of task/shot combinations (their Figure 6), without meaningfully increasing it in the rest. The paper names four cases with a baseline accuracy drop from 0-shot to 1-shot — TREC, AGNews, DBpedia, and SST-2 — and reports that calibration removes the drop in three of the four, consistent with the majority-label-bias explanation. It transfers cleanly to prompt <em>format</em> variation too: across 15 hand-written SST-2 formats and 15 LAMA paraphrase templates, calibration again raises mean and worst-case accuracy and shrinks the spread. And it works "out of the box" on GPT-2 1.5B as well, suggesting the underlying biases are a general property of autoregressive LMs, not a GPT-3 quirk.</p>
       <p>Two additional checks support the method's soundness. First, against an "oracle calibration" that is allowed to fit the same diagonal W using labeled validation data, contextual calibration (with zero labels) lands surprisingly close on AGNews — most of the fixable bias is captured without any supervision. Second, an ablation over which content-free string to use (Table 3) shows the choice matters somewhat — on SST-2, the uncalibrated baseline is 66.5%, a single "N/A" probe reaches 74.2%, and their final ensemble of "N/A" + "[MASK]" + empty string reaches 79.0% (66.5% on AGNews, up from 48.5% uncalibrated) — but the method is robust to the exact choice: even nonsense strings like "dasjhasjkdhjskdhds" recover most of the gain (79.3% on SST-2).</p>
 
       <figure class="wide">
@@ -282,7 +282,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p class="mono">
         <a href="/">← back to the atlas</a><br>
         Calibrate Before Use: Improving Few-Shot Performance of Language Models<br>
-        Zhao, Wallace, Feng, Klein, Singh · 2021 · ICML 2021<br>
+        Tony Z. Zhao, Eric Wallace, Shi Feng, Dan Klein, Sameer Singh · 2021 · ICML 2021<br>
         <a href="https://arxiv.org/abs/2102.09690">read the original ↗</a> · slug: zhao-2021-calibrate
       </p>
     </div>
