@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datasheets for Datasets — paper_atlas</title>
+<meta name="description" content="A proposed standard questionnaire — motivation, composition, collection, uses, distribution, maintenance — for documenting a dataset before it ships, modeled on the electronics industry's component datasheet.">
+<meta property="og:title" content="Datasheets for Datasets">
+<meta property="og:description" content="A proposed standard questionnaire — motivation, composition, collection, uses, distribution, maintenance — for documenting a dataset before it ships, modeled on the electronics industry's component datasheet.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/gebru-2018-datasheets.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2021 · Communications of the ACM · Benchmarks &amp; Evals</div>
+      <h1>Datasheets for Datasets</h1>
+      <p class="dek">A proposed standard questionnaire — motivation, composition, collection process, uses, distribution, maintenance — for documenting a dataset before it ships, modeled explicitly on the datasheet that accompanies every component in the electronics industry.</p>
+      <div class="authors mono">Gebru, Morgenstern, Vecchione, Vaughan, Wallach, Daumé III, Crawford</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>Communications of the ACM</b></span>
+        <span class="fact">citations&nbsp;<b>2,452</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1803.09010">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-18 (Semantic Scholar, via web search — the S2 and OpenAlex APIs were rate-limited at processing time)</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>Every machine learning model is trained and evaluated on data, and the characteristics of that data fundamentally shape the model's behavior — yet in 2018 there was no standardized way to record how a dataset was created, what it contains, or what it should and shouldn't be used for. Data provenance had been studied extensively inside the databases community, but, in the authors' words, documenting the creation and use of machine learning datasets specifically had received "even less attention." That gap wasn't academic: mismatches between a dataset and its deployment context, or datasets that encoded unwanted societal biases, were already producing visible harms in high-stakes domains — criminal justice, hiring, critical infrastructure, finance. The paper's own bibliography cites concrete, recent examples: Bolukbasi et al.'s finding that word embeddings encode analogies like "man is to computer programmer as woman is to homemaker," Buolamwini and Gebru's Gender Shades audit showing commercial gender-classification APIs erring on up to 34.7% of darker-skinned women versus near-zero for lighter-skinned men, and Amazon's since-scrapped internal recruiting tool that penalized résumés containing the word "women's." The World Economic Forum had already recommended that organizations document the provenance, creation, and use of ML datasets to avoid discriminatory outcomes — but no one had specified what that documentation should actually contain, or how a creator should go about producing it.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The proposal borrows its framing wholesale from an unrelated engineering discipline: in the electronics industry, every component — no matter how simple or complex — ships with a datasheet describing its operating characteristics, test results, and recommended usage. Gebru et al. propose the same discipline for datasets: every dataset should be accompanied by a datasheet documenting its motivation, composition, collection process, recommended and inappropriate uses, and more. Crucially, the process is designed to be filled out by hand, not automated — automating it, the authors argue, would defeat the point of forcing creators to actually reflect on what they built.</p>
+      <p>The questionnaire itself was refined over roughly two years, not drafted in one sitting. The authors first drew on their own experience to write an initial set of questions, then stress-tested it by producing example datasheets for two well-documented datasets — Labeled Faces in the Wild and Pang and Lee's movie-review polarity dataset — which surfaced gaps, redundancies, and ambiguous wording. They circulated the revised questions to product teams at two major US technology companies, observing where teams struggled to answer, and posted an initial draft to arXiv on 23 March 2018 to solicit broader feedback, eventually incorporating comments from "dozens of researchers, practitioners, and policy makers" plus a legal review that reworded several questions to elicit factual answers rather than ask creators to make their own compliance judgments.</p>
+      <p>The final structure organizes questions into seven sections that map onto a dataset's lifecycle:</p>
+      <table>
+        <thead><tr><th>Section</th><th>What it asks</th></tr></thead>
+        <tbody>
+          <tr><td>Motivation</td><td>Why was it created, by/for whom, who funded it?</td></tr>
+          <tr><td>Composition</td><td>What do instances represent, how many, is the sample representative, what's missing, can individuals be re-identified?</td></tr>
+          <tr><td>Collection process</td><td>How/from whom was data acquired, over what timeframe, was consent obtained (for data about people)?</td></tr>
+          <tr><td>Preprocessing / cleaning / labeling</td><td>What transformations were applied — and is the raw version also kept?</td></tr>
+          <tr><td>Uses</td><td>What has it been used for — and what should it <em>not</em> be used for, given how it was built?</td></tr>
+          <tr><td>Distribution</td><td>How/when will it be released, under what license or restrictions?</td></tr>
+          <tr><td>Maintenance</td><td>Who hosts/curates it going forward, and how can others contribute fixes?</td></tr>
+        </tbody>
+      </table>
+      <p>The authors are explicit that this list is not prescriptive — a question suited to an academic dataset released for public research may not fit a product team's internal training set — and that datasheets will need to evolve with organizational context. Questions specific to data about people (re-identification risk, consent, sensitive attributes) are grouped at the end of each relevant section so that datasets with no personal data can skip them cleanly.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Because this is a proposal rather than an empirical study, "results" take the form of adoption evidence and a worked example, both laid out in the paper's own "Impact and Challenges" section. By the time of the paper's later revisions, academic researchers had already released datasets with accompanying datasheets — the paper cites Cao and Daumé's GICoref coreference-resolution dataset and Seck et al.'s Cerema AWP dataset as examples — and Microsoft, Google, and IBM had begun piloting datasheets internally within product teams. The proposal also visibly seeded an entire family of documentation formats: Google researchers published <em>Model Cards for Model Reporting</em> (co-authored by Gebru) to document trained models rather than datasets, and released a lightweight "data card" alongside the Open Images dataset; IBM proposed <em>FactSheets</em> to document AI services more broadly; and the Data Nutrition Project folded some of the datasheet questions into the second generation of its Dataset Nutrition Label. By the final 2021 revision, the Partnership on AI's ABOUT ML initiative was building industry-wide documentation guidance directly on top of datasheets, model cards, and factsheets together.</p>
+      <p>To show what a completed datasheet looks like, the appendix walks through a full worked example for Pang and Lee's movie-review polarity dataset — 1,400 instances in the original release, 2,000 in the "v2.0" release from 2014 — documenting that reviews were pulled from the <code class="mono">rec.arts.movies.reviews</code> newsgroup, that star ratings were collapsed into a binary positive/negative label by discarding mid-range reviews, that at most 40 reviews per author were kept to broaden authorship coverage, and that names/emails were stripped from the "preprocessed" release but retained in the "raw" one. Tellingly, because Gebru et al. were not the dataset's original creators, a sizable share of the datasheet's own answers are simply <strong>"Unknown to the authors of the datasheet"</strong> — collection timeframe, subject compensation, and whether an ethical review was conducted are all unrecoverable after the fact.</p>
+      <table>
+        <thead><tr><th>Follow-on documentation format</th><th>Institution</th><th>What it documents</th></tr></thead>
+        <tbody>
+          <tr><td>Model Cards for Model Reporting</td><td>Google (Mitchell et al., 2019)</td><td>Trained models, not datasets</td></tr>
+          <tr><td>Data card (Open Images)</td><td>Google</td><td>A lightweight, dataset-specific summary</td></tr>
+          <tr><td>FactSheets</td><td>IBM (Hind et al., 2018)</td><td>AI services broadly (purpose, safety, security, provenance)</td></tr>
+          <tr><td>Dataset Nutrition Label (2nd Gen)</td><td>Data Nutrition Project</td><td>Datasets, with context-specific use alerts</td></tr>
+          <tr><td>ABOUT ML guidance</td><td>Partnership on AI</td><td>Cross-cutting industry documentation norms</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>Datasheets for Datasets is a norm-setting proposal, not an evaluated system, so the usual questions about baselines or benchmark contamination don't apply in their normal form — but the electronics-industry analogy the paper leans on quietly begs a structural question. In electronics, a datasheet's credibility rests on suppliers facing testing standards, contractual liability, and reputational consequences for a false spec. Dataset creators — often an academic lab releasing a one-off scrape, or a product team with no external audit — face essentially none of that. The paper proposes the document but not the accountability machinery behind it, acknowledging only obliquely, in its closing section, that datasheets "do not provide a complete solution to mitigating unwanted societal biases or potential risks or harms."</p>
+      <p>The paper's own worked example is its most honest self-critique. Applied after the fact, by people who weren't the dataset's creators, a datasheet degrades into a document half-full of "Unknown to the authors" — exactly the fields (consent, compensation, ethical review, validation procedure) that only the original creators can answer, and that most legacy or scraped datasets never recorded in the first place. That's a real limitation for the far more common case — documenting a dataset someone else already built — versus the paper's implicit ideal case of a datasheet written contemporaneously with data collection.</p>
+      <p>The proposal is also silent on the failure mode that would come to dominate ML data practice within a few years of publication: web-scale, passively scraped pretraining corpora, where there is no single "creator" to answer motivation questions, no practical way to enumerate discrete "instances," and no feasible per-record collection account. That is precisely the "de-contextualized data" failure mode Raji et al. later diagnose in benchmark datasets specifically, in <em>AI and the Everything in the Whole Wide World Benchmark</em> (2021) — data stripped of the scope and provenance record a datasheet is meant to preserve, circulating anyway because nothing forces the datasheet to travel with the data.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Not really applicable — this is a documentation standard, not a model or metric competing against alternatives. The closest prior art it engages with is Bender &amp; Friedman's Data Statements for NLP (a language-specific analogue) and the electronics-industry component datasheet, both used as design templates rather than baselines to beat.</p>
+        <span class="k">contamination</span><p class="v">The paper's own appendix doubles as a candid limitations study: writing a datasheet for a dataset you didn't create leaves many fields as "Unknown to the authors of the datasheet" — the datasheet's information quality is only as good as what the <em>original</em> creators already documented, which for most legacy datasets is close to nothing.</p>
+        <span class="k">what's missed</span><p class="v">No mechanism to verify self-reported answers, no accountability structure analogous to the electronics industry's testing/liability regime, no treatment of datasets with no discrete "creator" (large scraped/pretraining corpora), and no measurement of how many datasets actually adopt datasheets — the paper reports scattered pilots, not a compliance rate.</p>
+        <span class="k">would raise confidence</span><p class="v">Independent audits of datasheet accuracy (in the spirit of Buolamwini &amp; Gebru's own Gender Shades model audit), a machine-readable/structured datasheet format enabling automated compliance checks, and a longitudinal measurement of adoption among widely-used benchmark datasets rather than anecdotal examples.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>Over 2,400 citations and a published Communications of the ACM article later, Datasheets for Datasets succeeded as a norm — it seeded Model Cards, FactSheets, the Dataset Nutrition Label, and the Partnership on AI's ABOUT ML guidance — but not as an enforced standard. Nothing in the paper, or in the ecosystem it spawned, compels a dataset to ship with a datasheet, or verifies one is accurate when it does. That gap is exactly what Raji et al.'s critique of "de-contextualized" benchmark data walks through: a norm without teeth doesn't stop unstructured data from circulating, it just gives the field better vocabulary for describing what wasn't documented.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Datasheets for datasets propose a standard questionnaire — motivation → composition → collection process → preprocessing → uses → distribution → maintenance — modeled explicitly on the electronics industry's component datasheet, to be filled out by a dataset's creators before release.</li>
+        <li>The process is deliberately non-automatable and non-prescriptive: a reflection tool for creators and a due-diligence tool for consumers, not a compliance checkbox — refined over roughly two years through pilots at two major tech companies, public feedback from an arXiv draft, and a legal review.</li>
+        <li>It has real influence (Model Cards, FactSheets, the Dataset Nutrition Label, the Partnership on AI's ABOUT ML) but no enforcement mechanism: it can't verify self-reported answers, breaks down for datasets with no single "creator" (web-scale scraped/pretraining corpora), and adoption remains voluntary and — by the paper's own account — patchy.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Datasheets for Datasets<br>
+        Gebru, Morgenstern, Vecchione, Vaughan, Wallach, Daumé III, Crawford · 2021 · Communications of the ACM<br>
+        <a href="https://arxiv.org/abs/1803.09010">read the original ↗</a> · slug: gebru-2018-datasheets
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MuJoCo: A Physics Engine for Model-Based Control — paper_atlas</title>
+<meta name="description" content="A physics simulator built for control research, not graphics: a convex, generalized-coordinates contact model that became the default substrate for a decade of deep-RL continuous-control work, from TRPO and PPO to Soft Actor-Critic.">
+<meta property="og:title" content="MuJoCo: A Physics Engine for Model-Based Control">
+<meta property="og:description" content="A physics simulator built for control research, not graphics: a convex, generalized-coordinates contact model that became the default substrate for a decade of deep-RL continuous-control work, from TRPO and PPO to Soft Actor-Critic.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/todorov-2012-mujoco.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2012 · IROS 2012 · Post-training &amp; RL</div>
+      <h1>MuJoCo: A Physics Engine for Model-Based Control</h1>
+      <p class="dek">A physics simulator built for control research, not graphics. Instead of the penalty-based spring-damper contacts games use, or the brittle, non-convex complementarity solvers robotics used, MuJoCo represents multi-body systems in <strong>generalized (joint) coordinates</strong> and resolves contact through a <strong>convex, soft constraint model</strong> — fast enough to run thousands of rollouts per second, and it became the physics substrate underneath a decade of deep-RL continuous-control research, from TRPO and PPO to Soft Actor-Critic and TD3.</p>
+      <div class="authors mono">Todorov, Erez, Tassa</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>IROS 2012</b></span>
+        <span class="fact">citations&nbsp;<b>7,527</b></span>
+        <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
+        <span class="fact"><a href="https://doi.org/10.1109/IROS.2012.6386109">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2012, general-purpose physics engines were mature — ODE, Bullet, PhysX, Havok — but every one of them had been built for <strong>games and graphics</strong>, where the standard is "looks plausible at 60Hz," not "is numerically trustworthy enough to differentiate through or trajectory-optimize against." That design target shows up in the contact model. Most engines use <strong>penalty-based (spring-damper) contacts</strong>: a stiff virtual spring pushes interpenetrating bodies apart. Stiff springs need very small integration time steps to stay stable, which is fine for a real-time game loop but expensive when a control algorithm needs to run the simulator <em>thousands of times</em> per optimization step. The alternative — <strong>hard-contact solvers based on the linear complementarity problem (LCP)</strong> — model contact more physically, but the resulting problem is <strong>non-convex</strong> for systems with friction, hard to solve robustly and efficiently at scale, and its solutions aren't smooth, which is exactly what breaks gradient-based and trajectory-optimization methods.</p>
+      <p>Emo Todorov's group at the University of Washington was not doing graphics — it was doing <strong>model-based control</strong>: trajectory optimization, differential dynamic programming, optimal control of humanoid and robotic-hand models with dozens of degrees of freedom and frequent, changing contact. That line of work needed something none of the existing engines were built to give it: a simulator fast enough for thousands of rollouts, expressive enough for general articulated systems, and numerically well-behaved enough that a controller could actually rely on — and even invert — its dynamics. Handcrafting per-model contact stiffness parameters to make a game-physics engine behave was, at the scale their research needed, not viable.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>MuJoCo — <strong>Mu</strong>lti-<strong>Jo</strong>int dynamics with <strong>Co</strong>ntact — makes two coupled design choices, and the paper's real contribution is making them work together.</p>
+      <p><strong>First, generalized coordinates.</strong> Instead of representing every rigid body independently in Cartesian ("maximal") coordinates and then imposing joint constraints to hold an articulated structure together — the approach most game-physics engines take — MuJoCo represents a mechanism directly in its own <span class="mono">n</span> joint degrees of freedom. A humanoid with 30 hinge/ball joints is a 30-dimensional system, not a 6×(number of bodies)-dimensional one with dozens of constraint equations bolted on. This is the classical articulated-body approach (Featherstone's recursive <span class="mono">O(n)</span> algorithms, among the paper's own references), and it buys smaller state, faster unconstrained dynamics, and no constraint drift between joints — but it makes contact harder, because a contact between two links doesn't align with either body's joint axes.</p>
+
+      <div class="eq">
+        M(q)&nbsp;q̈&nbsp;+&nbsp;c(q,&nbsp;q̇)&nbsp;=&nbsp;τ&nbsp;+&nbsp;J(q)<sup>T</sup>f
+        <span class="note">// equations of motion in generalized coordinates: joint-space inertia M, bias forces c (Coriolis/centrifugal/gravity), applied torque τ, and constraint/contact force f mapped back into joint space through the constraint Jacobian J</span>
+      </div>
+
+      <p><strong>Second — and this is the paper's central idea — contact and constraint forces f are found by solving a convex optimization problem</strong> at every timestep, rather than the classical linear complementarity problem (LCP). Hard-contact LCP formulations are physically cleaner but, once Coulomb friction is included, <strong>non-convex</strong>: there's no guarantee of a unique solution, and the numerics are fragile. The alternative most engines fall back on — soft penalty springs at each contact — sidesteps the non-convexity but forces very small integration steps to stay stable. MuJoCo's contact model, built on the "modern velocity-stepping" line of work (Stewart &amp; Trinkle's implicit time-stepping scheme and Todorov's own prior work on implicit nonlinear complementarity are both in its reference list), reformulates the problem as <strong>convex, soft, and analytically invertible</strong>: soft enough to remain well-conditioned at large timesteps without hand-tuned stiffness, convex enough to solve reliably and fast, yet still respecting a genuine friction cone rather than treating friction as an afterthought.</p>
+      <p>The payoff of convexity is a capability most contact simulators don't have at all: <strong>inverse dynamics that stay well-defined in the presence of contact.</strong> Given a desired trajectory, MuJoCo can compute the generalized forces that would produce it — including the contact forces — because the convex formulation pins down a unique, differentiable answer where a hard-contact LCP model generally cannot. That is exactly the primitive that trajectory-optimization and differential-dynamic-programming controllers need, and it's the reason a control lab, rather than a graphics lab, is the one that built this.</p>
+      <p>Models are authored in an XML format (MJCF) or a C++ API, then run through a built-in compiler that lowers the description into an optimized runtime data structure — separating "describe the mechanism" from "simulate it fast," so the same model definition can drive both forward simulation and the inverse-dynamics computation above.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>This is an 8-page systems paper, not a benchmark paper, and its real evidence is what got built on it in the same year and every year since. The companion paper from the same lab, <strong>Tassa, Erez &amp; Todorov's "Synthesis and stabilization of complex behaviors through online trajectory optimization"</strong> — also IROS 2012 — used MuJoCo to run <strong>online, real-time</strong> trajectory optimization (receding-horizon differential dynamic programming) on a simulated humanoid, closing the control loop fast enough to reject pushes and disturbances live. That demonstration only works if the simulator is fast and numerically well-behaved enough to be re-solved inside the control loop itself — the exact property the convex contact model was built to deliver, and direct evidence it delivered it.</p>
+      <p>The longer-run evidence is adoption. MuJoCo went on to become the <strong>default physics substrate for continuous-control deep reinforcement learning</strong>: it underlies Schulman et al.'s <strong>TRPO</strong> and <strong>Generalized Advantage Estimation</strong>, Duan et al.'s <strong>"Benchmarking Deep Reinforcement Learning for Continuous Control"</strong> (which established the HalfCheetah / Hopper / Walker2d / Ant / Humanoid task family still used today), <strong>PPO</strong>, Christiano et al.'s <strong>Deep RL from Human Preferences</strong>, <strong>Soft Actor-Critic</strong>, and <strong>TD3</strong> — and its own authors later built <strong>OpenAI Gym</strong>'s continuous-control tasks and the <strong>DeepMind Control Suite</strong> directly on top of it, standardizing the benchmark family the rest of the field measures against. As of this writing the paper itself sits at <strong>7,527 citations</strong> (Semantic Scholar) — a number that understates its footprint, since most papers that <em>use</em> MuJoCo through Gym or the Control Suite cite those wrapper papers rather than the underlying engine.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>MuJoCo isn't a benchmark or a claimed result — it's infrastructure that an entire evaluation regime was built on top of, which makes the right critique a different one: <em>what does it mean that "continuous control" in deep RL has meant, almost without exception, "control inside one specific engine's contact model"?</em></p>
+      <p>The field's own reproducibility literature answered part of this directly. Henderson et al.'s widely-cited "Deep Reinforcement Learning that Matters" (2018) showed that headline continuous-control results were highly sensitive to implementation details, random seeds, and — pointedly — <strong>which version of MuJoCo and which wrapper library</strong> an experiment used, sometimes changing which algorithm "won." That's not a flaw in MuJoCo's contact model so much as a consequence of monoculture: when nearly every continuous-control paper for a decade ran on the same engine with the same handful of task definitions, engine-specific numerical quirks (contact timestep, joint damping defaults, reward-shaping choices baked into the task wrappers) became indistinguishable from genuine algorithmic progress. A policy that exploits a MuJoCo Hopper's exact contact restitution isn't demonstrating a generalizable control competence — and because so few alternative engines were in wide use, that distinction was hard to see from inside the field.</p>
+      <p>Reproducibility also had a mundane, non-scientific obstacle: for its first nine years MuJoCo was <strong>closed-source and commercially licensed</strong> (free for students/personal use, paid otherwise, distributed by Todorov's own Roboti LLC), which meant license keys and per-machine activation sat between a paper and someone else re-running it. DeepMind acquired the software and made it <strong>free and open-source under Apache 2.0</strong> in 2021, removing that friction — but by then a decade of published continuous-control results had already been produced under license-gated access, with all the reproducibility drag that implies. Separately, since MuJoCo policies are trained entirely against a simulated contact model, the well-known <strong>sim-to-real gap</strong> — a policy that's optimal against MuJoCo's specific friction/restitution parameters can fail on a physical robot whose true contact dynamics differ — is a limitation of <em>any</em> simulator-first control pipeline, not specific to this one, but MuJoCo's ubiquity means it's the gap nearly the whole continuous-control RL literature inherited.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Not applicable in the usual sense — this is a systems/infrastructure paper with no learned baseline to beat. The closest thing to a baseline comparison is implicit: existing engines (ODE, Bullet, PhysX, Havok) built for graphics rather than control, which the paper argues are unsuited to the target use case rather than benchmarked head-to-head on a shared task.</p>
+        <span class="k">contamination</span><p class="v">Not a meaningful category for a physics engine. The adjacent risk is monoculture, not contamination: because so much continuous-control RL ran on the same engine and the same handful of MuJoCo task definitions, "beats the state of the art on Hopper/Walker2d" can conflate genuine control progress with exploiting that one engine's specific numerics.</p>
+        <span class="k">what's missed</span><p class="v">The paper doesn't (and couldn't) anticipate that it would become the near-universal substrate for an entire subfield's empirical claims — with the reproducibility consequences (engine-version sensitivity, license-gated access) that later surfaced in the field's own self-critique.</p>
+        <span class="k">would raise confidence</span><p class="v">For the engine itself: independent validation against real robot hardware on the exact contact-rich tasks it's used for. For the field built on top of it: the sim-to-sim and sim-to-real generalization checks (does a policy trained in MuJoCo transfer to a different engine, or to hardware?) that most continuous-control RL papers still don't run.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>The core engineering claim — a convex, generalized-coordinates contact model fast and stable enough for real-time trajectory optimization and thousands of rollouts — held up and then some: it's still, in substance, the same approach the open-source MuJoCo ships today. The less flattering legacy is what the field did with that ubiquity: a decade of "continuous control" results measured almost exclusively inside one engine's numerics, a monoculture the field's own reproducibility crisis eventually had to reckon with.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>Two ideas, one goal.</strong> Generalized (joint) coordinates keep an articulated system's state small and constraint-free between joints; a convex, soft-but-friction-respecting contact model keeps the resulting dynamics fast, stable at large timesteps, and — uniquely — invertible even with contact. Neither idea is new alone; combining them for control (not graphics) is the contribution.</li>
+        <li><strong>It's the reason "continuous control" means what it means today.</strong> TRPO, GAE, PPO, Soft Actor-Critic, TD3, OpenAI Gym's control tasks, and the DeepMind Control Suite all sit downstream of this engine — a systems paper that became load-bearing infrastructure for an entire subfield's evaluation practice.</li>
+        <li><strong>Ubiquity has a cost.</strong> A decade of results measured almost exclusively inside one engine's specific numerics fed directly into the field's own reproducibility crisis (implementation- and version-sensitive "wins"), and the software stayed commercially licensed for nine years before DeepMind open-sourced it in 2021 — two separate frictions on top of an otherwise durable technical contribution.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        MuJoCo: A Physics Engine for Model-Based Control<br>
+        Todorov, Erez, Tassa · 2012 · IROS 2012<br>
+        <a href="https://doi.org/10.1109/IROS.2012.6386109">read the original ↗</a> · slug: todorov-2012-mujoco
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
