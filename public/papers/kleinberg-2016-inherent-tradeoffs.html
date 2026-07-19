@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inherent Trade-Offs in the Fair Determination of Risk Scores — paper_atlas</title>
+<meta name="description" content="A clean impossibility theorem: calibration within groups, balance for the negative class, and balance for the positive class cannot all hold for a risk assignment except when groups share a base rate or the predictor is perfect — formalizing why COMPAS's calibration defense and ProPublica's error-rate critique were both correct and mutually exclusive.">
+<meta property="og:title" content="Inherent Trade-Offs in the Fair Determination of Risk Scores">
+<meta property="og:description" content="A clean impossibility theorem: calibration within groups, balance for the negative class, and balance for the positive class cannot all hold for a risk assignment except when groups share a base rate or the predictor is perfect — formalizing why COMPAS's calibration defense and ProPublica's error-rate critique were both correct and mutually exclusive.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/kleinberg-2016-inherent-tradeoffs.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2017 · ITCS · Benchmarks &amp; Evals</div>
+      <h1>Inherent Trade-Offs in the Fair Determination of Risk Scores</h1>
+      <p class="dek">A short, general impossibility theorem: calibration within groups, balance for the negative class, and balance for the positive class cannot all hold for a risk assignment except when the compared groups share a base rate or the predictor achieves perfect prediction — explaining, at the level of principle, why ProPublica's and Northpointe's competing readings of COMPAS were both correct.</p>
+      <div class="authors mono">Jon Kleinberg, Sendhil Mullainathan, Manish Raghavan</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>ITCS</b></span>
+        <span class="fact">citations&nbsp;<b>2,084</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1609.05807">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>In May 2016, ProPublica's <em>Machine Bias</em> investigation argued that COMPAS — a risk tool used to score criminal defendants' probability of future arrest ("recidivism") and inform bail, sentencing, and parole decisions — was biased against Black defendants: among people who did <em>not</em> go on to reoffend, Black defendants were far more likely than white defendants to be flagged high-risk, and among those who did reoffend, white defendants were far more likely to be flagged low-risk. Northpointe, COMPAS's vendor, and a subsequent rebuttal countered that the tool was in fact well-calibrated across race — its risk scores meant the same thing (the same fraction of people at a given score level actually reoffended) for Black and white defendants alike. Both sides were reading real properties off the same set of numbers, and, as this paper shows, both were right — which meant the public argument had run past the point where more scrutiny of COMPAS specifically could resolve it.</p>
+      <p>What was missing was a formal answer to a prior, more general question: for <em>any</em> procedure that assigns people probability-of-positive-class scores based on observable features, across two groups, can a single risk assignment simultaneously satisfy the calibration property Northpointe invoked and the equalized-error properties ProPublica invoked — regardless of the dataset, the domain, or whether the scores come from an algorithm or a human? Calibration, statistical parity, and various equalized-error notions had each been proposed independently in prior fairness literature, but without a general characterization of when — if ever — they could all hold at once. This paper supplies that characterization, stripped of anything specific to criminal justice, so it applies equally to lending, medical risk scores, or ad targeting.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The model strips the COMPAS setting down to bare mathematics. Each person has a feature vector σ that fully summarizes what a decision-maker can observe about them — people who share a σ are indistinguishable to the procedure — and a hidden binary label: "positive" if they truly belong to the class being predicted (e.g., will reoffend), "negative" otherwise. p<sub>σ</sub> is the true fraction of people with feature vector σ who are positive, and is assumed known to the procedure. Each person also belongs to one of two groups (e.g., two racial groups); the groups may have different distributions over feature vectors, but critically, group membership carries no additional information about the label once σ is known. A <strong>risk assignment</strong> divides people into bins b, each labeled with a score v<sub>b</sub> meant as the probability that a person in that bin is positive; a matrix of values X<sub>σb</sub> specifies what fraction of people with feature vector σ land in bin b (allowing randomized splits across bins), so the framework covers both hard classifiers and continuous, possibly-randomized scoring rules — and the results hold "regardless of how the risk assignment is computed... whether the method is algorithmic or otherwise."</p>
+
+      <p>Three conditions, each independently motivated as a fairness criterion in the applied literature, are formalized:</p>
+      <table>
+        <thead><tr><th>Condition</th><th>Requires</th><th>A violation looks like</th></tr></thead>
+        <tbody>
+          <tr><td><strong>(A)</strong> Calibration within groups</td><td>For every bin (score v<sub>b</sub>) and every group, the expected fraction of that group's members in the bin who are truly positive equals v<sub>b</sub></td><td>Scores don't mean what they claim within a group — a decision-maker has a clear incentive to treat equally-scored people from different groups differently</td></tr>
+          <tr><td><strong>(B)</strong> Balance for the negative class</td><td>Truly-negative people in group 1 and group 2 receive the same average score</td><td>Negative instances (e.g., non-reoffenders) in one group are scored systematically riskier than in the other</td></tr>
+          <tr><td><strong>(C)</strong> Balance for the positive class</td><td>Truly-positive people in group 1 and group 2 receive the same average score</td><td>Positive instances (e.g., reoffenders) in one group are scored systematically less risky than in the other</td></tr>
+        </tbody>
+      </table>
+      <p>The paper is careful to distinguish (B)/(C) from the older, more familiar notion of <strong>statistical parity</strong> (equal average score across all members of each group, positive and negative pooled together) — parity is a global requirement that's often neither feasible nor desirable, while balance conditions only ask that, conditional on the true label, group membership not predict the score.</p>
+
+      <div class="eq">
+        Theorem 1.1 — if a risk assignment satisfies (A), (B), and (C), then either p<sub>σ</sub>&nbsp;∈&nbsp;{0,1} for every σ (perfect prediction) or the two groups have <strong>equal base rates</strong>.
+        <span class="note">// the only two ways out of the trilemma: a predictor with no residual uncertainty, or two groups whose true positive-class fraction already matches</span>
+      </div>
+
+      <p>The proof is a short, two-line-geometry argument. Let x be the average score given to the negative class and y the average score given to the positive class (identical across groups by conditions B and C). Calibration (A) forces the total score handed to every member of group t to sum to μ<sub>t</sub>, that group's number of true positives — giving one linear equation per group, (N<sub>t</sub> − μ<sub>t</sub>)x + μ<sub>t</sub>y = μ<sub>t</sub>. If all three conditions hold, both groups' equations describe lines through the same (x,y). When the groups have equal base rates the two lines are literally the same line, so any (x,y) satisfies both; when the base rates differ, the two lines are distinct and intersect at exactly one point, (x,y) = (0,1) — an average score of 0 for the negative class and 1 for the positive class, i.e., perfect prediction. There is no third option.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Theorem 1.1 is exact but binary: it says the trilemma is unavoidable, not how badly it fails once you're neither at equal base rates nor at perfect prediction, and not whether the impossibility survives small measurement slack. <strong>Theorem 1.2</strong> answers both: for any ε&nbsp;&gt;&nbsp;0, satisfying ε-approximate versions of (A), (B), and (C) forces the instance into an f(ε)-approximate version of one of the two special cases, for a continuous f with f(ε)→0 as ε→0. The paper derives the bound explicitly — f(ε)&nbsp;=&nbsp;√ε·max(1,&nbsp;3√ε&nbsp;+&nbsp;3/4) — which scales like √ε rather than ε, so it's a fairly loose bound: a modest ε-violation of all three fairness conditions only pins the instance down to a much looser tolerance on base-rate equality or near-perfect prediction. The headline point stands regardless — relaxing "exactly calibrated and balanced" to "approximately calibrated and balanced" does not reopen an escape route from the trade-off; it only stretches how approximate the two special cases have to be.</p>
+
+      <p>Mapped onto COMPAS: ProPublica's critique amounts to a (B)/(C) violation (unequal average scores among people who share the same true recidivism outcome, across race), while Northpointe's rebuttal established condition (A). Since Black and white defendants in the underlying data do not share a recidivism base rate, Theorem 1.1 says <em>a priori</em> that no risk assignment — COMPAS or any alternative — could have satisfied both sides' criteria at once; the paper's companion piece by Chouldechova works out this exact empirical case against the real Broward County COMPAS data.</p>
+
+      <p>A second, independent set of results (§4) addresses the case where the trilemma doesn't bind — equal base rates — and asks what the best fair assignment looks like. Among calibrated assignments, the loss-minimizing one is always the <strong>identity assignment</strong> I (every feature vector σ gets its own bin, scored at exactly p<sub>σ</sub>, i.e., no aggregation at all) — but I may itself violate balance. Lemma 4.1 shows the set of achievable "fairness differences" (the gap in average positive-class scores between the two groups) across well-calibrated assignments forms a full interval, so Corollary 4.2 concludes: a non-trivial fair assignment exists exactly when some calibrated assignment favors group 1 and some other calibrated assignment favors group 2. Any such fair assignment, though, strictly increases loss relative to I — fairness costs accuracy even in the one regime where it's achievable at all. Finally, §4.2 proves that even granting equal base rates, deciding whether a non-trivial fair assignment exists becomes <strong>NP-complete</strong> once every person with a given feature vector must land in the same bin (the realistic, non-randomized case) — the reduction encodes an arbitrary instance of Subset Sum into the choice of which feature vectors get grouped together.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>Kleinberg, Mullainathan, and Raghavan are explicit that they are not trying to adjudicate the COMPAS dispute or recommend which condition should win: "our intention in the present work isn't to make a recommendation on how conflicts between different definitions of fairness should be handled... rather, our point is to establish certain unavoidable trade-offs." That's an intellectually honest scope, and it's also the paper's central limitation as a decision-making tool — for whoever actually has to ship a risk-scoring system, a proof that three properties can't coexist is necessary information, not sufficient information. The conclusion gestures at the natural next step — searching for a risk assignment that keeps calibration plus only the balance condition for whichever class's errors are costlier in the deployment at hand — but explicitly leaves it as "an interesting open question," not a decision procedure the reader can apply.</p>
+      <p>The same generality that makes the result strong (arbitrary real-valued risk assignments rather than just binary classifiers; both exact and ε-approximate versions; a formal NP-completeness reduction for the integral case) is also where the paper says the least about any specific deployment. p<sub>σ</sub> is treated as objectively known ground truth throughout — the framework never asks whether the label used to define "positive" (e.g., re-arrest as a proxy for reoffending) is itself contaminated by group-correlated measurement error, a question the companion Chouldechova paper's real Broward County data makes concrete and this paper's abstraction assumes away by construction. The two-group restriction is likewise only asserted, not proved, to generalize ("straightforward to extend... to the case of more than two groups") — real deployments with multiple or intersecting protected categories may not inherit the clean two-line geometry of the proof as cleanly as claimed.</p>
+      <p>The field's actual response over the following decade wasn't to find a hole in Theorem 1.1 — the algebra is airtight — but to route around the premise that group-level statistics are the right question at all. Dwork, Hardt, Pitassi, Reingold &amp; Zemel's earlier individual-fairness proposal sidesteps the trilemma entirely by replacing group-level statistics with a task-specific similarity metric between individuals, at the cost of needing someone to define and defend that metric. A second strand — previewed only in this paper's own closing paragraph — tried to make the choice among (A)/(B)/(C) an explicit function of the relative cost of false positives versus false negatives (the cost-based framework of Corbett-Davies et al., cited here in §1.3 as a "working paper, to appear"), rather than treating all three as equally weighted defaults. A third strand, arriving nearly a decade later under the name multicalibration, doesn't repeal the theorem either — it changes which "groups" the calibration condition ranges over, from two coarse demographic buckets to many overlapping, computationally-identifiable subgroups, which redistributes where the trade-off bites without eliminating it.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">None in the ML sense — this is a pure existence/impossibility proof, not a benchmarked method, so there's no model to compare against. The relevant comparison is conceptual: the paper positions its trilemma against plain statistical parity (shown incompatible with (A) whenever base rates differ, and with (B)+(C) whenever the classes are unequal in size) and against two independently-derived, contemporaneous versions of essentially the same result — Hardt, Price &amp; Srebro's equalized-odds impossibility and Chouldechova's COMPAS-grounded version — all arriving within about six weeks of each other in 2016.</p>
+        <span class="k">contamination</span><p class="v">Not applicable to a proof, but the model's core assumption — that p<sub>σ</sub> is exogenously known and free of group-correlated label bias — is exactly the assumption the real ProPublica/Northpointe dispute cannot fully verify; the paper's abstraction sets that question aside rather than engaging with it.</p>
+        <span class="k">what's missed</span><p class="v">No worked treatment of intersectional or more-than-two-group settings beyond an unproven claim that the result extends; no decision procedure for which of (A)/(B)/(C) to prioritize in a given deployment, beyond flagging the costlier-class idea as future work; no engagement with whether the ground-truth label p<sub>σ</sub> is itself measured fairly.</p>
+        <span class="k">would raise confidence</span><p class="v">A worked multi-group or intersectional version of Theorem 1.1, rather than an asserted extension; a fleshed-out decision-theoretic argument for which fairness criterion should bind given asymmetric error costs, rather than an open question; and an empirical check, using real base-rate gaps like the ones in the companion COMPAS analysis, of how tight the √ε-scaling bound in Theorem 1.2 actually is in practice.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>The cleanest and most general of 2016's three independent fairness-impossibility papers: a short, self-contained proof that calibration within groups and equalized average scores for the truly-positive and truly-negative classes cannot all hold except when the compared groups share a base rate or the predictor is perfect — with an approximate version showing the escape hatch doesn't reopen under small measurement slack, and a hardness result showing that even finding the best available fair compromise is NP-complete for integral assignments. It settles the ProPublica-vs-Northpointe argument at the level of principle — both sides were right, and had to be, given differing base rates — but by design renders no verdict on which fairness property any given deployment should actually prioritize, leaving that as the open question the next decade of fairness research spent trying to answer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Calibration within groups, balance for the negative class, and balance for the positive class cannot all hold at once for a risk assignment unless the compared groups share the same base rate or the predictor achieves perfect prediction (Theorem 1.1) — and the same trilemma survives, in a √ε-loosened form, when all three conditions are only required to hold approximately (Theorem 1.2).</li>
+        <li>The 2016 COMPAS controversy was a real instance of exactly this trade-off: ProPublica's critique and Northpointe's rebuttal were both reading genuine properties off the same instrument, and with Black and white defendants' recidivism base rates differing, no risk score could have satisfied both sides' fairness criteria simultaneously.</li>
+        <li>Even when base rates are equal so a fair assignment exists, finding the loss-minimizing one is NP-complete once people with identical features must share a bin (a reduction from Subset Sum, §4.2) — the trilemma has a computational-complexity cousin, not just a statistical one.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Inherent Trade-Offs in the Fair Determination of Risk Scores<br>
+        Jon Kleinberg, Sendhil Mullainathan, Manish Raghavan · 2017 · ITCS<br>
+        <a href="https://arxiv.org/abs/1609.05807">read the original ↗</a> · slug: kleinberg-2016-inherent-tradeoffs
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
