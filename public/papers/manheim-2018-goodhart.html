@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Categorizing Variants of Goodhart's Law — paper_atlas</title>
+<meta name="description" content="A formal taxonomy of the ways optimizing a proxy metric breaks its relationship to the true goal — regressional, extremal, causal, and adversarial Goodhart effects, plus the Cobra Effect as a special case of the adversarial kind.">
+<meta property="og:title" content="Categorizing Variants of Goodhart's Law">
+<meta property="og:description" content="A formal taxonomy of the ways optimizing a proxy metric breaks its relationship to the true goal — regressional, extremal, causal, and adversarial Goodhart effects, plus the Cobra Effect as a special case of the adversarial kind.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/manheim-2018-goodhart.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- causal-graph mini diagrams (paper has no extractable figures — these
+   recreate the paper's own small causal-graph sketches in HTML/CSS) ---- */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
+@media(max-width:640px){.cgrid{grid-template-columns:1fr}}
+.cnode{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:16px}
+.cnode .clbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:10px}
+.cgraph{display:flex;flex-direction:column;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--dim)}
+.cgraph .cx{padding:5px 10px;border-radius:6px;border:1px dashed var(--warn);color:var(--warn)}
+.cgraph .cx.shaded{background:var(--warn-soft)}
+.cgraph .crow{display:flex;gap:26px}
+.cgraph .cbox{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--panel)}
+.cgraph .carrow{color:var(--muted);font-size:16px;line-height:1}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2018 · arXiv · Safety &amp; Red-teaming</div>
+      <h1>Categorizing Variants of Goodhart's Law</h1>
+      <p class="dek">A formal taxonomy of the ways optimizing a proxy metric breaks its relationship to the true goal it was supposed to track — four base failure modes, three flavors of causal intervention, and a "Cobra Effect" split that gives the vocabulary later reward-hacking papers build directly on top of.</p>
+      <div class="authors mono">David Manheim, Scott Garrabrant</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>arXiv</b></span>
+        <span class="fact">citations&nbsp;<b>183</b></span>
+        <span class="fact">topic&nbsp;<b>Safety &amp; Red-teaming</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1803.04585">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-19</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>"Goodhart's Law" — that a metric stops being useful once you optimize hard against it — gets invoked constantly in machine learning, policy, and economics, but almost always as a single catch-all label. That vagueness is a real cost: a training-time reward-hacking bug (an RL agent learning to game a proxy reward), a benchmark-contamination problem (a model that has memorized the eval set), and a multi-agent adversarial dynamic (a second actor deliberately exploiting your metric) get lumped under one name even though the failure mechanics, and the fixes, are completely different.</p>
+      <p>The paper's stated starting point is a single earlier blog post: Garrabrant's December 2017 LessWrong post "Goodhart Taxonomy," which sketched — in the authors' own words — "(at least) four different mechanisms" behind Goodhart-like failures but did not formalize them. This paper's job is to take that informal sketch and specify each mechanism precisely enough that it can be recognized and distinguished in a concrete system, not just gestured at. The motivation the authors give directly ties this to AI: "the increased optimization power offered by artificial intelligence makes it especially critical" to have this vocabulary, since a Goodhart effect gets worse in proportion to how hard something is optimizing against the proxy — exactly the regime RL fine-tuning and reward-model optimization operate in.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The taxonomy</h2>
+      <p>The paper sets up a single formal skeleton and then classifies every failure mode as a different way of breaking it. A system has states <span class="mono">s ∈ S</span>. A <span class="mono">Goal</span> function <span class="mono">G(s) → ℝ</span> is what a regulator actually cares about, but the regulator has incomplete knowledge and can only act on a proxy <span class="mono">Metric M(s) → ℝ</span>. The regulator picks a threshold <span class="mono">c</span> and restricts the system to the region where the metric clears it:</p>
+
+      <div class="eq">
+        A&nbsp;=&nbsp;{ s&nbsp;∈&nbsp;S&nbsp;:&nbsp;M(s)&nbsp;≥&nbsp;c }
+        <span class="note">// the "permissible region" selection pressure creates</span>
+      </div>
+
+      <p>Every category below is a distinct story for why restricting to <span class="mono">A</span> on the basis of <span class="mono">M</span> stops tracking <span class="mono">G</span>.</p>
+
+      <h3>Regressional Goodhart — the unavoidable one</h3>
+      <p>If the proxy is the goal plus independent noise, <span class="mono">M = G + normal(µ, σ²)</span>, then selecting for a large <span class="mono">M</span> selects both for a large <span class="mono">G</span> and for a large noise draw. So among states that clear a high threshold <span class="mono">c</span>, the true <span class="mono">G</span> is systematically lower than <span class="mono">M</span> suggests — the paper's own name for this is "Tails come apart." The authors are explicit that this one "cannot be avoided": any inexact metric, however unbiased, diverges from the goal in the tail simply because it is being conditioned on.</p>
+
+      <div class="eq">
+        M&nbsp;=&nbsp;G&nbsp;+&nbsp;normal(µ,&nbsp;σ²)
+        <span class="note">// simplest Goodhart model — bias-free noise still collapses the tail correlation</span>
+      </div>
+
+      <h3>Extremal Goodhart — the relationship breaks out-of-distribution</h3>
+      <p>Pushing the state distribution into a region far from where <span class="mono">M</span> was ever validated against <span class="mono">G</span> can break their relationship entirely, in two distinct ways. <strong>Model insufficiency</strong> is a fitting problem: the metric is a simplified/underfit approximation, accurate near the observed region, and optimization pressure pushes the system exactly into the region where the approximation error is largest (the paper's ML example is underfitting a relationship with a low-degree polynomial when higher-order terms only become large far from the training data). <strong>Change in regime</strong> is not a fitting problem at all — the true relationship between <span class="mono">M</span> and <span class="mono">G</span> is genuinely different in the extreme region, no matter how well it was learned elsewhere. The paper's worked example: a wind-speed sensor whose readings are systematically biased once wind exceeds its design tolerance — the instrument didn't get less accurate through underfitting, it is measuring a different physical regime.</p>
+
+      <h3>Causal Goodhart — the regulator's own intervention breaks the graph</h3>
+      <p>Regressional and extremal Goodhart only require selection pressure. Causal Goodhart requires the regulator to actually <em>intervene</em> — take an action that changes the causal structure connecting metric and goal, not just select among existing states. The paper works this out for three distinct intervention points on a simple three-node causal graph (a shared cause <span class="mono">X</span>, the <span class="mono">Goal</span>, and the <span class="mono">Metric</span>):</p>
+
+      <div class="cgrid">
+        <div class="cnode">
+          <div class="clbl">// shared-cause intervention</div>
+          <div class="cgraph">
+            <div class="cx shaded">X (intervened)</div>
+            <div class="crow"><span class="carrow">↙</span><span class="carrow">↘</span></div>
+            <div class="crow"><span class="cbox">Goal</span><span class="cbox">Metric</span></div>
+          </div>
+        </div>
+        <div class="cnode">
+          <div class="clbl">// intermediary intervention</div>
+          <div class="cgraph">
+            <div class="crow"><span class="cbox">Goal</span></div>
+            <div class="carrow">↓</div>
+            <div class="cx shaded">X (intervened)</div>
+            <div class="carrow">↓</div>
+            <div class="crow"><span class="cbox">Metric</span></div>
+          </div>
+        </div>
+        <div class="cnode">
+          <div class="clbl">// metric manipulation</div>
+          <div class="cgraph">
+            <div class="crow"><span class="cbox">Goal</span></div>
+            <div class="carrow">✕</div>
+            <div class="crow"><span class="cbox">Metric (set directly)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p>In <strong>shared-cause intervention</strong>, the regulator sets the shared cause <span class="mono">X</span> to a maximal value (their example: a teacher trains general test-taking skill, a cause behind scores on two different tests), which erases the causal path from <span class="mono">X</span> through to either variable — the leftover correlation between <span class="mono">Goal</span> and <span class="mono">Metric</span> is now just noise. In <strong>intermediary intervention</strong>, the regulator fixes a variable sitting on the causal chain between goal and metric, severing the link entirely — the metric can move without the goal moving at all. In <strong>metric manipulation</strong>, the regulator (or an agent) sets the metric directly, e.g. a teacher literally changing grades — this doesn't touch the goal (learning) at all, it just makes the metric useless as a measurement of it. The paper also flags the mirror-image failure — <strong>ignored shared/intermediary/additional causes</strong>, where the regulator merely <em>believes</em> the wrong causal structure and selects accordingly; this doesn't count as causal Goodhart (no intervention occurred) but it does worsen regressional or extremal Goodhart because the assumed model is wrong.</p>
+
+      <h3>Adversarial Goodhart — someone else is gaming your metric</h3>
+      <p>The fourth category introduces a second actor with goals the regulator doesn't fully control. The paper splits this into two mechanisms. <strong>Adversarial misalignment</strong> (including <strong>Campbell's Law</strong> as a named special case) is where the agent selects its own proxy knowing the regulator will optimize against the shared metric — the paper shows a toy model where the agent's metric is uncorrelated with its true goal in general but becomes strongly correlated exactly on the subspace the regulator selects into, effectively hijacking the regulator's own selection pressure. The <strong>Cobra Effect</strong> is the incentive-based variant, named for the (possibly apocryphal) colonial-India bounty-on-dead-cobras story where people started breeding cobras to kill for the reward, increasing the cobra population the policy was meant to reduce. The paper distinguishes a <strong>normal Cobra effect</strong> (the agent exploits a causal variable the regulator never modeled — a causal-Goodhart mechanism initiated by the agent) from a <strong>non-causal Cobra effect</strong> (the agent's incentive-aligned goal still worsens regressional or extremal Goodhart once the agent applies its own selection pressure on top).</p>
+
+      <table>
+        <thead><tr><th>Failure mode</th><th>Core mechanism</th><th>Worked example in the paper</th></tr></thead>
+        <tbody>
+          <tr><td>Regressional</td><td>Selecting on M selects for its noise too — unavoidable</td><td>Any metric with independent measurement error</td></tr>
+          <tr><td>Extremal — model insufficiency</td><td>Approximation error grows outside the fitted region</td><td>Underfit low-degree polynomial relationship</td></tr>
+          <tr><td>Extremal — change in regime</td><td>M–G relationship is genuinely different in the extreme region</td><td>Wind-speed sensor beyond its design tolerance</td></tr>
+          <tr><td>Causal — shared-cause intervention</td><td>Regulator fixes a common cause of M and G</td><td>Teacher trains general test-taking skill</td></tr>
+          <tr><td>Causal — intermediary intervention</td><td>Regulator fixes a variable on the causal path M←G</td><td>An intervention severing the causal chain</td></tr>
+          <tr><td>Causal — metric manipulation</td><td>Regulator/agent sets M directly</td><td>Teacher changes recorded grades</td></tr>
+          <tr><td>Adversarial — misalignment / Campbell's Law</td><td>Agent picks a proxy correlated with M, not with its own goal, in general</td><td>Agent's metric hijacks the regulator's selection pressure</td></tr>
+          <tr><td>Adversarial — Cobra effect (normal / non-causal)</td><td>Incentive-aligned agent exploits an unmodeled cause, or over-optimizes once aligned</td><td>Colonial India's dead-cobra bounty</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The deliverable is the taxonomy itself</h2>
+      <p>This is a conceptual paper with no experiments, so "results" means the taxonomy's coverage and coherence rather than a benchmark score. The authors' claim is that the eight-way split above (four base categories, three causal sub-mechanisms, two Cobra-effect sub-mechanisms) cleanly subsumes several previously separate, informally-related concepts: the original Goodhart's Law statement from monetary economics, Campbell's Law from social-indicator research, the Lucas critique from macroeconomics, and the Cobra Effect from policy folklore. Each of those, the paper argues, is really naming one corner of the same underlying phenomenon — selecting on a proxy under increasing optimization pressure — rather than a genuinely distinct effect.</p>
+      <p>The paper is explicit about what it is <em>not</em> claiming: it restricts its formal treatment to the single-dimensional case ("for discussing Goodhart effects the single dimensional case is ideal," footnote 2), and it acknowledges its own categories "often occur together" in practice rather than presenting as cleanly separable instances. It closes by naming the intended audience directly — "policy design, in machine learning, and in specific questions about AI alignment" — and gives one concrete machine-learning instance of each family: extremal Goodhart from "using limited data and choosing overly parsimonious models," and causal-mistake failures from "ignoring causality in a system," both framed as recurring in practice rather than hypothetical.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>There is no benchmark to interrogate here — the fair question for a taxonomy paper is whether the categories are well-defined, mutually exhaustive enough to be useful, and validated against real failures rather than only toy models. On all three, the paper is honest about its own limits, and those limits matter for anyone tempted to treat "which Goodhart type is this?" as a settled diagnostic.</p>
+      <p>Every category is illustrated with a hand-built statistical or causal toy model (<span class="mono">M = G + normal(µ,σ²)</span>, a wind-speed instrument, a teacher changing grades, colonial cobra bounties) rather than an empirical case study run through the framework end to end. None of the eight failure modes is shown being distinguished from the others using real data — which is precisely the operational question a practitioner needs answered ("is my RLHF reward model overoptimizing via regressional or extremal Goodhart?") and precisely what the paper doesn't attempt. The paper also concedes overlap explicitly: the categories "often occur together," and the mirror-image "ignored cause" failures don't map cleanly onto the causal-Goodhart bucket even though they arise from the same causal misunderstanding — a taxonomy whose boundary cases blur into each other is harder to use as a checklist than the clean eight-row split suggests.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Not applicable — no empirical claims are made, so there is nothing to compare against. The paper's stated baseline is a single non-peer-reviewed source: Garrabrant's Dec-2017 LessWrong post, which is extended rather than replicated or re-tested.</p>
+        <span class="k">contamination</span><p class="v">Not applicable in the usual sense, but worth noting the paper itself was never obviously published in a peer-reviewed venue (the arXiv listing shows only a v4 revision, Feb 2019, with no journal/conference target) — its 183 citations are earned entirely on adoption within the AI-safety literature, not editorial vetting.</p>
+        <span class="k">what's missed</span><p class="v">A path from "which category is this failure" back to data: no diagnostic test, statistical signature, or decision procedure is offered for telling regressional from extremal Goodhart in a training curve, only narrative description. The multi-dimensional/multi-metric case — the normal case for real ML systems training against composite or multi-objective rewards — is explicitly set aside rather than addressed.</p>
+        <span class="k">would raise confidence</span><p class="v">Worked case studies that map the taxonomy onto documented reward-hacking incidents with predictive rather than post-hoc power — e.g., showing the taxonomy predicts <em>where</em> a reward-overoptimization curve bends, the way later scaling-law work (Gao et al. 2022) explicitly uses this taxonomy's vocabulary to interpret its own overoptimization coefficients.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>Judge this paper as infrastructure, not as an evaluated method — it succeeds at the one thing it sets out to do, which is turn one blog post's "at least four mechanisms" into eight formally distinguishable failure modes with a shared causal-graph vocabulary, and its 183 citations (including this site's own gao-2022-reward-overoptimization and skalse-2022-reward-hacking, both of which build directly on its regressional/extremal/adversarial split) are the actual evidence it works as a shared reference frame. It does not, and does not claim to, tell you how to detect which Goodhart type is degrading your metric from data alone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Four base Goodhart failure modes: <strong>regressional</strong> (an inexact proxy's noise gets selected for along with the signal — unavoidable), <strong>extremal</strong> (the proxy–goal relationship breaks outside the region it was validated in, via model insufficiency or genuine regime change), <strong>causal</strong> (an actual intervention — on a shared cause, an intermediary, or the metric itself — severs the causal link), and <strong>adversarial</strong> (a second actor with different goals games the metric, including the incentive-driven Cobra Effect).</li>
+        <li>The formal core is one line: a regulator restricts states to <span class="mono">A = {s : M(s) ≥ c}</span> using a proxy <span class="mono">M</span> instead of the true, unobserved <span class="mono">Goal G</span>; every category is a different story for why that restriction stops correlating with <span class="mono">G</span>.</li>
+        <li>There is no empirical validation in the paper itself — every category is illustrated with a toy statistical model or a hypothetical (teachers, wind sensors, cobra bounties), and the categories admit acknowledged overlap. Its influence comes from later empirical papers (this site's gao-2022-reward-overoptimization, skalse-2022-reward-hacking) adopting its vocabulary to interpret their own reward-hacking results, not from this paper testing the taxonomy itself.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Categorizing Variants of Goodhart's Law<br>
+        David Manheim, Scott Garrabrant · 2018 · arXiv<br>
+        <a href="https://arxiv.org/abs/1803.04585">read the original ↗</a> · slug: manheim-2018-goodhart
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
