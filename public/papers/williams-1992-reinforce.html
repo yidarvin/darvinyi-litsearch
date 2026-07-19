@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning — paper_atlas</title>
+<meta name="description" content="The 1992 paper that proves REINFORCE: any update proportional to (reward − baseline) times the log-derivative of a stochastic unit's own output is an unbiased ascent step on expected reward — the score-function gradient every later policy-gradient method, from actor-critic through TRPO/PPO/A3C to modern RLHF and GRPO, still runs on.">
+<meta property="og:title" content="Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning">
+<meta property="og:description" content="The 1992 paper that proves REINFORCE: any update proportional to (reward − baseline) times the log-derivative of a stochastic unit's own output is an unbiased ascent step on expected reward — the score-function gradient every later policy-gradient method, from actor-critic through TRPO/PPO/A3C to modern RLHF and GRPO, still runs on.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/williams-1992-reinforce.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">1992 · Machine Learning · Post-training &amp; RL</div>
+      <h1>Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning</h1>
+      <p class="dek">The paper that names and proves REINFORCE: a whole family of algorithms that follow the gradient of expected reward using nothing but the reward received and the log-derivative of the action's own probability — no reward model, no stored gradient estimate, and a foreshadowed variance problem that TRPO, PPO, A3C, and modern RLHF/GRPO would spend the next three decades taming.</p>
+      <div class="authors mono">Ronald J. Williams</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>Machine Learning</b></span>
+        <span class="fact">citations&nbsp;<b>1,090</b></span>
+        <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
+        <span class="fact"><a href="https://doi.org/10.1007/BF00992696">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-19</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 1992, reinforcement learning already had a working toolkit for networks of stochastic units: Barto, Sutton, and Anderson's actor-critic (1983), Sutton's reinforcement-comparison studies (1984), Barto and Anandan's associative reward-penalty automaton (AR<sub>P</sub>, 1985), and Watkins's Q-learning (1989) all adjusted weights using some function of the reward and a unit's own recent behavior. But each of these was a specific algorithm, justified case by case, with no shared theory connecting them to a provable direction of ascent on a single performance measure. Supervised learning, meanwhile, had backpropagation: a completely general recipe that follows the gradient of a differentiable loss through an arbitrary feedforward network, and — per the paper's own framing — "the gradient seems to provide a powerful and general heuristic basis for generating algorithms which are often simple to implement and surprisingly effective." Reinforcement learning had no analogue. A network of stochastic units picks an output by sampling from a distribution, and the environment hands back only a scalar reward for the sampled action — never a "correct answer" to differentiate against, and never (in general) a differentiable path from that reward back through the unit's own random choice. Williams's question is whether there is nonetheless a completely general prescription — applicable to any unit whose output is drawn from a differentiable parametric distribution, Bernoulli, Gaussian, or otherwise — for adjusting weights so that, in expectation, they climb the gradient of expected reinforcement, without ever building a model of the reward function or explicitly computing (or even storing enough information to compute) a gradient estimate.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>Consider a network built from stochastic units. Unit <i>i</i> draws its output y<sub>i</sub> from a probability mass (or density) function g<sub>i</sub>(ξ, w<sub>i</sub>, x<sub>i</sub>), parameterized by its own weight vector w<sub>i</sub> and input x<sub>i</sub>; the whole system is scored by a single scalar performance measure, the expected reinforcement E{r | W}. Williams defines a <b>REINFORCE algorithm</b> as any weight update of the form Δw<sub>ij</sub> = α<sub>ij</sub>(r − b<sub>ij</sub>)e<sub>ij</sub>, where α<sub>ij</sub> ≥ 0 is a learning-rate factor, b<sub>ij</sub> is a reinforcement baseline that must be conditionally independent of y<sub>i</sub>, and e<sub>ij</sub> = ∂ln g<sub>i</sub>/∂w<sub>ij</sub> is the <b>characteristic eligibility</b> — a quantity every unit can compute from nothing but its own input, output, and parameters, with no reference to how it's wired into the rest of the network. The acronym is literal: "<b>RE</b>ward <b>I</b>ncrement = <b>N</b>onnegative <b>F</b>actor × <b>O</b>ffset <b>R</b>einforcement × <b>C</b>haracteristic <b>E</b>ligibility."</p>
+
+      <p><b>Theorem 1</b> is the paper's entire payload: for any REINFORCE algorithm, the inner product of the expected update E{ΔW | W} with the true gradient ∇<sub>W</sub>E{r | W} is always nonnegative, and when every α<sub>ij</sub> equals a single shared constant α, the relationship is exact — E{ΔW | W} = α∇<sub>W</sub>E{r | W}. In other words, the local, correlation-style rule below is, in expectation, an unbiased step of ordinary gradient ascent on expected reward, even though no gradient was ever explicitly formed. The proof (Appendix A) is short: conditioning on the unit's own output and using the identity Σ<sub>ξ</sub>∂g<sub>i</sub>/∂w<sub>ij</sub> = 0 (the probabilities must still sum to one) shows E{Δw<sub>ij</sub> | W, x<sub>i</sub>} = α<sub>ij</sub>∂E{r | W, x<sub>i</sub>}/∂w<sub>ij</sub> exactly — this is precisely the score-function (likelihood-ratio) identity ∇<sub>θ</sub>E[r] = E[r·∇<sub>θ</sub>ln π(y|θ)] that every subsequent policy-gradient method, from actor-critic through PPO and GRPO, is a variance-reduced elaboration of.</p>
+
+      <div class="eq">
+        Δw<sub>ij</sub>&nbsp;=&nbsp;α<sub>ij</sub>&nbsp;(r&nbsp;−&nbsp;b<sub>ij</sub>)&nbsp;e<sub>ij</sub>,&nbsp;&nbsp;e<sub>ij</sub>&nbsp;=&nbsp;<span class="frac"><span class="num">∂ ln g<sub>i</sub>(y<sub>i</sub>, w<sub>i</sub>, x<sub>i</sub>)</span><span class="den">∂w<sub>ij</sub></span></span>
+        <span class="note">// characteristic eligibility — the score-function / likelihood-ratio gradient trick, in its original 1992 notation</span>
+      </div>
+
+      <p>Two worked cases make the abstraction concrete. For a Bernoulli-logistic unit (output 0/1, probability p<sub>i</sub> = logistic(Σw<sub>ij</sub>x<sub>j</sub>)), the eligibility collapses to e<sub>ij</sub> = (y<sub>i</sub> − p<sub>i</sub>)x<sub>j</sub>, so the whole update becomes Δw<sub>ij</sub> = αr(y<sub>i</sub> − p<sub>i</sub>)x<sub>j</sub> — a delta-rule-shaped update that Williams shows coincides exactly with the existing associative reward-inaction (AR<sub>I</sub>) automaton when b = 0, and reduces further to the 2-action linear reward-inaction (L<sub>R−I</sub>) automaton for a single free-standing unit. For a Gaussian unit with separately adaptable mean μ and standard deviation σ, the characteristic eligibilities are (y − μ)/σ² for μ and [(y − μ)² − σ²]/σ³ for σ — and Williams proves (Proposition 1) that the (y − μ)/σ² form holds for the mean parameter of <i>any</i> exponential-family output distribution (Bernoulli, Poisson, exponential, normal alike), unifying every special case under one formula. The Gaussian case also has a distinctive interpretive payoff: because σ is independently adaptable, "control over σ is tantamount to control over the unit's exploratory behavior" — the paper's own articulation of the explore/exploit knob that variance-controlled exploration schedules still turn today.</p>
+
+      <p>The framework extends past single-step reward in two directions. <b>Episodic REINFORCE</b> (Theorem 2) handles networks with loops or delayed reward: "unfold" a recurrent net running for k steps into an equivalent acyclic net, sum each weight's characteristic eligibility over the whole episode, and apply the single accumulated update at the end — Δw<sub>ij</sub> = α<sub>ij</sub>(r − b<sub>ij</sub>)Σ<sub>t=1</sub><sup>k</sup>e<sub>ij</sub>(t) — which is unbiased by the same argument and needs only one running accumulator per weight, no per-timestep reward. And REINFORCE is shown to be <b>compatible with backpropagation</b>: in a network mixing stochastic and deterministic units, the correlation-style REINFORCE computation runs at the stochastic units while ordinary backprop computes the deterministic partial derivatives in between, and — in the reparameterizable case, y = μ + σz for a Gaussian unit — one can even "backpropagate through the random number generator" itself, differentiating the sampling step directly rather than falling back to a correlation estimate. That observation is a direct ancestor of the reparameterization trick used throughout modern generative modeling.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>This is a theory-and-algorithms paper, not a benchmark paper, so its "results" are the two proved theorems plus a survey of the small-scale simulation evidence that motivated its design choices — there is no head-to-head numeric table to quote, and none is invented here. Sutton's (1984) single-Bernoulli-unit studies, cited directly, found that REINFORCE using reinforcement comparison (an adaptively tracked baseline b̂ updated by exponential averaging, b̂(t) = γb̂(t−1) + (1−γ)r(t−1)) "outperformed all other algorithms investigated," including the plain L<sub>R−I</sub> automaton with no baseline. Williams &amp; Peng's (1991) nonassociative function-optimization experiments, also cited, confirmed the expected gradient-method behavior — convergence to local optima — and found that adding an entropy term to the reinforcement signal helped certain architectures escape poor optima on tasks requiring hierarchical search.</p>
+
+      <p>The paper's own preliminary Gaussian-unit studies work out what REINFORCE-with-comparison actually does to μ and σ during search: sampling a point better than recent experience pulls μ toward it and, depending on distance, either shrinks σ (if the good point falls within one standard deviation) or grows it (if the good point is unexpectedly far away) — a rule that provably narrows σ down to convergence once μ sits atop a sufficiently broad local maximum, but that Williams explicitly flags can misfire: on a very flat optimum, σ can shrink toward zero and the search stall before μ has actually reached the top, and — worse — "if r is always nonnegative and reinforcement comparison is not used (i.e., b = 0), REINFORCE may cause σ to converge to 0 before μ has moved to the top of any hill," reproducing at the continuous-parameter level the same failure mode proved exactly for the 2-action L<sub>R−I</sub> automaton: it is known to converge to a single deterministic action with probability 1, yet — despite the expected update always pointing toward the better action per Theorem 1 — "there is always a nonzero probability of its converging to an inferior choice of action," the same behavior as a biased random walk on the integers with absorbing barriers.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>Judged as mathematics, Theorem 1 and Theorem 2 hold up completely — they're proved from first principles in the appendices (a differentiation-under-conditioning argument plus the fact that a probability distribution must integrate to one), and the identity they establish is exactly the score-function / likelihood-ratio gradient estimator that every later policy-gradient method, all the way to today's LLM post-training, still relies on. Judged as an applied algorithm, Williams is unusually candid about the limits himself: Section 8.1 states outright that "a major limitation of the analysis performed here is that it does not immediately lead to prediction of the asymptotic properties of REINFORCE algorithms" — there is no general convergence theory, only the fully-worked special case of the 2-action automaton, which is known to converge to the <i>wrong</i> action with nonzero probability. Section 8.3 goes further: "the analysis given here offers no basis for choosing among various choices of reinforcement baseline," despite baseline choice visibly making or breaking convergence speed in every simulation the paper cites. And the property that would matter most to a modern reader — the <i>variance</i> of the (r − b)·e<sub>ij</sub> estimator — is never derived analytically at all; it only surfaces as an offhand empirical remark that "REINFORCE is generally very slow even when it succeeds," with episodic REINFORCE flagged as "especially slow, since it performs temporal credit-assignment by essentially spreading credit or blame uniformly over all past times."</p>
+
+      <p>That gap — an unbiased but high-variance gradient estimator, with no theory for the baseline that controls its variance — is precisely the seam the next three decades of policy-gradient research was organized around closing, without ever touching Theorem 1's core identity. Actor-critic methods replace the Monte-Carlo return with a learned value-function baseline; generalized advantage estimation replaces the raw baseline-subtracted reward with a bootstrapped, bias/variance-tunable advantage; TRPO and PPO don't change the gradient estimator at all — they constrain or clip the resulting step so a single noisy sample can't destroy the policy; A3C tames variance by averaging many parallel actors' updates instead of reducing any single one's variance. Modern LLM RL is the same lineage under new names: RLHF-with-PPO applies exactly this stack to a reward model's scalar output, and GRPO goes the other direction, discarding the learned critic entirely and replacing b<sub>ij</sub> with a group-mean-normalized reward computed over a batch of sampled completions — which is arguably closer in spirit to Williams's own "reinforcement comparison" baseline than to PPO's trust-region machinery it's usually described alongside.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">None in the modern sense — the "evidence" is two proved theorems plus scattered, mostly small-scale simulation reports (Sutton 1984's single-Bernoulli-unit tasks, Williams &amp; Peng 1991's function optimization, this paper's own preliminary Gaussian-unit studies), several explicitly flagged as unpublished or personal communications.</p>
+        <span class="k">contamination</span><p class="v">Not the applicable axis for a 1992 theory paper — the analogous risk is the analytical claims outrunning what was verified, and Williams flags this himself: "such results are not yet available, leaving simulation studies as our primary source of understanding."</p>
+        <span class="k">what's missed</span><p class="v">Any analytical characterization of the gradient estimator's variance (the single property every successor method targets), any convergence guarantee beyond the fully-solved 2-action automaton special case, and any principled — as opposed to purely empirical — rule for choosing the reinforcement baseline.</p>
+        <span class="k">would raise confidence</span><p class="v">Exactly what §8 asks for and doesn't have: a general asymptotic convergence theory, a derived (not just observed) optimal baseline, and — with the benefit of hindsight — a variance bound on the score-function estimator, which actor-critic, GAE, and trust-region methods would go on to supply piecemeal.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>Theorem 1 is the load-bearing result underneath the entire policy-gradient literature: everything from actor-critic through TRPO, PPO, A3C, and GRPO is a variance-reduction or step-size-control layer wrapped around the exact same unbiased score-function estimator Williams proves unbiased here in 1992. That's both the paper's enduring strength and the reason it shouldn't be graded like a modern benchmark paper — it succeeds entirely as mathematics, while candidly leaving the applied case for REINFORCE to be made one small simulation at a time, a case its own author repeatedly says isn't finished.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><b>Theorem 1 is the score-function gradient trick, proved in 1992.</b> Any update Δw<sub>ij</sub> = α<sub>ij</sub>(r − b<sub>ij</sub>)·∂ln g<sub>i</sub>/∂w<sub>ij</sub> is, in expectation, an unbiased ascent step on E{r | W} — computed locally, from a unit's own input/output/parameters, with no model of the reward and no explicitly formed gradient.</li>
+        <li><b>Episodic REINFORCE (Theorem 2) generalizes this to delayed and recurrent reward</b> via unfolding-in-time and a single running eligibility accumulator per weight — the direct ancestor of the full-episode Monte-Carlo return used in vanilla policy gradient, and the reason "REINFORCE" is still the name attached to whole-trajectory-reward training in modern RLHF and GRPO.</li>
+        <li><b>Williams already names the estimator's fatal practical flaw</b> — extreme variance, no general convergence guarantee, and an unresolved baseline choice — that actor-critic's learned baseline, GAE's bootstrapped advantage, TRPO's trust region, PPO's clipping, A3C's parallel actors, and GRPO's group-normalized reward were all later built, in sequence, to control. The surrounding machinery keeps changing; the 1992 gradient identity underneath it hasn't.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning<br>
+        Ronald J. Williams · 1992 · Machine Learning<br>
+        <a href="https://doi.org/10.1007/BF00992696">read the original ↗</a> · slug: williams-1992-reinforce
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
