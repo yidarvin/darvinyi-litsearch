@@ -179,8 +179,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// the gap</div>
       <h2>What problem is this solving?</h2>
-      <!-- fill: the concrete gap in prior work this paper targets. Be specific
-           about what existing methods/benchmarks miss and why it matters. -->
       <p>By 2015, machine reading comprehension — answering questions about a document's content — had been stuck for years on data scarcity. The only labeled datasets for testing reading comprehension, such as MCTest, ran to a few hundred hand-written question–answer pairs, enough to <em>evaluate</em> a system but not to <em>train</em> one from scratch. Two workarounds had emerged, and both had ceilings. One was to hand-engineer symbolic pipelines — grammars, or information-extraction systems that parsed text into predicate–argument triples and queried them like a relational database — which scale with engineering effort, not data, and cap out on the linguistic phenomena their rules anticipated. The other was to generate synthetic narratives and queries (as in Memory Networks' bAbI tasks), which produce unlimited training data but, as decades of computational-linguistics work on toy grammars had shown, close worlds don't transfer to the noise and richness of real natural language. What was missing was a way to harvest real documents paired with real questions at a scale — hundreds of thousands to millions of examples — large enough to train a statistical or neural model end-to-end, without either the labor of hand-annotation or the unreality of synthetic text.</p>
     </div>
   </section>
@@ -190,8 +188,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// how it works</div>
       <h2>The method</h2>
-      <!-- fill: the approach, in your own words at expert depth. Use an .eq
-           block for any key equation (HTML/CSS only — no KaTeX). -->
       <p>The paper's real contribution is a recipe for manufacturing supervised reading-comprehension data automatically, at the scale of online journalism. CNN and Daily Mail articles are typically accompanied by a handful of human-written bullet-point highlights that abstractively summarize the story — crucially, these highlights paraphrase rather than copy sentences verbatim. The authors turn each highlight into a Cloze-style (fill-in-the-blank) query by picking one named entity in it and replacing it with a placeholder, pairing that query with the full article as context and the removed entity as the answer. Scraping 93k CNN and 220k Daily Mail articles this way yields a combined corpus of roughly one million document–query–answer triples (Table 1: 380,298/3,924/3,198 CNN train/valid/test queries and 879,450/64,835/53,182 for Daily Mail, split by publication date so test articles postdate training articles).</p>
 
       <p>A cloze query alone would let a model cheat: a query like "the hi-tech bra that helps you beat breast X" is answerable as X=cancer from language-model statistics alone, without reading the document at all. To close that shortcut, the authors run a coreference resolver over each document, replace every mention of every entity with an abstract marker (e.g. <span class="mono">@entity193</span>), and then <strong>randomly re-permute those markers</strong> every time an example is loaded during training or testing — so a marker's identity carries no information across examples, and the only way to answer a query is to actually resolve which anonymized entity in <em>this specific</em> document the query refers to. Table 2 in the paper quantifies just how hard this makes the task even for a frequency heuristic: picking the single most-frequent entity marker in a document is correct only 30.5% (CNN) / 25.6% (Daily Mail) of the time.</p>
@@ -215,7 +211,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <!-- fill: headline results with EXACT numbers from the paper. -->
       <p>The neural attention readers beat every symbolic and heuristic baseline the authors tried, on both datasets (Table 5, test-set accuracy). The two hand-engineered NLP baselines — frame-semantic parsing (extracting predicate–argument triples and matching them between query and document) and a bag-of-frequency heuristic — top out at 40.2% (CNN) / 35.5% (Daily Mail). A surprisingly strong word-distance benchmark, which simply aligns the query's placeholder with the nearest lexically-matching context words, reaches 50.9% / 55.5% — evidence that a fair amount of headline-summary lexical overlap survives anonymization. The plain Deep LSTM Reader, with no attention mechanism at all, already clears both of those at 57.0% / 62.2%, and the two attention-based readers open a further gap: the Attentive Reader reaches 63.0% CNN / 69.0% Daily Mail, and the Impatient Reader 63.8% / 68.0% — roughly 23 points above the symbolic frame-semantic baseline on CNN and 33 points above it on Daily Mail. An ablation "Uniform Reader," identical to the Attentive Reader but with its attention weights forced equal, collapses back to 39.4% / 34.4%, isolating attention itself (not just the bidirectional encoder) as the source of the gain.</p>
 
       <figure class="wide">
@@ -241,10 +236,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// does it hold up?</div>
       <h2>The eval read</h2>
-      <!-- fill: the sharp, specific evaluation critique. Are the baselines fair
-           and current? Contamination / leakage? What does the headline metric
-           miss? What would raise confidence? This is the signature section —
-           be concrete, cite the paper's own setup. -->
       <p>The paper's own Table 2 is the first hint that this benchmark measures something narrower than "reading comprehension": simply guessing the single most frequently-mentioned entity in a document is right 30.5% of the time on CNN and 25.6% on Daily Mail, and picking among the top-10 most frequent entities is right 85%+ of the time on both. A model doesn't need to parse the query's semantics to do well here — it needs to find the article's salient entity and check it's plausible given the query, which is a much easier problem than open-ended question answering. That suspicion was confirmed a year later: Chen, Bolton &amp; Manning's <em>"A Thorough Examination of the CNN/Daily Mail Reading Comprehension Task"</em> (2016) hand-annotated a random sample of the CNN test set and found roughly one in four questions were unanswerable or required outside information — many due to coreference-resolution errors baked in during the automatic anonymization pipeline itself, not genuine reading difficulty. Once they excluded those broken examples, a carefully-tuned single-layer attention model (their "Stanford AR") reached an accuracy within a few points of what they estimated as the effective human/data ceiling, meaning the headline gap between symbolic and neural methods this paper reports is real, but the remaining "unsolved" fraction of the task the field kept chasing was mostly noise, not unsolved reasoning.</p>
 
       <div class="verdict">

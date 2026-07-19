@@ -168,7 +168,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Xiang Yue, Yuansheng Ni, Kai Zhang, Tianyu Zheng, … Huan Sun, Yu Su, Wenhu Chen</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>CVPR 2024</b></span>
-        <span class="fact">citations&nbsp;<b>2,252</b></span>
+        <span class="fact">citations&nbsp;<b>2,388</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2311.16502">source&nbsp;↗</a></span>
       </div>
@@ -204,7 +204,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       </figure>
 
       <h3>How it was built</h3>
-      <p>A team of <strong>50+ college students</strong> (including coauthors), each specializing in one of the 30 subjects, collected questions from textbooks, exams, quizzes and lecture materials, authoring new ones where needed. That produced <strong>~13K raw questions</strong>, cleaned down to 11.5K through three passes: deduplication by lexical overlap and source-URL similarity, format/typo checking, and a four-level difficulty labeling that <strong>dropped ~10% of items as "very easy."</strong> To blunt contamination, annotators were told to favor questions whose answers are <em>not</em> immediately adjacent — answers kept in a separate document or at the back of the textbook — so the model can't have trivially memorized the answer alongside the question.</p>
+      <p>A team of <strong>50 college students</strong> (including coauthors), each specializing in one of the 30 subjects, collected questions from textbooks, exams, quizzes and lecture materials, authoring new ones where needed. That produced <strong>~13K raw questions</strong>, cleaned down to 11.5K through three passes: deduplication by lexical overlap and source-URL similarity, format/typo checking, and a four-level difficulty labeling that <strong>dropped ~10% of items as "very easy."</strong> To blunt contamination, annotators were told to favor questions whose answers are <em>not</em> immediately adjacent — answers kept in a separate document or at the back of the textbook — so the model can't have trivially memorized the answer alongside the question.</p>
 
       <h3>Splits, format and scoring</h3>
       <p>The set divides into a <strong>dev split of 150</strong> (5 per subject, for few-shot prompts), a <strong>validation split of 900</strong> (for hyperparameter/prompt selection), and a <strong>test split of 10,500</strong>. About <strong>94% are multiple-choice</strong> (10,861) and 6% open-ended (689); 97.5% include at least one image, and 7.4% carry multiple images. The difficulty mix is <strong>28% easy / 45% medium / 27% hard</strong>. Evaluation is <strong>zero-shot</strong>, scored by <strong>micro-averaged accuracy</strong>, with rule-based regular expressions that pull the final answer out of long, free-form responses. If no valid answer can be parsed, MMMU performs a <strong>random selection</strong> for multiple-choice questions (and marks open questions wrong) — a detail that matters for reading the numbers below. Random-Choice and Frequent-Choice baselines anchor the floor.</p>

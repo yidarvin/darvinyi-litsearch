@@ -32,6 +32,9 @@ ASOF_RE = re.compile(r'(<div class="asof mono">)(.*?)(</div>)', re.S)
 LONGDATE_RE = re.compile(
     r'\b(January|February|March|April|May|June|July|August|September|October|November|December)'
     r'(?:&nbsp;|\s)+(\d{1,2}),\s*(\d{4})\b')
+DAYMONTHYEAR_RE = re.compile(
+    r'\b(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December|'
+    r'Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b')
 MONTHYEAR_RE = re.compile(
     r'\b(January|February|March|April|May|June|July|August|September|October|November|December|'
     r'Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b')
@@ -55,10 +58,14 @@ def normalize_asof_date(text):
     def repl_long(m):
         return f"{m.group(3)}-{MONTHS[m.group(1)]}-{int(m.group(2)):02d}"
 
+    def repl_daymonth(m):
+        return f"{m.group(3)}-{MONTHS[m.group(2)]}-{int(m.group(1)):02d}"
+
     def repl_my(m):
         return f"{m.group(2)}-{MONTHS[m.group(1)]}"
 
     out = LONGDATE_RE.sub(repl_long, text)
+    out = DAYMONTHYEAR_RE.sub(repl_daymonth, out)
     out = MONTHYEAR_RE.sub(repl_my, out)
     return out
 

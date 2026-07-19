@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Long Phan, Alice Gatti, Ziwen Han, Nathaniel Li, … (Center for AI Safety &amp; Scale AI; ~1,000 contributors)</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>Nature</b></span>
-        <span class="fact">citations&nbsp;<b>337</b></span>
+        <span class="fact">citations&nbsp;<b>348</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2501.14249">source&nbsp;↗</a></span>
       </div>
@@ -179,8 +179,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// the gap</div>
       <h2>What problem is this solving?</h2>
-      <!-- fill: the concrete gap in prior work this paper targets. Be specific
-           about what existing methods/benchmarks miss and why it matters. -->
       <p>Benchmarks are supposed to track progress, but the field's standard yardsticks have been overrun. Frontier LLMs now score above 90% on <strong>MMLU</strong> and up to ~96% on <strong>MATH</strong>, and clear ~75% even on graduate-level <strong>GPQA</strong>. Once a benchmark pins against its ceiling it stops discriminating: you can no longer tell a state-of-the-art model from a merely strong one, and a two-point gain is indistinguishable from noise, prompt luck, or contamination. The instrument that was supposed to measure the frontier no longer resolves it.</p>
       <p>Figure 1 makes the problem concrete: the same models that clear 50–96% on GPQA, MATH, and MMLU collapse into the low single digits on a test pitched at the frontier of human knowledge. HLE's premise is to rebuild that headroom — assemble closed-ended, automatically-gradeable academic questions that (a) have a single unambiguous, verifiable answer, (b) cannot be shortcut by a quick web search, and (c) current frontier models get <em>wrong</em>. The point is to make the headline number small again, because a small number at the frontier is the only kind that carries information.</p>
 
@@ -196,8 +194,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// how it works</div>
       <h2>The method</h2>
-      <!-- fill: the approach, in your own words at expert depth. Use an .eq
-           block for any key equation (HTML/CSS only — no KaTeX). -->
       <p>HLE is a global, incentivized crowd-sourcing effort. Nearly <strong>1,000 subject-matter experts</strong> across more than <strong>500 institutions in 50 countries</strong> — mostly professors, researchers, and graduate-degree holders — contributed questions, drawn in by a <strong>$500,000 prize pool</strong> ($5,000 for each of the top 50 questions, $500 for each of the next 500) plus paper co-authorship. Every question is closed-ended and machine-gradable: <strong>24% are multiple-choice</strong> (five or more options) and the remaining <strong>76% are exact-match</strong> (the model must emit a specific string); about <strong>14% are multimodal</strong>, requiring a model to read both text and an image. Each submission had to come with a known, unambiguous solution that a non-expert could not recover by quick internet retrieval.</p>
       <p>The filtering pipeline (Figure 2) is what makes the set hard. Each submitted question first runs through an <strong>LLM difficulty check</strong>: it advances only if frontier models already fail it. Across the drive the organizers logged <strong>over 70,000 model attempts</strong>, surfacing roughly <strong>13,000 questions that stumped the models</strong>; those went to two rounds of expert peer review (reviewers hold graduate degrees in the relevant field), narrowing to ~<strong>6,000 candidates</strong> and finally to organizer/expert approval. The released benchmark is <strong>2,500 public questions</strong>, with an additional <strong>private held-out set</strong> kept back specifically to detect overfitting and gaming of the public split. Subjects skew quantitative (Figure 3): mathematics alone is 41% of the set.</p>
       <p>Grading is automated. Because answers are precise and close-ended, the authors use <strong>o3-mini as an LLM judge</strong> to check a model's answer against the reference while allowing equivalent formats (a fraction vs. a decimal, an estimate within tolerance). Each model is also asked to report a confidence, which feeds a calibration metric — the root-mean-square gap between stated confidence and actual correctness:</p>
@@ -224,7 +220,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <!-- fill: headline results with EXACT numbers from the paper. -->
       <p>No model tested came close to passing. On the full benchmark, <strong>GPT-4o scored 2.7%</strong>, Grok 2 3.0%, Claude 3.5 Sonnet 4.1%, and Gemini 1.5 Pro 4.6%. Reasoning models did better but not by much: Gemini 2.0 Flash Thinking 6.6%, <strong>o1 8.0%</strong>, and — on the text-only subset — DeepSeek-R1 8.5% and <strong>o3-mini (high) 13.4%</strong>, the top score in the paper. DeepSeek-R1 and o3-mini are not multimodal, so they were run only on the text-only questions, a strictly easier slice than the full set the other models faced.</p>
       <p>The more damning result is calibration. <strong>Every model posted an RMS calibration error above 70%</strong> — GPT-4o 89%, Gemini 1.5 Pro 88%, Grok 2 87%, Claude 3.5 Sonnet 84%, o1 83%, Gemini 2.0 Flash Thinking 82%, o3-mini 80%, DeepSeek-R1 73%. On questions they almost always get wrong, models still answer with high confidence instead of signaling uncertainty; the paper reads this as direct evidence of hallucination. Reasoning models also spend heavily for their few points — average completion tokens run into the thousands per question, highest on mathematics.</p>
 
@@ -250,10 +245,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// does it hold up?</div>
       <h2>The eval read</h2>
-      <!-- fill: the sharp, specific evaluation critique. Are the baselines fair
-           and current? Contamination / leakage? What does the headline metric
-           miss? What would raise confidence? This is the signature section —
-           be concrete, cite the paper's own setup. -->
       <p>HLE does the one thing a saturated field most needs — it restores measurement headroom — and the calibration finding is its most durable contribution. But several things complicate the headline. The top-line <strong>13.4% is not apples-to-apples</strong>: o3-mini and DeepSeek-R1 were evaluated only on the text-only subset, so the "best model" number sits on a different, easier test than the rest of the table. The name oversells, too: "Humanity's Last Exam" is a closed-ended short-answer quiz — it rewards crisp, verifiable facts and derivations, not the open-ended judgment, synthesis, or long-horizon work that defines most expert labor. And with <strong>mathematics at 41%</strong> of questions, a high HLE score is as much a quantitative-reasoning signal as a measure of broad "human knowledge."</p>
       <p>Two structural points matter most. First, the grader is itself a model — <strong>o3-mini, which also appears as an evaluated system</strong>. Exact-match grading is fairly constrained, but the judge's equivalence calls (fractions vs. decimals, estimates within tolerance) inject noise that the reported accuracies silently inherit, and the paper does not headline a judge-vs-human grading-agreement rate. Second, and most predictably, a <strong>static, public, gradeable benchmark depreciates</strong>: the 2,500 public questions are exactly the kind of artifact that flows into training data and tool pipelines, and within months of release frontier reasoning-plus-tool systems were posting far higher than the single digits here. The private held-out set is the right hedge — but it is the public number everyone quotes, and the paper does not track the public-vs-private gap over time.</p>
 

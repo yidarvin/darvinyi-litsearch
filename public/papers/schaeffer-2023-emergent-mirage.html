@@ -179,8 +179,6 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// the gap</div>
       <h2>What problem is this solving?</h2>
-      <!-- fill: the concrete gap in prior work this paper targets. Be specific
-           about what existing methods/benchmarks miss and why it matters. -->
       <p>In 2022 a striking claim swept through the field: large language models possess
 <strong>emergent abilities</strong> — skills &ldquo;not present in smaller-scale models but present in
 large-scale models,&rdquo; ones you could not have predicted by extrapolating the trend from smaller
@@ -206,8 +204,6 @@ the crack this paper pries open.</p>
     <div class="wrap">
       <div class="tag">// how it works</div>
       <h2>The method</h2>
-      <!-- fill: the approach, in your own words at expert depth. Use an .eq
-           block for any key equation (HTML/CSS only — no KaTeX). -->
       <p>The alternative explanation is almost embarrassingly simple. Suppose that <em>within a
 model family</em> the per-token <strong>cross-entropy loss falls smoothly</strong> with scale &mdash; the
 unremarkable, repeatedly-observed behaviour of neural scaling laws. Model it as a power law in the
@@ -268,7 +264,6 @@ parameter count <span class="mono">N</span>:</p>
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <!-- fill: headline results with EXACT numbers from the paper. -->
       <p>Schaeffer et&nbsp;al. test the hypothesis three ways, each a step harder to dismiss.</p>
 
 <h3>1 · Query a real model family and change only the metric</h3>
@@ -339,10 +334,6 @@ same training, manufactured cliff.</p>
     <div class="wrap">
       <div class="tag">// does it hold up?</div>
       <h2>The eval read</h2>
-      <!-- fill: the sharp, specific evaluation critique. Are the baselines fair
-           and current? Contamination / leakage? What does the headline metric
-           miss? What would raise confidence? This is the signature section —
-           be concrete, cite the paper's own setup. -->
       <p>This is itself a critique paper, so the eval read has to be turned on the critique. It is
 an unusually clean piece of measurement science — the control is airtight, because it re-scores the
 <em>identical</em> model outputs two ways, so nothing about the model changes between &ldquo;emergent&rdquo;
