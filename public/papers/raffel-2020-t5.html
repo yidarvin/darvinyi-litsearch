@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Raffel, Shazeer, Roberts, Lee, Narang, Matena, Zhou, Li, Liu</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>JMLR</b></span>
-        <span class="fact">citations&nbsp;<b>26,135</b></span>
+        <span class="fact">citations&nbsp;<b>26,587</b></span>
         <span class="fact">topic&nbsp;<b>Foundation Models</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1910.10683">source&nbsp;↗</a></span>
       </div>
@@ -206,7 +206,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p>On top of that interface the paper runs a <strong>coordinate-descent-style empirical survey</strong>: fix a strong "baseline" (a BERT<sub>BASE</sub>-sized encoder-decoder, denoising objective, C4 data, ~34B tokens) and then vary one axis at a time.</p>
 
       <h3>The unlabeled data: C4</h3>
-      <p>To feed the larger models they built the <strong>Colossal Clean Crawled Corpus (C4)</strong> — a single month of Common Crawl, heuristically cleaned (drop lines without terminal punctuation, pages under five sentences, code braces, a bad-words list, and deduplicated). The result is <strong>~750&nbsp;GB</strong> of reasonably clean English, orders of magnitude larger than most pre-training sets of the day and big enough to train for ~1 trillion tokens without repeating data.</p>
+      <p>To feed the larger models they built the <strong>Colossal Clean Crawled Corpus (C4)</strong> — a single month of Common Crawl, heuristically cleaned (drop lines without terminal punctuation, pages under 3 sentences, code braces, a bad-words list, and deduplicated). The result is <strong>~750&nbsp;GB</strong> of reasonably clean English, orders of magnitude larger than most pre-training sets of the day and big enough to train for ~1 trillion tokens without repeating data.</p>
 
       <h3>The objective: span corruption</h3>
       <p>The unsupervised task is a "denoising" objective: drop out 15% of tokens in contiguous spans, replace each span with a single sentinel, and train the model to reconstruct only the dropped spans (each tagged by its sentinel). Corrupting spans rather than single tokens shortens both input and target, making pre-training cheaper than BERT-style full-sequence reconstruction.</p>
@@ -231,7 +231,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <p>The systematic study's verdicts are the lasting contribution. <strong>Architecture:</strong> with a denoising objective the encoder-decoder reached a <strong>83.28</strong> average GLUE score versus just <strong>74.70</strong> for a same-parameter decoder-only language model (and 61.14 vs 80.88 on SQuAD) — a decisive win for the two-stack design. <strong>Objective:</strong> most denoising variants performed within noise of one another, so the authors recommend whichever produces the shortest targets (i.e. span corruption) for efficiency. <strong>Data:</strong> in-domain corpora can beat C4 on a matched task, but they are small enough that pre-training repeats them — and repetition hurts; a large, diverse corpus like C4 is the safer default. <strong>Transfer is real:</strong> the same model with <em>no</em> pre-training scores only 66.22 GLUE versus the pre-trained 83.28.</p>
+      <p>The systematic study's verdicts are the lasting contribution. <strong>Architecture:</strong> with a denoising objective the encoder-decoder reached a <strong>83.28</strong> average GLUE score versus just <strong>74.70</strong> for a same-parameter decoder-only language model (and 80.88 vs 61.14 on SQuAD) — a decisive win for the two-stack design. <strong>Objective:</strong> most denoising variants performed within noise of one another, so the authors recommend whichever produces the shortest targets (i.e. span corruption) for efficiency. <strong>Data:</strong> in-domain corpora can beat C4 on a matched task, but they are small enough that pre-training repeats them — and repetition hurts; a large, diverse corpus like C4 is the safer default. <strong>Transfer is real:</strong> the same model with <em>no</em> pre-training scores only 66.22 GLUE versus the pre-trained 83.28.</p>
 
       <p>Pre-training data size is the cleanest illustration of the repetition failure: shrink C4 enough and the training loss drops faster (the model is memorizing a small set), but downstream quality degrades.</p>
 

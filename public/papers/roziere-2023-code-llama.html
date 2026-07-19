@@ -166,7 +166,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="authors mono">Rozière, Gehring, Gloeckle, …, Usunier, Scialom, Synnaeve · Meta AI</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>arXiv</b></span>
-        <span class="fact">citations&nbsp;<b>3,244</b></span>
+        <span class="fact">citations&nbsp;<b>3,389</b></span>
         <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2308.12950">source&nbsp;↗</a></span>
       </div>
@@ -261,7 +261,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <h2>The eval read</h2>
       <p>The open-model SOTA claim is well supported, but the headline "up to 67%" deserves scrutiny. That number is <strong>Code Llama&nbsp;-&nbsp;Instruct 70B on HumanEval</strong> — a single best-case variant-and-size cell, computed with greedy pass@1. The same Instruct family is non-monotonic: the 34B Instruct scores 41.5% HumanEval, <em>below</em> its own 13B Instruct (42.7%) and far below the 34B base model (48.8%), a sign that the instruct fine-tune can dent raw code skill and that single-seed pass@1 carries real variance the paper doesn't bound with error bars.</p>
       <p>The closed-model comparisons (GPT-4 67.0%, GPT-3.5 48.1%, PaLM-2) are <strong>quoted from those models' own reports, not re-run</strong> under Code Llama's harness, and GPT-4's MBPP is simply absent — so "matches GPT-4" rests on one number measured by someone else. HumanEval and MBPP are also small, public, and years old; with training data scraped from GitHub, <strong>contamination is a live risk the paper doesn't probe</strong> (contrast the contamination analyses later normalized by LiveCodeBench and MLE-bench). And the strongest 34B result in the paper, <em>Unnatural</em> Code Llama (62.2% HumanEval), was trained on a GPT-4-distilled "unnatural instructions" set and <strong>never released</strong> — a teaser, not a shipped capability.</p>
-      <p>Finally, the benchmarks measure <strong>function-level</strong> synthesis. They say little about the repository-level software engineering Code Llama's long context was built for — a gap made vivid two months later when SWE-bench fine-tuned <em>SWE-Llama</em> from Code Llama and resolved under 4% of real GitHub issues.</p>
+      <p>Finally, the benchmarks measure <strong>function-level</strong> synthesis. They say little about the repository-level software engineering Code Llama's long context was built for — a gap made vivid two months later when SWE-bench fine-tuned <em>SWE-Llama</em> from Code Llama and resolved just 0.70% of real GitHub issues (13k-context, BM25 retrieval) — barely above zero, and still under 1.5% even on the easier SWE-bench Lite split.</p>
 
       <div class="verdict">
         <span class="k">baselines</span><p class="v">Fair for the open-model SOTA claim (StarCoder, code-cushman, code-only models). But closed baselines (GPT-4/3.5, PaLM-2) are quoted from their own reports, not re-run, and GPT-4 MBPP is missing.</p>
