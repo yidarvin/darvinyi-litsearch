@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Study of Translation Edit Rate with Targeted Human Annotation — paper_atlas</title>
+<meta name="description" content="TER scores a translation by literally counting the edits — insertions, deletions, substitutions, block shifts — needed to turn it into a reference, normalized by reference length. Its human-in-the-loop variant, HTER, correlates with average human judgment better than two human judges agree with each other.">
+<meta property="og:title" content="A Study of Translation Edit Rate with Targeted Human Annotation">
+<meta property="og:description" content="TER scores a translation by literally counting the edits — insertions, deletions, substitutions, block shifts — needed to turn it into a reference, normalized by reference length. Its human-in-the-loop variant, HTER, correlates with average human judgment better than two human judges agree with each other.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/snover-2006-ter.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2006 · AMTA · Benchmarks &amp; Evals</div>
+      <h1>A Study of Translation Edit Rate with Targeted Human Annotation</h1>
+      <p class="dek">BLEU, NIST, and METEOR all score a translation by counting matched n-grams or aligned words against a reference. TER throws that out and asks a blunter question: <em>how many edits — insertions, deletions, substitutions, or whole-phrase shifts — would a human need to turn this output into the reference?</em> Its human-in-the-loop variant, HTER, then has an annotator build the closest possible fluent reference by hand — and the resulting score correlates with average human judgment better than two independent human judges agree with each other.</p>
+      <div class="authors mono">Matthew Snover, Bonnie Dorr, Richard Schwartz, Linnea Micciulla, John Makhoul · University of Maryland (UMIACS) / BBN Technologies</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>AMTA</b></span>
+        <span class="fact">citations&nbsp;<b>2,223</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://aclanthology.org/2006.amta-papers.25/">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-19</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2006 the field had three widely used automatic MT metrics, and all three share the same lineage: count how much of a system's output overlaps a reference translation. <a href="papineni-2002-bleu.html">BLEU</a> (Papineni et al., 2002) matches n-grams and multiplies by a brevity penalty; the <a href="doddington-2002-nist.html">NIST</a> metric (Doddington, 2002) reweights those n-gram matches by information content; <a href="banerjee-2005-meteor.html">METEOR</a> (Banerjee &amp; Lavie, 2005) builds an explicit word alignment with stemming and WordNet synonymy and scores it with a recall-weighted F-measure. All three are useful and all three correlate with human judgment to varying degrees — but none of them is <em>intuitive</em>. A BLEU score of 32.3 or a METEOR score of 0.42 tells a developer nothing directly interpretable; it only means something relative to another system's score on the same test set.</p>
+      <p>Meanwhile a much older idea — measuring quality by counting how many edits a human needs to fix an output — had already proven itself in adjacent tasks: word error rate in speech recognition, keystroke-counted post-editing of MT output (Frederking &amp; Nirenburg, 1994), automatic post-editing (Knight &amp; Chander, 1994), and post-edit-based evaluation of text summarization (SUMMAC, Mani et al., 2002) and natural language generation (Sripada et al., 2004). The DARPA/IPTO GALE program had informally adopted a version of this idea, calling it "Translation Error Rate," but it had never been formally defined, validated against BLEU/METEOR at scale, or shown to actually correlate with human adequacy and fluency judgments. The authors set out to do exactly that: define an edit-distance metric for MT precisely enough to compute automatically, show it holds up against BLEU and METEOR, and then push further — build a human-in-the-loop variant and test whether it can approach or beat the reliability of a second human judge.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p><strong>Translation Edit Rate (TER)</strong> is defined as the minimum number of edits needed to change a system's hypothesis so that it exactly matches one of the available references, normalized by the average length (in words) of those references:</p>
+
+      <div class="eq">
+        TER&nbsp;=&nbsp;<span class="frac"><span class="num"># of edits</span><span class="den">average # of reference words</span></span>
+        <span class="note">// lower is better — 0 means an exact match, ≈1 means the hypothesis needed roughly as many edits as it has words</span>
+      </div>
+
+      <p>Four edit types are allowed, each with unit cost: <strong>insertion</strong>, <strong>deletion</strong>, and <strong>substitution</strong> of single words, plus a <strong>shift</strong> — moving a contiguous word sequence anywhere else in the hypothesis, at any distance, for the same cost of one. Punctuation counts as ordinary tokens and a capitalization mismatch counts as an edit. The paper's own worked example makes the payoff concrete. Given the reference <em>"SAUDI ARABIA denied THIS WEEK information published in the AMERICAN new york times"</em> and hypothesis <em>"THIS WEEK THE SAUDIS denied information published in the new york times,"</em> the hypothesis is fluent and means almost the same thing, but n-gram overlap punishes the reordering harshly: BLEU scores it 32.3% (or 67.7% as an error-rate analog). TER instead recognizes that "this week" has simply moved — one shift — leaving two substitutions ("Saudi Arabia" → "the Saudis") and one insertion (the missing "American"): 4 edits over 13 reference words, TER = 4/13 ≈ 31%, in the same range as BLEU here but for a legible reason: one shift plus three lexical edits, not an opaque n-gram mismatch.</p>
+
+      <p>Computing the true minimum edit distance once block shifts are allowed is NP-complete (Shapira &amp; Storer, 2002), so TER is calculated with an approximation: dynamic programming first finds the minimum insertions/deletions/substitutions, then a greedy search repeatedly picks whichever shift most reduces that remaining edit distance (even a shift with zero net cost reduction is kept, because the authors find it tends to produce a more sensible alignment and often helps later shifts), until no beneficial shift remains; DP then finalizes the edit count. Three constraints bound the search space so it stays tractable: a shifted span must match its destination in the reference exactly, must not already match at its original position, and its destination must currently be misaligned. The O(n²) minimum-edit-distance step is further reduced to O(n) with a beam search so long sentences remain cheap to score. TER is computed against every reference and the lowest score is kept.</p>
+
+      <p>The paper's second, arguably more consequential contribution is <strong>Human-targeted TER (HTER)</strong>. Plain TER's weakness is that it can only measure distance to the closest of a fixed set of pre-existing references, which may not be the closest <em>possible</em> fluent, correct rendering of the hypothesis — so it systematically overstates error. HTER closes that gap with a human in the loop: a monolingual, fluent-in-the-target-language annotator edits the system hypothesis itself (rather than the reference) until it is both fluent and preserves the meaning of the existing reference(s), producing one bespoke <strong>targeted reference</strong> for that hypothesis. TER is then computed between the hypothesis and only this single targeted reference — the original untargeted references are dropped for scoring purposes, though not for the sentence's word count used in the denominator (to close a gaming loophole: a targeted reference padded with extra words would otherwise dilute the score). A purpose-built annotation tool showed annotators the hypothesis, the closest reference, and the live edit count as they worked; annotators averaged 3–7 minutes per sentence. A second pass of independent annotators then checked and corrected every targeted reference for fluency and accuracy without ever seeing the system output, changing on average 0.63 words per sentence — a correction that, tellingly, raised HTER rather than lowering it, because the first-pass annotators had tended to err in the system's favor.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Experiments run on 100 Arabic→English sentences from MTEval 2004, output by two anonymized systems the authors call S1 (a lower-performing system) and S2 (one of the best), each already scored on fluency and adequacy by two human judges. Four monolingual annotators produced targeted references, two per sentence per system, letting the authors also measure annotator variance directly.</p>
+
+      <h3>Targeting cuts the measured edit rate by a third</h3>
+      <p>Moving from four untargeted references to one human-targeted reference collapses the average total edit rate from 49.6 to 33.5 — a 33% relative reduction — with substitutions shrinking the most (many were simply synonymous rewordings the untargeted references didn't happen to contain). A prior, smaller pilot study with more experienced annotators saw an even larger 50% reduction, underscoring how much the result depends on annotator skill.</p>
+      <table>
+        <thead><tr><th>Condition</th><th class="num">Ins</th><th class="num">Del</th><th class="num">Sub</th><th class="num">Shift</th><th class="num">Total</th></tr></thead>
+        <tbody>
+          <tr><td>TER — 4 untargeted refs</td><td class="num">4.6</td><td class="num">12.0</td><td class="num">25.8</td><td class="num">7.2</td><td class="num">49.6</td></tr>
+          <tr><td>HTER — 1 targeted ref</td><td class="num">3.5</td><td class="num">10.5</td><td class="num">14.6</td><td class="num">4.9</td><td class="num">33.5</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Targeting helps TER more than it helps BLEU</h3>
+      <p>Side by side with BLEU and METEOR (subtracted from 1 so lower is uniformly better, matching TER's direction), targeted references lower every metric's edit/error rate — but TER benefits the most: HTER's 33% reduction versus HBLEU's 28%, plausibly because the targeted references were built by editing toward minimal TER, not minimal BLEU.</p>
+      <table>
+        <thead><tr><th>Condition</th><th class="num">S1</th><th class="num">S2</th><th class="num">Average</th></tr></thead>
+        <tbody>
+          <tr><td>BLEU — 4 untargeted refs</td><td class="num">73.5</td><td class="num">62.1</td><td class="num">67.8</td></tr>
+          <tr><td>HBLEU — 1 targeted ref</td><td class="num">62.2</td><td class="num">45.0</td><td class="num">53.6</td></tr>
+          <tr><td>METEOR — 4 untargeted refs</td><td class="num">46.0</td><td class="num">39.2</td><td class="num">42.1</td></tr>
+          <tr><td>HMETEOR — 1 targeted ref</td><td class="num">33.9</td><td class="num">22.1</td><td class="num">28.0</td></tr>
+          <tr><td>TER — 4 untargeted refs</td><td class="num">53.2</td><td class="num">46.0</td><td class="num">49.6</td></tr>
+          <tr><td>HTER — 1 targeted ref</td><td class="num">39.7</td><td class="num">27.2</td><td class="num">33.5</td></tr>
+        </tbody>
+      </table>
+
+      <h3>HTER beats every automatic metric at tracking human judgment</h3>
+      <p>Pearson correlation against the average of both judges' fluency+adequacy scores (200 data points total) puts human-targeted TER on top: 0.630, ahead of human-targeted METEOR (0.602), plain 4-reference METEOR (0.550), 1-reference METEOR (0.493), and 4-reference BLEU (0.391). Untargeted TER with just one reference (0.390) already matches 4-reference BLEU (0.391) — a quarter of the reference data for the same correlation.</p>
+      <table>
+        <thead><tr><th>Metric</th><th class="num">Pearson r vs. human judgment</th></tr></thead>
+        <tbody>
+          <tr><td>TER — 1 untargeted ref</td><td class="num">0.390</td></tr>
+          <tr><td>BLEU — 4 untargeted refs</td><td class="num">0.391</td></tr>
+          <tr><td>METEOR — 1 untargeted ref</td><td class="num">0.493</td></tr>
+          <tr><td>METEOR — 4 untargeted refs</td><td class="num">0.550</td></tr>
+          <tr><td>HMETEOR — 1 targeted ref</td><td class="num">0.602</td></tr>
+          <tr><td>HTER — 1 targeted ref</td><td class="num">0.630</td></tr>
+        </tbody>
+      </table>
+      <p>The most striking number in the paper concerns the humans themselves: the two independent human judges correlate with each other at only 0.478. HTER correlates with each individual judge at 0.506 and 0.575 respectively — <em>higher</em> than the judges correlate with one another — and even plain 4-reference TER (no human targeting at all) reaches 0.461 and 0.466 against the two judges, nearly matching their mutual agreement. TER is also markedly less sensitive than BLEU to how many references are available: cutting from 4 references to 1 moves TER's mean from 49.6 to 57.0 (Δ7.4) but moves BLEU's mean from 67.8 to 83.2 (Δ15.4). A separate check on annotator consistency put the standard deviation of mean HTER across the four annotators at 2.8%.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>Read carefully, the paper is really reporting two different things, and it's worth keeping them apart. <strong>TER</strong> (no human in the loop) is a genuinely cheap, fully automatic metric that competes with BLEU using far fewer references — the headline "T(1) correlates as well as B(4)" result (0.390 vs. 0.391) is a real, useful finding about reference efficiency. <strong>HTER</strong>, the paper's strongest result (0.630 correlation, beating inter-human agreement of 0.478), is not a metric you can run for free: it requires a trained monolingual annotator spending 3–7 minutes per sentence, plus a second independent QC pass. That's a semi-automatic human-evaluation <em>protocol</em>, not an automatic score, and the paper's own framing occasionally blurs the two — "TER" in the title covers both, but only one of them is actually a drop-in BLEU replacement.</p>
+      <p>The edit-distance approach is also a genuine, principled contrast with the n-gram/alignment metrics already in this graph. BLEU and NIST count overlapping n-grams with no notion of a single coherent transformation from hypothesis to reference, so a correct but reordered phrase (the paper's own "this week" example) gets shredded into non-matching n-grams and punished twice over. TER instead finds one global edit script — including a genuine block-shift operation — so a clean reordering costs exactly one edit, however far it moves or however long the span. METEOR handles reordering too, but indirectly, via a fragmentation penalty on chunk count rather than an actual move operation. The tradeoff, though, cuts the other way on lexical variation: METEOR credits stems and WordNet synonyms, while TER's shift and match operations require <em>exact</em> word-for-word identity even at the destination position — a synonym or morphological variant that BLEU's or METEOR's soft matching would reward still costs TER a full substitution. So TER trades BLEU's blindness to legitimate reordering for METEOR's blindness to legitimate paraphrase; it solves one problem the n-gram metrics have and inherits the other.</p>
+      <p>Three more caveats sit underneath the headline numbers. First, "minimum number of edits" is itself an approximation, not an exact quantity: optimal edit distance with move operations is NP-complete (the paper cites Shapira &amp; Storer, 2002 directly), so the reported TER/HTER scores depend on a greedy shift-search heuristic and a beam-search-truncated DP — meaning the exact number can shift with implementation details like beam width, something a single-paper introduction can't fully stress-test. Second, the annotators who built targeted references were explicitly "coached... on how to minimize the edit rate" — i.e., trained on the internals of the metric they were then used to validate. That's a reasonable operational choice (it's what a real annotation pipeline would do), but it does mean the reported HTER-vs-BLEU gap partly reflects annotators optimizing for TER's edit types specifically, not a metric-neutral notion of "closest fluent reference." The authors' own correction-pass finding — first-pass annotators, left unsupervised, systematically erred in favor of the system output, and had to be caught by a second QC pass — shows just how much this "targeted reference" is a judgment call, not a fixed ground truth. Third, the entire empirical case rests on 100 sentences, one language pair (Arabic→English), and exactly two systems from a single MTEval 2004 dataset; a Pearson r on 200 data points from two systems is a real result, but a narrow one to generalize from.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Directly compares against BLEU and METEOR (and their human-targeted variants HBLEU/HMETEOR) on the same sentences with the same human judgments — the right comparison set for the moment. But there's no significance testing on any of the correlation deltas (e.g., HTER's 0.630 vs. HMETEOR's 0.602), and the whole comparison runs on just two systems from one MTEval year.</p>
+        <span class="k">contamination</span><p class="v">Not a learned metric, so no train/test leakage in the ML sense. The closer analog: annotators were explicitly coached on how TER counts edits before producing the "gold" targeted references used to validate TER — a form of the metric shaping its own ground truth.</p>
+        <span class="k">what's missed</span><p class="v">TER requires exact lexical identity even on shifted spans — no stemming, no synonymy — so it can't credit a correct paraphrase the way METEOR can. HTER's headline win is a labor-intensive protocol (3–7 min/sentence plus a QC pass), not a free automatic score. The minimum-edit-distance computation is itself an NP-complete problem approximated by a greedy heuristic, not an exact, implementation-independent number.</p>
+        <span class="k">would raise confidence</span><p class="v">More language pairs beyond Arabic→English, more than two systems, a larger sentence sample than 100, and — most pointedly — a version of the HTER study where annotators are <em>not</em> told which metric their edits will be scored by, to separate "closest fluent reference" from "reference optimized to minimize TER."</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>TER gave the field an intuitive, cheap, reference-efficient alternative to BLEU built on real edit distance rather than n-gram overlap — a fair trade of BLEU's reordering blindness for METEOR's paraphrase blindness. Its more consequential contribution, HTER, showed that a modest human-annotation budget can produce a score that tracks average human judgment better than two humans track each other — a genuinely striking result, though one that trades "automatic" for "semi-automatic" to get there, and one whose annotators were coached on the very metric being validated. TER and HTER went on to become the WMT/GALE community's standard error-rate metrics and the direct ancestor of neural successors like COMET and post-editing-effort studies that still report edit rate alongside newer learned scores.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>TER = edit distance, not n-gram overlap.</strong> Score = (insertions + deletions + substitutions + unit-cost block shifts) ÷ average reference length. It's intuitive by design — "how many edits to fix it" — and gives BLEU-level correlation (0.390 vs. 0.391) with a quarter of the reference translations.</li>
+        <li><strong>HTER puts a human in the loop and beats human agreement itself.</strong> An annotator edits the hypothesis into a fluent, meaning-preserving targeted reference; scoring against that single reference correlates with average human judgment at 0.630 — higher than the 0.478 at which two independent human judges agree with each other. That power comes from labor (3–7 min/sentence, plus a QC pass), not automation.</li>
+        <li><strong>Block shifts fix reordering but cost exact lexical identity.</strong> TER handles legitimate paraphrase-by-reordering far better than BLEU/NIST's rigid n-gram windows, because a shift is one edit regardless of distance. But unlike METEOR, TER has no stemming or synonymy — a correct paraphrase that isn't a literal reordering still costs a full substitution, and the shift's unit cost is, in the authors' own words, "somewhat arbitrary."</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        A Study of Translation Edit Rate with Targeted Human Annotation<br>
+        Matthew Snover, Bonnie Dorr, Richard Schwartz, Linnea Micciulla, John Makhoul · 2006 · AMTA<br>
+        <a href="https://aclanthology.org/2006.amta-papers.25/">read the original ↗</a> · slug: snover-2006-ter
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
