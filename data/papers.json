@@ -655,6 +655,7 @@
       "author_group": "Tsinghua / OpenBMB",
       "abstract": "An olympiad-level bilingual (English/Chinese) multimodal benchmark of 8,476 free-response math and physics problems — 57% with required diagrams and every problem carrying an expert step-by-step solution — sourced from competitions and the Chinese College Entrance Exam to outrun saturating evals, and graded by an automatic answer-equivalence pipeline (SymPy symbolic equivalence + numeric tolerance) over the 79% open-ended slice. The best 2024 model, GPT-4V, scored only 17.97% overall and 10.74% in physics (GPT-4 text-only reaches 29.93%, and a 7B DeepSeekMath-RL rivals far larger models on math); failures are dominated by reasoning/conceptual errors (42–45%) rather than arithmetic, and the 21% theorem-proving slice has no automatic grader and was almost entirely unsolved (GPT-4V solved 6 of 81 sampled proofs).",
       "explainer": "papers/he-2024-olympiadbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/he-2024-olympiadbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -995,6 +996,7 @@
       "author_group": "UC Berkeley",
       "abstract": "The benchmark that re-grounded code evaluation in functional correctness: 10,000 coding-challenge problems split into Introductory / Interview / Competition tiers, curated from Codeforces, Kattis, Codewars, and AtCoder, each graded by executing generated Python against hidden test cases (131,777 of them, plus 232,421 human solutions) rather than scoring text overlap. In 2021 programming was very hard for models — fine-tuned GPT-Neo 2.7B passed 14.68% of introductory test cases but only 3.90% strict accuracy (0.00% on Competition for every model), and few-shot GPT-3 175B solved just 3 of 5,000 problems — yet syntax errors fell ~59%→3% with fine-tuning, beam-5 sampling lifted GPT-Neo to 19.9% test-case average, and the paper showed BLEU ranking a worse model above a better one. Its difficulty-tiered, execution-graded, natural-language-spec format (a HumanEval-era contemporary) became foundational to the coding-agent era and the precursor cited by SWE-bench, Code Llama, and BigCodeBench.",
       "explainer": "papers/hendrycks-2021-apps.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2021-apps.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1647,6 +1649,7 @@
       "author_group": "Peking University",
       "abstract": "A foundational critique of the LLM-as-a-judge paradigm: the quality ranking of two candidate responses can be hacked by simply swapping their order in the prompt. GPT-4 favors the first position and ChatGPT the second, so with ChatGPT as judge Vicuna-13B 'beats' ChatGPT on 66 of 80 questions purely by being placed second (conflict rate 82.5%), while GPT-4 still contradicts itself on 46.3% of close pairs; the bias concentrates where the two answers are near-equal (score gap ≤1) and vanishes once one is clearly better. Three cheap calibration strategies fix it: Multiple Evidence Calibration (reason before scoring, k=3 samples), Balanced Position Calibration (evaluate each candidate in both orders and average), and Human-in-the-Loop Calibration (route the highest position-diversity-entropy examples to humans). Against an 80-question, author-annotated slice of the Vicuna benchmark (human average 71.7% / κ 0.54), MEC+BPC lifts GPT-4 +9.8 (52.7→62.5%) and ChatGPT +14.3 (44.4→58.7%), and adding 20% human review reaches or exceeds human agreement (GPT-4 73.8%, ChatGPT 71.3%) while cutting annotation cost 39%.",
       "explainer": "papers/wang-2023-fair-evaluators.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2023-fair-evaluators.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -1883,6 +1886,7 @@
       "author_group": "Princeton NLP",
       "abstract": "A simulated e-commerce environment of 1.18 million real amazon.com product listings and 12,087 crowd-written instructions, where an agent must search, compare items, set the right options, and buy a product matching a spec — graded by an automatically-computed attribute/option/price reward that needs no human in the loop. The best 2022 imitation+RL agents reach a 62.4 task score and 28.7% success versus 59.6% for human experts, and a choice-oracle probe (rule success 9.6% → 85.4%) localizes the gap to selecting the right product options rather than generating searches; trained agents also transfer zero-shot to live amazon.com and ebay.com. The auto-graded, high-level-action web sandbox that became standard infrastructure for later web and tool agents (ReAct, Reflexion, AgentBench, WebVoyager, AppWorld).",
       "explainer": "papers/yao-2022-webshop.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yao-2022-webshop.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7099,6 +7103,7 @@
       "author_group": "DeepMind",
       "abstract": "A red LM automatically generates test-case questions, a target LM answers them, and a classifier flags harmful replies — surfacing 18,444 offensive responses from a 280B-parameter chatbot out of 0.5M generated questions, plus training-data leaks, real phone numbers/SSNs/emails, and a systematic bias against majority demographic groups.",
       "explainer": "papers/perez-2022-red-teaming-with-lms.html",
+      "audio_url": "https://pod.darvinyi.com/audio/perez-2022-red-teaming-with-lms.mp3",
       "tags": ["evaluations"]
     },
     {
