@@ -2769,6 +2769,7 @@
       "author_group": "Microsoft",
       "abstract": "G-Eval scores generated text with a frozen LLM (GPT-4 / GPT-3.5): a prompt states the criterion, the model auto-writes its own chain-of-thought evaluation steps, and then fills in a score form whose output-token probabilities are weighted into a continuous metric (score = Σ p(sᵢ)·sᵢ). GPT-4, which exposes no logprobs, is sampled 20 times at temperature 1 to estimate that distribution. Reference-free, G-Eval-4 reaches 0.514 Spearman with human ratings on SummEval — beating the trained SOTA UniEval (0.474) and GPTScore (0.417) — with its largest margin on abstractive factual consistency (QAGS-XSum). It also surfaced the now-canonical warning that LLM judges prefer LLM-written text, a self-reinforcement risk if the metric is used as a reward signal — though on thin evidence (human inter-annotator agreement α=0.07). The paper that fixed the modern LLM-as-judge recipe: CoT-guided, form-filling, probability-weighted.",
       "explainer": "papers/liu-2023-g-eval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-g-eval.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4871,6 +4872,7 @@
       "author_group": "Carnegie Mellon University",
       "abstract": "Proves that calibration (equal predictive value across groups) and equalized false-positive/false-negative rates are generically incompatible whenever recidivism prevalence differs by group, explaining why ProPublica's and Northpointe's competing claims about the COMPAS instrument were both technically correct. Grounded in Broward County COMPAS data: Black defendants (51% recidivism prevalence) face a 45% false-positive rate vs. 23% for White defendants (39% prevalence).",
       "explainer": "papers/chouldechova-2016-recidivism.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chouldechova-2016-recidivism.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4886,6 +4888,7 @@
       "author_group": "MIT",
       "abstract": "Proposes two computable, differentiable metrics for representation quality — alignment (mean distance between positive-pair embeddings) and uniformity (how evenly embeddings spread across the unit hypersphere) — proves the contrastive loss optimizes both asymptotically, and shows that directly optimizing them alone matches or beats standard contrastive learning on STL-10, NYU-Depth-V2, and ImageNet.",
       "explainer": "papers/wang-2020-alignment-uniformity.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2020-alignment-uniformity.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4989,6 +4992,7 @@
       "author_group": "McGill University",
       "abstract": "A systematic reproducibility audit of TRPO, DDPG, PPO, and ACKTR on MuJoCo continuous-control tasks, showing that random seed, network architecture, reward scale, and even which codebase implements 'the same' algorithm can each move reported results as much as the claimed algorithmic gains. Proposes significance testing and full disclosure of hyperparameters/codebases as partial fixes.",
       "explainer": "papers/henderson-2017-deep-rl-that-matters.html",
+      "audio_url": "https://pod.darvinyi.com/audio/henderson-2017-deep-rl-that-matters.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5486,6 +5490,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Introduces ImageNet-R (30,000 art/cartoon/graffiti/embroidery/origami/sculpture/tattoo/toy renditions of 200 ImageNet classes) alongside three sibling naturalistic distribution-shift datasets, then tests larger models, self-attention, data augmentation, and pretraining against all of them. No intervention helps everywhere: diverse data augmentation helps ImageNet-C and ImageNet-R but not DeepFashion Remixed or geographic shift, while pretraining and self-attention show the reverse pattern.",
       "explainer": "papers/hendrycks-2021-imagenet-r.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2021-imagenet-r.mp3",
       "tags": ["benchmarks"]
     },
     {
