@@ -2708,6 +2708,7 @@
       "author_group": "OSU NLP / Waterloo",
       "abstract": "A multimodal benchmark of 11.5K college-exam questions across 6 disciplines, 30 subjects and 30 heterogeneous image types (diagrams, chemical structures, music scores, medical scans), built to test expert-level perception, domain knowledge and deliberate reasoning toward “Expert AGI.” At release the best open LMMs scored ~34% and GPT-4V 55.7% on the 10.5K-question test set, versus 88.6% for (open-book) human experts; tellingly, GPT-4 with no image input reached 33.8%, matching vision models and exposing how text-solvable — and how vision-underused — early multimodal models were. Evaluation is zero-shot micro-averaged accuracy with rule-based answer extraction (unparsed multiple-choice answers are filled at random). Now the de-facto multimodal leaderboard (later validation scores: Gemini 1.5 Pro 62.2, GPT-4o 69.1).",
       "explainer": "papers/yue-2024-mmmu.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yue-2024-mmmu.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2754,6 +2755,7 @@
       "author_group": "UCLA / AI2",
       "abstract": "ScienceQA is a 21,208-question multimodal multiple-choice benchmark drawn from grade 1-12 science curricula (3 subjects, 26 topics, 127 categories, 379 skills) and is the first at scale to annotate every answer with a lecture (general background) and an explanation (the specific reason). That turns it into a testbed for chain-of-thought: models are trained to emit the answer followed by the lecture and explanation. Few-shot GPT-3 (text-davinci-002) with CoT reaches 75.17% and fine-tuned UnifiedQA gains +3.99% to 74.11%, against 61.87% for the best native VQA model and 88.40% for humans; CoT explanations meet a human gold bar 65.2% of the time, and feeding gold explanations into the prompt lifts accuracy to 94.13%. Caveats: the strongest models read a generated image caption rather than pixels, and the few-shot accuracy gain from CoT is only ~1 point. A direct ancestor of the multimodal-reasoning benchmark lineage (MathVista, MMMU, OlympiadBench).",
       "explainer": "papers/lu-2022-scienceqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lu-2022-scienceqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3164,6 +3166,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Rebuilds the CIFAR-10 and ImageNet test sets from scratch, following the original creation process, and finds every classifier from AlexNet to NASNet drops 3-15% (CIFAR-10) and 11-14% top-1 (ImageNet) on the fresh data. The drop is not adaptive overfitting: model rankings and per-point gains transfer almost perfectly (linear fit, slope > 1), so the cause is a distribution gap toward slightly harder images. A follow-up (Engstrom et al. 2020) showed much of the gap is statistical bias in the replication, leaving a ~3.6-point genuine drop. Introduced ImageNetV2, CIFAR-10.1, and the 'accuracy on the line' phenomenon.",
       "explainer": "papers/recht-2019-imagenet-generalize.html",
+      "audio_url": "https://pod.darvinyi.com/audio/recht-2019-imagenet-generalize.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4904,6 +4907,7 @@
       "author_group": "Australian National University",
       "abstract": "Proposes SPICE, an automatic caption-evaluation metric that parses candidate and reference captions into scene graphs and scores an F1 over matched object/attribute/relation tuples rather than n-gram overlap. Reaches a 0.88 Pearson correlation with human judgment on the 2015 COCO Captioning Challenge (versus 0.43 for CIDEr and 0.53 for METEOR).",
       "explainer": "papers/anderson-2016-spice.html",
+      "audio_url": "https://pod.darvinyi.com/audio/anderson-2016-spice.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4963,6 +4967,7 @@
       "author_group": "Shanghai AI Laboratory",
       "abstract": "A bilingual, 3,217-question multiple-choice benchmark spanning a hierarchical 20-leaf ability taxonomy (Perception/Reasoning), evaluated with a CircularEval protocol that requires a model to answer correctly across every circularly-shifted ordering of a question's choices, plus GPT-4-assisted extraction of free-form answers into labeled choices.",
       "explainer": "papers/liu-2024-mmbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2024-mmbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
