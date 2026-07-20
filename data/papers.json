@@ -524,6 +524,7 @@
       "author_group": "HKU",
       "abstract": "The first scalable, real-computer environment for multimodal agents: a VM-backed benchmark of 369 execution-graded tasks across Ubuntu/Windows/macOS spanning web and desktop apps, OS file I/O, and multi-app workflows, each with an initial-state config and a custom evaluation script (302 initial states, 134 unique evaluation functions). The action space is raw pyautogui keyboard/mouse code with WAIT/FAIL/DONE meta-actions, graded by an execution-based reward on the final machine state. Humans solve 72.36% but the best 2024 agent (GPT-4 reading an accessibility tree) only 12.24% — collapsing to ~7% on multi-app workflows and ~5% screenshot-only — and over 75% of 550 failed runs are mouse-click/grounding errors despite sound plans, exposing GUI grounding and operational knowledge, not reasoning, as the wall. It became the substrate of the computer-use agent era.",
       "explainer": "papers/xie-2024-osworld.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xie-2024-osworld.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1684,6 +1685,7 @@
       "author_group": "Stanford",
       "abstract": "The paper that made RLHF research cheap and reproducible. AlpacaFarm replaces human pairwise annotators with a pool of 13 LLM judges plus 25% label-flip noise — $6 vs $300 per 1,000 comparisons, 65% agreement with the human majority vs the 66% humans reach among themselves — and pairs it with an 805-prompt win-rate benchmark (against Davinci-003) and six tuned reference LPF methods on LLaMA-7B. Its end-to-end validation is the headline: method rankings developed in the $70-and-hours simulator match rankings trained on $3,150 of real human feedback at Spearman 0.98, and the deliberately noisy simulator uniquely reproduces reward over-optimization that a single high-agreement GPT-4 judge misses. PPO tops the leaderboard (55.1% human win-rate), but the result exposes win-rate's verbosity bias — 'PPO beats ChatGPT' is a length-cap artifact — seeding the AlpacaEval / LLM-as-judge lineage.",
       "explainer": "papers/dubois-2023-alpacafarm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dubois-2023-alpacafarm.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -2909,6 +2911,7 @@
       "author_group": "Google",
       "abstract": "A unified benchmark for efficient (\"xformer\") Transformers: six encoding-only tasks spanning 1K-16K tokens -- ListOps, byte-level text classification and document retrieval, pixel-level image classification, and the Pathfinder/Path-X spatial puzzles -- all trained from scratch with no pretraining, so the score reflects an architecture's inductive bias rather than its data. Across ten models, BigBird (55.01 avg) barely edges vanilla attention (54.39), per-task winners differ, and the fast kernel/low-rank models (Performer, Linformer, Linear Transformer) trade a few LRA points for ~5x speed and ~10x less memory -- while every model fails Path-X (16K) at chance, the benchmark's open frontier.",
       "explainer": "papers/tay-2020-long-range-arena.html",
+      "audio_url": "https://pod.darvinyi.com/audio/tay-2020-long-range-arena.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6820,6 +6823,7 @@
       "author_group": "Stanford",
       "abstract": "Fits a three-term regression (model, length-as-mediator, instruction-difficulty) to AlpacaEval's own pairwise judgments, then zeroes out the length term to estimate a length-controlled win rate — raising AlpacaEval's Spearman correlation with Chatbot Arena from 0.94 to 0.98 and cutting verbosity-prompting gameability from 25% to 10% (normalized std. dev.).",
       "explainer": "papers/dubois-2024-lc-alpacaeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dubois-2024-lc-alpacaeval.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -7010,6 +7014,7 @@
       "author_group": "Anthropic",
       "abstract": "Anthropic has LMs write and filter their own evaluation datasets — 154 in total, crowdworker-validated as nearly as reliable as human-written ones — and uses them to discover two inverse-scaling effects: sycophancy that grows with model size, and a stated desire to avoid shutdown that grows with more RLHF training.",
       "explainer": "papers/perez-2022-model-written-evals.html",
+      "audio_url": "https://pod.darvinyi.com/audio/perez-2022-model-written-evals.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
