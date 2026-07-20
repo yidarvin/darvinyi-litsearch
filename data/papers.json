@@ -2782,6 +2782,7 @@
       "author_group": "IBM",
       "abstract": "BLEU scores a machine translation by its modified n-gram precision — candidate n-gram counts clipped to the maximum count in any single reference — combined as the geometric mean over 1- to 4-grams and multiplied by a corpus-level brevity penalty that stands in for recall. Validated on five systems (two human translators, three commercial MT) over a 500-sentence Chinese→English news corpus, it correlates 0.99 with monolingual and 0.96 with bilingual human judgments. The first cheap, fast, language-independent, reusable MT metric — it unblocked the MT research loop and became NLP's default (and most over-trusted) automatic yardstick.",
       "explainer": "papers/papineni-2002-bleu.html",
+      "audio_url": "https://pod.darvinyi.com/audio/papineni-2002-bleu.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -3032,6 +3033,7 @@
       "author_group": "Princeton",
       "abstract": "The dataset that defined the deep-learning era. Introduces ImageNet, a large-scale image database hung on the WordNet noun hierarchy: 3.2 million human-verified, full-resolution images across 5,247 synsets at publication (aiming for ~50M over ~50K synsets), cleaned via a confidence-threshold Amazon Mechanical Turk voting scheme to a reported 99.7% labeling precision. Three demos show that clean, full-resolution, hierarchically-structured data beats noisy low-res sets at object recognition. Its scale-plus-cleanliness-plus-hierarchy seeded modern ML's benchmark culture -- while its pitch as coverage of 'the image world' became the founding case study of the construct-validity critique. Note: the famous 1000-class benchmark is the later ILSVRC challenge, not this database paper.",
       "explainer": "papers/deng-2009-imagenet.html",
+      "audio_url": "https://pod.darvinyi.com/audio/deng-2009-imagenet.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3047,6 +3049,7 @@
       "author_group": "Microsoft",
       "abstract": "Recasts object recognition as scene understanding: a dataset of complex everyday scenes with every instance of 91 common 'thing' categories fully segmented, not just boxed. 2.5M labeled instances in 328k non-iconic images (7.7 instances and 3.5 categories per image vs ~3.0 and <2 for ImageNet and PASCAL VOC), labeled by a 3-stage Amazon Mechanical Turk pipeline over 70,000+ worker hours. A Deformable Parts Model baseline roughly halves in average AP from PASCAL (29.6) to COCO (16.9), confirming the harder regime; the now-standard mAP@[.5:.95] metric arrived later with the evaluation server.",
       "explainer": "papers/lin-2014-coco.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2014-coco.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3076,6 +3079,7 @@
       "author_group": "Stanford",
       "abstract": "The annual competition that turned the ImageNet database into the standardized benchmark of the deep-learning era: a fixed 1000-class image classification task (plus single-object localization and a 200-class detection task), scored by top-5 error, with a withheld test set and public evaluation server. Covering 2010-2014, it dated the ConvNet revolution -- winning top-5 classification error fell 28.2% to 6.7%, with AlexNet's 16.4% in 2012 the turning point -- and ran the first careful machine-vs-human comparison, in which a single trained human annotator still edged GoogLeNet 5.1% to 6.8% (p=0.022). Its forgiving top-5 metric, effectively single trained-human baseline, and dog-breed-heavy class set are the construct caveats behind the 'human-level' headline.",
       "explainer": "papers/russakovsky-2015-ilsvrc.html",
+      "audio_url": "https://pod.darvinyi.com/audio/russakovsky-2015-ilsvrc.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5759,6 +5763,7 @@
       "author_group": "University of Toronto",
       "abstract": "A University of Toronto technical report on training RBMs and Deep Belief Networks over 80 million tiny web images that, in the process, introduced two hand-labeled subsets — CIFAR-10 (10 classes, 6,000 images each) and CIFAR-100 (100 classes, 600 images each) — which became the standard small-image classification benchmarks of the deep learning era.",
       "explainer": "papers/krizhevsky-2009-cifar.html",
+      "audio_url": "https://pod.darvinyi.com/audio/krizhevsky-2009-cifar.mp3",
       "tags": ["benchmarks"]
     },
     {
