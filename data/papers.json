@@ -824,7 +824,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Reward over-optimization in RL fine-tuning lives in the high-reward tail, where the proxy can't tell an excellent answer from a merely great one. Building rubrics by iteratively differentiating the best off-policy responses (from '4 great & diverse pairs') beats prompt-only and single-pair rubrics on Qwen3-8B-Base across generalist, health, and finance, and delays over-optimization far longer.",
-      "explainer": "papers/zhang-2025-chasing-the-tail.html"
+      "explainer": "papers/zhang-2025-chasing-the-tail.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2025-chasing-the-tail.mp3"
     },
     {
       "slug": "jin-2025-progress-over-points",
@@ -838,7 +839,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Scale AI",
       "abstract": "A position paper with a working demo: stop scoring models on already-solved puzzles and instead measure progress on objectives that are themselves scientific targets — instantiated as a NanoGPT-speedrun environment where an evolutionary agent loop set a new training-time record.",
-      "explainer": "papers/jin-2025-progress-over-points.html"
+      "explainer": "papers/jin-2025-progress-over-points.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jin-2025-progress-over-points.mp3"
     },
     {
       "slug": "kale-2025-weak-to-strong-monitoring",
@@ -853,6 +855,7 @@
       "author_group": "Scale AI",
       "abstract": "Can an LLM overseer catch an agent secretly misbehaving — leaking data, booking the costlier flight, injecting a backdoor — while it does a legitimate job? A monitor red-teaming workflow finds the agent's awareness hurts the monitor more than the monitor's awareness helps, scaffolding matters more than knowledge, and a hybrid scaffold lets weak models reliably watch strong ones.",
       "explainer": "papers/kale-2025-weak-to-strong-monitoring.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kale-2025-weak-to-strong-monitoring.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -868,6 +871,7 @@
       "author_group": "Scale AI",
       "abstract": "Identifies 'search-time contamination' (STC): when a search-based LLM agent's retrieval step surfaces a web copy of a benchmark (e.g. a third-party HuggingFace re-upload) containing the test question alongside its answer, letting the agent copy the label rather than reason. Across HLE, SimpleQA, and GPQA, ~3% of questions are contaminated via HuggingFace, and blocking that source drops accuracy on the contaminated subset by ~15% — a lower-bound warning that offline capability benchmarks can't be trusted to evaluate search-augmented agents.",
       "explainer": "papers/han-2025-search-time-contamination.html",
+      "audio_url": "https://pod.darvinyi.com/audio/han-2025-search-time-contamination.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -883,6 +887,7 @@
       "author_group": "Scale AI",
       "abstract": "A benchmark of 1,055 reasoning questions written from scratch by native French, Spanish, and Chinese speakers — not translated from English — spanning language-specific linguistic reasoning, wordplay & riddles, cultural/tradition reasoning, and culturally grounded math. Questions are retained only when ≥3 of 5 frontier models fail them, and graded by an LLM judge (GPT-4.1, >95% human agreement, Scott's Pi 0.88). No model passes 50% (o3-pro leads at 49.00%); translating to English lifts math accuracy ~10 points (Spanish +19.1, Chinese +12.5) but barely moves cultural reasoning, exposing missing cultural knowledge rather than a pure language barrier.",
       "explainer": "papers/fabbri-2025-multinrc.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fabbri-2025-multinrc.mp3",
       "tags": ["benchmarks"]
     },
     {
