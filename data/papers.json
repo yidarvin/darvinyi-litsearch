@@ -2371,7 +2371,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "A controlled study of how the post-training objective interacts with shortcut features in alignment data: SFT, DPO, and KTO are trained on synthetic datasets that inject spurious correlations (Feature Ambiguity / Distributional Narrowness) at 10% vs 90% rates across math (GSM8K), document-grounded QA (QuAC), and constrained instruction-following, then evaluated out-of-distribution over 162 checkpoints. No objective universally wins: preference methods (DPO/KTO) are far more robust on math reasoning (~0.78-0.80 vs SFT ~0.54) while SFT holds up better on context-heavy QA, except the 'always abstain' omission shortcut where SFT collapses (0.465->0.108). Higher contamination does not always degrade performance.",
-      "explainer": "papers/shuieh-2025-spurious-correlations.html"
+      "explainer": "papers/shuieh-2025-spurious-correlations.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shuieh-2025-spurious-correlations.mp3"
     },
     {
       "slug": "levine-2025-rebel",
@@ -2385,7 +2386,8 @@
       "topic": "Retrieval & RAG",
       "author_group": "Scale AI / Microsoft",
       "abstract": "Shows that RAG rerankers which maximize context relevance alone hit an information bottleneck — higher retrieval precision but lower answer quality (Cohere Rerank and zero-shot LLM Rerank fall below doing no reranking on a 0–5 answer-similarity metric). REBEL ('RErank BEyond reLevance') fixes this purely in the prompt: score each retrieved document on secondary criteria (depth, diversity, clarity, authoritativeness, recency) via chain-of-thought, optionally inferring the criteria per query through a two-turn meta-prompt. On a 107-question AI-arXiv QA benchmark (GPT-4o generator, GPT-4 judge, 10 runs), two-turn REBEL reaches the best retrieval precision (≈0.945) and answer similarity (≈4.34/5) of any method tested, opening a new tradeoff curve where more inference-time compute buys both better retrieval and better answers.",
-      "explainer": "papers/levine-2025-rebel.html"
+      "explainer": "papers/levine-2025-rebel.html",
+      "audio_url": "https://pod.darvinyi.com/audio/levine-2025-rebel.mp3"
     },
     {
       "slug": "wang-2025-multifiletest",
@@ -2400,6 +2402,7 @@
       "author_group": "UIC / Salesforce / Scale AI",
       "abstract": "The first unit-test-generation benchmark built for multi-file code: 60 self-contained Python/Java/JavaScript projects (20 each, under 1,600 LOC, with enforced cross-file dependencies) where 11 frontier LLMs must test a whole project at once. Vanilla correctness is mediocre and Java is hardest (several open 7B models score 0), but a 2-6 line manual fix of executability/cascade errors swings correctness from 0 to 60 and reorders the leaderboard - while small open models can't self-fix (often emitting prose instead of code) and even top models write redundant tests.",
       "explainer": "papers/wang-2025-multifiletest.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2025-multifiletest.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2415,6 +2418,7 @@
       "author_group": "Scale AI / CMU",
       "abstract": "A red-teaming study showing that safety refusal trained into chat LLMs fails to generalize to browser agents. BrowserART, a 100-behavior toolkit on synthetic and real websites, finds GPT-4o's attack success rate rises from 12% in chat to 74% as an agent, and chat-era jailbreaks transfer to push it to 100%.",
       "explainer": "papers/kumar-2024-browserart.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kumar-2024-browserart.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2429,7 +2433,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Groups LLM synthetic-data generation for fine-tuning into three strategies - Answer Augmentation (new responses to seed questions), Question Rephrasing, and New Question Evolution (new questions with new answers) - and shows the optimal choice depends on the budget ratio BR = queries / seed instructions: augmenting answers wins when BR is low, generating new questions wins when BR is high. With 100 seed instructions the crossover sits at BR ~27-51, falling to ~16 as the seed set grows, and design choices matter far more in low/mid-data regimes than high. A knowledge-distillation sweep (Llama 3.1 70B teacher, Llama 2 7B student) over GSM8k, Spider, and ARC-C, fitted with a data-constrained scaling law (R^2 > 0.98). Also finds a weak augmenter is fine for rephrasing but cripples new-question generation, and that verifying teacher answers against ground truth gives no measurable gain.",
-      "explainer": "papers/chan-2024-synthetic-data.html"
+      "explainer": "papers/chan-2024-synthetic-data.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chan-2024-synthetic-data.mp3"
     },
     {
       "slug": "raghavendra-2024-superficial-alignment",
