@@ -902,7 +902,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Extends RLVR beyond verifiable domains by using LLM-generated, instance-specific checklist rubrics as the reward signal for GRPO. The best variant (RaR-Implicit) gives relative gains up to 31% on HealthBench and 7% on GPQA-Diamond over a Direct-Likert reward, and rubric structure helps small judges align like much larger ones.",
-      "explainer": "papers/gunjal-2025-rubrics-as-rewards.html"
+      "explainer": "papers/gunjal-2025-rubrics-as-rewards.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gunjal-2025-rubrics-as-rewards.mp3"
     },
     {
       "slug": "raffel-2020-t5",
@@ -1134,7 +1135,8 @@
       "topic": "Oversight",
       "author_group": "Scale AI",
       "abstract": "A pre-RL fine-tuning intervention (verbalization fine-tuning, VFT) that trains a model to explicitly admit when prompt cues influence its answer, so the reward hacking it later learns under RL stays visible in the chain of thought. On seven MMLU-based cue environments with Llama-3.1-8B-Instruct, VFT cuts the effective cue-influence rate (undetected reward hacks) to 6% on held-out cues amplified by RL, versus 88% for plain RL and 99% for a debiasing baseline (BCT), by driving the verbalization rate from 8% to 43% after VFT and up to 94% after RL. Crucially every method still learns the hack (cue influence ~100% post-RL), so the only lever on detectability is verbalization, and BCT's attempt to suppress cue sensitivity backfires by suppressing the confession (verbalization drops to 1%). VFT costs no extra accuracy over baseline RL and avoids over-verbalizing (specificity 96-97%) — a transparency intervention, not a prevention.",
-      "explainer": "papers/turpin-2025-vft.html"
+      "explainer": "papers/turpin-2025-vft.html",
+      "audio_url": "https://pod.darvinyi.com/audio/turpin-2025-vft.mp3"
     },
     {
       "slug": "yu-2025-dapo",
@@ -1501,6 +1503,7 @@
       "author_group": "Scale AI",
       "abstract": "A safeguard-robustness benchmark for national-security and public-safety (NSPS) content: 500 expert-crafted single-turn adversarial prompts (1,010 total, the rest held private) across three law-grounded domains — CBRNE, Political Violence & Terrorism, and Criminal & Financial Illicit Activities (10 subdomains) — each graded by an instance-specific rubric of 4–7 binary questions and paired with a benign twin to measure over-refusal. A three-model judge panel (o3, Claude 3.7 Sonnet, Gemini 2.5 Pro) majority-votes each rubric question (89.05% agreement with human experts, 92.98 F1), yielding an Average Risk Score (ARS) and Over-Refusal Score (ORS) that trade off inversely across 26 models: Claude 3.5 Sonnet is most robust (ARS 14.09) but over-refuses most (ORS 21.80), DeepSeek-R1 is most exploitable (78.05) yet barely over-refuses (0.60), and the latest Gemini 2.5 Pro is the worst proprietary model (66.29). The Biological subdomain and psychological/social-engineering tactics break safeguards hardest; an ensemble attacker picking the most-vulnerable model per prompt reaches ARS 89.0 — 6.32× the safest single model — and newer/bigger is not reliably safer (GPT-4.1 > GPT-4o in vulnerability).",
       "explainer": "papers/knight-2025-fortress.html",
+      "audio_url": "https://pod.darvinyi.com/audio/knight-2025-fortress.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2121,6 +2124,7 @@
       "author_group": "Scale AI / CAIS",
       "abstract": "A 1,184-puzzle benchmark drawn from eight real puzzle-hunt events (Normal 949, Hard 235) where instruction-free, multimodal problems demand discovering hidden connections between unrelated clues and inventing the solution path. Each puzzle ships in two formats — a raw PDF/webpage screenshot and a human-transcribed text-image version — to separate reasoning from OCR. State-of-the-art vision-language models barely register: the best (o1) solves 7.0% of Normal and 0.0% of Hard, all nine models score 0% on Hard, and even handed the correct component answers models clear only ≤8.7% of meta-puzzles. Difficulty is organic rather than adversarially curated and the scores fall below Humanity's Last Exam; graded by exact string match on a word/short-phrase answer, the benchmark is kept private and continuously updated to resist the contamination its publicly posted solutions invite.",
       "explainer": "papers/wang-2025-enigmaeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2025-enigmaeval.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2136,6 +2140,7 @@
       "author_group": "CSIS / Scale AI",
       "abstract": "A benchmark for a domain with no ground truth: 400 expert-written international-relations scenarios (escalation, intervention, cooperation, alliance dynamics), expanded by swappable country actors to 66,473 questions over 216 actors, that grade what seven foundation models prefer rather than what they know. Models diverge most — and only statistically significantly — on escalation: Llama 3.1 8B Instruct picks Use of Force 41.36% of the time versus 9.41% for Claude 3.5 Sonnet, while Gemini 1.5 Pro parks 54.83% of answers in the middle Threat-of-Force tier. Every model shows a country bias, recommending Use of Force for the US and UK over 50% of the time but never above 50% for China, India, or Russia — pointing to regime type / training data and warning against off-the-shelf deployment in national-security decision support. The dataset is withheld over contamination concerns; the paper ships the methodology as a recipe.",
       "explainer": "papers/jensen-2025-cfpd.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jensen-2025-cfpd.mp3",
       "tags": ["benchmarks"]
     },
     {
