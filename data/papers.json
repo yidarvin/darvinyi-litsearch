@@ -3755,6 +3755,7 @@
       "author_group": "OSU NLP",
       "abstract": "The first dataset for building and evaluating generalist web agents: 2,350 crowd-annotated tasks across 137 real, unsimplified websites and 31 domains, graded on Cross-Task / Cross-Website / Cross-Domain generalization. The accompanying MindAct model prunes thousand-element pages with a fine-tuned DeBERTa ranker (Recall@50 ≈ 85–89%) then has an LLM answer a 5-way multiple-choice question; best step success reaches 52% (Cross-Task) but whole-task success stays near zero (≤7.1%, GPT-4 2.0%), exposing how far 2023 LLMs were from reliable end-to-end web autonomy.",
       "explainer": "papers/deng-2023-mind2web.html",
+      "audio_url": "https://pod.darvinyi.com/audio/deng-2023-mind2web.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5690,6 +5691,7 @@
       "author_group": "MPI-SWS",
       "abstract": "Introduces disparate mistreatment — unfairness defined as unequal misclassification rates (overall, false-positive, or false-negative) across groups sharing a sensitive attribute — distinct from disparate treatment and disparate impact. Encodes rate-equality as a covariance constraint yielding a convex-concave program that trains logistic regression fair by construction; on ProPublica's COMPAS data it cuts the Black-vs-white false-positive-rate gap from 0.18 to 0.03-0.06 for under one point of accuracy.",
       "explainer": "papers/zafar-2016-disparate-mistreatment.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zafar-2016-disparate-mistreatment.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5705,6 +5707,7 @@
       "author_group": "University of Washington / Allen Institute for AI",
       "abstract": "A classifier trained only on the hypothesis sentence — never shown the premise — labels 67.0% of SNLI and 53.9%/52.3% of MultiNLI's matched/mismatched test sets correctly, versus a ~35% majority-class floor, revealing lexical and length artifacts baked into the crowdsourced elicitation protocol; retrained state-of-the-art NLI models lose 20-30 accuracy points specifically on the subset this diagnostic flags as hard.",
       "explainer": "papers/gururangan-2018-annotation-artifacts.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gururangan-2018-annotation-artifacts.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5750,6 +5753,7 @@
       "author_group": "Facebook AI Research / UNC Chapel Hill",
       "abstract": "Adversarial NLI (ANLI) is collected via HAMLET, a three-round human-and-model-in-the-loop process where crowdworkers write hypotheses to fool the current best NLI model and each round retrains a stronger adversary. Models trained through round 1 collapse on later rounds (19.3% on A2, below chance), while training on all three rounds pushes RoBERTa to new state of the art on SNLI (92.9%) and MNLI (91.0/90.7) — evidence that adversarial, never-ending collection can outrun benchmark saturation, at a rising per-example annotation cost.",
       "explainer": "papers/nie-2020-anli.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nie-2020-anli.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -8008,6 +8012,7 @@
       "author_group": "University of Washington / MosaicML / Meta AI / AI2",
       "abstract": "Defines the compositionality gap — the fraction of 2-hop questions a model gets wrong despite correctly answering both underlying sub-questions in isolation — and shows via a new Compositional Celebrities dataset that GPT-3's gap stays roughly flat (29-64%) from 0.35B to 175B parameters, i.e. scale improves fact recall but not fact composition. Introduces self-ask, a structured decomposition prompt that beats chain-of-thought (sharply on the new Bamboogle benchmark, +11 points) and plugs cleanly into a real search engine for a further boost — the same decompose-then-retrieve pattern later RL-trained search agents automate end-to-end.",
       "explainer": "papers/press-2022-compositionality-gap.html",
+      "audio_url": "https://pod.darvinyi.com/audio/press-2022-compositionality-gap.mp3",
       "tags": ["benchmarks", "evaluations"]
     }
   ],
