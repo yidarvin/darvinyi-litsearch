@@ -1471,6 +1471,7 @@
       "author_group": "Stanford",
       "abstract": "The benchmark framework that made language-model evaluation multi-metric and standardized: 7 metrics (accuracy, calibration, robustness, fairness, bias, toxicity, efficiency) measured for each of 16 core scenarios — plus 7 targeted evaluations over 26 scenarios — across 30 models under identical 5-shot prompting, raising average model×scenario coverage from 17.9% to 96.0% (42 scenarios in all, 21 new to mainstream LM eval). Its 25 findings show instruction-tuning beats scale — text-davinci-002 and a 52B Anthropic model top accuracy, robustness, and fairness over a 530B model — while the multi-metric lens exposes trade-offs a single accuracy number hides: robustness and fairness track accuracy, calibration does not, and on BBQ the most accurate models are the most socially biased. The living-benchmark, name-what's-missing template later rubric and capability evals (MT-Bench, LegalBench, HealthBench) inherited.",
       "explainer": "papers/liang-2022-helm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liang-2022-helm.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -2326,6 +2327,7 @@
       "author_group": "TIGER-Lab",
       "abstract": "The reasoning-era rebuild of MMLU, and the benchmark most frontier models migrated to once MMLU saturated at 86-87%. It merges MMLU's 57 subjects into 14 domains, filters out ~5,900 'too-easy' items using a panel of eight small models, folds in harder STEM-website / TheoremQA / SciBench questions, and expands every question from four options to ten (avg 9.47) with two rounds of expert review -- 12,032 questions in all. The harder format cut accuracy 16-33% (GPT-4o tops out at 72.6% vs ~88.7% on MMLU), widened top-model gaps from ~2% to ~9%, roughly halved prompt sensitivity (4-5% to ~2%), and flipped chain-of-thought from neutral/harmful on MMLU to a +19% boost. A discriminative, prompt-stable signal -- though absolute scores are softened by a lower guess floor and a GPT-4-Turbo-authored distractor pool.",
       "explainer": "papers/wang-2024-mmlu-pro.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2024-mmlu-pro.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3318,6 +3320,7 @@
       "author_group": "Google",
       "abstract": "A learned, BERT-based metric for evaluating generated text that replaces n-gram overlap (BLEU, ROUGE) with a regression head fine-tuned to predict human ratings. Its key idea is a synthetic pre-training stage — ~6.5M perturbed Wikipedia sentence pairs labelled with nine automatic signals (BLEU, ROUGE, BERTScore, backtranslation likelihood, MNLI entailment) — that makes the metric robust to the quality and domain drift on which earlier fully-learned metrics broke. It tops the WMT 2017–18 Metrics shared task (avg Kendall τ 62.5) and adapts to WebNLG with little or no in-task data, though it is English-only, reference-based, and scored on the authors' own benchmark reimplementation.",
       "explainer": "papers/sellam-2020-bleurt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sellam-2020-bleurt.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4342,6 +4345,7 @@
       "author_group": "Tsinghua / OpenBMB",
       "abstract": "An automated ChatGPT pipeline builds ToolBench — 126,486 instruction-and-solution-path traces over 16,464 real RapidAPI endpoints — plus a depth-first search decision tree (DFSDT) that finds working multi-tool solutions where ReAct gets stuck; fine-tuning LLaMA-2 7B on it produces ToolLLaMA, which lands within a few points of ChatGPT on the paper's own ToolEval suite and generalizes to unseen APIs.",
       "explainer": "papers/qin-2023-toolllm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/qin-2023-toolllm.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6308,6 +6312,7 @@
       "author_group": "MIT",
       "abstract": "61,097 multiple-choice questions drawn from real US, mainland-China, and Taiwan medical board exams, paired with a multi-million-token medical-textbook corpus for open-domain retrieval-and-reasoning evaluation — the paper that introduced the MedQA/USMLE benchmark now standard in medical-LLM model cards.",
       "explainer": "papers/jin-2020-medqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jin-2020-medqa.mp3",
       "tags": ["benchmarks"]
     },
     {
