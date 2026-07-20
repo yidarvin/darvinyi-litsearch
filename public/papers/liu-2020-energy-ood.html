@@ -163,12 +163,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2020 · NeurIPS 2020 · Benchmarks &amp; Evals</div>
       <h1>Energy-based Out-of-distribution Detection</h1>
       <p class="dek">A classifier's softmax confidence is not the same number as its logits' free energy — it's a shifted, biased version of it, and the shift happens to erase exactly the magnitude information that separates in-distribution inputs from out-of-distribution ones. This paper names that quantity, shows it can be read straight off any pre-trained classifier's logits for free, and demonstrates that fine-tuning to widen its gap works better than fine-tuning the softmax directly.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/liu-2020-energy-ood.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/liu-2020-energy-ood.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Weitang Liu, Xiaoyun Wang, John D. Owens, Yixuan Li</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>NeurIPS 2020</b></span>
         <span class="fact">citations&nbsp;<b>2,042</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2010.03759">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/liu-2020-energy-ood.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-07-19</div>
     </div>

@@ -5013,6 +5013,7 @@
       "author_group": "Google",
       "abstract": "Introduces the SemEval-2017 multilingual/cross-lingual STS shared task and releases the STS Benchmark — 8,628 English sentence pairs (5,749/1,500/1,379 train/dev/test) that became the standard STS-B target for the sentence-embedding literature.",
       "explainer": "papers/cer-2017-sts.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cer-2017-sts.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5044,6 +5045,7 @@
       "author_group": "Cornell University",
       "abstract": "Formalizes three fairness conditions for risk assignments — calibration within groups, balance for the negative class, and balance for the positive class — and proves they cannot all hold simultaneously except when the compared groups share a base rate or the predictor achieves perfect prediction, with the impossibility surviving in an ε-approximate form.",
       "explainer": "papers/kleinberg-2016-inherent-tradeoffs.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kleinberg-2016-inherent-tradeoffs.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5135,6 +5137,7 @@
       "author_group": "University of Maryland / BBN Technologies",
       "abstract": "TER scores machine-translation output by the minimum number of edits — insertions, deletions, substitutions, and unit-cost block shifts — needed to reach a reference, normalized by reference length. Its human-in-the-loop variant, HTER, correlates with average human judgment (r=0.630) better than two independent human judges agree with each other (r=0.478).",
       "explainer": "papers/snover-2006-ter.html",
+      "audio_url": "https://pod.darvinyi.com/audio/snover-2006-ter.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5894,6 +5897,7 @@
       "author_group": "University of Wisconsin-Madison",
       "abstract": "Reinterprets a classifier's logits as an energy-based model, defining a parameter-free OOD score that's provably aligned with the input's likelihood — unlike softmax confidence, which is a biased, shifted view of the same logits. Used post-hoc, it cuts average FPR95 on CIFAR-10 significantly versus softmax; fine-tuned with an energy-margin hinge loss on auxiliary outlier data, it beats Outlier Exposure under an identical training budget.",
       "explainer": "papers/liu-2020-energy-ood.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2020-energy-ood.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6521,6 +6525,7 @@
       "author_group": "Stanford / Google",
       "abstract": "Curates BIG-Bench Hard (BBH), the 23-task subset of BIG-Bench where no prior model beat the average human rater, and shows that chain-of-thought prompting flips the outcome: Codex+CoT beats the human average on 17/23 tasks versus just 5/23 with standard answer-only prompting.",
       "explainer": "papers/suzgun-2022-bbh.html",
+      "audio_url": "https://pod.darvinyi.com/audio/suzgun-2022-bbh.mp3",
       "tags": ["benchmarks"]
     },
     {
