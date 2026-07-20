@@ -7,6 +7,11 @@
   │      python scripts/inject_figures.py public/papers/<slug>.html figs/     │
   │  to base64-inline the {{FIGn}} placeholders.                              │
   │                                                                           │
+  │  OPT-IN podcast: if the paper has an episode, set the node's audio_url    │
+  │  and run  python scripts/inject_podcast.py --set <slug>  to add a         │
+  │  `listen ♪` hero pill + an <audio> player (injector-managed; do not       │
+  │  hand-place). Absent audio_url == no episode; leave the hero as-is.       │
+  │                                                                           │
   │  Placeholders to replace ({{...}}):                                        │
   │    {{TITLE}} {{DEK}} {{YEAR}} {{VENUE}} {{AUTHORS}} {{CITATIONS}}          │
   │    {{TOPIC}} {{SLUG}} {{SOURCE_URL}} {{ASOF}}                              │
@@ -179,12 +184,15 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">{{YEAR}} · {{VENUE}} · {{TOPIC}}</div>
       <h1>{{TITLE}}</h1>
       <p class="dek">{{DEK}}</p>
+      <!-- scripts/inject_podcast.py inserts the <audio> player here (right after
+           the dek) when the node has an audio_url; nothing to fill in by hand. -->
       <div class="authors mono">{{AUTHORS}}</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>{{VENUE}}</b></span>
         <span class="fact">citations&nbsp;<b>{{CITATIONS}}</b></span>
         <span class="fact">topic&nbsp;<b>{{TOPIC}}</b></span>
         <span class="fact"><a href="{{SOURCE_URL}}">source&nbsp;↗</a></span>
+        <!-- inject_podcast.py appends a `listen ♪` pill here when audio_url is set. -->
       </div>
       <div class="asof mono">// citation count as of {{ASOF}}</div>
     </div>

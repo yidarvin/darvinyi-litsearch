@@ -12,7 +12,12 @@ import pytest
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 CANON_KEYS = ["slug", "short", "title", "authors", "year", "date", "venue",
-              "citation_count", "topic", "author_group", "abstract", "explainer", "tags"]
+              "citation_count", "topic", "author_group", "abstract", "explainer",
+              "audio_url", "tags"]
+
+# The deterministic podcast URL scheme (scripts/inject_podcast.py); a node's
+# optional `audio_url` must be exactly this when present.
+AUDIO_URL_FMT = "https://pod.darvinyi.com/audio/{slug}.mp3"
 
 # benchmarks-taxonomy.json's controlled vocabulary, mirrored from the definitions in
 # scripts/benchmarks_survey/build_survey_page.py (DOM_L, SHAPES, GR, LEV, PROV, CONTAM,
@@ -134,6 +139,16 @@ def test_tags_sorted_deduped_and_known(papers, survey_ids):
         if tags != sorted(set(tags)) or not set(tags) <= survey_ids:
             bad.append((p["slug"], tags))
     assert not bad, f"bad tags: {bad}"
+
+
+def test_audio_url_is_canonical(papers):
+    """`audio_url` is optional (absent == no podcast episode), but when present it
+    must be the deterministic published URL for that slug — the explainer's
+    on-page player and the injector (scripts/inject_podcast.py) both assume it."""
+    bad = [(p["slug"], p["audio_url"]) for p in papers
+           if p.get("audio_url") is not None
+           and p["audio_url"] != AUDIO_URL_FMT.format(slug=p["slug"])]
+    assert not bad, f"non-canonical audio_url: {bad}"
 
 
 def test_explainer_files_exist(papers):

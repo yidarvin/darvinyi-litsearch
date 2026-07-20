@@ -42,7 +42,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI / DeepMind",
       "abstract": "The paper that turned human preference into a training signal: fit a reward model to a non-expert's pairwise comparisons of 1–2 second behavior clips (a Bradley–Terry preference predictor), then optimize it online with deep RL (A2C for Atari, TRPO for MuJoCo). It solves Atari and simulated locomotion without ever seeing the true reward — feedback on under 1% of the agent's interactions: ~700 comparisons to match true-reward RL across eight MuJoCo tasks and 5,500 on seven Atari games — and instills behaviors with no writable reward, like a Hopper backflip from ~900 queries in under an hour. Offline (frozen) reward training collapses into reward hacking (Pong's infinite volleys), so feedback must stay online. The direct ancestor of RLHF and an early demonstration of reward over-optimization.",
-      "explainer": "papers/christiano-2017-deep-rl-preferences.html"
+      "explainer": "papers/christiano-2017-deep-rl-preferences.html",
+      "audio_url": "https://pod.darvinyi.com/audio/christiano-2017-deep-rl-preferences.mp3"
     },
     {
       "slug": "he-2025-advancedif",
