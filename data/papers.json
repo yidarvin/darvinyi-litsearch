@@ -247,6 +247,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI fine-tunes GPT on public GitHub Python (Codex) and introduces HumanEval — 164 hand-written problems graded by executing hidden unit tests rather than matching reference text. Codex-12B solves 28.8% from a single sample and 70.2% with 100 samples (Codex-S reaches 77.5% with an oracle pick, 44.5% by mean-logprob reranking); the paper establishes functional correctness and the unbiased pass@k estimator as the standard for code evaluation.",
       "explainer": "papers/chen-2021-codex.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2021-codex.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -398,6 +399,7 @@
       "author_group": "LMSYS / Berkeley",
       "abstract": "Establishes LLM-as-a-judge — using a strong model like GPT-4 to grade open-ended chat answers — and validates it against two new human-preference benchmarks: MT-bench (80 hand-written multi-turn questions across 8 categories) and Chatbot Arena (crowdsourced anonymous battles, ~30K votes from 2,114 IPs). GPT-4 judges agree with expert humans 85% of the time on non-tie votes — above the 81% humans agree with each other (87% on Arena) — while the paper documents and mitigates position, verbosity, and self-enhancement biases (only GPT-4 stays >60% position-consistent and resists a verbosity attack at 8.7% vs ~91% for weaker judges). The work made model-graded preference evaluation respectable and seeded the LMSYS leaderboard lineage.",
       "explainer": "papers/zheng-2023-mt-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zheng-2023-mt-bench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -1339,6 +1341,7 @@
       "author_group": "OpenAI",
       "abstract": "Introduces GSM8K — 8.5K linguistically diverse, human-written grade-school math word problems (7.5K train / 1K test, 2–8 steps, <2% breaking errors) — and shows that finetuning alone scales terribly (the 175B model tops out near ≈33%; an 80% solve rate would naively need ~10^16 parameters). The fix: train a verifier to score 100 sampled solutions and return the top-ranked one, a boost worth roughly a 30× model-size increase (6B verification ≈ a finetuned 175B model; the 175B verifier reaches ≈55%). Establishes the generator-verifier, sample-and-rank, test-time-compute paradigm — and the default math-reasoning benchmark — that chain-of-thought self-consistency, outcome/process reward models, and modern RLVR all build on.",
       "explainer": "papers/cobbe-2021-gsm8k.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cobbe-2021-gsm8k.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2974,6 +2977,7 @@
       "author_group": "USC ISI",
       "abstract": "Introduces ROUGE (Recall-Oriented Understudy for Gisting Evaluation): recall-based overlap metrics that score a summary against human references using n-gram co-occurrence (ROUGE-N), longest common subsequence (ROUGE-L/W), and skip-bigrams (ROUGE-S/SU). Where BLEU is precision-oriented, ROUGE asks how much of the reference content was recovered. A DUC 2001-2003 study correlates 17 ROUGE variants with human coverage judgments: ROUGE-2/L/W/S track humans well on single-document newswire (up to 0.99) but weakly and unstably on multi-document tasks. It became the default summarization metric for two decades and the lexical baseline that embedding, factuality, and LLM-judge evaluators are built to beat.",
       "explainer": "papers/lin-2004-rouge.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2004-rouge.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4891,6 +4895,7 @@
       "author_group": "The Chinese University of Hong Kong",
       "abstract": "Introduces CelebA — 200,000 celebrity face images (202,599 images / 10,177 identities in its public release), each annotated with 40 binary attributes and 5 landmarks — alongside a two-stage LNet+ANet CNN cascade that localizes faces from image-level attribute tags alone. Became the field's default face-attribute, face-verification, and face-generation benchmark for the following decade.",
       "explainer": "papers/liu-2015-celeba.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2015-celeba.mp3",
       "tags": ["benchmarks"]
     },
     {
