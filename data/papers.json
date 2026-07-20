@@ -2498,6 +2498,7 @@
       "author_group": "LMSYS / Berkeley",
       "abstract": "The open, live LLM leaderboard that became the field's de-facto scoreboard: users prompt two anonymous models with anything, vote for the better answer, and identities are revealed only after voting. By Jan 2024 it had collected ~240K pairwise votes (243,329 conversations) from ~90K users over 50 models and 149 languages - a fresh, real-world prompt distribution that static benchmarks cannot contaminate. The statistical core converts noisy A-beats-B outcomes into a ranking via Bradley-Terry coefficients fit by logistic regression with multiplicity-corrected confidence intervals, plus an active sampling rule that concentrates votes on close match-ups (up to ~54% fewer votes for a target precision) and a sequential test that flags anomalous voters. Validation shows crowd-vs-expert agreement of 72.8-83.1% (near the 79.4-89.8% expert-vs-expert level) and BERTopic finds ~600 long-tailed prompt clusters - but the trust check covers only 320 battles across two lopsided pairs, and the headline Elo, lacking ground truth, tracks human preference (length and style included) rather than contamination-proof capability.",
       "explainer": "papers/chiang-2024-chatbot-arena.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chiang-2024-chatbot-arena.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -3294,6 +3295,7 @@
       "author_group": "UW / Meta AI",
       "abstract": "Introduces FActScore, which scores long-form factuality as the fraction of a generation's atomic facts supported by a knowledge source (Wikipedia) — turning an all-or-nothing judgment into graded precision that separates a 66.7%-accurate biography from a 10% one. Human evaluation finds commercial LMs unreliable (ChatGPT 58.3%, search-augmented PerplexityAI 71.5%, both collapsing on rare entities), and an automatic retrieval+LM estimator matches human scores within ~2%, enabling a 13-model, 6,500-generation study at a fraction of the $26K human cost.",
       "explainer": "papers/min-2023-factscore.html",
+      "audio_url": "https://pod.darvinyi.com/audio/min-2023-factscore.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -3498,6 +3500,7 @@
       "author_group": "CAIS / UIUC",
       "abstract": "Turns automated red teaming from incomparable per-paper evaluations into a standardized benchmark: 510 harmful behaviors across 4 functional and 7 semantic categories, run through a fixed pipeline (attack → 512-token completion → a fine-tuned Llama-2-13B classifier that reaches 93.2% agreement with human labels, edging out GPT-4's 88.4% and far above substring matching's 69.9%). A large-scale comparison of 18 attacks and 33 target LLMs shows no attack or defense is uniformly effective and robustness is independent of model size; the included R2D2 adversarial-training method cuts GCG attack success on Zephyr from 69.5% to 5.5% while preserving MT-Bench utility.",
       "explainer": "papers/mazeika-2024-harmbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mazeika-2024-harmbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -5611,6 +5614,7 @@
       "author_group": "McGill University",
       "abstract": "The first systematic human-correlation study of automatic dialogue-evaluation metrics: BLEU, METEOR, ROUGE, and three word-embedding similarity metrics are shown to correlate only weakly with human adequacy judgments on a casual Twitter corpus (best Spearman 0.36) and not at all on the more technical Ubuntu Dialogue Corpus, versus a human-human inter-rater ceiling near 0.95.",
       "explainer": "papers/liu-2016-dialogue-eval-metrics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2016-dialogue-eval-metrics.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6676,6 +6680,7 @@
       "author_group": "UC Irvine / AI2",
       "abstract": "A 96,567-question, crowdsourced reading-comprehension benchmark built with a live adversarial BiDAF baseline in the loop, requiring systems to resolve references across a Wikipedia passage and perform discrete operations — addition, counting, sorting, comparison — rather than just extract a span. The best 2019 baseline (BERT) reached only 32.7% F1 against 96.4% human performance.",
       "explainer": "papers/dua-2019-drop.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dua-2019-drop.mp3",
       "tags": ["benchmarks"]
     },
     {
