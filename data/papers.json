@@ -1402,6 +1402,7 @@
       "author_group": "UC Berkeley",
       "abstract": "A benchmark of 12,500 competition-mathematics problems (AMC/AIME), each with a full worked solution and a single boxed answer graded by exact match. In 2021 the best models scored 3–7%, and a log-linear extrapolation suggested scaling alone would need ~10^35 parameters to reach 40% — a forecast chain-of-thought, scale, and RL later overturned. It also introduced AMPS, a 5M-problem pretraining corpus.",
       "explainer": "papers/hendrycks-2021-math.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2021-math.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2908,6 +2909,7 @@
       "author_group": "Virginia Tech / Georgia Tech",
       "abstract": "Introduces Visual Question Answering: given an image and a free-form, open-ended natural-language question, produce a short natural-language answer. Unlike image captioning, VQA admits a clean automatic metric -- an answer scores fully correct once at least 3 of 10 human annotators give it -- so progress is measurable. Ships ~0.25M images (204,721 from MS COCO + 50K abstract scenes), ~0.76M questions, and ~10M answers across open-ended and multiple-choice tracks. Its blind (question-only) and image-only baselines exposed strong language priors: a question-only LSTM reaches 48.76% vs 57.75% for the full multimodal model and 83.30% for humans. That self-diagnosed shortcut seeded both the modern multimodal-benchmark lineage (ScienceQA, MathVista, MMMU) and the balanced-pairs correction of VQA v2.",
       "explainer": "papers/antol-2015-vqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/antol-2015-vqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4578,6 +4580,7 @@
       "author_group": "OpenAI",
       "abstract": "A common environment interface (reset/step) plus a growing benchmark suite spanning classic control, Atari, board games, algorithmic tasks, and MuJoCo-wrapped continuous control, meant to make reinforcement-learning results comparable across labs rather than just make environment code reusable.",
       "explainer": "papers/brockman-2016-openai-gym.html",
+      "audio_url": "https://pod.darvinyi.com/audio/brockman-2016-openai-gym.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4988,6 +4991,7 @@
       "author_group": "University of Massachusetts Amherst",
       "abstract": "Introduces LFW — 13,233 face images of 5,749 individuals (1,680 with two or more photos) collected from news photographs and detected via Viola-Jones — and the 'unseen pair matching' verification protocol (View 1 for model selection; View 2's 10-fold leave-one-out split for performance reporting) that became face recognition's default unconstrained benchmark for the next decade.",
       "explainer": "papers/huang-2007-lfw.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2007-lfw.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5789,6 +5793,7 @@
       "author_group": "DeepMind",
       "abstract": "Trains an ensemble of ordinary neural networks — each outputting a full predictive distribution via a proper scoring rule instead of a point estimate, optionally smoothed with adversarial training — and combines them as a mixture, producing calibrated uncertainty and robust out-of-distribution detection with no Bayesian inference machinery. Became the standard non-Bayesian uncertainty-quantification baseline.",
       "explainer": "papers/lakshminarayanan-2016-deep-ensembles.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lakshminarayanan-2016-deep-ensembles.mp3",
       "tags": ["evaluations"]
     },
     {
