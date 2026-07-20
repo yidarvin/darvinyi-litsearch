@@ -3120,6 +3120,7 @@
       "author_group": "NYU",
       "abstract": "Introduces the Multi-Genre NLI corpus (MultiNLI): 433k premise–hypothesis pairs whose premises span ten genres of written and spoken English — versus SNLI's image captions alone — making it both substantially harder and a built-in testbed for cross-genre generalization through its matched (in-training) vs. mismatched (held-out) evaluation splits. Annotation quality matches SNLI (88.7% individual-vs-gold agreement) while the same models drop sharply (ESIM falls from 86.7% on SNLI to 72.3% on MultiNLI), though matched and mismatched splits barely separate 2017 models and later hypothesis-only baselines (~53% vs. a ~36% majority floor) exposed the same crowd-sourced annotation artifacts SNLI carried. Became a core GLUE task and a standard NLI transfer source (SuperGLUE retired it as near-solved).",
       "explainer": "papers/williams-2017-multinli.html",
+      "audio_url": "https://pod.darvinyi.com/audio/williams-2017-multinli.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3135,6 +3136,7 @@
       "author_group": "Virginia Tech / Microsoft",
       "abstract": "Proposes evaluating image captions by how well they match the consensus of many human descriptions, validated with a relative two-alternative-forced-choice (triplet) human protocol and two new 50-reference datasets (PASCAL-50S, ABSTRACT-50S). The CIDEr metric — mean cosine similarity over TF-IDF-weighted 1–4-grams, with IDF doubling as a saliency weight — matches human consensus better than BLEU, ROUGE, and METEOR (84% agreement at 48 references vs a 90% human ceiling), though METEOR stays competitive at the 5 references real datasets carry. Its gaming-resistant variant CIDEr-D shipped in the MS COCO caption evaluation server and became the field's standard captioning metric.",
       "explainer": "papers/vedantam-2015-cider.html",
+      "audio_url": "https://pod.darvinyi.com/audio/vedantam-2015-cider.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -3239,6 +3241,7 @@
       "author_group": "MIT Media Lab",
       "abstract": "An algorithmic audit of three commercial gender-classification APIs (Microsoft, Face++, IBM) on the Pilot Parliaments Benchmark, a new face dataset balanced by gender and Fitzpatrick skin type. Aggregate accuracy (87.9-93.7%) masked a stark intersectional gap: error rates reached 34.7% for darker-skinned women versus at most 0.8% for lighter-skinned men. The paper made disaggregated, intersectional subgroup reporting - and dataset/model documentation like datasheets and model cards - table stakes for responsible AI.",
       "explainer": "papers/buolamwini-2018-gender-shades.html",
+      "audio_url": "https://pod.darvinyi.com/audio/buolamwini-2018-gender-shades.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -4423,6 +4426,7 @@
       "author_group": "Google",
       "abstract": "Introduces equalized odds and its relaxation equal opportunity — oblivious fairness criteria requiring a predictor's true/false-positive rates to match across a protected group — plus an efficient post-processing method that converts any trained score into a compliant, provably near-Bayes-optimal classifier without retraining. A FICO-credit-score case study shows equal opportunity costs under a quarter of what demographic parity costs in forgone profit, while a companion impossibility result shows no oblivious audit (including this one) can fully certify a predictor as non-discriminatory.",
       "explainer": "papers/hardt-2016-equalized-odds.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hardt-2016-equalized-odds.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6644,6 +6648,7 @@
       "author_group": "AI2",
       "abstract": "7,787 natural grade-school science questions split into an Easy Set and a Challenge Set, defined operationally as questions both an IR solver and a PMI solver answer incorrectly. No 2018 baseline — including SNLI- and SQuAD-SOTA neural models — beats the 25.02% random-guess floor by more than the paper's own ±2.5% confidence interval on the Challenge Set.",
       "explainer": "papers/clark-2018-arc-science.html",
+      "audio_url": "https://pod.darvinyi.com/audio/clark-2018-arc-science.mp3",
       "tags": ["benchmarks"]
     },
     {
