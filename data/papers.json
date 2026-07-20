@@ -1109,6 +1109,7 @@
       "author_group": "Google",
       "abstract": "Introduces MultiMedQA — seven medical QA datasets including the new 3,375-question HealthSearchQA — plus a clinician human-evaluation framework (scientific consensus, harm, bias, completeness) that pushes medical-LLM eval past multiple-choice accuracy. Flan-PaLM 540B (PaLM instruction-tuned, with few-shot + chain-of-thought + self-consistency) sets SOTA on every multiple-choice set — 67.6% on MedQA/USMLE, +17% over prior best. Instruction prompt tuning (a 100-token, 1.84M-parameter soft prompt over Flan-PaLM) yields Med-PaLM, lifting scientific-consensus agreement 61.9%→92.6% and cutting potentially-harmful answers 29.7%→5.9%, though it still trails clinicians.",
       "explainer": "papers/singhal-2023-med-palm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/singhal-2023-med-palm.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -1857,6 +1858,7 @@
       "author_group": "CMU / Stanford",
       "abstract": "The Wikipedia-based benchmark that made multi-hop reasoning and explanation first-class in QA: 112,779 crowd-sourced question–answer pairs that each require chaining facts across two documents, paired with the sentence-level supporting facts that justify the answer (graded by a joint answer+evidence EM/F1) plus a novel comparison-question type. A reimplemented bi-attention/self-attention reader reaches only 58.28 distractor answer F1 (41.37 joint) and 34.40 in the open-domain full-wiki setting — where a tf-idf retriever finds both gold paragraphs in the top-10 just 56% of the time — against 91.40 human answer F1. Its distractor-vs-fullwiki template and supporting-fact supervision seeded the agentic-retrieval era (ReAct, Reflexion), and it is now the easy-to-find QA baseline that browsing benchmarks like BrowseComp explicitly move past.",
       "explainer": "papers/yang-2018-hotpotqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2018-hotpotqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3105,6 +3107,7 @@
       "author_group": "Stanford",
       "abstract": "Introduces the Stanford Natural Language Inference (SNLI) corpus: 570,152 human-written English sentence pairs labeled entailment, contradiction, or neutral, produced by crowdworkers who wrote hypotheses for Flickr30k photo captions (the photo is hidden, so labels are recoverable from text, and eliciting all three labels per premise balances the classes). Two orders of magnitude larger than prior NLI resources, it made supervised neural inference models competitive on entailment for the first time and became the field's standard NLI benchmark — and was later shown to carry annotation artifacts that let premise-blind models score well above chance.",
       "explainer": "papers/bowman-2015-snli.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bowman-2015-snli.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3182,6 +3185,7 @@
       "author_group": "Google",
       "abstract": "A QA benchmark of 307,373 real anonymized Google search queries, each paired with a Wikipedia page and a human-annotated long answer (the evidence passage) plus short answer, with NULL allowed for the ~51% of pairs the page does not answer. NQ introduced an achievable, distribution-fixed human upper bound (super-annotator 87.2/75.7 long/short F1) and showed that pre-BERT baselines (~55 long-answer F1) trailed a single human (73.4) — becoming a backbone benchmark for open-domain QA and retrieval.",
       "explainer": "papers/kwiatkowski-2019-natural-questions.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kwiatkowski-2019-natural-questions.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4456,6 +4460,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Introduces IMAGENET-C (15 algorithmic corruptions × 5 severities) and IMAGENET-P (temporal perturbation sequences) as standardized benchmarks for common, non-adversarial robustness. Absolute corruption error (mCE) improves with architecture progress from AlexNet to ResNet-50, but Relative mCE — which isolates corruption damage from each model's own clean-accuracy baseline — does not, meaning a decade of architectural gains bought almost no dedicated corruption robustness.",
       "explainer": "papers/hendrycks-2019-imagenet-c.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2019-imagenet-c.mp3",
       "tags": ["benchmarks"]
     },
     {
