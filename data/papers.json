@@ -979,6 +979,7 @@
       "author_group": "UIUC",
       "abstract": "EvalPlus rigorously re-tests LLM-generated code by augmenting a benchmark's thin test suite with automatically generated inputs — ChatGPT-seeded, then expanded ~80× by type-aware mutation — and grading via differential testing against vetted ground-truths. Extending HumanEval to HumanEval+ (9.6→764.1 avg tests per problem) over 26 LLMs, pass@k drops by up to 19.3–28.9%, and the ranking flips: WizardCoder- and Phind-CodeLlama-34B both overtake ChatGPT on HumanEval+ though neither does on HumanEval. The harder tests also expose 18 buggy ground-truths (11% of problems) in HumanEval itself, and a set-cover-distilled HumanEval+-mini reproduces the effect with 47× fewer tests — establishing test adequacy as a first-class concern and making HumanEval+/MBPP+ default code-eval sets.",
       "explainer": "papers/liu-2023-evalplus.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-evalplus.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -5061,6 +5062,7 @@
       "author_group": "USC Information Sciences Institute",
       "abstract": "Ports BLEU's n-gram co-occurrence scoring from machine translation to automatic summary evaluation, reframing it as a recall-based metric to match DUC's coverage-based human judging protocol. On DUC 2001 data, plain unigram co-occurrence correlates far more consistently with human rankings (Spearman ρ up to 0.99) than BLEU-style weighted multi-length matching — the recall framing Lin's own ROUGE would generalize a year later.",
       "explainer": "papers/lin-2003-rouge-predecessor.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2003-rouge-predecessor.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5076,6 +5078,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Shows that GPT-3's few-shot accuracy is highly unstable across choices of prompt format, training-example selection, and order — the same examples, merely reordered, can swing accuracy from near-chance to near-state-of-the-art — and traces this to majority-label, recency, and common-token biases. Introduces contextual calibration, a training-free correction using a content-free input (e.g. \"N/A\") to estimate and remove the bias, improving accuracy by up to 30.0% absolute.",
       "explainer": "papers/zhao-2021-calibrate.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhao-2021-calibrate.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5091,6 +5094,7 @@
       "author_group": "Yale University",
       "abstract": "The canonical cross-domain text-to-SQL benchmark: 10,181 questions and 5,693 unique complex SQL queries across 200 multi-table databases spanning 138 domains, split so no database's schema appears in both training and test. The best 2018 baseline (SQLNet) reaches only 12.4% exact-match accuracy under this database split, exposing how badly prior single-database, template-memorizing evaluations had inflated the field's sense of progress.",
       "explainer": "papers/yu-2018-spider.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yu-2018-spider.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5703,6 +5707,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Introduces ImageNet-A (7,500 images, 200 classes) and ImageNet-O (2,000 images) by adversarially filtering real, unmodified photographs against a fixed ResNet-50 ensemble until only images it reliably misclassifies (or wrongly assigns high in-distribution confidence to) remain. Accuracy on ImageNet-A collapses from ≥90% to about 2% for a DenseNet-121, and the failures transfer to unseen architectures — including Vision Transformers — while data augmentation and additional training data help only marginally compared to architectural changes.",
       "explainer": "papers/hendrycks-2021-imagenet-a.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2021-imagenet-a.mp3",
       "tags": ["benchmarks"]
     },
     {
