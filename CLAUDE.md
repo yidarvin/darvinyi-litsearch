@@ -1,6 +1,6 @@
 # CLAUDE.md — Paper Atlas operations
 
-This repo is **Paper Atlas**: a dark, citation-map site of ML/eval papers, deployed at research.darvinyi.com. Two tiers:
+This repo is **Paper Atlas**: a dark, citation-map site of ML/eval papers, deployed at litsearch.darvinyi.com. Two tiers:
 
 - the **index map** — a citation **timeline** that reads `data/papers.json`: papers flow left→right by publication date (quarter bands, ordered to minimize edge crossings), nodes coloured by topic/author/venue, edges dimmed until you hover a node. The layout math lives in `src/timeline.js`; the renderer, hover behaviour, and the time-axis overlay in `src/main.js` + `index.html` (`#axis`) + `src/style.css`.
 - one **explainer page per paper** at `public/papers/<slug>.html` (dark, self-contained long-reads)
