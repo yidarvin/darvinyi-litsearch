@@ -291,7 +291,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "A policy-aware rubric reward for RLVR. Static weighted-sum rubrics route 45–51% of GRPO's within-category training pressure onto saturated or dead criteria that can't move the policy (17–26% of criteria are saturated and 20–33% dead for a fresh policy), because a criterion every rollout passes or fails cancels out of the standardized advantage. POW3R keeps the human weights and category balance as the fixed evaluation target but reweights within-category pressure toward criteria that currently separate rollouts, via a bounded EMA factor derived from judge-verdict variance. Across six base policies (Qwen3-VL, Gemma 3) on a 10k-task multimodal set and HealthBench it wins 24 of 30 base-policy/metric comparisons, Pareto-dominates on mean rubric reward and strict completion, and reaches the same plateau in 2.5–4× fewer GRPO steps — though the dynamic factor is an increment over category-balancing and every number is mediated by GPT-5.4 judges.",
-      "explainer": "papers/tyagi-2026-pow3r.html"
+      "explainer": "papers/tyagi-2026-pow3r.html",
+      "audio_url": "https://pod.darvinyi.com/audio/tyagi-2026-pow3r.mp3"
     },
     {
       "slug": "chan-2024-mle-bench",
@@ -321,6 +322,7 @@
       "author_group": "Scale AI",
       "abstract": "Clarification-seeking is treated as a virtue in LLM agents, but ASPI shows it is also an attack surface. Building 728 paired task–attack scenarios on AgentDojo's four domains, it holds the task, attacker goal, environment, and scoring fixed while varying only the interaction state and the channel the injection arrives through. Across ten frontier models, the same attack that bounces off an agent during execution lands once the agent solicits input: attack success rises from 1.8%→34.0% for o3, 2.2%→35.7% for Gemini-3-Flash, and 11.1%→63.1% for Kimi K2.5, while Claude-Opus-4.7 stays flat (2.1%→2.2%). A state-vs-channel decomposition pins the solicited-response ask_user channel as the primary driver, lightweight prompt-guard/tool-filter defenses dent but don't close the gap (Gemini-3-Flash 35.7%→23.9%), and because the design uses minimal single-slot, one-round ambiguity the reported rates are a floor.",
       "explainer": "papers/sehwag-2026-aspi.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sehwag-2026-aspi.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -350,6 +352,7 @@
       "author_group": "Scale AI",
       "abstract": "A diagnostic framework for reward hacking in rubric-based RL: a policy is trained against a single verifier (proxy reward) but evaluated against a cross-family panel of three frontier judges (reference reward), separating verifier failure from rubric-design limits. Under a weak verifier (GPT-4o-mini), proxy reward rises while panel reward plateaus and the exploitation rate climbs 39%→65% (medical) / 63%→75% (science) — confirmed externally on HealthBench — while a strong verifier (GPT-OSS-120B) curbs but doesn't kill it (~7× less exploitation). A verifier-free self-internalization gap from policy log-probs tracks reference quality (r 0.91–0.97) as a stopping signal. The deeper failure: even under strong verification, rubric-based judges prefer the RL checkpoint (85.8%) while rubric-free judges prefer the base model (78.4%), because 90.2% of rubric weight is presence-based vs 8.6% absence-based — so RL buys completeness (+14.9 pp) while shedding conciseness, relevance, and factual correctness.",
       "explainer": "papers/mahmoud-2026-reward-hacking.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mahmoud-2026-reward-hacking.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -500,6 +503,7 @@
       "author_group": "Scale AI",
       "abstract": "Reframes retrieval evaluation as a stratified statistical estimation problem: standard BEIR-style query sets leave 40–50% of a corpus's semantic regions untested (NFCorpus covers only 50.9% of clusters; 26 clusters hold 17.3% of documents but 1.1% of queries — e.g. immune cells, 122 docs / 1 query) and those gaps are precisely where retrieval is weakest, so aggregate nDCG overstates quality with irreducible bias. The fix organizes a corpus into entity-based Leiden clusters, defines difficulty strata via relevance dispersion (∆, governs ranking) and query–document alignment (J, governs coverage) spanning a ~3× performance range, and runs a coverage-aware LLM curation loop that lifts semantic coverage to ~90–100%. Stratified evaluation flips system-selection decisions: text-embedding-3-small beats Cohere embed-english-v3.0 in just 32.4% of bootstrap samples under query-weighted mean but 62.5% under cluster-weighted macro-average.",
       "explainer": "papers/klearman-2026-semantic-stratification.html",
+      "audio_url": "https://pod.darvinyi.com/audio/klearman-2026-semantic-stratification.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -601,6 +605,7 @@
       "author_group": "Scale AI",
       "abstract": "A 300-task benchmark (150 SWE from SWE-Bench Pro, 150 text-to-SQL from BIRD) that measures selective escalation — whether agents know when to ask for help. Tasks are pre-filtered so top models hit ~85% pass@3 with full information, then seeded with 3–5 human-validated blockers (42% missing, 36% ambiguous, 22% contradictory) that surface only through progressive exploration. The core metric, Ask-F1 (harmonic mean of question precision and blocker recall), architecturally defeats question spam. Across frontier models a large universal judgment gap appears: 75–89% full-info pass@3 collapses to 4–24% when agents must decide whether to ask (best Ask-F1 ~53% for GPT-5.5). Failure has a stable per-model fingerprint — GPT executes confidently on wrong beliefs, Claude detects uncertainty but submits anyway, Gemini is externally correctable only on SQL — and RLVR on shaped Ask-F1 lifts a Qwen3-32B's Ask-F1 +28pp (SQL)/+17pp (SWE) with pass@3 in lockstep and positive cross-domain transfer, showing judgment is trainable.",
       "explainer": "papers/elfeki-2026-hil-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/elfeki-2026-hil-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
