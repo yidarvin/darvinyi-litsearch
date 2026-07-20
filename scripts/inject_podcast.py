@@ -2,7 +2,7 @@
 """
 inject_podcast.py — link a paper's explainer page to its podcast episode.
 
-The podcast lives in a SEPARATE repo (~/Documents/Projects/darvinyi-podcast) and
+The podcast lives in a SEPARATE repo (~/Projects/darvinyi-podcast) and
 is produced by the user-level `litsearch-podcast` skill; integration here is via
 the shared slug only. When an episode exists it is published to a deterministic
 URL:
