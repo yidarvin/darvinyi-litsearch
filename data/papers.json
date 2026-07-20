@@ -1233,6 +1233,7 @@
       "author_group": "Tsinghua",
       "abstract": "The first systematic benchmark for LLM-as-Agent: 29 API and open-source models evaluated across 8 interactive, execution-graded environments (Operating System, Database, Knowledge Graph, Digital Card Game, Lateral Thinking Puzzles, House-Holding, Web Shopping, Web Browsing) over an estimated 5–50 rounds per task, scored by a relative overall metric that normalizes each task's cross-model average to 1. GPT-4 leads at OA 4.01 — best on 6 of 8 datasets and genuinely usable in spots (78% success on House-Holding) — but no model is reliable, and a wide gap separates API models (avg 2.32, all above 1.00) from open-source ≤70B (avg 0.51, best codellama-34b 0.96, still under gpt-3.5-turbo). The dominant failure is Task Limit Exceeded — weak long-horizon reasoning and decision-making (Lateral Thinking Puzzles 82.5%, Knowledge Graph 67.9%) — rather than missing knowledge, with format/action-schema errors crippling Database (53.3%) and House-Holding (64.1%); code training helps static-procedure tasks but hurts flexible thinking, and high-quality alignment data beats raw scale (vicuna-13b matches 3× larger codellama-34b). Ships a Server-Client, Docker-isolated evaluation toolkit and seeded the agent-benchmark era.",
       "explainer": "papers/liu-2023-agentbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-agentbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1665,6 +1666,7 @@
       "author_group": "National Taiwan University",
       "abstract": "The paper that named “LLM evaluation” and seeded the LLM-as-a-judge era: feed an instruction-following LLM the exact instructions, sample, and rating question used in a human-evaluation study, parse the 1–5 Likert score it generates, and treat it as a stand-in rater. Validated on two tasks — open-ended story generation (GPT-2-medium vs human-written, 200 each, four attributes) and synonym-substitution adversarial attacks (TextFooler/PWWS/BAE, 100 pairs each) — against three certified English teachers. text-davinci-003 and ChatGPT reproduce the experts’ rankings (rating human-written stories higher than GPT-2’s on all four attributes, every gap significant by Welch’s t-test) while weaker T0 and text-curie-001 show no clear preference; davinci grades generously and ChatGPT harshly, but both preserve the ordering. The signal is aggregate, though: per-story Kendall’s τ between davinci and the teachers is only 0.12–0.22 outside relevance (0.38–0.43), ratings stay stable across instructions and temperature, and LLM evaluation costs under US$5 and a few hours versus US$140 and over a week per human rater. The biases later work made central — self-preference, verbosity, position — go untested, since the judges only grade a weak, different-family generator.",
       "explainer": "papers/chiang-2023-llm-eval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chiang-2023-llm-eval.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -2642,6 +2644,7 @@
       "author_group": "HKU / Alibaba DAMO",
       "abstract": "The text-to-SQL benchmark that moved the field from clean academic schemas to 95 large, dirty, cross-domain databases (33.4 GB, 549K average rows), pairing 12,751 questions with hand-annotated external-knowledge ‘evidence’ in four categories (numeric reasoning, domain knowledge, synonym, value illustration) and a first-of-its-kind efficiency metric, the Valid Efficiency Score (VES). Its headline gap — GPT-4 at 54.89% execution accuracy vs 92.96% for human experts on the hidden test set — became the standard motivation for real-world text-to-SQL, though the model number assumes oracle knowledge: strip the evidence and GPT-4 falls to 34.88% (a +20-point swing that pins grounding, not parsing, as the bottleneck).",
       "explainer": "papers/li-2023-bird.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2023-bird.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -4192,6 +4195,7 @@
       "author_group": "Meta AI (FAIR) / Hugging Face",
       "abstract": "466 human-crafted, human-validated questions that are conceptually trivial for people (92% human accuracy) but require an AI assistant to autonomously reason, browse the web, read diverse file types, and use tools to reach a single unambiguous factual answer — GPT-4 with plugins manages only about 15% overall and 0% on the hardest tier.",
       "explainer": "papers/mialon-2023-gaia.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mialon-2023-gaia.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6613,6 +6617,7 @@
       "author_group": "NVIDIA",
       "abstract": "A synthetic long-context benchmark that goes beyond needle-in-a-haystack retrieval to multi-hop variable tracking, aggregation, and distractor-laden QA — all with independently controllable length and complexity. Across 17 models claiming 32K+ context, only about half actually clear a fixed 'effective context length' threshold at 32K; some models claiming up to 1M tokens are effective under 16K.",
       "explainer": "papers/hsieh-2024-ruler.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hsieh-2024-ruler.mp3",
       "tags": ["benchmarks"]
     },
     {
