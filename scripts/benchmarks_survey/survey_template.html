@@ -94,7 +94,7 @@ li{margin:0 0 8px}
 .fnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin:34px 0 6px}
 .findings h3{margin-top:6px;font-size:20px}
 
-/* ---- the 126 table ---- */
+/* ---- the @@N@@ table ---- */
 .filters{display:flex;gap:8px;margin:20px 0 12px;flex-wrap:wrap;align-items:center}
 .filters input,.filters select{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--fg);
   background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;outline:none}
@@ -344,7 +344,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// connections</div>
       <h2>Nine things no single paper shows</h2>
-      <p>These were mined by tracing the corpus's internal citation graph (598 edges among the 126) against the full text of every explainer, then checking each claim's quotes and citation-structure assertions mechanically. Each is a connection you cannot see from inside any one paper.</p>
+      <p>These were mined by tracing the corpus's internal citation graph (@@N_EDGES@@ edges among the @@N@@) against the full text of every explainer, then checking each claim's quotes and citation-structure assertions mechanically. Each is a connection you cannot see from inside any one paper.</p>
 
       <div class="story"><div class="snum">connection 01 · the twin transplant</div>
         <h3>GSM1k is ImageNetV2 re-run on LLM math — and the method's flaw transplanted with it, sign-flipped</h3>
@@ -403,7 +403,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     </div>
   </section>
 
-  <!-- ════════════ THE 126 ════════════ -->
+  <!-- ════════════ THE @@N@@ ════════════ -->
   <section id="table">
     <div class="wrap">
       <div class="tag">// the @@N@@</div>
@@ -435,7 +435,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <h2>How this was built, and what to distrust</h2>
       <p><strong>Corpus.</strong> The @@N@@ papers are the atlas's <span class="mono">benchmarks</span> survey tag — the same set you see ringed on the <a href="/?survey=benchmarks">timeline map</a>. Membership follows the tag rubric (benchmark as headline contribution), applied when each paper joined the atlas. The corpus over-represents what the atlas covers deeply (LLM, agent, and safety evaluation, 2023–2026) and thins out toward classic CV/NLU; era-level trends should be read as trends <em>within this kind of corpus</em>, not a census of all benchmarks ever built. The corpus is papers only: the 2026 model-card canon also includes non-paper instruments this page doesn't cover — SWE-bench Verified, Aider Polyglot, AIME-as-eval, the ARC-AGI leaderboards, and needle-in-a-haystack probes among them — an exclusion of form, not a judgment that they don't matter.</p>
       <p><strong>Classification.</strong> Each paper was classified from its atlas explainer (and the paper itself where the explainer underdetermined a dimension) by a language-model pipeline: one full-schema pass over every paper, then a fully independent second pass re-classifying the six judgment-heavy dimensions with different paper groupings. The two passes agreed on 94.8% of the 750 compared values; all 39 disagreements (on 32 papers) were adjudicated by a third read of the source text. Saturation was the noisiest dimension (16 of 39 conflicts) — treat individual saturation calls as softer than the aggregate.</p>
-      <p><strong>Tree placement.</strong> Each paper's kingdom/family address was assigned by the same two-pass protocol, judging role-at-birth from the paper's own problem statement, with lineage restricted to citation edges that exist inside the corpus (598 edges among the 126). The independent second pass covered 78 of 126 papers before rate-limiting; it disagreed on 5 placements, each re-adjudicated against the source text. Borderline calls worth knowing: ResearchRubrics and DeepResearch Bench sit in <em>research execution</em> rather than <em>grader benchmarks</em> (their headline is agent evaluation, their machinery is rubric methodology); MultiNLI sits in <em>de-saturation sequels</em> as SNLI's coverage-restoring successor; HellaSwag's placement is argued in the tree section itself.</p>
+      <p><strong>Tree placement.</strong> Each paper's kingdom/family address was assigned by the same two-pass protocol, judging role-at-birth from the paper's own problem statement, with lineage restricted to citation edges that exist inside the corpus (@@N_EDGES@@ edges among the @@N@@). The independent second pass covered 78 papers of the original corpus before rate-limiting; it disagreed on 5 placements, each re-adjudicated against the source text. Borderline calls worth knowing: ResearchRubrics and DeepResearch Bench sit in <em>research execution</em> rather than <em>grader benchmarks</em> (their headline is agent evaluation, their machinery is rubric methodology); MultiNLI sits in <em>de-saturation sequels</em> as SNLI's coverage-restoring successor; HellaSwag's placement is argued in the tree section itself.</p>
       <p><strong>Connections.</strong> The nine connection stories were mined by lens-directed search over the corpus and its internal citation graph, then verified two ways: every quotation was machine-checked against the explainer texts (all anchor phrases verified; elided quotes marked), and every citation-structure assertion ("X cites Y", "X and Y share no edge") was checked mechanically against the graph. Claims that survived only partially were corrected or dropped. Numbers inside the stories are the papers' own.</p>
       <p><strong>Known soft spots.</strong> (1) Task-horizon rungs are estimates of the <em>typical</em> instance from the papers' own task descriptions; only a few papers measure human time. (2) Saturation reflects the frontier scores quoted in each explainer at the time it was written (through mid-2026) — it ages. (3) <span class="mono">grading_primary</span> records the headline metric only; many benchmarks ship secondary graders. (4) Item counts are approximate. (5) One dimension a future pass should add: whether each benchmark's grader was itself adversarially audited — the ABC finding suggests that column would be mostly empty.</p>
       <p>The classification data is embedded in this page (view source) and the tags live in the atlas's <span class="mono">papers.json</span>; both regenerate deterministically from the corpus.</p>
@@ -485,7 +485,7 @@ links.forEach(a => a.addEventListener('click', (e) => {
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }));
 
-/* ---- the 126: filterable table ---- */
+/* ---- the @@N@@: filterable table ---- */
 const DATA = @@TABLE_JSON@@;
 const COLORS = @@JS_COLORS@@;
 const LABELS = @@JS_LABELS@@;

@@ -3,15 +3,19 @@ classified taxonomy, so no number on the page is ever hand-typed. compute(merged
 -> {TOKEN: value}. Mirrors the evaluations_survey/stats_tokens.py pattern.
 
 Scope: only *live corpus* statistics (paper counts, era pool sizes, membership counts,
-percentages, span) are tokenised here. Deliberately NOT tokenised (see build_survey_page.py /
-survey_template.html): (a) taxonomy *vocabulary* sizes fixed by the schema and immune to corpus
-growth — 8 facets, 6 grading families, 5 horizon buckets, 7 kingdoms, 25 families, 9 connections;
-(b) analysis-provenance numbers frozen at the pre-growth 126-paper snapshot the connections and
-tree placements were mined from (the 598-edge/126-node graph, the two-pass agreement stats) —
-these are not recomputable from `merged`; (c) numbers quoted from individual papers (e.g.
-MT-Bench's 85% judge/human agreement). The connection-08 HumanEval/APPS in-corpus gravity-well
-citation counts (GRAV_HUMANEVAL / GRAV_APPS) ARE live and recomputed here each build from
-data/papers.json's edge list, restricted to the 139-paper tagged-benchmarks subgraph."""
+percentages, span, and the in-corpus citation graph) are tokenised here. Deliberately NOT
+tokenised (see build_survey_page.py / survey_template.html): (a) taxonomy *vocabulary* sizes
+fixed by the schema and immune to corpus growth — 8 facets, 6 grading families, 5 horizon
+buckets, 7 kingdoms, 25 families, 9 connections; (b) analysis-provenance numbers frozen at the
+pre-growth snapshot the tree-placement QA was actually run against (the independent second
+pass's coverage and disagreement counts) — these describe a one-time historical QA event, not a
+live property of `merged`, and are reworded in the prose to name the original corpus rather than
+silently inflate to the current N; (c) numbers quoted from individual papers (e.g. MT-Bench's
+85% judge/human agreement). The in-corpus citation-graph statistics — the edge count (N_EDGES)
+and the HumanEval/APPS gravity-well in-degrees (GRAV_HUMANEVAL / GRAV_APPS) — ARE live and
+recomputed here each build from data/papers.json's edge list, restricted to the classified-
+corpus subgraph (both endpoints among the `merged` taxonomy rows), so they track the exact
+corpus this page describes (its N, its table, its charts)."""
 import collections
 import json
 import pathlib
@@ -134,14 +138,18 @@ def compute(merged, era, ERAS):
     T['PCT_SAT_L2'] = sat_share(lambda c: c == 'L2-minutes')
     T['PCT_SAT_L3PLUS'] = sat_share(lambda c: c in L3PLUS)
 
-    # ---- connection-08: in-corpus citation gravity (HumanEval vs APPS) ----
-    # Both endpoints must be in the tagged-benchmarks subgraph (the `merged` taxonomy rows),
-    # not the full papers.json graph, so this tracks the corpus this page is actually about.
-    tagged_slugs = {r['slug'] for r in M}
+    # ---- in-corpus citation graph: edge count + gravity wells ----
+    # Restricted to the classified corpus (the `merged` taxonomy rows), not the full
+    # papers.json graph, so every graph statistic tracks the corpus this page is about —
+    # the same subgraph N, the table, and the charts all describe. Deduplicated on
+    # (from, to) so a doubled edge in papers.json can't inflate the count.
+    corpus_slugs = {r['slug'] for r in M}
     papers_path = pathlib.Path(__file__).resolve().parent.parent.parent / 'data' / 'papers.json'
     graph = json.load(open(papers_path))
-    in_corpus_indeg = collections.Counter(
-        e['to'] for e in graph['edges'] if e['from'] in tagged_slugs and e['to'] in tagged_slugs)
+    in_corpus_edges = {(e['from'], e['to']) for e in graph['edges']
+                       if e['from'] in corpus_slugs and e['to'] in corpus_slugs}
+    T['N_EDGES'] = len(in_corpus_edges)
+    in_corpus_indeg = collections.Counter(t for _, t in in_corpus_edges)
     T['GRAV_HUMANEVAL'] = in_corpus_indeg['chen-2021-codex']
     T['GRAV_APPS'] = in_corpus_indeg['hendrycks-2021-apps']
 
