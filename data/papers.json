@@ -1386,6 +1386,7 @@
       "author_group": "UC Berkeley",
       "abstract": "A 57-subject zero/few-shot multiple-choice benchmark spanning STEM, the humanities, the social sciences, and professional fields (elementary to advanced level), built to measure the world knowledge a model absorbs during pretraining — and to resist the saturation that felled GLUE and SuperGLUE within a year. In 2020 few-shot GPT-3 up to 13B sat at random chance (~25%) and only the 175B model reached 43.9% average — while a fine-tuned 11B UnifiedQA actually led at 48.9% under distribution shift — with performance lopsided (near-chance on Professional Law and Moral Scenarios despite ~70% on its best subject) and badly miscalibrated, its confidence off from accuracy by up to 24%. The 4-option-MCQ, single-average format that made it cheap, comparable, and durable also became its limit, and MMLU became the canonical LLM knowledge benchmark that MMLU-Pro, GPQA, and BIG-Bench were later built to extend or escape.",
       "explainer": "papers/hendrycks-2020-mmlu.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2020-mmlu.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2330,6 +2331,7 @@
       "author_group": "Stanford",
       "abstract": "The Stanford Question Answering Dataset: 107,785 crowdsourced questions over 536 Wikipedia articles where every answer is a contiguous span of the passage, so predictions score cheaply by exact-match and token F1 with no answer choices to pick from. A feature-rich logistic regression baseline reaches 51.0% F1 against 86.8% human F1, and the span format plus a two-orders-of-magnitude jump in scale made SQuAD the default reading-comprehension benchmark that launched the modern wave of neural reader models.",
       "explainer": "papers/rajpurkar-2016-squad.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rajpurkar-2016-squad.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2574,6 +2576,7 @@
       "author_group": "NYU",
       "abstract": "Introduces GLUE, a model-agnostic benchmark that collapses nine recycled English NLU tasks (CoLA, SST-2, MRPC, STS-B, QQP, MNLI, QNLI, RTE, WNLI) into a single macro-averaged leaderboard score, with privately-held test labels on four tasks and a hand-built linguistic diagnostic suite. It deliberately mixes data-rich and data-scarce tasks so that strong scores require sharing linguistic knowledge across tasks rather than per-task fitting; the best 2018 baseline, a multi-task BiLSTM with attention and ELMo, reaches only 70.0, and the best diagnostic score is R3 28 vs human 80, with failures concentrated in logic (negation, monotonicity) because models lean on lexical and subsequence shortcuts. GLUE established the single-number multi-task leaderboard template later inherited by MMLU, BIG-bench and HELM, and saturated within a year, prompting SuperGLUE.",
       "explainer": "papers/wang-2018-glue.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2018-glue.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2816,6 +2819,7 @@
       "author_group": "CMU",
       "abstract": "METEOR fixes BLEU's blind spots for machine-translation evaluation: it builds an explicit word-to-word alignment — matching on exact form, Porter stem, and WordNet synonym — then scores it with a recall-weighted harmonic mean (recall counted 9× precision), Fmean = 10PR/(R+9P), discounted by a fragmentation penalty for word order (Score = Fmean·(1−Penalty)). On the DARPA/TIDES 2003 Arabic→ and Chinese→English data it tracks human judgment far better than BLEU: at the system level recall alone lifts Pearson R from BLEU's 0.817 to 0.941 and full METEOR to 0.964 (Chinese), and it stays meaningful at the segment level (≈0.33) where BLEU's geometric averaging collapses to zero. Hand-tuned and still pure surface matching, but the diagnosis — recall matters, align explicitly, score per sentence — endured: the pivotal middle node from n-gram counting (BLEU) to learned and LLM-as-judge metrics (G-Eval).",
       "explainer": "papers/banerjee-2005-meteor.html",
+      "audio_url": "https://pod.darvinyi.com/audio/banerjee-2005-meteor.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5074,6 +5078,7 @@
       "author_group": "Cornell University",
       "abstract": "Shows that modern deep classifiers (ResNets, DenseNets, Wide ResNets) are far more confidently wrong than older, shallower networks despite being far more accurate, and traces the miscalibration to model capacity, Batch Normalization, and vanishing weight decay. Introduces temperature scaling, a single-parameter softmax rescaling that beats histogram binning, isotonic regression, and Platt-scaling variants at fixing it.",
       "explainer": "papers/guo-2017-calibration.html",
+      "audio_url": "https://pod.darvinyi.com/audio/guo-2017-calibration.mp3",
       "tags": ["evaluations"]
     },
     {
