@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanford Alpaca: An Instruction-following LLaMA Model — paper_atlas</title>
+<meta name="description" content="A LLaMA 7B fine-tuned on 52K self-instruct-style demonstrations distilled from text-davinci-003 for under $600 total — the release that launched the open instruction-tuning wave.">
+<meta property="og:title" content="Stanford Alpaca: An Instruction-following LLaMA Model">
+<meta property="og:description" content="A LLaMA 7B fine-tuned on 52K self-instruct-style demonstrations distilled from text-davinci-003 for under $600 total — the release that launched the open instruction-tuning wave.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/taori-2023-alpaca.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2023 · Stanford CRFM · Post-training &amp; RL</div>
+      <h1>Stanford Alpaca: An Instruction-following LLaMA Model</h1>
+      <p class="dek">LLaMA 7B fine-tuned on 52K self-instruct-style instruction/output pairs distilled from OpenAI's text-davinci-003 — released, the authors claim, for under $600 total. A GitHub repo and a CRFM blog post rather than a paper, and one of the most consequential releases in the open-model timeline: it kicked off the wave of instruction-tuned LLaMA derivatives (Vicuna, Koala, and dozens more) that followed within weeks.</p>
+      <div class="authors mono">Rohan Taori, Ishaan Gulrajani, Tianyi Zhang, Yann Dubois, Xuechen Li, Carlos Guestrin, Percy Liang, Tatsunori B. Hashimoto</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>Stanford CRFM</b></span>
+        <span class="fact">citations&nbsp;<b>n/a</b></span>
+        <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
+        <span class="fact"><a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// checked 2026-07-19 — not indexed as a paper by Semantic Scholar / OpenAlex (a blog + GitHub release, not a formal publication); every citing paper Semantic Scholar shows for it links to an unresolved bibliography entry with no paperId of its own</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By March 2023, instruction-following models — GPT-3.5 (text-davinci-003), ChatGPT, Claude, Bing Chat — had become genuinely useful, and people were relying on them for work. But as the authors put it, these models "still have many deficiencies: they can generate false information, propagate social stereotypes, and produce toxic language." Studying and fixing those deficiencies is exactly the kind of problem academic research is built for, but academia had no way in: <strong>"there is no easily accessible model that comes close in capabilities to closed-source models such as OpenAI's text-davinci-003."</strong> Every serious instruction-following model was locked behind an API, non-reproducible, and non-inspectable.</p>
+      <p>Meta's release of LLaMA weeks earlier changed half of that equation — a strong pretrained base model was now available to researchers. What was still missing was the other half: a demonstrated, cheap, replicable recipe for turning that base model into something that follows instructions the way text-davinci-003 does. Alpaca is that recipe, not a new architecture or a new base model — its entire contribution is showing that instruction-following capability can be distilled onto an open base model quickly and inexpensively enough for any academic lab to reproduce.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>Alpaca is LLaMA 7B fine-tuned with supervised learning on 52K instruction-following demonstrations, all generated automatically rather than collected from humans. The data-generation pipeline builds on <a href="https://arxiv.org/abs/2212.10560">Self-Instruct</a>: start from the 175 human-written seed instruction/output pairs from that paper, then prompt text-davinci-003 — using the seed set as in-context examples — to generate many more instructions and their outputs. The authors describe simplifying the original Self-Instruct generation pipeline (details in their GitHub repo) specifically to cut its cost. The result: <strong>"52K unique instructions and the corresponding outputs, which costed less than $500 using the OpenAI API."</strong></p>
+      <p>Fine-tuning itself used Hugging Face's training framework with Fully Sharded Data Parallel and mixed-precision training. Their own words: <strong>"fine-tuning a 7B LLaMA model took 3 hours on 8 80GB A100s, which costs less than $100 on most cloud compute providers."</strong> Data generation plus fine-tuning together come in under the headline figure quoted in the announcement — <strong>"surprisingly small and easy/cheap to reproduce (&lt;600$)."</strong></p>
+
+      <div class="callout">
+        <div class="lbl">// the recipe, in full</div>
+        <p><b>Base model:</b> LLaMA 7B (Meta, released weeks earlier). <b>Seed data:</b> 175 human-written instruction/output pairs (from Self-Instruct). <b>Data generation:</b> text-davinci-003 prompted with the seed set → 52K instructions + outputs, &lt;$500. <b>Fine-tuning:</b> Hugging Face + FSDP + mixed precision, 3 hours on 8×A100 (80GB), &lt;$100. <b>Total:</b> &lt;$600, reproducible by any lab with LLaMA access.</p>
+      </div>
+
+      <p>The release explicitly does not include the model weights themselves — LLaMA's license didn't permit redistributing derivative weights outright at the time, so the code release shipped the training recipe and the 52K dataset, with weights following later only as a diff to be applied on top of a locally held copy of LLaMA (per the project's GitHub repo). The three restrictions the authors name for keeping the whole release non-commercial and academic-only: LLaMA's own non-commercial license, which Alpaca necessarily inherits; OpenAI's terms of use for text-davinci-003, which prohibit "developing models that compete with OpenAI" — and Alpaca's training data was generated entirely by that same model; and the authors' own acknowledgment that "we have not designed adequate safety measures, so Alpaca is not ready to be deployed for general use."</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>The evaluation is a single human study. The authors — specifically, "the 5 student authors" — ran a blind pairwise comparison between text-davinci-003 and Alpaca 7B on inputs from the Self-Instruct evaluation set, a collection of user-oriented instructions spanning email writing, social media, and productivity tools. The headline result: <strong>"Alpaca wins 90 versus 89 comparisons against text-davinci-003."</strong> The authors frame this as evidence the two models "have very similar performance," and say they "were quite surprised by this result given the small model size and the modest amount of instruction following data."</p>
+      <p>No standard NLP benchmark — no MMLU, no HellaSwag, no BBH — appears anywhere in the release. The "Future directions" section is explicit that this is a preliminary check, not a rigorous evaluation: <strong>"We need to evaluate Alpaca more rigorously."</strong> The named starting point is HELM (Holistic Evaluation of Language Models) — work the authors say is still to come, not something the release itself did. Alongside the pairwise comparison, the authors document specific failure cases: Alpaca hallucinates confidently — their example has it wrongly stating that the capital of Tanzania is Dar es Salaam (the country's largest city, and its capital until 1974, when it was replaced by Dodoma) — and can produce fluent, well-written misinformation on request. The authors call hallucination "a common failure mode for Alpaca, even compared to text-davinci-003."</p>
+      <p>What actually shipped: an interactive demo (later taken down over hosting costs and "the inadequacies of our content filters"), the 52K training demonstrations, the data-generation code, and the Hugging Face fine-tuning code. Two safety mitigations were layered onto the public demo specifically: an OpenAI moderation-API content filter, and output watermarking using the method from Kirchenbauer et al. 2023, so that Alpaca-generated text could be detected after the fact.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>Take the "comparable to text-davinci-003" claim at face value and the evidence behind it is thin by design, not by oversight — the authors say so themselves. A single pairwise human study, 90-to-89, is a razor-thin margin (about 50.3%) with no confidence interval, no significance test, and no inter-rater agreement statistic reported. More importantly, the raters were the paper's own five student co-authors — not blinded, independent, or crowd-sourced annotators, but the people who built the system and had every incentive (career, publication, narrative) to see it succeed. That's not a subtle methodological footnote; it's the entire evidentiary basis for the release's headline claim.</p>
+      <p>There's a deeper structural issue the human-eval framing obscures: Alpaca's 52K training instructions were generated <em>by text-davinci-003 itself</em>. Evaluating "does Alpaca match text-davinci-003" by having Alpaca — a model trained to imitate text-davinci-003's own outputs — produce similar-looking answers to instructions drawn from the same distribution its training data came from is closer to measuring imitation fidelity than measuring independent capability. A model can learn to mimic the surface style, format, and confidence of a teacher's answers without acquiring the teacher's underlying knowledge or reasoning — exactly the gap that a same-style human pairwise comparison is poorly suited to detect, and exactly the critique the field formalized later that year in "The False Promise of Imitating Proprietary LLMs" (Gudibande et al., 2023), which showed imitation-tuned models that looked strong on crowd-worker preference judgments still trailed badly on factual QA and reasoning benchmarks.</p>
+      <p>The release is honest about most of this. It states outright that the evaluation "may be limited in scale and diversity," documents its own hallucination failures with a concrete example, and lists "evaluate Alpaca more rigorously" (starting with HELM) as unfinished future work rather than something already done. That transparency is a real strength — but it also means the burden of proof for the "surprisingly capable for its size" narrative that took off after this release was never actually met by the release itself.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Exactly one: text-davinci-003, and only via human pairwise preference — no open-model baselines, no standard automated benchmark, so there's no way to place Alpaca on a capability scale independent of "how similar does it look to its own teacher."</p>
+        <span class="k">contamination</span><p class="v">Not classic train/test leakage, but a related and arguably sharper issue: the training data was generated wholesale by the exact model Alpaca is then evaluated against, so "matches text-davinci-003" is partly definitional rather than an independent capability finding.</p>
+        <span class="k">what's missed</span><p class="v">No standard benchmark numbers anywhere; evaluators are the five author-researchers, not independent or blinded raters; no significance testing or confidence interval on a 90-vs-89 result; no test that separates stylistic imitation from underlying factual/reasoning capability.</p>
+        <span class="k">would raise confidence</span><p class="v">Independent or crowd-sourced blind raters; a standard benchmark suite (the authors' own stated next step, HELM); a knowledge/reasoning probe that a pure style-imitation model would be expected to fail even if it wins on stylistic preference.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>Judged as a capability claim, "Alpaca ≈ text-davinci-003" rests on a small, non-independent, unreplicated human study that the authors themselves call preliminary. Judged as an engineering and reproducibility claim — a usable instruction-follower for under $600, buildable by any lab with LLaMA access, released with full data and training code — it delivered exactly what it promised, and that promise is what mattered: within weeks, Vicuna, Koala, and a wave of other LLaMA-instruction-tuned models followed the same recipe. Alpaca's real legacy isn't its 90-vs-89 evaluation; it's proof that the recipe was this cheap.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>The contribution is the recipe, not a benchmark result.</strong> LLaMA 7B + 52K self-instruct-style demonstrations distilled from text-davinci-003, for a reported &lt;$500 (data) + &lt;$100 (compute) = &lt;$600 total — cheap and reproducible enough that it triggered an immediate wave of copies (Vicuna, Koala, and dozens more within weeks).</li>
+        <li><strong>The headline capability claim rests on very little.</strong> "Alpaca wins 90 versus 89 comparisons against text-davinci-003" is a single, unreplicated, non-blinded-to-conflict-of-interest human study — judged by the paper's own five student co-authors, with no significance test and no standard benchmark to back it up.</li>
+        <li><strong>Training on a teacher's outputs and then comparing to that teacher is a biased test.</strong> Alpaca's instruction data was generated by text-davinci-003 itself, so a same-style human preference comparison measures imitation fidelity as much as independent capability — the gap later formalized by "The False Promise of Imitating Proprietary LLMs."</li>
+        <li><strong>Not a benchmark or evaluation-methodology paper.</strong> The human pairwise comparison is a thin, existing protocol applied once, not a new way of evaluating models — Alpaca is a model/recipe release, and doesn't clear the bar for this atlas's benchmarks or evaluations survey tags.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Stanford Alpaca: An Instruction-following LLaMA Model<br>
+        Rohan Taori, Ishaan Gulrajani, Tianyi Zhang, Yann Dubois, Xuechen Li, Carlos Guestrin, Percy Liang, Tatsunori B. Hashimoto · 2023 · Stanford CRFM<br>
+        <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">read the original ↗</a> · slug: taori-2023-alpaca
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) — no figures on this page, kept for template parity */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
