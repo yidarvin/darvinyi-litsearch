@@ -163,12 +163,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2018 · ICLR 2018 · Benchmarks &amp; Evals</div>
       <h1>Enhancing The Reliability of Out-of-distribution Image Detection in Neural Networks</h1>
       <p class="dek">The MSP baseline gave OOD detection a free score to compute, but a leaky one. ODIN keeps the network frozen and adds two test-time-only tricks — dividing the logits by a large temperature before the softmax, and nudging the input in the direction that raises its own predicted-class score — and cuts the false-positive rate at 95% true-positive rate from 34.7% to 4.3% on DenseNet / CIFAR-10 vs. TinyImageNet.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/liang-2017-odin.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/liang-2017-odin.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Shiyu Liang, Yixuan Li, R. Srikant</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ICLR 2018</b></span>
         <span class="fact">citations&nbsp;<b>2,545</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1706.02690">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/liang-2017-odin.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-07</div>
     </div>
