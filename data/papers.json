@@ -73,6 +73,7 @@
       "author_group": "Scale AI",
       "abstract": "A 284-task benchmark covering the software-engineering work that issue-resolution benchmarks ignore — Codebase Q&A, Test Writing, and Refactoring — across 18 real repos. It pairs programmatic checks with rubric-based LLM-as-judge grading and finds engineering quality lags functional correctness by 15–40 points even for frontier models (GPT-5.4 and Opus 4.7 lead at ~42–43% Pass@1).",
       "explainer": "papers/raghavendra-2026-swe-atlas.html",
+      "audio_url": "https://pod.darvinyi.com/audio/raghavendra-2026-swe-atlas.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -88,6 +89,7 @@
       "author_group": "Scale AI",
       "abstract": "A 405-task benchmark drawn from physics, chemistry, and biology papers posted after March 2025 (no pretraining leakage, web search disabled) that asks 15 frontier LLMs to predict experimental outcomes. Models score just 14–26% — roughly matching ~20% human experts — but unlike experts, whose accuracy climbs from ~5% to ~80% as they judge a question more predictable, models stay flat at ~20% regardless of their own confidence, exposing a calibration gap that makes them untrustworthy for experiment planning.",
       "explainer": "papers/sehwag-2026-scipredict.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sehwag-2026-scipredict.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -103,6 +105,7 @@
       "author_group": "Scale AI",
       "abstract": "A process-focused moral-reasoning benchmark: 1,000 dilemmas paired with 23,018 criteria written by 53 moral philosophers, grading how a model's thinking trace reasons rather than which side it lands on. Across 14 frontier reasoning models, moral-reasoning skill is nearly uncorrelated with scaling and with math/code/Arena benchmarks (Pearson r between −0.245 and 0.216); models reliably avoid harm (72–85%) but are weakest at integrating competing considerations, and reason markedly better in Utilitarian/Deontological frames than in Virtue Ethics or Contractarianism. A sibling set, MoReBench-Theory (150 scenarios), tests reasoning within five normative frameworks.",
       "explainer": "papers/chiu-2025-morebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chiu-2025-morebench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -118,6 +121,7 @@
       "author_group": "Scale AI",
       "abstract": "A 1,000-task benchmark over 36 production MCP servers and 220 real tools, scored by an answer-centric claims rubric that credits any valid tool path; distractors are baked in so 98.6% of tasks demand genuine tool discovery across two or more servers. Across 20 frontier models the agentic frontier is no longer tool-mechanics-bound — Muse Spark leads at 82.2% Pass@0.75 and open-weight GLM-5.1 reaches 75.6% — but 63.3% of ~6,900 diagnosed failures are cognitive (premature stopping, faulty synthesis) rather than tool-call errors, and o3 Pro lands at 44.5% by issuing no tool call on 40% of its failed tasks.",
       "explainer": "papers/bandi-2026-mcp-atlas.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bandi-2026-mcp-atlas.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -133,6 +137,7 @@
       "author_group": "Scale AI",
       "abstract": "The largest public rubric-based benchmark for law and finance: 1,100 expert-authored tasks and 19,356 weighted criteria from 182 credentialed professionals (JD/CFA/6+ yrs) spanning 114 countries and 47 US jurisdictions. Across 20 frontier models the best score only 0.39 (Finance) and 0.37 (Legal) on the Hard subsets — Instruction Following is near-solved while Supplemental Insight and Handling Uncertainty lag, models with similar overall scores diverge sharply by capability, and the dominant failure modes are inaccurate judgments, missing process transparency, and incomplete reasoning.",
       "explainer": "papers/akyurek-2025-prbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/akyurek-2025-prbench.mp3",
       "tags": ["benchmarks"]
     },
     {
