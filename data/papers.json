@@ -3453,6 +3453,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Finetunes LLaMA-7B to generate API calls and pairs it with a document retriever, surpassing zero-shot GPT-4 at writing correct, fully-qualified ML API calls while sharply reducing hallucinated (imagined) APIs. Introduces APIBench (1,645 TorchHub/TensorHub/HuggingFace APIs with 16,450 Self-Instruct instruction-API pairs) and an AST sub-tree-matching metric, and shows retriever-aware training lets the model adapt to test-time API documentation changes.",
       "explainer": "papers/patil-2023-gorilla.html",
+      "audio_url": "https://pod.darvinyi.com/audio/patil-2023-gorilla.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5550,6 +5551,7 @@
       "author_group": "Stanford University",
       "abstract": "Reformulates algorithmic fairness as constrained optimization — maximize public safety subject to a formal fairness constraint — and shows on Broward County COMPAS data that satisfying statistical parity, predictive equality, or conditional statistical parity costs an estimated 9%, 7%, and 4% more violent recidivism respectively, while the safety-maximizing single threshold still produces stark racial disparities in detention and false-positive rates.",
       "explainer": "papers/corbett-davies-2017-cost-of-fairness.html",
+      "audio_url": "https://pod.darvinyi.com/audio/corbett-davies-2017-cost-of-fairness.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5638,6 +5640,7 @@
       "author_group": "Tsinghua University / Zhipu AI",
       "abstract": "The first bilingual, multi-task benchmark testing whether LLMs genuinely use a long context rather than merely accept one — 21 datasets across 6 categories in English and Chinese, averaging 6,711 words (EN) / 13,386 characters (ZH). Evaluating 8 models, GPT-3.5-Turbo-16k leads at 44.7% overall; a truncation ablation shows genuine context-length degradation for some models but not others, and a without-context control finds GPT-3.5-Turbo-16k scores 31.7 F1 on HotpotQA with zero context supplied, exposing memorization contamination on 3 of its 21 datasets.",
       "explainer": "papers/bai-2023-longbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bai-2023-longbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5667,6 +5670,7 @@
       "author_group": "National Institute of Informatics",
       "abstract": "A 192,606-question multi-hop QA dataset built from the intersection of Wikipedia article summaries and Wikidata, adding an explicit evidence field — a chain of (subject, relation, object) triples — that traces each answer's reasoning path across four question types. An extended HotpotQA-style baseline scores only 36.53 answer EM / 43.93 F1 and 1.07 EM / 14.94 F1 on the new evidence-generation task, far behind the 91.0/91.8 human-upper-bound answer F1.",
       "explainer": "papers/ho-2020-2wikimultihopqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ho-2020-2wikimultihopqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6297,6 +6301,7 @@
       "author_group": "Nanjing University",
       "abstract": "900 manually-annotated YouTube videos (11 seconds to 1 hour) across 6 domains and 30 subfields, with subtitles and audio as first-class modalities alongside frames; Gemini 1.5 Pro leads at 75.0% overall accuracy while the best open-source model manages only 59.0%.",
       "explainer": "papers/fu-2024-video-mme.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fu-2024-video-mme.mp3",
       "tags": ["benchmarks"]
     },
     {
