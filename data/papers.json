@@ -371,6 +371,7 @@
       "author_group": "UC Berkeley",
       "abstract": "Introduces ETHICS, a 130,000+ example benchmark that probes a model's grasp of basic morality across five normative frameworks — justice, deontology, virtue ethics, utilitarianism, and commonsense — by predicting the moral judgments people widely agree on about open-world natural-language scenarios. In 2020 fine-tuned Transformers reached 71.0% average on the Test set but only 47.9% on an adversarially-filtered Hard Test (ALBERT-xxlarge), with GPT-3 few-shot trailing at 39.3/32.3 — promising but incomplete. Examples are kept clean via consensus relabeling, contrast-set augmentation, and adversarial filtration, and a held-out set probes whether models can flag moral disagreement (they mostly can't, AUROC 56–69%). The outcome-label moral-values eval that process-focused benchmarks like MoReBench were later built to move beyond.",
       "explainer": "papers/hendrycks-2020-ethics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2020-ethics.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1263,6 +1264,7 @@
       "author_group": "AE Studio",
       "abstract": "The paper that named prompt injection and first quantified it. Using PROMPTINJECT — a modular framework for composing adversarial prompts over a base prompt's open user-input slot — it shows simple handcrafted inputs can hijack a GPT-3 (text-davinci-002) application's goal 58.6% of the time and leak its hidden system prompt 23.6% of the time, across 35 OpenAI-example prompts run 4x each. Delimiters amplify attacks (43.6%->58.6%), overtly harmful payloads attack worse than benign ones (70.0% vs 49.3%) as an alignment side-effect of InstructGPT tuning, and capability tracks vulnerability in an inverse-scaling effect where the most capable model in the GPT-3 series is the most attackable (13.8%->58.6%). Superficial defenses (stop sequences, trailing text) only dent it; the real fix — separating trusted instructions from untrusted data — is left open, and the work seeded the entire prompt-injection literature (indirect injection, agentic injection).",
       "explainer": "papers/perez-2022-ignore-previous-prompt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/perez-2022-ignore-previous-prompt.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -2320,6 +2322,7 @@
       "author_group": "Google",
       "abstract": "Introduces IFEval, a reproducible, judge-free benchmark for LLM instruction-following built around 'verifiable instructions' — directives a short deterministic program can check (word counts, required/forbidden keywords, JSON or bracketed formats, casing). 25 instruction types across 9 groups span 541 prompts, scored four ways: {prompt-level, instruction-level} × {strict, loose}, where the loose criterion applies 8 response transforms (strip markdown, drop the intro/outro line, and their combinations) to absorb formatting false negatives. On the two reference models, GPT-4 (Nov 2023) follows every instruction in only 76.89% of prompts (83.57% per-instruction) and PaLM 2 S just 43.07% — mechanically-simple constraints like length, combination, and punctuation prove hardest, while 'respond in language X' is near-solved. The 'verifiable instruction' framing seeded the later wave of rubric- and checklist-based evaluation; with public prompts and gameable verifiers it now reads as a floor, not a ceiling.",
       "explainer": "papers/zhou-2023-ifeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2023-ifeval.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -6862,6 +6865,7 @@
       "author_group": "Tsinghua / OpenBMB",
       "abstract": "A multi-agent 'referee team' of LLMs, each given a distinct persona (Critic, Psychologist, Scientist, etc.), debates which of two responses is better instead of relying on a single LLM judge. Diverse role prompts plus structured debate lift accuracy by up to 6.2 points on FairEval and correlation with humans by 16.3% over G-Eval on Topical-Chat; same-persona debate performs no better than a single agent.",
       "explainer": "papers/chan-2023-chateval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chan-2023-chateval.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -7893,6 +7897,7 @@
       "author_group": "AI2 / Stony Brook",
       "abstract": "Builds 2-4 hop questions bottom-up by composing filtered pairs of single-hop questions from SQuAD, Natural Questions, MLQA, T-REx, and Zero-Shot RE, explicitly rejecting any pair a strong model can answer without the intermediate hop (the 'MuSiQue condition'). Relative to HotpotQA and 2WikiMultihopQA, MuSiQue-Ans has roughly 3x the human-model gap and a DiRe cheatability score of 37.8 vs. 68.8/63.4; an unanswerable-augmented sibling, MuSiQue-Full, is harder still.",
       "explainer": "papers/trivedi-2021-musique.html",
+      "audio_url": "https://pod.darvinyi.com/audio/trivedi-2021-musique.mp3",
       "tags": ["benchmarks"]
     },
     {
