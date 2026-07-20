@@ -1215,6 +1215,7 @@
       "author_group": "UC Berkeley",
       "abstract": "A live, contamination-free code benchmark: 511 contest problems (May 2023–May 2024) from LeetCode, AtCoder, and CodeForces, each tagged with a release date so models are scored only on problems published after their training cutoff — and graded across four scenarios (code generation, self-repair, code execution, and a newly-introduced test-output-prediction task) rather than generation alone, with ~17 tests per problem. Across 52 models (18 base + 34 instruction-tuned), time-stamping exposes contamination as a cliff at each model's cutoff: DS-Base-33B falls from Pass@1 ≈60 to ≈0 on LeetCode after September 2023 and GPT-4o drops after November, a signal exact/fuzzy decontamination misses. HumanEval+ correlates only 0.72 with LCB-Easy, so fine-tuned open models that win on HumanEval collapse here (DS-Ins-1.3B 59.8%→26.3%); the four scenarios correlate above 0.88 yet rankings still shift (Claude-3-Opus passes GPT-4-Turbo on test output prediction); and a real SoTA gap reappears with GPT-4-Turbo leading (39.7 LCB-Easy). The evaluation framework the contamination-free era — SWE-Bench Pro, BigCodeBench, Terminal-Bench, and the reasoning-model leaderboards — is built on.",
       "explainer": "papers/jain-2024-livecodebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jain-2024-livecodebench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -1997,6 +1998,7 @@
       "author_group": "UKP Lab (TU Darmstadt)",
       "abstract": "The field-defining zero-shot retrieval benchmark: 18 datasets across 9 tasks (fact-checking, QA, citation prediction, argument and bio-medical retrieval, …) wrap 10 systems spanning lexical, sparse, dense, late-interaction, and re-ranking architectures in one nDCG@10 harness, all evaluated out-of-domain with no in-task training. The headline reframed IR evaluation: in-domain accuracy does not predict generalization, and the lexical baseline BM25 beats nearly every neural retriever zero-shot — only the cross-encoder re-ranker BM25+CE (16/18 datasets, +11% avg) and document-expansion docT5query reliably surpass it, at 20–30× the latency of a dense bi-encoder. A Hole@10 study honestly flags the catch: lexical pooling under-counts dense retrievers' hits (TAS-B 31.8% holes vs BM25 6.4%), and re-annotating TREC-COVID lifts ANCE from below BM25 to 6.7 nDCG points above it.",
       "explainer": "papers/thakur-2021-beir.html",
+      "audio_url": "https://pod.darvinyi.com/audio/thakur-2021-beir.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -5114,6 +5116,7 @@
       "author_group": "NIST",
       "abstract": "Reworks IBM's BLEU into the NIST MT metric: replaces BLEU's geometric mean over n-gram orders with an arithmetic sum, weights each n-gram by an information value (how unpredictable it is given its prefix) so rare, meaning-bearing n-grams count more than common filler, and recalibrates the brevity penalty. Beats BLEU's Adequacy correlation on all four DARPA corpora tested, though the paper's own ablation shows information weighting clearly helping only at unigrams.",
       "explainer": "papers/doddington-2002-nist.html",
+      "audio_url": "https://pod.darvinyi.com/audio/doddington-2002-nist.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5231,6 +5234,7 @@
       "author_group": "Stanford University",
       "abstract": "Introduces ADDSENT and ADDANY, automated methods that append a single distracting sentence to a SQuAD paragraph without changing the correct answer or misleading humans, collapsing sixteen published readers from an average 75.4% to 36.4% F1 under ADDSENT while human accuracy barely moves — the canonical demonstration that SQuAD-era readers were substantially exploiting surface lexical overlap rather than genuine comprehension.",
       "explainer": "papers/jia-2017-adversarial-squad.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jia-2017-adversarial-squad.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -5246,6 +5250,7 @@
       "author_group": "University of Pittsburgh",
       "abstract": "Introduces PubMedQA: 1,000 expert-annotated, 61,200 unlabeled, and 211,300 artificially-generated yes/no/maybe questions built from PubMed article titles and their withheld conclusions — the first QA dataset requiring quantitative reasoning over biomedical research texts. A multi-phase BioBERT baseline reaches 68.1% accuracy against a 78.0% single-human ceiling.",
       "explainer": "papers/jin-2019-pubmedqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jin-2019-pubmedqa.mp3",
       "tags": ["benchmarks"]
     },
     {
