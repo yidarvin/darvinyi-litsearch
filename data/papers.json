@@ -28,6 +28,7 @@
       "author_group": "Amazon",
       "abstract": "Shows that \"the\" BLEU score is a fiction: BLEU is a parameterized metric whose value swings by up to 1.8 points — often more than a paper's reported gain — depending on hidden reference tokenization, casing, and reference-count choices that papers rarely document, making scores across papers incomparable. Introduces SacreBLEU, a tool that ships and downloads the standard WMT/IWSLT test sets, applies WMT's metric-internal preprocessing to detokenized output, and prints a version string recording every parameter, so MT scores become reproducible and comparable. Borrowing the parsing community's evalb discipline, it standardizes BLEU's reporting — not its validity as a proxy for human judgment, which the paper explicitly brackets.",
       "explainer": "papers/post-2018-sacrebleu.html",
+      "audio_url": "https://pod.darvinyi.com/audio/post-2018-sacrebleu.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -1420,6 +1421,7 @@
       "author_group": "Oxford / OpenAI",
       "abstract": "An 817-question benchmark across 38 categories engineered to elicit imitative falsehoods — false answers that score high likelihood because humans repeat them (e.g. that coughing stops a heart attack). The best 2021 model (GPT-3-175B, hand-picked 'helpful' prompt) is truthful on just 58% of questions vs 94% for a human, and is confidently false-and-informative 42% of the time vs 6% for the human. The signature result is inverse scaling: within every family the larger model is the less truthful one (largest GPT-Neo/J 17% worse than a 60x-smaller one), while a control set of matched trivia scales normally — evidence the failures are imitative, not surface-form. A finetuned GPT-judge (GPT-3-6.7B) predicts human truth labels at 90–96% accuracy. The honesty benchmark that reframed truthfulness as measurable and argued fine-tuning/RLHF, not scale, is the path to truthful models.",
       "explainer": "papers/lin-2021-truthfulqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2021-truthfulqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4225,6 +4227,7 @@
       "author_group": "Google",
       "abstract": "MBPP is a crowd-sourced benchmark of 974 short, one-sentence Python problems (each with a reference solution and three test asserts) isolating natural-language-to-code synthesis from the narrative competitive-programming style of contemporaries like APPS and Codex/HumanEval; few-shot synthesis scales log-linearly with model size, and four turns of one-sentence human feedback raise the hard-problem solve rate from 30% to over 65%.",
       "explainer": "papers/austin-2021-mbpp.html",
+      "audio_url": "https://pod.darvinyi.com/audio/austin-2021-mbpp.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4608,6 +4611,7 @@
       "author_group": "University of Washington",
       "abstract": "A reading-comprehension dataset built backwards from the usual recipe: 95,956 question-answer pairs authored independently by trivia enthusiasts, then paired after the fact with 650K+ evidence documents retrieved via Wikipedia and Bing web search. The best 2017 baseline reaches only 40% exact match against 79.7% human accuracy, but the distant-supervision pipeline is itself noisy — only 75-80% of automatically retrieved evidence documents actually support their answer. Today it functions less as an RC frontier and more as a fast closed-book factual-recall check baked into evals for GPT-3, SimpleQA, and BrowseComp.",
       "explainer": "papers/joshi-2017-triviaqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/joshi-2017-triviaqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4637,6 +4641,7 @@
       "author_group": "DeepMind",
       "abstract": "A cloze-style reading comprehension corpus built automatically from roughly 1M CNN and Daily Mail news articles paired with their bullet-point summaries, with entities anonymized via coreference resolution and randomly re-permuted per example so a model must ground every answer in the document rather than world knowledge. The Attentive and Impatient Reader — early neural attention architectures introduced alongside it — reach 63.0%/69.0% and 63.8%/68.0% CNN/Daily Mail test accuracy, beating a frame-semantic-parsing baseline (40.2%/35.5%) by 23-33 points.",
       "explainer": "papers/hermann-2015-cnn-dailymail.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hermann-2015-cnn-dailymail.mp3",
       "tags": ["benchmarks"]
     },
     {
