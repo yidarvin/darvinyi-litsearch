@@ -2448,7 +2448,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "A direct rebuttal of LIMA's Superficial Alignment Hypothesis, measured on objective benchmarks instead of subjective win-rates. Finetuning base Llama-3, Mistral and Llama-2 (7B-70B) on 0-10,000 task examples, post-training accuracy follows a power law P proportional to D^(1/b) in the number of examples across math (GSM8k), coding (HumanEval+), instruction following (IFEval) and multihop QA (SubQA) - it does not saturate after a handful of examples, and bigger base models improve at an increasing rate. An error breakdown shows style/formatting saturates within ~100 examples while reasoning keeps improving (total mistakes correlate with reasoning errors at r2=0.98 math / 0.99 multihop on Llama-3-8B), and win-rate is shown to be actively misleading: a style-tuned LIMA-1k model wins 84.4% of GPT-4o head-to-heads on GSM8k while solving only 14.7% of problems, versus a 46.5%-accurate task-tuned model that wins 0.24%. Also shows post-training for reasoning helps a model integrate and use knowledge from beyond its pre-training cutoff (Facts100).",
-      "explainer": "papers/raghavendra-2024-superficial-alignment.html"
+      "explainer": "papers/raghavendra-2024-superficial-alignment.html",
+      "audio_url": "https://pod.darvinyi.com/audio/raghavendra-2024-superficial-alignment.mp3"
     },
     {
       "slug": "wang-2024-plansearch",
@@ -2462,7 +2463,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Argues LLMs gain little from repeated sampling because instruction/preference post-training collapses output diversity, so the model re-samples near-identical wrong solutions - the right place to search is idea space, expressed in natural language. PLANSEARCH builds a depth-2 tree of combinatorial 'observations' (all subsets of size <=2 of 3-6 first-order hints, expanded once more into second-order hints), turns each leaf into a natural-language plan plus an adversarial 'assume the idea is wrong' variant, then translates plan -> pseudocode -> Python, yielding ~300-400 candidates per problem. On contamination-controlled LiveCodeBench (May-Sept 2024 problems, after Claude 3.5 Sonnet's cutoff) it lifts Sonnet from a 41.4% best no-search pass@1 to 77.0% pass@200, beating repeated sampling and IdeaSearch across GPT-4o-mini/GPT-4o/DeepSeek-Coder-V2/Sonnet on LiveCodeBench, HumanEval+ and MBPP+; against search-native o1-mini the gap nearly closes (91.3 vs 90.8 pass@200). A single LLM-judged idea-diversity score D = 1 - (similar pairs)/(n choose 2) predicts relative pass@1->pass@200 gains across all models and methods, and public-test filtering shifts the curve ~10x left (pass@20 ~= 77.1%). PLANSEARCH often lowers pass@1 since diversifying ideas dilutes any single one.",
-      "explainer": "papers/wang-2024-plansearch.html"
+      "explainer": "papers/wang-2024-plansearch.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2024-plansearch.mp3"
     },
     {
       "slug": "chiang-2024-chatbot-arena",
@@ -2491,7 +2493,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Trains reward models with a contrastive, goal-conditioned auxiliary loss alongside the usual Bradley-Terry objective: representations of intermediate states are pulled toward future states on preferred trajectories and pushed away from dispreferred ones, so the reward model's hidden states approximate a Q-function - with no extra annotation. This lifts reward-score AUROC by up to 0.09 on GSM8K/MATH (and +2.3% accuracy on Helpful-Harmless), and the learned Q-values localize the exact step a math solution goes wrong, filter low-value trajectories to improve majority voting while saving up to ~55% of tokens, and steer Llama-3 at decode time toward more helpful generations (+9.6% to +21.6% GPT-4 win-rate vs SFT). Downstream PPO gains are smaller (+1.7% weighted), and the strongest results sit on verifiable-answer math and an LLM-judge win-rate.",
-      "explainer": "papers/nath-2024-goal-conditioned.html"
+      "explainer": "papers/nath-2024-goal-conditioned.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nath-2024-goal-conditioned.mp3"
     },
     {
       "slug": "li-2024-wmdp",
@@ -2506,6 +2509,7 @@
       "author_group": "CAIS / Scale AI",
       "abstract": "A public benchmark of 3,668 four-choice questions probing hazardous knowledge across biosecurity (1,273), cybersecurity (1,987), and chemistry (408) — a measurable proxy for malicious-use risk that was filtered to exclude operationally sensitive, export-controlled detail. It doubles as an unlearning benchmark and introduces RMU (Representation Misdirection for Unlearning), which scrambles a model's internal representations of hazardous content to drop WMDP accuracy toward the 25% random floor (Zephyr-7B Bio 63.7→31.2) at ~1 MMLU point of cost. Robust to jailbreaks and linear probes, but the unlearning is reversible by finetuning.",
       "explainer": "papers/li-2024-wmdp.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-wmdp.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2521,6 +2525,7 @@
       "author_group": "Scale AI",
       "abstract": "Expert human red teamers running multi-turn conversations break four state-of-the-art LLM defenses (RR, LAT, DERTA, CYGNET) at 51.7–87.9% attack success on HarmBench — defenses that report single-digit (even ~0%) ASR against automated single-turn attacks — beating the best-case automated ensemble by +19.6% to +65.4%. The same humans recover 51.2% of \"unlearned\" WMDP-Bio knowledge from an RMU model (vs 25.6% for the ensemble), showing machine unlearning obfuscates rather than removes. 91.62% of successful jailbreaks needed more than one turn. Released as the MHJ dataset: 2,912 prompts across 537 multi-turn jailbreaks, with a 7-tactic taxonomy from commercial red-teaming.",
       "explainer": "papers/li-2024-multiturn-jailbreaks.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-multiturn-jailbreaks.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2535,7 +2540,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Stress-tests an off-the-shelf RLHF reward model (OpenAssistant's DeBERTa-v3-large, evaluated on Summarize-from-Feedback) under distribution shift, decomposing prompt-shift from response-shift via both machine-translation (lingual) and word-perturbation. Reward models break asymmetrically: OOD responses crater reward accuracy (72.3%→65.7%) and calibration (ECE 14.5%→20%), while OOD prompts barely register — even fully random ones. Calibration follows a novel paradigm: overconfident and badly miscalibrated near-OOD (ECE peaks ~0.25), then deceptively 'well-calibrated' far-OOD as the binary forced choice collapses to chance. Adapts the classification energy score — using only the two reward logits, no internal activations or training set — to flag when an RM is off-distribution (AUROC→~1.0 for response shift, a weak ~63% for prompt-only shift).",
-      "explainer": "papers/levine-2023-reward-distribution-shift.html"
+      "explainer": "papers/levine-2023-reward-distribution-shift.html",
+      "audio_url": "https://pod.darvinyi.com/audio/levine-2023-reward-distribution-shift.mp3"
     },
     {
       "slug": "li-2024-arena-hard",
@@ -2715,6 +2721,7 @@
       "author_group": "Scale AI / Oxford",
       "abstract": "A 42,894-pair Reddit dataset (five socio-political subreddits) for agree/neutral/disagree detection, annotated by 529 Scale AI workers via dynamic consensus and shipped with a temporal user-interaction graph — built to be messy and context-rich where prior stance datasets are small, formal, and text-only. Fine-tuned encoder LMs (BERT/RoBERTa/DeBERTa/XLNet) all plateau at 62–64% accuracy and fail hardest on neutral interactions (44.1% recall); a model trained on the formal Perspectrum dataset hits 90.5% there but drops below the majority baseline on Reddit, showing messy and formal (dis)agreement share little transferable signal.",
       "explainer": "papers/pougue-biyong-2021-debagreement.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pougue-biyong-2021-debagreement.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2789,7 +2796,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "A uniform head-to-head benchmark of four PEFT methods — LoRA, (IA)³, prompt tuning and BitFit — against full fine-tuning on FLAN-T5-XL (2.85B) across classification/generation tasks and three data scales. The counterintuitive headline: in low/medium-resource settings full fine-tuning converges faster (up to 87% faster on low-resource CoLA) and often scores higher, so parameter-efficient ≠ compute-efficient; the best method depends on data scale (BitFit/LoRA at low data, full tuning as data grows, (IA)³ most memory-frugal, prompt tuning worst). An ablation shows adapting only later layers halves LoRA/(IA)³ trainable parameters while maintaining performance, though (IA)³ is fragile to where you cut and LoRA is robust.",
-      "explainer": "papers/pu-2023-peft-llms.html"
+      "explainer": "papers/pu-2023-peft-llms.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pu-2023-peft-llms.mp3"
     },
     {
       "slug": "banerjee-2005-meteor",
