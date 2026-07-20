@@ -2729,6 +2729,7 @@
       "author_group": "UCLA / Microsoft",
       "abstract": "A 6,141-example benchmark for mathematical reasoning in visual contexts, fusing 28 existing multimodal datasets with three new ones (IQTest, FunctionQA, PaperQA) across 5 tasks and 7 reasoning types. Of 12 foundation models, GPT-4V leads at 49.9% — beating Multimodal Bard by 15.1 points but trailing humans (60.3%) by 10.4 — and collapses on logical reasoning and numeric commonsense, with an error study attributing ~half of failures to hallucinated visual facts. Its LLM-as-answer-extractor scoring pipeline and withheld-label test split became a template for later multimodal-reasoning evals.",
       "explainer": "papers/lu-2024-mathvista.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lu-2024-mathvista.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4166,6 +4167,7 @@
       "author_group": "CMU",
       "abstract": "Four fully-hostable, real-world-scale websites (e-commerce, forum, GitLab, CMS) with 812 long-horizon tasks scored by functional correctness rather than reference-trajectory matching. Even GPT-4 with chain-of-thought reasoning closes only 14.41% of tasks, against a 78.24% human baseline.",
       "explainer": "papers/zhou-2023-webarena.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2023-webarena.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5280,6 +5282,7 @@
       "author_group": "Facebook AI Research",
       "abstract": "Extends MultiNLI's English dev/test sentence pairs into 15 languages via professional human translation (112,500 annotated pairs total), then benchmarks translate-train, translate-test, and aligned multilingual-sentence-encoder baselines for cross-lingual NLI transfer.",
       "explainer": "papers/conneau-2018-xnli.html",
+      "audio_url": "https://pod.darvinyi.com/audio/conneau-2018-xnli.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -5352,6 +5355,7 @@
       "author_group": "Unbabel",
       "abstract": "Trains a family of MT evaluation metrics on a shared cross-lingual pretrained encoder (XLM-RoBERTa) via two architectures — a feed-forward Estimator and a triplet-loss Translation Ranking model — and, unlike BLEU/METEOR/NIST/TER, feeds the source sentence into the score alongside the hypothesis and reference. Sets new state-of-the-art segment-level correlation with human judgment on the WMT19 Metrics DARR benchmark.",
       "explainer": "papers/rei-2020-comet.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rei-2020-comet.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5382,6 +5386,7 @@
       "author_group": "York University",
       "abstract": "A large-scale chart-QA benchmark of 9,608 human-written questions plus 23,111 machine-generated ones over 20,882 real-world charts from four sources, requiring open-vocabulary numeric answers instead of a fixed label set; its own VisionTaPas model reaches only 45.52% relaxed accuracy on the test set.",
       "explainer": "papers/masry-2022-chartqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/masry-2022-chartqa.mp3",
       "tags": ["benchmarks"]
     },
     {
