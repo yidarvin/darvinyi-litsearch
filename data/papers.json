@@ -233,6 +233,7 @@
       "author_group": "Princeton NLP",
       "abstract": "The benchmark that re-grounded code evaluation in real software engineering: 2,294 task instances mined from merged GitHub pull requests across 12 Python repositories, where a model must patch a codebase to resolve an issue and is graded by running the repo's own hidden unit tests (the patch must apply and all fail-to-pass + pass-to-pass tests must pass). In 2023 the best models resolved under 4% (Claude 3 Opus 3.79%, Claude 2 1.96%) — localization in long contexts, not editing, was the wall, with oracle retrieval roughly doubling scores. Its execution-graded, contamination-resistant, continually-refreshable format became the foundation of the coding-agent era (SWE-agent, SWE-bench Verified, SWE-Bench Pro).",
       "explainer": "papers/jimenez-2023-swe-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jimenez-2023-swe-bench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -1437,6 +1438,7 @@
       "author_group": "NYU",
       "abstract": "A scalable-oversight testbed rather than a leaderboard: 448 graduate-level multiple-choice questions in biology, physics, and chemistry, written and validated by 61 PhD contractors through a four-stage pipeline so the answers are objective for in-domain experts (~65% accuracy, ~74% estimated objectivity) yet 'Google-proof' for skilled non-experts, who reach only 34.1% despite a median 30 minutes and unrestricted web access (25% is chance). At release the strongest baseline, GPT-4 with a search tool, managed just 39.4% on the extended set (and abstained on 37.2% of main-set questions), far below experts and barely above non-experts. Three nested splits — Extended (546), main (448), and the strictest GPQA Diamond (198, both experts correct and a majority of non-experts wrong) — with Diamond now the canonical hard-science subset reported in frontier model cards. Validator accuracies on the main/diamond subsets are skewed by the selection that defines them.",
       "explainer": "papers/rein-2023-gpqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rein-2023-gpqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2598,6 +2600,7 @@
       "author_group": "NYU",
       "abstract": "The harder sequel to GLUE, built after pretraining (BERT, XLNet) pushed GLUE's single-number score past the non-expert human level within a year. SuperGLUE keeps the format — eight English tasks on public data, one macro-averaged leaderboard score, a held-out linguistic diagnostic — but swaps in harder, more diverse tasks (BoolQ, CB, COPA, MultiRC, ReCoRD, RTE, WiC, WSC) spanning QA, coreference and word-sense disambiguation, with crowd-sourced human baselines on every task, an analysis toolkit (jiant), and submission caps. A BERT-large baseline reaches 69.0 and BERT++ (STILTs-style intermediate fine-tuning) 71.5, against an 89.8 human estimate — a ~18-point gap, 35.7 points on WSC. The headroom didn't last: T5-11B hit 88.9 within a year and models soon passed the human baseline, making SuperGLUE the canonical evidence that static NLU leaderboards with a fixed human ceiling saturate against scaling — the result the living-benchmark and held-out-eval wave (MMLU, BIG-bench, HELM, Dynabench) reacted to.",
       "explainer": "papers/wang-2019-superglue.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2019-superglue.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4775,6 +4778,7 @@
       "author_group": "Microsoft Research",
       "abstract": "Introduces the MS COCO Caption dataset — five independent human captions per image across COCO's training, validation, and test splits — alongside a CodaLab-hosted evaluation server that scores submissions with BLEU, ROUGE-L, METEOR, and CIDEr-D while keeping test-set references private. Reports human-vs-human agreement under each metric (CIDEr-D highest at 0.854) as the honest ceiling any captioning system can be judged against; the resulting dataset + server became the field's standard captioning benchmark for years.",
       "explainer": "papers/chen-2015-coco-captions.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2015-coco-captions.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4790,6 +4794,7 @@
       "author_group": "Allen Institute for AI / University of Washington",
       "abstract": "Shows that a frozen, off-the-shelf CLIP's image-text cosine similarity — with no reference captions at all — correlates with human caption-quality judgment better than reference-based metrics like CIDEr and SPICE, and introduces RefCLIPScore to blend in references when available.",
       "explainer": "papers/hessel-2021-clipscore.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hessel-2021-clipscore.mp3",
       "tags": ["evaluations"]
     },
     {
