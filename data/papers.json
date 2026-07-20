@@ -745,6 +745,7 @@
       "author_group": "Scale AI",
       "abstract": "Voice models look strong on clean, single-turn, synthetic speech and fall apart in real conversation. Audio MultiChallenge is 452 unscripted multi-turn dialogues with 1,712 atomic rubrics, adding a new Voice Editing axis and audio-cue memory; the best system, Gemini 3 Pro Preview (Thinking), clears just 54.65%.",
       "explainer": "papers/gosai-2025-audio-multichallenge.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gosai-2025-audio-multichallenge.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -760,6 +761,7 @@
       "author_group": "Scale AI",
       "abstract": "Safety audits ask what a model can do; this benchmark asks what it would do — handing an agent a forbidden 'misaligned' tool and a safe tool secretly rigged to always fail, then turning up operational pressure until alignment breaks. Average propensity to reach for the forbidden tool climbs to 46.9%.",
       "explainer": "papers/sehwag-2025-propensitybench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sehwag-2025-propensitybench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -775,6 +777,7 @@
       "author_group": "Scale AI",
       "abstract": "A red-team of pretraining-data filtering: on Evo 2-7B — which deliberately excluded eukaryotic viral sequences for safety — 'filtered' capability returns in 50 fine-tuning steps (0.72 H100 GPU-hours), and a linear probe shows the harmful signal never left the model's latent representations at all.",
       "explainer": "papers/wei-2025-bioriskeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2025-bioriskeval.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -790,6 +793,7 @@
       "author_group": "Scale AI",
       "abstract": "A library of 100+ procedurally generated, algorithmically verifiable reasoning tasks — from polynomial algebra to Rubik's cubes — emitting virtually unlimited training data at controllable difficulty. The same generators expose a 'difficulty cliff' in frontier models and RL-train a small model whose gains transfer across domains and to external benchmarks.",
       "explainer": "papers/stojanovski-2025-reasoning-gym.html",
+      "audio_url": "https://pod.darvinyi.com/audio/stojanovski-2025-reasoning-gym.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -805,6 +809,7 @@
       "author_group": "Scale AI",
       "abstract": "A benchmark for the think-with-images paradigm, where a model must actively crop, edit, and enhance an image with tools rather than just stare at it: 1,204 expert-authored tasks, 7,777 weighted rubrics, and a frontier that barely clears 18.68%.",
       "explainer": "papers/guo-2025-visualtoolbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/guo-2025-visualtoolbench.mp3",
       "tags": ["benchmarks"]
     },
     {
