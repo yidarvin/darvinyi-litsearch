@@ -668,6 +668,7 @@
       "author_group": "Stanford",
       "abstract": "A controlled study of how language models use long inputs: across multi-document QA (built from NaturalQuestions-Open) and a synthetic key-value retrieval task, accuracy traces a U-shaped curve — highest when the relevant information sits at the very start (primacy) or end (recency) of the context and lowest in the middle, where GPT-3.5-Turbo can fall more than 20 points and below its 56.1% closed-book score. Extended-context models barely beat their base counterparts on the same prompt, reader accuracy saturates long before retriever recall (20→50 documents adds only ~1–1.5%), and the U appears even in base, non-instruction-tuned models and only emerges with scale (Llama-2 13B/70B, not 7B), locating the effect in architecture and scale rather than instruction tuning. It established the position-invariance protocol for evaluating long-context models and the 'lost-in-the-middle' framing that reshaped RAG (reranking, truncation, context compression).",
       "explainer": "papers/liu-2023-lost-in-the-middle.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-lost-in-the-middle.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -2670,6 +2671,7 @@
       "author_group": "UW / AI2",
       "abstract": "A commonsense sentence-completion benchmark built by Adversarial Filtering: a strong generator (GPT-1) oversamples wrong endings, a discriminator (BERT-Large) iteratively keeps only the ones it cannot catch, and humans validate — yielding 70k four-way questions trivial for people (95.6%) yet beating every 2019 model (BERT-Large 47.3%, a >50-point zero-shot gap). The signature 'Goldilocks zone' tunes difficulty by generation length (~2 sentences, ~41 tokens). Its famous log-linear extrapolation — 100k GPU-years to reach human level — was beaten by GPT-4 (~95%, 10-shot) within four years; the dataset built to show machines cannot finish your sentence became the field's default LLM scaling benchmark.",
       "explainer": "papers/zellers-2019-hellaswag.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zellers-2019-hellaswag.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4546,6 +4548,7 @@
       "author_group": "Virginia Tech / Georgia Tech",
       "abstract": "Balances the original VQA dataset by pairing every question with two visually similar images that have two different answers, growing it to ~1.1M (image, question) pairs and ~13M answers over the same ~200K COCO images. Every 2016 state-of-the-art VQA model scores meaningfully worse on the balanced set than the original, confirming they had been exploiting language priors rather than reading the image.",
       "explainer": "papers/goyal-2017-vqa-v2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/goyal-2017-vqa-v2.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4677,6 +4680,7 @@
       "author_group": "Microsoft Research",
       "abstract": "Introduces individual fairness: a randomized classifier is fair if it satisfies a Lipschitz condition D(M(x),M(y)) ≤ d(x,y) with respect to a task-specific similarity metric on individuals, so similar people receive similar outcome distributions. Shows statistical (group) parity is inadequate via three worked counterexamples, gives an exact Earthmover-distance characterization of when the Lipschitz condition implies parity, and connects the framework to differential privacy.",
       "explainer": "papers/dwork-2012-fairness-through-awareness.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dwork-2012-fairness-through-awareness.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -5729,6 +5733,7 @@
       "author_group": "UC Berkeley / TTIC",
       "abstract": "Introduces the maximum softmax probability (MSP) — one minus a classifier's own top predicted-class probability — as a free, zero-retraining baseline for detecting misclassified and out-of-distribution examples, plus the AUROC/AUPR evaluation protocol used to score it, validated across vision, NLP, and speech tasks. An auxiliary 'abnormality module' shows the baseline can be beaten, a call later answered by ODIN, Mahalanobis-distance detectors, and energy-based scores.",
       "explainer": "papers/hendrycks-2017-msp-baseline.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2017-msp-baseline.mp3",
       "tags": ["evaluations"]
     },
     {
