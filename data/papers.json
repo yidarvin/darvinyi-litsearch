@@ -4701,6 +4701,7 @@
       "author_group": "University of Alberta",
       "abstract": "Wraps the open-source Stella emulator in a single interface exposing hundreds of independently-authored Atari 2600 games as pixel or RAM observations with 18 discrete actions, and proposes a disjoint 5-game train / 50-game test evaluation methodology plus three score-normalization schemes — the benchmark platform the entire pre-LLM deep-RL era (DQN, A3C, Rainbow) evaluated on.",
       "explainer": "papers/bellemare-2013-ale.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bellemare-2013-ale.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4716,6 +4717,7 @@
       "author_group": "Princeton University",
       "abstract": "Introduces WEAT, a permutation-test analogue of the psychologist's Implicit Association Test applied to word-vector cosine similarities, and shows that off-the-shelf GloVe embeddings trained on ordinary web text replicate a spectrum of documented human biases — flowers/insects, race, gender-career, and gender-science associations — at effect sizes comparable to the IAT literature they replicate. A companion test, WEFAT, shows the same embeddings also encode veridical real-world regularities, like the actual gender split of occupations (ρ = 0.90).",
       "explainer": "papers/caliskan-2017-weat.html",
+      "audio_url": "https://pod.darvinyi.com/audio/caliskan-2017-weat.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4803,6 +4805,7 @@
       "author_group": "University of Tübingen",
       "abstract": "A rigorous psychophysics study (97 lab observers, 48,560 trials) generates texture-shape cue-conflict images via neural style transfer and finds humans resolve them by voting shape 95.9% of the time while four standard ImageNet-trained CNNs vote texture 57-83% of the time. Retraining the identical ResNet-50 on Stylized-ImageNet lifts its shape bias from 22% to 81% and, as a byproduct, improves classification accuracy, object-detection transfer, and corruption robustness (ImageNet-C mCE 76.7 to 69.3).",
       "explainer": "papers/geirhos-2019-texture-bias.html",
+      "audio_url": "https://pod.darvinyi.com/audio/geirhos-2019-texture-bias.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6013,6 +6016,7 @@
       "author_group": "University of Wyoming / Cornell University",
       "abstract": "Uses evolutionary algorithms and gradient ascent to synthesize images from scratch that state-of-the-art ImageNet and MNIST classifiers label with up to 99.99% confidence, despite the images looking like abstract static or patterns to humans. Retraining with these images as an explicit negative class barely helps on MNIST and only partially helps on ImageNet, exposing softmax confidence as an unreliable signal of genuine recognition.",
       "explainer": "papers/nguyen-2015-fooling-images.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nguyen-2015-fooling-images.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6633,6 +6637,7 @@
       "author_group": "AI2 / UW",
       "abstract": "A 44k-problem, crowdsourced scale-up of the Winograd Schema Challenge, debiased with AFLITE — an adversarial-filtering algorithm that removes examples solvable from spurious RoBERTa-embedding associations alone. State-of-the-art reached only 59.4-79.1% depending on training size, against 94.0% human performance, and fine-tuning on it set new SOTA on five related commonsense benchmarks (WSC, DPR, COPA, KnowRef, Winogender).",
       "explainer": "papers/sakaguchi-2019-winogrande.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sakaguchi-2019-winogrande.mp3",
       "tags": ["benchmarks"]
     },
     {
