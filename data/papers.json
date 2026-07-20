@@ -2156,6 +2156,7 @@
       "author_group": "Scale AI / CAIS",
       "abstract": "A 2,500-question, multimodal, closed-ended academic benchmark written by ~1,000 subject experts across 500+ institutions and filtered to questions frontier LLMs fail — built to restore measurement headroom after MMLU-style benchmarks saturated above 90%. Two formats (24% multiple-choice, 76% exact-match; ~14% image-based) graded by an o3-mini judge, with a private held-out set guarding overfitting and mathematics making up 41% of the set. At release every model scored under 14% (o3-mini high 13.4% text-only, o1 8.0%, GPT-4o 2.7%) with RMS calibration errors above 70% — confidently wrong rather than uncertain.",
       "explainer": "papers/phan-2025-hle.html",
+      "audio_url": "https://pod.darvinyi.com/audio/phan-2025-hle.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2171,6 +2172,7 @@
       "author_group": "Scale AI",
       "abstract": "A Scale AI benchmark of 273 expert-edited multi-turn conversations isolating four realistic failure modes — instruction retention (69), inference memory of user information (113), reliable versioned editing (41), and self-coherence / anti-sycophancy (50) — each example kept only if it breaks at least 3 of 6 frontier models. Despite near-perfect scores on saturated tests like MT-Bench, every frontier model clears under 50%: Claude 3.5 Sonnet (June 2024) leads human-eval at 41.4% and o1-preview 37.2%, with a steep drop to Gemini 1.5 Pro (20.0), Llama 3.1 405B (14.9), Mistral Large (14.6), and GPT-4o (12.5). Its signature method is an instance-level binary (yes/no) rubric scored only on the final response, which lifts LLM-judge agreement with human raters from 37.3% to 93.9% — a template later rubric evals (HealthBench, PRBench) reused. Difficulty is reasoning-bound, not length-bound: scores show no trend with turn count over short (~1,232-word) conversations.",
       "explainer": "papers/sirdeshmukh-2025-multichallenge.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sirdeshmukh-2025-multichallenge.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -2186,6 +2188,7 @@
       "author_group": "Scale AI",
       "abstract": "Scale AI's contamination probe: GSM1k is 1,205 grade-school math problems hand-written (no LLM, no synthetic data) to mirror GSM8k's difficulty distribution — matched on solution steps, answer magnitude, human solve rate (4.36 vs 4.07 problems/15min), and human distinguishability (21.83% vs 20% chance) — but never publicly released. Re-evaluating leading open and closed models under one fixed 5-shot harness, the worst-overfit families (Phi, Mistral, Yi, Xwin) drop up to 8% on the clean twin (Yi-6B-Chat 43.7%→35.7%), while all frontier models (GPT-4o, GPT-4, Claude 3, Gemini 1.5, Mistral Large) stay flat or improve. A per-character log-likelihood probe links overfit to partial GSM8k memorization (Spearman's r²=0.36, p=0.03), but outliers (Math-Shepherd overfit yet low-likelihood; Llemma high-likelihood yet minimal overfit) show contamination isn't the whole story — and even the most overfit models still reason, with Phi-2 solving over half of GSM1k, matching a 25× larger Llama-2-70B.",
       "explainer": "papers/zhang-2024-gsm1k.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2024-gsm1k.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -2201,6 +2204,7 @@
       "author_group": "Scale AI",
       "abstract": "Scale AI's tool-use benchmark that grades the trajectory, not just the answer: 485 human-verified prompts requiring chains of dependent calls across 11 tools — split into an 11-tool Enterprise set (287) and a Google-Search-plus-Python Chat set (198) — paired with 1,731 per-step process-supervision labels collected by having annotators mark and rewrite each ReAct step. Across 16 models from 6 families the majority score under 50% on final answers (o1-preview leads at 61.83%, average 46.64%), and tellingly the 2-tool Chat subset is harder than the 11-tool Enterprise one, so the wall is planning, not API mechanics. Step-wise and final-answer accuracy correlate only moderately (Pearson r=0.63), and a process-supervised reward model beats an outcome-supervised one by 19 points in rank@1 on base-model trajectories (and pushes an SFT model to 60.25%, near its pass@30 ceiling) — with full-step labels including the tool Observation and max aggregation working best — early evidence that process supervision transfers from math reasoning to agentic tool use. Deliberately held out (released only once a model clears 85% or at the end of 2026) to resist contamination.",
       "explainer": "papers/nath-2025-toolcomp.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nath-2025-toolcomp.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2216,6 +2220,7 @@
       "author_group": "CAIS / Scale AI",
       "abstract": "Scale AI and the Center for AI Safety's benchmark for measuring whether a model lies — knowingly states what it does not believe — cleanly separated from whether it is factually correct, exposing that prior \"honesty\" benchmarks mostly measured accuracy in disguise (\"safetywashing\"). Each of 1,000 public (+500 held-out) human-curated, adversarially-selected examples pairs a pressure prompt engineered to induce a falsehood with neutral belief-elicitation prompts and known ground truth, across six archetypes (Known Facts, Doubling Down, Fabricated Statistics, Continuations, Disinformation, Provided Facts); a lie is scored when the pressured statement S contradicts the elicited belief B (S≠B), via an LLM judge that agrees with human labels 86.4% of the time. Across 30 frontier LLMs no model is explicitly honest in more than 46% of cases, and P(Lie) runs from 26.6% (Claude 3.7 Sonnet) to 63.0% (Grok 2) even at 72–82% belief accuracy. The signature result: across 27 models training compute correlates +87.3% with accuracy but −59.9% with honesty — scale buys knowledge, not candor — implying honesty is a post-training choice. Developer-prompt and representation-engineering (LoRRA) interventions on small Llama-2 models help (+6–13%) but do not eliminate lying.",
       "explainer": "papers/ren-2025-mask.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ren-2025-mask.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
