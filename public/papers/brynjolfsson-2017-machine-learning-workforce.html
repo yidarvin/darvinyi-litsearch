@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Can Machine Learning Do? Workforce Implications — paper_atlas</title>
+<meta name="description" content="Brynjolfsson &amp; Mitchell's 2017 Science policy forum introduces the Suitability-for-Machine-Learning (SML) rubric and the six-factor labor-demand framework that the LLM-exposure literature (GPTs are GPTs, GDPval) builds on directly.">
+<meta property="og:title" content="What Can Machine Learning Do? Workforce Implications">
+<meta property="og:description" content="Brynjolfsson &amp; Mitchell's 2017 Science policy forum introduces the Suitability-for-Machine-Learning (SML) rubric and the six-factor labor-demand framework that the LLM-exposure literature (GPTs are GPTs, GDPval) builds on directly.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/papers/brynjolfsson-2017-machine-learning-workforce.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2017 · Science · Benchmarks &amp; Evals</div>
+      <h1>What Can Machine Learning Do? Workforce Implications</h1>
+      <p class="dek">A Policy Forum essay that introduces the "Suitability for Machine Learning" (SML) rubric — eight (of a fuller 21-item) criteria for whether a task is a good fit for supervised deep learning — plus a six-factor economic framework for how automating SML tasks changes labor demand. The direct methodological ancestor of the E0/E1/E2 LLM-exposure rubric in "GPTs are GPTs."</p>
+      <div class="authors mono">Erik Brynjolfsson · Tom M. Mitchell &nbsp;|&nbsp; MIT Sloan / NBER &amp; Carnegie Mellon University</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>Science</b></span>
+        <span class="fact">citations&nbsp;<b>928</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://www.science.org/doi/10.1126/science.aap8062">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07 · published in Science, vol. 358, issue 6370, pp. 1530–1534, 2017-12-22</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By late 2017, "will AI take your job?" had become a public argument with no shared vocabulary. Automation researchers were still working from Autor, Levy &amp; Murnane's routine/non-routine task framework — built for the pre-deep-learning wave of IT, where the tasks computers could do were the ones you could write explicit rules for. Deep learning broke that framework's predictive power: a lot of what modern machine learning does well (recognizing a face, reading a chest X-ray, flagging a fraudulent transaction) is exactly the kind of tacit, rule-resistant task economists had assumed was safe from computerization. The authors invoke the philosopher Michael Polanyi's observation that "we know more than we can tell" — humans can perform many tasks fluently without being able to articulate the rules — and note that this "Polanyi's paradox" is precisely what supervised machine learning sidesteps: it doesn't need a human to write the rule, it needs enough labeled examples to infer one statistically.</p>
+      <p>That reframing left a gap: if the old "routine vs. non-routine" lens no longer predicts which tasks get automated, what does? The paper's contribution is not a new empirical estimate of job loss — it explicitly declines to forecast magnitudes — but a rubric for classifying <em>which specific tasks</em>, inside any given job, are actually reachable by the current ML paradigm, plus an economic accounting of what happens to labor demand once those tasks are automated.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>This is a Policy Forum essay, not an empirical study — its contribution is conceptual scaffolding, developed by drawing on the authors' own prior work (a 21-item rubric detailed in the paper's supplementary materials) and grounded with worked examples from the applied ML literature of the time (dermatology diagnosis via CNN, ImageNet-scale image recognition, DNN-based machine translation, DQN game-playing). The paper condenses that 21-item rubric to eight headline criteria for a task being "Suitable for Machine Learning" (SML), all aimed at the currently-dominant supervised-learning-plus-DNN paradigm specifically:</p>
+      <ol>
+        <li>Learning a function that maps well-defined inputs to well-defined outputs (classification, prediction).</li>
+        <li>Large digital datasets of input-output pairs exist or can be created.</li>
+        <li>The task provides clear feedback with clearly definable goals and metrics.</li>
+        <li>No long chains of logic or reasoning that depend on diverse background knowledge or common sense.</li>
+        <li>No need for a detailed explanation of how the decision was made.</li>
+        <li>Tolerance for error — no requirement for provably correct or optimal solutions.</li>
+        <li>The phenomenon or function being learned does not change rapidly over time.</li>
+        <li>No specialized dexterity, physical skills, or mobility required.</li>
+      </ol>
+      <p>Crucially, the unit of analysis is the <strong>task</strong>, not the <strong>job</strong> — a lawyer's job might contain a highly-SML task (classifying documents as relevant to a case) sitting right next to a low-SML task (developing courtroom strategy, interviewing witnesses) inside the same occupation. This is why the authors argue simple extrapolation from the earlier routine/non-routine automation wave is misleading: the SML criteria carve up jobs along a different axis than "routine vs. non-routine" did, so tasks that survived the first IT wave (reading medical images, holding a sales conversation) are not automatically safe from the ML wave, while some tasks assumed safe because they seemed to require judgment or creativity — the "creative" open-ended design of physical parts via generative-design software, for instance — turn out to be SML if the desired properties of a solution can be specified and automatically evaluated.</p>
+      <p>On top of the task-level rubric, the authors lay a six-factor economic accounting for what a newly-SML task does to labor demand and wages once it's actually automated: substitution (direct labor replacement), price elasticity of demand for the task's output, complementarities with adjacent non-automated tasks, income elasticity, elasticity of labor supply for the task, and business-process redesign (production processes are not fixed — firms re-architect around the new cost structure, and per Le Chatelier's principle this redesign response grows larger the longer the time horizon). The net effect on any given occupation's labor demand is the sum of these six, which is why the paper's answer to "will this task's automation raise or lower employment in this job" is explicitly: it depends, and can go either way even within the same firm.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Because this is a conceptual Policy Forum piece rather than an empirical paper, its "results" are the implications the framework generates rather than measured effect sizes. Three stand out. First, the SML lens inverts some intuitions about which white-collar tasks are exposed: the authors note that "some aspects of sales and customer interaction are potentially a very good fit" for ML — despite requiring apparent emotional intelligence — because large transcript datasets of chat exchanges between salespeople and customers can train a system to recognize which responses lead to sales, whereas "the more unstructured task of interacting with other doctors, and the potentially emotionally fraught task of communicating with and comforting patients, are much less suitable for ML approaches" — despite that task sitting inside one of the most technical, high-status jobs in the economy.</p>
+      <p>Second, the framework treats "creativity" as gradient rather than binary: the paper cites generative-design software producing a heat-exchanger design that meets weight, strength, and cooling-rate requirements "more effectively than anything designed by a human, and with a very different look and feel" as an example of a nominally creative engineering task becoming SML — the requirement isn't that the design process be specified step by step, only that the properties of a good solution be well specified and automatically evaluable, shifting the scarce human contribution toward defining what "good" means rather than searching for it.</p>
+      <p>Third, the paper argues directly against extrapolating the prior automation wave's pattern onto this one. Pre-ML IT's "main effects... have been on a relatively narrow swath of routine, highly structured and repetitive tasks," which is why labor demand fell "for jobs in the middle of the skill and wage spectrum, like clerks and factory workers, whereas demand at the bottom (e.g., janitor or home health aide) and top (e.g., physicians) has held up in most advanced countries." The authors state plainly that "although the framework of routine versus nonroutine tasks did a very effective job of describing tasks suitable for the last wave of automation... the set of SML tasks is often very different. Thus, simply extrapolating past trends will be misleading, and a new framework is needed." That is the falsifiable-in-hindsight claim: the SML lens predicts a different, overlapping-but-distinct cut through the occupational structure than the routine/non-routine framework did — one that can reach inside professional jobs task-by-task (document classification for lawyers, image reading for radiologists) rather than sparing them wholesale. This is the claim "GPTs are GPTs" later operationalizes and tests directly with an LLM-scored O*NET exposure measure, six years on.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>Judging this piece by empirical-paper standards is the wrong frame — it's a conceptual policy essay, and its own text is explicit about that scope: no dataset, no regression, no point estimate of jobs affected. The right question is whether the rubric and framework it proposes turned out to be a good predictive lens, and on that count the record is mixed but leans favorable, nine years out.</p>
+      <p>What holds up well: the core empirical claim — that the current ML paradigm is fundamentally a <em>supervised-learning-shaped</em> tool, strongest on well-labeled, feedback-rich, slowly-drifting, dexterity-free tasks — was directionally correct for the 2018–2022 deep-learning-application era the paper anticipated, and the "task, not job" unit of analysis became the standard framing that essentially all subsequent labor-economics-of-AI papers adopted, including its direct successor "GPTs are GPTs" (which built an O*NET task-exposure score explicitly in this lineage) and the AEA Papers &amp; Proceedings follow-up "What Can Machines Learn, and What Does It Mean for Occupations and the Economy?" (Brynjolfsson, Mitchell &amp; Rock, 2018) that operationalized the rubric quantitatively.</p>
+      <p>What has aged less well, and this is the sharpest critique available: the paper's eight criteria are calibrated to <em>supervised</em> deep learning circa 2017 — item 5 ("no need for detailed explanation of how the decision was made") and item 4 ("no long chains of logic or reasoning... or common sense") describe limitations that the 2022+ large-language-model wave attacks directly. Chain-of-thought prompting produces exactly the kind of explicit multi-step reasoning trace the 2017 rubric assumed was out of reach for ML, and instruction-following LLMs can be adapted to open-ended tasks with orders of magnitude less task-specific labeled data than the "large (digital) data sets... containing input-output pairs" criterion assumes is necessary. The framework's core insight (task-level, not job-level, analysis; task-suitability rubrics as the right unit) survived the LLM transition; its specific eight criteria, written for the DNN-classifier era, did not fully anticipate the paradigm that would dominate within five years — a reasonable limitation for a forward-looking 2017 essay, but worth flagging plainly rather than reading the rubric as timeless.</p>
+      <p>There is also a citation-integrity note worth flagging for anyone tracing this paper's lineage on the graph: the 2018 AEA Papers &amp; Proceedings paper that quantifies this framework, "What Can Machines Learn, and What Does It Mean for Occupations and the Economy?", is co-authored with Daniel Rock — but Rock is <em>not</em> a co-author of this 2017 Science piece, which lists only Brynjolfsson and Mitchell (confirmed via Semantic Scholar, CrossRef, and the paper's own byline). Rock is thanked only in the acknowledgments ("and especially D. Rock") for discussion, not authorship — a distinction easy to blur across the two closely-related papers.</p>
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">N/A — conceptual framework paper, not an empirical comparison against baselines. The relevant question is predictive validity of the rubric, not baseline fairness.</p>
+        <span class="k">contamination</span><p class="v">N/A — no dataset, no benchmark, no leakage surface. The rubric was applied to O*NET tasks in the companion supplementary materials, not detailed in the main text obtained here.</p>
+        <span class="k">what's missed</span><p class="v">The eight-item rubric is calibrated to supervised DNN classifiers; criteria 4 and 5 (no long reasoning chains, no need to explain decisions) are directly challenged by post-2022 chain-of-thought LLMs, which the 2017 framework could not have anticipated.</p>
+        <span class="k">would raise confidence</span><p class="v">A direct successor rubric re-run against the LLM/agent paradigm — which is effectively what "GPTs are GPTs" (2023) and the later E0/E1/E2 exposure taxonomy attempt — would show how much of the original eight criteria still discriminate correctly.</p>
+      </div>
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>As a conceptual essay, its most durable contribution is methodological — analyze automation exposure task-by-task via an explicit suitability rubric, not job-by-job via a routine/non-routine label — and that framing is the direct ancestor of the LLM-exposure literature this graph traces forward. Its specific eight-criteria checklist, written for the supervised-DNN era, is a useful historical marker of what "AI" meant in December 2017, not a rubric that should be applied unmodified to today's frontier models.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><strong>Task-level, not job-level.</strong> The paper's lasting contribution is the unit of analysis: classify individual tasks within a job against an explicit "Suitability for Machine Learning" rubric, rather than labeling whole occupations "automatable" or not — the framework every later LLM-exposure paper in this graph inherits.</li>
+        <li><strong>Automation exposure is not a rehash of the last IT wave.</strong> The prior wave hollowed out routine middle-skill work; ML's eight-criteria SML rubric predicted a different, overlapping cut — hitting some tasks inside high-status professional jobs (document review, certain sales interactions) while sparing others (bedside manner, courtroom strategy) — which is exactly the wage/education-correlated exposure pattern "GPTs are GPTs" later measures directly.</li>
+        <li><strong>The rubric is a product of its moment.</strong> Written for supervised DNN classifiers, two of its eight criteria (no long reasoning chains, no need to explain decisions) describe exactly the capabilities chain-of-thought LLMs would add within five years — a reminder that "suitability for ML" rubrics need periodic re-calibration as the dominant ML paradigm shifts.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        What Can Machine Learning Do? Workforce Implications<br>
+        Brynjolfsson, Mitchell · 2017 · Science<br>
+        <a href="https://www.science.org/doi/10.1126/science.aap8062">read the original ↗</a> · slug: brynjolfsson-2017-machine-learning-workforce
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
