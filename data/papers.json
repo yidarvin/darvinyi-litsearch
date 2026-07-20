@@ -620,7 +620,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "The first systematic study of 'Defensive Refusal Bias': across 2,390 real single-turn blue-team prompts from the National Collegiate Cyber Defense Competition, three aligned LLMs refuse legitimate defensive requests 12.2% of the time overall and 2.72× more often when the prompt carries security-sensitive vocabulary (30.5% vs 11.2%, χ²=37.3, p<0.001). The most operationally critical tasks fare worst — system hardening 43.8%, malware analysis 34.3%, vulnerability assessment 22.7% — and the most safety-tuned model (Claude 3.5 Sonnet) refuses 19.5% of requests, ~3× the open-weight Llama-3.3-70B (6.6%). Paradoxically, explicit authorization ('I'm on the blue team', 'this is for NCCDC') raises refusals rather than lowering them (21.8% vs 11.6%; offensive + authorization peaks at 50.0%), and rephrasing it out drops refusals to 13.7%. Prompt embeddings predict refusals at AUC 0.827 while keyword features sit near chance (0.572), pointing to a learned 'harm-adjacent' decision boundary that swallows defensive work rather than literal keyword blocking — a safety-induced denial-of-service that falls asymmetrically on defenders and silently breaks autonomous defensive agents that cannot rephrase and retry.",
-      "explainer": "papers/campbell-2026-defensive-refusal.html"
+      "explainer": "papers/campbell-2026-defensive-refusal.html",
+      "audio_url": "https://pod.darvinyi.com/audio/campbell-2026-defensive-refusal.mp3"
     },
     {
       "slug": "maurya-2025-mrbench",
@@ -680,6 +681,7 @@
       "author_group": "Scale AI",
       "abstract": "Benchmarks ask whether a model knows dangerous biology in one shot; this study asks whether a non-expert human, given hours with a fleet of frontier models, gets meaningfully better at dual-use in-silico biology tasks. Novices reached 4.16x the accuracy of an internet-only control, beat human experts on three of four benchmarks, and almost none reported trouble getting dual-use information past model safeguards.",
       "explainer": "papers/zhang-2026-bio-uplift.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2026-bio-uplift.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -695,6 +697,7 @@
       "author_group": "Scale AI",
       "abstract": "A reproducible harness and benchmark for the 'agents optimizing agents' task: a coding agent edits, evaluates, and versions a target agent's code under a fixed evaluation budget. Across five tasks the full harness lifts tool-use agents about 8% over baseline, while reasoning tasks barely move.",
       "explainer": "papers/ursekar-2026-vero.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ursekar-2026-vero.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -710,6 +713,7 @@
       "author_group": "Scale AI",
       "abstract": "A dataset-agnostic synthetic pipeline that turns any well-specified long-horizon task into controllably underspecified variants — stripping information across Goal, Constraint, Input, and Context and validating each variant by what agents actually do — then measures whether frontier agents know when to stop and ask for clarification, and what that costs.",
       "explainer": "papers/pu-2026-lhaw.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pu-2026-lhaw.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -725,6 +729,7 @@
       "author_group": "Scale AI",
       "abstract": "Instead of spinning up a sandbox to run tests, an expert agent crawls the repository and writes a context-grounded rubric checklist, then grades candidate patches against it with no code execution at all — beating patch classifiers and test-based selection on SWE-Bench Verified.",
       "explainer": "papers/raghavendra-2026-agentic-rubrics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/raghavendra-2026-agentic-rubrics.mp3",
       "tags": ["evaluations"]
     },
     {
