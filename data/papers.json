@@ -2236,6 +2236,7 @@
       "author_group": "Scale AI",
       "abstract": "A 2023 Scale AI technical report proposing a hybrid human-plus-AI methodology for testing LLMs. An entropy-based confidence measure lets a GPT-4 judge auto-grade the pairwise preference comparisons it is most certain about (offloading up to ~20% of inputs at ~86% human agreement) and routes the rest to people; a layered red-teaming pipeline (automated probes, generalist red teamers, then domain experts) surfaces more, and more severe, vulnerabilities than any single source.",
       "explainer": "papers/slack-2023-holistic-eval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/slack-2023-holistic-eval.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -2250,7 +2251,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Decomposes how RLVR teaches reasoning models into two measurable effects — self-distillation (converting pass@16-latent solutions into reliable pass@1) and capability gain (solving problems unsolvable even at pass@16) — and shows across Qwen-2.5 from 0.5B to 72B on >500,000 math/STEM/code problems that self-distillation dominates: RLVR mostly re-allocates probability mass rather than discovering new solutions, with the unsolved-set headroom shrinking from 3,195 items at 0.5B to 1,532 at 72B. To induce real capability gain it introduces Guide, a class of online RL algorithms that inject a reference-derived hint into the context only on prompts where all k rollouts fail — GRPO's dead, zero-advantage prompts that DAPO simply discards — then apply an off-policy importance weight so the guided trajectories optimize the hint-free policy (PPO ratio-clipping is removed for guided rollouts, which otherwise diverges at ~50 steps). Guide-GRPO beats vanilla GRPO by 1-4 points macro pass@1 on math (51.03 vs 49.34 at 7B; 56.26 vs 52.87 at 32B/8K) and uniquely lifts pass@16 (70.15 vs 67.06) while keeping training entropy higher; gating guidance to all-incorrect prompts (51.03) far outscores unconditional guidance (40.97).",
-      "explainer": "papers/nath-2025-adaptive-guidance.html"
+      "explainer": "papers/nath-2025-adaptive-guidance.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nath-2025-adaptive-guidance.mp3"
     },
     {
       "slug": "kritz-2025-j2",
@@ -2264,7 +2266,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "Turns almost any refusal-trained black-box LLM into an autonomous red-teamer (a J2 attacker) using one transferable multi-turn prompt that reframes jailbreaking as safety work, then runs a fixed plan/attack/debrief workflow whose in-context-learning cycles improve the attack over past failures. Reasoning models make the strongest attackers and the vulnerability is growing: self-attack success rose +28%/+66%/+66% for Claude/Gemini/OpenAI over 12 months, and J2(Claude-3.7) reaches 0.975 ASR against GPT-4o (matching expert human red teamers), though against the more robust Sonnet-3.5 the best J2 attacker (o3, 0.605) still trails top black-box baselines like Bijection and BoN.",
-      "explainer": "papers/kritz-2025-j2.html"
+      "explainer": "papers/kritz-2025-j2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kritz-2025-j2.mp3"
     },
     {
       "slug": "vidgen-2025-apex",
@@ -2338,7 +2341,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Makes RLVR effective in sparse-reward agentic settings by introducing agent guidance — train-time teacher hints (a high-level plan, environment feedback on errors, and file-localization cues) that steer a failing software-engineering agent toward passing trajectories, which then become DPO preference pairs for offline RLVR. On SWE-Bench Verified with only 817 training environments, it lifts Qwen-2.5-72B-Instruct from 9.4% to 22.4% pass@1; a reward model trained on the same guidance-augmented data reranks 32 candidate patches to push test-time pass@1 to 27.8%. Guidance is the load-bearing ingredient — the gap over guidance-free RLVR widens as pass@k grows — and the recipe beats a rejection-sampling SFT baseline (20.8%) while using a far smaller dataset and simpler scaffold than SWE-RL or SWE-Gym.",
-      "explainer": "papers/da-2025-agent-rlvr.html"
+      "explainer": "papers/da-2025-agent-rlvr.html",
+      "audio_url": "https://pod.darvinyi.com/audio/da-2025-agent-rlvr.mp3"
     },
     {
       "slug": "wang-2025-red-teaming-roadmap",
@@ -2352,7 +2356,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Scale AI",
       "abstract": "A Scale AI (SEAL) position paper arguing that LLM red teaming, in aggregate, optimizes the wrong objective. It should test concrete product safety specifications under realistic threat models rather than abstract ethical principles, and move beyond model-level robustness to system-level safety: environment simulation, trajectory and user monitoring, rapid response, and red teaming the monitor itself.",
-      "explainer": "papers/wang-2025-red-teaming-roadmap.html"
+      "explainer": "papers/wang-2025-red-teaming-roadmap.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2025-red-teaming-roadmap.mp3"
     },
     {
       "slug": "shuieh-2025-spurious-correlations",
