@@ -153,6 +153,7 @@
       "author_group": "Scale AI",
       "abstract": "A fully human-built benchmark for Deep Research agents: 101 open-ended prompts paired with 2,593 expert-written, weighted rubric criteria (2,800+ hours of labor) across nine domains, scored by LLM-as-judge over three-stage expert review. Even the strongest agents — Gemini DR (0.677) and OpenAI DR (0.664) — clear under 68% of criteria under ternary grading, with no system topping 70%; failures concentrate in implicit reasoning and cross-document synthesis (45–50% of all failures) rather than factual retrieval. Methodologically, binary grading aligns with human judges ~20 points better than ternary partial credit (0.76 vs 0.57 Macro-F1), and LLM-augmenting the expert rubrics degrades alignment by 15–20%.",
       "explainer": "papers/sharma-2025-researchrubrics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sharma-2025-researchrubrics.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -168,6 +169,7 @@
       "author_group": "CAIS / Scale AI",
       "abstract": "The first economically grounded measure of AI automation: 240 real freelance projects sourced from verified Upwork professionals — over 6,000 hours of work valued at $143,991, spanning 23 categories from video and CAD to game development — each paired with the human gold-standard deliverable and graded by holistic manual review (94.4% inter-annotator agreement). Frontier agents perform near the floor: the best, Manus, completes just 2.5% of projects to a client-acceptable standard and earns $1,720 of the bundle, with the rest between 0.8–2.1%. An Elo metric (human baseline = 1,000; best AI ≈ 510) and an 'autoflation' price index register steady relative progress even as absolute end-to-end automation stays near zero, and failures cluster on execution — poor quality (45.6%), incomplete deliverables (35.7%), corrupted files (17.6%) — rather than deep reasoning.",
       "explainer": "papers/mazeika-2025-rli.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mazeika-2025-rli.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -182,7 +184,8 @@
       "topic": "Post-training & RL",
       "author_group": "Scale AI",
       "abstract": "Makes the RL rubric a living object: instead of grading long-form answers against a fixed, hand-written checklist, OnlineRubrics elicits new weighted criteria online by contrasting the current policy's responses with a control model's, closing the seams that let static rubrics be reward-hacked. Training Qwen-2.5-7B-Instruct with GRPO, it adds up to +8 points over human-rubric-only training (and +25 over the base model) on AlpacaEval, Arena-Hard, and GPQA, with pairwise extraction beating pointwise by 6–7 points — though gains concentrate on open-ended, LLM-judged quality while verifiable GSM8K/GPQA barely move.",
-      "explainer": "papers/rezaei-2025-onlinerubrics.html"
+      "explainer": "papers/rezaei-2025-onlinerubrics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rezaei-2025-onlinerubrics.mp3"
     },
     {
       "slug": "deng-2025-swe-bench-pro",
@@ -213,6 +216,7 @@
       "author_group": "Scale AI",
       "abstract": "A 1,490-sample, 15,220-criterion benchmark of high-school and AP-level STEM tutoring across six subjects — adaptive explanation, feedback on student work, and hint generation — with 828 multimodal samples (photos of handwritten work) graded by a Claude Sonnet 4 judge against self-contained, sample-specific expert rubrics, kept hard by discarding any item three of five strong models could already solve. Across 16 frontier models none clears 56% (Gemini 2.5 Pro 55.65%, GPT-5 55.33%, o3 Pro 54.62%); adaptive explanation is the weakest use case (47.16% average), models are best at spotting correct/incorrect student steps (~53%) but worst at offering examples or analogies (32.8%), and the Claude family leads active-learning support (0.58–0.59) while trailing overall. Notably GPT-5 Study Mode scores just 46.94% — below vanilla GPT-5 — because its withholding, question-asking style is penalized by single-final-response grading.",
       "explainer": "papers/srinivasa-2025-tutorbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/srinivasa-2025-tutorbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -257,7 +261,8 @@
       "topic": "Agents",
       "author_group": "Scale AI",
       "abstract": "A multi-agent system for corpus-level trace diagnostics: instead of debugging an LLM agent one trace at a time, IG runs a scout/investigator loop that proposes behavioral hypotheses on a sample and validates each statistically across the whole trace corpus — routed through a stateful Python layer so it scales past any context window — emitting an evidence-backed report. Across SpreadsheetBench and HLE a Claude Opus 4.6 judge ranks IG first on pairwise report quality (77.9% win rate vs 62.4% next), and — the headline — professional engineers handed an IG report improved a held-out scaffold by 30.4 pp over baseline (57.4% vs 27.0%), nearly doubling the next-best report's 16.2 pp gain (p≈0.016, n=6). Under fully-autonomous patching, though, a 3×-cheaper recursive baseline matches IG's 0.81–0.84 terminal pass rate.",
-      "explainer": "papers/manglik-2026-insights-generator.html"
+      "explainer": "papers/manglik-2026-insights-generator.html",
+      "audio_url": "https://pod.darvinyi.com/audio/manglik-2026-insights-generator.mp3"
     },
     {
       "slug": "arora-2025-healthbench",
