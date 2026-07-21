@@ -13,6 +13,7 @@
       "author_group": "Redwood Research",
       "abstract": "Introduces \"control evaluations\": a red-team/blue-team methodology that measures whether a safety pipeline holds up when the untrusted model is actively trying to subvert it. In an APPS code-backdooring testbed with an untrusted GPT-4 (U), a trusted GPT-3.5 (T), and a 2% budget of trusted labor (H), simple protocols—trusted monitoring, defer-to-trusted, untrusted monitoring with anti-collusion, and trusted editing—push safety from 15% (naive upfront auditing) to 79–92% while keeping 94–97% usefulness.",
       "explainer": "papers/greenblatt-2023-ai-control.html",
+      "audio_url": "https://pod.darvinyi.com/audio/greenblatt-2023-ai-control.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -483,6 +484,7 @@
       "author_group": "USTC / Metastone",
       "abstract": "The first benchmark built specifically for Deep Research Agents: 100 PhD-level tasks across 22 domains (50 English / 50 Chinese), with the per-domain task counts grounded in 44,019 filtered real user queries (from 96,147 raw). Two human-aligned frameworks grade it — RACE scores report quality against a high-quality reference report using dynamically-weighted, judge-generated adaptive criteria, and FACT scores citation accuracy plus effective-citation count via per-claim web verification. Gemini-2.5-Pro Deep Research leads RACE Overall (48.88) and dominates volume at 111.21 effective citations per report, but Perplexity DR cites most accurately (90.24% vs Gemini's 81.44%) and OpenAI DR (46.98) edges Gemini on Instruction-Following. RACE's 71.33% pairwise agreement with experts beats the 68.44% the experts agree with each other — though the whole pipeline is a Gemini judge scoring against a Gemini-written reference, a built-in self-preference risk.",
       "explainer": "papers/du-2025-deepresearch-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/du-2025-deepresearch-bench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -1108,6 +1110,7 @@
       "author_group": "Stanford / Laude Institute",
       "abstract": "A hard, crowd-sourced benchmark of 89 containerized command-line tasks — each with a unique Docker environment, hidden outcome tests that grade the final container state, and a human-written reference solution, verified at roughly three reviewer-hours apiece — spanning software engineering, system administration, security, and scientific computing. Across 32,155 trials over 16 frontier models and 6 agent scaffolds, the best system (GPT-5.2 via Codex CLI) resolves only 63% of tasks and smaller models around 15%; proprietary models hold the top 13 spots while the best open-weight (Kimi K2 Thinking) reaches 36%, execution errors like disobeying the spec and 'command not found' (24.1% of command failures) dominate, and the authors note the benchmark may saturate within a year.",
       "explainer": "papers/merrill-2026-terminal-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/merrill-2026-terminal-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3225,6 +3228,7 @@
       "author_group": "Stanford",
       "abstract": "Reframes contract review as document-level natural language inference: given 17 fixed policy hypotheses (e.g. “Receiving Party shall not use Confidential Information for any purpose other than the stated purposes”) and a whole NDA, a system classifies each hypothesis as entailed / contradicting / not-mentioned and identifies the evidence spans. Releases 607 annotated NDAs — the largest annotated contract corpus of its time — and Span NLI BERT, which models evidence as multi-label classification over predefined [SPAN] tokens with dynamic context segmentation so long documents (86% exceed BERT’s 512-token limit) are handled. Evidence finding is near-solved (mAP .92) but contradiction reasoning lags (best F1 .357), collapsing to .00 minority-label accuracy under non-local “negation by exception”; the best model is DeBERTa-xlarge transfer-fine-tuned on CUAD (NLI acc .892).",
       "explainer": "papers/koreeda-2021-contractnli.html",
+      "audio_url": "https://pod.darvinyi.com/audio/koreeda-2021-contractnli.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6701,6 +6705,7 @@
       "author_group": "Stanford / Princeton NLP",
       "abstract": "Extends SWE-bench from Python to visual, JavaScript software: 619 real GitHub issue→PR task instances from 17 user-facing JS libraries (diagramming, mapping, syntax highlighting, UI design systems), where 83.5% of image-bearing instances are judged image-necessary to solve. Adapting SWE-bench's leading agents collapses their performance — the best system (SWE-agent, GPT-4o or Claude 3.5 Sonnet) resolves only 12.2%, agentic scaffolds (11.5% avg.) badly outperform fixed localize-then-repair pipelines (Agentless 3.9%, RAG 5.5%), and two of four candidate systems couldn't even be adapted because their localization is Python-AST-specific.",
       "explainer": "papers/yang-2024-swe-bench-multimodal.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2024-swe-bench-multimodal.mp3",
       "tags": ["benchmarks"]
     },
     {
