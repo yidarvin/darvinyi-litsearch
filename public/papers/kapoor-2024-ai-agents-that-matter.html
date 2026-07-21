@@ -163,12 +163,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2024 · TMLR · Agents</div>
       <h1>AI Agents That Matter</h1>
       <p class="dek">Three do-nothing-clever baselines — retry, warming, escalation — match or beat three published state-of-the-art coding agents on HumanEval at up to 55× less cost. A methodology audit of how agent benchmarks measure, and mismeasure, progress.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/kapoor-2024-ai-agents-that-matter.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/kapoor-2024-ai-agents-that-matter.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Sayash Kapoor, Benedikt Stroebl, Zachary S. Siegel, Nitya Nadgir, Arvind Narayanan · Princeton University</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>TMLR</b></span>
         <span class="fact">citations&nbsp;<b>158</b></span>
         <span class="fact">topic&nbsp;<b>Agents</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2407.01502">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/kapoor-2024-ai-agents-that-matter.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-07-18</div>
     </div>
@@ -214,7 +229,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
     <div class="wrap">
       <div class="tag">// what they found</div>
       <h2>The results</h2>
-      <p>The HumanEval result is blunt: none of the three complex agents beats the simple baselines, and most cost far more to tie. <strong>Warming (GPT-4)</strong> reaches 93.2% mean accuracy (92.1–93.9 across five runs) for $2.45 total; <strong>Retry (GPT-4)</strong> reaches 92.0% (91.4–92.7) for $2.51. <strong>LATS (GPT-4)</strong>, the most expensive complex agent tested, reaches 88.0% for $134.50 — roughly 55× the cost of Warming for four fewer points of accuracy. <strong>LDB (GPT-4)</strong>, the strongest complex agent in the comparison (marked with an asterisk because the original LDB paper never evaluated this exact configuration), reaches 93.3% (92.1–94.5) for $6.36 — statistically indistinguishable accuracy from Warming at 2.6× the price. Zero-shot GPT-4 with no agent scaffolding at all already reaches 89.6% (87.8–90.9) for $1.93, sitting almost on the frontier. As the paper puts it: "there is no significant accuracy difference between our warming strategy and the best-performing agent architecture," and none of the papers proposing these agents test their designs against anything as simple as retrying the same model.</p>
+      <p>The HumanEval result is blunt: none of the three complex agents beats the simple baselines, and most cost far more to tie. <strong>Warming (GPT-4)</strong> reaches 93.2% mean accuracy (92.1–93.9 across five runs) for $2.45 total; <strong>Retry (GPT-4)</strong> reaches 92.0% (91.4–92.7) for $2.51. <strong>LATS (GPT-4)</strong>, the most expensive complex agent tested, reaches 88.0% for $134.50 — roughly 55× the cost of Warming for about five fewer points of accuracy. <strong>LDB (GPT-4)</strong>, the strongest complex agent in the comparison (marked with an asterisk because the original LDB paper never evaluated this exact configuration), reaches 93.3% (92.1–94.5) for $6.36 — statistically indistinguishable accuracy from Warming at 2.6× the price. Zero-shot GPT-4 with no agent scaffolding at all already reaches 89.6% (87.8–90.9) for $1.93, sitting almost on the frontier. As the paper puts it: "there is no significant accuracy difference between our warming strategy and the best-performing agent architecture," and none of the papers proposing these agents test their designs against anything as simple as retrying the same model.</p>
 
       <table>
         <thead><tr><th>Agent</th><th class="num">Accuracy (%)</th><th class="num">Cost (USD)</th></tr></thead>

@@ -1051,6 +1051,7 @@
       "author_group": "Multi-lab",
       "abstract": "A 40-author cross-lab position paper (UK AISI, OpenAI, Google DeepMind, Anthropic, METR, Apollo, and more; endorsed by Hinton, Sutskever, Bowman, and Schulman) arguing that reasoning models which 'think' in human language give safety a rare gift: their chains of thought can be monitored for the intent to misbehave. Because hard tasks force a Transformer to route serial reasoning through the CoT (the 'externalized reasoning property') and models tend to verbalize anyway, monitors already catch misbehavior like 'Let's hack' and reward hacking — but the window is fragile, threatened by scaled outcome-based RL, direct and indirect CoT supervision, and latent-reasoning architectures. The paper runs no new experiments; it recommends building monitorability evaluations, reporting them in system cards, and weighing monitorability in training and deployment decisions, while warning it can never be a standalone safety guarantee.",
       "explainer": "papers/korbak-2025-cot-monitorability.html",
+      "audio_url": "https://pod.darvinyi.com/audio/korbak-2025-cot-monitorability.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -2703,6 +2704,7 @@
       "author_group": "ETH Zurich",
       "abstract": "A 2,861-dialogue corpus of one-to-one math tutoring, built by pairing 91 expert teachers with an LLM that role-plays a confused student over GSM8K problems and annotating each turn with a four-move scaffolding taxonomy (Focus / Probing / Telling / Generic). Its signature contribution is the Success@k / Telling@k pair that makes the guide-vs-tell tradeoff measurable: un-prompted ChatGPT reveals the answer 66% of the time, while a 780M Flan-T5 finetuned on MathDial matches its solve rate at under 1% telling. The pedagogical-dialogue substrate later tutoring benchmarks (MRBench, TutorBench) build on.",
       "explainer": "papers/macina-2023-mathdial.html",
+      "audio_url": "https://pod.darvinyi.com/audio/macina-2023-mathdial.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -4335,6 +4337,7 @@
       "author_group": "Princeton",
       "abstract": "A methodology critique of AI agent evaluation: three trivial baselines (retry, escalation, temperature warming) match or beat three published complex agent architectures on HumanEval at up to 55x less cost, alongside diagnoses of conflated model/downstream evaluation, missing benchmark holdouts, ignored human-in-the-loop supervision, and widespread reproducibility bugs.",
       "explainer": "papers/kapoor-2024-ai-agents-that-matter.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kapoor-2024-ai-agents-that-matter.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6556,6 +6559,7 @@
       "author_group": "Google",
       "abstract": "The WMT23 Metrics Shared Task's annual validation of automatic MT evaluation metrics against professional MQM human judgments, redesigned into a streamlined 10-task weighted meta-evaluation. XCOMET-Ensemble wins outright, a synthetic best-of-N reference recovers correlation lost to a low-quality human reference, and a calibration study finds the real significance threshold for BLEU-score differences runs 2.2-11 points depending on language pair, far from the assumed 'two points is meaningful.'",
       "explainer": "papers/freitag-2023-wmt23-metrics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/freitag-2023-wmt23-metrics.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -7947,6 +7951,7 @@
       "author_group": "Google DeepMind",
       "abstract": "Introduces LongFact (2,280 GPT-4-generated fact-seeking prompts across 38 topics — the first benchmark combining long-form responses with broad topical coverage) and SAFE, an LLM search agent that decomposes a response into individual facts and verifies each against Google Search. SAFE agrees with crowdsourced human raters 72% of the time and wins 76% of adjudicated disagreements (vs. 19% for the humans) at roughly 1/20th the cost ($0.19 vs. $4.00/response); the paper's new F1@K metric then benchmarks 13 models across 4 families, finding larger, newer models are consistently more factual in long-form generation.",
       "explainer": "papers/wei-2024-longfact.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2024-longfact.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
