@@ -390,6 +390,7 @@
       "author_group": "Salesforce AI Research",
       "abstract": "The first benchmark to point LLM agents at real, live MCP servers — Google Maps, GitHub, Yahoo Finance, Blender, Playwright — across 231 hand-built tasks over 11 servers (133 tools), graded by 84 execution-based format/static/dynamic evaluators rather than an LLM judge (the 57.1% dynamic evaluators auto-refetch live ground truth so time-sensitive answers stay gradable). Even GPT-5 clears only 43.72% (Grok-4 33.33%, Claude-4.0-Sonnet 29.44%, best open-weight GLM-4.5 24.68%); Location Navigation defeats everyone (<35%), failures concentrate in content over format, and the two named walls are long-context blow-up (~90k tokens by step 16) and unfamiliar tool interfaces — while enterprise scaffolds like Cursor don't beat plain ReAct.",
       "explainer": "papers/luo-2025-mcp-universe.html",
+      "audio_url": "https://pod.darvinyi.com/audio/luo-2025-mcp-universe.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3973,6 +3974,7 @@
       "author_group": "Meta AI (FAIR)",
       "abstract": "Introduces MLGym, the first Gymnasium environment for AI-research tasks — so agents can be reinforcement-learning trained, not just evaluated — alongside MLGym-Bench, 13 open-ended ML problems spanning computer vision, NLP, RL, and game theory. Built on SWE-Agent's agent-computer interface plus a permission system, literature search, and a memory module, it scores models across incommensurable task metrics using performance profiles and the AUP score borrowed from AutoML. Across five frontier models (o1-preview leads with Best Attempt AUP@4 1.150, Claude-3.5-Sonnet and Gemini-1.5-Pro close behind), agents reliably beat the provided baselines by tuning hyperparameters but generate no novel hypotheses, algorithms, or architectures — and invoke the search tool only 11 times across all runs.",
       "explainer": "papers/nathani-2025-mlgym.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nathani-2025-mlgym.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6513,6 +6515,7 @@
       "author_group": "Cohere Labs",
       "abstract": "An axiomatic audit of the Elo rating system as applied to LLM evaluation: synthetic Bernoulli simulations and real human-preference data (Flan-T5, Dolly) show Elo ratings are highly sensitive to match-up ordering and K-factor choice and can violate transitivity between closely-matched models, motivating concrete hyperparameter guidelines (Nperms≥100) for more reliable Elo-based leaderboards.",
       "explainer": "papers/boubdir-2023-elouncovered.html",
+      "audio_url": "https://pod.darvinyi.com/audio/boubdir-2023-elouncovered.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6760,6 +6763,7 @@
       "author_group": "Princeton",
       "abstract": "270 tasks across 90 published CodeOcean papers (computer science, social science, medicine) ask an agent to reproduce a study's own results from its code, at three difficulty tiers — output given, Dockerfile given, or README only. The best baseline, a task-tuned AutoGPT variant, clears 60% of the easiest tier and just 21% of the hardest, where it must install dependencies and determine the run command itself.",
       "explainer": "papers/siegel-2024-core-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/siegel-2024-core-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7221,6 +7225,7 @@
       "author_group": "University of Maryland",
       "abstract": "A global, 2,800-competitor prompt-hacking competition against GPT-3, ChatGPT, and FlanT5-XXL produced 600K+ adversarial prompts (83.2% success rate on refined submissions) and the first data-driven taxonomy of 29 prompt-hacking techniques, showing prompt-based defenses reliably fail. Won EMNLP 2023's Best Theme Paper award.",
       "explainer": "papers/schulhoff-2023-hackaprompt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/schulhoff-2023-hackaprompt.mp3",
       "tags": ["benchmarks"]
     },
     {
