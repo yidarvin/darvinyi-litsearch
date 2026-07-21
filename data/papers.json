@@ -453,6 +453,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI's benchmark of real, economically valuable knowledge work: 1,320 tasks across 44 occupations in the 9 largest U.S. GDP sectors, authored by industry experts (avg 14 years' experience) and graded by blinded expert pairwise comparison against the human's own deliverable rather than an answer key, with 220 gold tasks open-sourced plus a public automated grader (65.7% vs 70.8% inter-human agreement). Frontier models approach but don't reach parity — Claude Opus 4.1 leads at 47.6% wins+ties and GPT-5 high at 38.8%, on a roughly linear upward trend — while a realistic 'try the model, then fix it yourself' workflow saves only ~1.4× time/cost for GPT-5 and ~3% of GPT-5's losses are rated catastrophic.",
       "explainer": "papers/patwardhan-2025-gdpval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/patwardhan-2025-gdpval.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -500,6 +501,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI's economically-grounded coding benchmark: 1,488 real freelance tasks from Upwork's open-source Expensify repository, worth $1,000,000 in actual payouts ($250–$32,000 each), split into Individual-Contributor coding tasks (764, $414,775) graded by ~100 engineers' triple-verified end-to-end Playwright browser tests, and SWE Manager tasks (724, $585,225) where the model picks among the freelancers' real proposals (99% agreement with the original engineering managers' choices). The best model — Claude 3.5 Sonnet — earns $403,325 of $1M (and $208,050 of $500,800 on the public SWE-Lancer Diamond split), resolving just 26.2% of IC coding issues; IC SWE pass@1 stays under 30% for every model while the easier proposal-picking runs ~2× higher (37–45%). Higher reasoning effort and more attempts both help (o1 climbs 16.5%→48.5% from pass@1 to pass@7), agents localize fast but fail to root-cause, and a model-first / freelancer-fallback workflow already saves o1 ~13–33% of cost — mapping capability to real economic value.",
       "explainer": "papers/miserendino-2025-swe-lancer.html",
+      "audio_url": "https://pod.darvinyi.com/audio/miserendino-2025-swe-lancer.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1972,6 +1974,7 @@
       "author_group": "METR",
       "abstract": "METR proposes the 50%-task-completion time horizon — the human-time length of tasks a model can finish with 50% success — as a non-saturating, human-relatable capability axis. Timing 800+ skilled human baseliners (2,529 hours) on 170 tasks spanning 1-second atomic actions to 30-hour ML research projects (HCAST + RE-Bench + the new SWAA suite), then fitting a per-model logistic curve over 12 frontier models (2019–2025), they find the horizon has doubled every ~207 days (≈7 months) at R²=0.97 — from GPT-2's ~2 seconds to o3's ~110 minutes — driven mainly by reliability and error-recovery. The 80% horizon doubles at the same rate but stays 4–6× shorter. Naive extrapolation puts month-long (167-hour) software tasks within reach around 2029, with external validity (not statistical noise) the dominant caveat the authors foreground.",
       "explainer": "papers/kwa-2025-time-horizons.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kwa-2025-time-horizons.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4388,6 +4391,7 @@
       "author_group": "Anthropic",
       "abstract": "A statistical framework that treats eval questions as draws from an unseen super-population, giving closed-form standard errors (plain and clustered), variance-reduction techniques, paired significance tests between models, and a sample-size/power-analysis formula for planning eval size — used to show that Llama 3's published confidence intervals were too narrow on some evals and too wide on others.",
       "explainer": "papers/miller-2024-error-bars.html",
+      "audio_url": "https://pod.darvinyi.com/audio/miller-2024-error-bars.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6931,6 +6935,7 @@
       "author_group": "KAIST AI / LG AI Research",
       "abstract": "Evaluates 103 frontier LMs across nine capabilities (instruction following, grounding, planning, reasoning, refinement, safety, theory of mind, tool usage, multilingual) and 765 instances, each scored against a bespoke instance-specific rubric rather than a generic helpfulness scale. Instance-specific criteria correlate with human judgment better than coarse-grained or FLASK-style domain-specific criteria, and an open-source judge (Prometheus-2-BGB 8x7B) reaches human-correlation parity with GPT-4-class evaluators.",
       "explainer": "papers/kim-2024-biggenbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kim-2024-biggenbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
