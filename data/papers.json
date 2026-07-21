@@ -418,6 +418,7 @@
       "author_group": "Stanford",
       "abstract": "A collaboratively built legal-reasoning benchmark: 162 tasks across 36 corpora, hand-crafted by 40 legal professionals and organized by the IRAC framework (issue-spotting, rule-recall, rule-application, rule-conclusion) plus interpretation and rhetorical-understanding, scored mostly by balanced-accuracy with rule-application graded manually by a law-trained expert. Across 20 LLMs from 11 families GPT-4 leads but unevenly (rule-conclusion 89.9, rule-recall 59.2), Claude-1 rivals it only on rule-recall, and open Flan-T5-XXL beats GPT-3.5/Claude-1 on issue-spotting and rhetorical tasks; explanation 'analysis' lags answer correctness and plain-vs-technical prompt phrasing swings scores up to 21 points. The expert-authored, discipline-native-typology template later rubric benchmarks (PRBench, HealthBench, ResearchRubrics) scaled up.",
       "explainer": "papers/guha-2023-legalbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/guha-2023-legalbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1283,6 +1284,7 @@
       "author_group": "UIUC",
       "abstract": "The first benchmark for indirect prompt injection (IPI) against tool-integrated LLM agents: 1,054 test cases (17 user tools x 62 attacker tools, split into direct-harm and data-stealing attacks) where a malicious instruction hidden in a tool's response tries to hijack the agent into calling a harmful tool against its own user. Across 30 agents, ReAct-prompted GPT-4 executes the injected instruction 23.6% of the time (47.0% once a fixed 'ignore previous instructions' hacking prompt is prepended) and Llama2-70B exceeds 80%, while fine-tuned function-calling agents are far more resilient (GPT-4 6.6%, GPT-3.5 3.8%); capability tracks vulnerability, high-content-freedom placeholders drive attack success more than the attacker's tool choice (Cramer's V 0.28-0.31 vs 0.18-0.20), data transmission once extracted hits 100%, and Claude-2 is the lone agent the hacking prompt makes safer by triggering its alertness.",
       "explainer": "papers/zhan-2024-injecagent.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhan-2024-injecagent.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4230,6 +4232,7 @@
       "author_group": "AI2 / University of Washington",
       "abstract": "A common benchmark and evaluation codebase for reward models — the classifiers and DPO checkpoints that decide what counts as a better answer during RLHF — spanning chat, reasoning, safety, and legacy preference data across 80+ open models, exposing a wide, previously invisible gap between classifier-trained and DPO-derived reward models.",
       "explainer": "papers/lambert-2024-rewardbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lambert-2024-rewardbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -7108,6 +7111,7 @@
       "author_group": "University of Toronto / Stanford",
       "abstract": "Prompts an LM to emulate 311 tools across 36 high-stakes toolkits (no real sandboxes built) plus a second LM to automatically judge agent safety, validated against human annotators (72.5%/68.8% identified-failure precision, 6-of-7 real-sandbox reproductions on the Terminal toolkit); even the best 2023 agent configuration still failed 23.9% of its 144 underspecified-instruction test cases.",
       "explainer": "papers/ruan-2023-toolemu.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ruan-2023-toolemu.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -7387,6 +7391,7 @@
       "author_group": "Bocconi / Oxford / Stanford",
       "abstract": "A 250-safe/200-unsafe contrast-set benchmark that catches LLMs refusing harmless requests — like asking where to buy a can of coke — because they superficially resemble unsafe ones, naming and operationalizing the failure mode \"exaggerated safety.\"",
       "explainer": "papers/rottger-2023-xstest.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rottger-2023-xstest.mp3",
       "tags": ["benchmarks"]
     },
     {
