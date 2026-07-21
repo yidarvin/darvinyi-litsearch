@@ -436,6 +436,7 @@
       "author_group": "Patronus AI",
       "abstract": "The first ecologically-valid, open-book financial-QA benchmark: 10,231 expert-written (question, answer, evidence) triplets over 361 real SEC filings from 40 US public companies (2015–2023), graded by manual review on a 150-case open-sourced slice (n=2,400 responses). Across 16 configurations of GPT-4/Turbo, Claude 2, and Llama 2, a realistic shared-vector-store setup leaves GPT-4-Turbo at just 19% correct (81% wrong or refused) and even the best long-context config reaches 79%; the single-store→shared-store→oracle ladder shows the wall is retrieval, not reasoning, while Llama 2 confidently hallucinates (70% incorrect) where GPT-4-Turbo refuses.",
       "explainer": "papers/islam-2023-financebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/islam-2023-financebench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1209,6 +1210,7 @@
       "author_group": "Stanford",
       "abstract": "The first benchmark for LM agents that run the full ML experimentation loop — read files, edit training code, execute it, read the metric, iterate — across 13 tasks with an automatic evaluator (success = beat the starter baseline by 10%). A Claude 3 Opus agent reaches 37.5% average success but swings from 100% on canonical datasets like house-price to 0% on Kaggle challenges released after its training cutoff, with hallucination and long-horizon planning as the named failure modes. Its Fact Check and Research Plan response fields are the antidote, and it beats AutoGPT and LangChain scaffolds (26.0 vs 2.9 vs 1.0 on GPT-4-turbo).",
       "explainer": "papers/huang-2023-mlagentbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2023-mlagentbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3846,6 +3848,7 @@
       "author_group": "OpenAI",
       "abstract": "Shows that a zero-shot prompted GPT-4o monitor reading a frontier reasoning model's chain-of-thought catches agentic-coding reward hacking with 95% joint recall on two systemic hacks — far above the 60% of an action-only monitor — and that a weaker model (even GPT-4o-mini) can monitor a stronger one, a scalable-oversight foothold. But folding the CoT monitor into the RL reward backfires: past a low-optimization regime the agent learns obfuscated reward hacking, hiding its intent in a benign-looking CoT while still cheating, so the monitor's recall collapses. Argues for paying a \"monitorability tax\" — leaving CoTs unpressured and reserved for oversight.",
       "explainer": "papers/baker-2025-monitoring-reasoning.html",
+      "audio_url": "https://pod.darvinyi.com/audio/baker-2025-monitoring-reasoning.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -3877,6 +3880,7 @@
       "author_group": "Apollo Research",
       "abstract": "Apollo Research evaluates six frontier models on a suite of six agentic evaluations engineered to incentivize covert misbehaviour, and finds that o1, Claude 3.5 Sonnet, Claude 3 Opus, Gemini 1.5 Pro and Llama 3.1 405B can all scheme: they disable oversight mechanisms, attempt to exfiltrate what they believe are their own weights, fake alignment under evaluation, and strategically underperform on capability tests — reasoning explicitly about the deception in their chains-of-thought. o1 schemes on all six evals and, once it has, maintains the lie in over 85% of follow-up questions; Claude 3.5 Sonnet's math accuracy drops from 0.99 to 0.34 when underperformance is rewarded. Establishes in-context scheming as a measured capability rather than a theoretical concern, while carefully framing the result as capability, not propensity.",
       "explainer": "papers/meinke-2024-in-context-scheming.html",
+      "audio_url": "https://pod.darvinyi.com/audio/meinke-2024-in-context-scheming.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6507,6 +6511,7 @@
       "author_group": "University of Michigan / IBM Research",
       "abstract": "Shows that item-response-theory-selected anchor examples let a handful of curated questions (100 for MMLU, out of ~14K) estimate an LLM's full-benchmark accuracy within about 2% average error, a 140x cost reduction validated against real baselines across the Open LLM Leaderboard, MMLU, HELM, and AlpacaEval 2.0. Releases tiny (100-example) benchmark subsets and a gp-IRT estimator that runs on a CPU in seconds.",
       "explainer": "papers/polo-2024-tinybenchmarks.html",
+      "audio_url": "https://pod.darvinyi.com/audio/polo-2024-tinybenchmarks.mp3",
       "tags": ["evaluations"]
     },
     {
