@@ -1101,6 +1101,7 @@
       "author_group": "Patronus AI",
       "abstract": "A benchmark for debugging agentic execution traces: 148 expert-annotated OpenTelemetry traces (1,987 spans, 575 carrying errors; 841 annotated errors at 5.68 per trace) drawn from GAIA and SWE-Bench Lite, paired with a three-area error taxonomy spanning reasoning, system execution, and planning. Asked to classify and locate the errors in each long, structured trace, the best long-context model (Gemini-2.5-Pro) reaches only 11% joint accuracy — 18% on GAIA, 5% on SWE-Bench — and 3 of 8 frontier LLMs can't even fit the trace in context (the longest GAIA input is 7.5M tokens against a 1M limit; max traces run 2x the context window). Output Generation errors (formatting + instruction non-compliance) make up ~42% of all errors while system-execution failures sit in the long tail, and reasoning models beat non-reasoning ones by 1.5–8x on joint accuracy.",
       "explainer": "papers/deshpande-2025-trail.html",
+      "audio_url": "https://pod.darvinyi.com/audio/deshpande-2025-trail.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1658,6 +1659,7 @@
       "author_group": "Xi'an Jiaotong / UMass",
       "abstract": "The first benchmark built around Anthropic's Model Context Protocol: 507 tool-use tasks across six domains (math, web search, email, calendar, files, terminal), graded on objective answer-, operation-, and token-efficiency metrics. Across ten frontier models it finds a recurring gap — models emit syntactically valid tool calls but routinely select the wrong tool, revealing a superficial grasp of task requirements.",
       "explainer": "papers/gao-2025-mcp-radar.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gao-2025-mcp-radar.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2697,6 +2699,7 @@
       "author_group": "Google DeepMind",
       "abstract": "Formalizes underspecified reasoning as a constraint-satisfaction problem and tests whether LLMs can name the single missing fact they need to ask about. Across Logic-Q, Planning-Q, and GSM-Q/GSME-Q (~39k 1-sufficient, multiple-choice tasks), frontier models (as of 03/2025) saturate the math domains (up to 98%) but score only 40-50% on logic and planning. A filtered ablation shows that being able to solve the well-specified problem does not transfer to asking the right question, and on planning models fall below a random baseline at even detecting that information is missing.",
       "explainer": "papers/li-2025-questbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2025-questbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3303,6 +3306,7 @@
       "author_group": "UC Berkeley",
       "abstract": "The first large-scale, expert-annotated reading-comprehension benchmark for contract review: 47,457 lawyer-verified annotations over 152 public merger agreements, recasting the American Bar Association's 2021 Public Target Deal Points Study as 144 ABA-standardized multiple-choice questions about \"deal points.\" Built by the Atticus Project (the CUAD team) with 36 trained annotators over 10,000+ hours, MAUD is the interpretation counterpart to CUAD's clause-extraction task. Fine-tuned encoder baselines (BERT, RoBERTa, LegalBERT, DeBERTa, BigBird, 110–184M params) clear the 16.8% random AUPR baseline but plateau near 58% overall, struggling most on the longest, hardest clause categories — Material Adverse Effect, Deal Protections, and Conditions to Closing.",
       "explainer": "papers/wang-2023-maud.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2023-maud.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7322,6 +7326,7 @@
       "author_group": "Princeton",
       "abstract": "A standardized evaluation harness, a three-axis (model × scaffold × benchmark) Pareto-frontier leaderboard, and LLM-aided log analysis across 21,730 agent rollouts on 9 benchmarks and 9 models, showing that higher reasoning effort often doesn't improve accuracy and that identical accuracy scores can hide catastrophic agent behavior.",
       "explainer": "papers/kapoor-2025-hal.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kapoor-2025-hal.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
