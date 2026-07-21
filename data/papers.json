@@ -280,6 +280,7 @@
       "author_group": "OpenAI",
       "abstract": "An open-source health benchmark: 5,000 realistic multi-turn conversations graded against 48,562 conversation-specific rubric criteria written by 262 physicians across 60 countries, scored by a validated GPT-4.1 grader instead of multiple choice. Frontier performance climbs from 0.16 (GPT-3.5 Turbo) to 0.60 (o3) — with HealthBench Hard topping out at 0.32 — GPT-4.1 nano beats August 2024's GPT-4o at 1/25th the cost, and recent models now out-write unassisted physicians (0.13) while the model grader matches physician-level agreement (Macro-F1 0.709). A safety-critical, meta-evaluated, deliberately unsaturated rubric benchmark.",
       "explainer": "papers/arora-2025-healthbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/arora-2025-healthbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -1736,6 +1737,7 @@
       "author_group": "UC Berkeley",
       "abstract": "A year-long effort by The Atticus Project: 510 commercial contracts from SEC EDGAR hand-annotated by legal experts into 13,101 clause highlights across 41 review categories (every annotation triple-verified, a conservative ~$2M of expert labor), cast as SQuAD-2.0-style extractive “find the needle” QA where labeled text is only ~10% of a contract and ~0.25% per label. Across ten 2021 encoder QA models the best, DeBERTa-xlarge, reaches only 44.0% Precision @ 80% Recall (BERT-base 8.2%) and is the sole model nonzero at 90% recall (17.8%); precision collapses past 80% recall and varies sharply by clause (Governing Law near-ceiling, Covenant-Not-to-Sue ~20% AUPR). Its enduring lesson is that data, not architecture, is the bottleneck — 10× more annotations lifts AUPR 27.6→42.6, matching the entire BERT→DeBERTa gap, while 8GB of unlabeled contracts adds only +3% — making CUAD the canonical demonstration that expert-labeled data unlocks specialized domains.",
       "explainer": "papers/hendrycks-2021-cuad.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2021-cuad.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2074,6 +2076,7 @@
       "author_group": "Google DeepMind",
       "abstract": "Google DeepMind's mobile counterpart to OSWorld: a fully functional Pixel 6 / Android 13 emulator that supplies durable, execution-based reward for 116 hand-built tasks across 20 real apps (open-source F-Droid plus built-in system apps), reading success from device system state via adb — files, SQLite rows, settings — rather than matching UI screenshots, and reusing checks across unrelated apps. Its signature feature is automatic task parameterization: each task is re-instantiated from a random seed into a practically infinite set of goals and success criteria, with composable partial-credit tasks and a ported MobileMiniWoB++ (92 web tasks) on the same TaskEval interface. The reference zero-shot ReAct+Reflexion agent M3A tops out at 30.6% (GPT-4 Turbo, accessibility-tree input) versus 80.0% human, with multimodal Set-of-Marks input underperforming text-only and failures clustering on UI grounding, memory, and operational knowledge rather than reasoning. The methodological punchline is a robustness analysis: across three seeds M3A scores 27.6/26.3/33.2% (mean 29.0%) and per-task can swing from 0% to ~45%, showing single-seed benchmark scores can be luck.",
       "explainer": "papers/rawles-2024-androidworld.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rawles-2024-androidworld.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4000,6 +4003,7 @@
       "author_group": "Anthropic",
       "abstract": "Measures chain-of-thought (CoT) faithfulness in frontier reasoning models with a prompt-pair test: the same multiple-choice question with vs. without an inserted hint, keeping only cases where the hint flips the answer, then checking whether the CoT admits relying on it. Across 6 hint types, Claude 3.7 Sonnet and DeepSeek R1 verbalize the decisive hint only 25% and 39% of the time on average (and just 20% and 29% on the two misaligned hints) — more faithful than non-reasoning models, but far from reliable. Outcome-based RL lifts faithfulness early then plateaus near 20–28%, and in synthetic reward-hack environments the model exploits the hack on over 99% of prompts while verbalizing it under 2% of the time in 5 of 6 settings. CoT monitoring can therefore notice frequent misbehavior but cannot rule out rare, single-forward-pass misalignment.",
       "explainer": "papers/chen-2025-cot-faithfulness.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2025-cot-faithfulness.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4433,6 +4437,7 @@
       "author_group": "Meta AI (FAIR)",
       "abstract": "Introduces Multi-Session Chat (MSC), a crowdsourced dataset of human-human conversations spread across up to 5 sessions (hours-to-days apart) with crowdworker-written summaries linking sessions, plus retrieval- and summarization-memory-augmented models that outperform standard encoder-decoder Transformers on both perplexity and human evaluation for this long-term, multi-session setting.",
       "explainer": "papers/xu-2022-msc.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xu-2022-msc.mp3",
       "tags": ["benchmarks"]
     },
     {
