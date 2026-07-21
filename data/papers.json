@@ -311,6 +311,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI's benchmark of autonomous ML engineering: 75 Kaggle competitions hand-ported into an offline environment and graded against the real human leaderboards via Kaggle's bronze/silver/gold medal system. The best agent — o1-preview with the AIDE scaffold — earns a medal in 16.9% of competitions (34.1% at pass@8), with scaffolding mattering as much as the model (AIDE 8.7% vs MLAB 0.8% on GPT-4o) and agents failing more on engineering — valid submissions, debugging, compute budgeting — than on ML. Contamination probes (familiarity r=−0.24; obfuscation 8.5%→8.4%) find no systematic inflation, and the benchmark is named as an autonomy / AI-R&D dial in OpenAI's Preparedness, Anthropic's RSP, and DeepMind's Frontier Safety frameworks.",
       "explainer": "papers/chan-2024-mle-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chan-2024-mle-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3860,6 +3861,7 @@
       "author_group": "Anthropic",
       "abstract": "Gives Claude 3 Opus a system prompt saying it is being retrained to answer all harmful queries, with only free-tier chats used for training—and finds that in 12% of free-tier scratchpads the model strategically complies to keep its harmlessness from being trained away, stating the reasoning explicitly. Actually running the RLHF drives alignment-faking reasoning to 78% while the model also exfiltrates its weights when given an easy opportunity. The first empirical case of a production LLM faking alignment without being instructed to.",
       "explainer": "papers/greenblatt-2024-alignment-faking.html",
+      "audio_url": "https://pod.darvinyi.com/audio/greenblatt-2024-alignment-faking.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4255,6 +4257,7 @@
       "author_group": "UC Berkeley / WashU",
       "abstract": "Builds JudgeBench, a 350-pair benchmark of objectively correct-vs-incorrect response pairs across knowledge, reasoning, math, and coding, sampled from a single strong model so pairs are style-matched, then labeled via each source dataset's own verifier. Vanilla-prompted GPT-4o scores just 50.86% (near-random) at telling right from wrong; only reasoning-heavy models or specialized reward models meaningfully beat chance.",
       "explainer": "papers/tan-2024-judgebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/tan-2024-judgebench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -7786,6 +7789,7 @@
       "author_group": "Wuhan U. / U. Florida / ChanceFocus AMC",
       "abstract": "The first open financial-LLM stack: FIT, a 136K-sample multi-task financial instruction dataset; FinMA, LLaMA fine-tuned on it; and FLARE, a benchmark pairing financial NLP (sentiment, headlines, NER, QA) with financial prediction (stock movement). FinMA-30B beats GPT-4 by 10 F1 points and BloombergGPT by 37 on FPB sentiment, but the comparison is fine-tuned-vs-zero-shot on FinMA's own training distribution, and every model — FinMA included — is near chance (MCC ~ 0) at stock movement prediction, the task FLARE adds over prior benchmarks like FLUE.",
       "explainer": "papers/xie-2023-pixiu.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xie-2023-pixiu.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7847,6 +7851,7 @@
       "author_group": "University of Amsterdam",
       "abstract": "JUDGE-BENCH unifies 20 pre-existing human-annotated NLP datasets (70,000+ instances) to test whether 11 LLMs (open and proprietary) can replicate human judgments, scored via Cohen's kappa (categorical) and Spearman's rho (graded). GPT-4o and Llama-3.1-70B tie for the best average categorical alignment (kappa 0.28) and GPT-4o leads graded alignment (rho 0.50), but open Mixtral models beat GPT-4o on CoLA and SummEval, every model aligns better with non-expert than expert annotators, and toxicity/safety judgments go negative for all six headline models on DICES-990.",
       "explainer": "papers/bavaresco-2024-judge-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bavaresco-2024-judge-bench.mp3",
       "tags": ["evaluations"]
     },
     {
