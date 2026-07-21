@@ -1027,6 +1027,7 @@
       "author_group": "OSU NLP",
       "abstract": "The first real-world, action-level dataset for web-agent safety: 4,939 human-annotated actions across 193 websites and 22 domains, each graded SAFE / LOW / HIGH by how reversible and consequential it is — a reframing from 'is the task harmful' to 'is this click reversible.' Frontier LLMs score under 60% accuracy and under 60% HIGH-risk recall zero-shot and reasoning models (o3, Claude-3.7-Thinking) get more accurate but under-flag HIGH risk; fine-tuning a Qwen2.5-VL-7B lifts accuracy from 37% to 80% and HIGH-risk recall from 20% to 76%, with even a 3B model out-recalling o3 — yet Cross-Domain recall stalls at 66.8%, far from the near-perfect reliability a deployable guardrail requires.",
       "explainer": "papers/zheng-2025-webguard.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zheng-2025-webguard.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1403,6 +1404,7 @@
       "author_group": "Upwork",
       "abstract": "A dynamically refreshed benchmark of 322 real, paid Upwork jobs, each decomposed by expert freelancers into 5–20 labeled acceptance criteria (critical/important/optional/pitfall) with per-criterion human feedback. Minimal plan–act–reflect agents are graded on strict completion and a graded rubric score: Claude Sonnet 4 leads at 39.8% first-attempt completion versus ~20% for Gemini 2.5 Pro and GPT-5, and a single human-in-the-loop feedback pass adds 11–14 points and rescues 18–23% of failed jobs. An embedded economic model frames an AI → HITL → human handoff as task value rises.",
       "explainer": "papers/yi-2025-upbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yi-2025-upbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2342,6 +2344,7 @@
       "author_group": "Mercor",
       "abstract": "Mercor grades frontier models on realistic deliverables from four high-paid knowledge jobs — investment banking, management consulting, big law, and primary-care medicine — where each expert-authored case pairs a source-grounded prompt with a Pass/Fail rubric (mean 14.81 criteria, ~2.7 hours of real work) and a model's score is the fraction of criteria met. On the n=400 held-out set (8 runs, 95% CIs, a single Gemini 2.5 Flash judge), GPT-5 (thinking=high) leads at 67.0%, ahead of Gemini 3 Pro (64.3%) and a ~63% cluster of o3 / Grok 4 / Opus 4.5; investment banking is the hardest job (top 63.0%) and law the easiest (77.9%) — frontier models still clear only about two-thirds of an expert's bar.",
       "explainer": "papers/vidgen-2025-apex.html",
+      "audio_url": "https://pod.darvinyi.com/audio/vidgen-2025-apex.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -2844,6 +2847,7 @@
       "author_group": "Meta AI (FAIR)",
       "abstract": "A 31-language benchmark whose questions are sourced locally per language (500 closed-form Wikipedia questions each, filtered for local relevance) rather than translated from English, then made fully parallel via human and machine translations. Across 11 multilingual-marketed models none scores well (best average EM ~34), knowledge transfers poorly across languages, and swapping locally-sourced for English-translated data can shift a single language's score by up to 22 points while leaving model rankings intact.",
       "explainer": "papers/hupkes-2025-multiloko.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hupkes-2025-multiloko.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3340,6 +3344,7 @@
       "author_group": "NJIT",
       "abstract": "The first benchmark to test whether locally-deployable open-source LLMs can match proprietary models at clause-level legal-risk identification. Built on CUAD's contract-review task, it scores 19 LLMs on correctness (F1/F2), output conciseness (Jaccard), and \"laziness\" (the false \"no related clause\" rate): top proprietary models (GPT-4.1 mini, F1 0.644) reach roughly junior-legal-assistant level, while the best ~8B open model trails by about 16% and both proprietary and open models collapse to near-zero F1 on rare, high-risk clause types.",
       "explainer": "papers/liu-2025-contracteval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2025-contracteval.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6685,6 +6690,7 @@
       "author_group": "Google",
       "abstract": "Formally defines intelligence as skill-acquisition efficiency over priors, experience, and generalization difficulty via Algorithmic Information Theory, arguing task-specific skill (chess, Go, Dota) can be 'bought' without generalization power, then introduces ARC — a 1,000-task benchmark — as a concrete instantiation.",
       "explainer": "papers/chollet-2019-measure-of-intelligence.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chollet-2019-measure-of-intelligence.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
