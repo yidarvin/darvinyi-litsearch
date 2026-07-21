@@ -1857,6 +1857,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI's short-form factuality benchmark: 4,326 fact-seeking questions with a single, indisputable answer, adversarially collected so that at least one of four GPT-4-class models got each one wrong, then graded correct / incorrect / not-attempted by a prompted ChatGPT classifier. The headline is calibration, not just accuracy — abstention (\"not attempted\") is a first-class outcome, so a model is rewarded for knowing what it doesn't know. Frontier models flunk: o1-preview answers only 42.7% correctly and GPT-4o, o1, and Claude all land under 50% overall-correct, while every model overstates its stated confidence. Cheap, low-variance, and trivially gradable, but short-form only and Wikipedia-heavy, so its difficulty will erode as the public set leaks into training corpora.",
       "explainer": "papers/wei-2024-simpleqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2024-simpleqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2987,6 +2988,7 @@
       "author_group": "Meta AI / MIT",
       "abstract": "CRUXEval is 800 short Python functions (3-13 lines), each with an input-output pair, split into two execution-grounded tasks: predict the output from an input (CRUXEval-O) and find an input for a given output (CRUXEval-I). Built by generating and filtering Code Llama 34B programs, it shows that strong HumanEval scores -- especially from GPT-distilled models like WizardCoder, Phind, and Phi -- do not transfer to code understanding: GPT-4 reaches 67.1%/63.4% pass@1 (74.8%/81.9% with chain-of-thought) while the best open models fail over half the time.",
       "explainer": "papers/gu-2024-cruxeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gu-2024-cruxeval.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6668,6 +6670,7 @@
       "author_group": "Tsinghua University / Zhipu AI",
       "abstract": "The follow-up to LongBench that swaps extractive QA for genuinely hard, human-reviewed multiple-choice questions: 503 items across six task categories (single/multi-doc QA, long in-context learning, long-dialogue history, code-repo understanding, structured data), with contexts from 8k to 2M words (median 54k). Human experts average only 53.7% accuracy within 15 minutes (vs. 25% random); the best model answering directly, GPT-4o, manages 50.1%, while o1-preview's extended reasoning reaches 57.7% — the first long-context benchmark where inference-time reasoning, not scale, clears the human bar.",
       "explainer": "papers/bai-2024-longbench-v2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bai-2024-longbench-v2.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6792,6 +6795,7 @@
       "author_group": "Gray Swan AI / UK AI Security Institute",
       "abstract": "A 110-task (440 with augmentations), 11-category benchmark of explicitly malicious multi-step agent requests, run against 104 synthetic proxy tools and scored with hand-written rubrics plus a narrow LLM judge so a jailbreak only counts as successful if the agent stays capable enough to actually finish the harmful task. Finds many leading models comply with malicious agentic requests even without a jailbreak (GPT-4o mini: 62.5% harm score while refusing only 22%), and that a universal chatbot jailbreak template transfers to agents while largely preserving their task-completing competence (Claude 3.5 Sonnet: 81.9% non-refusal harm score vs. 82% on benign tasks).",
       "explainer": "papers/andriushchenko-2025-agentharm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/andriushchenko-2025-agentharm.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6960,6 +6964,7 @@
       "author_group": "Sierra",
       "abstract": "τ-bench's dual-control sequel gives the simulated user tools too, formalized as a Dec-POMDP, with a new telecom domain (114 tasks from 2,285 possible compositions), a compositional task generator, and a tightly-coupled, measurably more reliable user simulator. Frontier LLMs that clear 56-79% pass^1 on retail/airline drop to 34-49% on telecom, and an ablation shows removing the user recovers 18-25 points of pass^1, isolating user-coordination rather than raw reasoning as the dominant bottleneck.",
       "explainer": "papers/barres-2025-tau2-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/barres-2025-tau2-bench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
