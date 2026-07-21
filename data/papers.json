@@ -60,6 +60,7 @@
       "author_group": "Meta Superintelligence Labs",
       "abstract": "A 1,645-prompt instruction-following benchmark whose prompts and rubrics are entirely human-expert-written, spanning complex single-turn, multi-turn carried-context, and system-prompt steerability, and kept hard by adversarially retaining only model-failing prompts. Even GPT-5 (77.9) and Gemini 3 Pro (74.7) top out around 75-78%, with reasoning effort clearly helping and multi-turn / system steering lagging single-turn complexity. The companion pipeline RIFL reuses the rubrics as an RL reward: a fine-tuned rubric generator (F1 0.790), a two-stage SFT+RL rubric verifier (human-agreement F1 0.515->0.728, matching o3-mini's 0.723), and an all-or-nothing reward with two anti-reward-hacking criteria, lifting Llama 4 Maverick +6.7 on AdvancedIF (51.4->58.1), +2.9 on the out-of-distribution MultiChallenge, and ~flat on the saturated IFEval.",
       "explainer": "papers/he-2025-advancedif.html",
+      "audio_url": "https://pod.darvinyi.com/audio/he-2025-advancedif.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3041,6 +3042,7 @@
       "author_group": "UPenn",
       "abstract": "A literature-grounded scholarly-QA benchmark that escapes the expert-annotation bottleneck by distilling 54K academic survey articles into 21.4K queries and 160K query-specific rubric items across 75 research fields - each rubric item (cite paper X, compare A and B, name a limitation) scored 0-4 for coverage. 31 Ph.D. annotators validate that 90% of queries reflect real information needs and 87% of rubric items deserve a sentence or more of emphasis. Across 7.6K head-to-heads over 18 systems (parametric -> naive/production retrieval -> deep research), no parametric or retrieval system tops 70% coverage and the best, Perplexity's sonar-deep-research, reaches only 75.29% (an 82% win rate over the next system); citing specific papers is the dominant failure (89% of citation items not fully covered). Folding rubric coverage into an ensemble LLM-judge lifts agreement with expert preferences from 71%/64% to 74%/69%, toward the 84% human ceiling. Caveat: Coverage is recall, so the 70% wall relaxes to ~85% once the 250-word length cap is lifted, and gpt-4.1-mini both builds and grades the benchmark.",
       "explainer": "papers/li-2025-researchqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2025-researchqa.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -3483,6 +3485,7 @@
       "author_group": "Microsoft",
       "abstract": "A benchmark of 100 handcrafted multi-file refactoring tasks across 9 popular Python repositories, graded by AST-based subtask unit tests against withheld reference solutions, with three instruction sets (lazy / base / descriptive) of increasing specificity. It isolates stateful reasoning — tracking an accumulating sequence of edits across a long trajectory — that SWE-bench-style bug-fixing leaves untested. A prompt-adjusted SWE-agent solves only 22% of base-instruction tasks (vs 87% for a human developer in 5 minutes), never solves tasks needing more than 6 file edits, and fails three named failure modes (poor localization, intolerance of temporary error states, context flooding / in-context reward hacking). Conditioning the agent on an explicit, externally-maintained natural-language state representation recovers a 43.9% average relative gain and a 71% increase in subtask completion.",
       "explainer": "papers/gautam-2025-refactorbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gautam-2025-refactorbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6512,6 +6515,7 @@
       "author_group": "Tongyi Lab",
       "abstract": "A 201-task, 20-app mobile GUI benchmark that replaces AndroidWorld's saturated single-app tasks with long-horizon cross-app workflows (27.8 avg. steps vs. 14.3), agent-user clarification dialogue, and MCP tool invocation, all scored deterministically via self-hosted app backends; the best agentic framework (GPT-5 + UI-Ins-7B) reaches only 51.7% success.",
       "explainer": "papers/kong-2026-mobileworld.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kong-2026-mobileworld.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7460,6 +7464,7 @@
       "author_group": "SecureBio",
       "abstract": "A 322-question, expert-sourced multimodal benchmark for practical virology troubleshooting, built by 68 PhD-level virologists; frontier models already match or exceed trained experts, with OpenAI's o3 scoring 43.8% accuracy and outperforming 94% of expert virologists on their own personally-tailored question sets versus a 22.1% expert average — a governance-relevant capability signal for dual-use biosecurity oversight.",
       "explainer": "papers/gotting-2025-vct.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gotting-2025-vct.mp3",
       "tags": ["benchmarks"]
     },
     {
