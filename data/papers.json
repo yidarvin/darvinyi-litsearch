@@ -463,6 +463,7 @@
       "author_group": "OpenAI",
       "abstract": "OpenAI's browsing-agent benchmark: 1,266 short-answer questions built by inverting a known fact so the answer is easy to verify but extremely hard to find — each vetted to stump GPT-4o/o1/an early Deep Research and to resist five Google searches. Non-browsing models score near zero (GPT-4o 0.6%, GPT-4.5 0.9%) and bolting on browsing barely helps (1.9%), while reasoning alone lifts o1 to 9.9% and an early Deep Research agent — trained for persistent browsing — solves 51.5%, scaling smoothly with test-time compute and reaching ~78% via best-of-N over 64 samples. Human trainers gave up on 70.8% of questions after two hours; the deliberate trade-off is that BrowseComp measures persistence and creative search for entangled facts, not long-form answers or query ambiguity, and browsing actually worsens calibration (Deep Research 91% error).",
       "explainer": "papers/wei-2025-browsecomp.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2025-browsecomp.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2591,6 +2592,7 @@
       "author_group": "LMSYS / Berkeley",
       "abstract": "An automated pipeline (BenchBuilder) that mines crowdsourced chat logs — Chatbot Arena, WildChat — for the hardest open-ended prompts and grades answers with an LLM judge, yielding Arena-Hard-Auto: a 500-prompt benchmark that separates frontier models better than Chatbot Arena itself (87.4% vs 85.8% of pairs) and tracks its human rankings at up to 98.6% correlation for ~$20 per model. Introduces confidence-aware separability/agreement and a Pair-Rank Brier score for judging whether a benchmark is any good.",
       "explainer": "papers/li-2024-arena-hard.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-arena-hard.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -2716,6 +2718,7 @@
       "author_group": "KAIST AI",
       "abstract": "The strongest open LLM-as-a-judge of its era, built on a deliberately simple trick: train one evaluator for direct 1–5 scoring (on the Feedback Collection) and a second for pairwise A/B preference (on the new Preference Collection — the first pairwise dataset with 1K+ instance-wise custom criteria), then merge their weights with DARE-Linear into a single model that does both formats. Prometheus-2-8x7B (from Mixtral) and 7B (from Mistral) beat prior open evaluators (Prometheus, Auto-J, PairRM) by at least 0.2 Pearson on direct assessment and win all four pairwise benchmarks — even beating PairRM and Auto-J on their own in-domain sets — halving the gap to GPT-4/Claude. Merging across formats beats joint training (which transfers negatively) and isn't mere ensembling: merging two same-format models hurts. The honest caveat: 'matches GPT-4' is measured by correlation with GPT-4/Claude/humans on partly GPT-4-distilled, partly in-domain data, and the residual gap to human judgment (FLASK r=0.555 vs GPT-4's 0.679) is real.",
       "explainer": "papers/kim-2024-prometheus-2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kim-2024-prometheus-2.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6623,6 +6626,7 @@
       "author_group": "CMU / OSU / Waterloo (MMMU Team)",
       "abstract": "The robustified sequel to MMMU: filters out text-solvable questions using four open text-only LLMs, widens 4 options to 10, and adds a vision-only setting where the question is embedded in a photo or screenshot. Every model falls further — GPT-4o's overall score drops from 69.1% (MMMU Val) to 51.9%, VILA-1.5-40B by 26.9 points — and OCR accuracy turns out not to be the vision-only bottleneck; reasoning errors (46% of cases) dominate instead.",
       "explainer": "papers/yue-2024-mmmu-pro.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yue-2024-mmmu-pro.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6901,6 +6905,7 @@
       "author_group": "NUS / CMU",
       "abstract": "GPTScore evaluates generated text as the conditional generation probability of a candidate under a natural-language task-and-aspect instruction, tested across 19 pre-trained backbones (80M-175B parameters), 37 datasets, and 22 evaluation aspects.",
       "explainer": "papers/fu-2024-gptscore.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fu-2024-gptscore.mp3",
       "tags": ["evaluations"]
     },
     {
