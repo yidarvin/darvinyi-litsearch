@@ -1790,6 +1790,7 @@
       "author_group": "The Fin AI",
       "abstract": "The first broad-coverage open financial benchmark: 36 datasets across 24 tasks and seven aspects (information extraction, textual analysis, QA, text generation, risk management, forecasting, decision-making), with three new datasets (EDTSum, FinTrade, Regulations) and the first agent-based stock-trading and RAG evaluation in finance. Across 15 LLMs the profile is lopsided — GPT-4 leads extraction and numeric QA (FinQA EM 0.63 vs ~0 for open models) while every model collapses on complex extraction (FinRED F1 0.02), extractive summarization (ECTSum 0.00), and forecasting (MCC ≈ 0, barely above chance). The bright spot is trading: as the brain of the FinMem agent GPT-4 returns +28.19% with a Sharpe of 1.51 and the lowest drawdown (18.34%), beating Buy-&-Hold (−4.00%) and RL traders (Sharpe ≤ 0.01) — but on just 10 stocks over one 2022–2023 window with wide confidence intervals and pretraining-window prices.",
       "explainer": "papers/xie-2024-finben.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xie-2024-finben.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3073,6 +3074,7 @@
       "author_group": "UMN / Grammarly",
       "abstract": "Puts 16 LLMs on the bench as judges and measures six cognitive biases in their pairwise verdicts: Order, Compassion Fade, Egocentric (self-preference), Salience (length), Bandwagon, and Attentional. Finds ~40% of comparisons are bias-driven and that scaling up doesn't fix it (GPT-4 self-preferred 78% of the time; ChatGPT followed a fake '85% prefer X' statistic 86% of the time), while machine rankings agree with humans only 44% (RBO) -- below the 0.54 humans reach with each other. The first systematic, multi-bias audit of LLM-as-a-judge.",
       "explainer": "papers/koo-2023-cobbler.html",
+      "audio_url": "https://pod.darvinyi.com/audio/koo-2023-cobbler.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -3933,6 +3935,7 @@
       "author_group": "Meta AI",
       "abstract": "Proposes evaluating agentic systems with agentic systems: an Agent-as-a-Judge that builds a graph of an agent's generated workspace, locates and reads files across 33 formats, retrieves from the execution trajectory, and checks each requirement, giving per-requirement feedback instead of one final pass/fail. Ships DevAI, a benchmark of 55 realistic automated AI-development tasks with 365 hierarchical requirements arranged as a dependency DAG; judging MetaGPT, GPT-Pilot and OpenHands, it aligns with a human-expert panel about 90% of the time (vs 60-70% for LLM-as-a-Judge) at roughly 2% of the cost, though the consensus ground truth is a 3-person construct and the alignment metric is inflated by class imbalance.",
       "explainer": "papers/zhuge-2024-agent-as-judge.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhuge-2024-agent-as-judge.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -4392,6 +4395,7 @@
       "author_group": "Abacus.AI",
       "abstract": "A monthly-refreshed, 18-task LLM benchmark spanning math, coding, reasoning, data analysis, instruction following, and language comprehension, scored entirely by objective ground truth rather than an LLM judge; even the top model at release, o1-preview, clears only 64.7%.",
       "explainer": "papers/white-2024-livebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/white-2024-livebench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -8002,6 +8006,7 @@
       "author_group": "University of Washington / Allen Institute for AI",
       "abstract": "Argues that HotpotQA's crowd-sourced questions don't actually require multi-hop reasoning as constructed: a single-hop BERT model with no cross-paragraph attention reaches 67.08 F1 (comparable to state-of-the-art multi-hop systems), and humans withheld one of the two gold paragraphs still solve over 80% of bridge questions. Manual categorization attributes most single-hop successes to weak distractors and redundant evidence rather than genuine two-hop reasoning.",
       "explainer": "papers/min-2019-compositional-shortcuts.html",
+      "audio_url": "https://pod.darvinyi.com/audio/min-2019-compositional-shortcuts.mp3",
       "tags": ["evaluations"]
     },
     {
