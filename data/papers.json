@@ -3032,6 +3032,7 @@
       "author_group": "Microsoft",
       "abstract": "Repurposes 20 official high-stakes human exams — the Chinese Gaokao (8 subjects), SAT, LSAT, GRE/GMAT, the Chinese bar (JEC-QA), civil service (LogiQA) and AMC/AIME math competitions — into a released, bilingual benchmark of 8,062 objective (multiple-choice + fill-in-blank) questions, scored automatically against estimated average/top human performance. Across zero/few-shot × Chain-of-Thought, GPT-4 leads (zero-shot CoT all-task average 58.4 vs ChatGPT 43.2), hitting 95% on SAT-Math and 92.5% on Gaokao-English and clearing the average-human line on SAT, LSAT and math competitions — yet trailing the 67 average-human mark overall and collapsing on multi-step reasoning (LSAT analytical 34%, Gaokao physics 46%, fill-in math 15%). Secondary findings: few-shot barely beats zero-shot for instruction-tuned models (a GPT-3 reversal), CoT is double-edged and language-sensitive, and open Vicuna-13B lags far behind. The contribution is the reproducible exam corpus and released model outputs; the headline weakness is unaudited public-exam contamination and a rescaled-percentile human baseline.",
       "explainer": "papers/zhong-2023-agieval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhong-2023-agieval.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4043,6 +4044,7 @@
       "author_group": "Stanford",
       "abstract": "Repeatedly sampling thousands of candidate solutions per problem turns inference compute into a scaling axis: coverage—the fraction of problems solved by any sample—grows nearly log-linearly over four orders of magnitude and fits an exponentiated power law c≈exp(a·k^b). With an automatic verifier this amplifies weak models past stronger single-shot ones (DeepSeek-Coder-V2 reaches 56% on SWE-bench Lite vs the 43% single-attempt SOTA), but on unverifiable math, majority-vote and reward-model selection plateau near 41% while coverage climbs to 98.44%—exposing verification, not generation, as the bottleneck.",
       "explainer": "papers/brown-2024-monkeys.html",
+      "audio_url": "https://pod.darvinyi.com/audio/brown-2024-monkeys.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4170,6 +4172,7 @@
       "author_group": "Sierra",
       "abstract": "A customer-service benchmark where an LLM agent must gather information from a simulated human user, follow a written domain-policy document, and reproduce its own success across repeated trials. Introduces the pass^k reliability metric alongside two synthetic domains (τ-retail, τ-airline); even gpt-4o's function-calling agent averages only 48.2% success and its pass^8 reliability falls below 25%.",
       "explainer": "papers/yao-2024-tau-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yao-2024-tau-bench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -6339,6 +6342,7 @@
       "author_group": "UC Berkeley",
       "abstract": "5,063 three-minute egocentric video clips with five-way diagnostic questions, introduced alongside 'temporal certificate length' — a new metric for how much video must actually be watched to verify an answer — showing 2023-era models scored under 33% against a ~76% human ceiling.",
       "explainer": "papers/mangalam-2023-egoschema.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mangalam-2023-egoschema.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7102,6 +7106,7 @@
       "author_group": "Anthropic",
       "abstract": "324 crowdworkers produced 38,961 manual red-team attacks across 3 model sizes and 4 safety interventions (plain LM, HHH-prompted, rejection sampling, RLHF), finding RLHF gets significantly harder to red-team as it scales while a static HHH prompt does not, and releasing the dataset as one of the first public red-team corpora against an RLHF-trained model.",
       "explainer": "papers/ganguli-2022-red-teaming.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ganguli-2022-red-teaming.mp3",
       "tags": ["evaluations"]
     },
     {
