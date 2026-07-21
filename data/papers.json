@@ -938,7 +938,8 @@
       "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Google's systematic survey of NLP transfer learning, built on one idea: cast every task — translation, classification, QA, even regression — as text-to-text so a single model, loss, and decoding procedure can compare pre-training objectives, architectures, and corpora apples-to-apples. The bake-off favors the original encoder-decoder with a short-target span-corruption objective (83.28 vs 74.70 GLUE over a same-size decoder-only LM) and a large, diverse corpus over repeated in-domain data; scaling those insights with the 750 GB C4 corpus and an 11B-parameter model trained on ~1 trillion tokens set state-of-the-art on 18 of 24 tasks (GLUE 90.3, SuperGLUE 88.9 vs the 89.8 human baseline, SQuAD 91.26 EM). Reported with statistical care — the baseline is trained 10× from scratch with reported standard deviations — though English-only pre-training never reached SOTA on WMT translation and the ablations run at base scale rather than at 11B.",
-      "explainer": "papers/raffel-2020-t5.html"
+      "explainer": "papers/raffel-2020-t5.html",
+      "audio_url": "https://pod.darvinyi.com/audio/raffel-2020-t5.mp3"
     },
     {
       "slug": "izacard-2021-contriever",
@@ -3406,7 +3407,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "Introduces PPO, a first-order policy-gradient method that replaces TRPO's hard KL constraint with a clipped probability-ratio objective — min(r·Â, clip(r, 1−ε, 1+ε)·Â) — that forms a pessimistic lower bound and so permits multiple epochs of minibatch SGD per data batch without destructive updates. With ε = 0.2 it scores 0.82 on MuJoCo continuous control (beating every KL-penalty variant and the −0.39 no-clip baseline) and wins fast-learning on 30 of 49 Atari games; its few-lines-of-code simplicity made it the default optimizer for RLHF and the template that GRPO and the DeepSeek-style RL methods descend from.",
-      "explainer": "papers/schulman-2017-ppo.html"
+      "explainer": "papers/schulman-2017-ppo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/schulman-2017-ppo.mp3"
     },
     {
       "slug": "lightman-2023-verify-step-by-step",
@@ -3657,7 +3659,8 @@
       "topic": "Foundation Models",
       "author_group": "Meta AI (FAIR)",
       "abstract": "A controlled replication of BERT pretraining showing the original was significantly undertrained. Holding BERT's architecture and masked-language-model objective fixed, RoBERTa trains longer on ~10× more data (16GB→160GB) with 8K-sequence batches, drops next-sentence prediction, uses full-length sequences with dynamic masking and a 50K byte-level BPE vocabulary — reaching state of the art on GLUE (88.5 leaderboard average), SQuAD v2.0 (89.4 F1) and RACE (83.2). The result reframes post-BERT gains such as XLNet's as plausibly driven by data and compute rather than a new objective, re-establishing masked-LM pretraining as competitive — a caution that benchmark wins can be hyperparameter-and-data stories in disguise.",
-      "explainer": "papers/liu-2019-roberta.html"
+      "explainer": "papers/liu-2019-roberta.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2019-roberta.mp3"
     },
     {
       "slug": "lan-2019-albert",
@@ -3685,7 +3688,8 @@
       "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "OpenAI's 1.5-billion-parameter decoder-only Transformer, trained only to predict the next token over WebText (8M+ Reddit-linked documents, 40GB), shows that task ability emerges from unsupervised language modeling alone: framed as text continuation, GPT-2 does reading comprehension, translation, summarization and question answering zero-shot, with performance climbing log-linearly with model size. It sets zero-shot state of the art on 7 of 8 language-modeling benchmarks (LAMBADA 99.8→8.63 perplexity, Penn Treebank 46.54→35.76) while still underfitting WebText — the observation that seeded GPT-3 — and reaches 55 F1 on CoQA without any of its 127,000+ training examples. The paper also pioneered web-scale contamination analysis, using 8-gram Bloom filters to bound train/test overlap. The model that made 'task = prompt' plausible.",
-      "explainer": "papers/radford-2019-gpt2.html"
+      "explainer": "papers/radford-2019-gpt2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/radford-2019-gpt2.mp3"
     },
     {
       "slug": "he-2019-moco",
@@ -3783,7 +3787,8 @@
       "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "OpenAI's GPT-4: a large multimodal model (image+text in, text out) that reaches human-level scores on professional and academic exams — ~90th percentile on a simulated bar exam (vs GPT-3.5's bottom 10%), 86.4% on MMLU, 95.3% on HellaSwag, 67.0% on HumanEval — and beats the prior English-language state of the art on translated MMLU in 24 of 26 languages. Its real methodological contribution is predictable scaling: power-law fits on models trained with up to 10,000× less compute forecast GPT-4's final loss, and a HumanEval pass-rate metric on the easiest subset, before the full run — de-risking a multi-million-dollar training job. RLHF leaves base capability essentially unchanged (73.7%→74.0% averaged across exams) but degrades calibration roughly 10× (ECE 0.007→0.074). Citing \"the competitive landscape and the safety implications,\" the report discloses no architecture, model size, data, compute, or training method — the point at which frontier-model technical reports stopped being reproducible.",
-      "explainer": "papers/openai-2023-gpt4.html"
+      "explainer": "papers/openai-2023-gpt4.html",
+      "audio_url": "https://pod.darvinyi.com/audio/openai-2023-gpt4.mp3"
     },
     {
       "slug": "jiang-2023-mistral-7b",
