@@ -4325,6 +4325,7 @@
       "author_group": "METR",
       "abstract": "METR's benchmark pitting frontier AI agents against 61 real ML experts (71 runs) on 7 hand-crafted AI-research-engineering tasks under matched 8-hour budgets. Agents score roughly 4x higher than humans at a 2-hour budget, but humans keep improving while agent scores plateau, reaching about 2x the best agent's score at 32 hours — despite agents running at roughly 1/15th the cost per attempt.",
       "explainer": "papers/wijk-2024-re-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wijk-2024-re-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6351,6 +6352,7 @@
       "author_group": "Princeton NLP",
       "abstract": "Needle-in-a-haystack correlates with real long-context downstream performance at only ρ≤0.68 across 35 models, so HELMET evaluates 59 LCLMs across seven application-centric categories (RAG, citations, re-ranking, many-shot ICL, long-document QA, summarization, synthetic recall) at up to 128K tokens, replacing ROUGE with a human-validated model-based metric (Cohen's κ=0.91/0.76). Open-source models lag closed ones by 30-40 points specifically on citation-generation and re-ranking at 128K.",
       "explainer": "papers/yen-2024-helmet.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yen-2024-helmet.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -6366,6 +6368,7 @@
       "author_group": "LMU Munich / Adobe Research",
       "abstract": "A needle-in-a-haystack benchmark that strips literal vocabulary overlap between questions and their needles, forcing models to rely on latent associative reasoning instead of lexical matching; 11 of 13 flagship 128K+-context LLMs fall to half their short-context score by 32K tokens.",
       "explainer": "papers/modarressi-2025-nolima.html",
+      "audio_url": "https://pod.darvinyi.com/audio/modarressi-2025-nolima.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -6848,6 +6851,7 @@
       "author_group": "AI2 / University of Washington",
       "abstract": "AI2's harder successor to RewardBench: a best-of-4 (25% random baseline) reward-model benchmark built mostly from unseen human WildChat prompts across six domains, including two new ones (Precise Instruction Following, Ties), on which leading models score 20+ points lower than on RewardBench 1. Validates the benchmark against downstream use, finding strong correlation with best-of-N sampling (Pearson r=0.87 across 113 RMs) but a saturating, policy-lineage-dependent relationship with RLHF/PPO performance.",
       "explainer": "papers/malik-2026-rewardbench2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/malik-2026-rewardbench2.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -7490,6 +7494,7 @@
       "author_group": "AI2 / University of Washington",
       "abstract": "Introduces IFBench, a 58-constraint, 300-prompt benchmark showing that frontier models scoring 80–95% on the saturated IFEval collapse — several below 50% — on held-out verifiable constraint types, plus IF-RLVR, a GRPO training recipe that narrows the gap while surfacing (and partially mitigating) a reward-hacking failure mode.",
       "explainer": "papers/pyatkin-2025-ifbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pyatkin-2025-ifbench.mp3",
       "tags": ["benchmarks"]
     },
     {
