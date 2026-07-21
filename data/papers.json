@@ -1498,6 +1498,7 @@
       "author_group": "Tencent AI Lab",
       "abstract": "The first web agent to operate live websites end-to-end from rendered screenshots rather than HTML: a GPT-4V perception-action loop that overlays numbered Set-of-Mark boxes on interactive elements (via a rule-based DOM tool, no object detector), keeps the last 3 screenshots plus full thought/action history, and acts through 7 human-like actions (Click, Input, Scroll, Wait, Back, Jump-to-Search, Answer) over Selenium on the open web. On a self-instruct benchmark of 643 tasks across 15 real sites it reaches 59.1% task success (human eval) vs 40.1% for a text-only accessibility-tree variant and 30.8% for GPT-4 (All Tools), winning big on visual sites (Google Map 76.7%, Coursera 73.8%) but flat on text-heavy ones (Allrecipes, GitHub). It also ships a GPT-4V auto-judge that scores open-ended trajectories at 85.3% agreement / kappa 0.70 with humans — matching inter-annotator agreement. Failures are dominated by Navigation Stuck (44.4%) over Visual Grounding (24.8%) and Hallucination (21.8%); the live-web design trades reproducibility for realism, login/CAPTCHA tasks are excluded, and the GPT-4V judge isn't independent of the GPT-4V agent.",
       "explainer": "papers/he-2024-webvoyager.html",
+      "audio_url": "https://pod.darvinyi.com/audio/he-2024-webvoyager.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6252,6 +6253,7 @@
       "author_group": "UC Berkeley",
       "abstract": "A 5,000+ question-function-answer benchmark spanning single-turn, crowd-sourced, multi-turn, and agentic tool-calling scenarios, graded via a novel execution-free Abstract Syntax Tree substring-matching method. Frontier LLMs excel at single-turn calls but collapse on memory-management tasks (best model: 12% accuracy), and a crowd-sourced query set doubles as a live contamination probe.",
       "explainer": "papers/patil-2025-bfcl.html",
+      "audio_url": "https://pod.darvinyi.com/audio/patil-2025-bfcl.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -6815,6 +6817,7 @@
       "author_group": "Peking University / Westlake University",
       "abstract": "Trains PandaLM-7B/70B, an open judge LLM distilled from filtered GPT-3.5 pairwise comparisons of instruction-tuned LLMs, as a reproducible, privacy-preserving alternative to GPT-4-as-judge. Used to search hyperparameter configurations, PandaLM's picks beat Alpaca's default instruction-tuning recipe by every judge tested — GPT-3.5, GPT-4, and human.",
       "explainer": "papers/wang-2023-pandalm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2023-pandalm.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -7082,6 +7085,7 @@
       "author_group": "Penn State / Duke",
       "abstract": "The first formal framework for prompt injection attacks — every existing attack collapses into one function, x̃ = A(xt, se, xe) — paired with the field's first systematic benchmark: 5 attacks × 10 defenses across 10 LLMs and 7 NLP tasks (49 target/injected combinations). The framework's own Combined Attack (escape characters + fake completion + context-ignoring) beats nearly every attack it's built from, reaching 0.75 average ASV on GPT-4; more capable LLMs are consistently easier to hijack (Pearson r=0.63 between ASV and model size), and none of the 10 benchmarked defenses proves sufficient — the strongest trade real utility loss for partial security.",
       "explainer": "papers/liu-2023-open-prompt-injection.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-open-prompt-injection.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -7304,6 +7308,7 @@
       "author_group": "OpenAI",
       "abstract": "Proposes training AI agents to debate each other in front of a human judge as a scalable-oversight mechanism, with a PSPACE-completeness argument for idealized play and a first MNIST proof-of-concept where precommitted debate lifts a judge's accuracy from 59.4% to 88.9% (6 pixels) and 48.2% to 85.2% (4 pixels).",
       "explainer": "papers/irving-2018-debate.html",
+      "audio_url": "https://pod.darvinyi.com/audio/irving-2018-debate.mp3",
       "tags": ["evaluations"]
     },
     {
