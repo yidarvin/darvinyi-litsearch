@@ -1518,6 +1518,7 @@
       "author_group": "AI2 / Stony Brook",
       "abstract": "A fully simulated world of 9 everyday apps and ~100 fictitious people reachable through 457 APIs, with 750 interactive-coding tasks (250 scenarios × 3) where an agent writes rich, iterative code against a live environment and is graded on the resulting database state — every required change must happen and nothing else, the collateral-damage clause. Even the best 2024 system, ReAct + GPT-4o, completes just 48.8% of 'normal' and 30.2% of 'challenge' tasks (TGC), dropping to 32.1%/13.0% on the stricter scenario-consistency metric (SGC); oracle APIs help by ≤9.8 points, so the wall is composing APIs into correct, error-adaptive code, not retrieving them.",
       "explainer": "papers/trivedi-2024-appworld.html",
+      "audio_url": "https://pod.darvinyi.com/audio/trivedi-2024-appworld.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1801,6 +1802,7 @@
       "author_group": "UMass Amherst / Meta",
       "abstract": "A controlled audit of the LLM-as-a-judge paradigm on short-answer TriviaQA, deliberately chosen because three human annotators agree 98.52% of the time (Scott’s π 96.2) so any judge–human gap is the judge’s fault rather than task ambiguity. Across 13 judge models grading 9 base/chat exam-takers, only the largest — GPT-4 Turbo, Llama-3 70B and Llama-3.1 70B — reach Scott’s π in the high 80s, still ~8 points below human agreement and up to 5 points off on assigned scores, while raw percent agreement clusters every judge near the top and hides 10–20-point scoring errors that the chance-corrected π exposes. Error analysis surfaces systematic vulnerabilities — a leniency bias (defaulting to ‘correct’ when unsure, P+ > 0.5), prompt-length fragility on weaker judges, and gullibility to dummy answers like ‘Yes’/‘Sure’ — yet a dumb ‘contains’ substring check ranks models at ρ 0.99, showing that getting the ranking right is a different, easier problem than getting the score right.",
       "explainer": "papers/thakur-2024-judging-the-judges.html",
+      "audio_url": "https://pod.darvinyi.com/audio/thakur-2024-judging-the-judges.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6882,6 +6884,7 @@
       "author_group": "AI2",
       "abstract": "Mines 1,024 hard, multi-turn tasks from over a million real WildChat conversations and grades them with instance-specific checklists via two metrics — WB-Score (individual) and WB-Reward (pairwise against three tiered baselines with a length-penalty tiebreaker) — reaching 0.98/0.95 Pearson correlation with Chatbot Arena's human-voted Elo on top models.",
       "explainer": "papers/lin-2024-wildbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2024-wildbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -7030,6 +7033,7 @@
       "author_group": "Princeton NLP",
       "abstract": "Frames interactive coding as a standard POMDP — code as actions, execution feedback as observations — and wraps NL2Bash, Spider, and MBPP into Docker-sandboxed Bash, SQL, and Python benchmarks with execution-based rewards. GPT-4's InterCode-SQL success rate jumps from 9.1% (single-shot) to 73.7% (10 turns of retry), though the paper's own Python/MBPP environment is never quantitatively benchmarked and its InterCode-CTF dataset size is stated as both 100 and 4 tasks in different sections.",
       "explainer": "papers/yang-2023-intercode.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2023-intercode.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7311,6 +7315,7 @@
       "author_group": "Anthropic",
       "abstract": "Anthropic's proof-of-concept operationalization of Ajeya Cotra's 'sandwiching' proposal for empirically studying scalable oversight: a paradigm that places a model's capability between non-expert participants and expert evaluators. In a pilot on MMLU and time-limited QuALITY, non-expert humans chatting with an unreliable 52B RLHF dialog assistant reach 78%/86% weighted-majority accuracy — beating both the best model-alone result (66%/67%) and their own unassisted performance (66%/50%) by wide margins — though a hypothesized (not measured) MMLU expert ceiling and an answer-reveal shortcut temper how far the result generalizes to real oversight.",
       "explainer": "papers/bowman-2022-scalable-oversight.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bowman-2022-scalable-oversight.mp3",
       "tags": ["evaluations"]
     },
     {
