@@ -1322,6 +1322,7 @@
       "author_group": "ETH Zurich",
       "abstract": "A dynamic, deterministically-scored benchmark for indirect prompt injection on tool-using LLM agents: 70 tools, 97 user tasks, and 629 security test cases across email, Slack, banking, and travel. Utility and security are checked by Python functions over environment state (not an LLM judge), and the paper finds more capable models are the easiest to hijack.",
       "explainer": "papers/debenedetti-2024-agentdojo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/debenedetti-2024-agentdojo.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2908,6 +2909,7 @@
       "author_group": "FutureHouse",
       "abstract": "A 2,457-question multiple-choice benchmark of practical biology-research tasks - literature search (LitQA2, SuppQA), figure and table reading (FigQA, TableQA), database lookup (DbQA), protocol troubleshooting (ProtocolQA), and DNA/protein sequence and cloning work (SeqQA, CloningScenarios) - meant to test whether frontier LLMs can assist research rather than just answer textbook questions. Every question carries an explicit 'decline to answer' option, so models are scored on accuracy, precision, and coverage; tool-free 2024 frontier models trail PhD-expert humans on most categories, and an open-response rerun shows much of their multiple-choice precision comes from eliminating distractors rather than reasoning.",
       "explainer": "papers/laurent-2024-lab-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/laurent-2024-lab-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -3278,6 +3280,7 @@
       "author_group": "ZeroEntropy",
       "abstract": "The first benchmark for the retrieval step of legal RAG: 6,889 expert-traced query-to-span pairs over ~80M characters of contracts, NDAs, M&A agreements, and privacy policies, built by retracing LegalBench's gold clauses back to their exact character spans in the source documents. Baseline pipelines score in the single digits on Precision@1, a general-purpose reranker hurts overall, and MAUD (dense M&A jargon) is by far the hardest split.",
       "explainer": "papers/pipitone-2024-legalbench-rag.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pipitone-2024-legalbench-rag.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6619,6 +6622,7 @@
       "author_group": "Stanford University",
       "abstract": "An open-source framework with 40 professional-level Capture-the-Flag tasks from 4 real competitions, each labeled with a real first-solve-time (2 minutes to 24h54m) and decomposed into partial-credit subtasks. Across 8 evaluated models, agents solve tasks up to an 11-minute human difficulty but almost nothing harder — a 136x cliff — with Claude 3.5 Sonnet leading unguided performance (17.5%) and OpenAI o1-preview leading subtask performance (46.8%).",
       "explainer": "papers/zhang-2025-cybench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2025-cybench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6729,6 +6733,7 @@
       "author_group": "ByteDance Seed",
       "abstract": "A multilingual extension of SWE-bench's issue-resolving task: 1,632 human-verified GitHub issues across Java, TypeScript, JavaScript, Go, Rust, C, and C++, built through a five-phase construction pipeline with 68 cross-reviewing annotators. Agents that resolve roughly half of SWE-bench Verified's Python issues clear well under a quarter of Java's and under 12% of the other five languages, with accurate file localization — not code editing — the binding constraint.",
       "explainer": "papers/zan-2025-multi-swe-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zan-2025-multi-swe-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
