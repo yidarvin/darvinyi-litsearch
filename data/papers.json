@@ -1085,6 +1085,7 @@
       "author_group": "Renmin University / Zhipu AI",
       "abstract": "A spreadsheet-manipulation benchmark built entirely from real Excel-forum questions: 912 authentic instructions (averaging 85.7 words, vs 9.8–27.9 in prior benchmarks) and 2,729 test cases over genuinely messy spreadsheets — 35.7% with multiple tables, 42.7% with non-standard (nested/incomplete/missing-header) tables, some past 100 columns and 20,000 rows. It grades online-judge style: one generated code solution must pass three input–output spreadsheets per instruction, a design that resists data leakage and catches single-sheet overfitting. Across TableQA models, open and closed LLMs, and Excel products the field spans just 0.05%–23.65% soft-restriction accuracy; the best, Copilot in Excel (~20%) and GPT-4o (18.35%), sit far below the 71.33% scored by Excel experts, coding ability beats general ability (DeepseekCoder-33B > Llama-3-70B), and multi-round code-execution feedback lifts most models nearly tenfold while GPT-4o does not benefit.",
       "explainer": "papers/ma-2024-spreadsheetbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ma-2024-spreadsheetbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2020,6 +2021,7 @@
       "author_group": "UIUC",
       "abstract": "A checklist and best-practices standard for rigorous agentic evaluation, synthesized from 17 widely-used benchmarks. It decomposes agentic eval into two validity conditions — task validity (a task is solvable iff the agent has the target capability) and outcome validity (passing the grader truly means task success) — and shows that all ten benchmarks audited violate at least one: a do-nothing agent scores 38% on τ-bench-Airline, an agent overwrites SWE-Lancer's hidden tests for 100%, KernelBench overstates kernel correctness by 31%, and OSWorld under-rates the SOTA agent by 28% from website drift. The deliverable, ABC, is 43 checks across task validity (T.1–10), outcome validity (O.a–i), and reporting (R.1–13); applied forward to CVE-Bench it cut performance overestimation by 33%.",
       "explainer": "papers/zhu-2025-agentic-benchmarks.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhu-2025-agentic-benchmarks.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4380,6 +4382,7 @@
       "author_group": "Cohere Labs",
       "abstract": "An audit of 2M Chatbot Arena battles across 243 models and 42 providers finds undisclosed private testing (Meta tested 27 variants before Llama 4), asymmetric data access (Google and OpenAI received an estimated 19.2% and 20.4% of all Arena data), and silent model deprecation (205 of 243 models) that systematically favor a handful of proprietary providers over open-weight and open-source ones.",
       "explainer": "papers/singh-2025-leaderboard-illusion.html",
+      "audio_url": "https://pod.darvinyi.com/audio/singh-2025-leaderboard-illusion.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6457,6 +6460,7 @@
       "author_group": "Andon Labs",
       "abstract": "LLM agents autonomously run a simulated vending-machine business for runs exceeding 20M cumulative tokens, isolating long-horizon coherence from task complexity. Claude 3.5 Sonnet and o3-mini beat the human baseline on average net worth, but every model has runs that spiral into unproductive 'meltdown' loops unrelated to context-window limits.",
       "explainer": "papers/backlund-2025-vending-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/backlund-2025-vending-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6488,6 +6492,7 @@
       "author_group": "Salesforce AI Research",
       "abstract": "CRMArena benchmarks LLM agents on nine realistic CRM tasks across three personas (service agent, analyst, manager) inside a real Salesforce sandbox populated by an LLM data-generation pipeline that domain experts rated 90% realistic. Even the best agent (o1 with hand-crafted function-calling tools) completes only 64.3% of the 1,170 test queries, and function-calling tools help strong models but often hurt weaker ones.",
       "explainer": "papers/huang-2024-crmarena.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2024-crmarena.mp3",
       "tags": ["benchmarks"]
     },
     {
