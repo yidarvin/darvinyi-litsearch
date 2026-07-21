@@ -344,7 +344,8 @@
       "topic": "Reasoning",
       "author_group": "Google",
       "abstract": "Adding a few hand-written reasoning exemplars to a prompt — no finetuning — elicits multi-step 'chain-of-thought' reasoning that scaling alone never unlocked. Eight exemplars take PaLM 540B from 17.9% to 56.9% on GSM8K, beating a finetuned GPT-3 with a verifier; the gain is an emergent ability of scale (~100B+), generalizes to commonsense (StrategyQA 75.6% vs 69.4% SOTA) and symbolic length-generalization tasks, and ablations pin it on natural-language sequential reasoning rather than extra compute or knowledge activation. The paper that made the reasoning trace a first-class, inspectable object.",
-      "explainer": "papers/wei-2022-cot.html"
+      "explainer": "papers/wei-2022-cot.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2022-cot.mp3"
     },
     {
       "slug": "mahmoud-2026-reward-hacking",
@@ -1209,7 +1210,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "OpenAI's canonical RLHF recipe: fine-tune GPT-3 on ~13k labeler demonstrations (SFT), train a 6B reward model on ~33k human rankings of model outputs, then optimize the policy with PPO against that reward under a KL leash to the SFT model. The resulting 1.3B InstructGPT is preferred to the 175B GPT-3 (175B InstructGPT wins 85±3% head-to-head), with about 2x truthful-and-informative answers on TruthfulQA and ~25% fewer toxic outputs — at a small 'alignment tax' on standard NLP benchmarks that mixing pretraining gradients (PPO-ptx) mostly repairs.",
-      "explainer": "papers/ouyang-2022-instructgpt.html"
+      "explainer": "papers/ouyang-2022-instructgpt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ouyang-2022-instructgpt.mp3"
     },
     {
       "slug": "huang-2023-mlagentbench",
@@ -1727,7 +1729,8 @@
       "topic": "Foundation Models",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Meta's family of four publicly-trained foundation models (7B/13B/33B/65B) that reoriented scaling around inference cost rather than training compute: since a smaller model trained on far more tokens is cheaper to serve, LLaMA trains on 1.0-1.4T tokens of exclusively public data (CommonCrawl, C4, GitHub, Wikipedia, ArXiv, Stack Exchange). LLaMA-13B outperforms GPT-3 (175B) on most benchmarks despite being >10x smaller and runnable on a single GPU, and LLaMA-65B is competitive with Chinchilla-70B and PaLM-540B - though it trails both on MMLU (63.4 vs 67.5/69.3), which the authors attribute to a thin academic-data mix (only 177GB of books+ArXiv). It bundled the now-standard open-LLM stack (pre-norm RMSNorm, SwiGLU, RoPE), and its release - then leak - of the weights launched Alpaca, Vicuna, and the open-weights ecosystem.",
-      "explainer": "papers/touvron-2023-llama.html"
+      "explainer": "papers/touvron-2023-llama.html",
+      "audio_url": "https://pod.darvinyi.com/audio/touvron-2023-llama.mp3"
     },
     {
       "slug": "chalkidis-2021-lexglue",
@@ -3717,7 +3720,8 @@
       "topic": "Representation Learning",
       "author_group": "Google",
       "abstract": "Reduces self-supervised visual representation learning to four parts — augment an image into two views, encode with a plain ResNet, project with a small MLP, and contrast the pair against every other in-batch example via the NT-Xent loss — with no memory bank or specialized architecture. Shows that composing random crop with color distortion, adding a nonlinear projection head that is discarded after training, and training with very large batches lets a linear probe on the learned features reach 76.5% ImageNet top-1 (matching a supervised ResNet-50) and 85.8% top-5 with only 1% of labels.",
-      "explainer": "papers/chen-2020-simclr.html"
+      "explainer": "papers/chen-2020-simclr.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2020-simclr.mp3"
     },
     {
       "slug": "shoeybi-2019-megatron-lm",
@@ -5686,7 +5690,8 @@
       "topic": "Interpretability",
       "author_group": "University of Washington",
       "abstract": "Introduces LIME, a model-agnostic technique that explains any classifier's individual predictions by fitting a sparse linear surrogate that is locally faithful in the neighborhood of the instance being explained, plus SP-LIME, a submodular-pick procedure that selects a small, non-redundant set of instances to give a global view of a model's behavior. Validated on text and image classifiers via faithfulness experiments and human-subject trust studies, including the widely-cited husky-vs-wolf spurious-correlation demonstration.",
-      "explainer": "papers/ribeiro-2016-lime.html"
+      "explainer": "papers/ribeiro-2016-lime.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ribeiro-2016-lime.mp3"
     },
     {
       "slug": "luo-2022-biogpt",
