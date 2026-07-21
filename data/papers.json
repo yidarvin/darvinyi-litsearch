@@ -596,6 +596,7 @@
       "author_group": "BigCode",
       "abstract": "An execution-graded benchmark of 1,140 Python tasks that each require composing multiple function calls from 139 real libraries (723 calls across 7 domains) under complex instructions, graded by ≥5 unittest cases at 99% branch coverage. Two splits — Complete (full docstring) and Instruct (terse natural language) — are built by a year-long human–LLM pipeline (GPT-4 synthesis + Code-Interpreter refactoring under 20 annotators). Across 60 LLMs the best, GPT-4o, reaches only ~60% Pass@1 on Complete and under 50% on Instruct, far below the 97% human pass rate; terse instructions cost 8.5% on average and long prompts trigger 'laziness' (models omitting given imports). A difficulty-filtered BigCodeBench-Hard subset serves as a user-centric proxy once the full set saturates.",
       "explainer": "papers/zhuo-2024-bigcodebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhuo-2024-bigcodebench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -1805,6 +1806,7 @@
       "author_group": "NYU",
       "abstract": "Shows that LLM judges can recognize their own outputs — GPT-4 at 73.5% out of the box, over 90% after fine-tuning on just 500 examples — and that self-preference bias rises roughly linearly with this self-recognition capability across models, datasets, and even unrelated control fine-tunes. Provides initial causal evidence that LLMs overrate their own text because they recognize it, with implications for the whole LLM-as-judge, reward-modeling, and self-refinement stack.",
       "explainer": "papers/panickssery-2024-self-recognition.html",
+      "audio_url": "https://pod.darvinyi.com/audio/panickssery-2024-self-recognition.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -4390,6 +4392,7 @@
       "author_group": "CMU",
       "abstract": "A 910-task benchmark extending WebArena with genuinely visually-grounded web tasks across Classifieds, Shopping, and Reddit sites; the best VLM agent (GPT-4V + Set-of-Marks) reaches 16.4% success against an 88.7% human ceiling.",
       "explainer": "papers/koh-2024-visualwebarena.html",
+      "audio_url": "https://pod.darvinyi.com/audio/koh-2024-visualwebarena.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6816,6 +6819,7 @@
       "author_group": "KAIST AI / NAVER AI Lab",
       "abstract": "Trains Prometheus, an open 13B evaluator LLM fine-tuned on the Feedback Collection (100K GPT-4-written rubric/response/feedback/score examples) that conditions on a user-defined score rubric and reference answer. Reaches human correlation on par with GPT-4 (0.897 vs 0.882 Pearson) on customized rubrics — the direct ancestor of Prometheus 2.",
       "explainer": "papers/kim-2023-prometheus.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kim-2023-prometheus.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -7797,6 +7801,7 @@
       "author_group": "National University of Singapore",
       "abstract": "A financial QA benchmark of 16,552 questions over 2,757 hybrid table+paragraph contexts from 182 real financial reports, requiring numerical reasoning (word matching to multi-step composition) plus a correctly-scaled answer (thousand/million/billion/percent). The paper's own TAGOP baseline reaches 58.0 F1 - an 11.1-point jump over the next-best adapted model - but still trails the 90.8 F1 human estimate by 32.8 points, and its own error analysis attributes 84% of failures to wrong or missing evidence rather than bad arithmetic.",
       "explainer": "papers/zhu-2021-tatqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhu-2021-tatqa.mp3",
       "tags": ["benchmarks"]
     },
     {
