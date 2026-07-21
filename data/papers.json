@@ -4356,6 +4356,7 @@
       "author_group": "Stanford",
       "abstract": "A 46-criteria assessment framework audits 24 widely-used AI benchmarks across their design, implementation, documentation, and maintenance lifecycle, finding large quality gaps — e.g. MMLU scores lowest of all 24 while GPQA scores among the highest — and that most benchmarks lack replication scripts or statistical-significance reporting.",
       "explainer": "papers/reuel-2024-betterbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/reuel-2024-betterbench.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6302,6 +6303,7 @@
       "author_group": "OSU NLP",
       "abstract": "102 tasks distilled from 44 peer-reviewed papers across four sciences, each reduced to one verifiable Python program with built-in contamination countermeasures; the best 2024-era agent (Claude-3.5-Sonnet + Self-Debug) solves only 34.3%, directly rebutting end-to-end automated-science claims.",
       "explainer": "papers/chen-2024-scienceagentbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2024-scienceagentbench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6333,6 +6335,7 @@
       "author_group": "Google DeepMind",
       "abstract": "BIG-Bench Hard saturated past 90% accuracy on state-of-the-art models, so this replaces all 23 BBH tasks with harder analogues, semi-adversarially tuned against two Gemini reference models until each scores below 70%. Across 12 evaluated models the best general-purpose model reaches only 9.8% harmonic-mean accuracy and the best reasoning-specialized model (o3-mini, high) reaches 44.8%, with inputs averaging 6x longer than BBH's.",
       "explainer": "papers/kazemi-2025-big-bench-extra-hard.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kazemi-2025-big-bench-extra-hard.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6457,6 +6460,7 @@
       "author_group": "University College London",
       "abstract": "BALROG aggregates six procedurally-generated reinforcement-learning games (BabyAI, Crafter, TextWorld, Baba Is AI, MiniHack, NetHack) into one zero-shot LLM/VLM agent benchmark with a fine-grained 0–100 progress metric. Claude 3.5 Sonnet and GPT-4o lead at ~32% average progress, but every model flatlines on NetHack (best: 1.5%), and adding vision usually hurts rather than helps.",
       "explainer": "papers/paglieri-2024-balrog.html",
+      "audio_url": "https://pod.darvinyi.com/audio/paglieri-2024-balrog.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -8032,6 +8036,7 @@
       "author_group": "UNC Chapel Hill",
       "abstract": "Shows that 26 of 50 sampled HotpotQA bridge questions contain a reasoning shortcut — a keyword match that lets a model locate the answer without traversing the intended two-hop chain — and introduces ADDDOC, a model-independent procedure that swaps in a fake-answer adversarial document to eliminate it, cratering a strong bi-attention baseline's EM from 42.32 to 26.67. A proposed 2-hop control-unit model combined with supporting-fact supervision and adversarial training closes most of that gap.",
       "explainer": "papers/jiang-2019-reasoning-shortcuts.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jiang-2019-reasoning-shortcuts.mp3",
       "tags": ["evaluations"]
     },
     {
