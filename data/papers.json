@@ -1716,6 +1716,7 @@
       "author_group": "AUEB / Sheffield",
       "abstract": "The GLUE-for-law benchmark: seven English legal-NLU datasets behind one leaderboard — ECtHR (A & B) human-rights judgment prediction, SCOTUS issue classification, EUR-LEX/EuroVoc and LEDGAR/UNFAIR-ToS contract tasks, and CaseHOLD multiple-choice QA — scored with a shared micro/macro-F1 and selected on SuperGLUE-style desiderata but deliberately favoring legal expertise. Across a TF-IDF SVM and base-size BERT/RoBERTa/DeBERTa/Longformer/BigBird plus the legal-domain Legal-BERT and CaseLaw-BERT (with hierarchical encoders for the long ECtHR/SCOTUS documents), the legal-oriented models win overall — Legal-BERT leads the harmonic-mean aggregate at 70.8 macro-F1 — but only by ~2–4 points and mostly on US case law (SCOTUS, CaseHOLD), while RoBERTa-large matches them. The fine-tuning-era, expert-curated predecessor that LegalBench later scaled into the few-shot LLM age.",
       "explainer": "papers/chalkidis-2021-lexglue.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chalkidis-2021-lexglue.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -2637,6 +2638,7 @@
       "author_group": "HKU",
       "abstract": "A thousand data-science coding problems harvested from StackOverflow across seven Python libraries (pandas, numpy, matplotlib, scikit-learn, scipy, pytorch, tensorflow), each rewritten into an executable context and graded by a multi-criteria execution metric — functional test cases plus surface-form constraints (e.g. banning for-loops to force vectorization) — that accepts a wrong Codex-002 program only 1.8% of the time, versus a reported 60% false-positive rate on APPS. Its signature contribution is a proactive defence against memorization: every problem is perturbed away from its StackOverflow source, after a pilot shows Codex-002's accuracy on the public numpy-100 set collapsing from 72.5% to 23.6% under semantic perturbation (and parroting the original answer 36% of the time). Hand-built by five experts over ~1,200 hours, 1,000 problems from 451 unique sources. The best 2022 system, Codex-002 with infilling, reaches only 43.3% (range 7.4–43.3% across five Codex/InCoder/CodeGen models); infilling beats left-to-right by +4.1% and skill doesn't transfer across libraries (30.1% on pandas vs 57.0% on matplotlib).",
       "explainer": "papers/lai-2022-ds-1000.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lai-2022-ds-1000.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6228,6 +6230,7 @@
       "author_group": "University of Michigan",
       "abstract": "Imports measurement modeling from the quantitative social sciences into ML fairness, arguing that many fairness-related harms are mismatches between unobservable theoretical constructs (recidivism risk, teacher effectiveness, socioeconomic status) and their measurable proxies. Proposes a fairness-oriented construct reliability/validity toolkit (face, content, convergent, discriminant, predictive, hypothesis, consequential validity), illustrated via COMPAS, EVAAS, and a healthcare risk-model case study.",
       "explainer": "papers/jacobs-2019-measurement-fairness.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jacobs-2019-measurement-fairness.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6558,6 +6561,7 @@
       "author_group": "Alibaba",
       "abstract": "A runnable benchmark for tool-augmented LLMs built from 73 hand-implemented APIs and 314 human-annotated dialogues across three abilities (Call, Retrieve+Call, Plan+Retrieve+Call) grounded in 500 user interviews. A five-agent synthetic-data pipeline (Multi-agent) cuts training-data cost by 98% ($8 → $0.10/dialogue), and the resulting Lynx model (Alpaca-7B fine-tuned on this data) approaches GPT-3.5's tool-use accuracy.",
       "explainer": "papers/li-2023-api-bank.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2023-api-bank.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -7189,6 +7193,7 @@
       "author_group": "UPenn / ETH Zurich",
       "abstract": "A reproducible, community-maintained benchmark for LLM jailbreak robustness: the 100-behavior JBB-Behaviors dataset (built to OpenAI's usage-policy categories), a human-validated open judge (Llama-3-70B, chosen by testing six candidates against 300 expert-labeled examples), and a public leaderboard for standardized attacks and test-time defenses.",
       "explainer": "papers/chao-2024-jailbreakbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chao-2024-jailbreakbench.mp3",
       "tags": ["benchmarks"]
     },
     {
