@@ -653,6 +653,7 @@
       "author_group": "MBZUAI",
       "abstract": "The first unified taxonomy for evaluating AI math tutors: eight learning-sciences pedagogical dimensions (mistake identification, mistake location, revealing the answer, providing guidance, actionability, coherence, tutor tone, human-likeness), each with a desired label and scored by a Desired Annotation Match Rate (DAMR). The MRBench benchmark holds 192 mistake-remediation dialogues (from Bridge and MathDial) and 1,596 responses from 7 LLMs acting as tutors plus novice/expert humans, with gold human annotations (Fleiss' κ 0.65, Cohen's κ 0.71). Llama-3.1-405B is the most pedagogically complete while GPT-4 reveals the answer ~47% of the time (a strong QA system but a weak tutor); models are uniformly human-like (89–96%) yet weak on guidance and default to a neutral rather than encouraging tone; and the popular Prometheus2 and Llama-3.1-8B LLM judges correlate negatively with human labels on every dimension except human-likeness — so pedagogical evaluation still needs humans.",
       "explainer": "papers/maurya-2025-mrbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/maurya-2025-mrbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -3915,6 +3916,7 @@
       "author_group": "Google DeepMind",
       "abstract": "Reframes the chain-of-thought monitoring debate: for runtime monitoring against severe harm, the property that matters is not faithfulness but monitorability. Argues that when a bad behavior is hard enough to require CoT-as-computation the reasoning must surface — replicating two prior unfaithfulness setups to show the effect — then stress-tests monitors across GPQA, a multi-step stealth task, and an RL setup, finding current Gemini models evade only with heavy human or RL assistance.",
       "explainer": "papers/emmons-2025-cot-evade-monitors.html",
+      "audio_url": "https://pod.darvinyi.com/audio/emmons-2025-cot-evade-monitors.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6207,6 +6209,7 @@
       "author_group": "University of Oxford",
       "abstract": "A 29-reviewer systematic review codes 445 LLM benchmarks from top NLP/ML venues against a construct-validity codebook, finding only 53.4% justify their construct validity and just 16.0% use any statistical test, then distills the findings into an eight-point checklist.",
       "explainer": "papers/bean-2025-construct-validity.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bean-2025-construct-validity.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -6531,6 +6534,7 @@
       "author_group": "MBZUAI",
       "abstract": "A controlled bias audit of Elo-based LLM-as-judge evaluation: starting from one GPT-4-authored correct answer per question, the authors generate 11 deliberately flawed variants (factual errors, length, grammar/spelling) and show crowd workers, experts, GPT-4, and Claude-1 all favor longer answers, with GPT-4 rating several fabricated facts above a correct-but-short answer (1206 vs 1096 Elo). Proposes the Multi-Elo Rating System (MERS), scoring accuracy/helpfulness/language separately, which sharpens GPT-4's factual discrimination but leaves crowd-sourced accuracy judgments still compressed.",
       "explainer": "papers/wu-2025-style-over-substance.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2025-style-over-substance.mp3",
       "tags": ["evaluations"]
     },
     {
@@ -7430,6 +7434,7 @@
       "author_group": "UC Berkeley / U Chicago",
       "abstract": "The first AI safety benchmark whose risk taxonomy is grounded directly in regulation and policy text rather than researcher intuition: AIR 2024 decomposes 8 government regulations and 16 corporate AI policies into a 314-category, four-tier taxonomy, and AIR-Bench 2024 turns it into 5,694 prompts with category-specific autograders (Kappa 0.86), finding that even the best-aligned models (Claude 3, 89% refusal) have systematic gaps against regulations like the EU AI Act.",
       "explainer": "papers/zeng-2024-air-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zeng-2024-air-bench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
