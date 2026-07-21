@@ -3476,6 +3476,7 @@
       "author_group": "OpenAI",
       "abstract": "An OpenAI benchmark asking AI agents to replicate 20 ICML 2024 Spotlight/Oral papers from scratch — read the paper, build the codebase, run the experiments, match the results. Each replication is graded against a hierarchical, author-co-written rubric (8,316 binary leaf criteria in total) whose weighted leaves roll up to a Replication Score, with submissions graded by an LLM judge (o3-mini, F1 0.83 on a separate JudgeEval, ~$66/paper). The best agent — Claude 3.5 Sonnet (New) with a simple scaffold — scores 21.0%, and prompt-tuned IterativeAgent lifts o1 to 24.4% (26.0% at 36h), but on a shared 3-paper subset human ML PhDs reach 41.4% after 48h vs o1's 26.6%: agents sprint early then plateau after ~1 hour while humans keep improving. The durable contribution is the grading machinery, not the leaderboard, which the authors frame as an initial baseline subject to judge noise and an acknowledged contamination clock.",
       "explainer": "papers/starace-2025-paperbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/starace-2025-paperbench.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -3521,6 +3522,7 @@
       "author_group": "UCLA / Berkeley",
       "abstract": "The first large-scale over-refusal benchmark: an automated pipeline rewrites LLM-generated toxic seeds (via Mixtral 8×7B) into 80,000 borderline-benign prompts across 10 harm categories, filtered by an LLM-ensemble moderator, plus a hard 1K subset and ~600 toxic prompts. Grading 32 models across 8 families, it finds safety and over-refusal are strongly coupled — Spearman 0.89 between toxic-prompt and safe-prompt rejection — so most models simply buy safety by refusing more; jailbreak defenses and “be safe” system prompts push over-refusal up further.",
       "explainer": "papers/cui-2024-or-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cui-2024-or-bench.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -4279,6 +4281,7 @@
       "author_group": "Epoch AI",
       "abstract": "Hundreds of original, unpublished mathematics problems written and vetted by 60+ research mathematicians, checked by automated verification rather than human proof-grading — as of publication, every frontier LLM solved fewer than 2% of them.",
       "explainer": "papers/glazer-2024-frontiermath.html",
+      "audio_url": "https://pod.darvinyi.com/audio/glazer-2024-frontiermath.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6300,6 +6303,7 @@
       "author_group": "M-A-P",
       "abstract": "26,529 graduate-level multiple-choice questions across 13 disciplines, 72 fields, and 285 subfields, built via a three-stage human-LLM collaborative filtering pipeline; even DeepSeek-R1, the top model, tops out at 61.82%, and the authors themselves flag a science/engineering leakage signal and a Chinese-textbook sourcing tilt as open concerns.",
       "explainer": "papers/map-2025-supergpqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/map-2025-supergpqa.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -6408,6 +6412,7 @@
       "author_group": "Tsinghua University / Shanghai AI Lab",
       "abstract": "A 4,460-question medical benchmark built from medical-licensing and specialty-board exams (not auto-generated captions), spanning 17 specialties and 11 body systems across text-only and multimodal subsets. It opens a 51-71 point gap against near-saturated MMLU/MedQA/MedMCQA, and even o1 only narrowly clears the paper's own pre-licensed-human baseline.",
       "explainer": "papers/zuo-2025-medxpertqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zuo-2025-medxpertqa.mp3",
       "tags": ["benchmarks"]
     },
     {
