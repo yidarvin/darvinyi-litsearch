@@ -2028,7 +2028,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "METR",
       "abstract": "METR's randomized controlled trial on whether AI actually speeds up expert developers in the wild. 16 experienced open-source maintainers complete 246 real issues on large, mature repositories they personally know (avg 23k stars, ~1.1M LOC, and 5 years / 1,500 commits of prior experience each), with every issue defined and time-forecast before being randomized to AI-allowed (Cursor Pro + Claude 3.5/3.7 Sonnet, the Feb–Jun 2025 frontier) or AI-disallowed. Allowing AI increased completion time by 19% — the opposite of expectations: developers forecast a 24% speedup and still estimated 20% afterward, while economics and ML experts predicted 39% and 38% speedups. Screen-recording labels (143 hours, 29% of all developer-hours) show the time going into prompting, waiting on, and reviewing/cleaning AI output, with under 44% of AI suggestions accepted. The slowdown is robust across estimators and outcome measures but setting-specific: the authors attribute it to high repo familiarity, large complex codebases, and low AI reliability, and explicitly do not claim it generalizes to greenfield or unfamiliar work.",
-      "explainer": "papers/becker-2025-ai-productivity.html"
+      "explainer": "papers/becker-2025-ai-productivity.html",
+      "audio_url": "https://pod.darvinyi.com/audio/becker-2025-ai-productivity.mp3"
     },
     {
       "slug": "si-2024-research-ideas",
@@ -2195,7 +2196,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "Encodes a safety policy as a set of LLM-graded binary propositions (e.g. \"refusals should not be judgmental\"), fits a tiny linear reward over them, and adds it directly to the helpful-only reward model during PPO — instead of distilling the policy into human preference data. Matches human-data safety at far lower over-refusal (97.1 vs 91.7 F1) using ~1% of the human labels.",
-      "explainer": "papers/mu-2024-rule-based-rewards.html"
+      "explainer": "papers/mu-2024-rule-based-rewards.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mu-2024-rule-based-rewards.mp3"
     },
     {
       "slug": "rafailov-2023-dpo",
@@ -3326,7 +3328,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "A ~256GB open-license corpus of English legal and administrative text from 35 sources (court opinions, contracts, SEC filings, agency rulings, statutes, casebooks), paired with the argument that the redaction rules courts and legislatures already wrote are a better guide for filtering LLM pretraining data than researchers' ad-hoc word lists. Because each subset arrives pre-filtered by its jurisdiction's privacy/toxicity norms, those decisions can be learned: an EOIR pseudonymity classifier hits ~80% F1 and recovers real asylum-vs-crime regulation, and pretraining transmits the Jane-Doe norm (~3 pts). The signature finding is that off-the-shelf toxicity filters encode contestable value judgments — they rate Dred Scott as non-toxic while flagging civil-rights opinions that quote the laws they overturn, and a span's toxicity score drops 55-57% just by widening its context window.",
-      "explainer": "papers/henderson-2022-pile-of-law.html"
+      "explainer": "papers/henderson-2022-pile-of-law.html",
+      "audio_url": "https://pod.darvinyi.com/audio/henderson-2022-pile-of-law.mp3"
     },
     {
       "slug": "pipitone-2024-legalbench-rag",
@@ -3681,7 +3684,8 @@
       "topic": "Post-training & RL",
       "author_group": "TIGER-Lab",
       "abstract": "Extends \"Zero\" RL reasoning beyond math by pairing a 230K-question, multi-domain verifiable dataset (crawled and filtered from WebInstruct) with a compact 1.5B generative verifier that judges answer equivalence in any format, replacing brittle rule-based checking. GRPO from Qwen2.5/Qwen3 base models lifts MMLU-Pro and SuperGPQA by ~10 points while matching or beating math-only RL on math itself; the 14B model rivals GPT-4o on GPQA and TheoremQA.",
-      "explainer": "papers/ma-2025-general-reasoner.html"
+      "explainer": "papers/ma-2025-general-reasoner.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ma-2025-general-reasoner.mp3"
     },
     {
       "slug": "devlin-2019-bert",
@@ -7512,7 +7516,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Oxford / OpenAI",
       "abstract": "A framework paper proposing that AI systems be held to truthfulness rather than honesty, with a practical 'negligent falsehoods' standard, certifier/adjudicator institutions, and a technical research agenda — while flagging its own central risk: a truthfulness-evaluation mechanism captured for censorship or propaganda.",
-      "explainer": "papers/evans-2021-truthful-ai.html"
+      "explainer": "papers/evans-2021-truthful-ai.html",
+      "audio_url": "https://pod.darvinyi.com/audio/evans-2021-truthful-ai.mp3"
     },
     {
       "slug": "solaiman-2021-palms",
