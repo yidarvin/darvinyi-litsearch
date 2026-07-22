@@ -1657,7 +1657,8 @@
       "topic": "Reasoning",
       "author_group": "Princeton / Google DeepMind",
       "abstract": "Generalizes chain-of-thought into a deliberate tree search: at each step the LM proposes several candidate 'thoughts', scores them in language (value or vote), and explores the tree with BFS/DFS plus lookahead and backtracking — using the model itself as the search heuristic, no training required. On three search-heavy GPT-4 tasks the gains are large: Game of 24 jumps from 4% (chain-of-thought) to 74%, beating even oracle best-of-100 CoT (49%); creative-writing passages are judged more coherent by both a GPT-4 grader (7.56 vs 6.93) and humans (41 vs 21 pairwise); and 5×5 crosswords reach 60% word-level success vs 15.6%, where ablating pruning or backtracking sharply degrades it. About ~60% of CoT failures are sealed after the first step, which is what search recovers. The price is compute (~$0.74/case, up to ~5× tokens) and the gains concentrate on tasks the base model cannot already solve; its lasting contribution is the framing of LM inference as System-2 tree search — a template for the agent and reasoning-RL waves.",
-      "explainer": "papers/yao-2023-tree-of-thoughts.html"
+      "explainer": "papers/yao-2023-tree-of-thoughts.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yao-2023-tree-of-thoughts.mp3"
     },
     {
       "slug": "gao-2025-mcp-radar",
@@ -1905,7 +1906,8 @@
       "topic": "Agents",
       "author_group": "Meta AI",
       "abstract": "The paper that turned tool use into a self-supervised, general capability rather than a hand-annotated or task-specific one. Toolformer annotates a plain corpus (a CCNet subset) with candidate API calls sampled in-context, executes each call against a real tool (a retrieval-augmented QA system, BM25 Wikipedia search, a Python calculator, a 600M NLLB translator, and a calendar), and keeps only the calls whose result lowers the model's own weighted next-token loss by at least a threshold; it then finetunes GPT-J (6.7B) on the augmented text. The model learns to decide which API to call, when, and with what arguments, pausing decoding at the '->' token at inference to splice in the real result. Zero-shot it beats every same-size GPT-J baseline and tops GPT-3 (175B) on LAMA factual completion (53.5 vs 39.8 on T-REx) and math (40.4/29.4/44.0 on ASDiv/SVAMP/MAWPS) with no loss in language-modeling perplexity, though it still trails GPT-3 on open QA. The crucial scaling finding: benefiting from tools is itself emergent, appearing only around 775M parameters. The conceptual seed of modern tool-calling agents — but limited to single, independent, non-chained calls filtered by predictability rather than correctness.",
-      "explainer": "papers/schick-2023-toolformer.html"
+      "explainer": "papers/schick-2023-toolformer.html",
+      "audio_url": "https://pod.darvinyi.com/audio/schick-2023-toolformer.mp3"
     },
     {
       "slug": "yang-2018-hotpotqa",
@@ -2953,7 +2955,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Princeton NLP",
       "abstract": "SimCSE learns sentence embeddings with a contrastive objective whose positive pairs come, in the unsupervised case, from encoding the same sentence twice under different dropout masks (removing the dropout noise collapses the representation), and in the supervised case from NLI entailment pairs with contradiction hypotheses as hard negatives. With BERT-base it reaches 76.3% (unsupervised) and 81.6% (supervised) average Spearman correlation on seven STS tasks -- matching prior supervised systems with no labels, and setting a new state of the art with NLI -- and explains the gains via the alignment and uniformity of the embedding space.",
-      "explainer": "papers/gao-2021-simcse.html"
+      "explainer": "papers/gao-2021-simcse.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gao-2021-simcse.mp3"
     },
     {
       "slug": "tay-2020-long-range-arena",
@@ -4688,7 +4691,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "OpenAI",
       "abstract": "OpenAI's safety and capability report on GPT-4o, its first end-to-end omni model spanning text, vision, and audio: a Preparedness Framework scorecard (Low risk in cybersecurity, biological threats, and model autonomy; borderline-Medium in persuasion, setting the overall risk to Medium), four phases of external red-teaming across 100+ testers in 45 languages, and third-party assessments from METR and Apollo Research — though neither independent assessment covered the model's voice-specific safety claims.",
-      "explainer": "papers/hurst-2024-gpt-4o.html"
+      "explainer": "papers/hurst-2024-gpt-4o.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hurst-2024-gpt-4o.mp3"
     },
     {
       "slug": "goyal-2017-vqa-v2",
@@ -5345,7 +5349,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "Proves the deterministic policy gradient theorem — the gradient of expected return is just the expected gradient of the critic's action-value through the policy's own parameters, no integral over actions — and builds an off-policy actor-critic (COPDAC) on top of it that beats stochastic policy gradients by orders of magnitude in high-dimensional continuous control.",
-      "explainer": "papers/silver-2014-dpg.html"
+      "explainer": "papers/silver-2014-dpg.html",
+      "audio_url": "https://pod.darvinyi.com/audio/silver-2014-dpg.mp3"
     },
     {
       "slug": "lowe-2017-maddpg",
