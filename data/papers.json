@@ -1079,7 +1079,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "The blueprint for RLHF. Instead of training a summarizer to imitate reference text and scoring it with ROUGE, OpenAI collects 64,832 human pairwise preferences over Reddit TL;DR summaries, fits a reward model with a logistic loss, and fine-tunes the policy with PPO under a KL penalty to the supervised init. A 1.3B feedback model beats a supervised model 10× its size (61% vs 43% preferred over the human reference), both feedback models are preferred to the human-written references themselves, and the method transfers zero-shot to CNN/DM news. Its over-optimization curve — predicted reward keeps climbing as true human preference collapses — is the first public demonstration of reward-model Goodharting, and the whole recipe is the direct template for InstructGPT and ChatGPT.",
-      "explainer": "papers/stiennon-2020-summarize.html"
+      "explainer": "papers/stiennon-2020-summarize.html",
+      "audio_url": "https://pod.darvinyi.com/audio/stiennon-2020-summarize.mp3"
     },
     {
       "slug": "ma-2024-spreadsheetbench",
@@ -4908,7 +4909,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Microsoft Research",
       "abstract": "Proposes a standard questionnaire — motivation, composition, collection process, preprocessing, uses, distribution, maintenance — for documenting a dataset before release, modeled on the electronics industry's component datasheet. Refined over ~2 years via pilots at Microsoft/Google/IBM and public arXiv feedback; seeded Model Cards, FactSheets, and the Dataset Nutrition Label.",
-      "explainer": "papers/gebru-2018-datasheets.html"
+      "explainer": "papers/gebru-2018-datasheets.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gebru-2018-datasheets.mp3"
     },
     {
       "slug": "sutton-1998-rl-intro",
@@ -4937,7 +4939,8 @@
       "topic": "Post-training & RL",
       "author_group": "Allen Institute for AI (AI2)",
       "abstract": "Continuing RoBERTa's pretraining on domain-specific unlabeled text (DAPT) improves 7 of 8 tasks across four domains (BioMed, CS, News, Reviews), and adapting further to the task's own unlabeled text (TAPT) helps again on top of it; a small pool of human-curated task data, or a cheap automatic nearest-neighbor selection from the domain corpus, closes most of the remaining gap at a fraction of DAPT's cost.",
-      "explainer": "papers/gururangan-2020-dont-stop-pretraining.html"
+      "explainer": "papers/gururangan-2020-dont-stop-pretraining.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gururangan-2020-dont-stop-pretraining.mp3"
     },
     {
       "slug": "chen-2015-coco-captions",
@@ -5029,7 +5032,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Google",
       "abstract": "Proposes model cards — short standardized documents accompanying a released trained model that disclose intended use, factors, metrics, and quantitative analyses disaggregated across demographic/phenotypic/environmental subgroups and their intersections. Demonstrated on a CelebA smiling classifier and Perspective API's TOXICITY text classifier.",
-      "explainer": "papers/mitchell-2018-model-cards.html"
+      "explainer": "papers/mitchell-2018-model-cards.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mitchell-2018-model-cards.mp3"
     },
     {
       "slug": "chouldechova-2016-recidivism",
@@ -7937,7 +7941,8 @@
       "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "A sparse attention pattern — random keys, a sliding window, and global tokens — that cuts self-attention from O(n²) to O(n) while provably remaining a universal approximator of sequence functions and Turing complete, letting Transformers handle sequences up to 8x longer on the same hardware. BigBird-ETC sets new state-of-the-art on the Natural Questions Long Answer, TriviaQA, and WikiHop QA leaderboards, adds +8.35 ROUGE-1 over Pegasus on BigPatent summarization, and extends to a new genomics application (99.9 F1 on promoter-region prediction) — though the paper's efficiency claim rests on memory capacity, not a measured wall-clock speed benchmark, and Longformer is its only sparse-attention baseline throughout.",
-      "explainer": "papers/zaheer-2020-bigbird.html"
+      "explainer": "papers/zaheer-2020-bigbird.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zaheer-2020-bigbird.mp3"
     },
     {
       "slug": "xie-2023-pixiu",
