@@ -2172,7 +2172,8 @@
       "topic": "Post-training & RL",
       "author_group": "Ai2",
       "abstract": "Ai2's fully-open post-training recipe — SFT → DPO → RLVR on Llama 3.1 base (8B/70B/405B) — that matches or beats Llama-3.1-Instruct, Qwen 2.5, Mistral, GPT-4o-mini and Claude 3.5 Haiku while releasing all data, code, and evaluation (OLMES) plus the dead ends. Introduces Reinforcement Learning with Verifiable Rewards (RLVR): replace the learned reward model with a binary correctness verifier (reward α=10 if the answer passes, else 0) optimized by PPO. RLVR gives sharp targeted gains on GSM8K/MATH/IFEval (8B GSM8K 84.3→87.6) but only tenths of a point on the overall average, and overoptimizes as KL grows — the 'reward = passed the verifier' idea the DeepSeek-R1/RLVR wave scaled months later.",
-      "explainer": "papers/lambert-2024-tulu-3.html"
+      "explainer": "papers/lambert-2024-tulu-3.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lambert-2024-tulu-3.mp3"
     },
     {
       "slug": "mu-2024-rule-based-rewards",
@@ -7774,7 +7775,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "University of Maryland",
       "abstract": "A systematic transplant of computer vision's detection, preprocessing, and adversarial-training defenses onto GCG-style LLM jailbreaks: a perplexity filter catches essentially all adversarial suffixes and paraphrasing cuts Vicuna's attack success rate from 0.79 to 0.05, while adversarial training via instruction finetuning barely moves the attacked success rate and destabilizes the model at higher mixing rates.",
-      "explainer": "papers/jain-2023-baseline-defenses.html"
+      "explainer": "papers/jain-2023-baseline-defenses.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jain-2023-baseline-defenses.mp3"
     },
     {
       "slug": "mehrotra-2023-tap",
@@ -7788,7 +7790,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Yale University / Robust Intelligence",
       "abstract": "TAP (Tree of Attacks with Pruning) extends PAIR's single-chain black-box jailbreak search into a branching, pruned tree — an attacker LLM proposes several prompt rewrites per iteration and an evaluator LLM prunes off-topic ones before they cost a query — jailbreaking GPT-4o for 94% of AdvBench prompts (vs PAIR's 78%) while sending 60% fewer queries.",
-      "explainer": "papers/mehrotra-2023-tap.html"
+      "explainer": "papers/mehrotra-2023-tap.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mehrotra-2023-tap.mp3"
     },
     {
       "slug": "madaan-2023-self-refine",
@@ -7862,7 +7865,8 @@
       "topic": "Reasoning",
       "author_group": "SMU Singapore / SUTD",
       "abstract": "Replaces Zero-shot-CoT's \"Let's think step by step\" with a two-part \"devise a plan, then carry it out\" trigger (PS), extended with explicit variable-extraction and calculation instructions (PS+) — still zero-shot, no exemplars. On GPT-3 (text-davinci-003) across ten reasoning datasets, PS+ beats Zero-shot-CoT by at least 5 points on every arithmetic dataset except GSM8K (+2.9), reaches a 76.7% average close to 8-shot Manual-CoT's 77.6%, and roughly halves GSM8K's missing-step error rate (12%→7%) in a paired 100-example error analysis.",
-      "explainer": "papers/wang-2023-plan-and-solve.html"
+      "explainer": "papers/wang-2023-plan-and-solve.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2023-plan-and-solve.mp3"
     },
     {
       "slug": "liu-2023-llm-p",
@@ -8113,7 +8117,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Harvard / BCG",
       "abstract": "A pre-registered field experiment with 758 Boston Consulting Group consultants randomized to no AI, GPT-4, or GPT-4 plus a prompt-engineering overview. Inside GPT-4's capability frontier, AI-assisted consultants completed 12.2% more tasks, worked 25.1% faster, and scored 40%+ higher on quality; on a task engineered to sit outside that frontier, correctness fell from 84.5% to 60.0-70.6%. Introduces the 'jagged technological frontier' framing and the Centaur/Cyborg typology of human-AI collaboration - the knowledge-work counterpart to the GitHub Copilot and Generative AI at Work field experiments.",
-      "explainer": "papers/dellacqua-2023-jagged-frontier.html"
+      "explainer": "papers/dellacqua-2023-jagged-frontier.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dellacqua-2023-jagged-frontier.mp3"
     },
     {
       "slug": "vaccaro-2024-human-ai-combinations",
