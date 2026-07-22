@@ -1203,7 +1203,8 @@
       "topic": "Post-training & RL",
       "author_group": "Tsinghua",
       "abstract": "A systematic pass@k study (large k, across Qwen2.5/LLaMA families, six RL algorithms, and math/code/visual benchmarks) arguing that current RLVR does not expand a model's reasoning boundary — it sharpens sampling of solutions the base model could already produce. RL beats base at small k but base matches or overtakes it at large k (base +~9% at k=128 on Minerva-32B); RL responses sit in the base model's low-perplexity tail and the RL-solvable set is nearly a subset of the base's; the sampling-efficiency gap stays >40 points across PPO/GRPO/Reinforce++/RLOO/ReMax/DAPO; and only distillation genuinely lifts the boundary.",
-      "explainer": "papers/yue-2025-rlvr-limit.html"
+      "explainer": "papers/yue-2025-rlvr-limit.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yue-2025-rlvr-limit.mp3"
     },
     {
       "slug": "ouyang-2022-instructgpt",
@@ -4153,7 +4154,8 @@
       "topic": "Post-training & RL",
       "author_group": "Moonshot AI",
       "abstract": "Moonshot AI's o1-class multimodal reasoning model, trained with a deliberately simple RL framework: long-context rollouts scaled to 128k tokens (made affordable by partial rollouts and a hybrid Megatron/vLLM system), a variant of online mirror descent with a mean-reward baseline and no value network, and no MCTS or process reward models. The long-CoT model matches OpenAI o1 (96.2 MATH-500, 77.5 AIME 2024, 94th-percentile Codeforces, 74.9 MathVista), while 'long2short' methods — model merging, shortest rejection sampling, DPO, and a length-penalized RL phase — transfer that reasoning into short-CoT models that reach 60.8 AIME / 94.6 MATH-500 at a fraction of the token cost, beating GPT-4o and Claude 3.5 Sonnet by up to +550%. A curriculum + prioritized sampling schedule and a 98.5%-accurate chain-of-thought reward model round out the recipe; released the same day as DeepSeek-R1, which it neither cites nor compares against.",
-      "explainer": "papers/kimi-2025-k1-5.html"
+      "explainer": "papers/kimi-2025-k1-5.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kimi-2025-k1-5.mp3"
     },
     {
       "slug": "brown-2024-monkeys",
@@ -7708,7 +7710,8 @@
       "topic": "Post-training & RL",
       "author_group": "MIT CSAIL / Harvard",
       "abstract": "A 32-author survey taxonomizing RLHF's failure modes across feedback collection, reward modeling, and policy optimization, splitting them into problems fixable with better engineering and fundamental limitations that require abandoning or supplementing RLHF entirely, plus proposed transparency/auditing standards.",
-      "explainer": "papers/casper-2023-rlhf-open-problems.html"
+      "explainer": "papers/casper-2023-rlhf-open-problems.html",
+      "audio_url": "https://pod.darvinyi.com/audio/casper-2023-rlhf-open-problems.mp3"
     },
     {
       "slug": "chao-2023-pair",
@@ -8028,7 +8031,8 @@
       "topic": "Foundation Models",
       "author_group": "University of Amsterdam",
       "abstract": "Further pre-trains BERT-base on 29M words of Reuters financial news (TRC2-financial) and fine-tunes it with ULMFit-style anti-forgetting techniques (slanted triangular learning rates, discriminative fine-tuning, gradual unfreezing) — the first application of BERT to finance. FinBERT reaches 0.86 accuracy / 0.84 F1 on the Financial PhraseBank (vs. 0.83/0.79 for ULMFit and 0.71/0.71-0.76 for prior lexicon+ML baselines) and MSE 0.07 / R2 0.55 on FiQA sentiment scoring, though domain-adaptive further pre-training itself barely helps (+0.01 accuracy over vanilla BERT).",
-      "explainer": "papers/araci-2019-finbert.html"
+      "explainer": "papers/araci-2019-finbert.html",
+      "audio_url": "https://pod.darvinyi.com/audio/araci-2019-finbert.mp3"
     },
     {
       "slug": "malo-2014-good-debt",
@@ -8132,7 +8136,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MIT / Carnegie Mellon University",
       "abstract": "A Policy Forum essay introducing the eight-criterion 'Suitability for Machine Learning' (SML) rubric and a six-factor economic framework for how automating SML tasks reshapes labor demand - the task-level, not job-level, methodology that 'GPTs are GPTs' and the later E0/E1/E2 LLM-exposure taxonomy build on directly.",
-      "explainer": "papers/brynjolfsson-2017-machine-learning-workforce.html"
+      "explainer": "papers/brynjolfsson-2017-machine-learning-workforce.html",
+      "audio_url": "https://pod.darvinyi.com/audio/brynjolfsson-2017-machine-learning-workforce.mp3"
     },
     {
       "slug": "wei-2024-longfact",
