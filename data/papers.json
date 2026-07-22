@@ -1398,7 +1398,8 @@
       "topic": "Reasoning",
       "author_group": "Google",
       "abstract": "A survey that names a phenomenon scaling laws don't predict: abilities absent in small models that appear as a sharp jump past a critical scale (a 'phase transition'). It catalogues thresholds across five model families — 3-digit arithmetic emerges for GPT-3 at ~13B params, MMLU at ~70–280B, TruthfulQA only for Gopher 280B, Word-in-Context only for PaLM 540B — and shows augmented strategies (chain-of-thought, instruction tuning, scratchpads) are themselves emergent, giving no benefit until ~100B. The authors flag the catch their own §5.1 raises and Schaeffer et al. (2023) later formalized: discontinuous metrics like exact-match can manufacture the jump, since cross-entropy loss improves smoothly below threshold — making 'emergence' as much a property of the metric as of the model.",
-      "explainer": "papers/wei-2022-emergent-abilities.html"
+      "explainer": "papers/wei-2022-emergent-abilities.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2022-emergent-abilities.mp3"
     },
     {
       "slug": "yi-2025-upbench",
@@ -3829,7 +3830,8 @@
       "topic": "Foundation Models",
       "author_group": "Mistral AI",
       "abstract": "A 7B-parameter open (Apache-2.0) language model that outperforms Llama 2 13B on every benchmark tested and Llama 1 34B on math, code, and reasoning, while staying cheap to serve via grouped-query attention plus sliding-window attention (a 4096-token window that compounds across layers to a ~131K theoretical span) and a rolling buffer cache that cuts cache memory ~8x. Ships a lightly instruction-tuned chat variant, but discloses no pretraining data or training details — so its \"small model, big quality\" result is demonstrated, not explained.",
-      "explainer": "papers/jiang-2023-mistral-7b.html"
+      "explainer": "papers/jiang-2023-mistral-7b.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jiang-2023-mistral-7b.mp3"
     },
     {
       "slug": "gao-2021-the-pile",
@@ -4056,7 +4058,8 @@
       "topic": "Foundation Models",
       "author_group": "DeepMind",
       "abstract": "Re-derives the compute-optimal frontier for LLM training from over 400 models and three independent fits, finding that model size and training tokens should scale roughly equally (≈20 tokens per parameter) rather than scaling parameters alone. Validates it by training Chinchilla (70B, 1.4T tokens), which beats Gopher (280B) and larger models at equal compute, reaching 67.5% on MMLU.",
-      "explainer": "papers/hoffmann-2022-chinchilla.html"
+      "explainer": "papers/hoffmann-2022-chinchilla.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hoffmann-2022-chinchilla.mp3"
     },
     {
       "slug": "wei-2021-flan",
@@ -4838,7 +4841,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Jilin University / Microsoft Research Asia",
       "abstract": "The field's first systematic taxonomy of LLM evaluation, organized around what to evaluate, where (46 benchmarks), and how (metrics and protocols) — synthesized from 269 papers, plus a summary of success/failure patterns and seven open grand challenges.",
-      "explainer": "papers/chang-2023-llm-eval-survey.html"
+      "explainer": "papers/chang-2023-llm-eval-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chang-2023-llm-eval-survey.mp3"
     },
     {
       "slug": "dwork-2012-fairness-through-awareness",
@@ -6250,7 +6254,8 @@
       "topic": "Post-training & RL",
       "author_group": "Imperial College London / University of Essex / University of Bradford",
       "abstract": "The field's first comprehensive MCTS taxonomy, five years after Kocsis and Szepesvari's UCT ignited the area — cataloguing 66 named variants and enhancements (RAVE, AMAF, SP-MCTS, parallelization strategies, and more) cross-referenced against 69 games and planning domains, from almost 250 references.",
-      "explainer": "papers/browne-2012-mcts-survey.html"
+      "explainer": "papers/browne-2012-mcts-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/browne-2012-mcts-survey.mp3"
     },
     {
       "slug": "ha-2018-world-models",
