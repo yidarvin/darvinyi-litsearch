@@ -3760,7 +3760,8 @@
       "topic": "Foundation Models",
       "author_group": "NVIDIA",
       "abstract": "Introduces tensor (intra-layer) model parallelism: by column-splitting the first GEMM and row-splitting the second inside each transformer block, a whole layer needs only two all-reduces per forward/backward pass — a few primitives in native PyTorch, no custom compiler. Trains an 8.3B-parameter GPT-2 and a 3.9B BERT on 512 V100s at 15.1 PetaFLOP/s (76% scaling efficiency), sets zero-shot SOTA on WikiText103 (10.8 ppl) and LAMBADA (66.5%), and shows that reordering layer normalization is what lets BERT scale past BERT-Large.",
-      "explainer": "papers/shoeybi-2019-megatron-lm.html"
+      "explainer": "papers/shoeybi-2019-megatron-lm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shoeybi-2019-megatron-lm.mp3"
     },
     {
       "slug": "gu-2021-s4",
@@ -3849,7 +3850,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "EleutherAI",
       "abstract": "EleutherAI's 825 GiB open English corpus, assembled from 22 curated sources — academic papers (PubMed Central, arXiv), code (GitHub), legal opinions (FreeLaw), Q&A (Stack Exchange), books, and dialogue — deliberately diversified beyond the Common Crawl monoculture of GPT-3-era pretraining. Components are up-weighted by quality (Wikipedia seen 3×), turning 825 GiB of raw text into ~1,254 GiB of effective training data. It doubles as a broad-coverage benchmark: off-the-shelf GPT-2/GPT-3 follow a clean bits-per-byte scaling law on it yet visibly struggle on academic, code, and symbolic domains, and a size-matched 1.3B model trained on the Pile beats one trained on filtered Common Crawl on every component. Also a landmark in creator-side dataset documentation — and a licensing flashpoint, since its Books3 component (~12%) was later pulled over copyright.",
-      "explainer": "papers/gao-2021-the-pile.html"
+      "explainer": "papers/gao-2021-the-pile.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gao-2021-the-pile.mp3"
     },
     {
       "slug": "deng-2023-mind2web",
@@ -3987,7 +3989,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "The first application of reinforcement learning from human preferences to language models: a reward model is trained from human 4-way comparisons, and a pretrained 774M GPT-2 policy is fine-tuned against it with PPO under a per-token KL penalty back to the base model. Stylistic continuation needs only 5,000 comparisons (preferred 88% of the time over zero-shot), but the 60,000-label summarizers become almost entirely extractive 'smart copiers' that beat human reference summaries while losing to a lead-3 baseline -- an early, candid case study in reward hacking, including a sign-flip bug that produced maximally offensive text.",
-      "explainer": "papers/ziegler-2019-finetune-preferences.html"
+      "explainer": "papers/ziegler-2019-finetune-preferences.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ziegler-2019-finetune-preferences.mp3"
     },
     {
       "slug": "zhuge-2024-agent-as-judge",
@@ -5357,7 +5360,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "Combines six independently-published DQN extensions — Double Q-learning, prioritized replay, dueling networks, multi-step returns, distributional RL (C51), and Noisy Nets — into a single agent that reaches 223% median human-normalized score across 57 Atari games. A detailed ablation study finds prioritized replay and multi-step learning matter most, with dueling and double Q-learning barely moving the aggregate median.",
-      "explainer": "papers/hessel-2018-rainbow.html"
+      "explainer": "papers/hessel-2018-rainbow.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hessel-2018-rainbow.mp3"
     },
     {
       "slug": "silver-2014-dpg",
@@ -5494,7 +5498,8 @@
       "topic": "Post-training & RL",
       "author_group": "University of Oxford",
       "abstract": "Proposes COMA, a centralized-critic actor-critic method for cooperative multi-agent RL that uses a counterfactual baseline — marginalizing out one agent's action while holding the others fixed — to solve multi-agent credit assignment. Evaluated on decentralized StarCraft unit micromanagement, where it outperforms independent and ablated centralized-critic baselines.",
-      "explainer": "papers/foerster-2017-coma.html"
+      "explainer": "papers/foerster-2017-coma.html",
+      "audio_url": "https://pod.darvinyi.com/audio/foerster-2017-coma.mp3"
     },
     {
       "slug": "xiong-2020-ance",
