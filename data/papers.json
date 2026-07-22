@@ -2920,7 +2920,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Shows open-domain QA retrieval can be done with learned dense embeddings alone: two BERT encoders trained with an in-batch-negatives contrastive loss on only a few thousand question–passage pairs beat a tuned BM25 by 9–19 points top-20 accuracy (78.4% vs 59.1% on Natural Questions) and set new end-to-end exact-match SOTA on 4 of 5 QA benchmarks (41.5 EM on NQ vs ORQA's 33.3), with a DPR trained on just 1,000 pairs already beating BM25. The in-batch-negative dual encoder became the default first stage for open-domain QA and the retriever behind RAG; later work (BEIR) showed its zero-shot out-of-domain generalization is weaker than the in-domain gains imply.",
-      "explainer": "papers/karpukhin-2020-dpr.html"
+      "explainer": "papers/karpukhin-2020-dpr.html",
+      "audio_url": "https://pod.darvinyi.com/audio/karpukhin-2020-dpr.mp3"
     },
     {
       "slug": "laurent-2024-lab-bench",
@@ -3771,7 +3772,8 @@
       "topic": "Foundation Models",
       "author_group": "AI2",
       "abstract": "Replaces the Transformer's O(n²) self-attention with a pattern that scales linearly: a sliding local window (optionally dilated) plus a few task-placed global tokens, still propagating information document-wide across stacked layers. Dropped into a pretrained RoBERTa by copying its 512 position embeddings out to 4,096, it consistently beats RoBERTa on long-document QA, classification, and coreference, sets new SOTA on WikiHop (81.9 F1) and TriviaQA (77.3 F1), and — as the LED encoder-decoder variant reading 16K tokens — tops arXiv summarization. An ablation shows the hand-placed global attention does most of the work (−8.3 on WikiHop without it). The drop-in design made long context a finetuning detail rather than a from-scratch retrain.",
-      "explainer": "papers/beltagy-2020-longformer.html"
+      "explainer": "papers/beltagy-2020-longformer.html",
+      "audio_url": "https://pod.darvinyi.com/audio/beltagy-2020-longformer.mp3"
     },
     {
       "slug": "touvron-2023-llama2",
@@ -5536,7 +5538,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Introduces WarpSelect, a register-resident GPU k-selection primitive, plus a GPU computation layout for exact and product-quantized (IVFADC) approximate nearest-neighbor search, building a billion-vector k-NN graph in under 12 hours and beating the prior GPU state of the art by 8.5x on SIFT1B. Open-sourced as the FAISS library, now the de facto ANN backend behind dense-retrieval and RAG systems.",
-      "explainer": "papers/johnson-2017-faiss.html"
+      "explainer": "papers/johnson-2017-faiss.html",
+      "audio_url": "https://pod.darvinyi.com/audio/johnson-2017-faiss.mp3"
     },
     {
       "slug": "foerster-2016-dial",
@@ -6165,7 +6168,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "DeepMind",
       "abstract": "Rewrites a sample from a Gaussian latent variable as a differentiable function of its parameters plus independent noise, letting an entire deep generative model with continuous latent variables train end-to-end via ordinary backprop. Introduces deep latent Gaussian models with a jointly-trained amortized recognition network; reaches 86.60 nats test negative log-likelihood on binarized MNIST and generates convincing samples on NORB, CIFAR-10, and Frey faces. One of two papers (with Kingma & Welling's contemporaneous VAE paper) that independently invented the reparameterization trick within weeks of each other.",
-      "explainer": "papers/rezende-2014-stochastic-backprop.html"
+      "explainer": "papers/rezende-2014-stochastic-backprop.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rezende-2014-stochastic-backprop.mp3"
     },
     {
       "slug": "vinyals-2019-alphastar",
@@ -7841,7 +7845,8 @@
       "topic": "Foundation Models",
       "author_group": "Zhuiyi Technology",
       "abstract": "Introduces Rotary Position Embedding (RoPE): encode a token's absolute position m by rotating its query/key vector by angle mθ, so the inner product of two rotated vectors depends only on their relative rotation (m-n)θ — relative-position behavior from a purely multiplicative, norm-preserving operation that (unlike additive schemes) composes with linear attention. RoFormer's own reported results are more mixed than the abstract implies (a 3-3 GLUE split against BERT, a Chinese long-text result confounded with tokenization), and the authors admit they lack a faithful explanation for their two headline findings — but the mechanism itself became the default position embedding for LLaMA, PaLM, the Qwen and DeepSeek families, and StarCoder2.",
-      "explainer": "papers/su-2021-roformer.html"
+      "explainer": "papers/su-2021-roformer.html",
+      "audio_url": "https://pod.darvinyi.com/audio/su-2021-roformer.mp3"
     },
     {
       "slug": "taori-2023-alpaca",
