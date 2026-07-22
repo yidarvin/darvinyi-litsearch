@@ -166,12 +166,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2020 · ACL · Foundation Models</div>
       <h1>BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</h1>
       <p class="dek">A sequence-to-sequence denoising autoencoder that generalizes BERT's bidirectional encoder and GPT's left-to-right decoder into a single architecture. Corrupt a document with an arbitrary noising function, then train the model to reconstruct it exactly — and unlike prior denoising schemes tied to one noise type, BART can mix and match, so the paper runs the noise functions themselves as an ablation and finds that shuffling sentences plus masking whole spans (not single tokens) wins.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/lewis-2019-bart.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/lewis-2019-bart.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed, Omer Levy, Ves Stoyanov, Luke Zettlemoyer · Facebook AI</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ACL</b></span>
         <span class="fact">citations&nbsp;<b>13,001</b></span>
         <span class="fact">topic&nbsp;<b>Foundation Models</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1910.13461">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/lewis-2019-bart.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-07-19</div>
     </div>

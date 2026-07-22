@@ -3867,7 +3867,8 @@
       "topic": "Foundation Models",
       "author_group": "OpenAI",
       "abstract": "Introduces GPT (Generative Pre-Training): a 12-layer decoder-only Transformer trained with a plain next-token language-modeling objective on BooksCorpus, then discriminatively fine-tuned on each target task with task-aware input transformations that need only a single linear head — no bespoke per-task architecture. This one semi-supervised recipe sets a new state of the art on 9 of 12 NLU benchmarks (e.g. +8.9 on Story Cloze, +5.7 on RACE, GLUE 72.8 vs 68.9), and the paper's analysis shows zero-shot task ability emerging steadily over pre-training — the template GPT-2 and GPT-3 would scale up.",
-      "explainer": "papers/radford-2018-gpt1.html"
+      "explainer": "papers/radford-2018-gpt1.html",
+      "audio_url": "https://pod.darvinyi.com/audio/radford-2018-gpt1.mp3"
     },
     {
       "slug": "peters-2018-elmo",
@@ -3881,7 +3882,8 @@
       "topic": "Foundation Models",
       "author_group": "AI2",
       "abstract": "Introduces ELMo (Embeddings from Language Models): deep contextualized word representations computed as a task-specific learned linear combination of all internal layers of a pretrained bidirectional LSTM language model, so each token's vector is a function of the whole sentence rather than a fixed per-word embedding. Swapping ELMo in for word2vec/GloVe lifted the single-model state of the art across six NLP tasks — question answering, entailment, semantic role labeling, coreference, NER, and sentiment — and showed that lower LM layers encode syntax while higher layers encode word sense.",
-      "explainer": "papers/peters-2018-elmo.html"
+      "explainer": "papers/peters-2018-elmo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/peters-2018-elmo.mp3"
     },
     {
       "slug": "baker-2025-monitoring-reasoning",
@@ -4695,7 +4697,8 @@
       "topic": "Post-training & RL",
       "author_group": "UC Berkeley",
       "abstract": "Adds an entropy bonus directly into the RL objective, giving an off-policy actor-critic algorithm that trains a reparameterized stochastic Gaussian policy with a clipped double-Q critic (borrowed from concurrent TD3 work). Outperforms DDPG and PPO by a large margin on hard MuJoCo continuous-control tasks including the 21-dimensional Humanoid, though reward scale remains a per-task hyperparameter — automatic temperature tuning arrived only in a later follow-up paper.",
-      "explainer": "papers/haarnoja-2018-sac.html"
+      "explainer": "papers/haarnoja-2018-sac.html",
+      "audio_url": "https://pod.darvinyi.com/audio/haarnoja-2018-sac.mp3"
     },
     {
       "slug": "fujimoto-2018-td3",
@@ -6073,7 +6076,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "AlphaGo Zero learns to play Go entirely through self-play reinforcement learning, starting from random play with no human game data and no hand-crafted features beyond the raw board — a single network trained where MCTS search itself supplies the training target. It defeats the AlphaGo version that beat Lee Sedol 100 games to 0, and a larger run reaches 5,185 Elo, beating AlphaGo Master 89 games to 11.",
-      "explainer": "papers/silver-2017-alphago-zero.html"
+      "explainer": "papers/silver-2017-alphago-zero.html",
+      "audio_url": "https://pod.darvinyi.com/audio/silver-2017-alphago-zero.mp3"
     },
     {
       "slug": "silver-2018-alphazero",
@@ -7844,7 +7848,8 @@
       "topic": "Foundation Models",
       "author_group": "Meta AI (FAIR)",
       "abstract": "A denoising sequence-to-sequence autoencoder that generalizes BERT's bidirectional encoder and GPT's left-to-right decoder into one Transformer architecture: corrupt a document with an arbitrary noising function, then reconstruct it exactly, which lets the paper run the noise function itself as a controlled ablation across token masking, token deletion, text infilling, sentence permutation, and document rotation. Text infilling (Poisson-length spans replaced by a single mask) wins the base-scale ablation; at RoBERTa-matched scale, BART ties RoBERTa on GLUE/SQuAD while setting new state of the art on XSum (+6 ROUGE), CNN/DailyMail, ELI5 abstractive QA, and WMT16 Romanian-English translation (+1.1 BLEU) using only English-side pretraining.",
-      "explainer": "papers/lewis-2019-bart.html"
+      "explainer": "papers/lewis-2019-bart.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lewis-2019-bart.mp3"
     },
     {
       "slug": "he-2021-deberta",
