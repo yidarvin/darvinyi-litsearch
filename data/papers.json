@@ -4187,7 +4187,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Stanford",
       "abstract": "The 200-plus-page Stanford report (the founding document of CRFM) that coined the term \"foundation models\": models trained on broad data at scale and adaptable to a wide range of downstream tasks. It frames the paradigm around two forces—emergence (capabilities like in-context learning appear with scale, unprogrammed) and homogenization (one base model underlies everything, making it a single point of failure)—then surveys the capabilities, underlying technology, applications, and societal risks of the paradigm.",
-      "explainer": "papers/bommasani-2021-foundation-models.html"
+      "explainer": "papers/bommasani-2021-foundation-models.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bommasani-2021-foundation-models.mp3"
     },
     {
       "slug": "sanh-2021-t0",
@@ -5351,7 +5352,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "Extends deterministic actor-critic (DPG/DDPG) to multi-agent settings via centralized training with decentralized execution: each agent gets a critic conditioned on every agent's observations and actions, while each actor remains a function of its own observation only at execution time. Also introduces a policy-ensemble training scheme for robustness to changing opponent/collaborator policies, validated on six cooperative/competitive/mixed multi-agent particle-world tasks.",
-      "explainer": "papers/lowe-2017-maddpg.html"
+      "explainer": "papers/lowe-2017-maddpg.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lowe-2017-maddpg.mp3"
     },
     {
       "slug": "jia-2017-adversarial-squad",
@@ -5443,7 +5445,8 @@
       "topic": "Post-training & RL",
       "author_group": "Google Brain",
       "abstract": "Replaces the non-differentiable sample from a categorical distribution with a differentiable Gumbel-Softmax sample — Gumbel noise added to class log-probabilities, then softmax at temperature τ — giving a reparameterizable, low-variance gradient estimator for categorical latent variables. Outperforms score-function and Straight-Through baselines on structured-output-prediction and VAE tasks, yielding up to 9.9× training speedups over marginalization in semi-supervised classification.",
-      "explainer": "papers/jang-2016-gumbel-softmax.html"
+      "explainer": "papers/jang-2016-gumbel-softmax.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jang-2016-gumbel-softmax.mp3"
     },
     {
       "slug": "foerster-2017-coma",
@@ -5909,7 +5912,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "USC Information Sciences Institute",
       "abstract": "Surveys the fragmented fairness-in-ML literature into one reference: a taxonomy of 23 named bias sources mapped onto a data-algorithm-user feedback loop, a catalog of 10 group/subgroup/individual fairness definitions, and a pre-processing/in-processing/post-processing map of mitigation methods across 16 ML subdomains, synthesized from 188 references.",
-      "explainer": "papers/mehrabi-2019-bias-fairness-survey.html"
+      "explainer": "papers/mehrabi-2019-bias-fairness-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mehrabi-2019-bias-fairness-survey.mp3"
     },
     {
       "slug": "hendrycks-2017-msp-baseline",
@@ -7554,7 +7558,8 @@
       "topic": "Foundation Models",
       "author_group": "Qwen Team",
       "abstract": "Alibaba's Qwen3 family fuses thinking and non-thinking modes into single dense (0.6B–32B) and MoE (30B-A3B, 235B-A22B) checkpoints via a /think//no_think switch and an emergent, user-controllable thinking-budget dial, pre-trained on 36 trillion tokens across 119 languages. A distillation recipe brings the six lightweight checkpoints to strong performance at roughly 1/10th the GPU-hours of direct RL, and the flagship reaches 85.7 on AIME'24 and 70.7 on LiveCodeBench v5.",
-      "explainer": "papers/yang-2025-qwen3.html"
+      "explainer": "papers/yang-2025-qwen3.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2025-qwen3.mp3"
     },
     {
       "slug": "pyatkin-2025-ifbench",
