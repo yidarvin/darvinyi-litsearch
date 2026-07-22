@@ -1328,7 +1328,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "OpenAI",
       "abstract": "Prompt injections, jailbreaks, and system-prompt extraction share one root cause: LLMs treat system, user, and tool text as equally authoritative. The paper reframes this as a missing privilege system and defines an instruction hierarchy (system → user → tool) with an automated data-generation recipe — context synthesis for aligned lower-level instructions, context ignorance for misaligned ones — to fine-tune GPT-3.5 Turbo to defer to higher-privileged instructions. Robustness rises across the board (system-message extraction 32.8% → 95.9%) and generalizes to held-out attacks like jailbreaks (+34%), at the cost of over-refusal on adversarially attack-shaped benign prompts.",
-      "explainer": "papers/wallace-2024-instruction-hierarchy.html"
+      "explainer": "papers/wallace-2024-instruction-hierarchy.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wallace-2024-instruction-hierarchy.mp3"
     },
     {
       "slug": "debenedetti-2024-agentdojo",
@@ -7253,7 +7254,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UIUC / Stanford / UC Berkeley",
       "abstract": "Ports classical computer-security attacks — obfuscation, code injection/payload splitting, and virtualization — onto instruction-following LLMs (ChatGPT, GPT-3, InstructGPT), bypassing OpenAI's content filters with up to 100% success across hate speech, phishing, and scam generation, and showing the resulting malicious content can be produced for as little as $0.0064 per generation — cheaper than the human labor it replaces.",
-      "explainer": "papers/kang-2023-programmatic-behavior.html"
+      "explainer": "papers/kang-2023-programmatic-behavior.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kang-2023-programmatic-behavior.mp3"
     },
     {
       "slug": "perez-2022-model-written-evals",
@@ -7917,7 +7919,8 @@
       "topic": "Agents",
       "author_group": "UCLA / Microsoft Research",
       "abstract": "A plug-and-play compositional-reasoning framework where an LLM planner assembles a natural-language program over a heterogeneous 13-tool inventory (LLMs, vision models, Bing search, Python execution, rule-based modules) to answer multi-modal, knowledge-intensive questions. Powered by GPT-4, Chameleon reaches 86.54% accuracy on ScienceQA (+11.37 over the best prior published few-shot result) and 98.78% on TabMWP (+17.0 over the prior best), without any tool-specific training.",
-      "explainer": "papers/lu-2023-chameleon.html"
+      "explainer": "papers/lu-2023-chameleon.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lu-2023-chameleon.mp3"
     },
     {
       "slug": "gou-2023-tora",
@@ -8142,7 +8145,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MIT",
       "abstract": "A pre-registered meta-analysis of 106 experiments (370 effect sizes, 2020-2023) finds human-AI teams underperform the better of human-alone or AI-alone by Hedges' g = -0.23 on average, even though they beat the human alone (g = 0.64). Synergy flips positive only when the human outperforms the AI solo, and only 3 of 100+ experiments tested deliberate task delegation - the complementarity caution 'Generative AI at Work' and 'GPTs are GPTs' both cite before claiming their own gains.",
-      "explainer": "papers/vaccaro-2024-human-ai-combinations.html"
+      "explainer": "papers/vaccaro-2024-human-ai-combinations.html",
+      "audio_url": "https://pod.darvinyi.com/audio/vaccaro-2024-human-ai-combinations.mp3"
     },
     {
       "slug": "brynjolfsson-2017-machine-learning-workforce",
@@ -8265,7 +8269,8 @@
       "topic": "Agents",
       "author_group": "Renmin University of China",
       "abstract": "A training-free framework that lets QwQ-32B-style reasoning models search the web mid-chain-of-thought — firing a query whenever reasoning hits a knowledge gap, then using a separate Reason-in-Documents pass to distill retrieved pages into a clean fact before splicing it back into the chain. Beats direct reasoning and naive agentic RAG across GPQA/MATH/LiveCodeBench (GPQA overall 58.1 to 63.6 Pass@1) and multi-hop QA, and even edges out human domain experts' own overall GPQA-extended accuracy (57.9), though it still trails chemists specifically in chemistry (40.7 vs. 72.6).",
-      "explainer": "papers/li-2025-search-o1.html"
+      "explainer": "papers/li-2025-search-o1.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2025-search-o1.mp3"
     },
     {
       "slug": "asai-2024-self-rag",
