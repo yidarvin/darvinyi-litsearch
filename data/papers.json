@@ -1888,7 +1888,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "OpenAI",
       "abstract": "Reframes “will AI take jobs?” as a measurable, task-level exposure problem: an LLM-exposure rubric — could the task be done in half the time at equal quality? — scored over all 1,016 O*NET occupations by both human annotators and GPT-4. Estimates that ~80% of U.S. workers have at least 10% of their tasks exposed and ~19% have over half; ~15% of all tasks are directly exposed (α), rising to 47–56% once software built on top of LLMs (E2) is counted. The signature finding inverts prior automation indices — exposure rises with wages and educational barriers, hitting writing- and programming-heavy white-collar work hardest and science/critical-thinking roles least. Coins the thesis “GPTs are GPTs”: LLMs as general-purpose technologies.",
-      "explainer": "papers/eloundou-2023-gpts-are-gpts.html"
+      "explainer": "papers/eloundou-2023-gpts-are-gpts.html",
+      "audio_url": "https://pod.darvinyi.com/audio/eloundou-2023-gpts-are-gpts.mp3"
     },
     {
       "slug": "wei-2024-simpleqa",
@@ -7187,7 +7188,8 @@
       "topic": "Foundation Models",
       "author_group": "BigCode",
       "abstract": "A 3B/7B/15B code-LLM family trained on The Stack v2, a 67.5 TB rebuild of BigCode's training corpus (619 languages, sourced from Software Heritage's full archive) filtered through a license cascade, opt-out removal, and benchmark decontamination down to ~900B unique training tokens. StarCoder2-15B matches or beats CodeLlama-34B and DeepSeek-Coder-33B — more than twice its size — on math reasoning and code-execution benchmarks, while DeepSeek-Coder-33B keeps the edge on raw high-resource code completion.",
-      "explainer": "papers/lozhkov-2024-starcoder2.html"
+      "explainer": "papers/lozhkov-2024-starcoder2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lozhkov-2024-starcoder2.mp3"
     },
     {
       "slug": "wu-2023-autogen",
@@ -7566,7 +7568,8 @@
       "topic": "Agents",
       "author_group": "OSU NLP",
       "abstract": "SeeAct tests GPT-4V as a generalist web agent that plans purely from a screenshot, then isolates action grounding as the real bottleneck: the best automatic grounding strategy still trails a human-grounded oracle by 20-30 points on Mind2Web, and Set-of-Mark-style image annotation actually underperforms a plain HTML-text multiple-choice.",
-      "explainer": "papers/zheng-2024-seeact.html"
+      "explainer": "papers/zheng-2024-seeact.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zheng-2024-seeact.mp3"
     },
     {
       "slug": "yang-2023-set-of-mark",
@@ -7880,7 +7883,8 @@
       "topic": "Agents",
       "author_group": "UT Austin / SUNY Binghamton",
       "abstract": "LLM+P has an LLM translate a natural-language planning problem into PDDL, hands it to a classical sound-and-complete planner (Fast Downward) to solve, then translates the plan back to language — delegating long-horizon search away from the LLM entirely. Across seven IPC-derived robot-planning domains with GPT-4, LLM+P clears 85%+ success (including a sub-optimal fallback) in five domains and completes a real-robot tidy-up task, while direct LLM-As-Planner and an adapted Tree-of-Thoughts search baseline score near 0% almost everywhere.",
-      "explainer": "papers/liu-2023-llm-p.html"
+      "explainer": "papers/liu-2023-llm-p.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-llm-p.mp3"
     },
     {
       "slug": "wang-2023-deps",
@@ -8103,7 +8107,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Microsoft / GitHub",
       "abstract": "A controlled experiment with 95 Upwork-recruited developers building an HTTP server in JavaScript: the treated group, given GitHub Copilot, completed the task 55.8% faster than control (95% CI: 21-89%), though task success was only 7pp higher and not statistically significant. Heterogeneous effects favored less-experienced, higher-hours-per-day, and older (25-44) developers. The field-experiment counterpart to Generative AI at Work and the canonical citation for 'Copilot makes developers faster' - run by Microsoft/GitHub researchers on a small, boilerplate-friendly task.",
-      "explainer": "papers/peng-2023-copilot-productivity.html"
+      "explainer": "papers/peng-2023-copilot-productivity.html",
+      "audio_url": "https://pod.darvinyi.com/audio/peng-2023-copilot-productivity.mp3"
     },
     {
       "slug": "dellacqua-2023-jagged-frontier",
