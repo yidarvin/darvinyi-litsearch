@@ -1871,7 +1871,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford / MIT",
       "abstract": "The first study of a generative-AI tool deployed at scale in a real workplace: the staggered rollout of a GPT-based conversational assistant to 5,172 customer-support agents at a Fortune 500 firm (3M chats). Access to AI raises productivity (issues resolved per hour) by 15% on average, but the gains are deeply uneven — the lowest-skill and newest agents improve ~36% while the most experienced gain near zero (and lose a little quality), compressing the skill distribution rather than widening it as earlier IT waves did. A staggered difference-in-differences (Sun–Abraham event study, an IV, and a small RCT) shows the effect is immediate and persistent, partly reflects durable learning (workers stay faster even during AI outages), and arrives with better customer sentiment (~0.5 SD), ~25% fewer manager-escalation requests, and 40% lower attrition among new hires. The real-world economic-impact backbone of the GDPval / RLI / SWE-Lancer / UpBench cluster.",
-      "explainer": "papers/brynjolfsson-2023-generative-ai-at-work.html"
+      "explainer": "papers/brynjolfsson-2023-generative-ai-at-work.html",
+      "audio_url": "https://pod.darvinyi.com/audio/brynjolfsson-2023-generative-ai-at-work.mp3"
     },
     {
       "slug": "eloundou-2023-gpts-are-gpts",
@@ -3030,7 +3031,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "BigCode",
       "abstract": "StarCoder and StarCoderBase are 15.5B-parameter open Code LLMs from the 600-member BigCode collaboration, trained on a trillion tokens of permissively-licensed code from The Stack with an 8K context, Multi-Query Attention, and Fill-in-the-Middle infilling. StarCoder (Python-fine-tuned) is the strongest open model of its day on HumanEval (33.6) and MBPP (52.7) and matches OpenAI's code-cushman-001, while StarCoderBase leads open models across 19 languages via MultiPL-E and reshuffles rankings on realistic DS-1000 data-science code. The signature contribution is the release apparatus: The Stack's opt-out data governance (“Am I in The Stack”), a crowd-annotated PII-redaction pipeline (StarEncoder + NER over 22,950 labelled entities), and Bloom-filter + BM25 code-attribution tools shipped alongside the OpenRAIL-M-licensed weights.",
-      "explainer": "papers/li-2023-starcoder.html"
+      "explainer": "papers/li-2023-starcoder.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2023-starcoder.mp3"
     },
     {
       "slug": "gu-2024-cruxeval",
@@ -6025,7 +6027,8 @@
       "topic": "Post-training & RL",
       "author_group": "Google DeepMind",
       "abstract": "DreamerV3 learns a Recurrent State-Space Model world model from real experience, using symlog/symexp normalization for numerical robustness, then trains its actor-critic purely on trajectories imagined inside that model. Under one unchanged hyperparameter configuration, it beats individually-tuned expert algorithms across 150+ tasks spanning 8 domains and becomes the first algorithm to collect a diamond in Minecraft from scratch with no human data, using 1 GPU for 9 days versus VPT's 720 GPUs.",
-      "explainer": "papers/hafner-2023-dreamerv3.html"
+      "explainer": "papers/hafner-2023-dreamerv3.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hafner-2023-dreamerv3.mp3"
     },
     {
       "slug": "dettmers-2022-llm-int8",
@@ -7727,7 +7730,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Princeton University / Virginia Tech",
       "abstract": "Shows aligned LLMs' safety guardrails can be stripped by fine-tuning on as few as 10 adversarial examples — a $0.20 attack that lifts GPT-3.5 Turbo's harmfulness rate from 1.8% to 88.8% — and that even wholly benign fine-tuning on Alpaca or Dolly measurably erodes safety alignment. Introduces a policy-grounded GPT-4 Judge, validated against human raters (Cohen's Kappa 0.539–0.792), to measure the degradation.",
-      "explainer": "papers/qi-2023-finetuning-compromises-safety.html"
+      "explainer": "papers/qi-2023-finetuning-compromises-safety.html",
+      "audio_url": "https://pod.darvinyi.com/audio/qi-2023-finetuning-compromises-safety.mp3"
     },
     {
       "slug": "liu-2023-autodan",
@@ -8150,7 +8154,8 @@
       "topic": "Retrieval & RAG",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Pairs a Contriever dense retriever with a T5 Fusion-in-Decoder reader and jointly pretrains both — using one of four novel retriever-training losses (ADist, EMDR2, PDist, LOOP) trained from (query, output) pairs alone, no document annotations — to test whether few-shot ability can be decoupled from parameter count. An 11B-parameter Atlas, fine-tuned on just 64 examples, beats 540B-parameter PaLM's in-context Natural Questions accuracy (42.4% vs. 39.6%) and sets new full-dataset state-of-the-art on NQ (60.4% EM) and TriviaQA, while its own leakage analysis shows a meaningful share of its MMLU accuracy tracks how often the correct answer's text literally appears in retrieval.",
-      "explainer": "papers/izacard-2022-atlas.html"
+      "explainer": "papers/izacard-2022-atlas.html",
+      "audio_url": "https://pod.darvinyi.com/audio/izacard-2022-atlas.mp3"
     },
     {
       "slug": "trivedi-2021-musique",
