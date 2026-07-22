@@ -1583,7 +1583,8 @@
       "topic": "Post-training & RL",
       "author_group": "Li Auto",
       "abstract": "A fully automated Coarse-to-Fine pipeline for manufacturing discriminative rubrics — principle-guided + response-grounded generation, multi-model aggregation across heterogeneous frontier models (GPT-5.1, Gemini 3 Pro), and a difficulty-evolution stage that hardens ‘is it correct?’ into ‘is it exceptional?’ — yielding RubricHub, a ~110k question–rubric dataset over five domains (Medical and Science 27.1% each, Instruction Following 20.9%, Writing 15.9%, Chat 9.0%; up to 32 criteria/query, and even Qwen3-235B averaging only ~0.6). A two-stage recipe (RuFT rubric rejection-sampling SFT → RuRL with DAPO) takes a base Qwen3-14B to 69.3 on HealthBench, edging GPT-5’s 67.2, with ArenaHard V2 climbing 5.2→74.4 and strictly monotonic Base<RuFT<RuRL<RuFT→RuRL gains; swapping RaR’s rubrics for RubricHub-generated ones lifts HealthBench 47.7→62.1 with all else fixed. The headline is large but lives entirely inside a model-written, model-graded rubric loop: positive-only presence-based criteria, ‘†’ reported frontier scores, no human eval of the trained outputs, and far smaller gains on verifiable GPQA-Diamond (58.5).",
-      "explainer": "papers/li-2026-rubrichub.html"
+      "explainer": "papers/li-2026-rubrichub.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2026-rubrichub.mp3"
     },
     {
       "slug": "gao-2022-reward-overoptimization",
@@ -6393,7 +6394,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Fudan University",
       "abstract": "A survey that reframes LLM evaluation around two transitions -- task-specific to capability-based benchmarks (knowledge, reasoning, instruction following, multimodal, safety) and manual to automated dataset curation/judging -- then names the deeper bottleneck beneath both: bounded test sets that can't keep pace with models whose abilities grow unboundedly, the 'evaluation generalization' problem.",
-      "explainer": "papers/cao-2025-generalizable-eval-survey.html"
+      "explainer": "papers/cao-2025-generalizable-eval-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cao-2025-generalizable-eval-survey.mp3"
     },
     {
       "slug": "li-2024-llm-judges-survey",
@@ -6422,7 +6424,8 @@
       "topic": "Post-training & RL",
       "author_group": "Peking University / Ant Group",
       "abstract": "The first survey focused specifically on reward models in the LLM era, organizing 226 references around preference collection, a discriminative/generative/implicit reward-modeling taxonomy, downstream usage, and the dedicated RM benchmarks and failure modes (overoptimization, evaluator bias) that have grown up around them.",
-      "explainer": "papers/zhong-2025-reward-models-survey.html"
+      "explainer": "papers/zhong-2025-reward-models-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhong-2025-reward-models-survey.mp3"
     },
     {
       "slug": "chen-2026-rubrics-survey",
@@ -6738,7 +6741,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Yale University",
       "abstract": "Surveys the growing field of LLM data-contamination research around three questions — impact, detection, and mitigation — organizing roughly twenty detection techniques into seven method families (retrieval, temporal cutoff, masking, perturbation, canonical order, behavior manipulation, membership inference) by what model access each requires. Finds mitigation research trails detection research by roughly five to one, with no shared benchmark for comparing detection methods' accuracy.",
-      "explainer": "papers/deng-2024-contamination-survey.html"
+      "explainer": "papers/deng-2024-contamination-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/deng-2024-contamination-survey.mp3"
     },
     {
       "slug": "freitag-2023-wmt23-metrics",
@@ -7676,7 +7680,8 @@
       "topic": "Post-training & RL",
       "author_group": "Zhejiang University / Li Auto",
       "abstract": "A rubric-based RL method that injects checklist criteria into RL rollouts as decaying scaffolding to widen exploration, then reuses the same rubrics as the reward — breaking the exploration bottleneck that stalls RLVR on open-ended reasoning tasks.",
-      "explainer": "papers/zhou-2025-ruscarl.html"
+      "explainer": "papers/zhou-2025-ruscarl.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2025-ruscarl.mp3"
     },
     {
       "slug": "yang-2025-qwen3",
