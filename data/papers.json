@@ -3612,7 +3612,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UC Berkeley",
       "abstract": "Argues that \"jailbreaks\" on safety-trained LLMs are not a grab-bag of tricks but two structural failure modes of safety training: competing objectives (safety conflicts with the pretraining and instruction-following objectives the model is also optimizing, e.g. prefix injection and refusal suppression) and mismatched generalization (capabilities like reading Base64 reach domains safety training never covered). Used as design principles against GPT-4 and Claude v1.3, principled combination attacks reach 0.94/0.81 BAD BOT on a 32-prompt red-team set and a best-of-28 adaptive attack succeeds on 96–100% of harmful prompts, motivating \"safety-capability parity\" — a safety system must be as sophisticated as the model it guards.",
-      "explainer": "papers/wei-2023-jailbroken.html"
+      "explainer": "papers/wei-2023-jailbroken.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2023-jailbroken.mp3"
     },
     {
       "slug": "bubeck-2023-sparks-agi",
@@ -4127,7 +4128,8 @@
       "topic": "Post-training & RL",
       "author_group": "ByteDance",
       "abstract": "Reframes RLHF as a dataflow graph and resolves the single-controller (flexible) vs multi-controller (efficient) tension with a hybrid programming model: one controller coordinates the handful of models while each runs its distributed compute under the multi-controller paradigm. A 3D-HybridEngine reshards the actor between training and generation with zero memory redundancy, and an auto-mapping algorithm picks the optimal GPU placement — giving 1.53×–20.57× higher RLHF throughput than DeepSpeed-Chat, OpenRLHF, and NeMo-Aligner. Open-sourced as verl, it became the de-facto training substrate for the open RL-for-reasoning wave (e.g. DAPO).",
-      "explainer": "papers/sheng-2024-hybridflow.html"
+      "explainer": "papers/sheng-2024-hybridflow.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sheng-2024-hybridflow.mp3"
     },
     {
       "slug": "kimi-2025-k1-5",
@@ -4229,7 +4231,8 @@
       "topic": "Post-training & RL",
       "author_group": "Hugging Face / BigScience",
       "abstract": "Recasts 62 supervised NLP datasets into 2,073 diverse natural-language prompts (the Public Pool of Prompts, P3) and fine-tunes an 11B encoder-decoder (T5+LM) on a 39-dataset multitask mixture, holding out four whole task types. The resulting model, T0, matches or beats GPT-3 175B on 9 of 11 held-out datasets at ~16× smaller scale — showing zero-shot task generalization can be induced by explicit multitask prompted training, and that training on more diverse prompts improves robustness to wording.",
-      "explainer": "papers/sanh-2021-t0.html"
+      "explainer": "papers/sanh-2021-t0.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sanh-2021-t0.mp3"
     },
     {
       "slug": "park-2023-generative-agents",
@@ -4273,7 +4276,8 @@
       "topic": "Agents",
       "author_group": "NVIDIA",
       "abstract": "The first LLM-powered embodied lifelong-learning agent in Minecraft. A frozen GPT-4, queried as a black box (no fine-tuning), drives three interacting loops: an automatic curriculum that proposes its own goals from the agent's live state, an ever-growing skill library of executable Mineflayer-JS code retrieved by embedding similarity, and an iterative prompting mechanism that refines code from environment feedback, execution errors, and GPT-4 self-verification. It obtains 3.3x more unique items (63 in 160 iterations), travels 2.3x farther, unlocks tech-tree tiers up to 15.3x faster than prior agents, is the only method to reach the diamond tool (1 of 3 runs), and zero-shot-transfers its skill library to solve unseen tasks in a fresh world.",
-      "explainer": "papers/wang-2023-voyager.html"
+      "explainer": "papers/wang-2023-voyager.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2023-voyager.mp3"
     },
     {
       "slug": "yao-2024-tau-bench",
@@ -6185,7 +6189,8 @@
       "topic": "Post-training & RL",
       "author_group": "Google DeepMind",
       "abstract": "PlaNet learns a Recurrent State-Space Model (RSSM) — a latent dynamics model combining deterministic and stochastic transition paths — from raw pixel observations, then plans directly in that latent space with the Cross-Entropy Method. It matches the final performance of the strongest model-free algorithms on six continuous-control tasks while using on average 200x fewer environment episodes, and is the direct architectural ancestor of the Dreamer line of world-model agents.",
-      "explainer": "papers/hafner-2018-planet.html"
+      "explainer": "papers/hafner-2018-planet.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hafner-2018-planet.mp3"
     },
     {
       "slug": "hendrycks-2018-outlier-exposure",
