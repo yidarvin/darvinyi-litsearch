@@ -1643,7 +1643,8 @@
       "topic": "Agents",
       "author_group": "Northeastern",
       "abstract": "Reflexion teaches a frozen LLM agent to learn from trial and error with no weight update: after each attempt an Evaluator scores the trajectory and a Self-Reflection model writes a verbal post-mortem that is stored in episodic memory and fed back on the next try. This \"verbal reinforcement learning\" lifts performance across decision-making, reasoning, and code (91% pass@1 on HumanEval, 130/134 ALFWorld tasks).",
-      "explainer": "papers/shinn-2023-reflexion.html"
+      "explainer": "papers/shinn-2023-reflexion.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shinn-2023-reflexion.mp3"
     },
     {
       "slug": "yao-2023-tree-of-thoughts",
@@ -3465,7 +3466,8 @@
       "topic": "Post-training & RL",
       "author_group": "Google",
       "abstract": "Introduces “Flan,” the canonical instruction-finetuning recipe: finetune a pretrained model on 1,836 tasks phrased as instructions — scaling the task count, the model size, and a pivotal nine-dataset chain-of-thought mixture — for only ~0.2% of pretraining compute. Flan-PaLM 540B beats PaLM by +9.4% on held-out benchmarks (75.2% MMLU), and the paper shows that finetuning on non-CoT data alone actually degrades reasoning, which adding the CoT mixture repairs.",
-      "explainer": "papers/chung-2022-flan.html"
+      "explainer": "papers/chung-2022-flan.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chung-2022-flan.mp3"
     },
     {
       "slug": "guo-2024-deepseek-coder",
@@ -3615,7 +3617,8 @@
       "topic": "Reasoning",
       "author_group": "Microsoft Research",
       "abstract": "A 155-page case study from Microsoft Research probing an early, text-only version of GPT-4 across math, coding, vision, medicine, law, and theory of mind, arguing it shows \"sparks\" of artificial general intelligence and \"could reasonably be viewed as an early (yet still incomplete) version of an AGI system.\" Hugely influential and just as contested as evaluation: the evidence is mostly hand-picked qualitative transcripts of a non-reproducible, pre-deployment model, and the one contamination-controlled result (fresh post-cutoff LeetCode problems) leaves GPT-4 merely human-comparable (38.0 vs 38.2 pass@1), not superhuman.",
-      "explainer": "papers/bubeck-2023-sparks-agi.html"
+      "explainer": "papers/bubeck-2023-sparks-agi.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bubeck-2023-sparks-agi.mp3"
     },
     {
       "slug": "shi-2022-mgsm",
@@ -4094,7 +4097,8 @@
       "topic": "Post-training & RL",
       "author_group": "Qwen Team",
       "abstract": "Alibaba's open-weight LLM family: seven dense models (0.5B–72B) plus the Turbo/Plus MoE API models, pre-trained on 18 trillion tokens and aligned with a staged pipeline of 1M+ SFT examples, offline DPO, and online GRPO. The flagship Qwen2.5-72B-Instruct matches or beats Llama-3.1-405B-Instruct on MATH (83.1 vs 73.8), Arena-Hard (81.2 vs 69.3), and LiveCodeBench (55.5 vs 41.6) at roughly a fifth of the parameters, while Qwen2.5-Turbo handles 1M-token context at 100% passkey retrieval. The report candidly notes that reward-model benchmark scores fail to predict downstream RL performance (a Goodhart caveat).",
-      "explainer": "papers/yang-2024-qwen2-5.html"
+      "explainer": "papers/yang-2024-qwen2-5.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2024-qwen2-5.mp3"
     },
     {
       "slug": "sheng-2024-hybridflow",
@@ -6193,7 +6197,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "AlphaStar trains a 'League' of continually adapting agents via multi-agent reinforcement learning and self-play atop a policy bootstrapped from human replays, playing StarCraft II through the same raw camera-and-unit interface humans use. Evaluated blind on Battle.net, it reached Grandmaster level in all three StarCraft II races, rated above 99.8% of ranked human players, using one architecture, one algorithm, and one set of hyperparameters throughout.",
-      "explainer": "papers/vinyals-2019-alphastar.html"
+      "explainer": "papers/vinyals-2019-alphastar.html",
+      "audio_url": "https://pod.darvinyi.com/audio/vinyals-2019-alphastar.mp3"
     },
     {
       "slug": "kocsis-2006-uct",
