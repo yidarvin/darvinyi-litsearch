@@ -2039,7 +2039,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford",
       "abstract": "The first adequately-powered, confounder-controlled head-to-head between an LLM ideation agent and 49 expert NLP researchers. Across seven prompting-research topics, 79 experts write 298 blind reviews of 49 ideas per condition (human, AI, AI-plus-human-rerank), with idea style normalized so judges can't distinguish them (50% accuracy). AI-generated ideas are judged significantly more novel than expert ideas (5.64-5.81 vs 4.84, p<0.01) and comparable on other axes, though slightly weaker on feasibility. The agent shows hard limits: idea diversity collapses (~200 non-duplicates from 4,000 generated seeds) and LLMs can't yet evaluate ideas reliably (best 53.3% vs 56.1% human agreement). A landmark for evaluation rigor that is candid the win sits on a noisy instrument against median-grade human expert ideas.",
-      "explainer": "papers/si-2024-research-ideas.html"
+      "explainer": "papers/si-2024-research-ideas.html",
+      "audio_url": "https://pod.darvinyi.com/audio/si-2024-research-ideas.mp3"
     },
     {
       "slug": "zhu-2025-agentic-benchmarks",
@@ -2100,7 +2101,8 @@
       "topic": "Agents",
       "author_group": "OSU NLP",
       "abstract": "Argues GUI agents should perceive purely visually (screenshots) and act at the pixel level, like humans, instead of reading HTML or accessibility trees. The bottleneck is grounding: mapping a planner's textual description of an element to its on-screen coordinate. UGround is a 7B LLaVA-NeXT (later Qwen2-VL) grounding model trained on the largest GUI-grounding dataset to date, 10M elements over 1.3M screenshots, mostly synthesized from Common Crawl webpages via a hybrid rule+LLM pipeline (Web-Hybrid). Plugged into the vision-only SeeAct-V framework, it beats SeeClick by ~20% absolute on ScreenSpot and lets a screenshot-only agent match or beat HTML/a11y-based SOTA across six web, desktop, and mobile benchmarks, though end-to-end live-task success stays ~23-44%.",
-      "explainer": "papers/gou-2024-uground.html"
+      "explainer": "papers/gou-2024-uground.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gou-2024-uground.mp3"
     },
     {
       "slug": "wu-2024-os-atlas",
@@ -2114,7 +2116,8 @@
       "topic": "Agents",
       "author_group": "Shanghai AI Lab",
       "abstract": "The first open foundation action model for GUI agents, built to close the grounding gap that pushes practitioners toward GPT-4o/Gemini. Its real contribution is a data engine: an open multi-platform synthesis toolkit and the largest open cross-platform GUI grounding corpus to date — 2.3M+ screenshots and 13.58M elements across Windows, macOS, Linux, Android, and the web (the first open desktop grounding data), web-crawled from FineWeb and OS-automated via accessibility trees plus DFS/random-walk exploration. A unified action space (three basic actions — click/type/scroll — plus extensible custom actions) collapses 17 conflicting action types to 10, fixing the cross-platform tap≡click naming clash that degrades multitask fine-tuning. Trained in two phases (grounding pre-training → OS-Atlas-Base, then action fine-tuning → OS-Atlas) on InternVL-2-4B and Qwen2-VL-7B backbones, it runs in Grounding, Action, and Agent modes. OS-Atlas-Base-7B reaches 82.47 average grounding accuracy on ScreenSpot (vs concurrent UGround's 73.30 and SeeClick's 53.40) and OS-Atlas-7B beats GPT-4o on all six zero-shot OOD agent benchmarks (e.g. GUI-Odyssey SR 26.96 vs 5.36). But the gains rest on the GUI-pretrained 7B backbone and a lenient point-in-box metric; on the only fully interactive testbed (OSWorld, as a drop-in grounding module) the best config hits 14.63% vs 72.36% human — grounding advanced, autonomy not. Also ships ScreenSpot-V2, a re-annotation fixing 11.32% of ScreenSpot's labels.",
-      "explainer": "papers/wu-2024-os-atlas.html"
+      "explainer": "papers/wu-2024-os-atlas.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2024-os-atlas.mp3"
     },
     {
       "slug": "rawles-2024-androidworld",
@@ -7696,7 +7699,8 @@
       "topic": "Post-training & RL",
       "author_group": "UC Berkeley",
       "abstract": "Four RL environments and nine misspecified proxy rewards show that more capable agents (bigger models, more training, finer action resolution, better observations) hack their reward harder — sometimes via a sudden phase transition — even when the proxy and true reward stay strongly correlated. Proposes POLYNOMALY, a baseline anomaly-detection benchmark for catching misaligned policies without access to the true reward signal.",
-      "explainer": "papers/pan-2022-reward-misspecification.html"
+      "explainer": "papers/pan-2022-reward-misspecification.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pan-2022-reward-misspecification.mp3"
     },
     {
       "slug": "menick-2022-gophercite",
@@ -7710,7 +7714,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "DeepMind's GopherCite: a 280B Gopher model fine-tuned with reinforcement learning from human preferences to answer questions with a constrained, verbatim quote as evidence, abstaining when unsure. Reaches 80.0%/66.9% human-judged Supported&Plausible on filtered NaturalQuestions/ELI5 subsets, but a TruthfulQA evaluation shows quote-grounded 'supported' answers are not necessarily true.",
-      "explainer": "papers/menick-2022-gophercite.html"
+      "explainer": "papers/menick-2022-gophercite.html",
+      "audio_url": "https://pod.darvinyi.com/audio/menick-2022-gophercite.mp3"
     },
     {
       "slug": "casper-2023-rlhf-open-problems",
