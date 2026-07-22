@@ -1592,7 +1592,8 @@
       "topic": "Post-training & RL",
       "author_group": "OpenAI",
       "abstract": "Replaces expensive human labels with a fixed 6B “gold” reward model so reward-model overoptimization can be measured precisely: proxy RMs (3M–3B) are trained on the gold model’s synthetic preferences and optimized by best-of-n or PPO, and the gold reward rises then falls along clean functional forms — R=d(α−βd) for BoN and d(α−β·log d) for RL with d=√KL — whose α/β coefficients scale smoothly (≈log-linear) with RM size, β (the extremal-Goodhart term) shrinking as models grow. More RM data (not more epochs) reduces goodharting, larger policies don’t overoptimize faster, an explicit KL penalty acts only as early stopping, and online RLHF lifts the final gold score by β·d·log(k). The empirical Goodhart curve the rubric-reward and reward-hacking literature is built on — though it measures only the proxy-vs-gold gap, in one InstructGPT environment, with non-adversarial models.",
-      "explainer": "papers/gao-2022-reward-overoptimization.html"
+      "explainer": "papers/gao-2022-reward-overoptimization.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gao-2022-reward-overoptimization.mp3"
     },
     {
       "slug": "bai-2022-hh-rlhf",
@@ -5036,7 +5037,8 @@
       "topic": "Post-training & RL",
       "author_group": "Northeastern University",
       "abstract": "Defines the REINFORCE class of algorithms and proves that any weight update of the form (reward − baseline) × a unit's own characteristic eligibility is, in expectation, an unbiased ascent step on the gradient of expected reward, without ever explicitly forming a gradient estimate. Lays the mathematical foundation — the score-function/likelihood-ratio gradient — that actor-critic, TRPO, PPO, A3C, and modern RLHF/GRPO all build on.",
-      "explainer": "papers/williams-1992-reinforce.html"
+      "explainer": "papers/williams-1992-reinforce.html",
+      "audio_url": "https://pod.darvinyi.com/audio/williams-1992-reinforce.mp3"
     },
     {
       "slug": "mitchell-2018-model-cards",
@@ -6045,7 +6047,8 @@
       "topic": "Post-training & RL",
       "author_group": "University of Washington",
       "abstract": "A two-part 8-bit quantization scheme — vector-wise quantization plus a mixed-precision decomposition that isolates the systematic outlier feature dimensions emerging past 6.7B parameters into a 16-bit matrix multiplication — letting a 175B-parameter transformer (OPT-175B, BLOOM-176B) run inference in Int8 with no measured performance degradation, roughly halving memory versus 16-bit and fitting such models onto consumer-grade GPUs.",
-      "explainer": "papers/dettmers-2022-llm-int8.html"
+      "explainer": "papers/dettmers-2022-llm-int8.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dettmers-2022-llm-int8.mp3"
     },
     {
       "slug": "krizhevsky-2009-cifar",
@@ -7436,7 +7439,8 @@
       "topic": "Reasoning",
       "author_group": "MIT / Google Research",
       "abstract": "Trains Transformer language models to emit intermediate computation steps into a 'scratchpad' before producing a final answer, dramatically improving performance on long addition, polynomial evaluation, and Python program execution — the direct supervised precursor to chain-of-thought prompting.",
-      "explainer": "papers/nye-2021-scratchpads.html"
+      "explainer": "papers/nye-2021-scratchpads.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nye-2021-scratchpads.mp3"
     },
     {
       "slug": "uesato-2022-process-outcome-feedback",
@@ -7820,7 +7824,8 @@
       "topic": "Reasoning",
       "author_group": "UC San Diego / University of Florida",
       "abstract": "Repurposes a single frozen LLM as both a reasoning agent (proposing actions) and a world model (predicting the resulting state), then plans over the resulting tree with Monte Carlo Tree Search instead of committing to one chain-of-thought pass. On Blocksworld plan generation RAP(20) with LLaMA-33B reaches a ~64% case-weighted success rate — a 33% relative gain over GPT-4 with CoT (63.7% vs 48.0%, case-weighted) — on GSM8K it reaches 48.6% (51.6% with RAP-Aggregation) versus CoT's 29.4% and CoT+self-consistency's 46.8%, and on PrOntoQA it hits 94.2% answer / 78.8% proof accuracy versus CoT's 87.8%/64.8%. The gains replicate with Llama-2 70B and the full 602-case Blocksworld set, though the extra inference cost of MCTS is never quantified.",
-      "explainer": "papers/hao-2023-rap.html"
+      "explainer": "papers/hao-2023-rap.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hao-2023-rap.mp3"
     },
     {
       "slug": "huang-2022-zero-shot-planner",
