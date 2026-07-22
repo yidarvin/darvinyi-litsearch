@@ -1997,7 +1997,8 @@
       "topic": "Agents",
       "author_group": "Stanford",
       "abstract": "STORM automates the pre-writing stage of long-form grounded writing: it discovers diverse perspectives on a topic, then simulates multi-turn interviews between a perspective-guided Wikipedia writer and a search-grounded expert (which splits queries, sifts sources by Wikipedia reliability rules, and synthesizes grounded answers), and finally curates a draft-then-refined outline before writing the article section by section with citations. Built zero-shot in DSPy and evaluated on the leakage-resistant FreshWiki dataset with new heading soft-recall / entity-recall metrics and 10 expert Wikipedia editors, STORM beats outline-driven RAG on organization (+25% judged well-organized) and coverage and roughly doubles-to-triples the sources it surfaces (99.83 vs 39.56 references). But the expert study exposes the harder problems it makes legible: source-bias transfer (7/10 editors call outputs unneutral) and over-association / red-herring errors, with verifiability statistically tied to the baseline (3.80 vs 3.85). A foundational system for the deep-research / report-generation line that followed.",
-      "explainer": "papers/shao-2024-storm.html"
+      "explainer": "papers/shao-2024-storm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shao-2024-storm.mp3"
     },
     {
       "slug": "kwa-2025-time-horizons",
@@ -4045,7 +4046,8 @@
       "topic": "Agents",
       "author_group": "Princeton NLP",
       "abstract": "Inverts SWE-bench's data pipeline by building one execution environment per repository first, then synthesizing bug-fixing tasks that break existing tests (kept only if a patch flips a passing test to failing). Produces 50k validated task instances from 128 Python repos at ~500x less storage than per-instance setups; rejection-sampling fine-tuning of Qwen-2.5-Coder-32B on 5,016 Claude-3.7 trajectories yields SWE-agent-LM-32B, an open-weight SOTA 40.2% on SWE-bench Verified.",
-      "explainer": "papers/yang-2025-swe-smith.html"
+      "explainer": "papers/yang-2025-swe-smith.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2025-swe-smith.mp3"
     },
     {
       "slug": "nathani-2025-mlgym",
@@ -6773,7 +6775,8 @@
       "topic": "Post-training & RL",
       "author_group": "University of Oxford",
       "abstract": "The first formal definition of reward hacking: a proxy reward is 'unhackable' relative to a policy set if no two policies are ranked oppositely by the proxy and the true reward — with 'simplification' as the stricter, asymmetric special case matching the intuitive idea of a simpler true reward. Proves non-trivial unhackability is essentially impossible on any policy set with 'volume' (the full stochastic policy set, or any ε-suboptimal/δ-deterministic subset, where an unhackable non-trivial pair must be equivalent) but always exists on finite policy sets such as all deterministic policies, with a dimension-counting necessary-and-sufficient condition for when a non-trivial simplification exists. Shows the two intuitive ways of simplifying a reward — dropping terms, coarsening magnitudes — routinely fail to be true simplifications and can still be hacked, implying learned reward models are best treated as auxiliaries to policy learning rather than optimization targets.",
-      "explainer": "papers/skalse-2022-reward-hacking.html"
+      "explainer": "papers/skalse-2022-reward-hacking.html",
+      "audio_url": "https://pod.darvinyi.com/audio/skalse-2022-reward-hacking.mp3"
     },
     {
       "slug": "li-2023-api-bank",
@@ -7170,7 +7173,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "MIRI",
       "abstract": "A formal taxonomy of Goodhart's Law failure modes for optimizing against a proxy metric — regressional, extremal, causal, and adversarial Goodhart effects, including the incentive-driven Cobra Effect as an adversarial subtype. Extends a single earlier blog-post sketch into eight formally distinguishable, causally-grounded failure mechanisms with no empirical validation of its own, later adopted directly by reward-hacking papers such as Gao et al. 2022 and Skalse et al. 2022.",
-      "explainer": "papers/manheim-2018-goodhart.html"
+      "explainer": "papers/manheim-2018-goodhart.html",
+      "audio_url": "https://pod.darvinyi.com/audio/manheim-2018-goodhart.mp3"
     },
     {
       "slug": "barres-2025-tau2-bench",
@@ -8343,7 +8347,8 @@
       "topic": "Post-training & RL",
       "author_group": "Tongyi Lab",
       "abstract": "Replaces the real search engine in RL search-training with a second, frozen LLM fine-tuned to emit useful or noisy documents on command, with a curriculum that gradually raises document noise over training so the policy first masters format then robustness. Eliminates API costs and gives explicit control over retrieval difficulty; a 14B simulation LLM beats real Google Search on average EM (34.47 vs 32.81) at roughly one-eighth the cost, and beats Search-R1 across seven QA benchmarks — though every benchmark tests static, pretraining-era facts, leaving the method's performance on fresh/time-sensitive information untested.",
-      "explainer": "papers/sun-2025-zerosearch.html"
+      "explainer": "papers/sun-2025-zerosearch.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sun-2025-zerosearch.mp3"
     },
     {
       "slug": "press-2022-compositionality-gap",
