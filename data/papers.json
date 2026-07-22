@@ -2078,7 +2078,8 @@
       "topic": "Retrieval & RAG",
       "author_group": "Microsoft Research",
       "abstract": "Conventional vector RAG retrieves the top-k chunks nearest a query, so it fails on global 'sensemaking' questions over a whole corpus (e.g. 'what are the main themes?') — inherently a query-focused summarization task, not retrieval. GraphRAG uses an LLM to build an entity knowledge graph from the source text, partitions it into a hierarchy of communities (Leiden), pre-summarizes every community, and at query time map-reduces those summaries into a single global answer. On two ~1M-token corpora it beats vector RAG on comprehensiveness (72–83% win) and diversity, with root-level summaries delivering most of the gain at ~2.6% of the token cost.",
-      "explainer": "papers/edge-2024-graphrag.html"
+      "explainer": "papers/edge-2024-graphrag.html",
+      "audio_url": "https://pod.darvinyi.com/audio/edge-2024-graphrag.mp3"
     },
     {
       "slug": "gou-2024-uground",
@@ -3490,7 +3491,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepSeek-AI",
       "abstract": "DeepSeek-AI's open code-model family (1.3B–33B), trained from scratch on 2 trillion tokens across 87 languages with two innovations: pretraining data packed at the repository level by a topological sort over the import graph, and a 0.5-rate fill-in-the-middle objective (PSM) for IDE-style infilling, with a 16K context. DeepSeek-Coder-Base 33B set a new open-source state of the art (50.3% multilingual HumanEval avg) and the 6.7B base already matched CodeLlama-34B; after instruction tuning the 33B became the first open model to surpass GPT-3.5-Turbo on code. Its finding that the strongest code LLMs are continued from robust general LLMs (DeepSeek-Coder-v1.5) seeded the DeepSeekMath / V2 / V3 / R1 lineage.",
-      "explainer": "papers/guo-2024-deepseek-coder.html"
+      "explainer": "papers/guo-2024-deepseek-coder.html",
+      "audio_url": "https://pod.darvinyi.com/audio/guo-2024-deepseek-coder.mp3"
     },
     {
       "slug": "wang-2024-openhands",
@@ -5447,7 +5449,8 @@
       "topic": "Post-training & RL",
       "author_group": "Zhipu AI / Tsinghua University",
       "abstract": "Zhipu AI and Tsinghua's four-generation LLM family from the 2022 GLM-130B research model through ChatGLM-6B/2/3 to GLM-4, GLM-4-Air, and GLM-4-9B, with the closed flagship GLM-4 (0520) beating GPT-4 (0613) on five of six English academic benchmarks. A GLM-4 All Tools variant autonomously plans and calls a web browser, Python interpreter, and text-to-image model — though the flagship model in every comparison is API-only, never open-weight.",
-      "explainer": "papers/zeng-2024-chatglm.html"
+      "explainer": "papers/zeng-2024-chatglm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zeng-2024-chatglm.mp3"
     },
     {
       "slug": "conneau-2018-xnli",
@@ -6208,7 +6211,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley / TTIC / Oregon State",
       "abstract": "Proposes Outlier Exposure (OE): fine-tune an OOD detector's own loss with an auxiliary term evaluated on a large, generic outlier dataset (disjoint from the real, unknown test-time OOD distribution), teaching a general 'this doesn't look like mine' heuristic that generalizes to unseen anomalies across vision and NLP tasks, and also improves calibration and density estimation.",
-      "explainer": "papers/hendrycks-2018-outlier-exposure.html"
+      "explainer": "papers/hendrycks-2018-outlier-exposure.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hendrycks-2018-outlier-exposure.mp3"
     },
     {
       "slug": "rezende-2014-stochastic-backprop",
@@ -7809,7 +7813,8 @@
       "topic": "Agents",
       "author_group": "UC Berkeley / CMU / Google",
       "abstract": "Shows that pre-trained LLMs (GPT-3, Codex), prompted with just one example, already decompose high-level household tasks into plans humans judge as correct as or more correct than human-written ones — but the raw plans rarely map onto admissible actions in the target environment. Three inference-time techniques close most of that gap: semantic translation of each step to the closest admissible action, one-step-at-a-time autoregressive trajectory correction, and similarity-based dynamic example selection. On VirtualHome this raises Codex 12B's executability from 18.07% to 78.57% and GPT-3 175B's from 7.79% to 73.05%, at the cost of lower judged correctness (e.g. GPT-3 175B: 77.86%→66.13%); the combined executable-and-correct rate tops out at 35.23% for the best method versus 65.91% for humans.",
-      "explainer": "papers/huang-2022-zero-shot-planner.html"
+      "explainer": "papers/huang-2022-zero-shot-planner.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2022-zero-shot-planner.mp3"
     },
     {
       "slug": "wang-2023-plan-and-solve",
