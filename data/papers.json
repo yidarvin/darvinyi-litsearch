@@ -1187,7 +1187,8 @@
       "topic": "Post-training & RL",
       "author_group": "ByteDance Seed",
       "abstract": "Fully open-sources a large-scale RLVR recipe that lifts a Qwen2.5-32B base model from near-0% to 50 avg@32 on AIME 2024 — beating DeepSeek-R1-Zero-Qwen-32B (47) in half the training steps — where a naive GRPO baseline stalls at 30. DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization) drops GRPO's KL penalty and uses a rule-based ±1 reward, then adds four fixes to the failure modes of long-CoT RL: Clip-Higher (decoupled ε_low=0.2 / ε_high=0.28 to halt entropy collapse), Dynamic Sampling (filter all-correct/all-wrong groups so gradients stay non-zero), Token-Level Policy Gradient Loss (normalize by total tokens rather than per-sample, so long reasoning isn't underweighted), and Overlong Reward Shaping (a soft length penalty instead of a hard truncation −1). The progressive ablation builds 30→36→38→41→42→50 as each technique is layered onto GRPO. Ships the algorithm, the verl-based training code, and the DAPO-Math-17K integer-answer dataset — the reference open recipe of the post-R1 reproduction wave.",
-      "explainer": "papers/yu-2025-dapo.html"
+      "explainer": "papers/yu-2025-dapo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yu-2025-dapo.mp3"
     },
     {
       "slug": "yue-2025-rlvr-limit",
@@ -5667,7 +5668,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MIT",
       "abstract": "Argues that automation substitutes for routine, codifiable tasks while complementing and raising the value of the tasks that resist codification (Polanyi's paradox), which is why two centuries of automation panics have repeatedly overstated net job loss. Documents US occupational polarization (1979-2012: middle-skill employment share 60% to 46%) but flags its own warning sign — a shift from a U-shaped to a one-sided \"ramp\" pattern of employment growth by the 2000s.",
-      "explainer": "papers/autor-2015-still-so-many-jobs.html"
+      "explainer": "papers/autor-2015-still-so-many-jobs.html",
+      "audio_url": "https://pod.darvinyi.com/audio/autor-2015-still-so-many-jobs.mp3"
     },
     {
       "slug": "goldsmith-pinkham-2020-bartik",
@@ -6168,7 +6170,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "DeepMind",
       "abstract": "Places a learned diagonal-Gaussian distribution on every weight instead of a single point value, then trains the whole network end-to-end with ordinary backprop via the reparameterization trick, minimizing a variational free-energy objective. Called 'Bayes by Backprop'; matches or beats dropout on MNIST with a scale-mixture prior, supports uncertainty-guided weight pruning, and drives Thompson-sampling-style exploration in a contextual bandit.",
-      "explainer": "papers/blundell-2015-bayes-by-backprop.html"
+      "explainer": "papers/blundell-2015-bayes-by-backprop.html",
+      "audio_url": "https://pod.darvinyi.com/audio/blundell-2015-bayes-by-backprop.mp3"
     },
     {
       "slug": "hafner-2018-planet",
@@ -7158,7 +7161,8 @@
       "topic": "Agents",
       "author_group": "Microsoft Research",
       "abstract": "Microsoft Research's framework for building LLM applications from customizable \"conversable\" agents — a unified send/receive/generate_reply interface backed by any mix of LLM, human, and tool execution — composed via an auto-reply mechanism into flexible, dynamic multi-agent conversations. Across six applications (math solving, retrieval QA, ALFWorld decision-making, safety-checked coding, group chat, chess), splitting responsibilities across agents measurably outperforms single-agent and other multi-agent baselines like ChatGPT+Code Interpreter and ReAct.",
-      "explainer": "papers/wu-2023-autogen.html"
+      "explainer": "papers/wu-2023-autogen.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2023-autogen.mp3"
     },
     {
       "slug": "hong-2023-metagpt",
@@ -7172,7 +7176,8 @@
       "topic": "Agents",
       "author_group": "DeepWisdom",
       "abstract": "Encodes human Standardized Operating Procedures into prompts for five specialized agent roles — Product Manager, Architect, Project Manager, Engineer, QA Engineer — plus a shared structured message pool and an executable-feedback loop, to keep multi-agent collaboration from cascading into hallucination. Reports 85.9%/87.7% Pass@1 on HumanEval/MBPP and beats ChatDev/AutoGPT/LangChain/AgentVerse on a 7-task SoftwareDev comparison (Executability 3.75/4 vs. ChatDev's 2.25), though the paper's own appendix shows a matched-methodology GPT-4 baseline closes most of the headline gap.",
-      "explainer": "papers/hong-2023-metagpt.html"
+      "explainer": "papers/hong-2023-metagpt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hong-2023-metagpt.mp3"
     },
     {
       "slug": "yang-2023-intercode",
