@@ -3404,7 +3404,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Bloomberg",
       "abstract": "Bloomberg trained a 50.6B-parameter decoder-only LLM from scratch on FinPile — a 363B-token proprietary financial corpus (51% of training) mixed with 345B tokens of general text — plus a custom finance tokenizer. It tops similarly-sized open models (GPT-NeoX, OPT-66B, BLOOM-176B) on financial NLP by wide margins while staying comparable on general benchmarks, but the weights and FinPile stay closed and the biggest finance wins rest partly on internal test sets whose text was itself in pretraining.",
-      "explainer": "papers/wu-2023-bloomberggpt.html"
+      "explainer": "papers/wu-2023-bloomberggpt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2023-bloomberggpt.mp3"
     },
     {
       "slug": "sellam-2020-bleurt",
@@ -3464,7 +3465,8 @@
       "topic": "Agents",
       "author_group": "Princeton NLP",
       "abstract": "Introduces the agent-computer interface (ACI): a small, guardrailed command set and feedback layer — summarized code search, a one-command file editor with a syntax linter, a 100-line file viewer, and collapsed history — that lets a frozen LM act as a software-engineering agent. With GPT-4 Turbo, SWE-agent resolves 12.5% of SWE-bench's real GitHub issues (vs 3.8% for non-interactive RAG) and 18.0% of SWE-bench Lite, establishing interface design — not model weights — as a primary lever for coding-agent performance; tellingly, a Vim-style iterative search underperforms giving the agent no search at all.",
-      "explainer": "papers/yang-2024-swe-agent.html"
+      "explainer": "papers/yang-2024-swe-agent.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2024-swe-agent.mp3"
     },
     {
       "slug": "chung-2022-flan",
@@ -5822,7 +5824,8 @@
       "topic": "Post-training & RL",
       "author_group": "NYU / Facebook AI Research",
       "abstract": "Introduces CommNet, a single differentiable controller shared across all cooperating agents that lets them learn what to communicate by broadcasting the mean of every other agent's hidden state at each communication step, trained end-to-end by backpropagation or policy gradient. Across a lever-pulling game, MazeBase traffic-junction and combat tasks, and the bAbI QA suite, this continuous learned communication consistently outperforms non-communicating, fully-connected, and discrete-communication baselines.",
-      "explainer": "papers/sukhbaatar-2016-commnet.html"
+      "explainer": "papers/sukhbaatar-2016-commnet.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sukhbaatar-2016-commnet.mp3"
     },
     {
       "slug": "bai-2023-longbench",
@@ -5915,7 +5918,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepSeek-AI",
       "abstract": "A 236B-parameter Mixture-of-Experts model (21B activated per token, 128K context) built on Multi-head Latent Attention — which compresses the KV cache into a low-rank latent, cutting it 93.3% versus dense DeepSeek 67B — plus DeepSeekMoE's fine-grained expert segmentation with shared-expert isolation. Trained on 8.1T bilingual tokens, it saves 42.5% of training cost and lifts generation throughput 5.76x over its predecessor while matching or beating LLaMA3 70B and Mixtral 8x22B on most benchmarks; its architecture was inherited wholesale by DeepSeek-V3.",
-      "explainer": "papers/shao-2024-deepseek-v2.html"
+      "explainer": "papers/shao-2024-deepseek-v2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shao-2024-deepseek-v2.mp3"
     },
     {
       "slug": "hendrycks-2021-imagenet-a",
@@ -7908,7 +7912,8 @@
       "topic": "Post-training & RL",
       "author_group": "Meta AI",
       "abstract": "A 65B LLaMA fine-tuned with plain supervised loss on just 1,000 curated prompt-response pairs — no RLHF, no preference modeling — testing the 'Superficial Alignment Hypothesis' that alignment mostly teaches output style rather than new knowledge. In a 300-prompt human preference study, LIMA responses are rated equal-or-better than GPT-4 in 43% of cases, Bard in 58%, and RLHF-trained DaVinci003 in 65%; ablations show response quality and prompt diversity drive performance far more than raw example count, which plateaus from 2K to 32K examples.",
-      "explainer": "papers/zhou-2023-lima.html"
+      "explainer": "papers/zhou-2023-lima.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2023-lima.mp3"
     },
     {
       "slug": "su-2021-roformer",
