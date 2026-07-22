@@ -3596,7 +3596,8 @@
       "topic": "Post-training & RL",
       "author_group": "Microsoft",
       "abstract": "Introduces \"proactive information gathering\": training an LLM to detect what is missing from an under-specified prompt and ask targeted questions that elicit the user's unstated knowledge, rather than answering passively. Builds a synthetic conversation engine over DOLOMITES — masking each expert task's procedure and output spec as hidden \"implicit\" information that only a user-oracle LLM can reveal — and reward-finetunes Qwen-2.5-7B with PPO using a sparse \"evidence-sentence\" reward (a question scores 1 only if answering it requires citing a hidden field). The 7B questioner (with a fixed GPT-4o writer) tops o3-mini 0.65 vs 0.55 (+18%) on the checklist metric and wins human preference on both questions and outlines, with gains largest in open-ended social-science and humanities tasks.",
-      "explainer": "papers/huang-2025-gather-info.html"
+      "explainer": "papers/huang-2025-gather-info.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2025-gather-info.mp3"
     },
     {
       "slug": "cui-2024-or-bench",
@@ -6439,7 +6440,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Harbin Institute of Technology / Tsinghua University",
       "abstract": "A survey arguing that the rubric -- an explicit, decomposable, verifiable set of criteria -- is the recurring structural response across LLM evaluation, RL, and safety alignment, tracing it from a judging aid to a training signal to an endogenous mechanism models generate and evolve for themselves.",
-      "explainer": "papers/chen-2026-rubrics-survey.html"
+      "explainer": "papers/chen-2026-rubrics-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2026-rubrics-survey.mp3"
     },
     {
       "slug": "jacobs-2019-measurement-fairness",
@@ -8010,7 +8012,8 @@
       "topic": "Post-training & RL",
       "author_group": "Stanford",
       "abstract": "LLaMA 7B fine-tuned via supervised learning on 52K self-instruct-style instruction/output demonstrations distilled from OpenAI's text-davinci-003 — a GitHub + blog release, not a paper, claiming under $600 total to reproduce ($500 data generation + $100 compute). Its evidence for parity with text-davinci-003 is a single blind pairwise human study (90-vs-89 wins) judged by the paper's own five student co-authors, but the cheap, replicable recipe itself launched the open instruction-tuning wave (Vicuna, Koala, and dozens more) within weeks.",
-      "explainer": "papers/taori-2023-alpaca.html"
+      "explainer": "papers/taori-2023-alpaca.html",
+      "audio_url": "https://pod.darvinyi.com/audio/taori-2023-alpaca.mp3"
     },
     {
       "slug": "lewis-2019-bart",
