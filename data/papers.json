@@ -956,7 +956,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Trains a dense retriever with no labels at all: positive pairs are two random spans cropped from the same document, and a MoCo momentum encoder plus a 131,072-entry queue supplies the negatives for an InfoNCE contrastive loss. The resulting model — Contriever — is the first unsupervised dense retriever to beat BM25 on 11 of 15 BEIR datasets at Recall@100 (and on NaturalQuestions QA recall), though on nDCG@10 ranking precision BM25 still leads the BEIR average. It shines most as a pre-training initialization (improving few-shot and MS MARCO-fine-tuned transfer) and as a multilingual mContriever that performs cross-lingual, cross-script retrieval — fetching English documents from Arabic queries — which term matching cannot do. 'Contriever, fine-tuned on MS-MARCO' became the default off-the-shelf retriever behind many RAG pipelines.",
-      "explainer": "papers/izacard-2021-contriever.html"
+      "explainer": "papers/izacard-2021-contriever.html",
+      "audio_url": "https://pod.darvinyi.com/audio/izacard-2021-contriever.mp3"
     },
     {
       "slug": "dao-2022-flashattention",
@@ -1279,7 +1280,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "CISPA / Saarland",
       "abstract": "The paper that named indirect prompt injection: once an LLM is wired into an application that retrieves external content — web pages, emails, documents, code — an attacker who plants instructions in that content can hijack the model with no direct access, because retrieval blurs the line between data and instructions. It contributes a security-grounded taxonomy (injection methods x threats x affected parties) and working proof-of-concept attacks against Bing's GPT-4 Chat, GitHub Copilot, and synthetic GPT-4 apps — data exfiltration, self-propagating prompt 'worms', cross-session memory persistence, command-and-control, disinformation, and Base64-encoded payloads — though every result is a qualitative demo rather than a measured success rate.",
-      "explainer": "papers/greshake-2023-indirect-prompt-injection.html"
+      "explainer": "papers/greshake-2023-indirect-prompt-injection.html",
+      "audio_url": "https://pod.darvinyi.com/audio/greshake-2023-indirect-prompt-injection.mp3"
     },
     {
       "slug": "perez-2022-ignore-previous-prompt",
@@ -5526,7 +5528,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Microsoft",
       "abstract": "Diagnoses dense retrieval's underperformance vs. BM25 as a negative-sampling failure: random and BM25-mined negatives go stale and yield vanishing gradients. ANCE mines hard negatives from an asynchronously-refreshed ANN index built on the retriever's own live checkpoint, lifting MS MARCO to 0.330 MRR@10 and Natural Questions Top-20 coverage to 81.9%, while nearly matching a BERT cross-encoder cascade at roughly 100x lower online latency.",
-      "explainer": "papers/xiong-2020-ance.html"
+      "explainer": "papers/xiong-2020-ance.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xiong-2020-ance.mp3"
     },
     {
       "slug": "rei-2020-comet",
@@ -5724,7 +5727,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "IDEA Research / CAS ICT",
       "abstract": "A systematic review that gives LLM-as-a-Judge a formal definition, reorganizes 226 references into a four-question taxonomy (what/how to use/how to improve/how to evaluate) with a catalogued bias and adversarial-robustness bestiary, and runs its own meta-evaluation experiment across six judge LLMs.",
-      "explainer": "papers/gu-2024-llm-judge-survey.html"
+      "explainer": "papers/gu-2024-llm-judge-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gu-2024-llm-judge-survey.mp3"
     },
     {
       "slug": "corbett-davies-2017-cost-of-fairness",
@@ -7785,7 +7789,8 @@
       "topic": "Agents",
       "author_group": "Zhejiang University / Microsoft Research Asia",
       "abstract": "Casts ChatGPT as a controller that plans a task list from a user request, selects a Hugging Face expert model for each subtask from its text description, executes it, and stitches the results into a response — an early LLM-as-orchestrator agent. The paper's own evaluation shows even GPT-4 gets only 41% of sequential-task decompositions exactly right against human-annotated ground truth.",
-      "explainer": "papers/shen-2023-hugginggpt.html"
+      "explainer": "papers/shen-2023-hugginggpt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shen-2023-hugginggpt.mp3"
     },
     {
       "slug": "hao-2023-rap",
