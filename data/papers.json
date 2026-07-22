@@ -3064,7 +3064,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "AI2 / UW",
       "abstract": "A single text-to-text model that erases the boundaries between four QA formats - extractive, abstractive, multiple-choice, and yes/no - by encoding every question as plain text in / plain text out with no format-specific prefixes, forcing the model to infer the format from the question itself. Trained on 8 seed datasets (the largest is an 11B-parameter T5), it matches 8 dataset-specific expert models across 20 datasets and generalizes zero-shot to 12 unseen datasets (avg 60.7 vs <=45.8 for any single-format variant), even topping the fully-supervised previous best on the yes/no and contrast sets; fine-tuning it further sets a new SOTA on 10 datasets. A conceptual precursor to instruction-unified, everything-is-text models, though its zero-shot-beats-supervised headline leans on the 11B model and on source overlap between train and eval.",
-      "explainer": "papers/khashabi-2020-unifiedqa.html"
+      "explainer": "papers/khashabi-2020-unifiedqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/khashabi-2020-unifiedqa.mp3"
     },
     {
       "slug": "li-2025-researchqa",
@@ -3514,7 +3515,8 @@
       "topic": "Agents",
       "author_group": "All Hands AI",
       "abstract": "An open-source (MIT) platform — formerly OpenDevin — for building AI agents that act like human developers: writing code, running a sandboxed bash shell and Jupyter server, and browsing the web, all coordinated through an event-stream architecture where the state is a single chronological log of actions and observations (Agent: history→action; Runtime: action→observation). Its default CodeActAgent borrows CodeAct's code-as-action space (Python/bash/browser DSL) executed inside a per-session Docker sandbox reached through an action-execution REST API, with an AgentSkills library, multi-agent delegation, and an AgentHub of 10+ community agents. Ships an evaluation harness over 15 benchmarks: the same unmodified CodeActAgent reaches 26.0% on SWE-Bench Lite (claude-3.5-sonnet), 15.3% on WebArena, and 52.0% on GPQA-diamond — competitive everywhere, best nowhere — trading peak per-task scores for generality. Became the de-facto open scaffold (32K+ stars, 188+ contributors) that later benchmarks (MLE-bench, SWE-Bench Pro, Terminal-Bench) build on and measure against.",
-      "explainer": "papers/wang-2024-openhands.html"
+      "explainer": "papers/wang-2024-openhands.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2024-openhands.mp3"
     },
     {
       "slug": "gautam-2025-refactorbench",
@@ -7289,7 +7291,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "NTU Singapore / Griffith University",
       "abstract": "HOUYI is a black-box prompt-injection methodology modeled on SQL/XSS injection — framework, separator, and disruptor payload components plus an LLM-driven feedback loop — that compromised 31 of 36 real commercial LLM-integrated applications (86.1%), with vendor-confirmed exploits against Notion, Writesonic, and Parea.",
-      "explainer": "papers/liu-2023-houyi.html"
+      "explainer": "papers/liu-2023-houyi.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-houyi.mp3"
     },
     {
       "slug": "liu-2023-open-prompt-injection",
@@ -7456,7 +7459,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "DeepMind's first head-to-head of process- vs. outcome-based supervision on a natural-language reasoning task (GSM8K): the best combined recipe (SFT + ORM-RL, ORM reranking) cuts final-answer error 16.8%→12.7% and trace error 14.0%→3.4% versus prior best. The paper's most cited finding is that a reward model trained purely on outcome (final-answer) labels ends up agreeing with human process-correctness labels 85% of the time, versus only 77% with its own training labels — an early empirical clue for why process reward models (PRM800K, six months later) became the field's default verifier.",
-      "explainer": "papers/uesato-2022-process-outcome-feedback.html"
+      "explainer": "papers/uesato-2022-process-outcome-feedback.html",
+      "audio_url": "https://pod.darvinyi.com/audio/uesato-2022-process-outcome-feedback.mp3"
     },
     {
       "slug": "kapoor-2025-hal",
@@ -7755,7 +7759,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "University of Wisconsin-Madison",
       "abstract": "A hierarchical genetic algorithm evolves handcrafted DAN-style jailbreak prompts into new prompts that stay fluent and low-perplexity, reaching 60.77% attack success on Llama2-7b-chat versus GCG's 45.38% — and, unlike GCG's gibberish suffixes (45.4%→0.0% under a perplexity filter), AutoDAN's ASR is completely unaffected by perplexity-based defense.",
-      "explainer": "papers/liu-2023-autodan.html"
+      "explainer": "papers/liu-2023-autodan.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-autodan.mp3"
     },
     {
       "slug": "jain-2023-baseline-defenses",
