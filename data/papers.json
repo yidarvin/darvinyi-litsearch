@@ -5653,7 +5653,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "London School of Economics",
       "abstract": "Panel data on robot adoption across 14 industries in 17 countries, 1993-2007, instrumented via each industry's 1980 occupational exposure to robot-replaceable tasks: robot densification raised annual labor productivity growth by about 0.36 percentage points and cut low-skilled workers' share of hours worked, while leaving aggregate hours largely intact. The paper Acemoglu & Restrepo call their own closest precursor.",
-      "explainer": "papers/graetz-2018-robots-at-work.html"
+      "explainer": "papers/graetz-2018-robots-at-work.html",
+      "audio_url": "https://pod.darvinyi.com/audio/graetz-2018-robots-at-work.mp3"
     },
     {
       "slug": "autor-2013-china-syndrome",
@@ -5667,7 +5668,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MIT",
       "abstract": "Instruments 722 US commuting-zone exposure to Chinese import competition (1990-2007) with the same industries' import growth into 8 other high-income countries; a $1,000/worker exposure rise cuts manufacturing employment share by 0.596pp with no offsetting local job growth, explaining 21-44% of the aggregate US manufacturing decline. The original commuting-zone Bartik-IV design that acemoglu-2020-robots-and-jobs explicitly borrows and benchmarks against.",
-      "explainer": "papers/autor-2013-china-syndrome.html"
+      "explainer": "papers/autor-2013-china-syndrome.html",
+      "audio_url": "https://pod.darvinyi.com/audio/autor-2013-china-syndrome.mp3"
     },
     {
       "slug": "autor-2015-still-so-many-jobs",
@@ -5789,7 +5791,8 @@
       "topic": "Foundation Models",
       "author_group": "Microsoft Research",
       "abstract": "A 347M-parameter GPT-2-style decoder pretrained from scratch on 15M PubMed abstracts with its own domain vocabulary, applying PubMedBERT's domain-vocabulary-plus-from-scratch-pretraining recipe to a generative architecture. Beats BERT-family biomedical encoders on relation extraction and QA, posting new state-of-the-art results on four of six evaluated tasks (78.2% accuracy on PubMedQA, 44.98% F1 on BC5CDR), though its free-text generation capability is validated only with anecdotal examples that include a confidently wrong COVID-19 drug claim.",
-      "explainer": "papers/luo-2022-biogpt.html"
+      "explainer": "papers/luo-2022-biogpt.html",
+      "audio_url": "https://pod.darvinyi.com/audio/luo-2022-biogpt.mp3"
     },
     {
       "slug": "liu-2016-dialogue-eval-metrics",
@@ -5849,7 +5852,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "MIT",
       "abstract": "A preregistered RCT gives half of 444 college-educated professionals ChatGPT access for real occupation-specific writing tasks: treatment cuts time taken by roughly 0.83 SDs (37%) and raises grades by 0.45 SDs, with the largest gains going to initially lower-scoring writers — compressing productivity inequality rather than widening it, and workers keep using the tool weeks after the study ends.",
-      "explainer": "papers/noy-2023-generative-ai-productivity.html"
+      "explainer": "papers/noy-2023-generative-ai-productivity.html",
+      "audio_url": "https://pod.darvinyi.com/audio/noy-2023-generative-ai-productivity.mp3"
     },
     {
       "slug": "ho-2020-2wikimultihopqa",
@@ -7704,7 +7708,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UPenn",
       "abstract": "Introduces PAIR, which pits an attacker LLM against a target LLM in an automated iterative-refinement loop to find interpretable, black-box jailbreaks in typically under twenty queries, reaching 88% jailbreak rate on Vicuna-13B and 73% on Gemini-Pro versus GCG's 256,000-query white-box gradient attack.",
-      "explainer": "papers/chao-2023-pair.html"
+      "explainer": "papers/chao-2023-pair.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chao-2023-pair.mp3"
     },
     {
       "slug": "qi-2023-finetuning-compromises-safety",
