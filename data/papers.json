@@ -1623,7 +1623,8 @@
       "topic": "Agents",
       "author_group": "Princeton NLP",
       "abstract": "Introduces ReAct, a prompting paradigm that interleaves free-form reasoning traces (“thoughts”) with task actions in one trajectory: thoughts update the model's context to plan and handle exceptions, while actions query external environments (a Wikipedia API, text games, web shopping) to ground reasoning in real observations. On a frozen PaLM-540B with only 1–6 in-context examples, ReAct curbs chain-of-thought's hallucination on HotpotQA/Fever and beats imitation/RL agents on ALFWorld (+34%, best-of-6) and WebShop (+10%). The originating template for modern LLM agent scaffolds.",
-      "explainer": "papers/yao-2022-react.html"
+      "explainer": "papers/yao-2022-react.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yao-2022-react.mp3"
     },
     {
       "slug": "shinn-2023-reflexion",
@@ -2177,7 +2178,8 @@
       "topic": "Post-training & RL",
       "author_group": "Stanford",
       "abstract": "Shows the KL-constrained RLHF objective has a closed-form optimum, and because the Bradley-Terry preference model depends only on reward differences, the intractable partition function cancels -- collapsing 'fit a reward model, then run PPO' into a single binary cross-entropy loss on preference pairs. The policy is its own implicit reward (r = beta * log[pi/pi_ref]); no reward model, no policy sampling in the loop, no RL. With models up to 6B params it matches or beats PPO on sentiment control, summarization, and single-turn dialogue with almost no tuning (~61% TL;DR win rate vs PPO's 57%), and went on to become the default preference-tuning recipe for open chat models.",
-      "explainer": "papers/rafailov-2023-dpo.html"
+      "explainer": "papers/rafailov-2023-dpo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rafailov-2023-dpo.mp3"
     },
     {
       "slug": "wang-2025-enigmaeval",
@@ -4521,7 +4523,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "Introduces asynchronous variants of four RL algorithms — one-step Sarsa, one-step Q-learning, n-step Q-learning, and advantage actor-critic — where multiple actor-learner threads exploring their own copy of the environment update one shared network via lock-free Hogwild!-style gradients, replacing DQN's experience-replay buffer as the stabilizer. The best variant, A3C, trains on just 16 CPU cores (no GPU) and beats DQN-family state of the art on 57 Atari games in about half the wall-clock training time, while also being the first of the four to work on continuous-control MuJoCo tasks and a novel 3D maze-navigation domain.",
-      "explainer": "papers/mnih-2016-a3c.html"
+      "explainer": "papers/mnih-2016-a3c.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mnih-2016-a3c.mp3"
     },
     {
       "slug": "schulman-2015-trpo",
@@ -4638,7 +4641,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "Proves that Q-learning's max operator produces a provable, unavoidable overestimation bias whenever value estimates carry any error, and shows this bias is real and harmful even in the near-ideal, deterministic Atari setting that made DQN famous. Double DQN fixes it almost for free by reusing DQN's existing target network to evaluate the action the online network selects — no new parameters — lifting median human-starts scores across 49 games from 47.5% (DQN) to 116.7% (tuned Double DQN).",
-      "explainer": "papers/vanhasselt-2016-double-dqn.html"
+      "explainer": "papers/vanhasselt-2016-double-dqn.html",
+      "audio_url": "https://pod.darvinyi.com/audio/vanhasselt-2016-double-dqn.mp3"
     },
     {
       "slug": "lillicrap-2016-ddpg",
@@ -7165,7 +7169,8 @@
       "topic": "Multimodal",
       "author_group": "UW-Madison / Microsoft Research",
       "abstract": "Connects a frozen CLIP ViT-L/14 encoder to a Vicuna LLM through a single trainable linear projection, trained entirely on 158K GPT-4-generated multimodal instruction-following examples (no human-authored instructions). Reaches 85.1% of GPT-4's quality on its own synthetic multimodal instruction benchmark and, ensembled with GPT-4 as judge, a new 92.53% SoTA on ScienceQA.",
-      "explainer": "papers/liu-2023-llava.html"
+      "explainer": "papers/liu-2023-llava.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-llava.mp3"
     },
     {
       "slug": "liu-2023-houyi",

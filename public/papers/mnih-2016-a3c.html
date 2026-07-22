@@ -163,12 +163,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2016 · ICML · Post-training &amp; RL</div>
       <h1>Asynchronous Methods for Deep Reinforcement Learning</h1>
       <p class="dek">Run many actor-learners in parallel, each on its own copy of the environment, updating one shared network with lock-free asynchronous gradients — no replay buffer, no GPU, no parameter server. The best variant, A3C, trains on 16 CPU cores and beats the DQN family's state of the art on Atari in half the wall-clock time.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/mnih-2016-a3c.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/mnih-2016-a3c.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Volodymyr Mnih, Adrià Puigdomènech Badia, Mehdi Mirza, Alex Graves, Timothy P. Lillicrap, Tim Harley, David Silver, Koray Kavukcuoglu</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ICML 2016</b></span>
         <span class="fact">citations&nbsp;<b>10,166</b></span>
         <span class="fact">topic&nbsp;<b>Post-training &amp; RL</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/1602.01783">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/mnih-2016-a3c.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-07</div>
     </div>
