@@ -1350,7 +1350,8 @@
       "topic": "Reasoning",
       "author_group": "Google",
       "abstract": "Replaces greedy chain-of-thought decoding with a sample-and-marginalize scheme: sample a diverse set of reasoning paths, then take the majority-vote answer — an unsupervised, training-free decoder swap requiring no verifier or extra data. Across four models from UL2-20B to PaLM-540B it lifts reasoning on nearly every task (GSM8K +17.9 on PaLM-540B, 56.5→74.4, and +17.9 on GPT-3, 60.1→78.0; AQuA +12.2; SVAMP +11.0), with gains that grow with scale and saturate around 40 sampled paths. The direct ancestor of maj@k / cons@k test-time-compute voting.",
-      "explainer": "papers/wang-2022-self-consistency.html"
+      "explainer": "papers/wang-2022-self-consistency.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2022-self-consistency.mp3"
     },
     {
       "slug": "kojima-2022-zero-shot-cot",
@@ -1364,7 +1365,8 @@
       "topic": "Reasoning",
       "author_group": "U Tokyo / Google",
       "abstract": "Shows multi-step reasoning is latent in large LLMs and elicitable with no exemplars: a single task-agnostic trigger — 'Let's think step by step.' — plus a two-stage reason-then-extract prompt takes InstructGPT-175B (text-davinci-002) from 17.7% to 78.7% on MultiArith and 10.4% to 40.7% on GSM8K, with the largest jumps on symbolic tasks (Coin Flip 12.8%→91.4%, Last Letter 0.2%→57.6%). The effect is emergent at ~100B+ scale (raw GPT-3 175B only 3.3%→19.0%; PaLM 540B reaches 43.0% on GSM8K), can hurt on single-step/commonsense tasks (CommonSenseQA −4.2), and still trails 8-shot Few-shot-CoT (93.0 on MultiArith) — a dirt-cheap, label-free baseline and scaling probe that seeded the test-time-reasoning line.",
-      "explainer": "papers/kojima-2022-zero-shot-cot.html"
+      "explainer": "papers/kojima-2022-zero-shot-cot.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kojima-2022-zero-shot-cot.mp3"
     },
     {
       "slug": "cobbe-2021-gsm8k",
@@ -3681,7 +3683,8 @@
       "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Cuts BERT's parameter count with two tricks — a factorized embedding that unties the embedding size E from the hidden size H, and weights shared across all Transformer layers — so an ALBERT-large matches BERT-large's shape with 18M parameters instead of 334M. Reinvests the saved budget on width and swaps BERT's next-sentence-prediction loss for a harder sentence-order-prediction loss, setting new state of the art on GLUE (89.4), SQuAD 2.0 (92.2 F1), and RACE (89.4) — though the winning ALBERT-xxlarge is wider and ~3× slower to run than BERT-large.",
-      "explainer": "papers/lan-2019-albert.html"
+      "explainer": "papers/lan-2019-albert.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lan-2019-albert.mp3"
     },
     {
       "slug": "radford-2019-gpt2",
@@ -4632,7 +4635,8 @@
       "topic": "Post-training & RL",
       "author_group": "University of Washington",
       "abstract": "Introduces MuJoCo, a physics simulator purpose-built for model-based control rather than graphics: articulated systems in generalized coordinates paired with a convex, soft contact/constraint model that stays fast, numerically stable, and — unusually — invertible even with contact. It went on to become the default simulator underlying a decade of deep-RL continuous-control research, from TRPO and PPO to Soft Actor-Critic and TD3.",
-      "explainer": "papers/todorov-2012-mujoco.html"
+      "explainer": "papers/todorov-2012-mujoco.html",
+      "audio_url": "https://pod.darvinyi.com/audio/todorov-2012-mujoco.mp3"
     },
     {
       "slug": "vanhasselt-2016-double-dqn",
@@ -4721,7 +4725,8 @@
       "topic": "Post-training & RL",
       "author_group": "McGill University",
       "abstract": "Proves that DDPG's deterministic policy gradient suffers the same overestimation bias that plagues Q-learning, then fixes it with three additions: a clipped twin critic (taking the minimum of two Q-estimates), delayed actor/target updates, and target policy smoothing. Across 10 seeds on OpenAI Gym's MuJoCo suite the resulting TD3 algorithm roughly doubles DDPG's return on HalfCheetah, Walker2d, and Ant, and — alongside SAC — became the field's default continuous-control baseline.",
-      "explainer": "papers/fujimoto-2018-td3.html"
+      "explainer": "papers/fujimoto-2018-td3.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fujimoto-2018-td3.mp3"
     },
     {
       "slug": "brockman-2016-openai-gym",
