@@ -1982,7 +1982,8 @@
       "topic": "Post-training & RL",
       "author_group": "GAIR Lab / SJTU",
       "abstract": "The first open framework to train a deep-research agent end-to-end with reinforcement learning against the live web rather than a static RAG corpus: a Qwen2.5-7B agent learns via GRPO with an outcome-only word-F1 reward (and a -1 format penalty, tool outputs masked from the loss) to interleave web search, multi-agent page browsing, and reasoning. Trained on 80k contamination-filtered (pass@10) multi-hop QA examples, it beats prompt-engineered agents by up to 28.9 points and RAG-based RL agents by up to 7.2, and generalizes best out-of-domain - on Bamboogle (answers not all on Wikipedia) it tops even a RAG-trained agent given real-web access, evidence that training in the real environment, not just deploying there, builds the skill. Outcome-only RL induces emergent planning, cross-validation, reflection, and honest abstention. Caveat: 'deep research' here is short-answer multi-hop QA graded by word-F1 and a GPT-4o-mini judge, not long-form report writing.",
-      "explainer": "papers/zheng-2025-deepresearcher.html"
+      "explainer": "papers/zheng-2025-deepresearcher.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zheng-2025-deepresearcher.mp3"
     },
     {
       "slug": "shao-2024-storm",
@@ -3197,7 +3198,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "NYU / Google",
       "abstract": "A position paper arguing NLU evaluation is broken: top systems saturate every popular benchmark (GLUE approached or exceeded human scores on all nine tasks; SQuAD 2.0 long past its annotators) yet still fail simple probes, leaving little headroom to measure real progress. Lays out four criteria a trustworthy benchmark must meet -- validity, reliable annotation, statistical power, and bias disincentives -- and argues adversarial data collection (DynaBench-style filtering) treats the symptom, not the cause: it is 'mode-seeking' rather than 'mass-covering' and rewards models that are different without being better. Also shows 'super-human' scores are often an artifact of legitimate annotator disagreement.",
-      "explainer": "papers/bowman-2021-fix-benchmarking.html"
+      "explainer": "papers/bowman-2021-fix-benchmarking.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bowman-2021-fix-benchmarking.mp3"
     },
     {
       "slug": "russakovsky-2015-ilsvrc",
@@ -6756,7 +6758,8 @@
       "topic": "Agents",
       "author_group": "IBM Research",
       "abstract": "The field's first comprehensive survey of LLM-agent evaluation, built on a 172-paper reference list and organized across five perspectives: core agentic capabilities (planning, tool use, self-reflection, memory), four application domains (web, software-engineering, scientific, conversational agents), generalist-agent benchmarks (GAIA/Gaia2, OSWorld, AppWorld, AgentBench), cross-cutting benchmark dimensions — its own Table 1 shows 7 of 8 representative benchmarks carry no safety dimension — and developer-facing evaluation frameworks. Names five open gaps (coarse pass/fail metrics, missing cost-efficiency accounting, thin safety testing, static human-annotated data, and benchmarks conflating LLM capability with harness design); unusually for a survey, it was revised to v2 in April 2026 to fold in 2026-vintage benchmarks.",
-      "explainer": "papers/yehudai-2025-agent-eval-survey.html"
+      "explainer": "papers/yehudai-2025-agent-eval-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yehudai-2025-agent-eval-survey.mp3"
     },
     {
       "slug": "skalse-2022-reward-hacking",
@@ -7414,7 +7417,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Microsoft",
       "abstract": "Three prompt-engineering defenses — delimiting, datamarking, and encoding — that mark untrusted input's provenance so GPT-family models stop treating it as instructions, cutting indirect prompt injection attack success from over 50% to below 2%.",
-      "explainer": "papers/hines-2024-spotlighting.html"
+      "explainer": "papers/hines-2024-spotlighting.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hines-2024-spotlighting.mp3"
     },
     {
       "slug": "pasquini-2024-neuralexec",
@@ -8324,7 +8328,8 @@
       "topic": "Post-training & RL",
       "author_group": "Renmin University of China",
       "abstract": "A two-stage, purely outcome-based RL recipe for teaching LLMs to search: Stage 1 rewards only the act of invoking retrieval (no answer-correctness signal), Stage 2 switches to an F1-based answer reward — with no SFT cold start, no process reward, and a modified Reinforce++ that masks retrieved-document tokens from the loss. Trained only against a local Wikipedia index on HotpotQA/2WikiMultiHopQA, it beats GPT-4o-mini-based test-time-scaling baselines (e.g. ReARTeR) by 48.2% on HotpotQA and 21.7% on 2WikiMultiHopQA (LLM-as-Judge), and the policy transfers zero-shot to live Google search, beating a 32B online-search model (Search-o1) by 11.4% on Bamboogle.",
-      "explainer": "papers/song-2025-r1-searcher.html"
+      "explainer": "papers/song-2025-r1-searcher.html",
+      "audio_url": "https://pod.darvinyi.com/audio/song-2025-r1-searcher.mp3"
     },
     {
       "slug": "sun-2025-zerosearch",
