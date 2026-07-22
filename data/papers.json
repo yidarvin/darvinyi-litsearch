@@ -1600,7 +1600,8 @@
       "topic": "Post-training & RL",
       "author_group": "Anthropic",
       "abstract": "Anthropic's foundational RLHF recipe for general-purpose assistants: fit a preference model to crowdworker comparisons (helpfulness, plus adversarial red-teaming, gathered through open-ended dialogue), then optimize it with PPO under a small KL penalty (λKL=0.001) across seven models from 13M to 52B. Alignment is essentially free above ~10B parameters — 13B/52B RLHF models beat their raw counterparts on zero-shot NLP and match on few-shot (an 'alignment bonus'), while smaller models pay an 'alignment tax' — and HH training is compatible with specialized skills like summarization and code (improving HumanEval pass@k for large models). The paper names the field's enduring mechanisms: preference-model-as-reward, the helpful-vs-harmless tension (a PM trained on one objective scores worse-than-chance on the other), iterated 'online' data collection that fills the high-quality tail, and reward over-optimization — train/test PMs diverge past ~150k samples while reward grows linearly in √DKL. Crowdworkers prefer the online HH model to hired professional writers ~56% of the time, the 52B PM hits 86% on HHH evaluations vs 75% reported human, and the released hh-rlhf preference data plus the PM+PPO+KL template became the direct ancestor of modern assistant alignment.",
-      "explainer": "papers/bai-2022-hh-rlhf.html"
+      "explainer": "papers/bai-2022-hh-rlhf.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bai-2022-hh-rlhf.mp3"
     },
     {
       "slug": "zou-2023-gcg",
@@ -4788,7 +4789,8 @@
       "topic": "Post-training & RL",
       "author_group": "Qwen Team",
       "abstract": "Alibaba's first open LLM family: 1.8B/7B/14B base models pretrained on up to 3 trillion tokens with a custom 152K-vocabulary tokenizer, aligned into Qwen-Chat via SFT and PPO-based RLHF. Qwen-14B beats the 5x-larger LLaMA 2-70B on C-Eval, MATH, and HumanEval, and Qwen-Chat-14B outperforms GPT-4 on an in-house ReAct tool-selection benchmark (98% vs 95% accuracy) — though that agent-eval result is Qwen-authored and Qwen-graded, not independently verified.",
-      "explainer": "papers/bai-2023-qwen.html"
+      "explainer": "papers/bai-2023-qwen.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bai-2023-qwen.mp3"
     },
     {
       "slug": "hermann-2015-cnn-dailymail",
@@ -6126,7 +6128,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "AlphaZero generalises AlphaGo Zero's self-play + MCTS recipe beyond Go, stripping out board-symmetry data augmentation, best-player checkpointing, and per-game hyperparameter tuning, and trains three separate from-scratch instances that beat Stockfish, Elmo, and AlphaGo Zero within hours to a day.",
-      "explainer": "papers/silver-2018-alphazero.html"
+      "explainer": "papers/silver-2018-alphazero.html",
+      "audio_url": "https://pod.darvinyi.com/audio/silver-2018-alphazero.mp3"
     },
     {
       "slug": "blundell-2015-bayes-by-backprop",
@@ -6212,7 +6215,8 @@
       "topic": "Post-training & RL",
       "author_group": "Hungarian Academy of Sciences",
       "abstract": "For large state-space MDPs, Monte-Carlo planning is one of the few viable approaches to finding near-optimal solutions; this paper introduces UCT, which applies the UCB1 multi-armed-bandit rule at every node of a rollout-based search tree, biasing sampling toward the best-looking lines of play. UCT is proven consistent with finite-sample bounds on its estimation error and becomes, a decade later, the search algorithm underlying AlphaGo, AlphaGo Zero, AlphaZero, and MuZero.",
-      "explainer": "papers/kocsis-2006-uct.html"
+      "explainer": "papers/kocsis-2006-uct.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kocsis-2006-uct.mp3"
     },
     {
       "slug": "nguyen-2015-fooling-images",
@@ -7720,7 +7724,8 @@
       "topic": "Reasoning",
       "author_group": "CMU / Allen Institute for AI",
       "abstract": "A single frozen LLM plays generator, critic, and editor on its own output — no extra model, no training data — improving GPT-3.5/ChatGPT/GPT-4 by 5-40% absolute across seven tasks (dialogue, code, sentiment, constrained generation). Math reasoning, the one task with an objective ground truth, barely moves without an oracle stopping signal.",
-      "explainer": "papers/madaan-2023-self-refine.html"
+      "explainer": "papers/madaan-2023-self-refine.html",
+      "audio_url": "https://pod.darvinyi.com/audio/madaan-2023-self-refine.mp3"
     },
     {
       "slug": "shen-2023-hugginggpt",
