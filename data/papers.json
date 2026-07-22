@@ -1776,7 +1776,8 @@
       "topic": "Retrieval & RAG",
       "author_group": "Meta AI (FAIR)",
       "abstract": "The paper that coined retrieval-augmented generation: pair a frozen Wikipedia index (21M 100-word passages, retrieved by a DPR bi-encoder via maximum inner-product search) with a BART-large seq2seq generator, treat the retrieved document as a latent variable, and fine-tune both end-to-end on the negative marginal log-likelihood — with no supervision on what to retrieve. Two variants marginalize differently: RAG-Sequence fixes one document for the whole output, while RAG-Token can switch documents per generated token. RAG set the state of the art on open Natural Questions (44.5 EM), WebQuestions (45.2) and CuratedTrec (52.2) — beating REALM and the 11B-parameter T5+SSM with only a 400M generator — and produced more factual, specific and diverse text than BART (humans judged it more factual in 42.7% of Jeopardy generations vs BART's 7.1%). Because knowledge lives in a swappable index rather than the weights, hot-swapping a 2016 Wikipedia dump for a 2018 one updated the model's answers about world leaders with no retraining.",
-      "explainer": "papers/lewis-2020-rag.html"
+      "explainer": "papers/lewis-2020-rag.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lewis-2020-rag.mp3"
     },
     {
       "slug": "chen-2021-finqa",
@@ -3706,7 +3707,8 @@
       "topic": "Representation Learning",
       "author_group": "Meta AI (FAIR)",
       "abstract": "Momentum Contrast (MoCo) reframes contrastive self-supervised learning as dictionary look-up and builds the dictionary as a FIFO queue of encoded keys decoupled from the mini-batch, with keys produced by a momentum moving-average key encoder (m=0.999) so they stay consistent across thousands of past steps. This lets the number of negatives reach K=65,536 with an ordinary 256-image batch. On ImageNet linear classification a vanilla ResNet-50 reaches 60.6% top-1, but the headline result is transfer: MoCo features outperform supervised ImageNet pre-training on 7 detection/segmentation tasks (e.g. +2.4 AP on PASCAL VOC with the C4 backbone, more with 1B-image IG-1B pre-training) — the first strong signal that the supervised-vs-unsupervised gap had largely closed in vision. The queue+momentum recipe later carried into text retrieval (Contriever).",
-      "explainer": "papers/he-2019-moco.html"
+      "explainer": "papers/he-2019-moco.html",
+      "audio_url": "https://pod.darvinyi.com/audio/he-2019-moco.mp3"
     },
     {
       "slug": "chen-2020-simclr",
@@ -3777,7 +3779,8 @@
       "topic": "Post-training & RL",
       "author_group": "Meta AI",
       "abstract": "Meta's open-weight 7B–70B language models, pretrained on 2 trillion tokens (4k context, GQA on the larger sizes) — plus Llama 2-Chat, aligned with the most detailed public RLHF recipe of its era: SFT on 27,540 curated examples, two separate reward models (helpfulness and safety) trained with a margin-augmented ranking loss over ~2.9M preference pairs, then rejection sampling combined with PPO across five iterations, with Ghost Attention (GAtt) for multi-turn instruction control. The 70B base ties GPT-3.5-class quality on MMLU (68.9) and GSM8K (56.8) but lags badly on code, and in human evals Llama 2-Chat 70B is roughly a coin-flip against ChatGPT — making it the open base model the post-2023 ecosystem was built on.",
-      "explainer": "papers/touvron-2023-llama2.html"
+      "explainer": "papers/touvron-2023-llama2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/touvron-2023-llama2.mp3"
     },
     {
       "slug": "openai-2023-gpt4",
@@ -4647,7 +4650,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "Adapts DQN's off-policy stabilizers — a replay buffer and target networks, plus batch normalization — to a deterministic actor-critic built on the DPG theorem, letting one shared architecture and hyperparameter set robustly solve more than 20 continuous-action MuJoCo/TORCS physics tasks, in many cases learning end-to-end from raw pixels within 2.5M environment steps.",
-      "explainer": "papers/lillicrap-2016-ddpg.html"
+      "explainer": "papers/lillicrap-2016-ddpg.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lillicrap-2016-ddpg.mp3"
     },
     {
       "slug": "hurst-2024-gpt-4o",
@@ -6054,7 +6058,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "Combines a supervised-learning policy network trained on 30 million expert Go moves, a self-play-refined reinforcement-learning policy network, and a value network trained on self-play outcomes, fused inside Monte Carlo tree search. AlphaGo won 494 of 495 games (99.8%) against the strongest existing Go programs and defeated European champion Fan Hui 5 games to 0 — the first time a computer program beat a human professional in the full game of Go without a handicap.",
-      "explainer": "papers/silver-2016-alphago.html"
+      "explainer": "papers/silver-2016-alphago.html",
+      "audio_url": "https://pod.darvinyi.com/audio/silver-2016-alphago.mp3"
     },
     {
       "slug": "silver-2017-alphago-zero",
