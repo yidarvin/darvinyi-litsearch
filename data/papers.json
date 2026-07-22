@@ -3145,7 +3145,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "UC Berkeley / Google",
       "abstract": "A widely-cited position paper arguing that \"general\" benchmarks have a construct-validity problem: ImageNet and GLUE were built for concrete tasks but get treated as measures of general visual or linguistic ability — a claim a finite, convenience-sampled dataset cannot support, like the Sesame Street museum promising \"everything in the whole wide world.\" It documents the gap with the benchmarks' own receipts (ImageNet ~45% US / ~1% China images; GLUE's eight-ish tasks picked from an informal survey) and traces three failure modes — arbitrary task design, de-contextualized data, and a leaderboard culture that hides subgroup failures and fuels \"milestone toward general AI\" marketing. Prescribes scoping benchmarks honestly and, for probing broad capability, using test suites, audits, disaggregated/counterfactual analysis, and ablations.",
-      "explainer": "papers/raji-2021-everything-benchmark.html"
+      "explainer": "papers/raji-2021-everything-benchmark.html",
+      "audio_url": "https://pod.darvinyi.com/audio/raji-2021-everything-benchmark.mp3"
     },
     {
       "slug": "deng-2009-imagenet",
@@ -4204,7 +4205,8 @@
       "topic": "Post-training & RL",
       "author_group": "HKUST",
       "abstract": "A systematic study of DeepSeek-R1-style \"zero RL training\"—GRPO straight from a base model with a pure correctness reward—across 10 open base models including Llama-3.1-8B, Mistral-7B/24B, DeepSeek-Math-7B, and the full Qwen2.5 family. It shows the recipe lifts every model (e.g. Mistral-Small-24B's six-benchmark math average 27.6→49.6), that the reflective \"aha moment\" emerges from scratch in small non-Qwen models while Qwen2.5 already had it, and that response length alone is a misleading signal—format rewards, mismatched data difficulty, and SFT cold-starts each sabotage training.",
-      "explainer": "papers/zeng-2025-simplerl-zoo.html"
+      "explainer": "papers/zeng-2025-simplerl-zoo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zeng-2025-simplerl-zoo.mp3"
     },
     {
       "slug": "bender-2021-stochastic-parrots",
@@ -6388,7 +6390,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Tsinghua University",
       "abstract": "A five-facet survey of the LLMs-as-judges paradigm -- functionality, methodology, application, meta-evaluation, and limitations -- that gives the framework a formal (Y,E,F)=E(T,C,X,R) definition, catalogues 40 meta-evaluation benchmarks, and builds the most granular bias taxonomy to date (14 named biases across four categories).",
-      "explainer": "papers/li-2024-llm-judges-survey.html"
+      "explainer": "papers/li-2024-llm-judges-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-llm-judges-survey.mp3"
     },
     {
       "slug": "zhong-2025-reward-models-survey",
@@ -7144,7 +7147,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "LMSYS / Berkeley",
       "abstract": "LMSYS-Chat-1M releases one million real, unfiltered user conversations with 25 LLMs, and demonstrates four downstream uses: content-moderation fine-tuning, a jailbreak safety benchmark, instruction-tuning data, and the Arena-Hard-200 challenging-prompt benchmark.",
-      "explainer": "papers/zheng-2024-lmsys-chat-1m.html"
+      "explainer": "papers/zheng-2024-lmsys-chat-1m.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zheng-2024-lmsys-chat-1m.mp3"
     },
     {
       "slug": "manheim-2018-goodhart",
@@ -7898,7 +7902,8 @@
       "topic": "Agents",
       "author_group": "Peking University / UCLA",
       "abstract": "An interactive LLM planning loop for open-world multi-task agents (Minecraft): a Descriptor summarizes execution outcomes as text, an Explainer diagnoses why a sub-goal failed, the Planner revises the plan accordingly, and a trained horizon-predictive Selector reorders parallel sub-goals. Across 71 Minecraft tasks it nearly doubles the average success rate over the best prior LLM-planner baseline (48.56% vs. 25.77%) and becomes the first zero-shot planner to make any progress (0.59%) on the long-standing ObtainDiamond challenge.",
-      "explainer": "papers/wang-2023-deps.html"
+      "explainer": "papers/wang-2023-deps.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2023-deps.mp3"
     },
     {
       "slug": "lu-2023-chameleon",
