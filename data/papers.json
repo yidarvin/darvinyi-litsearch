@@ -5098,7 +5098,8 @@
       "topic": "Post-training & RL",
       "author_group": "IST Austria",
       "abstract": "A one-shot, layer-wise weight-quantization method based on approximate second-order (Hessian) information, quantizing GPT-scale models up to 175 billion parameters to 3-4 bits per weight in about four GPU-hours on a single A100, losing only 0.03 WikiText2 perplexity points at 4-bit on OPT-175B, and delivering measured 3.24x-4.53x inference-latency speedups.",
-      "explainer": "papers/frantar-2022-gptq.html"
+      "explainer": "papers/frantar-2022-gptq.html",
+      "audio_url": "https://pod.darvinyi.com/audio/frantar-2022-gptq.mp3"
     },
     {
       "slug": "liu-2015-celeba",
@@ -5128,7 +5129,8 @@
       "topic": "Post-training & RL",
       "author_group": "Qwen Team",
       "abstract": "Alibaba's second open LLM generation: five models (0.5B–72B dense, plus a 57B-A14B Mixture-of-Experts) pre-trained on over 7 trillion tokens and extended to 128K-token context, then aligned with SFT and a two-stage offline+online DPO pipeline. Qwen2-72B-Instruct beats Llama-3-70B-Instruct on MMLU-Pro, HumanEval, and Arena-Hard — while a self-reported contamination table flags up to 75.0% of HumanEval test samples as overlapping the training data under a strict 13-gram rule.",
-      "explainer": "papers/yang-2024-qwen2.html"
+      "explainer": "papers/yang-2024-qwen2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2024-qwen2.mp3"
     },
     {
       "slug": "liu-2024-mmbench",
@@ -5158,7 +5160,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Stanford University",
       "abstract": "Introduces late interaction: encode queries and documents independently with BERT into per-token embeddings, then score with a cheap MaxSim operator, letting document representations be pre-computed offline. Reaches 34.9 MRR@10 on MS MARCO (matching BERT-base's 34.7) at over 170× lower re-ranking latency and 13,900× fewer FLOPs/query.",
-      "explainer": "papers/khattab-2020-colbert.html"
+      "explainer": "papers/khattab-2020-colbert.html",
+      "audio_url": "https://pod.darvinyi.com/audio/khattab-2020-colbert.mp3"
     },
     {
       "slug": "henderson-2017-deep-rl-that-matters",
@@ -6073,7 +6076,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepMind",
       "abstract": "MuZero learns a model of its environment end-to-end from raw observations, predicting only the reward, policy and value quantities that planning needs — never the pixels themselves, and never given the rules of the game or a simulator. Planning over this learned model with AlphaZero-style MCTS, it matches AlphaZero's superhuman play in Go, chess and shogi and sets a new Atari-57 state of the art.",
-      "explainer": "papers/schrittwieser-2019-muzero.html"
+      "explainer": "papers/schrittwieser-2019-muzero.html",
+      "audio_url": "https://pod.darvinyi.com/audio/schrittwieser-2019-muzero.mp3"
     },
     {
       "slug": "liang-2017-odin",
@@ -8201,7 +8205,8 @@
       "topic": "Retrieval & RAG",
       "author_group": "University of Washington / Allen Institute for AI",
       "abstract": "Trains a single LM (Llama2 7B/13B) to emit special reflection tokens — Retrieve, IsRel, IsSup, IsUse — that decide on-demand whether to retrieve and then critique the relevance, factual support, and usefulness of its own candidate outputs, replacing indiscriminate fixed-k RAG with a self-graded segment-level beam search. Outperforms ChatGPT and retrieval-augmented Llama2-chat on PopQA, PubHealth, and biography FactScore, and ablations show the trained critic — not the retriever — drives most of the gain (removing it costs more than removing retrieval outright).",
-      "explainer": "papers/asai-2024-self-rag.html"
+      "explainer": "papers/asai-2024-self-rag.html",
+      "audio_url": "https://pod.darvinyi.com/audio/asai-2024-self-rag.mp3"
     },
     {
       "slug": "jin-2025-search-r1",
