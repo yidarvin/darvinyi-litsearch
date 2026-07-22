@@ -579,7 +579,8 @@
       "topic": "Post-training & RL",
       "author_group": "DeepSeek-AI",
       "abstract": "DeepSeek's open math model: continual-trained from a 7B code base on 120B math tokens mined from Common Crawl by an iterative fastText bootstrap, it reaches 64.2% GSM8K / 36.2% MATH as a base model — matching the closed Minerva 540B at ~1/77th the size — and 88.2% / 51.7% after RL, the first open model past 50% on competition MATH without tools or voting. Its lasting contribution is GRPO, a critic-free PPO variant that drops the value model and estimates the advantage baseline from a group of sampled answers per question, halving RL memory; it is now the default algorithm under most RLVR and rubric-reward training. The paper also shows its RL lifts Maj@K but not Pass@K — sharpening the output distribution rather than raising the capability ceiling.",
-      "explainer": "papers/shao-2024-deepseekmath.html"
+      "explainer": "papers/shao-2024-deepseekmath.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shao-2024-deepseekmath.mp3"
     },
     {
       "slug": "guo-2025-deepseek-r1",
@@ -4023,7 +4024,8 @@
       "topic": "Foundation Models",
       "author_group": "Google",
       "abstract": "Google's 540-billion-parameter dense, decoder-only Transformer, trained on 780B tokens across two TPU v4 pods via the Pathways system. It set few-shot SOTA on 28 of 29 English benchmarks, edged Chinchilla on MMLU (69.3 vs 67.5), beat the average-human aggregate on BIG-bench, and showed chain-of-thought plus scale can match finetuned reasoning SOTA (58% on GSM8K).",
-      "explainer": "papers/chowdhery-2022-palm.html"
+      "explainer": "papers/chowdhery-2022-palm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chowdhery-2022-palm.mp3"
     },
     {
       "slug": "hoffmann-2022-chinchilla",
@@ -4167,7 +4169,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UW / Black in AI",
       "abstract": "The foundational critique of the scale-is-progress paradigm: ever-larger language models buy fluency, not understanding—a \"stochastic parrot\" stitches together linguistic form by probability with no reference to meaning—while their environmental, financial, and bias costs go undocumented and fall hardest on the communities least likely to benefit. Coined the term and anchored the harms-side counterweight to the scaling narrative.",
-      "explainer": "papers/bender-2021-stochastic-parrots.html"
+      "explainer": "papers/bender-2021-stochastic-parrots.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bender-2021-stochastic-parrots.mp3"
     },
     {
       "slug": "bommasani-2021-foundation-models",
@@ -4538,7 +4541,8 @@
       "topic": "Post-training & RL",
       "author_group": "UC Berkeley",
       "abstract": "Proves a monotonic-improvement guarantee for general stochastic policies and turns it into a practical algorithm: maximize a policy-gradient surrogate subject to a hard average-KL trust-region constraint (δ = 0.01), solved via conjugate gradient and a line search with an analytically-computed Fisher information matrix. Solves MuJoCo locomotion (swimmer/hopper/walker) from scratch where natural gradient and derivative-free methods fail, and produces competitive Atari policies from raw pixels — the direct theoretical ancestor PPO's first-order clip approximates.",
-      "explainer": "papers/schulman-2015-trpo.html"
+      "explainer": "papers/schulman-2015-trpo.html",
+      "audio_url": "https://pod.darvinyi.com/audio/schulman-2015-trpo.mp3"
     },
     {
       "slug": "frey-2017-future-of-employment",
@@ -4552,7 +4556,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Oxford Martin School",
       "abstract": "Trains a Gaussian process classifier on 70 hand-labelled O*NET occupations, scored across nine perception/manipulation, creative-intelligence and social-intelligence variables, to estimate a probability of computerisation for 702 US occupations. Finds 47% of US employment in a high-risk category with a strong negative wage/education gradient — the canonical occupation-level automation-exposure baseline that OECD's task-level re-estimate (~9%) and later LLM-exposure work (GPTs are GPTs) directly react against.",
-      "explainer": "papers/frey-2017-future-of-employment.html"
+      "explainer": "papers/frey-2017-future-of-employment.html",
+      "audio_url": "https://pod.darvinyi.com/audio/frey-2017-future-of-employment.mp3"
     },
     {
       "slug": "hardt-2016-equalized-odds",
