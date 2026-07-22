@@ -985,7 +985,8 @@
       "topic": "Post-training & RL",
       "author_group": "Meta AI",
       "abstract": "Meta specializes Llama 2 into an open family of code models (7B/13B/34B/70B) through a cascade of fine-tuning stages — 500B code tokens (1T for 70B), a +100B Python branch, long-context fine-tuning, and instruction tuning — adding fill-in-the-middle infilling and 100k-token contexts (RoPE base period 10,000→1,000,000). It sets open-model state of the art at up to 67.8% HumanEval (Instruct 70B, ≈GPT-4's 67.0%) and 65.6% MBPP (Python 70B), with Code Llama-Python 7B (38.4/47.6) beating Llama 2 70B (30.5/45.4). Self-instruct via execution feedback (~14k question–tests–solution triplets) replaces costly human code labels, and instruction tuning drives ToxiGen toxicity to ~0% at a small, sometimes non-monotonic cost to raw code skill. Released under a permissive commercial license, it became the base model for the first open coding agents (SWE-Llama).",
-      "explainer": "papers/roziere-2023-code-llama.html"
+      "explainer": "papers/roziere-2023-code-llama.html",
+      "audio_url": "https://pod.darvinyi.com/audio/roziere-2023-code-llama.mp3"
     },
     {
       "slug": "liu-2023-evalplus",
@@ -1616,7 +1617,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "CMU / CAIS",
       "abstract": "The paper that recast LLM alignment as an adversarial-robustness problem. Greedy Coordinate Gradient (GCG) combines an affirmative-response objective (forcing the reply to begin “Sure, here is …”), a greedy gradient-based discrete search over all suffix-token positions, and multi-prompt/multi-model aggregation to automatically build a single ~20-token adversarial suffix that jailbreaks aligned LLMs. On the AdvBench benchmark it reaches 88% exact-match attack success on Vicuna-7B harmful strings (vs 25% for AutoPrompt and 0% for PEZ/GBDA) and 84–98% on harmful behaviors, and the gibberish suffix optimized only on open Vicuna/Guanaco transfers to black-box production models — 86.6% ensembled ASR on GPT-3.5, 46.9% on GPT-4, 66.0% on PaLM-2, with Claude-2 the holdout at 2.1%. Transfer is partly confounded by Vicuna being distilled from GPT-3.5, and the specific suffixes were patched after responsible disclosure, but the GCG method and AdvBench became the reference attack the red-teaming and defense literature is measured against.",
-      "explainer": "papers/zou-2023-gcg.html"
+      "explainer": "papers/zou-2023-gcg.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zou-2023-gcg.mp3"
     },
     {
       "slug": "yao-2022-react",
@@ -2132,7 +2134,8 @@
       "topic": "Post-training & RL",
       "author_group": "Anthropic",
       "abstract": "Introduces Constitutional AI (CAI): training a harmless, non-evasive assistant with no human labels for harm — human oversight enters only as a short list of ~16 written principles (a 'constitution'). Two stages bolt onto a helpful-only RLHF model. (1) Supervised: the model critiques and revises its own red-team responses against sampled principles (182,831 prompts, up to 4 critique-revision loops each) and is finetuned on the revisions (SL-CAI). (2) RLAIF — the term coined here: a feedback model labels which of two responses better satisfies a sampled principle, those AI preferences (mixed with human helpfulness labels) train a preference model, and SL-CAI is RL-tuned against it (RL-CAI). At 52B, RL-CAI — especially with chain-of-thought feedback — sits on a better harmlessness-helpfulness Pareto frontier than standard RLHF and is virtually never evasive, engaging with harmful queries by explaining its objections. Caveats the authors flag: over-trained RL-CAI Goodharts into boilerplate ('you are valid, valued, and cared for'), CoT labels need clamping to 40–60% to stay calibrated, and the headline harmlessness gain partly reflects re-instructing crowdworkers to disprefer evasive answers. The conceptual ancestor of rubric/criteria-as-reward methods (Rule-Based Rewards, checklists, rubric anchors).",
-      "explainer": "papers/bai-2022-constitutional-ai.html"
+      "explainer": "papers/bai-2022-constitutional-ai.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bai-2022-constitutional-ai.mp3"
     },
     {
       "slug": "deepseek-2024-v3",
@@ -4250,7 +4253,8 @@
       "topic": "Agents",
       "author_group": "Google",
       "abstract": "Grounds a frozen LLM planner in a robot's physical capabilities by multiplying the LLM's score for each candidate skill (\"Say\") by a learned affordance value function for that skill (\"Can\"), so the chosen plan is both useful and feasible. PaLM-SayCan completes 84% of plans and 74% of executions across 101 long-horizon kitchen instructions on a real mobile manipulator, and improves directly as the underlying language model improves.",
-      "explainer": "papers/ahn-2022-saycan.html"
+      "explainer": "papers/ahn-2022-saycan.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ahn-2022-saycan.mp3"
     },
     {
       "slug": "wang-2023-voyager",
@@ -7486,7 +7490,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Multi-lab",
       "abstract": "A research-agenda paper naming five concrete, near-term-testable AI accident risks — negative side effects, reward hacking, scalable oversight, safe exploration, and robustness to distributional shift — deliberately reframing AI safety away from speculative superintelligence scenarios toward problems in ordinary 2016-era RL and supervised systems.",
-      "explainer": "papers/amodei-2016-concrete-problems.html"
+      "explainer": "papers/amodei-2016-concrete-problems.html",
+      "audio_url": "https://pod.darvinyi.com/audio/amodei-2016-concrete-problems.mp3"
     },
     {
       "slug": "zheng-2024-seeact",
