@@ -1967,7 +1967,8 @@
       "topic": "Agents",
       "author_group": "Renmin University of China",
       "abstract": "Turns an open large reasoning model (QwQ-32B) into a deep-research agent by letting the model itself drive the research instead of slotting it into a fixed RAG pipeline. A Deep Web Explorer — an LRM-driven sub-agent that searches, clicks links/buttons to navigate deeper, and returns distilled findings — fires whenever the main chain of thought hits a knowledge gap; an Autonomous Think-Search-and-Draft strategy interleaves reasoning, searching, and report writing in real time via three draft/check/edit tools run by an assistant LLM over a shared document memory. The behaviour is sharpened with iterative online DPO over preference pairs ranked by correctness, then tool-efficiency, then conciseness. Among 32B systems it dominates GPQA/GAIA/WebWalkerQA/HLE (GAIA 22.3→48.5, WebWalkerQA 4.3→46.5, HLE 9.6→15.8, all Pass@1) and tops Gemini2.0 / Grok3 Deep Research on LLM-judged report quality (8.1 avg) — though on the verifiable benchmarks it still trails closed systems like OpenAI Deep Research (GAIA 67.4, HLE 26.6). Ablations pin the gains on the Deep Web Explorer (complex-reasoning avg 45.4→38.3 without it), with RL a smaller second-order boost (Base 42.1 → RL 45.4).",
-      "explainer": "papers/li-2025-webthinker.html"
+      "explainer": "papers/li-2025-webthinker.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2025-webthinker.mp3"
     },
     {
       "slug": "zheng-2025-deepresearcher",
@@ -7334,7 +7335,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "UC Berkeley",
       "abstract": "Prompt injection is the LLM-era version of the classic control/data-mixing injection vulnerability, and StruQ closes it the way SQL injection was closed: separate the channels. A filtering front-end pairs with 'structured instruction tuning' — fine-tuning a base Llama-7B/Mistral-7B to only follow instructions in the prompt channel — to drive the strongest manual attack (Completion-Real) from 96% to 0% success with roughly a one-point AlpacaEval utility cost, though optimization-based GCG attacks still succeed 56-58% of the time even after the defense.",
-      "explainer": "papers/chen-2024-struq.html"
+      "explainer": "papers/chen-2024-struq.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2024-struq.mp3"
     },
     {
       "slug": "ruan-2023-toolemu",
@@ -7516,7 +7518,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "OpenAI",
       "abstract": "Introduces PALMS, a seven-step iterative process that adapts a pretrained GPT-3 to a stated set of values by fine-tuning on a small, hand-curated 'values-targeted' dataset — just 80 prompt-completion pairs. Across eight GPT-3 sizes (125M–175B), values-targeted models score lower mean toxicity and higher human-rated adherence to the target values than both a base model and a matched neutral-text control, with the effect growing as model size grows, while staying within about 1% accuracy of base-model capability. The values-targeted dataset itself was never released, and no inter-rater agreement statistic is reported for the subjective human ratings.",
-      "explainer": "papers/solaiman-2021-palms.html"
+      "explainer": "papers/solaiman-2021-palms.html",
+      "audio_url": "https://pod.darvinyi.com/audio/solaiman-2021-palms.mp3"
     },
     {
       "slug": "bowman-2022-scalable-oversight",
@@ -7592,7 +7595,8 @@
       "topic": "Multimodal",
       "author_group": "Microsoft Research",
       "abstract": "Introduces Set-of-Mark (SoM) prompting: overlaying numbered marks on segmented image regions to unlock GPT-4V's fine-grained visual grounding, lifting referring-expression accuracy from 25.7% (raw coordinates) to 86.4%, zero-shot, beating fully fine-tuned specialist detectors.",
-      "explainer": "papers/yang-2023-set-of-mark.html"
+      "explainer": "papers/yang-2023-set-of-mark.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2023-set-of-mark.mp3"
     },
     {
       "slug": "zeng-2024-air-bench",
@@ -7939,7 +7943,8 @@
       "topic": "Reasoning",
       "author_group": "Tsinghua University / Microsoft Research",
       "abstract": "A series of 7B-70B agents that interleave natural-language rationales with executable code in a single trajectory, trained by imitation learning on 16k GPT-4-generated tool-use trajectories (ToRA-Corpus) plus 'output space shaping' — sampling and teacher-correcting additional trajectories to broaden the model's output distribution. ToRA-Code-7B reaches 44.6% on the competition-level MATH benchmark, 22 points above the prior best open-source model (WizardMath-70B), and ToRA-Code-34B is the first open-source model to clear 50% on MATH (50.8%), beating GPT-4's own chain-of-thought result (42.5%).",
-      "explainer": "papers/gou-2023-tora.html"
+      "explainer": "papers/gou-2023-tora.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gou-2023-tora.mp3"
     },
     {
       "slug": "zhou-2023-lima",
