@@ -551,7 +551,8 @@
       "topic": "Post-training & RL",
       "author_group": "Inclusion AI / Ant Group",
       "abstract": "Extends RLVR beyond verifiable math/code by turning weighted, model-readable rubrics into the reward, building the largest rubric reward bank to date (10,000+ rubrics from humans, LLMs, or hybrid) and training an open-sourced Qwen3-30B-A3B model (Rubicon). With only ~5K samples it gains +5.2% on open-ended humanities benchmarks (Judgemark v2 +13.0, EQ-Bench3 +6.2) — edging past a 671B DeepSeek-V3 by +2.4% — while keeping general ability roughly flat (AIME24 +4.2 but LiveCodeBench v5 −4.3, reasoning avg −0.4). It names two failure modes: the 'seesaw effect' (creativity vs instruction-following objectives conflict, fixed by multi-stage RL) and reward hacking via sycophancy/self-praise, countered by a veto-style defense rubric. Reported as a single-run preview with the rubric bank and aggregation recipe unreleased.",
-      "explainer": "papers/huang-2025-rubric-anchors.html"
+      "explainer": "papers/huang-2025-rubric-anchors.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2025-rubric-anchors.mp3"
     },
     {
       "slug": "viswanathan-2025-checklists",
@@ -565,7 +566,8 @@
       "topic": "Post-training & RL",
       "author_group": "CMU / Apple",
       "abstract": "Reinforcement Learning from Checklist Feedback (RLCF): rather than train a single scalar reward model, it extracts an instruction-specific checklist of weighted yes/no requirements (the released WildChecklists set, ~130k instructions), grades each item with an LM judge (Qwen2.5-72B, averaged over 25 samples) combined with a confidence-gated verifier program, and turns the weighted satisfaction score into DPO preference pairs. On Qwen2.5-7B-Instruct it is the only method to improve on all five instruction-following benchmarks — +6.0 on InFoBench overall (78.1→84.1), +3.9 average hard-satisfaction-rate on FollowBench (71.4→75.3), +3.3 on Arena-Hard win rate — while reward models that top RewardBench (Skywork-27B, ArmoRM) help on InFoBench but hurt on IFEval/FollowBench, evidence that static RM accuracy is a poor proxy for RL-teaching quality. Candidate-based checklists beat prompting the instruction directly and the recipe transfers off-policy to Llama 3.1 8B and OLMo 2 7B, but it costs ~1 point on GSM8K/TruthfulQA and ~4 days of 8×H100 grading.",
-      "explainer": "papers/viswanathan-2025-checklists.html"
+      "explainer": "papers/viswanathan-2025-checklists.html",
+      "audio_url": "https://pod.darvinyi.com/audio/viswanathan-2025-checklists.mp3"
     },
     {
       "slug": "shao-2024-deepseekmath",
@@ -1159,7 +1161,8 @@
       "topic": "Post-training & RL",
       "author_group": "Purdue / Emory",
       "abstract": "Tackles the cost and unreliability of rubrics-as-rewards by auto-generating rubrics instead of hand-authoring them. Contrastive Rubric Generation (CRG) conditions on a prompt's chosen and rejected responses to derive both hard rules (explicit constraints) and principles (implicit qualities), then a preference-label-consistency filter keeps only rubrics that reproduce the human preference. The released OpenRubrics dataset (35.7k prompts, ~85.6k pairwise instances) trains Rubric-RM, an 8B rubric-generator + judge that beats same-size white-box judges by 8.4 points (70.1 avg, 73.0 with voting@5), and lifts DPO policies on IFBench (30.3), HealthBench (judge 68.3, policy 23.8), and Arena-Hard/AlpacaEval/WildBench.",
-      "explainer": "papers/liu-2025-openrubrics.html"
+      "explainer": "papers/liu-2025-openrubrics.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2025-openrubrics.mp3"
     },
     {
       "slug": "turpin-2025-vft",
@@ -6359,7 +6362,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "RMIT University",
       "abstract": "A People-Process-Technology audit of 23 widely-used LLM benchmarks finds every one carries at least one unresolved functionality or integrity inadequacy, with response-variability and reasoning-vs-optimization failures each affecting 22 of the 23.",
-      "explainer": "papers/mcintosh-2024-benchmark-inadequacies.html"
+      "explainer": "papers/mcintosh-2024-benchmark-inadequacies.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mcintosh-2024-benchmark-inadequacies.mp3"
     },
     {
       "slug": "bean-2025-construct-validity",
@@ -7440,7 +7444,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "EPFL",
       "abstract": "Reframes prompt-injection execution-trigger design as a GCG-style discrete optimization problem, producing triggers at least twice as effective as handcrafted ones and, when optimized for two new robustness properties, able to survive a RAG pipeline's chunking and retrieval about 80% of the time.",
-      "explainer": "papers/pasquini-2024-neuralexec.html"
+      "explainer": "papers/pasquini-2024-neuralexec.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pasquini-2024-neuralexec.mp3"
     },
     {
       "slug": "chao-2024-jailbreakbench",
