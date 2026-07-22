@@ -3891,7 +3891,8 @@
       "topic": "Safety & Red-teaming",
       "author_group": "Meta AI",
       "abstract": "Fine-tunes Llama2-7B into an open input-output moderation classifier that scores the user prompt and the model response as two separate instruction-following tasks against a six-category safety taxonomy supplied in the prompt — so the policy can be swapped zero-shot or few-shot without retraining. Reports strong AUPRC across benchmarks (e.g. 0.626 on held-out ToxicChat vs the OpenAI API's 0.588), though its highest scores (0.945/0.953) are in-policy on Meta's own test set.",
-      "explainer": "papers/inan-2023-llama-guard.html"
+      "explainer": "papers/inan-2023-llama-guard.html",
+      "audio_url": "https://pod.darvinyi.com/audio/inan-2023-llama-guard.mp3"
     },
     {
       "slug": "radford-2018-gpt1",
@@ -4181,7 +4182,8 @@
       "topic": "Post-training & RL",
       "author_group": "Sea AI Lab",
       "abstract": "A critical study of R1-Zero training that separates the base model from the RL. Shows Qwen2.5 base models are already near-SFT math solvers (best with no template, a ~60% jump) and that GRPO's length normalizer mechanically inflates incorrect responses; introduces Dr. GRPO, a one-line unbiased fix that recovers a PPO/RLOO gradient and improves token efficiency. The minimalist recipe (Qwen2.5-Math-7B + Dr. GRPO) reaches 43.3% on AIME 2024 in 27 GPU-hours.",
-      "explainer": "papers/liu-2025-understanding-r1-zero.html"
+      "explainer": "papers/liu-2025-understanding-r1-zero.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2025-understanding-r1-zero.mp3"
     },
     {
       "slug": "zeng-2025-simplerl-zoo",
@@ -6013,7 +6015,8 @@
       "topic": "Benchmarks & Evals",
       "author_group": "Adobe Research",
       "abstract": "Unifies the fractured LLM bias-and-fairness literature into three parallel taxonomies — evaluation metrics (embedding-, probability-, and generated-text-based), evaluation datasets (23 cataloged), and mitigation techniques (13 subtypes across pre-processing/in-training/intra-processing/post-processing) — while extending classical group and individual fairness (equalized odds, individual fairness) into new desiderata for open-ended text generation.",
-      "explainer": "papers/gallegos-2023-llm-bias-survey.html"
+      "explainer": "papers/gallegos-2023-llm-bias-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gallegos-2023-llm-bias-survey.mp3"
     },
     {
       "slug": "hafner-2023-dreamerv3",
@@ -8185,7 +8188,8 @@
       "topic": "Retrieval & RAG",
       "author_group": "AI2 / Stony Brook",
       "abstract": "Interleaves chain-of-thought generation with BM25 retrieval — each new CoT sentence becomes the query for the next retrieval step — fixing one-step retrieve-and-read's inability to know what to retrieve before part of the reasoning has happened. With GPT-3, improves retrieval recall by up to 21 points and QA F1 by up to 15 points across HotpotQA, 2WikiMultihopQA, MuSiQue, and IIRC with no training required, and cuts factual errors in the generated CoT by up to 50%.",
-      "explainer": "papers/trivedi-2022-ircot.html"
+      "explainer": "papers/trivedi-2022-ircot.html",
+      "audio_url": "https://pod.darvinyi.com/audio/trivedi-2022-ircot.mp3"
     },
     {
       "slug": "min-2019-compositional-shortcuts",
@@ -8260,7 +8264,8 @@
       "topic": "Post-training & RL",
       "author_group": "UIUC / UMass Amherst",
       "abstract": "An RL framework that extends DeepSeek-R1-style outcome-only training to search: the LLM's rollout interleaves <search>/<information> tags with its own <think>/<answer> reasoning, retrieved-token loss masking keeps PPO/GRPO training stable, and a bare exact-match reward is enough to teach when and how to search. On seven QA benchmarks (NQ, TriviaQA, PopQA, HotpotQA, 2Wiki, Musique, Bamboogle) under a matched-resource comparison (same retriever, corpus, training data, and backbone across every baseline), it beats RAG baselines by 24% (Qwen2.5-7B) and 20% (Qwen2.5-3B) on average, with retrieved-token masking alone worth 0.343 to 0.431 average EM.",
-      "explainer": "papers/jin-2025-search-r1.html"
+      "explainer": "papers/jin-2025-search-r1.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jin-2025-search-r1.mp3"
     },
     {
       "slug": "song-2025-r1-searcher",
