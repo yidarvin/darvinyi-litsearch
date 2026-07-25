@@ -8447,6 +8447,22 @@
       "explainer": "papers/jin-2024-mmtom-qa.html",
       "audio_url": "https://pod.darvinyi.com/audio/jin-2024-mmtom-qa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "li-2017-dailydialog",
+      "short": "DailyDialog",
+      "title": "DailyDialog: A Manually Labelled Multi-turn Dialogue Dataset",
+      "authors": "Li, Su, Shen, Li, Cao, Niu",
+      "year": 2017,
+      "date": "2017-10",
+      "venue": "IJCNLP 2017",
+      "citation_count": 1538,
+      "topic": "Benchmarks & Evals",
+      "author_group": "HK PolyU / Saarland",
+      "abstract": "13,118 human-written, single-session, multi-turn daily-life dialogues (avg. 7.9 turns) crawled from English-learner practice sites and manually double-labeled with a four-class dialog act (Inform/Questions/Directives/Commissive) and a seven-class Ekman Big-Six-plus-Other emotion tag; a compact, topic-coherent alternative to noisy social-media dialogue corpora that remains a standard single-session reference point for multi-session and emotion-recognition dialogue work.",
+      "explainer": "papers/li-2017-dailydialog.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2017-dailydialog.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14249,6 +14265,12 @@
     { "from": "jin-2024-mmtom-qa", "to": "kojima-2022-zero-shot-cot" },
     { "from": "jin-2024-mmtom-qa", "to": "huang-2022-zero-shot-planner" },
     { "from": "jin-2024-mmtom-qa", "to": "zadeh-2019-social-iq" },
-    { "from": "jin-2024-mmtom-qa", "to": "antol-2015-vqa" }
+    { "from": "jin-2024-mmtom-qa", "to": "antol-2015-vqa" },
+    { "from": "li-2017-dailydialog", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "li-2017-dailydialog", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "maharana-2024-locomo", "to": "li-2017-dailydialog" },
+    { "from": "zheng-2024-lmsys-chat-1m", "to": "li-2017-dailydialog" },
+    { "from": "macina-2023-mathdial", "to": "li-2017-dailydialog" },
+    { "from": "xu-2022-msc", "to": "li-2017-dailydialog" }
   ]
 }

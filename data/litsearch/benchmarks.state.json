@@ -72,6 +72,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-23"
+    },
+    {
+      "slug": "li-2017-dailydialog",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-25"
     }
   ],
   "skipped": [],
@@ -84,19 +91,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-18T18:25 survey_build: step -> taxonomy",
-    "2026-07-18T18:25 survey_build: step -> site",
-    "2026-07-18T18:25 survey_build: step -> tex",
-    "2026-07-18T18:46 survey_build: step -> pdf",
-    "2026-07-18T18:46 survey_build: step -> critique",
-    "2026-07-18T18:52 survey_build: 0 open blocker(s) from round 1 (verdict: approve)",
-    "2026-07-18T18:52 survey_build: step -> verify",
-    "2026-07-18T18:55 survey_build completed (verdict=approved, rounds=1)",
-    "2026-07-23T14:35 started zhang-2018-personachat ('Personalizing dialogue agents: I have a dog, do you have pets too?')",
-    "2026-07-23T14:36 zhang-2018-personachat: step -> fetch",
-    "2026-07-23T14:36 zhang-2018-personachat: step -> figures",
-    "2026-07-23T14:36 zhang-2018-personachat: step -> draft",
-    "2026-07-23T14:42 zhang-2018-personachat: step -> critique (round 1)",
     "2026-07-23T14:44 zhang-2018-personachat: 0 open blocker(s) from round 1 (verdict: approve)",
     "2026-07-23T14:46 zhang-2018-personachat: step -> verify",
     "2026-07-23T14:47 zhang-2018-personachat: step -> queue-ops",
@@ -133,6 +127,19 @@
     "2026-07-23T16:10 jin-2024-mmtom-qa: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-23T16:11 jin-2024-mmtom-qa: step -> verify",
     "2026-07-23T16:11 jin-2024-mmtom-qa: step -> queue-ops",
-    "2026-07-23T16:11 completed jin-2024-mmtom-qa (verdict=approved, rounds=2)"
+    "2026-07-23T16:11 completed jin-2024-mmtom-qa (verdict=approved, rounds=2)",
+    "2026-07-25T10:15 started li-2017-dailydialog ('DailyDialog: A Manually Labelled Multi-turn Dialogue Dataset')",
+    "2026-07-25T10:16 li-2017-dailydialog: step -> fetch",
+    "2026-07-25T10:16 li-2017-dailydialog: step -> figures",
+    "2026-07-25T10:16 li-2017-dailydialog: step -> draft",
+    "2026-07-25T10:24 li-2017-dailydialog: step -> critique (round 1)",
+    "2026-07-25T10:28 li-2017-dailydialog: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-25T10:28 li-2017-dailydialog: step -> revise",
+    "2026-07-25T10:30 li-2017-dailydialog: step -> critique (round 2)",
+    "2026-07-25T10:33 li-2017-dailydialog: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-25T10:33 li-2017-dailydialog: step -> verify",
+    "2026-07-25T10:33 li-2017-dailydialog: step -> queue-ops",
+    "2026-07-25T10:48 li-2017-dailydialog: step -> podcast",
+    "2026-07-25T10:48 completed li-2017-dailydialog (verdict=approved, rounds=2)"
   ]
 }
