@@ -236,12 +236,22 @@ Checkpoint: `python3 scripts/litsearch.py set-step <survey_id> verify`
 (you may already be there from the critic's `approve`/round-cap branch
 above — this call is idempotent, see Resume protocol).
 
-**queue-ops** (you). From `work/<slug>/report.json`'s `queue_candidates`:
-dedupe each candidate against `data/papers.json` + `data/queue.json`
-(same arxiv_id-first rule as Phase S's dedupe step — don't relax it here),
-then insert surviving `core` candidates at the **top** of the queue and
-surviving `foundational` candidates at the **bottom**, both stamped
-`survey: <id>`. Remove the just-processed entry from `data/queue.json` (an
+**queue-ops** (you). Run `python3 scripts/queue_ops.py <slug> --survey <id>`
+to preview and `--apply` to write. It reads `work/<slug>/report.json`'s
+`queue_candidates`, dedupes each against `data/papers.json` +
+`data/queue.json` (same arxiv_id-first rule as Phase S's dedupe step — don't
+relax it here), **appends** surviving `core` *and* `foundational` candidates
+at the **bottom** of the queue stamped `survey: <id>`, and drops
+`foundational` candidates that have no arXiv id (pre-internet
+psych/humanities classics an ML/eval atlas can never render as nodes).
+
+**It is a queue, not a stack** — never push discovered papers onto the top.
+Doing so makes the pipeline crawl depth-first into whatever the last paper
+happened to cite and starves the seeds the search was launched for. Ordering
+is corrected periodically by `python3 scripts/reprioritize_queue.py <id>`
+(benchmark/eval relevance + citation count), not by insertion position.
+
+The same script removes the just-processed entry from `data/queue.json` (an
 exact match on title+arxiv_id — if it's already gone, that's fine, it
 means a previous attempt at this same paper already removed it; see
 Resume protocol). Validate: `python3 -m pytest
@@ -249,12 +259,32 @@ scripts/tests/test_data_integrity.py -q` must pass before you checkpoint —
 same rule as Phase S, and for the same reason (a manual dedupe pass can
 miss a non-ASCII-title or already-queued duplicate; let the test catch
 it). Checkpoint: `python3 scripts/litsearch.py set-step <survey_id>
-queue-ops` if not already there, then `python3 scripts/litsearch.py
-complete-paper <survey_id> --verdict approved` (or `approved_with_notes`
-per the round-cap branch above — pass `--notes` only if you want to
-override the CLI's auto-fill-from-open-blockers default). This clears
-`current` and appends to `completed[]` — the paper is done. Loop back to
-**pick**.
+queue-ops` if not already there.
+
+**podcast** (you) — **mandatory; the paper is not done until this is done.**
+Never skip it, never defer it to "a later batch", never call it optional:
+`complete-paper` will refuse anyway (it checks both the step and the node's
+real `audio_url`), and an explainer shipped without its episode is
+unfinished work. Steps:
+1. `cd ~/Projects/darvinyi-podcast` and run the user-level
+   `litsearch-podcast` skill for the slug — it reads this repo's
+   `public/papers/<slug>.html` plus the paper PDF, writes the 3-voice
+   script, renders the MP3 with Kokoro (~18 min), publishes to the NAS and
+   rebuilds the RSS feed. Integration is through the shared slug only.
+2. Confirm it's live: `curl -sI https://pod.darvinyi.com/audio/<slug>.mp3`
+   → `200`. Don't proceed on anything else.
+3. Link it: `python3 scripts/inject_podcast.py --set <slug>` (stamps the
+   canonical `audio_url` **and** injects the on-page `listen ♪` pill +
+   `<audio>` player — never hand-write either).
+4. Verify the player renders and the explainer still has no sideways
+   scroll at ≈375px.
+Checkpoint: `python3 scripts/litsearch.py set-step <survey_id> podcast`.
+
+Then `python3 scripts/litsearch.py complete-paper <survey_id> --verdict
+approved` (or `approved_with_notes` per the round-cap branch above — pass
+`--notes` only if you want to override the CLI's
+auto-fill-from-open-blockers default). This clears `current` and appends to
+`completed[]` — the paper is done. Loop back to **pick**.
 
 **End of run** (N reached, no more `core` entries, or you're stopping for
 another reason): report papers built this run (slug, rounds, verdict),
@@ -294,6 +324,11 @@ file does.
     re-pass, the dedupe means candidates already inserted won't
     double-insert, and removing an already-removed queue entry is a
     silent no-op by construction of "remove by exact match").
+  - `podcast` → check whether the episode already exists before spending
+    another ~18 min render: `curl -sI
+    https://pod.darvinyi.com/audio/<slug>.mp3`. On a `200`, just re-run
+    `inject_podcast.py --set <slug>` (idempotent) and complete. Only
+    produce the episode if the MP3 is genuinely missing.
 - **`work/<slug>/` missing while `current` says mid-paper** (new machine, a
   cleaned scratch dir): don't error — restart that paper from `resolve`.
   Only the in-flight scratch is lost; nothing in `data/papers.json`,

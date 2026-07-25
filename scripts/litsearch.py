@@ -9,7 +9,13 @@ state or the new state, never a half-written file. The orchestrator skill
 pipeline purely through this CLI so state transitions stay legal and durable.
 
 State machine (per paper, tracked in `current.step`):
-    resolve -> fetch -> figures -> draft -> critique <-> revise -> verify -> queue-ops
+    resolve -> fetch -> figures -> draft -> critique <-> revise -> verify
+      -> queue-ops -> podcast
+
+`podcast` is the final step and is **mandatory**: a paper is not done until its
+TTS episode exists. `complete-paper` refuses unless `current.step` is `podcast`
+*and* the node actually carries an `audio_url` in data/papers.json, so the
+invariant is machine-checked against ground truth rather than trusted.
 
 `current.round` is the critique round number: draft->critique enters round 1;
 each revise->critique bump is round+1; revise itself keeps the round of the
@@ -87,7 +93,8 @@ SURVEY_BUILD_KEY_ORDER = ["step", "round", "open_blockers", "taxonomy", "site", 
 
 # per-paper step machine: legal next steps from each step (self included so a
 # retried/idempotent call is never an error)
-PAPER_STEPS = ["resolve", "fetch", "figures", "draft", "critique", "revise", "verify", "queue-ops"]
+PAPER_STEPS = ["resolve", "fetch", "figures", "draft", "critique", "revise", "verify",
+               "queue-ops", "podcast"]
 PAPER_TRANSITIONS = {
     None: {"resolve"},
     "resolve": {"resolve", "fetch"},
@@ -97,7 +104,8 @@ PAPER_TRANSITIONS = {
     "critique": {"critique", "revise", "verify"},
     "revise": {"revise", "critique"},
     "verify": {"verify", "queue-ops"},
-    "queue-ops": {"queue-ops"},
+    "queue-ops": {"queue-ops", "podcast"},
+    "podcast": {"podcast"},
 }
 
 # survey-artifact build step machine (mirrors the paper machine's shape; used
@@ -317,6 +325,25 @@ def cmd_complete_paper(a):
         die(f"cannot complete '{cur['slug']}' as 'approved' with "
             f"{len(cur['open_blockers'])} open blocker(s) still on record. "
             f"Use --verdict approved_with_notes, or clear blockers first.")
+    # A paper is not done until its TTS episode is published and linked. Gate on
+    # the step *and* on the node's real audio_url -- the step alone is just a
+    # marker the orchestrator sets, while audio_url is written by
+    # scripts/inject_podcast.py only after the MP3 is actually live.
+    if cur.get("step") != "podcast":
+        die(f"cannot complete '{cur['slug']}' from step '{cur.get('step')}': the "
+            f"'podcast' step is mandatory (a paper is not done until its TTS "
+            f"episode exists). Produce the episode, link it with "
+            f"`python3 scripts/inject_podcast.py --set {cur['slug']}`, then "
+            f"`set-step {a.survey} podcast`.")
+    papers = _load_json(ROOT / "data" / "papers.json", {"papers": []})["papers"]
+    node = next((p for p in papers if p.get("slug") == cur["slug"]), None)
+    if node is None:
+        die(f"cannot complete '{cur['slug']}': it is not a node in "
+            f"data/papers.json (the draft step should have added it).")
+    if not node.get("audio_url"):
+        die(f"cannot complete '{cur['slug']}': its node has no 'audio_url', so no "
+            f"podcast episode is linked. Produce the episode, confirm the MP3 is "
+            f"live, then run `python3 scripts/inject_podcast.py --set {cur['slug']}`.")
     notes = list(a.notes or [])
     if a.verdict == "approved_with_notes" and not notes:
         notes = [b.get("issue", str(b)) for b in cur.get("open_blockers", [])]

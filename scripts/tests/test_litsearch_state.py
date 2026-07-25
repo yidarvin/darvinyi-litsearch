@@ -53,6 +53,28 @@ def walk_to(mod, survey, step):
         run(mod, "set-step", survey, s)
 
 
+def walk_to_podcast(mod, survey="zztest"):
+    """Drive `current.step` from resolve all the way to the final `podcast` step,
+    which `complete-paper` requires (mandatory-TTS gate)."""
+    walk_to(mod, survey, "draft")
+    run(mod, "set-step", survey, "critique", "--round", "1")
+    for s in ("verify", "queue-ops", "podcast"):
+        run(mod, "set-step", survey, s)
+
+
+def seed_node(mod, slug, audio=True):
+    """Add `slug` to the scratch papers.json, with an `audio_url` unless
+    audio=False. complete-paper's mandatory-TTS gate reads this as ground truth
+    (the step marker alone is orchestrator-set and therefore fakeable)."""
+    papers_json = mod.ROOT / "data" / "papers.json"
+    data = json.loads(papers_json.read_text())
+    node = {"slug": slug, "title": slug.upper()}
+    if audio:
+        node["audio_url"] = f"https://pod.darvinyi.com/audio/{slug}.mp3"
+    data["papers"].append(node)
+    papers_json.write_text(json.dumps(data))
+
+
 # ---------------------------------------------------------------------------
 # init
 # ---------------------------------------------------------------------------
@@ -246,6 +268,9 @@ def test_complete_paper_approved_requires_no_open_blockers(ls, tmp_path):
     crit.write_text(json.dumps({"verdict": "revise", "round": 1,
                                  "blocking": [{"id": "B1", "issue": "bad"}], "suggestions": []}))
     run(ls, "set-blockers", "zztest", str(crit))
+    seed_node(ls, "s1")
+    for s in ("verify", "queue-ops", "podcast"):
+        run(ls, "set-step", "zztest", s)
     with pytest.raises(SystemExit):
         run(ls, "complete-paper", "zztest", "--verdict", "approved")
     run(ls, "complete-paper", "zztest", "--verdict", "approved_with_notes")
@@ -258,10 +283,8 @@ def test_complete_paper_approved_requires_no_open_blockers(ls, tmp_path):
 def test_complete_paper_approved_clears_current(ls):
     run(ls, "init", "zztest", "--topic", "T")
     run(ls, "start-paper", "zztest", "s1", "--title", "S1")
-    walk_to(ls, "zztest", "draft")
-    run(ls, "set-step", "zztest", "critique", "--round", "1")
-    run(ls, "set-step", "zztest", "verify")
-    run(ls, "set-step", "zztest", "queue-ops")
+    seed_node(ls, "s1")
+    walk_to_podcast(ls, "zztest")
     run(ls, "complete-paper", "zztest", "--verdict", "approved")
     state = read_state(ls)
     assert state["current"] is None
@@ -273,6 +296,8 @@ def test_complete_paper_approved_clears_current(ls):
 def test_complete_paper_explicit_notes_override_autofill(ls):
     run(ls, "init", "zztest", "--topic", "T")
     run(ls, "start-paper", "zztest", "s1", "--title", "S1")
+    seed_node(ls, "s1")
+    walk_to_podcast(ls, "zztest")
     run(ls, "complete-paper", "zztest", "--verdict", "approved_with_notes",
         "--notes", "custom note one", "--notes", "custom note two")
     notes = read_state(ls)["completed"][0]["notes"]
@@ -283,6 +308,52 @@ def test_complete_paper_requires_current(ls):
     run(ls, "init", "zztest", "--topic", "T")
     with pytest.raises(SystemExit):
         run(ls, "complete-paper", "zztest", "--verdict", "approved")
+
+
+# --- mandatory-TTS gate: a paper is not done until its episode exists ---------
+
+def test_complete_paper_rejected_before_the_podcast_step(ls):
+    """queue-ops is no longer terminal: completing from it must fail even when
+    the node already has audio, so the final step can't be skipped silently."""
+    run(ls, "init", "zztest", "--topic", "T")
+    run(ls, "start-paper", "zztest", "s1", "--title", "S1")
+    seed_node(ls, "s1")
+    walk_to(ls, "zztest", "draft")
+    run(ls, "set-step", "zztest", "critique", "--round", "1")
+    run(ls, "set-step", "zztest", "verify")
+    run(ls, "set-step", "zztest", "queue-ops")
+    with pytest.raises(SystemExit):
+        run(ls, "complete-paper", "zztest", "--verdict", "approved")
+    assert read_state(ls)["current"] is not None  # still in progress
+
+
+def test_complete_paper_rejected_when_node_has_no_audio_url(ls):
+    """The step marker alone is orchestrator-set; the real gate is the node's
+    audio_url, which inject_podcast.py writes only once the MP3 is live."""
+    run(ls, "init", "zztest", "--topic", "T")
+    run(ls, "start-paper", "zztest", "s1", "--title", "S1")
+    seed_node(ls, "s1", audio=False)
+    walk_to_podcast(ls, "zztest")
+    with pytest.raises(SystemExit):
+        run(ls, "complete-paper", "zztest", "--verdict", "approved")
+    assert read_state(ls)["current"] is not None
+
+
+def test_complete_paper_rejected_when_node_missing_from_graph(ls):
+    run(ls, "init", "zztest", "--topic", "T")
+    run(ls, "start-paper", "zztest", "s1", "--title", "S1")
+    walk_to_podcast(ls, "zztest")  # no seed_node at all
+    with pytest.raises(SystemExit):
+        run(ls, "complete-paper", "zztest", "--verdict", "approved")
+
+
+def test_skip_paper_still_works_without_a_podcast(ls):
+    """The TTS gate must not wedge an unresolvable paper -- skip-paper is the
+    documented escape hatch and is deliberately not gated."""
+    run(ls, "init", "zztest", "--topic", "T")
+    run(ls, "start-paper", "zztest", "s1", "--title", "S1")
+    run(ls, "skip-paper", "zztest", "--reason", "no PDF obtainable")
+    assert read_state(ls)["skipped"][0]["slug"] == "s1"
 
 
 def test_skip_paper_moves_current_to_skipped(ls):
