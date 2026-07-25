@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personalizing Dialogue Agents: I have a dog, do you have pets too? — paper_atlas</title>
+<meta name="description" content="A 1,155-persona, 162,064-utterance crowd-sourced chit-chat dataset that conditions dialogue agents on an explicit textual persona — and shows every model, generative or ranking, gets better at predicting the next utterance when it can read one.">
+<meta property="og:title" content="Personalizing Dialogue Agents: I have a dog, do you have pets too?">
+<meta property="og:description" content="A 1,155-persona, 162,064-utterance crowd-sourced chit-chat dataset that conditions dialogue agents on an explicit textual persona — and shows every model, generative or ranking, gets better at predicting the next utterance when it can read one.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/zhang-2018-personachat.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2018 · ACL 2018 · Benchmarks &amp; Evals</div>
+      <h1>Personalizing Dialogue Agents: I have a dog, do you have pets too?</h1>
+      <p class="dek">A 1,155-persona, 162,064-utterance crowd-sourced chit-chat dataset — PERSONA-CHAT — that conditions dialogue agents on an explicit textual persona, plus paraphrased "revised" personas that strip out trivial word overlap so the task can't be gamed by copying.</p>
+      <div class="authors mono">Saizheng Zhang, Emily Dinan, Jack Urbanek, Arthur Szlam, Douwe Kiela, Jason Weston</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>ACL 2018</b></span>
+        <span class="fact">citations&nbsp;<b>1,734</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1801.07243">source&nbsp;↗</a></span>
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-23 (Semantic Scholar)</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2018, neural chit-chat models trained on movie-script corpora (OpenSubtitles, Cornell Movie-Dialogue) or social-media dumps (Twitter, Reddit) had a well-documented, three-part failure mode: they lack a consistent personality because they are trained over many different speakers and average across them; they have no explicit long-term memory, since they are typically conditioned only on the recent dialogue history; and they default to bland, non-specific replies like "I don't know" because that's the safest bet under maximum-likelihood training. The authors argue the root cause is upstream of any modeling choice: there was no good public dataset that gave a model a reason to be consistent, because none of the existing large-scale conversational corpora attach a persistent, explicit persona to either speaker.</p>
+      <p>The closest prior attempt, Li et al. (2016a)'s persona-based neural conversation model, encoded each Twitter user's persona as a learned distributed embedding — one opaque vector per speaker, fit post hoc from that speaker's history. That approach can't generalize to a persona never seen at training time, and it gives you no way to inspect what the "persona" actually contains. The gap this paper targets is a dataset where personas are explicit, human-readable text (not latent vectors), assigned before the conversation happens, sourced from crowdworkers rather than mined from a single platform's idiosyncratic register (Twitter's habitual short, informal register, or a movie script's non-conversational structure), and — crucially — where a second, paraphrased version of every persona exists so a model can't win by mining verbatim string overlap between what the persona says and what the speaker types.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>PERSONA-CHAT is built in three crowdsourcing stages on Amazon Mechanical Turk. <strong>(i) Personas:</strong> workers write a character description as 5+ short sentences (max 15 words each), given a single example ("I am a vegetarian. I like swimming. My father used to work for Ford. My favorite band is Maroon5. I got a new job last month, which is about advertising design."). This produced 1,155 personas; 100 are held out for validation and 100 for test, so no test persona is ever seen during training. <strong>(ii) Revised personas:</strong> a second set of crowdworkers rewrites each sentence of every original persona into a related but non-overlapping characteristic — a rephrase, generalization, or specialization (e.g. "I like basketball" → "I am a big fan of Michael Jordan"). The interface actively enforces this: if a worker types a non-stopword that appears in the original sentence, the system throws a warning and forces a rewrite, guaranteeing the revised set can't be solved by lexical matching the way the authors note happened with SQuAD's span-extraction items. <strong>(iii) Persona chat:</strong> two Turkers are paired, each is handed a different persona drawn at random from the pool, and told simply to "chat with the other person naturally and try to get to know each other" — with an added instruction to both ask and answer questions (added after early pilots showed workers over-talking about themselves), a per-message 15-word cap, a randomly chosen minimum dialogue length of 6–8 turns, and an explicit rule (enforced by string-matching, with an error thrown on violation) against copying persona sentences verbatim into the chat. The result: 162,064 utterances over 10,907 dialogues, with 15,602 utterances (1,000 dialogues) held out for validation and 15,024 utterances (968 dialogues) for test.</p>
+
+      <p>The paper defines the evaluation protocol around next-utterance prediction: given the dialogue history (and, in some conditions, one or both speakers' personas — "no persona," "your own persona," "their persona," or "both," tried with either the original or the revised persona text), predict the next line. Three metrics are used: perplexity of the correct sequence, F1 word-overlap, and hits@1 — pick the correct response out of a set including the gold reply plus 19 randomly sampled distractors from other dialogues, following the protocol of Lowe et al. (2015)'s Ubuntu Dialogue Corpus.</p>
+
+      <p>Five model families are benchmarked, all with and without persona conditioning, by simply concatenating the persona sentences to the input (ranking models) or prepending them to the encoder input (generative models): a tf-idf cosine-similarity <strong>IR baseline</strong>; <strong>Starspace</strong> (Wu et al., 2017), a supervised embedding ranker trained with margin ranking loss; a <strong>Profile Memory Network</strong> that attends over the persona sentences to build a weighted context vector before ranking; a <strong>Key-Value Profile Memory Network</strong> that adds a second attention hop over (dialogue-history, next-utterance) pairs mined from the training set; a <strong>Seq2Seq</strong> LSTM encoder-decoder using GloVe embeddings; and a <strong>Generative Profile Memory Network</strong> that encodes each persona sentence as a separate memory slot and lets the decoder attend over them at every generation step (reducing to plain Seq2Seq when there's no persona to attend to).</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Conditioning on a persona helps every model class, on both automated and human metrics — but the size of the gain, and which persona is more useful, varies in ways the paper is upfront about. On next-utterance hits@1 with the original (non-revised) personas: the IR baseline goes from 0.214 (no persona) to 0.410; Starspace from 0.318 to 0.491; the Profile Memory ranker from 0.318 to 0.509; and the KV Profile Memory network reaches the best score in the table, 0.511 (versus 0.349 with no persona). On the generative side, the Profile Memory model improves perplexity from 38.08 (no persona, same as Seq2Seq) to 34.54 and hits@1 (computed by re-ranking under generation probability) from 0.092 to 0.125.</p>
+
+      <table>
+        <thead><tr><th>Method</th><th class="num">No persona</th><th class="num">Original persona</th><th class="num">Revised persona</th></tr></thead>
+        <tbody>
+          <tr><td>IR baseline (hits@1)</td><td class="num">0.214</td><td class="num">0.410</td><td class="num">0.207</td></tr>
+          <tr><td>Starspace (hits@1)</td><td class="num">0.318</td><td class="num">0.491</td><td class="num">0.322</td></tr>
+          <tr><td>Profile Memory (hits@1)</td><td class="num">0.318</td><td class="num">0.509</td><td class="num">0.354</td></tr>
+          <tr><td>KV Profile Memory (hits@1)</td><td class="num">0.349</td><td class="num">0.511</td><td class="num">0.351</td></tr>
+          <tr><td>Seq2Seq (perplexity)</td><td class="num">38.08</td><td class="num">40.53</td><td class="num">40.65</td></tr>
+          <tr><td>Profile Memory gen. (perplexity)</td><td class="num">38.08</td><td class="num">34.54</td><td class="num">38.21</td></tr>
+        </tbody>
+      </table>
+
+      <p>The revised personas are, by design, much harder: every ranking model's hits@1 drops sharply relative to the original-persona condition (e.g. Profile Memory falls from 0.509 to 0.354), confirming the rewriting procedure removed the lexical shortcut. Interestingly, "their persona" (conditioning on the partner's, rather than your own, profile) barely moves the needle — the authors attribute this to crowdworkers tending to talk about themselves rather than probe the partner, a property of the particular instructions given rather than a fundamental limit of the data.</p>
+
+      <p>Human evaluation (100 dialogues per model, Turkers rating fluency, engagingness, and consistency 1–5, plus a two-way forced-choice persona-detection task) tells a consistent story: real human-human chat scores 4.31 fluency / 4.25 engagingness / 4.36 consistency / 0.95 profile-detection accuracy — the ceiling. Among models, KV Profile Memory (self persona) scores 3.97 fluency / 3.50 engagingness / 3.44 consistency / 0.81 detection, versus 3.81 / 3.88 / 3.36 / 0.59 for the no-persona KV Memory baseline — a large jump in detectability with only a modest, occasionally counter-intuitive trade in engagingness. Most strikingly, every PERSONA-CHAT-trained model — regardless of persona conditioning — beats language models trained on Twitter (1.75 engagingness) or OpenSubtitles (2.13–2.22 engagingness), which the paper reads as evidence that the dataset itself, independent of the persona mechanism, produces more engaging opening-conversation data than mined social-media or movie-script corpora. A secondary experiment (Appendix D) shows profiles can be predicted back out of dialogue with 94.3% accuracy for humans and 23% for the best model (KV Profile Memory), and that this accuracy improves monotonically as dialogue length grows from 1 to 8 turns.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>PERSONA-CHAT's core eval-methodology contribution — the revised-persona paraphrase set — is exactly the right instinct, arriving two years before "shortcut learning" became a standard vocabulary term, and the paper is admirably explicit that the SQuAD-style word-overlap failure mode was the thing it was designed to defend against. But the defense is partial, and the paper says so itself: the revision instructions ban copying non-stopwords, checked by simple string matching at collection time — this stops verbatim leakage but does nothing about semantic-level shortcuts (a paraphrase like "I am a big fan of Michael Jordan" for "I like basketball" still shares enough distributional signal with basketball-adjacent dialogue turns that a sufficiently capable retrieval model could exploit topical co-occurrence rather than genuine persona-conditioned reasoning). The gap between original-persona hits@1 (0.509–0.511) and revised-persona hits@1 (0.351–0.354) shows the revision does make the task meaningfully harder, which is good evidence the shortcut was real and partially closed — but it's also consistent with the revised task simply being noisier rather than more genuinely persona-grounded, and the paper doesn't run the ablation (e.g. do models attend to the same persona sentences under original vs. revised phrasing) that would distinguish the two explanations.</p>
+
+      <p>The headline metric, hits@1 against 19 random distractors, is also weaker than it looks: random distractors from other dialogues are typically topically unrelated to the current conversation, so a model can score well by matching coarse topic/register rather than by correctly using the specific persona sentence that licenses the reply. The paper doesn't report a "hard negative" variant (distractors drawn from the same persona pool, or from utterances that are topically close but persona-inconsistent) that would isolate persona-grounded reasoning from surface topic matching. Perplexity, similarly, rewards fluent generic language and is explicitly noted by the authors themselves to be poorly calibrated for the sentence-level ranking task, which is why they lean on hits@1 for the generative models too (re-ranking candidates by generation probability) rather than trusting perplexity alone.</p>
+
+      <p>Contamination in the 2018 sense (train/test leakage) is well-controlled — 100 personas are cleanly held out for validation and test and never touched during collection of the training personas — but by 2026 standards PERSONA-CHAT itself is almost certainly contaminated at the pretraining-corpus level for any LLM released after ~2019, since the dataset and ParlAI code have been public on GitHub/arXiv for years and are a popular fine-tuning target; any paper reporting zero-shot PERSONA-CHAT numbers for a modern LLM should be read with that in mind, something this 2018 paper obviously could not anticipate. The human evaluation, while a genuine strength relative to contemporaries, is also modest in scale (100 dialogues per model condition) with self-reported high variance in the ratings (the paper flags this directly), so small (0.1–0.3 point) differences between models on fluency/engagingness/consistency should not be over-read as significant.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Fair for 2018 — IR, Starspace, Seq2Seq, and memory-network variants were the standard chit-chat toolkit at the time; the comparison against Twitter- and OpenSubtitles-trained models is a genuinely useful external check, not just an internal ablation.</p>
+        <span class="k">contamination</span><p class="v">Train/test persona split is clean at collection time (100 held-out personas never used in training). Not addressed, and unaddressable in 2018: the dataset's own later ubiquity means any modern LLM's PERSONA-CHAT numbers are likely pretraining-contaminated.</p>
+        <span class="k">what's missed</span><p class="v">hits@1 with random (not persona-matched or topically-hard) distractors rewards topic matching more than genuine persona grounding; no ablation isolates whether revised-persona gains reflect real generalization or just added noise.</p>
+        <span class="k">would raise confidence</span><p class="v">A hard-negative variant of hits@1 (distractors sharing topic but not the correct persona), an attention-overlap analysis comparing original vs. revised persona conditions, and a larger, lower-variance human-evaluation batch.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>PERSONA-CHAT's real contribution isn't a clever model — it's the crowdsourcing recipe (explicit personas, a paraphrase-defended revision, and both-directions conditioning) that turned "consistent personality" from a hard-to-measure vibe into a next-utterance-prediction number. That recipe held up well enough that it became the seed corpus half a decade of persona and long-term-memory dialogue work (Multi-Session Chat's session 1, among many others) built directly on top of.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>PERSONA-CHAT pairs 1,155 crowdsourced personas (100 held out each for validation/test) with 162,064 utterances across 10,907 dialogues, and is the first large chit-chat dataset to attach an explicit, human-readable textual persona to each speaker rather than a latent per-user embedding.</li>
+        <li>Every model tested — IR, Starspace, Profile Memory, KV Profile Memory, Seq2Seq, Generative Profile Memory — improves on next-utterance hits@1 or perplexity when conditioned on the speaker's own persona; KV Profile Memory reaches 0.511 hits@1 versus 0.349 with no persona.</li>
+        <li>The paraphrased "revised persona" set, engineered to remove verbatim word overlap, cuts hits@1 roughly in half (e.g. 0.509 → 0.354 for Profile Memory) — real evidence some of the original gain was a lexical shortcut, though the revision doesn't fully rule out subtler topical shortcuts.</li>
+        <li>Human evaluation shows PERSONA-CHAT-trained models beat Twitter- and OpenSubtitles-trained ones on engagingness regardless of persona conditioning, and persona-conditioned models are more detectable as having a consistent persona (0.81 vs 0.59 detection accuracy) without a proportional cost to fluency.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Personalizing Dialogue Agents: I have a dog, do you have pets too?<br>
+        Saizheng Zhang, Emily Dinan, Jack Urbanek, Arthur Szlam, Douwe Kiela, Jason Weston · 2018 · ACL 2018<br>
+        <a href="https://arxiv.org/abs/1801.07243">read the original ↗</a> · slug: zhang-2018-personachat
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
