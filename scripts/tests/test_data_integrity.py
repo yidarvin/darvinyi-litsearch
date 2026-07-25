@@ -142,13 +142,26 @@ def test_tags_sorted_deduped_and_known(papers, survey_ids):
 
 
 def test_audio_url_is_canonical(papers):
-    """`audio_url` is optional (absent == no podcast episode), but when present it
-    must be the deterministic published URL for that slug — the explainer's
-    on-page player and the injector (scripts/inject_podcast.py) both assume it."""
+    """`audio_url` must be the deterministic published URL for that slug — the
+    explainer's on-page player and the injector (scripts/inject_podcast.py) both
+    assume it."""
     bad = [(p["slug"], p["audio_url"]) for p in papers
            if p.get("audio_url") is not None
            and p["audio_url"] != AUDIO_URL_FMT.format(slug=p["slug"])]
     assert not bad, f"non-canonical audio_url: {bad}"
+
+
+def test_every_node_has_a_podcast_episode(papers):
+    """A paper is not done until its TTS episode is published and linked
+    (CLAUDE.md), so a node without an `audio_url` is unfinished work, not a
+    normal state. `litsearch.py complete-paper` enforces the same invariant at
+    write time; this catches anything that got in another way — a hand-added
+    node, or a `git checkout` that reverted an injector run."""
+    missing = [p["slug"] for p in papers if not p.get("audio_url")]
+    assert not missing, (
+        f"{len(missing)} node(s) with no podcast episode: {missing}. "
+        f"Produce each via the litsearch-podcast skill in ~/Projects/darvinyi-podcast, "
+        f"then link with `python3 scripts/inject_podcast.py --set <slug>`.")
 
 
 def test_explainer_files_exist(papers):

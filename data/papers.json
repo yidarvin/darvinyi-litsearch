@@ -8397,6 +8397,7 @@
       "author_group": "Meta AI (FAIR)",
       "abstract": "PERSONA-CHAT: a crowdsourced chit-chat dataset that fixes generic-response, no-memory, inconsistent-personality failures by conditioning both speakers on an explicit, human-readable persona (1,155 personas as 5+ short sentences each, 100 held out for validation/test) rather than a latent per-speaker embedding. A second crowdsourcing pass rewrites each persona sentence to remove lexical overlap with the original, producing a harder \"revised persona\" condition; every model tested (IR baseline, Starspace, Profile Memory, KV Profile Memory, Seq2Seq) improves on next-utterance hits@1 or perplexity when conditioned on the original persona (e.g. KV Profile Memory 0.349 -> 0.511 hits@1), with scores dropping sharply on the harder revised personas.",
       "explainer": "papers/zhang-2018-personachat.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2018-personachat.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -8412,6 +8413,7 @@
       "author_group": "CMU",
       "abstract": "An interactive, goal-driven social-intelligence environment: two LLM agents are given a shared scenario and private, possibly conflicting social goals (90 scenarios x 40 characters x 5 relationship types, 450 tasks), act in free text across up to 20 turns, then are scored post-hoc on a 7-dimension rubric (SOTOPIA-EVAL: goal completion, believability, knowledge, relationships, financial/material benefit, secrets, social rules) rather than one accuracy number. GPT-4 leads every dimension (e.g. GOAL 7.62 vs. GPT-3.5's 6.45, Llama-2-70b-chat's 5.38), but the ranking inverts static-benchmark leaderboards (Llama-2-70b-chat trails GPT-3.5 here despite comparable MMLU scores), and no model scores positively on norm-following (SOC, SEC both negative even for GPT-4), showing every model still leaks secrets or breaks social rules on average.",
       "explainer": "papers/zhou-2023-sotopia.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2023-sotopia.mp3",
       "tags": ["benchmarks", "evaluations"]
     },
     {
@@ -8427,6 +8429,7 @@
       "author_group": "CMU",
       "abstract": "A CVPR 2019 benchmark that operationalizes social intelligence as open-ended question answering rather than numeric sentiment/emotion labels: 1,250 in-the-wild YouTube videos annotated via a 6-stage pipeline into 7,500 questions and 52,500 correct/incorrect answers (30,000/22,500), each tagged for complexity (41% advanced, 40% intermediate, 19% easy). Ports seven multimodal QA architectures from MovieQA/TVQA/CMU-MOSEI plus a new Tensor-MFN hybrid; the best model reaches only 64.82% binary accuracy against a 95.08% human ceiling, a 30-point gap the paper attributes to genuine social-reasoning difficulty.",
       "explainer": "papers/zadeh-2019-social-iq.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zadeh-2019-social-iq.mp3",
       "tags": ["benchmarks"]
     },
     {
@@ -8442,6 +8445,7 @@
       "author_group": "MIT",
       "abstract": "The first multimodal Theory-of-Mind benchmark: 600 belief/goal questions over 134 procedurally generated household-activity videos, each paired with RGB-D video and text describing world state the camera can't reveal, requiring models to fuse both to reason about a person's beliefs and goals. Humans reach 93.0% multimodal accuracy while GPT-4V and every open text/video baseline sit near chance (40-48%); the paper's own Bayesian-inverse-planning baseline, BIP-ALM, closes much of the gap (up to 76.7%) by using a finetuned language model to amortize the policy term in classic inverse planning.",
       "explainer": "papers/jin-2024-mmtom-qa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jin-2024-mmtom-qa.mp3",
       "tags": ["benchmarks"]
     }
   ],
