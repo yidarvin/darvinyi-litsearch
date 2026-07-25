@@ -8479,6 +8479,22 @@
       "explainer": "papers/valmeekam-2022-planbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/valmeekam-2022-planbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhang-2024-agent-security-bench",
+      "short": "ASB",
+      "title": "Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents",
+      "authors": "Zhang, Huang, Mei, Yao, Wang, Zhan, Wang, Zhang",
+      "year": 2025,
+      "date": "2024-10",
+      "venue": "ICLR",
+      "citation_count": 306,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Zhejiang University / Rutgers University",
+      "abstract": "A comprehensive benchmark formalizing attacks and defenses against LLM-based agents across 10 scenarios, 10 agents, and over 400 tools: direct/indirect prompt injection, memory poisoning, and a novel Plan-of-Thought backdoor attack, evaluated against 11 defenses across 13 LLM backbones, finding an 84.30% average success rate for mixed attacks that current defenses barely mitigate.",
+      "explainer": "papers/zhang-2024-agent-security-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2024-agent-security-bench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14302,6 +14318,23 @@
     { "from": "valmeekam-2022-planbench", "to": "sakaguchi-2019-winogrande" },
     { "from": "liu-2023-llm-p", "to": "valmeekam-2022-planbench" },
     { "from": "yehudai-2025-agent-eval-survey", "to": "valmeekam-2022-planbench" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "valmeekam-2022-planbench" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "valmeekam-2022-planbench" },
+    { "from": "zhang-2024-agent-security-bench", "to": "yang-2024-qwen2" },
+    { "from": "zhang-2024-agent-security-bench", "to": "zhan-2024-injecagent" },
+    { "from": "zhang-2024-agent-security-bench", "to": "liu-2023-open-prompt-injection" },
+    { "from": "zhang-2024-agent-security-bench", "to": "jain-2023-baseline-defenses" },
+    { "from": "zhang-2024-agent-security-bench", "to": "qin-2023-toolllm" },
+    { "from": "zhang-2024-agent-security-bench", "to": "liu-2023-houyi" },
+    { "from": "zhang-2024-agent-security-bench", "to": "patil-2023-gorilla" },
+    { "from": "zhang-2024-agent-security-bench", "to": "greshake-2023-indirect-prompt-injection" },
+    { "from": "zhang-2024-agent-security-bench", "to": "kang-2023-programmatic-behavior" },
+    { "from": "zhang-2024-agent-security-bench", "to": "perez-2022-ignore-previous-prompt" },
+    { "from": "zhang-2024-agent-security-bench", "to": "yao-2022-react" },
+    { "from": "zhang-2024-agent-security-bench", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "zhang-2024-agent-security-bench", "to": "wei-2022-cot" },
+    { "from": "zhang-2024-agent-security-bench", "to": "huang-2022-zero-shot-planner" },
+    { "from": "zhang-2024-agent-security-bench", "to": "lewis-2020-rag" },
+    { "from": "zhang-2024-agent-security-bench", "to": "debenedetti-2024-agentdojo" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "zhang-2024-agent-security-bench" }
   ]
 }

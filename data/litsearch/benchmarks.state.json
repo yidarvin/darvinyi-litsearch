@@ -86,6 +86,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-25"
+    },
+    {
+      "slug": "zhang-2024-agent-security-bench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-25"
     }
   ],
   "skipped": [],
@@ -98,19 +105,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-23T15:11 zhou-2023-sotopia: step -> verify",
-    "2026-07-23T15:12 zhou-2023-sotopia: step -> queue-ops",
-    "2026-07-23T15:12 completed zhou-2023-sotopia (verdict=approved, rounds=2)",
-    "2026-07-23T15:13 started zadeh-2019-social-iq ('Social-IQ: A Question Answering Benchmark for Artificial Social Intelligence')",
-    "2026-07-23T15:15 zadeh-2019-social-iq: step -> fetch",
-    "2026-07-23T15:16 zadeh-2019-social-iq: step -> figures",
-    "2026-07-23T15:16 zadeh-2019-social-iq: step -> draft",
-    "2026-07-23T15:31 zadeh-2019-social-iq: step -> critique (round 1)",
-    "2026-07-23T15:34 zadeh-2019-social-iq: 0 open blocker(s) from round 1 (verdict: approve)",
-    "2026-07-23T15:35 zadeh-2019-social-iq: step -> verify",
-    "2026-07-23T15:35 zadeh-2019-social-iq: step -> queue-ops",
-    "2026-07-23T15:35 completed zadeh-2019-social-iq (verdict=approved, rounds=1)",
-    "2026-07-23T15:36 started jin-2024-mmtom-qa ('MMToM-QA: Multimodal Theory of Mind Question Answering')",
     "2026-07-23T15:37 jin-2024-mmtom-qa: step -> fetch",
     "2026-07-23T15:38 jin-2024-mmtom-qa: step -> figures",
     "2026-07-23T15:38 jin-2024-mmtom-qa: step -> draft",
@@ -147,6 +141,19 @@
     "2026-07-25T11:12 valmeekam-2022-planbench: step -> verify",
     "2026-07-25T11:12 valmeekam-2022-planbench: step -> queue-ops",
     "2026-07-25T11:25 valmeekam-2022-planbench: step -> podcast",
-    "2026-07-25T11:25 completed valmeekam-2022-planbench (verdict=approved, rounds=2)"
+    "2026-07-25T11:25 completed valmeekam-2022-planbench (verdict=approved, rounds=2)",
+    "2026-07-25T11:26 started zhang-2024-agent-security-bench ('Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents')",
+    "2026-07-25T11:26 zhang-2024-agent-security-bench: step -> fetch",
+    "2026-07-25T11:26 zhang-2024-agent-security-bench: step -> figures",
+    "2026-07-25T11:28 zhang-2024-agent-security-bench: step -> draft",
+    "2026-07-25T11:38 zhang-2024-agent-security-bench: step -> critique (round 1)",
+    "2026-07-25T11:49 zhang-2024-agent-security-bench: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-25T11:49 zhang-2024-agent-security-bench: step -> revise",
+    "2026-07-25T11:52 zhang-2024-agent-security-bench: step -> critique (round 2)",
+    "2026-07-25T11:56 zhang-2024-agent-security-bench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-25T11:56 zhang-2024-agent-security-bench: step -> verify",
+    "2026-07-25T11:56 zhang-2024-agent-security-bench: step -> queue-ops",
+    "2026-07-25T12:09 zhang-2024-agent-security-bench: step -> podcast",
+    "2026-07-25T12:09 completed zhang-2024-agent-security-bench (verdict=approved, rounds=2)"
   ]
 }
