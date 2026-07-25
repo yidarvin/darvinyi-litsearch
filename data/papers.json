@@ -8463,6 +8463,22 @@
       "explainer": "papers/li-2017-dailydialog.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2017-dailydialog.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "valmeekam-2022-planbench",
+      "short": "PlanBench",
+      "title": "PlanBench: An Extensible Benchmark for Evaluating Large Language Models on Planning and Reasoning about Change",
+      "authors": "Valmeekam, Marquez, Olmo, Sreedharan, Kambhampati",
+      "year": 2022,
+      "date": "2022-06",
+      "venue": "NeurIPS 2023 (Datasets & Benchmarks Track)",
+      "citation_count": 441,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Arizona State University / Colorado State University",
+      "abstract": "An extensible benchmark suite built directly on classical PDDL planning domains (Blocksworld, Logistics), using a real planner and plan validator to mechanically generate and grade ~26,250 prompts across eight distinct planning/reasoning-about-action tasks. GPT-4 solves only 34.3% of plan-generation instances, and that collapses to 2-4.3% once domain vocabulary is obfuscated, evidence that much of the apparent score is pattern matching rather than domain-general reasoning.",
+      "explainer": "papers/valmeekam-2022-planbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/valmeekam-2022-planbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14271,6 +14287,21 @@
     { "from": "maharana-2024-locomo", "to": "li-2017-dailydialog" },
     { "from": "zheng-2024-lmsys-chat-1m", "to": "li-2017-dailydialog" },
     { "from": "macina-2023-mathdial", "to": "li-2017-dailydialog" },
-    { "from": "xu-2022-msc", "to": "li-2017-dailydialog" }
+    { "from": "xu-2022-msc", "to": "li-2017-dailydialog" },
+    { "from": "valmeekam-2022-planbench", "to": "yao-2022-react" },
+    { "from": "valmeekam-2022-planbench", "to": "srivastava-2022-big-bench" },
+    { "from": "valmeekam-2022-planbench", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "valmeekam-2022-planbench", "to": "chowdhery-2022-palm" },
+    { "from": "valmeekam-2022-planbench", "to": "ahn-2022-saycan" },
+    { "from": "valmeekam-2022-planbench", "to": "hoffmann-2022-chinchilla" },
+    { "from": "valmeekam-2022-planbench", "to": "ouyang-2022-instructgpt" },
+    { "from": "valmeekam-2022-planbench", "to": "wei-2022-cot" },
+    { "from": "valmeekam-2022-planbench", "to": "huang-2022-zero-shot-planner" },
+    { "from": "valmeekam-2022-planbench", "to": "cobbe-2021-gsm8k" },
+    { "from": "valmeekam-2022-planbench", "to": "talmor-2019-commonsenseqa" },
+    { "from": "valmeekam-2022-planbench", "to": "sakaguchi-2019-winogrande" },
+    { "from": "liu-2023-llm-p", "to": "valmeekam-2022-planbench" },
+    { "from": "yehudai-2025-agent-eval-survey", "to": "valmeekam-2022-planbench" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "valmeekam-2022-planbench" }
   ]
 }

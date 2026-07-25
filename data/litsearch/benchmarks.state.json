@@ -79,6 +79,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-25"
+    },
+    {
+      "slug": "valmeekam-2022-planbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-25"
     }
   ],
   "skipped": [],
@@ -91,19 +98,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-23T14:44 zhang-2018-personachat: 0 open blocker(s) from round 1 (verdict: approve)",
-    "2026-07-23T14:46 zhang-2018-personachat: step -> verify",
-    "2026-07-23T14:47 zhang-2018-personachat: step -> queue-ops",
-    "2026-07-23T14:47 completed zhang-2018-personachat (verdict=approved, rounds=1)",
-    "2026-07-23T14:49 started zhou-2023-sotopia ('SOTOPIA: Interactive Evaluation for Social Intelligence in Language Agents')",
-    "2026-07-23T14:50 zhou-2023-sotopia: step -> fetch",
-    "2026-07-23T14:50 zhou-2023-sotopia: step -> figures",
-    "2026-07-23T14:50 zhou-2023-sotopia: step -> draft",
-    "2026-07-23T15:03 zhou-2023-sotopia: step -> critique (round 1)",
-    "2026-07-23T15:08 zhou-2023-sotopia: 1 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-23T15:08 zhou-2023-sotopia: step -> revise",
-    "2026-07-23T15:08 zhou-2023-sotopia: step -> critique (round 2)",
-    "2026-07-23T15:10 zhou-2023-sotopia: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-23T15:11 zhou-2023-sotopia: step -> verify",
     "2026-07-23T15:12 zhou-2023-sotopia: step -> queue-ops",
     "2026-07-23T15:12 completed zhou-2023-sotopia (verdict=approved, rounds=2)",
@@ -140,6 +134,19 @@
     "2026-07-25T10:33 li-2017-dailydialog: step -> verify",
     "2026-07-25T10:33 li-2017-dailydialog: step -> queue-ops",
     "2026-07-25T10:48 li-2017-dailydialog: step -> podcast",
-    "2026-07-25T10:48 completed li-2017-dailydialog (verdict=approved, rounds=2)"
+    "2026-07-25T10:48 completed li-2017-dailydialog (verdict=approved, rounds=2)",
+    "2026-07-25T10:48 started valmeekam-2022-planbench ('PlanBench: An Extensible Benchmark for Evaluating Large Language Models on Planning and Reasoning about Change')",
+    "2026-07-25T10:49 valmeekam-2022-planbench: step -> fetch",
+    "2026-07-25T10:49 valmeekam-2022-planbench: step -> figures",
+    "2026-07-25T10:49 valmeekam-2022-planbench: step -> draft",
+    "2026-07-25T10:59 valmeekam-2022-planbench: step -> critique (round 1)",
+    "2026-07-25T11:06 valmeekam-2022-planbench: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-25T11:06 valmeekam-2022-planbench: step -> revise",
+    "2026-07-25T11:09 valmeekam-2022-planbench: step -> critique (round 2)",
+    "2026-07-25T11:12 valmeekam-2022-planbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-25T11:12 valmeekam-2022-planbench: step -> verify",
+    "2026-07-25T11:12 valmeekam-2022-planbench: step -> queue-ops",
+    "2026-07-25T11:25 valmeekam-2022-planbench: step -> podcast",
+    "2026-07-25T11:25 completed valmeekam-2022-planbench (verdict=approved, rounds=2)"
   ]
 }
