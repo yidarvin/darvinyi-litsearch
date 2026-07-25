@@ -163,6 +163,20 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2023 · ICLR 2024 · Agents</div>
       <h1>SOTOPIA: Interactive Evaluation for Social Intelligence in Language Agents</h1>
       <p class="dek">Give two LLM agents a private social goal each — keep the blanket, get the blanket back — drop them into one of 90 scripted scenarios played out by 40 procedurally-generated characters, and score the transcript on seven axes instead of one. SOTOPIA turns social intelligence from a static QA benchmark into an interactive, goal-driven simulation, then asks whether GPT-4 itself can be trusted to referee it.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/zhou-2023-sotopia.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/zhou-2023-sotopia.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <!-- scripts/inject_podcast.py inserts the <audio> player here (right after
            the dek) when the node has an audio_url; nothing to fill in by hand. -->
       <div class="authors mono">Xuhui Zhou, Hao Zhu, Leena Mathur, Ruohong Zhang, Zhengyang Qi, Haofei Yu, Louis-Philippe Morency, Yonatan Bisk, Daniel Fried, Graham Neubig, Maarten Sap</div>
@@ -172,6 +186,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <span class="fact">topic&nbsp;<b>Agents</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2310.11667">source&nbsp;↗</a></span>
         <!-- inject_podcast.py appends a `listen ♪` pill here when audio_url is set. -->
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/zhou-2023-sotopia.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-07-23</div>
     </div>
