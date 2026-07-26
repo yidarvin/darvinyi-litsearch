@@ -100,6 +100,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "huang-2023-metatool",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -112,19 +119,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-25T10:16 li-2017-dailydialog: step -> figures",
-    "2026-07-25T10:16 li-2017-dailydialog: step -> draft",
-    "2026-07-25T10:24 li-2017-dailydialog: step -> critique (round 1)",
-    "2026-07-25T10:28 li-2017-dailydialog: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-25T10:28 li-2017-dailydialog: step -> revise",
-    "2026-07-25T10:30 li-2017-dailydialog: step -> critique (round 2)",
-    "2026-07-25T10:33 li-2017-dailydialog: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-25T10:33 li-2017-dailydialog: step -> verify",
-    "2026-07-25T10:33 li-2017-dailydialog: step -> queue-ops",
-    "2026-07-25T10:48 li-2017-dailydialog: step -> podcast",
-    "2026-07-25T10:48 completed li-2017-dailydialog (verdict=approved, rounds=2)",
-    "2026-07-25T10:48 started valmeekam-2022-planbench ('PlanBench: An Extensible Benchmark for Evaluating Large Language Models on Planning and Reasoning about Change')",
-    "2026-07-25T10:49 valmeekam-2022-planbench: step -> fetch",
     "2026-07-25T10:49 valmeekam-2022-planbench: step -> figures",
     "2026-07-25T10:49 valmeekam-2022-planbench: step -> draft",
     "2026-07-25T10:59 valmeekam-2022-planbench: step -> critique (round 1)",
@@ -161,6 +155,19 @@
     "2026-07-26T09:14 schmidgall-2024-agentclinic: step -> verify",
     "2026-07-26T09:14 schmidgall-2024-agentclinic: step -> queue-ops",
     "2026-07-26T09:35 schmidgall-2024-agentclinic: step -> podcast",
-    "2026-07-26T09:35 completed schmidgall-2024-agentclinic (verdict=approved, rounds=2)"
+    "2026-07-26T09:35 completed schmidgall-2024-agentclinic (verdict=approved, rounds=2)",
+    "2026-07-26T09:36 started huang-2023-metatool ('MetaTool Benchmark for Large Language Models: Deciding Whether to Use Tools and Which to Use')",
+    "2026-07-26T09:36 huang-2023-metatool: step -> fetch",
+    "2026-07-26T09:36 huang-2023-metatool: step -> figures",
+    "2026-07-26T09:42 huang-2023-metatool: step -> draft",
+    "2026-07-26T09:49 huang-2023-metatool: step -> critique (round 1)",
+    "2026-07-26T09:56 huang-2023-metatool: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T09:56 huang-2023-metatool: step -> revise",
+    "2026-07-26T09:59 huang-2023-metatool: step -> critique (round 2)",
+    "2026-07-26T10:07 huang-2023-metatool: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T10:07 huang-2023-metatool: step -> verify",
+    "2026-07-26T10:07 huang-2023-metatool: step -> queue-ops",
+    "2026-07-26T10:30 huang-2023-metatool: step -> podcast",
+    "2026-07-26T10:30 completed huang-2023-metatool (verdict=approved, rounds=2)"
   ]
 }

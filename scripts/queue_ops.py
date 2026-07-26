@@ -92,6 +92,20 @@ def main():
     # papers.json nodes carry no arxiv_id, so the graph is deduped by title --
     # the same basis test_queue_no_overlap_with_graph uses.
     graph_titles = {norm(p.get("title", "")) for p in papers}
+    # ...but title matching alone silently misses a paper whose title changed
+    # between preprint and camera-ready (MetaTool cited API-Bank as "A Benchmark
+    # for Tool-Augmented LLMs"; the node is "A *Comprehensive* Benchmark ..."),
+    # which would queue a duplicate of a paper already in the graph. Recover each
+    # node's arXiv id from its explainer's canonical source link -- the same
+    # trick scripts/backfill_dates.py uses -- and dedupe on that too.
+    graph_arxiv = set()
+    for p in papers:
+        explainer = ROOT / "public" / (p.get("explainer") or "")
+        if not p.get("explainer") or not explainer.is_file():
+            continue
+        m = re.search(r"arxiv\.org/abs/([0-9]{4}\.[0-9]{4,5})", explainer.read_text())
+        if m:
+            graph_arxiv.add(m.group(1))
     q_arxiv = {e["arxiv_id"] for e in queue if e.get("arxiv_id")}
     q_doi = {e["doi"] for e in queue if e.get("doi")}
     q_titles = {norm(e.get("title", "")) for e in queue}
@@ -110,6 +124,8 @@ def main():
             reasons.append("already queued (title)")
         if nt and nt in graph_titles:
             reasons.append("already a graph node (title)")
+        if ax and ax in graph_arxiv:
+            reasons.append(f"already a graph node (arxiv {ax})")
         if ax and ax in seen_arxiv:
             reasons.append("duplicate within this batch (arxiv)")
         if nt and nt in seen_titles:

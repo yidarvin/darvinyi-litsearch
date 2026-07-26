@@ -8511,6 +8511,22 @@
       "explainer": "papers/schmidgall-2024-agentclinic.html",
       "audio_url": "https://pod.darvinyi.com/audio/schmidgall-2024-agentclinic.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "huang-2023-metatool",
+      "short": "MetaTool",
+      "title": "MetaTool Benchmark for Large Language Models: Deciding Whether to Use Tools and Which to Use",
+      "authors": "Huang, Shi, Li, Fan, Wu, Zhang, Liu, Zhou, Wan, Gong, Sun",
+      "year": 2023,
+      "date": "2023-10",
+      "venue": "ICLR 2024",
+      "citation_count": 212,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Lehigh University",
+      "abstract": "Introduces MetaTool, a benchmark that separately scores whether LLMs know they need a tool at all (awareness) from whether they pick the right one (selection), using a 21,127-query dataset (ToolE) built from 390 real OpenAI-plugin tools. Across eight LLMs, only ChatGPT clears 70% F1 on zero-shot awareness, and most models score under 10% CSR at honestly answering \"none\" when the correct tool is hidden from the candidate list -- a reliability gap far starker than their similar-tool or multi-tool selection performance.",
+      "explainer": "papers/huang-2023-metatool.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2023-metatool.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14364,6 +14380,24 @@
     { "from": "schmidgall-2024-agentclinic", "to": "hendrycks-2020-mmlu" },
     { "from": "schmidgall-2024-agentclinic", "to": "brown-2020-gpt3" },
     { "from": "schmidgall-2024-agentclinic", "to": "jin-2019-pubmedqa" },
-    { "from": "schmidgall-2024-agentclinic", "to": "christiano-2017-deep-rl-preferences" }
+    { "from": "schmidgall-2024-agentclinic", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "huang-2023-metatool", "to": "liu-2023-agentbench" },
+    { "from": "huang-2023-metatool", "to": "qin-2023-toolllm" },
+    { "from": "huang-2023-metatool", "to": "touvron-2023-llama2" },
+    { "from": "huang-2023-metatool", "to": "deng-2023-mind2web" },
+    { "from": "huang-2023-metatool", "to": "patil-2023-gorilla" },
+    { "from": "huang-2023-metatool", "to": "zhou-2023-lima" },
+    { "from": "huang-2023-metatool", "to": "li-2023-bird" },
+    { "from": "huang-2023-metatool", "to": "park-2023-generative-agents" },
+    { "from": "huang-2023-metatool", "to": "wu-2023-bloomberggpt" },
+    { "from": "huang-2023-metatool", "to": "schick-2023-toolformer" },
+    { "from": "huang-2023-metatool", "to": "yao-2022-react" },
+    { "from": "huang-2023-metatool", "to": "shen-2023-hugginggpt" },
+    { "from": "huang-2023-metatool", "to": "talmor-2019-commonsenseqa" },
+    { "from": "huang-2023-metatool", "to": "li-2023-api-bank" },
+    { "from": "bandi-2026-mcp-atlas", "to": "huang-2023-metatool" },
+    { "from": "barres-2025-tau2-bench", "to": "huang-2023-metatool" },
+    { "from": "gao-2025-mcp-radar", "to": "huang-2023-metatool" },
+    { "from": "yao-2024-tau-bench", "to": "huang-2023-metatool" }
   ]
 }
