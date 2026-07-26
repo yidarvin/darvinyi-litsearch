@@ -8527,6 +8527,22 @@
       "explainer": "papers/huang-2023-metatool.html",
       "audio_url": "https://pod.darvinyi.com/audio/huang-2023-metatool.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "xiong-2024-mirage",
+      "short": "MIRAGE",
+      "title": "Benchmarking Retrieval-Augmented Generation for Medicine",
+      "authors": "Xiong, Jin, Lu, Zhang",
+      "year": 2024,
+      "date": "2024-02",
+      "venue": "ACL 2024",
+      "citation_count": 572,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Virginia / NIH (NLM)",
+      "abstract": "Introduces MIRAGE, a 7,663-question benchmark spanning five medical QA datasets (MMLU-Med, MedQA-US, MedMCQA, PubMedQA*, BioASQ-Y/N) evaluated zero-shot with question-only retrieval, plus MedRAG, a toolkit of five corpora, four retrievers, and six LLMs. Across 41 configurations and 1.8T+ prompt tokens, MedRAG lifts accuracy up to 17.9% relative over chain-of-thought, pushing GPT-3.5 and Mixtral near GPT-4's no-retrieval score, and surfaces a log-linear snippet-count scaling law plus a lost-in-the-middle position effect.",
+      "explainer": "papers/xiong-2024-mirage.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xiong-2024-mirage.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14398,6 +14414,23 @@
     { "from": "bandi-2026-mcp-atlas", "to": "huang-2023-metatool" },
     { "from": "barres-2025-tau2-bench", "to": "huang-2023-metatool" },
     { "from": "gao-2025-mcp-radar", "to": "huang-2023-metatool" },
-    { "from": "yao-2024-tau-bench", "to": "huang-2023-metatool" }
+    { "from": "yao-2024-tau-bench", "to": "huang-2023-metatool" },
+    { "from": "xiong-2024-mirage", "to": "lewis-2020-rag" },
+    { "from": "xiong-2024-mirage", "to": "izacard-2021-contriever" },
+    { "from": "xiong-2024-mirage", "to": "karpukhin-2020-dpr" },
+    { "from": "xiong-2024-mirage", "to": "xiong-2020-ance" },
+    { "from": "xiong-2024-mirage", "to": "touvron-2023-llama" },
+    { "from": "xiong-2024-mirage", "to": "touvron-2023-llama2" },
+    { "from": "xiong-2024-mirage", "to": "devlin-2019-bert" },
+    { "from": "xiong-2024-mirage", "to": "jin-2019-pubmedqa" },
+    { "from": "xiong-2024-mirage", "to": "jin-2020-medqa" },
+    { "from": "xiong-2024-mirage", "to": "hendrycks-2020-mmlu" },
+    { "from": "xiong-2024-mirage", "to": "singhal-2023-med-palm" },
+    { "from": "xiong-2024-mirage", "to": "liu-2023-lost-in-the-middle" },
+    { "from": "xiong-2024-mirage", "to": "thakur-2021-beir" },
+    { "from": "xiong-2024-mirage", "to": "luo-2022-biogpt" },
+    { "from": "xiong-2024-mirage", "to": "wei-2022-cot" },
+    { "from": "xiong-2024-mirage", "to": "openai-2023-gpt4" },
+    { "from": "schmidgall-2024-agentclinic", "to": "xiong-2024-mirage" }
   ]
 }

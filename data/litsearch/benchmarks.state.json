@@ -107,6 +107,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "xiong-2024-mirage",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -119,19 +126,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-25T10:49 valmeekam-2022-planbench: step -> figures",
-    "2026-07-25T10:49 valmeekam-2022-planbench: step -> draft",
-    "2026-07-25T10:59 valmeekam-2022-planbench: step -> critique (round 1)",
-    "2026-07-25T11:06 valmeekam-2022-planbench: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-25T11:06 valmeekam-2022-planbench: step -> revise",
-    "2026-07-25T11:09 valmeekam-2022-planbench: step -> critique (round 2)",
-    "2026-07-25T11:12 valmeekam-2022-planbench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-25T11:12 valmeekam-2022-planbench: step -> verify",
-    "2026-07-25T11:12 valmeekam-2022-planbench: step -> queue-ops",
-    "2026-07-25T11:25 valmeekam-2022-planbench: step -> podcast",
-    "2026-07-25T11:25 completed valmeekam-2022-planbench (verdict=approved, rounds=2)",
-    "2026-07-25T11:26 started zhang-2024-agent-security-bench ('Agent Security Bench (ASB): Formalizing and Benchmarking Attacks and Defenses in LLM-based Agents')",
-    "2026-07-25T11:26 zhang-2024-agent-security-bench: step -> fetch",
     "2026-07-25T11:26 zhang-2024-agent-security-bench: step -> figures",
     "2026-07-25T11:28 zhang-2024-agent-security-bench: step -> draft",
     "2026-07-25T11:38 zhang-2024-agent-security-bench: step -> critique (round 1)",
@@ -168,6 +162,19 @@
     "2026-07-26T10:07 huang-2023-metatool: step -> verify",
     "2026-07-26T10:07 huang-2023-metatool: step -> queue-ops",
     "2026-07-26T10:30 huang-2023-metatool: step -> podcast",
-    "2026-07-26T10:30 completed huang-2023-metatool (verdict=approved, rounds=2)"
+    "2026-07-26T10:30 completed huang-2023-metatool (verdict=approved, rounds=2)",
+    "2026-07-26T10:30 started xiong-2024-mirage ('Benchmarking Retrieval-Augmented Generation for Medicine')",
+    "2026-07-26T10:31 xiong-2024-mirage: step -> fetch",
+    "2026-07-26T10:31 xiong-2024-mirage: step -> figures",
+    "2026-07-26T10:31 xiong-2024-mirage: step -> draft",
+    "2026-07-26T10:40 xiong-2024-mirage: step -> critique (round 1)",
+    "2026-07-26T10:46 xiong-2024-mirage: 1 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T10:46 xiong-2024-mirage: step -> revise",
+    "2026-07-26T10:47 xiong-2024-mirage: step -> critique (round 2)",
+    "2026-07-26T10:49 xiong-2024-mirage: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T10:50 xiong-2024-mirage: step -> verify",
+    "2026-07-26T10:50 xiong-2024-mirage: step -> queue-ops",
+    "2026-07-26T11:06 xiong-2024-mirage: step -> podcast",
+    "2026-07-26T11:06 completed xiong-2024-mirage (verdict=approved, rounds=2)"
   ]
 }
