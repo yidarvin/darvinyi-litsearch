@@ -8559,6 +8559,22 @@
       "explainer": "papers/chen-2020-meddialog.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2020-meddialog.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "wang-2013-stc",
+      "short": "STC Dataset",
+      "title": "A Dataset for Research on Short-Text Conversations",
+      "authors": "Wang, Lu, Li, Chen",
+      "year": 2013,
+      "date": "2013-10",
+      "venue": "EMNLP 2013",
+      "citation_count": 204,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Huawei Noah's Ark Lab",
+      "abstract": "Releases a Sina Weibo short-text-conversation dataset — 628,833 naturally-occurring (post, response) pairs, ~1.5 million candidate responses, and 422 posts pooling-labeled into ~12,427 judged pairs — to make retrieval-based, single-round social-media response modeling trainable and testable at scale, and validates it with a two-stage matching-then-RankSVM baseline (MAP 0.621 / P@1 0.574). Later seeded the NTCIR Short Text Conversation shared tasks.",
+      "explainer": "papers/wang-2013-stc.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2013-stc.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14454,6 +14470,7 @@
     { "from": "chen-2020-meddialog", "to": "papineni-2002-bleu" },
     { "from": "chen-2020-meddialog", "to": "doddington-2002-nist" },
     { "from": "chen-2020-meddialog", "to": "radford-2018-gpt1" },
-    { "from": "schmidgall-2024-agentclinic", "to": "chen-2020-meddialog" }
+    { "from": "schmidgall-2024-agentclinic", "to": "chen-2020-meddialog" },
+    { "from": "li-2017-dailydialog", "to": "wang-2013-stc" }
   ]
 }

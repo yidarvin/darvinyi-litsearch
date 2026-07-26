@@ -121,6 +121,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "wang-2013-stc",
+      "rounds": 1,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -133,16 +140,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T08:50 schmidgall-2024-agentclinic: step -> figures",
-    "2026-07-26T08:52 schmidgall-2024-agentclinic: step -> draft",
-    "2026-07-26T09:03 schmidgall-2024-agentclinic: step -> critique (round 1)",
-    "2026-07-26T09:09 schmidgall-2024-agentclinic: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T09:09 schmidgall-2024-agentclinic: step -> revise",
-    "2026-07-26T09:10 schmidgall-2024-agentclinic: step -> critique (round 2)",
-    "2026-07-26T09:13 schmidgall-2024-agentclinic: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T09:14 schmidgall-2024-agentclinic: step -> verify",
-    "2026-07-26T09:14 schmidgall-2024-agentclinic: step -> queue-ops",
-    "2026-07-26T09:35 schmidgall-2024-agentclinic: step -> podcast",
     "2026-07-26T09:35 completed schmidgall-2024-agentclinic (verdict=approved, rounds=2)",
     "2026-07-26T09:36 started huang-2023-metatool ('MetaTool Benchmark for Large Language Models: Deciding Whether to Use Tools and Which to Use')",
     "2026-07-26T09:36 huang-2023-metatool: step -> fetch",
@@ -182,6 +179,16 @@
     "2026-07-26T11:39 chen-2020-meddialog: step -> verify",
     "2026-07-26T11:40 chen-2020-meddialog: step -> queue-ops",
     "2026-07-26T12:09 chen-2020-meddialog: step -> podcast",
-    "2026-07-26T12:09 completed chen-2020-meddialog (verdict=approved, rounds=2)"
+    "2026-07-26T12:09 completed chen-2020-meddialog (verdict=approved, rounds=2)",
+    "2026-07-26T12:09 started wang-2013-stc ('A Dataset for Research on Short-Text Conversations')",
+    "2026-07-26T12:11 wang-2013-stc: step -> fetch",
+    "2026-07-26T12:11 wang-2013-stc: step -> figures",
+    "2026-07-26T12:12 wang-2013-stc: step -> draft",
+    "2026-07-26T12:21 wang-2013-stc: step -> critique (round 1)",
+    "2026-07-26T12:29 wang-2013-stc: 0 open blocker(s) from round 1 (verdict: approve)",
+    "2026-07-26T12:29 wang-2013-stc: step -> verify",
+    "2026-07-26T12:29 wang-2013-stc: step -> queue-ops",
+    "2026-07-26T12:47 wang-2013-stc: step -> podcast",
+    "2026-07-26T12:47 completed wang-2013-stc (verdict=approved, rounds=1)"
   ]
 }
