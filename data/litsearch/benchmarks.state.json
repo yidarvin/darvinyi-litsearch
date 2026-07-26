@@ -114,6 +114,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "chen-2020-meddialog",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -126,19 +133,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-25T11:26 zhang-2024-agent-security-bench: step -> figures",
-    "2026-07-25T11:28 zhang-2024-agent-security-bench: step -> draft",
-    "2026-07-25T11:38 zhang-2024-agent-security-bench: step -> critique (round 1)",
-    "2026-07-25T11:49 zhang-2024-agent-security-bench: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-25T11:49 zhang-2024-agent-security-bench: step -> revise",
-    "2026-07-25T11:52 zhang-2024-agent-security-bench: step -> critique (round 2)",
-    "2026-07-25T11:56 zhang-2024-agent-security-bench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-25T11:56 zhang-2024-agent-security-bench: step -> verify",
-    "2026-07-25T11:56 zhang-2024-agent-security-bench: step -> queue-ops",
-    "2026-07-25T12:09 zhang-2024-agent-security-bench: step -> podcast",
-    "2026-07-25T12:09 completed zhang-2024-agent-security-bench (verdict=approved, rounds=2)",
-    "2026-07-26T08:50 started schmidgall-2024-agentclinic ('AgentClinic: a multimodal agent benchmark to evaluate AI in simulated clinical environments')",
-    "2026-07-26T08:50 schmidgall-2024-agentclinic: step -> fetch",
     "2026-07-26T08:50 schmidgall-2024-agentclinic: step -> figures",
     "2026-07-26T08:52 schmidgall-2024-agentclinic: step -> draft",
     "2026-07-26T09:03 schmidgall-2024-agentclinic: step -> critique (round 1)",
@@ -175,6 +169,19 @@
     "2026-07-26T10:50 xiong-2024-mirage: step -> verify",
     "2026-07-26T10:50 xiong-2024-mirage: step -> queue-ops",
     "2026-07-26T11:06 xiong-2024-mirage: step -> podcast",
-    "2026-07-26T11:06 completed xiong-2024-mirage (verdict=approved, rounds=2)"
+    "2026-07-26T11:06 completed xiong-2024-mirage (verdict=approved, rounds=2)",
+    "2026-07-26T11:06 started chen-2020-meddialog ('MedDialog: A Large-scale Medical Dialogue Dataset')",
+    "2026-07-26T11:07 chen-2020-meddialog: step -> fetch",
+    "2026-07-26T11:11 chen-2020-meddialog: step -> figures",
+    "2026-07-26T11:11 chen-2020-meddialog: step -> draft",
+    "2026-07-26T11:25 chen-2020-meddialog: step -> critique (round 1)",
+    "2026-07-26T11:32 chen-2020-meddialog: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T11:32 chen-2020-meddialog: step -> revise",
+    "2026-07-26T11:34 chen-2020-meddialog: step -> critique (round 2)",
+    "2026-07-26T11:39 chen-2020-meddialog: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T11:39 chen-2020-meddialog: step -> verify",
+    "2026-07-26T11:40 chen-2020-meddialog: step -> queue-ops",
+    "2026-07-26T12:09 chen-2020-meddialog: step -> podcast",
+    "2026-07-26T12:09 completed chen-2020-meddialog (verdict=approved, rounds=2)"
   ]
 }

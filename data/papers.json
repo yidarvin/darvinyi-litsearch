@@ -8543,6 +8543,22 @@
       "explainer": "papers/xiong-2024-mirage.html",
       "audio_url": "https://pod.darvinyi.com/audio/xiong-2024-mirage.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "chen-2020-meddialog",
+      "short": "MedDialog",
+      "title": "MedDialog: A Large-scale Medical Dialogue Dataset",
+      "authors": "He, Chen, Ju, …, Zhu, Xie",
+      "year": 2020,
+      "date": "2020-04",
+      "venue": "arXiv",
+      "citation_count": 253,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UC San Diego",
+      "abstract": "Two crawled patient-doctor consultation corpora, MedDialog-CN and MedDialog-EN, built to pretrain medical dialogue generation and transfer it to low-resource tasks like COVID-19 consultation; the EMNLP 2020 camera-ready's final tables report 3.4M CN and 257K EN dialogues, roughly 3x the CN count the arXiv preprint's own body text describes.",
+      "explainer": "papers/chen-2020-meddialog.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2020-meddialog.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14431,6 +14447,13 @@
     { "from": "xiong-2024-mirage", "to": "luo-2022-biogpt" },
     { "from": "xiong-2024-mirage", "to": "wei-2022-cot" },
     { "from": "xiong-2024-mirage", "to": "openai-2023-gpt4" },
-    { "from": "schmidgall-2024-agentclinic", "to": "xiong-2024-mirage" }
+    { "from": "schmidgall-2024-agentclinic", "to": "xiong-2024-mirage" },
+    { "from": "chen-2020-meddialog", "to": "devlin-2019-bert" },
+    { "from": "chen-2020-meddialog", "to": "lewis-2019-bart" },
+    { "from": "chen-2020-meddialog", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "chen-2020-meddialog", "to": "papineni-2002-bleu" },
+    { "from": "chen-2020-meddialog", "to": "doddington-2002-nist" },
+    { "from": "chen-2020-meddialog", "to": "radford-2018-gpt1" },
+    { "from": "schmidgall-2024-agentclinic", "to": "chen-2020-meddialog" }
   ]
 }
