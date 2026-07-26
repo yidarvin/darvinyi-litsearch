@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems — paper_atlas</title>
+<meta name="description" content="Facebook AI Research proposes four large-scale, real-data movie dialog tasks — question answering, recommendation, combined QA+recommendation, and Reddit chit-chat — plus a joint task, to test whether end-to-end neural dialog systems have prerequisite skills beyond sounding human.">
+<meta property="og:title" content="Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems">
+<meta property="og:description" content="Facebook AI Research proposes four large-scale, real-data movie dialog tasks — question answering, recommendation, combined QA+recommendation, and Reddit chit-chat — plus a joint task, to test whether end-to-end neural dialog systems have prerequisite skills beyond sounding human.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/dodge-2015-movie-dialog.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2016 · ICLR 2016 · Benchmarks &amp; Evals</div>
+      <h1>Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems</h1>
+      <p class="dek">Facebook AI Research proposes four large-scale, real-data movie dialog tasks — question answering, recommendation, combined QA+recommendation, and Reddit chit-chat — plus a joint task combining all four, to test whether end-to-end neural dialog systems have prerequisite skills beyond just sounding human.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/dodge-2015-movie-dialog.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/dodge-2015-movie-dialog.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Jesse Dodge, Andreea Gane, Xiang Zhang, Antoine Bordes, Sumit Chopra, Alexander H. Miller, Arthur Szlam, Jason Weston</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>ICLR 2016</b></span>
+        <span class="fact">citations&nbsp;<b>203</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1511.06931">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/dodge-2015-movie-dialog.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-26</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By late 2015, "end-to-end" neural dialog systems — models trained directly on raw human-human dialog transcripts to generate a response given the last utterance and (potentially) prior context — were emerging fast on the back of Twitter and Reddit-scale data (Sordoni et al., 2015; Vinyals &amp; Le, 2015; Shang et al., 2015). But their evaluation had not kept pace with their flexibility. Most work judged them with a handful of human ratings, crowdsourcing, or BLEU against a reference reply (Sordoni et al., 2015) — metrics that only assess whether the generated language is fluent and plausible, i.e. whether the model is a convincing "chit-chatter." None of them test whether a system can actually <em>accomplish something</em>: answer a factual question correctly, make a sound personalized recommendation, or carry state across multiple turns toward a goal.</p>
+      <p>Traditional (non-neural) dialog systems already had goal-oriented evaluation frameworks — PARADISE (Walker et al., 1997) and the Dialog State Tracking Challenges (Williams et al., 2013) among them — but those require hand-annotated dialog state and pre-defined user intents, which do not scale to the open-ended, high-variability language end-to-end models are built to handle. The bAbI tasks (Weston et al., 2015b) offered a fully automatic, synthetic alternative that tests specific reasoning skills over toy language, but their small, artificial data risks rewarding methods that pattern-match toy grammar rather than scale to real language.</p>
+      <p>The authors' gap, stated plainly: no benchmark combined (1) large-scale, real-world language and knowledge, (2) fully automatic scoring with no human-in-the-loop, and (3) tasks that isolate specific, well-defined dialog competencies — factual recall, personalization, multi-turn context use, and open chit-chat — rather than one aggregate "does this sound human" score.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The authors pick a single domain — movies — and build a knowledge base directly from the Open Movie Database (OMDb) and MovieLens: ∼15k movies, ∼10k actors, and ∼6k directors, stored as triples (e.g. <span class="mono">(THE DARK HORSE, STARRED ACTOR, BETTE DAVIS)</span>) across 8 relation types (director, writer, actor, release date, genre, tags, rating, IMDb votes). On top of this single domain and knowledge base they build <strong>four dialog tasks</strong>, plus a fifth that combines them:</p>
+      <ul>
+        <li><strong>Task 1 — Question Answering (QA).</strong> Factoid questions with no dialog context, built by taking SimpleQuestions' (Bordes et al., 2015) human-written question templates for 11 relation classes (e.g. actor→movie, movie→director, movie→genre) and substituting in every matching KB entity. Split ∼96k train / 10k dev / 10k test; scored as a ranked list, headline metric hits@1.</li>
+        <li><strong>Task 2 — Recommendation.</strong> Built from MovieLens ratings (∼11k movies, filtered to those with ≥2 ratings): a synthetic user statement lists 1–8 movies the sampled user rated 5, using a fixed set of natural-language templates, and the target is another 5-rated movie from that same user. ∼110k train users / ∼1k dev / ∼1k test users, generating 1M train and 10k dev/test examples; headline metric hits@100 (chosen because the task is harder and, per the authors, absolute hits@k is expected to be lower than QA due to incomplete labeling — a recommendation ranking can be reasonable even when it doesn't match the one labeled "true" answer).</li>
+        <li><strong>Task 3 — QA + Recommendation Dialog.</strong> Three-exchange (6-line) dialogs combining recommendation and factoid QA so that context must be carried across turns: exchange 1 asks for a genre-conditioned recommendation, exchange 2 asks a factoid question about the suggested movie, exchange 3 asks for an alternative recommendation given new stated preferences. 1M train / ∼10k dev / ∼10k test dialogs; headline metric hits@10, reported for the whole dialog and separately per exchange.</li>
+        <li><strong>Task 4 — Reddit Discussion.</strong> Real (parent, comment) pairs scraped from r/movies, flattened to two-party exchanges: ∼1M dialogs (∼76% single exchange, ∼17% at least two exchanges, 7% at least three, longest 50), 10k dev / 10k test. Evaluation ranks the true reply against 10,000 held-out negative candidates (10,001-way ranking); headline metric hits@10.</li>
+        <li><strong>Joint Task.</strong> All four datasets combined and sampled at random per example (context reset at each new conversation), testing whether one model can do all four skills — factual recall, personalization, contextual dialog, and open chit-chat — at once, which the authors argue is the real prerequisite for a general dialog agent.</li>
+      </ul>
+      <p>Every task keeps evaluation a ranking problem (hits@k over a candidate list) rather than free-form generation, which is what keeps scoring fully automatic and side-steps the "is this good language" question entirely — deliberately narrowing what the benchmark measures to <em>content selection</em>, not fluency.</p>
+
+      <h3>Models compared</h3>
+      <p>The headline model is a <strong>Memory Network</strong> (MemN2N, following Sukhbaatar et al., 2015), extended with both a long-term memory (KB facts retrieved by hashing on words in recent messages) and a short-term memory (recent dialog turns). The last user message is embedded as <span class="mono">u = A·c<sub>t</sub><sup>u</sup></span>; each candidate memory <span class="mono">x<sub>i</sub></span> (a KB fact or a past turn) is embedded with the same matrix, <span class="mono">m<sub>i</sub> = A·x<sub>i</sub></span>; attention over memories is a softmax over inner products:</p>
+      <div class="eq">
+        p<sub>i</sub>&nbsp;=&nbsp;Softmax(u<sup>T</sup>m<sub>i</sub>)
+        <span class="note">// attention weight over memory i, before the weighted output o = R·Σᵢ pᵢmᵢ is added back to the query</span>
+      </div>
+      <p>This can be stacked across multiple "hops." The final answer is scored as <span class="mono">Softmax(q<sup>T</sup>Wy<sub>1</sub>, …, q<sup>T</sup>Wy<sub>C</sub>)</span> over C candidates (vocabulary words for Tasks 1–3, candidate reply sentences for Task 4), trained with cross-entropy. Baselines span the space deliberately: <strong>Supervised Embeddings</strong> (a Memory Network with no attention — sum word embeddings of input and target, rank by inner/cosine similarity; the paper's own "surprisingly strong, often neglected" baseline), a standard <strong>LSTM</strong> language model, the dedicated <strong>QA system</strong> of Bordes et al. (2014) (embeddings matching questions to KB entries, applied only to Task 1), <strong>SVD</strong> collaborative filtering (applied only to Task 2), and a <strong>tf-idf nearest-neighbor IR</strong> baseline (applied only to Task 4).</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Across all four individual tasks plus the two jointly-trained models, MemN2N is the strongest general-purpose model, but it does not win everywhere:</p>
+      <table>
+        <thead><tr><th>Method</th><th class="num">QA (h@1)</th><th class="num">Recs (h@100)</th><th class="num">QA+Recs (h@10)</th><th class="num">Reddit (h@10)</th></tr></thead>
+        <tbody>
+          <tr><td>QA System (Bordes et al., 2014)</td><td class="num">90.7</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>SVD</td><td class="num">—</td><td class="num">19.2</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>IR</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">23.7</td></tr>
+          <tr><td>LSTM</td><td class="num">6.5</td><td class="num">27.1</td><td class="num">19.9</td><td class="num">11.8</td></tr>
+          <tr><td>Supervised Embeddings</td><td class="num">50.9</td><td class="num">29.2</td><td class="num">65.9</td><td class="num">27.6</td></tr>
+          <tr><td>MemN2N</td><td class="num">79.3</td><td class="num">28.6</td><td class="num">81.7</td><td class="num">29.2</td></tr>
+          <tr><td>Joint Supervised Embeddings</td><td class="num">43.6</td><td class="num">28.1</td><td class="num">58.9</td><td class="num">14.5</td></tr>
+          <tr><td>Joint MemN2N</td><td class="num">83.5</td><td class="num">26.5</td><td class="num">78.9</td><td class="num">26.6</td></tr>
+        </tbody>
+      </table>
+      <p>On <strong>QA</strong>, the dedicated, task-specific QA system still wins outright (90.7 vs. MemN2N's 79.3 hits@1), with the LSTM essentially failing at the task (6.5). On <strong>Recommendation</strong>, having a long-term memory brings no advantage — LSTM (27.1), Supervised Embeddings (29.2), and MemN2N (28.6) all land close together, all comfortably ahead of the SVD baseline (19.2). Where dialog history actually matters — <strong>QA+Recommendation</strong> and <strong>Reddit</strong> — MemN2N pulls ahead of Supervised Embeddings (81.7 vs. 65.9 hits@10, and 29.2 vs. 27.6 hits@10, respectively), which the authors attribute to better use of short-term context rather than the knowledge base itself (a MemN2N variant without KB access performs similarly on these tasks). <strong>Jointly trained across all four tasks at once</strong>, Supervised Embeddings degrades further (most sharply on Reddit: 27.6 → 14.5), while MemN2N holds up close to its per-task numbers — even gaining slightly on QA (79.3 → 83.5) — but the authors are candid that a truly successful joint model should improve on every task, not trade off, so this remains an open problem.</p>
+      <p>To validate that the MemN2N recipe generalizes beyond their own new benchmark, they also re-ran it on the pre-existing <strong>Ubuntu Dialogue Corpus</strong> (Lowe et al., 2015; ∼900k training dialogs), evaluated the same way as Reddit (rank the true reply among 10 candidates, hits@1):</p>
+      <table>
+        <thead><tr><th>Method</th><th class="num">Validation h@1</th><th class="num">Test h@1</th></tr></thead>
+        <tbody>
+          <tr><td>IR (Lowe et al., 2015)</td><td class="num">—</td><td class="num">48.81</td></tr>
+          <tr><td>RNN (Lowe et al., 2015)</td><td class="num">—</td><td class="num">37.91</td></tr>
+          <tr><td>LSTM (Lowe et al., 2015)</td><td class="num">—</td><td class="num">55.22</td></tr>
+          <tr><td>MemN2N, 1 hop</td><td class="num">57.23</td><td class="num">56.25</td></tr>
+          <tr><td>MemN2N, 2 hops</td><td class="num">64.28</td><td class="num">63.51</td></tr>
+          <tr><td>MemN2N, 3 hops</td><td class="num">64.31</td><td class="num">63.72</td></tr>
+          <tr><td>MemN2N, 4 hops</td><td class="num">64.01</td><td class="num">62.82</td></tr>
+        </tbody>
+      </table>
+      <p>Adding a second attention hop lifts MemN2N from roughly LSTM-level (56.25 test) to <strong>63.51</strong>, a gain of more than 8 points over the previous best reported baseline (LSTM, 55.22); 3 and 4 hops add little beyond that. This second dataset is the paper's evidence that the Movie Dialog results are a property of the model, not an artifact of one benchmark.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>This is a well-scoped, honest benchmark paper, and the authors flag several of its own limitations directly in the text — which is worth crediting. But several of those same limitations matter more today than they did in 2015, and are worth stating plainly for anyone reaching for this benchmark now.</p>
+      <p>The templated construction of Tasks 1–3 is the sharpest issue. Task 1's questions are generated by taking a small set of human-written SimpleQuestions templates per relation type (e.g. "What movies did [@actor] star in?") and substituting entities; Task 2/3's user statements are likewise drawn from "a fixed set of natural language templates." A model doesn't need to understand a novel phrasing of a question — it only needs to recognize which of a handful of surface patterns it's seeing and which slot the entity fills. Table 8's per-relation breakdown makes the risk concrete: the QA system and MemN2N both nail "writer to movie" (98.7 / 77.6 hits@1) yet Supervised Embeddings collapses to <strong>3.4 hits@1</strong> on "movie to year," a near-total failure mode on one narrow relation that a single aggregate hits@1 number would hide entirely.</p>
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Reasonably chosen given the era — LSTM, IR, SVD, and a purpose-built QA system each match the literature's default for their task — but how fair the comparison is depends on which task you look at. On QA, the one task with a genuine specialist in the mix, that specialist (the QA System, 90.7) still beats MemN2N (79.3) outright. On Recommendation, MemN2N does not actually win: Supervised Embeddings edges it out, 29.2 vs. 28.6 hits@100, and SVD (19.2) — the era's dedicated collaborative-filtering baseline — was evaluated here and simply trails every neural method, so there is no "no specialist was tested" complaint to make on this task. On Reddit, MemN2N (29.2) does beat the dedicated IR baseline (23.7), a genuine win over a task-specific method. The real gap is QA+Recommendation (Task 3): no task-specific baseline was ever built or tested there, so MemN2N's 81.7 vs. Supervised Embeddings' 65.9 hits@10 is a win only over general-purpose methods, with nothing purpose-built for combined recommendation-plus-QA dialog given a chance to compete. Separately, the authors explicitly did not test LSTMs with attention, noting only that such models would resemble Memory Networks "if the attention is applied over the same memory setup" — leaving the most natural ablation (does attention alone, without the KB retrieval machinery, explain the gains?) untested.</p>
+        <span class="k">contamination</span><p class="v">Not a concern for the 2015-era from-scratch models tested here, but real for anyone reusing this benchmark with a modern pretrained LLM: OMDb, MovieLens, and r/movies are all public web data very likely swept into large pretraining corpora, so a modern model could answer Task 1's factoid questions from memorized world knowledge rather than by reading the paper's supplied KB context — the benchmark's ranking setup doesn't distinguish "learned the KB" from "already knew the answer."</p>
+        <span class="k">what's missed</span><p class="v">The hits@k metrics for Recommendation and Reddit are explicitly acknowledged by the authors as a lower bound — each example has exactly one labeled "correct" answer even though several ranked candidates might be equally good (a different but still-liked movie; a different but still-plausible reply), so absolute scores understate true quality and aren't comparable across tasks. And because every task is framed as ranking/retrieval, nothing here evaluates whether a model can actually generate a well-formed sentence — the very shortcoming (BLEU, human ratings) the paper set out to move past for content, it simply leaves untouched for form.</p>
+        <span class="k">would raise confidence</span><p class="v">An LSTM-with-attention baseline (the ablation the paper names but skips) to isolate how much of MemN2N's edge is the attention mechanism versus the explicit KB; a naturalness/template-diversity check on Tasks 2–3, since only Task 1 borrows human-written question variety and Tasks 2–3 are entirely template-generated; and multiple training runs with variance reported, since every number in Tables 6–10 is a single point estimate with no error bars, and the effect of adding a hop is not monotone or small enough to shrug off — Ubuntu test hits@1 (Table 7) moves +7.26 from 1→2 hops, +0.21 from 2→3, then -0.90 from 3→4, and Task 3's whole-test-set hits@10 (Table 9) moves +6.3 from 1→2 hops then -1.4 from 2→3 — with no error bars to say whether an adjacent-hop change is a real architectural effect or run-to-run noise.</p>
+      </div>
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>A genuinely useful, appropriately modest benchmark for its moment — real-scale KB and dialog data, fully automatic scoring, and honest reporting of where Memory Networks fall short (task-specific baselines still beat them on QA; joint training still trades off rather than improves). Its main structural weakness, templated question/statement generation, means high scores can reflect pattern-matching a small template set as much as genuine language understanding, and it has been superseded as an active benchmark by more naturalistic dialog datasets — the paper's own descendants, DailyDialog and PersonaChat, explicitly position themselves against exactly this kind of synthetic-template or noisy-corpus construction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Introduces the Movie Dialog dataset: four tasks — QA, Recommendation, QA+Recommendation Dialog, and Reddit Discussion — plus a Joint task combining all four, built from real OMDb/MovieLens/Reddit data at ∼75k movie entities and ∼3.5M training examples, with fully automatic hits@k ranking evaluation in place of human raters or BLEU.</li>
+        <li>Memory Networks (MemN2N) are the best general-purpose model: strong on QA (79.3 hits@1) though still behind a dedicated QA system (90.7), roughly tied with simpler baselines on Recommendation (28.6 vs. 27.1–29.2 hits@100), and clearly ahead of Supervised Embeddings where dialog history matters (81.7 vs. 65.9 hits@10 on QA+Recs; 29.2 vs. 27.6 hits@10 on Reddit) — but jointly training on all four tasks still trades performance rather than improving it uniformly.</li>
+        <li>The same MemN2N architecture, re-run on the pre-existing Ubuntu Dialogue Corpus, gains more than 8 points over the prior best reported baseline (63.51 vs. 55.22 hits@1 with 2 hops) — the paper's evidence that its results generalize beyond its own new benchmark, though the templated nature of Tasks 1–3 remains the sharpest reason to read its headline numbers cautiously.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems<br>
+        Jesse Dodge, Andreea Gane, Xiang Zhang, Antoine Bordes, Sumit Chopra, Alexander H. Miller, Arthur Szlam, Jason Weston · 2016 · ICLR 2016<br>
+        <a href="https://arxiv.org/abs/1511.06931">read the original ↗</a> · slug: dodge-2015-movie-dialog
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

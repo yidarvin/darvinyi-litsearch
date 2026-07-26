@@ -128,6 +128,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "dodge-2015-movie-dialog",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -140,19 +147,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T09:35 completed schmidgall-2024-agentclinic (verdict=approved, rounds=2)",
-    "2026-07-26T09:36 started huang-2023-metatool ('MetaTool Benchmark for Large Language Models: Deciding Whether to Use Tools and Which to Use')",
-    "2026-07-26T09:36 huang-2023-metatool: step -> fetch",
-    "2026-07-26T09:36 huang-2023-metatool: step -> figures",
-    "2026-07-26T09:42 huang-2023-metatool: step -> draft",
-    "2026-07-26T09:49 huang-2023-metatool: step -> critique (round 1)",
-    "2026-07-26T09:56 huang-2023-metatool: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T09:56 huang-2023-metatool: step -> revise",
-    "2026-07-26T09:59 huang-2023-metatool: step -> critique (round 2)",
-    "2026-07-26T10:07 huang-2023-metatool: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T10:07 huang-2023-metatool: step -> verify",
-    "2026-07-26T10:07 huang-2023-metatool: step -> queue-ops",
-    "2026-07-26T10:30 huang-2023-metatool: step -> podcast",
     "2026-07-26T10:30 completed huang-2023-metatool (verdict=approved, rounds=2)",
     "2026-07-26T10:30 started xiong-2024-mirage ('Benchmarking Retrieval-Augmented Generation for Medicine')",
     "2026-07-26T10:31 xiong-2024-mirage: step -> fetch",
@@ -189,6 +183,19 @@
     "2026-07-26T12:29 wang-2013-stc: step -> verify",
     "2026-07-26T12:29 wang-2013-stc: step -> queue-ops",
     "2026-07-26T12:47 wang-2013-stc: step -> podcast",
-    "2026-07-26T12:47 completed wang-2013-stc (verdict=approved, rounds=1)"
+    "2026-07-26T12:47 completed wang-2013-stc (verdict=approved, rounds=1)",
+    "2026-07-26T15:47 started dodge-2015-movie-dialog ('Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems')",
+    "2026-07-26T15:48 dodge-2015-movie-dialog: step -> fetch",
+    "2026-07-26T15:48 dodge-2015-movie-dialog: step -> figures",
+    "2026-07-26T15:48 dodge-2015-movie-dialog: step -> draft",
+    "2026-07-26T15:59 dodge-2015-movie-dialog: step -> critique (round 1)",
+    "2026-07-26T16:05 dodge-2015-movie-dialog: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T16:05 dodge-2015-movie-dialog: step -> revise",
+    "2026-07-26T16:07 dodge-2015-movie-dialog: step -> critique (round 2)",
+    "2026-07-26T16:12 dodge-2015-movie-dialog: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T16:12 dodge-2015-movie-dialog: step -> verify",
+    "2026-07-26T16:12 dodge-2015-movie-dialog: step -> queue-ops",
+    "2026-07-26T16:26 dodge-2015-movie-dialog: step -> podcast",
+    "2026-07-26T16:26 completed dodge-2015-movie-dialog (verdict=approved, rounds=2)"
   ]
 }

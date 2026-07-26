@@ -8575,6 +8575,22 @@
       "explainer": "papers/wang-2013-stc.html",
       "audio_url": "https://pod.darvinyi.com/audio/wang-2013-stc.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "dodge-2015-movie-dialog",
+      "short": "Movie Dialog",
+      "title": "Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems",
+      "authors": "Dodge, Gane, Zhang, …, Szlam, Weston",
+      "year": 2016,
+      "date": "2015-11",
+      "venue": "ICLR 2016",
+      "citation_count": 203,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Facebook AI Research",
+      "abstract": "Introduces the Movie Dialog dataset: four automatically-scored dialog tasks built from real OMDb/MovieLens/Reddit data (question answering, recommendation, combined QA+recommendation, and Reddit chit-chat) plus a joint task, covering ~75k movie entities and ~3.5M training examples, designed to test prerequisite skills of end-to-end neural dialog systems beyond generation fluency.",
+      "explainer": "papers/dodge-2015-movie-dialog.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dodge-2015-movie-dialog.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14471,6 +14487,9 @@
     { "from": "chen-2020-meddialog", "to": "doddington-2002-nist" },
     { "from": "chen-2020-meddialog", "to": "radford-2018-gpt1" },
     { "from": "schmidgall-2024-agentclinic", "to": "chen-2020-meddialog" },
-    { "from": "li-2017-dailydialog", "to": "wang-2013-stc" }
+    { "from": "li-2017-dailydialog", "to": "wang-2013-stc" },
+    { "from": "dodge-2015-movie-dialog", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "zhang-2018-personachat", "to": "dodge-2015-movie-dialog" },
+    { "from": "li-2017-dailydialog", "to": "dodge-2015-movie-dialog" }
   ]
 }
