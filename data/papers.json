@@ -8495,6 +8495,22 @@
       "explainer": "papers/zhang-2024-agent-security-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2024-agent-security-bench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "schmidgall-2024-agentclinic",
+      "short": "AgentClinic",
+      "title": "AgentClinic: a multimodal agent benchmark to evaluate AI in simulated clinical environments",
+      "authors": "Schmidgall, Ziaei, Harris, Kim, Reis, Jopling, Moor",
+      "year": 2024,
+      "date": "2024-05",
+      "venue": "arXiv",
+      "citation_count": 223,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Johns Hopkins University",
+      "abstract": "Introduces a multimodal agent benchmark that simulates a full clinical encounter with four LLM agents (doctor, patient, measurement, moderator) instead of static medical QA, spanning USMLE, MIMIC-IV, NEJM multimodal, specialist, and multilingual case sets. Shows static MedQA accuracy is only weakly predictive of dialogue-based diagnostic accuracy, and studies the effect of 24 cognitive/implicit biases and six agent tools on diagnostic performance and patient-perceived trust.",
+      "explainer": "papers/schmidgall-2024-agentclinic.html",
+      "audio_url": "https://pod.darvinyi.com/audio/schmidgall-2024-agentclinic.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14335,6 +14351,19 @@
     { "from": "zhang-2024-agent-security-bench", "to": "huang-2022-zero-shot-planner" },
     { "from": "zhang-2024-agent-security-bench", "to": "lewis-2020-rag" },
     { "from": "zhang-2024-agent-security-bench", "to": "debenedetti-2024-agentdojo" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "zhang-2024-agent-security-bench" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "zhang-2024-agent-security-bench" },
+    { "from": "schmidgall-2024-agentclinic", "to": "panickssery-2024-self-recognition" },
+    { "from": "schmidgall-2024-agentclinic", "to": "asai-2024-self-rag" },
+    { "from": "schmidgall-2024-agentclinic", "to": "zheng-2023-mt-bench" },
+    { "from": "schmidgall-2024-agentclinic", "to": "park-2023-generative-agents" },
+    { "from": "schmidgall-2024-agentclinic", "to": "touvron-2023-llama" },
+    { "from": "schmidgall-2024-agentclinic", "to": "singhal-2023-med-palm" },
+    { "from": "schmidgall-2024-agentclinic", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "schmidgall-2024-agentclinic", "to": "wei-2022-cot" },
+    { "from": "schmidgall-2024-agentclinic", "to": "jin-2020-medqa" },
+    { "from": "schmidgall-2024-agentclinic", "to": "hendrycks-2020-mmlu" },
+    { "from": "schmidgall-2024-agentclinic", "to": "brown-2020-gpt3" },
+    { "from": "schmidgall-2024-agentclinic", "to": "jin-2019-pubmedqa" },
+    { "from": "schmidgall-2024-agentclinic", "to": "christiano-2017-deep-rl-preferences" }
   ]
 }

@@ -93,6 +93,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-25"
+    },
+    {
+      "slug": "schmidgall-2024-agentclinic",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -105,19 +112,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-23T15:37 jin-2024-mmtom-qa: step -> fetch",
-    "2026-07-23T15:38 jin-2024-mmtom-qa: step -> figures",
-    "2026-07-23T15:38 jin-2024-mmtom-qa: step -> draft",
-    "2026-07-23T15:58 jin-2024-mmtom-qa: step -> critique (round 1)",
-    "2026-07-23T16:04 jin-2024-mmtom-qa: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-23T16:04 jin-2024-mmtom-qa: step -> revise",
-    "2026-07-23T16:06 jin-2024-mmtom-qa: step -> critique (round 2)",
-    "2026-07-23T16:10 jin-2024-mmtom-qa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-23T16:11 jin-2024-mmtom-qa: step -> verify",
-    "2026-07-23T16:11 jin-2024-mmtom-qa: step -> queue-ops",
-    "2026-07-23T16:11 completed jin-2024-mmtom-qa (verdict=approved, rounds=2)",
-    "2026-07-25T10:15 started li-2017-dailydialog ('DailyDialog: A Manually Labelled Multi-turn Dialogue Dataset')",
-    "2026-07-25T10:16 li-2017-dailydialog: step -> fetch",
     "2026-07-25T10:16 li-2017-dailydialog: step -> figures",
     "2026-07-25T10:16 li-2017-dailydialog: step -> draft",
     "2026-07-25T10:24 li-2017-dailydialog: step -> critique (round 1)",
@@ -154,6 +148,19 @@
     "2026-07-25T11:56 zhang-2024-agent-security-bench: step -> verify",
     "2026-07-25T11:56 zhang-2024-agent-security-bench: step -> queue-ops",
     "2026-07-25T12:09 zhang-2024-agent-security-bench: step -> podcast",
-    "2026-07-25T12:09 completed zhang-2024-agent-security-bench (verdict=approved, rounds=2)"
+    "2026-07-25T12:09 completed zhang-2024-agent-security-bench (verdict=approved, rounds=2)",
+    "2026-07-26T08:50 started schmidgall-2024-agentclinic ('AgentClinic: a multimodal agent benchmark to evaluate AI in simulated clinical environments')",
+    "2026-07-26T08:50 schmidgall-2024-agentclinic: step -> fetch",
+    "2026-07-26T08:50 schmidgall-2024-agentclinic: step -> figures",
+    "2026-07-26T08:52 schmidgall-2024-agentclinic: step -> draft",
+    "2026-07-26T09:03 schmidgall-2024-agentclinic: step -> critique (round 1)",
+    "2026-07-26T09:09 schmidgall-2024-agentclinic: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T09:09 schmidgall-2024-agentclinic: step -> revise",
+    "2026-07-26T09:10 schmidgall-2024-agentclinic: step -> critique (round 2)",
+    "2026-07-26T09:13 schmidgall-2024-agentclinic: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T09:14 schmidgall-2024-agentclinic: step -> verify",
+    "2026-07-26T09:14 schmidgall-2024-agentclinic: step -> queue-ops",
+    "2026-07-26T09:35 schmidgall-2024-agentclinic: step -> podcast",
+    "2026-07-26T09:35 completed schmidgall-2024-agentclinic (verdict=approved, rounds=2)"
   ]
 }
