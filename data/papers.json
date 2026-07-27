@@ -8974,6 +8974,22 @@
       "explainer": "papers/feng-2023-mmdialog.html",
       "audio_url": "https://pod.darvinyi.com/audio/feng-2023-mmdialog.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "liu-2020-meddg",
+      "short": "MedDG",
+      "title": "MedDG: An Entity-Centric Medical Consultation Dataset for Entity-Aware Medical Dialogue Generation",
+      "authors": "Liu, Tang, Cheng, Li, Zheng, Liang",
+      "year": 2022,
+      "date": "2020-10",
+      "venue": "NLPCC 2022",
+      "citation_count": 78,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Sun Yat-sen University",
+      "abstract": "A 17,864-dialogue, 217,205-entity Chinese gastroenterology consultation dataset (disease/symptom/medicine/examination/attribute entities) built to give medical dialogue generation entity-level supervision that its larger, unlabeled predecessor MedDialog lacked. Entity-aware conditioning improves every generation baseline tried, but the paper's own 100-dialogue human study rates a simple retrieval baseline above the two trained generators it was actually compared against on fluency, relevance, and expertise.",
+      "explainer": "papers/liu-2020-meddg.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2020-meddg.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14961,6 +14977,7 @@
     { "from": "tu-2024-amie", "to": "perez-2022-red-teaming-with-lms" },
     { "from": "tu-2024-amie", "to": "jin-2020-medqa" },
     { "from": "tu-2024-amie", "to": "chen-2020-meddialog" },
+    { "from": "tu-2024-amie", "to": "liu-2020-meddg" },
     { "from": "tu-2024-amie", "to": "mitchell-2018-model-cards" },
     { "from": "tu-2024-amie", "to": "openai-2023-gpt4" },
     { "from": "schmidgall-2024-agentclinic", "to": "tu-2024-amie" },
@@ -15172,6 +15189,9 @@
     { "from": "feng-2023-mmdialog", "to": "li-2017-dailydialog" },
     { "from": "feng-2023-mmdialog", "to": "wang-2013-stc" },
     { "from": "maharana-2024-locomo", "to": "feng-2023-mmdialog" },
-    { "from": "zheng-2023-mt-bench", "to": "feng-2023-mmdialog" }
+    { "from": "zheng-2023-mt-bench", "to": "feng-2023-mmdialog" },
+    { "from": "liu-2020-meddg", "to": "chen-2020-meddialog" },
+    { "from": "liu-2020-meddg", "to": "radford-2019-gpt2" },
+    { "from": "chen-2022-imcs21", "to": "liu-2020-meddg" }
   ]
 }

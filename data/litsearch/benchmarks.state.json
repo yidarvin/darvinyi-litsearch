@@ -303,6 +303,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "liu-2020-meddg",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -315,22 +322,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T12:53 alonso-2024-medexpqa: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T12:53 alonso-2024-medexpqa: step -> revise",
-    "2026-07-27T12:56 alonso-2024-medexpqa: step -> critique (round 2)",
-    "2026-07-27T13:01 alonso-2024-medexpqa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T13:01 alonso-2024-medexpqa: step -> verify",
-    "2026-07-27T13:01 alonso-2024-medexpqa: step -> queue-ops",
-    "2026-07-27T13:17 alonso-2024-medexpqa: step -> podcast",
-    "2026-07-27T13:17 completed alonso-2024-medexpqa (verdict=approved, rounds=2)",
-    "2026-07-27T13:19 started chen-2022-imcs21 ('A benchmark for automatic medical consultation system: frameworks, tasks and datasets')",
-    "2026-07-27T13:19 chen-2022-imcs21: step -> fetch",
-    "2026-07-27T13:20 chen-2022-imcs21: step -> figures",
-    "2026-07-27T13:21 chen-2022-imcs21: step -> draft",
-    "2026-07-27T13:32 chen-2022-imcs21: step -> critique (round 1)",
-    "2026-07-27T13:42 chen-2022-imcs21: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T13:42 chen-2022-imcs21: step -> revise",
-    "2026-07-27T13:45 chen-2022-imcs21: step -> critique (round 2)",
     "2026-07-27T13:50 chen-2022-imcs21: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-27T13:50 chen-2022-imcs21: step -> verify",
     "2026-07-27T13:51 chen-2022-imcs21: step -> queue-ops",
@@ -364,6 +355,22 @@
     "2026-07-27T15:31 feng-2023-mmdialog: step -> verify",
     "2026-07-27T15:32 feng-2023-mmdialog: step -> queue-ops",
     "2026-07-27T15:46 feng-2023-mmdialog: step -> podcast",
-    "2026-07-27T15:46 completed feng-2023-mmdialog (verdict=approved, rounds=3)"
+    "2026-07-27T15:46 completed feng-2023-mmdialog (verdict=approved, rounds=3)",
+    "2026-07-27T15:48 started liu-2020-meddg ('MedDG: An Entity-Centric Medical Consultation Dataset for Entity-Aware Medical Dialogue Generation')",
+    "2026-07-27T15:49 liu-2020-meddg: step -> fetch",
+    "2026-07-27T15:51 liu-2020-meddg: step -> figures",
+    "2026-07-27T15:51 liu-2020-meddg: step -> draft",
+    "2026-07-27T16:01 liu-2020-meddg: step -> critique (round 1)",
+    "2026-07-27T16:10 liu-2020-meddg: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T16:10 liu-2020-meddg: step -> revise",
+    "2026-07-27T16:13 liu-2020-meddg: step -> critique (round 2)",
+    "2026-07-27T16:18 liu-2020-meddg: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-27T16:18 liu-2020-meddg: step -> revise",
+    "2026-07-27T16:19 liu-2020-meddg: step -> critique (round 3)",
+    "2026-07-27T16:23 liu-2020-meddg: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-27T16:23 liu-2020-meddg: step -> verify",
+    "2026-07-27T16:23 liu-2020-meddg: step -> queue-ops",
+    "2026-07-27T16:37 liu-2020-meddg: step -> podcast",
+    "2026-07-27T16:37 completed liu-2020-meddg (verdict=approved, rounds=3)"
   ]
 }
