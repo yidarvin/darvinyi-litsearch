@@ -8847,6 +8847,22 @@
       "explainer": "papers/guo-2024-stabletoolbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/guo-2024-stabletoolbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "hu-2024-infiagent-dabench",
+      "short": "InfiAgent-DABench",
+      "title": "InfiAgent-DABench: Evaluating Agents on Data Analysis Tasks",
+      "authors": "Hu, Zhao, Wei, Chai, et al.",
+      "year": 2024,
+      "date": "2024-01",
+      "venue": "ICML 2024",
+      "citation_count": 131,
+      "topic": "Benchmarks & Evals",
+      "author_group": "ByteDance",
+      "abstract": "Introduces DAEval, a 257-question closed-form benchmark over 52 real CSV files for evaluating LLM agents on end-to-end data analysis, plus an agent framework and a fine-tuned DAAgent that edges out GPT-3.5-turbo-0613 by 3.89 points.",
+      "explainer": "papers/hu-2024-infiagent-dabench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hu-2024-infiagent-dabench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14947,6 +14963,27 @@
     { "from": "guo-2024-stabletoolbench", "to": "openai-2023-gpt4" },
     { "from": "guo-2024-stabletoolbench", "to": "touvron-2023-llama" },
     { "from": "guo-2024-stabletoolbench", "to": "lu-2023-chameleon" },
-    { "from": "kwa-2025-time-horizons", "to": "guo-2024-stabletoolbench" }
+    { "from": "kwa-2025-time-horizons", "to": "guo-2024-stabletoolbench" },
+    { "from": "hu-2024-infiagent-dabench", "to": "bai-2023-qwen" },
+    { "from": "hu-2024-infiagent-dabench", "to": "chan-2023-chateval" },
+    { "from": "hu-2024-infiagent-dabench", "to": "qin-2023-toolllm" },
+    { "from": "hu-2024-infiagent-dabench", "to": "wang-2023-fair-evaluators" },
+    { "from": "hu-2024-infiagent-dabench", "to": "patil-2023-gorilla" },
+    { "from": "hu-2024-infiagent-dabench", "to": "fu-2024-gptscore" },
+    { "from": "hu-2024-infiagent-dabench", "to": "lai-2022-ds-1000" },
+    { "from": "hu-2024-infiagent-dabench", "to": "yao-2022-react" },
+    { "from": "hu-2024-infiagent-dabench", "to": "yao-2022-webshop" },
+    { "from": "hu-2024-infiagent-dabench", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "hu-2024-infiagent-dabench", "to": "wei-2022-cot" },
+    { "from": "hu-2024-infiagent-dabench", "to": "austin-2021-mbpp" },
+    { "from": "hu-2024-infiagent-dabench", "to": "chen-2021-codex" },
+    { "from": "hu-2024-infiagent-dabench", "to": "hendrycks-2021-apps" },
+    { "from": "hu-2024-infiagent-dabench", "to": "goyal-2017-vqa-v2" },
+    { "from": "hu-2024-infiagent-dabench", "to": "openai-2023-gpt4" },
+    { "from": "hu-2024-infiagent-dabench", "to": "roziere-2023-code-llama" },
+    { "from": "hu-2024-infiagent-dabench", "to": "wu-2023-autogen" },
+    { "from": "hu-2024-infiagent-dabench", "to": "li-2023-api-bank" },
+    { "from": "hu-2024-infiagent-dabench", "to": "zhou-2023-webarena" },
+    { "from": "ma-2024-spreadsheetbench", "to": "hu-2024-infiagent-dabench" }
   ]
 }
