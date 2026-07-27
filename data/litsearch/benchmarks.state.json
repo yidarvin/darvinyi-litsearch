@@ -261,6 +261,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "liu-2023-bolaa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -273,19 +280,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T07:51 wu-2023-smartplay: step -> figures",
-    "2026-07-27T07:53 wu-2023-smartplay: step -> draft",
-    "2026-07-27T08:09 wu-2023-smartplay: step -> critique (round 1)",
-    "2026-07-27T08:17 wu-2023-smartplay: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T08:17 wu-2023-smartplay: step -> revise",
-    "2026-07-27T08:21 wu-2023-smartplay: step -> critique (round 2)",
-    "2026-07-27T08:25 wu-2023-smartplay: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T08:25 wu-2023-smartplay: step -> verify",
-    "2026-07-27T08:26 wu-2023-smartplay: step -> queue-ops",
-    "2026-07-27T08:42 wu-2023-smartplay: step -> podcast",
-    "2026-07-27T08:42 completed wu-2023-smartplay (verdict=approved, rounds=2)",
-    "2026-07-27T08:45 started guo-2024-stabletoolbench ('StableToolBench: Towards Stable Large-Scale Benchmarking on Tool Learning of Large Language Models')",
-    "2026-07-27T08:46 guo-2024-stabletoolbench: step -> fetch",
     "2026-07-27T08:46 guo-2024-stabletoolbench: step -> figures",
     "2026-07-27T08:48 guo-2024-stabletoolbench: step -> draft",
     "2026-07-27T08:58 guo-2024-stabletoolbench: step -> critique (round 1)",
@@ -322,6 +316,19 @@
     "2026-07-27T10:42 lin-2023-agentsims: step -> verify",
     "2026-07-27T10:42 lin-2023-agentsims: step -> queue-ops",
     "2026-07-27T10:54 lin-2023-agentsims: step -> podcast",
-    "2026-07-27T10:54 completed lin-2023-agentsims (verdict=approved, rounds=2)"
+    "2026-07-27T10:54 completed lin-2023-agentsims (verdict=approved, rounds=2)",
+    "2026-07-27T10:56 started liu-2023-bolaa ('BOLAA: Benchmarking and Orchestrating LLM-augmented Autonomous Agents')",
+    "2026-07-27T10:57 liu-2023-bolaa: step -> fetch",
+    "2026-07-27T10:57 liu-2023-bolaa: step -> figures",
+    "2026-07-27T10:58 liu-2023-bolaa: step -> draft",
+    "2026-07-27T11:09 liu-2023-bolaa: step -> critique (round 1)",
+    "2026-07-27T11:16 liu-2023-bolaa: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T11:16 liu-2023-bolaa: step -> revise",
+    "2026-07-27T11:18 liu-2023-bolaa: step -> critique (round 2)",
+    "2026-07-27T11:25 liu-2023-bolaa: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T11:25 liu-2023-bolaa: step -> verify",
+    "2026-07-27T11:25 liu-2023-bolaa: step -> queue-ops",
+    "2026-07-27T11:39 liu-2023-bolaa: step -> podcast",
+    "2026-07-27T11:39 completed liu-2023-bolaa (verdict=approved, rounds=2)"
   ]
 }

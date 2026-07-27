@@ -8879,6 +8879,21 @@
       "explainer": "papers/lin-2023-agentsims.html",
       "audio_url": "https://pod.darvinyi.com/audio/lin-2023-agentsims.mp3",
       "tags": ["evaluations"]
+    },
+    {
+      "slug": "liu-2023-bolaa",
+      "short": "BOLAA",
+      "title": "BOLAA: Benchmarking and Orchestrating LLM-augmented Autonomous Agents",
+      "authors": "Liu, Yao, Zhang, Xue, et al.",
+      "year": 2023,
+      "date": "2023-08",
+      "venue": "arXiv",
+      "citation_count": 109,
+      "topic": "Agents",
+      "author_group": "Salesforce Research",
+      "abstract": "Compares six LLM agent architectures (Zeroshot, ZeroshotThink, ReAct, PlanAct, PlanReAct, and the proposed BOLAA) across fifteen LLM backbones on WebShop and HotPotQA. BOLAA orchestrates specialist \"labor\" agents through a controller module and wins on most but not all backbones -- 11/15 on WebShop reward and recall -- and is evaluated on WebShop only, never on HotPotQA.",
+      "explainer": "papers/liu-2023-bolaa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-bolaa.mp3"
     }
   ],
   "edges": [
@@ -15013,6 +15028,30 @@
     { "from": "lin-2023-agentsims", "to": "openai-2023-gpt4" },
     { "from": "cao-2025-generalizable-eval-survey", "to": "lin-2023-agentsims" },
     { "from": "nathani-2025-mlgym", "to": "lin-2023-agentsims" },
-    { "from": "debenedetti-2024-agentdojo", "to": "lin-2023-agentsims" }
+    { "from": "debenedetti-2024-agentdojo", "to": "lin-2023-agentsims" },
+    { "from": "liu-2023-bolaa", "to": "chowdhery-2022-palm" },
+    { "from": "liu-2023-bolaa", "to": "deng-2023-mind2web" },
+    { "from": "liu-2023-bolaa", "to": "hao-2023-rap" },
+    { "from": "liu-2023-bolaa", "to": "huang-2022-zero-shot-planner" },
+    { "from": "liu-2023-bolaa", "to": "liu-2023-agentbench" },
+    { "from": "liu-2023-bolaa", "to": "madaan-2023-self-refine" },
+    { "from": "liu-2023-bolaa", "to": "openai-2023-gpt4" },
+    { "from": "liu-2023-bolaa", "to": "park-2023-generative-agents" },
+    { "from": "liu-2023-bolaa", "to": "patil-2023-gorilla" },
+    { "from": "liu-2023-bolaa", "to": "qin-2023-toolllm" },
+    { "from": "liu-2023-bolaa", "to": "shen-2023-hugginggpt" },
+    { "from": "liu-2023-bolaa", "to": "shinn-2023-reflexion" },
+    { "from": "liu-2023-bolaa", "to": "taori-2023-alpaca" },
+    { "from": "liu-2023-bolaa", "to": "touvron-2023-llama2" },
+    { "from": "liu-2023-bolaa", "to": "wei-2022-cot" },
+    { "from": "liu-2023-bolaa", "to": "yang-2018-hotpotqa" },
+    { "from": "liu-2023-bolaa", "to": "yao-2022-react" },
+    { "from": "liu-2023-bolaa", "to": "yao-2022-webshop" },
+    { "from": "liu-2023-bolaa", "to": "zheng-2023-mt-bench" },
+    { "from": "liu-2023-bolaa", "to": "zhou-2023-webarena" },
+    { "from": "koh-2024-visualwebarena", "to": "liu-2023-bolaa" },
+    { "from": "mialon-2023-gaia", "to": "liu-2023-bolaa" },
+    { "from": "mcintosh-2024-benchmark-inadequacies", "to": "liu-2023-bolaa" },
+    { "from": "deshpande-2025-trail", "to": "liu-2023-bolaa" }
   ]
 }
