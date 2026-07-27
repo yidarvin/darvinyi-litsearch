@@ -184,6 +184,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "le-2019-tomi",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -196,19 +203,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T23:13 samvelyan-2019-smac: step -> figures",
-    "2026-07-26T23:13 samvelyan-2019-smac: step -> draft",
-    "2026-07-26T23:25 samvelyan-2019-smac: step -> critique (round 1)",
-    "2026-07-26T23:33 samvelyan-2019-smac: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T23:33 samvelyan-2019-smac: step -> revise",
-    "2026-07-26T23:36 samvelyan-2019-smac: step -> critique (round 2)",
-    "2026-07-26T23:40 samvelyan-2019-smac: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T23:40 samvelyan-2019-smac: step -> verify",
-    "2026-07-26T23:40 samvelyan-2019-smac: step -> queue-ops",
-    "2026-07-26T23:54 samvelyan-2019-smac: step -> podcast",
-    "2026-07-26T23:54 completed samvelyan-2019-smac (verdict=approved, rounds=2)",
-    "2026-07-26T23:57 started bordes-2015-simplequestions ('Large-scale Simple Question Answering with Memory Networks')",
-    "2026-07-26T23:57 bordes-2015-simplequestions: step -> fetch",
     "2026-07-26T23:57 bordes-2015-simplequestions: step -> figures",
     "2026-07-26T23:58 bordes-2015-simplequestions: step -> draft",
     "2026-07-27T00:07 bordes-2015-simplequestions: step -> critique (round 1)",
@@ -245,6 +239,19 @@
     "2026-07-27T01:53 saha-2018-csqa: step -> verify",
     "2026-07-27T01:54 saha-2018-csqa: step -> queue-ops",
     "2026-07-27T02:08 saha-2018-csqa: step -> podcast",
-    "2026-07-27T02:08 completed saha-2018-csqa (verdict=approved, rounds=2)"
+    "2026-07-27T02:08 completed saha-2018-csqa (verdict=approved, rounds=2)",
+    "2026-07-27T02:10 started le-2019-tomi ('Revisiting the Evaluation of Theory of Mind through Question Answering')",
+    "2026-07-27T02:11 le-2019-tomi: step -> fetch",
+    "2026-07-27T02:11 le-2019-tomi: step -> figures",
+    "2026-07-27T02:11 le-2019-tomi: step -> draft",
+    "2026-07-27T02:20 le-2019-tomi: step -> critique (round 1)",
+    "2026-07-27T02:27 le-2019-tomi: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T02:27 le-2019-tomi: step -> revise",
+    "2026-07-27T02:30 le-2019-tomi: step -> critique (round 2)",
+    "2026-07-27T02:34 le-2019-tomi: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T02:34 le-2019-tomi: step -> verify",
+    "2026-07-27T02:34 le-2019-tomi: step -> queue-ops",
+    "2026-07-27T02:47 le-2019-tomi: step -> podcast",
+    "2026-07-27T02:47 completed le-2019-tomi (verdict=approved, rounds=2)"
   ]
 }

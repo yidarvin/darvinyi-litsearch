@@ -8703,6 +8703,22 @@
       "explainer": "papers/saha-2018-csqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/saha-2018-csqa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "le-2019-tomi",
+      "short": "ToMi",
+      "title": "Revisiting the Evaluation of Theory of Mind through Question Answering",
+      "authors": "Le, Boureau, Nickel",
+      "year": 2019,
+      "date": "2019-11",
+      "venue": "EMNLP-IJCNLP 2019",
+      "citation_count": 190,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Facebook AI Research",
+      "abstract": "Shows that ToM-bAbi, the bAbI-style false-belief QA benchmark built on the Sally-Anne test, can be solved by a four-rule lexical/positional heuristic solver with zero modeling of any agent's beliefs, because its three story-template generators leak the answer. Introduces ToMi: a single randomized story generator (with distractor agents/objects/locations and shuffled event order) plus a stricter joint-accuracy protocol that scores a story correct only if all six question types about it (reality, memory, first- and second-order belief for both agents) are answered correctly. Under joint accuracy, three memory-augmented QA architectures (MemNN, RelNet, EntNet) collapse from near-ceiling per-question averages to 44.3-66.8%, with the failure concentrated almost entirely in false-belief questions (as low as 10.4%) rather than non-false-belief ones (82.7-100%).",
+      "explainer": "papers/le-2019-tomi.html",
+      "audio_url": "https://pod.darvinyi.com/audio/le-2019-tomi.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14663,6 +14679,11 @@
     { "from": "bard-2019-hanabi", "to": "sutton-1998-rl-intro" },
     { "from": "saha-2018-csqa", "to": "dodge-2015-movie-dialog" },
     { "from": "saha-2018-csqa", "to": "bordes-2015-simplequestions" },
-    { "from": "saha-2018-csqa", "to": "rajpurkar-2016-squad" }
+    { "from": "saha-2018-csqa", "to": "rajpurkar-2016-squad" },
+    { "from": "le-2019-tomi", "to": "bard-2019-hanabi" },
+    { "from": "le-2019-tomi", "to": "gururangan-2018-annotation-artifacts" },
+    { "from": "jin-2024-mmtom-qa", "to": "le-2019-tomi" },
+    { "from": "kim-2023-fantom", "to": "le-2019-tomi" },
+    { "from": "zhou-2023-sotopia", "to": "le-2019-tomi" }
   ]
 }
