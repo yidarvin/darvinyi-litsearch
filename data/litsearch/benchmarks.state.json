@@ -240,6 +240,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "guo-2024-stabletoolbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -252,19 +259,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T05:13 li-2024-embodied-agent-interface: step -> figures",
-    "2026-07-27T05:17 li-2024-embodied-agent-interface: step -> draft",
-    "2026-07-27T05:32 li-2024-embodied-agent-interface: step -> critique (round 1)",
-    "2026-07-27T05:43 li-2024-embodied-agent-interface: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T05:43 li-2024-embodied-agent-interface: step -> revise",
-    "2026-07-27T05:47 li-2024-embodied-agent-interface: step -> critique (round 2)",
-    "2026-07-27T05:51 li-2024-embodied-agent-interface: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T05:51 li-2024-embodied-agent-interface: step -> verify",
-    "2026-07-27T05:52 li-2024-embodied-agent-interface: step -> queue-ops",
-    "2026-07-27T06:06 li-2024-embodied-agent-interface: step -> podcast",
-    "2026-07-27T06:06 completed li-2024-embodied-agent-interface (verdict=approved, rounds=2)",
-    "2026-07-27T06:09 started zhu-2025-multiagentbench ('MultiAgentBench: Evaluating the Collaboration and Competition of LLM agents')",
-    "2026-07-27T06:09 zhu-2025-multiagentbench: step -> fetch",
     "2026-07-27T06:10 zhu-2025-multiagentbench: step -> figures",
     "2026-07-27T06:11 zhu-2025-multiagentbench: step -> draft",
     "2026-07-27T06:26 zhu-2025-multiagentbench: step -> critique (round 1)",
@@ -301,6 +295,19 @@
     "2026-07-27T08:25 wu-2023-smartplay: step -> verify",
     "2026-07-27T08:26 wu-2023-smartplay: step -> queue-ops",
     "2026-07-27T08:42 wu-2023-smartplay: step -> podcast",
-    "2026-07-27T08:42 completed wu-2023-smartplay (verdict=approved, rounds=2)"
+    "2026-07-27T08:42 completed wu-2023-smartplay (verdict=approved, rounds=2)",
+    "2026-07-27T08:45 started guo-2024-stabletoolbench ('StableToolBench: Towards Stable Large-Scale Benchmarking on Tool Learning of Large Language Models')",
+    "2026-07-27T08:46 guo-2024-stabletoolbench: step -> fetch",
+    "2026-07-27T08:46 guo-2024-stabletoolbench: step -> figures",
+    "2026-07-27T08:48 guo-2024-stabletoolbench: step -> draft",
+    "2026-07-27T08:58 guo-2024-stabletoolbench: step -> critique (round 1)",
+    "2026-07-27T09:08 guo-2024-stabletoolbench: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T09:08 guo-2024-stabletoolbench: step -> revise",
+    "2026-07-27T09:12 guo-2024-stabletoolbench: step -> critique (round 2)",
+    "2026-07-27T09:16 guo-2024-stabletoolbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T09:16 guo-2024-stabletoolbench: step -> verify",
+    "2026-07-27T09:17 guo-2024-stabletoolbench: step -> queue-ops",
+    "2026-07-27T09:32 guo-2024-stabletoolbench: step -> podcast",
+    "2026-07-27T09:32 completed guo-2024-stabletoolbench (verdict=approved, rounds=2)"
   ]
 }

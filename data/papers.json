@@ -8831,6 +8831,22 @@
       "explainer": "papers/wu-2023-smartplay.html",
       "audio_url": "https://pod.darvinyi.com/audio/wu-2023-smartplay.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "guo-2024-stabletoolbench",
+      "short": "StableToolBench",
+      "title": "StableToolBench: Towards Stable Large-Scale Benchmarking on Tool Learning of Large Language Models",
+      "authors": "Guo, Cheng, Wang, Liang, Qin, Li, Liu, Sun, Liu",
+      "year": 2024,
+      "date": "2024-03",
+      "venue": "ACL Findings 2024",
+      "citation_count": 131,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University",
+      "abstract": "Rebuilds ToolBench into a reproducible benchmark: a virtual API server (cache real call/response pairs, fall back to a GPT-4-turbo-simulated API when a real endpoint is down or missing) replaces the live RapidAPI layer whose status the authors show has degraded (55.6% of APIs no longer succeed), and a stable evaluation system gates on a 3-LLM majority vote of task solvability before scoring Solvable Pass Rate / Solvable Win Rate with GPT-4 alone. Performance stays stable even when 50% of tools are forced to fail.",
+      "explainer": "papers/guo-2024-stabletoolbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/guo-2024-stabletoolbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14918,6 +14934,19 @@
     { "from": "wu-2023-smartplay", "to": "openai-2023-gpt4" },
     { "from": "cao-2025-generalizable-eval-survey", "to": "wu-2023-smartplay" },
     { "from": "paglieri-2024-balrog", "to": "wu-2023-smartplay" },
-    { "from": "shao-2024-privacylens", "to": "wu-2023-smartplay" }
+    { "from": "shao-2024-privacylens", "to": "wu-2023-smartplay" },
+    { "from": "guo-2024-stabletoolbench", "to": "qin-2023-toolllm" },
+    { "from": "guo-2024-stabletoolbench", "to": "li-2023-api-bank" },
+    { "from": "guo-2024-stabletoolbench", "to": "huang-2023-metatool" },
+    { "from": "guo-2024-stabletoolbench", "to": "patil-2023-gorilla" },
+    { "from": "guo-2024-stabletoolbench", "to": "schick-2023-toolformer" },
+    { "from": "guo-2024-stabletoolbench", "to": "yao-2022-react" },
+    { "from": "guo-2024-stabletoolbench", "to": "yao-2022-webshop" },
+    { "from": "guo-2024-stabletoolbench", "to": "brown-2020-gpt3" },
+    { "from": "guo-2024-stabletoolbench", "to": "wei-2022-cot" },
+    { "from": "guo-2024-stabletoolbench", "to": "openai-2023-gpt4" },
+    { "from": "guo-2024-stabletoolbench", "to": "touvron-2023-llama" },
+    { "from": "guo-2024-stabletoolbench", "to": "lu-2023-chameleon" },
+    { "from": "kwa-2025-time-horizons", "to": "guo-2024-stabletoolbench" }
   ]
 }
