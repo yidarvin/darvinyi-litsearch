@@ -233,6 +233,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "wu-2023-smartplay",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -245,19 +252,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T04:31 wang-2020-lccc: step -> figures",
-    "2026-07-27T04:32 wang-2020-lccc: step -> draft",
-    "2026-07-27T04:42 wang-2020-lccc: step -> critique (round 1)",
-    "2026-07-27T04:48 wang-2020-lccc: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T04:48 wang-2020-lccc: step -> revise",
-    "2026-07-27T04:50 wang-2020-lccc: step -> critique (round 2)",
-    "2026-07-27T04:54 wang-2020-lccc: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T04:54 wang-2020-lccc: step -> verify",
-    "2026-07-27T04:54 wang-2020-lccc: step -> queue-ops",
-    "2026-07-27T05:09 wang-2020-lccc: step -> podcast",
-    "2026-07-27T05:09 completed wang-2020-lccc (verdict=approved, rounds=2)",
-    "2026-07-27T05:12 started li-2024-embodied-agent-interface ('Embodied Agent Interface: Benchmarking LLMs for Embodied Decision Making')",
-    "2026-07-27T05:13 li-2024-embodied-agent-interface: step -> fetch",
     "2026-07-27T05:13 li-2024-embodied-agent-interface: step -> figures",
     "2026-07-27T05:17 li-2024-embodied-agent-interface: step -> draft",
     "2026-07-27T05:32 li-2024-embodied-agent-interface: step -> critique (round 1)",
@@ -294,6 +288,19 @@
     "2026-07-27T07:31 yoran-2024-assistantbench: step -> verify",
     "2026-07-27T07:32 yoran-2024-assistantbench: step -> queue-ops",
     "2026-07-27T07:47 yoran-2024-assistantbench: step -> podcast",
-    "2026-07-27T07:47 completed yoran-2024-assistantbench (verdict=approved, rounds=2)"
+    "2026-07-27T07:47 completed yoran-2024-assistantbench (verdict=approved, rounds=2)",
+    "2026-07-27T07:50 started wu-2023-smartplay ('SmartPlay: A Benchmark for LLMs as Intelligent Agents')",
+    "2026-07-27T07:51 wu-2023-smartplay: step -> fetch",
+    "2026-07-27T07:51 wu-2023-smartplay: step -> figures",
+    "2026-07-27T07:53 wu-2023-smartplay: step -> draft",
+    "2026-07-27T08:09 wu-2023-smartplay: step -> critique (round 1)",
+    "2026-07-27T08:17 wu-2023-smartplay: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T08:17 wu-2023-smartplay: step -> revise",
+    "2026-07-27T08:21 wu-2023-smartplay: step -> critique (round 2)",
+    "2026-07-27T08:25 wu-2023-smartplay: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T08:25 wu-2023-smartplay: step -> verify",
+    "2026-07-27T08:26 wu-2023-smartplay: step -> queue-ops",
+    "2026-07-27T08:42 wu-2023-smartplay: step -> podcast",
+    "2026-07-27T08:42 completed wu-2023-smartplay (verdict=approved, rounds=2)"
   ]
 }

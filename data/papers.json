@@ -8815,6 +8815,22 @@
       "explainer": "papers/yoran-2024-assistantbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/yoran-2024-assistantbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "wu-2023-smartplay",
+      "short": "SmartPlay",
+      "title": "SmartPlay: A Benchmark for LLMs as Intelligent Agents",
+      "authors": "Wu, Tang, Mitchell, Li",
+      "year": 2024,
+      "date": "2023-10",
+      "venue": "ICLR 2024",
+      "citation_count": 134,
+      "topic": "Agents",
+      "author_group": "CMU / Microsoft Research",
+      "abstract": "Wraps six games (Two-Armed Bandits, Rock Paper Scissors, Tower of Hanoi, Messenger, Crafter, and a text-based Minecraft creative-navigation task) behind one Gym-style text API and scores LLM agents on nine named capabilities -- reasoning, planning, spatial reasoning, learning from mistakes, and more. GPT-4 variants beat other LLMs by wide margins but still trail the human baseline by roughly 10 points on Hanoi, 40 on Minecraft, and 70 on Crafter.",
+      "explainer": "papers/wu-2023-smartplay.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2023-smartplay.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14876,6 +14892,32 @@
     { "from": "huang-2024-crmarena", "to": "yoran-2024-assistantbench" },
     { "from": "yang-2024-swe-bench-multimodal", "to": "yoran-2024-assistantbench" },
     { "from": "kapoor-2024-ai-agents-that-matter", "to": "yoran-2024-assistantbench" },
-    { "from": "yehudai-2025-agent-eval-survey", "to": "yoran-2024-assistantbench" }
+    { "from": "yehudai-2025-agent-eval-survey", "to": "yoran-2024-assistantbench" },
+    { "from": "wu-2023-smartplay", "to": "qin-2023-toolllm" },
+    { "from": "wu-2023-smartplay", "to": "touvron-2023-llama2" },
+    { "from": "wu-2023-smartplay", "to": "zheng-2023-mt-bench" },
+    { "from": "wu-2023-smartplay", "to": "wang-2023-voyager" },
+    { "from": "wu-2023-smartplay", "to": "liang-2022-helm" },
+    { "from": "wu-2023-smartplay", "to": "dubois-2023-alpacafarm" },
+    { "from": "wu-2023-smartplay", "to": "chiang-2023-llm-eval" },
+    { "from": "wu-2023-smartplay", "to": "zhong-2023-agieval" },
+    { "from": "wu-2023-smartplay", "to": "park-2023-generative-agents" },
+    { "from": "wu-2023-smartplay", "to": "madaan-2023-self-refine" },
+    { "from": "wu-2023-smartplay", "to": "bubeck-2023-sparks-agi" },
+    { "from": "wu-2023-smartplay", "to": "wang-2023-deps" },
+    { "from": "wu-2023-smartplay", "to": "hafner-2023-dreamerv3" },
+    { "from": "wu-2023-smartplay", "to": "srivastava-2022-big-bench" },
+    { "from": "wu-2023-smartplay", "to": "bai-2022-hh-rlhf" },
+    { "from": "wu-2023-smartplay", "to": "chowdhery-2022-palm" },
+    { "from": "wu-2023-smartplay", "to": "ahn-2022-saycan" },
+    { "from": "wu-2023-smartplay", "to": "hendrycks-2020-mmlu" },
+    { "from": "wu-2023-smartplay", "to": "ziegler-2019-finetune-preferences" },
+    { "from": "wu-2023-smartplay", "to": "bellemare-2013-ale" },
+    { "from": "wu-2023-smartplay", "to": "shinn-2023-reflexion" },
+    { "from": "wu-2023-smartplay", "to": "brockman-2016-openai-gym" },
+    { "from": "wu-2023-smartplay", "to": "openai-2023-gpt4" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "wu-2023-smartplay" },
+    { "from": "paglieri-2024-balrog", "to": "wu-2023-smartplay" },
+    { "from": "shao-2024-privacylens", "to": "wu-2023-smartplay" }
   ]
 }
