@@ -8926,6 +8926,22 @@
       "explainer": "papers/alonso-2024-medexpqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/alonso-2024-medexpqa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "chen-2022-imcs21",
+      "short": "IMCS-21",
+      "title": "A Benchmark for Automatic Medical Consultation System: Frameworks, Tasks and Datasets",
+      "authors": "Chen, Li, Fang, …, Peng, Wei",
+      "year": 2022,
+      "date": "2022-04",
+      "venue": "Bioinformatics",
+      "citation_count": 87,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Fudan University",
+      "abstract": "IMCS-21: a 4,116-dialogue, 164,731-utterance Chinese pediatric-telemedicine corpus (Muzhi, 10 diseases) with token/utterance/dialogue-level annotations, packaged into five independently-benchmarked tasks — named entity recognition, dialogue act classification, symptom label inference, medical report generation, and diagnosis-oriented dialogue policy — on a shared 2,472/833/811 train/dev/test split.",
+      "explainer": "papers/chen-2022-imcs21.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2022-imcs21.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15109,6 +15125,8 @@
     { "from": "alonso-2024-medexpqa", "to": "jin-2019-pubmedqa" },
     { "from": "alonso-2024-medexpqa", "to": "luo-2022-biogpt" },
     { "from": "alonso-2024-medexpqa", "to": "xiong-2024-mirage" },
-    { "from": "alonso-2024-medexpqa", "to": "jin-2020-medqa" }
+    { "from": "alonso-2024-medexpqa", "to": "jin-2020-medqa" },
+    { "from": "chen-2022-imcs21", "to": "devlin-2019-bert" },
+    { "from": "chen-2022-imcs21", "to": "chen-2020-meddialog" }
   ]
 }

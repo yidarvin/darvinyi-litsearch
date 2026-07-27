@@ -282,6 +282,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "chen-2022-imcs21",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -294,19 +301,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T10:24 lin-2023-agentsims: step -> figures",
-    "2026-07-27T10:24 lin-2023-agentsims: step -> draft",
-    "2026-07-27T10:32 lin-2023-agentsims: step -> critique (round 1)",
-    "2026-07-27T10:38 lin-2023-agentsims: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T10:38 lin-2023-agentsims: step -> revise",
-    "2026-07-27T10:39 lin-2023-agentsims: step -> critique (round 2)",
-    "2026-07-27T10:42 lin-2023-agentsims: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T10:42 lin-2023-agentsims: step -> verify",
-    "2026-07-27T10:42 lin-2023-agentsims: step -> queue-ops",
-    "2026-07-27T10:54 lin-2023-agentsims: step -> podcast",
-    "2026-07-27T10:54 completed lin-2023-agentsims (verdict=approved, rounds=2)",
-    "2026-07-27T10:56 started liu-2023-bolaa ('BOLAA: Benchmarking and Orchestrating LLM-augmented Autonomous Agents')",
-    "2026-07-27T10:57 liu-2023-bolaa: step -> fetch",
     "2026-07-27T10:57 liu-2023-bolaa: step -> figures",
     "2026-07-27T10:58 liu-2023-bolaa: step -> draft",
     "2026-07-27T11:09 liu-2023-bolaa: step -> critique (round 1)",
@@ -343,6 +337,19 @@
     "2026-07-27T13:01 alonso-2024-medexpqa: step -> verify",
     "2026-07-27T13:01 alonso-2024-medexpqa: step -> queue-ops",
     "2026-07-27T13:17 alonso-2024-medexpqa: step -> podcast",
-    "2026-07-27T13:17 completed alonso-2024-medexpqa (verdict=approved, rounds=2)"
+    "2026-07-27T13:17 completed alonso-2024-medexpqa (verdict=approved, rounds=2)",
+    "2026-07-27T13:19 started chen-2022-imcs21 ('A benchmark for automatic medical consultation system: frameworks, tasks and datasets')",
+    "2026-07-27T13:19 chen-2022-imcs21: step -> fetch",
+    "2026-07-27T13:20 chen-2022-imcs21: step -> figures",
+    "2026-07-27T13:21 chen-2022-imcs21: step -> draft",
+    "2026-07-27T13:32 chen-2022-imcs21: step -> critique (round 1)",
+    "2026-07-27T13:42 chen-2022-imcs21: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T13:42 chen-2022-imcs21: step -> revise",
+    "2026-07-27T13:45 chen-2022-imcs21: step -> critique (round 2)",
+    "2026-07-27T13:50 chen-2022-imcs21: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T13:50 chen-2022-imcs21: step -> verify",
+    "2026-07-27T13:51 chen-2022-imcs21: step -> queue-ops",
+    "2026-07-27T14:05 chen-2022-imcs21: step -> podcast",
+    "2026-07-27T14:05 completed chen-2022-imcs21 (verdict=approved, rounds=2)"
   ]
 }
