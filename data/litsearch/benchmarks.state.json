@@ -219,6 +219,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "zhu-2025-multiagentbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -231,19 +238,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T02:49 shao-2024-privacylens: step -> figures",
-    "2026-07-27T02:50 shao-2024-privacylens: step -> draft",
-    "2026-07-27T03:03 shao-2024-privacylens: step -> critique (round 1)",
-    "2026-07-27T03:12 shao-2024-privacylens: 1 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T03:12 shao-2024-privacylens: step -> revise",
-    "2026-07-27T03:13 shao-2024-privacylens: step -> critique (round 2)",
-    "2026-07-27T03:16 shao-2024-privacylens: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T03:16 shao-2024-privacylens: step -> verify",
-    "2026-07-27T03:17 shao-2024-privacylens: step -> queue-ops",
-    "2026-07-27T03:34 shao-2024-privacylens: step -> podcast",
-    "2026-07-27T03:34 completed shao-2024-privacylens (verdict=approved, rounds=2)",
-    "2026-07-27T03:36 started tu-2024-amie ('Towards Conversational Diagnostic AI')",
-    "2026-07-27T03:37 tu-2024-amie: step -> fetch",
     "2026-07-27T03:37 tu-2024-amie: step -> figures",
     "2026-07-27T03:45 tu-2024-amie: step -> draft",
     "2026-07-27T03:54 tu-2024-amie: step -> critique (round 1)",
@@ -280,6 +274,19 @@
     "2026-07-27T05:51 li-2024-embodied-agent-interface: step -> verify",
     "2026-07-27T05:52 li-2024-embodied-agent-interface: step -> queue-ops",
     "2026-07-27T06:06 li-2024-embodied-agent-interface: step -> podcast",
-    "2026-07-27T06:06 completed li-2024-embodied-agent-interface (verdict=approved, rounds=2)"
+    "2026-07-27T06:06 completed li-2024-embodied-agent-interface (verdict=approved, rounds=2)",
+    "2026-07-27T06:09 started zhu-2025-multiagentbench ('MultiAgentBench: Evaluating the Collaboration and Competition of LLM agents')",
+    "2026-07-27T06:09 zhu-2025-multiagentbench: step -> fetch",
+    "2026-07-27T06:10 zhu-2025-multiagentbench: step -> figures",
+    "2026-07-27T06:11 zhu-2025-multiagentbench: step -> draft",
+    "2026-07-27T06:26 zhu-2025-multiagentbench: step -> critique (round 1)",
+    "2026-07-27T06:36 zhu-2025-multiagentbench: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T06:36 zhu-2025-multiagentbench: step -> revise",
+    "2026-07-27T06:39 zhu-2025-multiagentbench: step -> critique (round 2)",
+    "2026-07-27T06:43 zhu-2025-multiagentbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T06:43 zhu-2025-multiagentbench: step -> verify",
+    "2026-07-27T06:43 zhu-2025-multiagentbench: step -> queue-ops",
+    "2026-07-27T06:57 zhu-2025-multiagentbench: step -> podcast",
+    "2026-07-27T06:57 completed zhu-2025-multiagentbench (verdict=approved, rounds=2)"
   ]
 }

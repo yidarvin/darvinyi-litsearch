@@ -8783,6 +8783,22 @@
       "explainer": "papers/li-2024-embodied-agent-interface.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2024-embodied-agent-interface.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "zhu-2025-multiagentbench",
+      "short": "MultiAgentBench",
+      "title": "MultiAgentBench: Evaluating the Collaboration and Competition of LLM agents",
+      "authors": "Zhu, Du, Hong, Yang, Guo, Wang, Wang, Qian, Tang, Ji, You",
+      "year": 2025,
+      "date": "2025-03",
+      "venue": "ACL 2025",
+      "citation_count": 150,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UIUC",
+      "abstract": "Introduces MultiAgentBench, a benchmark that evaluates LLM-based multi-agent systems across six scenarios — four mutual-goal (Research, Minecraft, Database, Coding) and two conflicting-goal (Werewolf, Bargaining) — scoring both task completion (a milestone-based KPI) and coordination quality (LLM-judged Communication/Planning scores), while varying coordination protocol (star/tree/graph-mesh/chain) and planning strategy as explicit experimental axes.",
+      "explainer": "papers/zhu-2025-multiagentbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhu-2025-multiagentbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14790,6 +14806,23 @@
     { "from": "li-2024-embodied-agent-interface", "to": "huang-2022-zero-shot-planner" },
     { "from": "li-2024-embodied-agent-interface", "to": "liu-2023-llm-p" },
     { "from": "li-2024-embodied-agent-interface", "to": "wang-2023-deps" },
-    { "from": "li-2024-embodied-agent-interface", "to": "valmeekam-2022-planbench" }
+    { "from": "li-2024-embodied-agent-interface", "to": "valmeekam-2022-planbench" },
+    { "from": "zhu-2025-multiagentbench", "to": "mialon-2023-gaia" },
+    { "from": "zhu-2025-multiagentbench", "to": "hong-2023-metagpt" },
+    { "from": "zhu-2025-multiagentbench", "to": "qin-2023-toolllm" },
+    { "from": "zhu-2025-multiagentbench", "to": "park-2023-generative-agents" },
+    { "from": "zhu-2025-multiagentbench", "to": "openai-2023-gpt4" },
+    { "from": "zhu-2025-multiagentbench", "to": "yao-2022-react" },
+    { "from": "zhu-2025-multiagentbench", "to": "chen-2021-codex" },
+    { "from": "zhu-2025-multiagentbench", "to": "brown-2020-gpt3" },
+    { "from": "zhu-2025-multiagentbench", "to": "silver-2018-alphazero" },
+    { "from": "zhu-2025-multiagentbench", "to": "liu-2023-agentbench" },
+    { "from": "zhu-2025-multiagentbench", "to": "wu-2023-autogen" },
+    { "from": "zhu-2025-multiagentbench", "to": "wei-2022-cot" },
+    { "from": "zhu-2025-multiagentbench", "to": "guo-2025-deepseek-r1" },
+    { "from": "zhu-2025-multiagentbench", "to": "shinn-2023-reflexion" },
+    { "from": "zhu-2025-multiagentbench", "to": "wang-2023-voyager" },
+    { "from": "zhu-2025-multiagentbench", "to": "wang-2024-openhands" },
+    { "from": "barres-2025-tau2-bench", "to": "zhu-2025-multiagentbench" }
   ]
 }
