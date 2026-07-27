@@ -142,6 +142,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "puig-2020-watch-and-help",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -154,19 +161,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T11:11 chen-2020-meddialog: step -> figures",
-    "2026-07-26T11:11 chen-2020-meddialog: step -> draft",
-    "2026-07-26T11:25 chen-2020-meddialog: step -> critique (round 1)",
-    "2026-07-26T11:32 chen-2020-meddialog: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T11:32 chen-2020-meddialog: step -> revise",
-    "2026-07-26T11:34 chen-2020-meddialog: step -> critique (round 2)",
-    "2026-07-26T11:39 chen-2020-meddialog: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T11:39 chen-2020-meddialog: step -> verify",
-    "2026-07-26T11:40 chen-2020-meddialog: step -> queue-ops",
-    "2026-07-26T12:09 chen-2020-meddialog: step -> podcast",
-    "2026-07-26T12:09 completed chen-2020-meddialog (verdict=approved, rounds=2)",
-    "2026-07-26T12:09 started wang-2013-stc ('A Dataset for Research on Short-Text Conversations')",
-    "2026-07-26T12:11 wang-2013-stc: step -> fetch",
     "2026-07-26T12:11 wang-2013-stc: step -> figures",
     "2026-07-26T12:12 wang-2013-stc: step -> draft",
     "2026-07-26T12:21 wang-2013-stc: step -> critique (round 1)",
@@ -203,6 +197,19 @@
     "2026-07-26T16:58 kim-2023-fantom: step -> verify",
     "2026-07-26T16:58 kim-2023-fantom: step -> queue-ops",
     "2026-07-26T17:14 kim-2023-fantom: step -> podcast",
-    "2026-07-26T17:14 completed kim-2023-fantom (verdict=approved, rounds=3)"
+    "2026-07-26T17:14 completed kim-2023-fantom (verdict=approved, rounds=3)",
+    "2026-07-26T21:30 started puig-2020-watch-and-help ('Watch-And-Help: A Challenge for Social Perception and Human-AI Collaboration')",
+    "2026-07-26T21:32 puig-2020-watch-and-help: step -> fetch",
+    "2026-07-26T21:32 puig-2020-watch-and-help: step -> figures",
+    "2026-07-26T21:33 puig-2020-watch-and-help: step -> draft",
+    "2026-07-26T21:46 puig-2020-watch-and-help: step -> critique (round 1)",
+    "2026-07-26T21:55 puig-2020-watch-and-help: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T21:55 puig-2020-watch-and-help: step -> revise",
+    "2026-07-26T21:56 puig-2020-watch-and-help: step -> critique (round 2)",
+    "2026-07-26T22:02 puig-2020-watch-and-help: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T22:02 puig-2020-watch-and-help: step -> verify",
+    "2026-07-26T22:03 puig-2020-watch-and-help: step -> queue-ops",
+    "2026-07-26T22:16 puig-2020-watch-and-help: step -> podcast",
+    "2026-07-26T22:16 completed puig-2020-watch-and-help (verdict=approved, rounds=2)"
   ]
 }

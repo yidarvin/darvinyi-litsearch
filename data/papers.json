@@ -8607,6 +8607,22 @@
       "explainer": "papers/kim-2023-fantom.html",
       "audio_url": "https://pod.darvinyi.com/audio/kim-2023-fantom.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "puig-2020-watch-and-help",
+      "short": "Watch-And-Help",
+      "title": "Watch-And-Help: A Challenge for Social Perception and Human-AI Collaboration",
+      "authors": "Puig, Shu, Li, Wang, Liao, Tenenbaum, Fidler, Torralba",
+      "year": 2021,
+      "date": "2020-10",
+      "venue": "ICLR 2021",
+      "citation_count": 186,
+      "topic": "Benchmarks & Evals",
+      "author_group": "MIT",
+      "abstract": "Introduces the Watch-And-Help (WAH) challenge and the VirtualHome-Social multi-agent household simulator: an AI agent must infer a human-like agent's goal from a single watched demonstration, then help her achieve it as fast as possible in a new, unseen apartment, with planning- and RL-based baselines evaluated against both a built-in human-like agent and real human collaborators.",
+      "explainer": "papers/puig-2020-watch-and-help.html",
+      "audio_url": "https://pod.darvinyi.com/audio/puig-2020-watch-and-help.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14518,6 +14534,10 @@
     { "from": "kim-2023-fantom", "to": "sakaguchi-2019-winogrande" },
     { "from": "bean-2025-construct-validity", "to": "kim-2023-fantom" },
     { "from": "kim-2024-biggenbench", "to": "kim-2023-fantom" },
-    { "from": "jin-2024-mmtom-qa", "to": "kim-2023-fantom" }
+    { "from": "jin-2024-mmtom-qa", "to": "kim-2023-fantom" },
+    { "from": "puig-2020-watch-and-help", "to": "lowe-2017-maddpg" },
+    { "from": "puig-2020-watch-and-help", "to": "mnih-2016-a3c" },
+    { "from": "puig-2020-watch-and-help", "to": "browne-2012-mcts-survey" },
+    { "from": "jin-2024-mmtom-qa", "to": "puig-2020-watch-and-help" }
   ]
 }
