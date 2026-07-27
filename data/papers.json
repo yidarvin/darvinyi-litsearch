@@ -8719,6 +8719,22 @@
       "explainer": "papers/le-2019-tomi.html",
       "audio_url": "https://pod.darvinyi.com/audio/le-2019-tomi.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "shao-2024-privacylens",
+      "short": "PrivacyLens",
+      "title": "PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action",
+      "authors": "Shao, Li, Shi, Liu, Yang",
+      "year": 2024,
+      "date": "2024-09",
+      "venue": "NeurIPS 2024",
+      "citation_count": 163,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford / Northeastern / Harvard",
+      "abstract": "Extends Contextual Integrity privacy norms into 493 seeds, vignettes, and executable LM-agent trajectories, then evaluates nine LMs at three probing levels versus an in-action leakage rate. GPT-4 answers 98.99% of trajectory-level probing questions correctly yet still leaks sensitive information in 25.68% of its actual agent actions, even with privacy-enhancing prompting.",
+      "explainer": "papers/shao-2024-privacylens.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shao-2024-privacylens.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -14684,6 +14700,19 @@
     { "from": "le-2019-tomi", "to": "gururangan-2018-annotation-artifacts" },
     { "from": "jin-2024-mmtom-qa", "to": "le-2019-tomi" },
     { "from": "kim-2023-fantom", "to": "le-2019-tomi" },
-    { "from": "zhou-2023-sotopia", "to": "le-2019-tomi" }
+    { "from": "zhou-2023-sotopia", "to": "le-2019-tomi" },
+    { "from": "shao-2024-privacylens", "to": "kim-2023-fantom" },
+    { "from": "shao-2024-privacylens", "to": "zhou-2023-sotopia" },
+    { "from": "shao-2024-privacylens", "to": "jimenez-2023-swe-bench" },
+    { "from": "shao-2024-privacylens", "to": "jiang-2023-mistral-7b" },
+    { "from": "shao-2024-privacylens", "to": "ruan-2023-toolemu" },
+    { "from": "shao-2024-privacylens", "to": "liu-2023-agentbench" },
+    { "from": "shao-2024-privacylens", "to": "zhou-2023-webarena" },
+    { "from": "shao-2024-privacylens", "to": "deng-2023-mind2web" },
+    { "from": "shao-2024-privacylens", "to": "openai-2023-gpt4" },
+    { "from": "shao-2024-privacylens", "to": "perez-2022-model-written-evals" },
+    { "from": "shao-2024-privacylens", "to": "yao-2022-react" },
+    { "from": "shao-2024-privacylens", "to": "yao-2022-webshop" },
+    { "from": "shao-2024-privacylens", "to": "perez-2022-red-teaming-with-lms" }
   ]
 }

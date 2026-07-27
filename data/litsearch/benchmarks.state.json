@@ -191,6 +191,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "shao-2024-privacylens",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -203,19 +210,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T23:57 bordes-2015-simplequestions: step -> figures",
-    "2026-07-26T23:58 bordes-2015-simplequestions: step -> draft",
-    "2026-07-27T00:07 bordes-2015-simplequestions: step -> critique (round 1)",
-    "2026-07-27T00:13 bordes-2015-simplequestions: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T00:13 bordes-2015-simplequestions: step -> revise",
-    "2026-07-27T00:16 bordes-2015-simplequestions: step -> critique (round 2)",
-    "2026-07-27T00:20 bordes-2015-simplequestions: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T00:20 bordes-2015-simplequestions: step -> verify",
-    "2026-07-27T00:21 bordes-2015-simplequestions: step -> queue-ops",
-    "2026-07-27T00:39 bordes-2015-simplequestions: step -> podcast",
-    "2026-07-27T00:39 completed bordes-2015-simplequestions (verdict=approved, rounds=2)",
-    "2026-07-27T00:41 started bard-2019-hanabi ('The Hanabi Challenge: A New Frontier for AI Research')",
-    "2026-07-27T00:42 bard-2019-hanabi: step -> fetch",
     "2026-07-27T00:42 bard-2019-hanabi: step -> figures",
     "2026-07-27T00:42 bard-2019-hanabi: step -> draft",
     "2026-07-27T00:54 bard-2019-hanabi: step -> critique (round 1)",
@@ -252,6 +246,19 @@
     "2026-07-27T02:34 le-2019-tomi: step -> verify",
     "2026-07-27T02:34 le-2019-tomi: step -> queue-ops",
     "2026-07-27T02:47 le-2019-tomi: step -> podcast",
-    "2026-07-27T02:47 completed le-2019-tomi (verdict=approved, rounds=2)"
+    "2026-07-27T02:47 completed le-2019-tomi (verdict=approved, rounds=2)",
+    "2026-07-27T02:49 started shao-2024-privacylens ('PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action')",
+    "2026-07-27T02:49 shao-2024-privacylens: step -> fetch",
+    "2026-07-27T02:49 shao-2024-privacylens: step -> figures",
+    "2026-07-27T02:50 shao-2024-privacylens: step -> draft",
+    "2026-07-27T03:03 shao-2024-privacylens: step -> critique (round 1)",
+    "2026-07-27T03:12 shao-2024-privacylens: 1 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T03:12 shao-2024-privacylens: step -> revise",
+    "2026-07-27T03:13 shao-2024-privacylens: step -> critique (round 2)",
+    "2026-07-27T03:16 shao-2024-privacylens: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T03:16 shao-2024-privacylens: step -> verify",
+    "2026-07-27T03:17 shao-2024-privacylens: step -> queue-ops",
+    "2026-07-27T03:34 shao-2024-privacylens: step -> podcast",
+    "2026-07-27T03:34 completed shao-2024-privacylens (verdict=approved, rounds=2)"
   ]
 }
