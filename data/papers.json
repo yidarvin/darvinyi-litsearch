@@ -8910,6 +8910,22 @@
       "explainer": "papers/arora-2023-jeebench.html",
       "audio_url": "https://pod.darvinyi.com/audio/arora-2023-jeebench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "alonso-2024-medexpqa",
+      "short": "MedExpQA",
+      "title": "MedExpQA: Multilingual Benchmarking of Large Language Models for Medical Question Answering",
+      "authors": "Alonso, Oronoz, Agerri",
+      "year": 2024,
+      "date": "2024-04",
+      "venue": "Artificial Intelligence in Medicine",
+      "citation_count": 89,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of the Basque Country (HiTZ)",
+      "abstract": "The first multilingual medical-exam QA benchmark (English, Spanish, Italian, French; 622 CasiMedicos MIR-exam documents per language) with gold reference explanations written by physicians, used to define upper-bound knowledge-grounding conditions against automatic RAG. Zero-shot, the full gold explanation averages 82.2% accuracy across 4 LLMs and 4 languages vs. just 37.9% for MedRAG's best automatic setting (RAG-7) and 35.6% with no grounding, with only 5 of 64 RAG-vs-none comparisons statistically significant.",
+      "explainer": "papers/alonso-2024-medexpqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/alonso-2024-medexpqa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15081,6 +15097,18 @@
     { "from": "arora-2023-jeebench", "to": "taori-2023-alpaca" },
     { "from": "arora-2023-jeebench", "to": "lu-2022-scienceqa" },
     { "from": "arora-2023-jeebench", "to": "lightman-2023-verify-step-by-step" },
-    { "from": "chang-2023-llm-eval-survey", "to": "arora-2023-jeebench" }
+    { "from": "chang-2023-llm-eval-survey", "to": "arora-2023-jeebench" },
+    { "from": "alonso-2024-medexpqa", "to": "raffel-2020-t5" },
+    { "from": "alonso-2024-medexpqa", "to": "brown-2020-gpt3" },
+    { "from": "alonso-2024-medexpqa", "to": "singhal-2023-med-palm" },
+    { "from": "alonso-2024-medexpqa", "to": "lewis-2020-rag" },
+    { "from": "alonso-2024-medexpqa", "to": "touvron-2023-llama2" },
+    { "from": "alonso-2024-medexpqa", "to": "openai-2023-gpt4" },
+    { "from": "alonso-2024-medexpqa", "to": "jiang-2023-mistral-7b" },
+    { "from": "alonso-2024-medexpqa", "to": "chowdhery-2022-palm" },
+    { "from": "alonso-2024-medexpqa", "to": "jin-2019-pubmedqa" },
+    { "from": "alonso-2024-medexpqa", "to": "luo-2022-biogpt" },
+    { "from": "alonso-2024-medexpqa", "to": "xiong-2024-mirage" },
+    { "from": "alonso-2024-medexpqa", "to": "jin-2020-medqa" }
   ]
 }

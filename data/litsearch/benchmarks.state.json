@@ -275,6 +275,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "alonso-2024-medexpqa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -287,19 +294,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T09:35 hu-2024-infiagent-dabench: step -> figures",
-    "2026-07-27T09:35 hu-2024-infiagent-dabench: step -> draft",
-    "2026-07-27T09:50 hu-2024-infiagent-dabench: step -> critique (round 1)",
-    "2026-07-27T09:59 hu-2024-infiagent-dabench: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T09:59 hu-2024-infiagent-dabench: step -> revise",
-    "2026-07-27T10:02 hu-2024-infiagent-dabench: step -> critique (round 2)",
-    "2026-07-27T10:06 hu-2024-infiagent-dabench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T10:06 hu-2024-infiagent-dabench: step -> verify",
-    "2026-07-27T10:06 hu-2024-infiagent-dabench: step -> queue-ops",
-    "2026-07-27T10:21 hu-2024-infiagent-dabench: step -> podcast",
-    "2026-07-27T10:21 completed hu-2024-infiagent-dabench (verdict=approved, rounds=2)",
-    "2026-07-27T10:23 started lin-2023-agentsims ('AgentSims: An Open-Source Sandbox for Large Language Model Evaluation')",
-    "2026-07-27T10:24 lin-2023-agentsims: step -> fetch",
     "2026-07-27T10:24 lin-2023-agentsims: step -> figures",
     "2026-07-27T10:24 lin-2023-agentsims: step -> draft",
     "2026-07-27T10:32 lin-2023-agentsims: step -> critique (round 1)",
@@ -336,6 +330,19 @@
     "2026-07-27T12:15 arora-2023-jeebench: step -> verify",
     "2026-07-27T12:16 arora-2023-jeebench: step -> queue-ops",
     "2026-07-27T12:31 arora-2023-jeebench: step -> podcast",
-    "2026-07-27T12:31 completed arora-2023-jeebench (verdict=approved, rounds=2)"
+    "2026-07-27T12:31 completed arora-2023-jeebench (verdict=approved, rounds=2)",
+    "2026-07-27T12:33 started alonso-2024-medexpqa ('MedExpQA: Multilingual Benchmarking of Large Language Models for Medical Question Answering')",
+    "2026-07-27T12:33 alonso-2024-medexpqa: step -> fetch",
+    "2026-07-27T12:33 alonso-2024-medexpqa: step -> figures",
+    "2026-07-27T12:36 alonso-2024-medexpqa: step -> draft",
+    "2026-07-27T12:45 alonso-2024-medexpqa: step -> critique (round 1)",
+    "2026-07-27T12:53 alonso-2024-medexpqa: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T12:53 alonso-2024-medexpqa: step -> revise",
+    "2026-07-27T12:56 alonso-2024-medexpqa: step -> critique (round 2)",
+    "2026-07-27T13:01 alonso-2024-medexpqa: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T13:01 alonso-2024-medexpqa: step -> verify",
+    "2026-07-27T13:01 alonso-2024-medexpqa: step -> queue-ops",
+    "2026-07-27T13:17 alonso-2024-medexpqa: step -> podcast",
+    "2026-07-27T13:17 completed alonso-2024-medexpqa (verdict=approved, rounds=2)"
   ]
 }
