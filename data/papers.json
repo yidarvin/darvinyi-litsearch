@@ -8671,6 +8671,22 @@
       "explainer": "papers/bordes-2015-simplequestions.html",
       "audio_url": "https://pod.darvinyi.com/audio/bordes-2015-simplequestions.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "bard-2019-hanabi",
+      "short": "Hanabi",
+      "title": "The Hanabi Challenge: A New Frontier for AI Research",
+      "authors": "Bard, Foerster, Chandar, Burch, et al.",
+      "year": 2020,
+      "date": "2019-02",
+      "venue": "Artificial Intelligence",
+      "citation_count": 429,
+      "topic": "Benchmarks & Evals",
+      "author_group": "DeepMind",
+      "abstract": "Proposes the purely cooperative card game Hanabi (2-5 players, each unable to see their own hand) as a multi-agent benchmark, releases the open-source Hanabi Learning Environment, and defines two evaluation regimes — self-play and ad-hoc teams. State-of-the-art RL agents (ACHA, Rainbow, BAD) fall short of independently-built hand-coded bots in self-play and collapse to near-zero when paired with unfamiliar teammates.",
+      "explainer": "papers/bard-2019-hanabi.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bard-2019-hanabi.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14614,6 +14630,20 @@
     { "from": "puig-2020-watch-and-help", "to": "samvelyan-2019-smac" },
     { "from": "dodge-2015-movie-dialog", "to": "bordes-2015-simplequestions" },
     { "from": "ho-2020-2wikimultihopqa", "to": "bordes-2015-simplequestions" },
-    { "from": "joshi-2017-triviaqa", "to": "bordes-2015-simplequestions" }
+    { "from": "joshi-2017-triviaqa", "to": "bordes-2015-simplequestions" },
+    { "from": "bard-2019-hanabi", "to": "silver-2018-alphazero" },
+    { "from": "bard-2019-hanabi", "to": "silver-2017-alphago-zero" },
+    { "from": "bard-2019-hanabi", "to": "hessel-2018-rainbow" },
+    { "from": "bard-2019-hanabi", "to": "brockman-2016-openai-gym" },
+    { "from": "bard-2019-hanabi", "to": "sukhbaatar-2016-commnet" },
+    { "from": "bard-2019-hanabi", "to": "foerster-2016-dial" },
+    { "from": "bard-2019-hanabi", "to": "mnih-2016-a3c" },
+    { "from": "bard-2019-hanabi", "to": "silver-2016-alphago" },
+    { "from": "bard-2019-hanabi", "to": "mnih-2015-dqn" },
+    { "from": "bard-2019-hanabi", "to": "bellemare-2013-ale" },
+    { "from": "paglieri-2024-balrog", "to": "bard-2019-hanabi" },
+    { "from": "puig-2020-watch-and-help", "to": "bard-2019-hanabi" },
+    { "from": "bard-2019-hanabi", "to": "kocsis-2006-uct" },
+    { "from": "bard-2019-hanabi", "to": "sutton-1998-rl-intro" }
   ]
 }

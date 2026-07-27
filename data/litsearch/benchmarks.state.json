@@ -170,6 +170,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "bard-2019-hanabi",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -182,19 +189,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T21:55 puig-2020-watch-and-help: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T21:55 puig-2020-watch-and-help: step -> revise",
-    "2026-07-26T21:56 puig-2020-watch-and-help: step -> critique (round 2)",
-    "2026-07-26T22:02 puig-2020-watch-and-help: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T22:02 puig-2020-watch-and-help: step -> verify",
-    "2026-07-26T22:03 puig-2020-watch-and-help: step -> queue-ops",
-    "2026-07-26T22:16 puig-2020-watch-and-help: step -> podcast",
-    "2026-07-26T22:16 completed puig-2020-watch-and-help (verdict=approved, rounds=2)",
-    "2026-07-26T22:18 started shen-2023-taskbench ('TaskBench: Benchmarking Large Language Models for Task Automation')",
-    "2026-07-26T22:19 shen-2023-taskbench: step -> fetch",
-    "2026-07-26T22:19 shen-2023-taskbench: step -> figures",
-    "2026-07-26T22:19 shen-2023-taskbench: step -> draft",
-    "2026-07-26T22:29 shen-2023-taskbench: step -> critique (round 1)",
     "2026-07-26T22:37 shen-2023-taskbench: 6 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-26T22:37 shen-2023-taskbench: step -> revise",
     "2026-07-26T22:41 shen-2023-taskbench: step -> critique (round 2)",
@@ -231,6 +225,19 @@
     "2026-07-27T00:20 bordes-2015-simplequestions: step -> verify",
     "2026-07-27T00:21 bordes-2015-simplequestions: step -> queue-ops",
     "2026-07-27T00:39 bordes-2015-simplequestions: step -> podcast",
-    "2026-07-27T00:39 completed bordes-2015-simplequestions (verdict=approved, rounds=2)"
+    "2026-07-27T00:39 completed bordes-2015-simplequestions (verdict=approved, rounds=2)",
+    "2026-07-27T00:41 started bard-2019-hanabi ('The Hanabi Challenge: A New Frontier for AI Research')",
+    "2026-07-27T00:42 bard-2019-hanabi: step -> fetch",
+    "2026-07-27T00:42 bard-2019-hanabi: step -> figures",
+    "2026-07-27T00:42 bard-2019-hanabi: step -> draft",
+    "2026-07-27T00:54 bard-2019-hanabi: step -> critique (round 1)",
+    "2026-07-27T01:02 bard-2019-hanabi: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T01:02 bard-2019-hanabi: step -> revise",
+    "2026-07-27T01:05 bard-2019-hanabi: step -> critique (round 2)",
+    "2026-07-27T01:12 bard-2019-hanabi: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T01:12 bard-2019-hanabi: step -> verify",
+    "2026-07-27T01:13 bard-2019-hanabi: step -> queue-ops",
+    "2026-07-27T01:25 bard-2019-hanabi: step -> podcast",
+    "2026-07-27T01:25 completed bard-2019-hanabi (verdict=approved, rounds=2)"
   ]
 }
