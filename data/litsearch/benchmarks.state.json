@@ -198,6 +198,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "tu-2024-amie",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -210,19 +217,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T00:42 bard-2019-hanabi: step -> figures",
-    "2026-07-27T00:42 bard-2019-hanabi: step -> draft",
-    "2026-07-27T00:54 bard-2019-hanabi: step -> critique (round 1)",
-    "2026-07-27T01:02 bard-2019-hanabi: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T01:02 bard-2019-hanabi: step -> revise",
-    "2026-07-27T01:05 bard-2019-hanabi: step -> critique (round 2)",
-    "2026-07-27T01:12 bard-2019-hanabi: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T01:12 bard-2019-hanabi: step -> verify",
-    "2026-07-27T01:13 bard-2019-hanabi: step -> queue-ops",
-    "2026-07-27T01:25 bard-2019-hanabi: step -> podcast",
-    "2026-07-27T01:25 completed bard-2019-hanabi (verdict=approved, rounds=2)",
-    "2026-07-27T01:27 started saha-2018-csqa ('Complex Sequential Question Answering: Towards Learning to Converse Over Linked Question Answer Pairs with a Knowledge Graph')",
-    "2026-07-27T01:27 saha-2018-csqa: step -> fetch",
     "2026-07-27T01:27 saha-2018-csqa: step -> figures",
     "2026-07-27T01:28 saha-2018-csqa: step -> draft",
     "2026-07-27T01:41 saha-2018-csqa: step -> critique (round 1)",
@@ -259,6 +253,19 @@
     "2026-07-27T03:16 shao-2024-privacylens: step -> verify",
     "2026-07-27T03:17 shao-2024-privacylens: step -> queue-ops",
     "2026-07-27T03:34 shao-2024-privacylens: step -> podcast",
-    "2026-07-27T03:34 completed shao-2024-privacylens (verdict=approved, rounds=2)"
+    "2026-07-27T03:34 completed shao-2024-privacylens (verdict=approved, rounds=2)",
+    "2026-07-27T03:36 started tu-2024-amie ('Towards Conversational Diagnostic AI')",
+    "2026-07-27T03:37 tu-2024-amie: step -> fetch",
+    "2026-07-27T03:37 tu-2024-amie: step -> figures",
+    "2026-07-27T03:45 tu-2024-amie: step -> draft",
+    "2026-07-27T03:54 tu-2024-amie: step -> critique (round 1)",
+    "2026-07-27T04:04 tu-2024-amie: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T04:04 tu-2024-amie: step -> revise",
+    "2026-07-27T04:07 tu-2024-amie: step -> critique (round 2)",
+    "2026-07-27T04:13 tu-2024-amie: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T04:13 tu-2024-amie: step -> verify",
+    "2026-07-27T04:13 tu-2024-amie: step -> queue-ops",
+    "2026-07-27T04:28 tu-2024-amie: step -> podcast",
+    "2026-07-27T04:28 completed tu-2024-amie (verdict=approved, rounds=2)"
   ]
 }

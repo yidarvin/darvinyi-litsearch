@@ -8735,6 +8735,22 @@
       "explainer": "papers/shao-2024-privacylens.html",
       "audio_url": "https://pod.darvinyi.com/audio/shao-2024-privacylens.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "tu-2024-amie",
+      "short": "AMIE",
+      "title": "Towards Conversational Diagnostic AI",
+      "authors": "Tu, Palepu, Schaekermann, Saab, Freyberg, et al.",
+      "year": 2024,
+      "date": "2024-01",
+      "venue": "arXiv",
+      "citation_count": 157,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Google",
+      "abstract": "AMIE, a PaLM 2-based LLM system fine-tuned on real and self-play-simulated diagnostic dialogue, is compared to 20 board-certified PCPs in a randomized, blinded, crossover remote OSCE across 149 patient-actor scenarios. AMIE showed higher top-k differential-diagnosis accuracy at every k and was rated better by specialist physicians on 28 of 32 axes and by patient actors on 24 of 26 axes, though on safety-relevant axes like confabulation and escalation the two were statistically tied.",
+      "explainer": "papers/tu-2024-amie.html",
+      "audio_url": "https://pod.darvinyi.com/audio/tu-2024-amie.mp3",
+      "tags": ["evaluations"]
     }
   ],
   "edges": [
@@ -14713,6 +14729,17 @@
     { "from": "shao-2024-privacylens", "to": "perez-2022-model-written-evals" },
     { "from": "shao-2024-privacylens", "to": "yao-2022-react" },
     { "from": "shao-2024-privacylens", "to": "yao-2022-webshop" },
-    { "from": "shao-2024-privacylens", "to": "perez-2022-red-teaming-with-lms" }
+    { "from": "shao-2024-privacylens", "to": "perez-2022-red-teaming-with-lms" },
+    { "from": "tu-2024-amie", "to": "gallegos-2023-llm-bias-survey" },
+    { "from": "tu-2024-amie", "to": "singhal-2023-med-palm" },
+    { "from": "tu-2024-amie", "to": "bai-2022-constitutional-ai" },
+    { "from": "tu-2024-amie", "to": "ganguli-2022-red-teaming" },
+    { "from": "tu-2024-amie", "to": "ouyang-2022-instructgpt" },
+    { "from": "tu-2024-amie", "to": "perez-2022-red-teaming-with-lms" },
+    { "from": "tu-2024-amie", "to": "jin-2020-medqa" },
+    { "from": "tu-2024-amie", "to": "chen-2020-meddialog" },
+    { "from": "tu-2024-amie", "to": "mitchell-2018-model-cards" },
+    { "from": "tu-2024-amie", "to": "openai-2023-gpt4" },
+    { "from": "schmidgall-2024-agentclinic", "to": "tu-2024-amie" }
   ]
 }
