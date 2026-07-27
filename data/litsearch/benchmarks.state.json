@@ -289,6 +289,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "shu-2021-agent",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -301,19 +308,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T10:57 liu-2023-bolaa: step -> figures",
-    "2026-07-27T10:58 liu-2023-bolaa: step -> draft",
-    "2026-07-27T11:09 liu-2023-bolaa: step -> critique (round 1)",
-    "2026-07-27T11:16 liu-2023-bolaa: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T11:16 liu-2023-bolaa: step -> revise",
-    "2026-07-27T11:18 liu-2023-bolaa: step -> critique (round 2)",
-    "2026-07-27T11:25 liu-2023-bolaa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T11:25 liu-2023-bolaa: step -> verify",
-    "2026-07-27T11:25 liu-2023-bolaa: step -> queue-ops",
-    "2026-07-27T11:39 liu-2023-bolaa: step -> podcast",
-    "2026-07-27T11:39 completed liu-2023-bolaa (verdict=approved, rounds=2)",
-    "2026-07-27T11:41 started arora-2023-jeebench ('Have LLMs Advanced Enough? A Challenging Problem Solving Benchmark For Large Language Models')",
-    "2026-07-27T11:41 arora-2023-jeebench: step -> fetch",
     "2026-07-27T11:41 arora-2023-jeebench: step -> figures",
     "2026-07-27T11:43 arora-2023-jeebench: step -> draft",
     "2026-07-27T11:58 arora-2023-jeebench: step -> critique (round 1)",
@@ -350,6 +344,19 @@
     "2026-07-27T13:50 chen-2022-imcs21: step -> verify",
     "2026-07-27T13:51 chen-2022-imcs21: step -> queue-ops",
     "2026-07-27T14:05 chen-2022-imcs21: step -> podcast",
-    "2026-07-27T14:05 completed chen-2022-imcs21 (verdict=approved, rounds=2)"
+    "2026-07-27T14:05 completed chen-2022-imcs21 (verdict=approved, rounds=2)",
+    "2026-07-27T14:07 started shu-2021-agent ('AGENT: A Benchmark for Core Psychological Reasoning')",
+    "2026-07-27T14:07 shu-2021-agent: step -> fetch",
+    "2026-07-27T14:08 shu-2021-agent: step -> figures",
+    "2026-07-27T14:08 shu-2021-agent: step -> draft",
+    "2026-07-27T14:19 shu-2021-agent: step -> critique (round 1)",
+    "2026-07-27T14:28 shu-2021-agent: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T14:28 shu-2021-agent: step -> revise",
+    "2026-07-27T14:30 shu-2021-agent: step -> critique (round 2)",
+    "2026-07-27T14:34 shu-2021-agent: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T14:34 shu-2021-agent: step -> verify",
+    "2026-07-27T14:35 shu-2021-agent: step -> queue-ops",
+    "2026-07-27T14:50 shu-2021-agent: step -> podcast",
+    "2026-07-27T14:50 completed shu-2021-agent (verdict=approved, rounds=2)"
   ]
 }

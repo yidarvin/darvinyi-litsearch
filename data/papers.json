@@ -8942,6 +8942,22 @@
       "explainer": "papers/chen-2022-imcs21.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2022-imcs21.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "shu-2021-agent",
+      "short": "AGENT",
+      "title": "AGENT: A Benchmark for Core Psychological Reasoning",
+      "authors": "Shu, Bhandwaldar, Gan, Smith, Liu, Gutfreund, Spelke, Tenenbaum, Ullman",
+      "year": 2021,
+      "date": "2021-02",
+      "venue": "ICML 2021",
+      "citation_count": 82,
+      "topic": "Benchmarks & Evals",
+      "author_group": "MIT / Harvard",
+      "abstract": "Introduces AGENT (Action, Goal, Efficiency, coNstraint, uTility), a procedurally generated, TDW-rendered 3D video benchmark of 8,400 videos / 3,360 familiarization-then-test trials across four developmental-psychology scenarios (goal preferences, action efficiency, unobserved constraints, cost-reward trade-offs). Models rate test-video surprise; a hand-engineered Bayesian inverse-planning baseline (BIPaCK) holds up under generalization tests (0.94 overall) where a learned Theory-of-Mind GNN (ToMnet-G) collapses (0.65-0.71).",
+      "explainer": "papers/shu-2021-agent.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shu-2021-agent.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15127,6 +15143,10 @@
     { "from": "alonso-2024-medexpqa", "to": "xiong-2024-mirage" },
     { "from": "alonso-2024-medexpqa", "to": "jin-2020-medqa" },
     { "from": "chen-2022-imcs21", "to": "devlin-2019-bert" },
-    { "from": "chen-2022-imcs21", "to": "chen-2020-meddialog" }
+    { "from": "chen-2022-imcs21", "to": "chen-2020-meddialog" },
+    { "from": "shu-2021-agent", "to": "puig-2020-watch-and-help" },
+    { "from": "shu-2021-agent", "to": "lowe-2017-maddpg" },
+    { "from": "shu-2021-agent", "to": "deng-2009-imagenet" },
+    { "from": "jin-2024-mmtom-qa", "to": "shu-2021-agent" }
   ]
 }
