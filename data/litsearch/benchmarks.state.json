@@ -163,6 +163,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "bordes-2015-simplequestions",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -175,19 +182,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T16:53 kim-2023-fantom: 2 open blocker(s) from round 2 (verdict: revise)",
-    "2026-07-26T16:53 kim-2023-fantom: step -> revise",
-    "2026-07-26T16:54 kim-2023-fantom: step -> critique (round 3)",
-    "2026-07-26T16:58 kim-2023-fantom: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-07-26T16:58 kim-2023-fantom: step -> verify",
-    "2026-07-26T16:58 kim-2023-fantom: step -> queue-ops",
-    "2026-07-26T17:14 kim-2023-fantom: step -> podcast",
-    "2026-07-26T17:14 completed kim-2023-fantom (verdict=approved, rounds=3)",
-    "2026-07-26T21:30 started puig-2020-watch-and-help ('Watch-And-Help: A Challenge for Social Perception and Human-AI Collaboration')",
-    "2026-07-26T21:32 puig-2020-watch-and-help: step -> fetch",
-    "2026-07-26T21:32 puig-2020-watch-and-help: step -> figures",
-    "2026-07-26T21:33 puig-2020-watch-and-help: step -> draft",
-    "2026-07-26T21:46 puig-2020-watch-and-help: step -> critique (round 1)",
     "2026-07-26T21:55 puig-2020-watch-and-help: 4 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-26T21:55 puig-2020-watch-and-help: step -> revise",
     "2026-07-26T21:56 puig-2020-watch-and-help: step -> critique (round 2)",
@@ -224,6 +218,19 @@
     "2026-07-26T23:40 samvelyan-2019-smac: step -> verify",
     "2026-07-26T23:40 samvelyan-2019-smac: step -> queue-ops",
     "2026-07-26T23:54 samvelyan-2019-smac: step -> podcast",
-    "2026-07-26T23:54 completed samvelyan-2019-smac (verdict=approved, rounds=2)"
+    "2026-07-26T23:54 completed samvelyan-2019-smac (verdict=approved, rounds=2)",
+    "2026-07-26T23:57 started bordes-2015-simplequestions ('Large-scale Simple Question Answering with Memory Networks')",
+    "2026-07-26T23:57 bordes-2015-simplequestions: step -> fetch",
+    "2026-07-26T23:57 bordes-2015-simplequestions: step -> figures",
+    "2026-07-26T23:58 bordes-2015-simplequestions: step -> draft",
+    "2026-07-27T00:07 bordes-2015-simplequestions: step -> critique (round 1)",
+    "2026-07-27T00:13 bordes-2015-simplequestions: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T00:13 bordes-2015-simplequestions: step -> revise",
+    "2026-07-27T00:16 bordes-2015-simplequestions: step -> critique (round 2)",
+    "2026-07-27T00:20 bordes-2015-simplequestions: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T00:20 bordes-2015-simplequestions: step -> verify",
+    "2026-07-27T00:21 bordes-2015-simplequestions: step -> queue-ops",
+    "2026-07-27T00:39 bordes-2015-simplequestions: step -> podcast",
+    "2026-07-27T00:39 completed bordes-2015-simplequestions (verdict=approved, rounds=2)"
   ]
 }

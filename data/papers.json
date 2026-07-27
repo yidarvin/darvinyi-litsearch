@@ -8655,6 +8655,22 @@
       "explainer": "papers/samvelyan-2019-smac.html",
       "audio_url": "https://pod.darvinyi.com/audio/samvelyan-2019-smac.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "bordes-2015-simplequestions",
+      "short": "SimpleQuestions",
+      "title": "Large-scale Simple Question Answering with Memory Networks",
+      "authors": "Bordes, Usunier, Chopra, Weston",
+      "year": 2015,
+      "date": "2015-06",
+      "venue": "arXiv",
+      "citation_count": 746,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Facebook AI Research",
+      "abstract": "Introduces SimpleQuestions, 108,442 human-written natural-language questions each paired to a single supporting Freebase fact (75,910/10,845/21,687 train/valid/test) — an order of magnitude larger than the era's WebQuestions benchmark — and trains a Memory Network jointly across it, WebQuestions, and synthetic KB questions, reaching 41.2% F1 on WebQuestions, 62–63% path-level accuracy on SimpleQuestions, and 67% accuracy on Reverb facts never seen during training.",
+      "explainer": "papers/bordes-2015-simplequestions.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bordes-2015-simplequestions.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14595,6 +14611,9 @@
     { "from": "samvelyan-2019-smac", "to": "lowe-2017-maddpg" },
     { "from": "samvelyan-2019-smac", "to": "foerster-2017-coma" },
     { "from": "samvelyan-2019-smac", "to": "bellemare-2013-ale" },
-    { "from": "puig-2020-watch-and-help", "to": "samvelyan-2019-smac" }
+    { "from": "puig-2020-watch-and-help", "to": "samvelyan-2019-smac" },
+    { "from": "dodge-2015-movie-dialog", "to": "bordes-2015-simplequestions" },
+    { "from": "ho-2020-2wikimultihopqa", "to": "bordes-2015-simplequestions" },
+    { "from": "joshi-2017-triviaqa", "to": "bordes-2015-simplequestions" }
   ]
 }

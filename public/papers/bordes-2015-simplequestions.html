@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Large-scale Simple Question Answering with Memory Networks — paper_atlas</title>
+<meta name="description" content="Facebook AI Research introduces SimpleQuestions, 108,442 human-written factoid questions paired to single Freebase facts, and trains a Memory Network across it, WebQuestions, and synthetic KB questions — while showing the same trained model can also re-rank Reverb facts it never saw during training.">
+<meta property="og:title" content="Large-scale Simple Question Answering with Memory Networks">
+<meta property="og:description" content="Facebook AI Research introduces SimpleQuestions, 108,442 human-written factoid questions paired to single Freebase facts, and trains a Memory Network across it, WebQuestions, and synthetic KB questions — while showing the same trained model can also re-rank Reverb facts it never saw during training.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/bordes-2015-simplequestions.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2015 · arXiv · Benchmarks &amp; Evals</div>
+      <h1>Large-scale Simple Question Answering with Memory Networks</h1>
+      <p class="dek">Facebook AI Research introduces SimpleQuestions — 108,442 human-written factoid questions, each paired to a single supporting Freebase fact — and trains a Memory Network jointly across it, WebQuestions, and synthetic KB-generated questions, then shows the very same trained model can re-rank facts from the unrelated Reverb knowledge base that it never saw during training.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/bordes-2015-simplequestions.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/bordes-2015-simplequestions.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Antoine Bordes, Nicolas Usunier, Sumit Chopra, Jason Weston</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>arXiv</b></span>
+        <span class="fact">citations&nbsp;<b>746</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1506.02075">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/bordes-2015-simplequestions.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-26</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2015, two families of approach dominated open-domain question answering over knowledge bases (KBs) like Freebase: semantic parsing systems that transform a question into a structured KB query (Berant et al., 2013), and embedding-based systems that learn to place questions and facts in a shared vector space and retrieve by similarity (Bordes et al., 2014a). Most recent effort had gone into systems with higher reasoning capacity — chaining multiple facts together — while the authors argue a narrower problem, which they term <strong>Simple Question Answering</strong> (a question answerable from a single KB fact, i.e. rephrasable as a query <span class="mono">(subject, relationship, ?)</span>), was <em>still far from solved</em>, precisely because retrieving that one correct fact among millions of candidates in natural language remains hard even when no multi-hop reasoning is required.</p>
+      <p>The deeper gap was one of scale and coverage in the benchmarks themselves. WebQuestions (Berant et al., 2013), the standard benchmark of the day, contains fewer than 6,000 questions in total (3,000 train / 778 validation / 2,032 test) generated automatically via the Google Suggest API — small enough that it mostly covers the head of the distribution of Freebase facts, with limited syntactic and lexical variety. That left three open questions unanswered: how well existing systems generalize outside a handful of small benchmarks' specific question templates, whether training on one QA dataset transfers to another, and whether a single system can learn jointly from multiple, structurally different training sources — all of which the authors see as prerequisites to eventually tackling QA at the scale and diversity real usage would demand.</p>
+      <p>A second, KB-structural gap compounds the first: Freebase's underlying storage is a hypergraph, where facts involving more than two entities (e.g. a relationship qualified by a date range) are represented via intermediate "mediator" nodes — effectively putting two entities that a person would consider directly linked at a path length of 2 rather than 1, which silently pushes some questions that feel like simple QA outside the reach of a true single-fact lookup. Table 1 in the paper illustrates the kind of question this preprocessing needs to support at scale, e.g. <span class="mono">"What American cartoonist is the creator of Andy Lippincott?"</span> → <span class="mono">(andy lippincott, character created by, garry trudeau)</span>.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The paper has two halves: a new dataset, and a Memory Network (MemNN; Weston et al., 2015) trained on it alongside three other sources.</p>
+      <h3>SimpleQuestions</h3>
+      <p>SimpleQuestions consists of 108,442 questions written in natural language by human English-speaking annotators, each paired with a Freebase fact — drawn from <strong>FB2M</strong> (∼2.15M entities, 6,701 relationships) — that provides and explains the answer. Collection happened in two phases: first, facts with an undefined relationship type were dropped, and any (subject, relationship) pair with more than 10 objects was filtered out to avoid trivially uninformative questions (e.g. "name a person who is an actor?"); second, the remaining facts were sampled — down-weighting frequent relationships to encourage variety — and shown to annotators alongside a Freebase link for context, who were told to phrase the question differently whenever they encountered similar facts, and were free to skip facts they didn't understand. The questions were then split 70/10/20: 75,910 train, 10,845 validation, 21,687 test.</p>
+      <p>Two Freebase preprocessing steps matter for scale. First, <strong>grouping</strong>: an atomic fact (single subject, relationship, single object) is regrouped into one fact per (subject, relationship) pair holding the full set of linked objects, so list-type questions with multiple correct answers are representable; this shrinks FB2M from 14,180,937 atomic facts to 10,843,106 grouped facts, and the larger <strong>FB5M</strong> (∼4.9M entities, 7,523 relationships) from 22,441,880 down to 12,010,500. Second, <strong>mediator-node removal</strong>: Freebase's hypergraph paths of length 2 through an intermediate node are collapsed into a single direct fact using the second relationship, which on WebQuestions alone raises the share of questions answerable with a single fact from around 65% to 86%.</p>
+      <table>
+        <thead><tr><th>Knowledge base</th><th class="num">Entities</th><th class="num">Relationships</th><th class="num">Facts (grouped)</th></tr></thead>
+        <tbody>
+          <tr><td>FB2M</td><td class="num">2,150,604</td><td class="num">6,701</td><td class="num">10,843,106</td></tr>
+          <tr><td>FB5M</td><td class="num">4,904,397</td><td class="num">7,523</td><td class="num">12,010,500</td></tr>
+          <tr><td>Reverb (Fader et al., 2011)</td><td class="num">2,044,752</td><td class="num">601,360</td><td class="num">— (not grouped)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>The Memory Network</h3>
+      <p>A Memory Network has four components — Input (I), Generalization (G), Output (O), Response (R) — used across three phases: (1) <em>storing Freebase</em> (FB2M or FB5M) in memory via the Input module; (2) <em>training</em> the Output module's embeddings to answer questions; (3) <em>connecting Reverb</em> after training, adding new Reverb facts to the memory via the Generalization module without any retraining, to test whether the model can use genuinely unseen facts. A Freebase fact <span class="mono">y=(s,r,{o₁,…,oₖ})</span> is encoded as a bag-of-symbol vector <span class="mono">f(y)</span> (subject and relationship entries = 1, each object entry = 1/k); a question <span class="mono">q</span> becomes a bag-of-n-grams vector <span class="mono">g(q)</span> over a vocabulary that includes Freebase entity aliases as single n-grams. Candidate facts are generated by matching question n-grams (excluding interrogatives and stopwords) to entity aliases and keeping the two best-linked entities for each of the five longest matches, then scoring every fact with that entity as subject.</p>
+      <p>Scoring is cosine similarity between embedded question and embedded fact, <span class="mono">S<sub>QA</sub>(q,y) = cos(W<sub>V</sub>g(q), W<sub>S</sub>f(y))</span>, with a corresponding <span class="mono">S<sub>RVB</sub></span> for Reverb facts using a concatenated embedding matrix. Training minimizes a margin ranking loss over the embedding matrices <span class="mono">W<sub>V</sub></span>, <span class="mono">W<sub>S</sub></span>:</p>
+      <div class="eq">
+        ℓ<sub>QA</sub>(q, y, y′) = [ γ − S<sub>QA</sub>(q, y) + S<sub>QA</sub>(q, y′) ]<sub>+</sub>
+        <span class="note">// margin γ=0.1; y is the correct supporting fact, y′ a corrupted negative; an identical loss ℓ_QQ pushes paraphrase pairs together</span>
+      </div>
+      <p>Four data sources are multitasked via alternating SGD steps (WARP loss, Weston et al., 2010; Adagrad + HogWild!): SimpleQuestions, WebQuestions, synthetic questions generated automatically from every KB fact (needed so entities absent from the two labeled datasets still get trained embeddings), and 15M clusters of WikiAnswers paraphrase pairs (Fader et al., 2014) used with an analogous ranking loss between paraphrase and non-paraphrase questions; a paraphrase example is drawn with probability 0.2 at each step, otherwise one of the three QA datasets is chosen uniformly at random. Since WebQuestions labels only an answer string (not a supporting fact), <strong>distant supervision</strong> generates it: candidate facts are compared against the answer strings, keeping the fact(s) whose objects' aliases cover the most strings, breaking ties toward fewer objects. Two negative-sampling policies are compared: the default corrupts one element (with 0.3 probability of corrupting more than one) of the true fact using a random substitute from the KB, while the alternative, <strong>candidates as negatives</strong>, instead draws negatives from the model's own candidate set — described as "more original" and shown to help slightly. Whole training runs in 2–3 hours on 20 threads.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Table 3 gives the exact test-set sizes used for evaluation: WebQuestions (2,032 test), SimpleQuestions (21,687 test), Reverb (691 test, evaluation-only, no train/validation split). SimpleQuestions is scored by <strong>path-level accuracy</strong> — a prediction counts as correct only if the subject and relationship of the retrieved fact match the label — since no prior published result exists on this new dataset, so the paper only compares among its own MemNN variants there. WebQuestions is scored by F1 against prior published systems; Reverb is a re-ranking task over a small candidate set of correct/incorrect facts, scored by top-1 accuracy against systems built specifically for that dataset.</p>
+      <table>
+        <thead><tr><th>System</th><th class="num">WebQ F1</th><th class="num">Reverb Acc.</th></tr></thead>
+        <tbody>
+          <tr><td>Random guess</td><td class="num">1.9</td><td class="num">35</td></tr>
+          <tr><td>Berant et al. (2013)</td><td class="num">31.3</td><td class="num">n/a</td></tr>
+          <tr><td>Fader et al. (2014)</td><td class="num">n/a</td><td class="num">54</td></tr>
+          <tr><td>Bordes et al. (2014b)</td><td class="num">29.7</td><td class="num">73</td></tr>
+          <tr><td>Bordes et al. (2014a) — path</td><td class="num">35.3</td><td class="num">n/a</td></tr>
+          <tr><td>Bordes et al. (2014a) — path+subgraph</td><td class="num">39.2</td><td class="num">n/a</td></tr>
+          <tr><td>Berant &amp; Liang (2014)</td><td class="num">39.9</td><td class="num">n/a</td></tr>
+          <tr><td>Yang et al. (2014)</td><td class="num">41.3</td><td class="num">n/a</td></tr>
+          <tr><td>Weston et al. (2015) — original MemNN</td><td class="num">n/a</td><td class="num">72</td></tr>
+        </tbody>
+      </table>
+      <p>Against this literature, the paper's best single-run configuration (FB5M, trained on WebQuestions+SimpleQuestions+Paraphrases with candidates-as-negatives) reaches <strong>41.2%</strong> F1 on WebQuestions — matching the best published competitor, Yang et al. (2014)'s 41.3%. Two post-hoc ensembles push further: a "5 models" ensemble of the five best validation configurations reaches <strong>41.9%</strong>, and an ensemble adding a "Subgraph" variant (objects represented as a bag-of-entities over their immediate neighborhood, following Bordes et al., 2014a) reaches <strong>42.2%</strong>. Comparing the same all-sources configuration on FB2M (the KB size used by Bordes et al., 2014a) versus FB5M isolates the effect of the larger, better-preprocessed KB: FB2M scores 36.2% F1 (versus Bordes et al. 2014a's comparable 35.3%), while FB5M with grouped facts and mediator-node removal reaches 41.0% — and on WebQuestions specifically, mediator-node removal alone raises single-fact answerability from ~65% to 86% of questions.</p>
+      <p>On <strong>SimpleQuestions</strong>, the best configurations reach 62–63% path-level accuracy (62.1–62.2% for single runs on FB5M with all three training sources, versus 62.7% for the single FB2M row trained on all three sources; 63.9% for the 5-models ensemble, 62.9% for the Subgraph ensemble), while the correct supporting fact appears in the candidate set for only about 86% of questions — meaning MemNN correctly selects the right fact roughly three-quarters of the time it's actually offered as a candidate, and the paper is explicit that "simple QA is still not solved" despite this being an easier reasoning setting than multi-hop QA.</p>
+      <p>On <strong>Reverb</strong> — a pure transfer-learning setting where the model is never trained on Reverb data, only given its facts at test time via the Generalization module — the best single-run result is <strong>67%</strong> accuracy (68% for the 5-models ensemble), beating the 54% reported in Fader et al. (2014) and approaching, though not matching, the 73% state-of-the-art from Bordes et al. (2014b), a system trained directly on Reverb.</p>
+      <p>The <strong>importance of data sources</strong> ablation (bottom half of Table 4) shows training on a single QA dataset transfers poorly to the others: a model trained only on WebQuestions (plus synthetic KB questions) reaches just 46.6% accuracy on SimpleQuestions, versus 61.2–62.2% across the FB5M single-run rows where SimpleQuestions is itself in the training mix (62.7% on the separate FB2M row with all three sources) — evidence that strong WebQuestions performance does not guarantee simple-QA coverage. Conversely, training on both labeled QA datasets together only helps (no "negative interaction" is observed), and while paraphrases barely move WebQuestions or SimpleQuestions numbers except when they're the only supplementary source, they have an outsized effect on Reverb transfer — attributed to Reverb's greater syntactic and lexical variability relative to the well-formed, pattern-heavy WebQuestions and SimpleQuestions questions.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>This paper is doing two things at once — introducing a benchmark and reporting a method's scores on it — and the rigor of each half needs to be judged separately.</p>
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">On WebQuestions, the comparison set is real and current for 2015: Berant et al. (2013), Berant &amp; Liang (2014), Yang et al. (2014), and the authors' own prior systems (Bordes et al., 2014a/2014b) were all published within roughly a year of this paper and represent the two dominant paradigms (semantic parsing and embedding-based QA) fairly. But the two headline WebQuestions numbers the abstract-level narrative leans on (41.9%, 42.2%) are post-hoc ensembles — a "5 models" combination and a Subgraph-augmented combination — compared against single-model competitors; the paper is candid about this (noting 41.2% as the comparable single-run number), but a reader skimming only the two boldest figures could mistake an ensemble-vs-single comparison for a same-footing win. On its own headline dataset, SimpleQuestions, there is no external baseline at all — the paper states plainly it "only compares different versions of MemNNs" since no prior published result existed, so the reported 62–63% accuracy cannot be benchmarked against any independent system in this paper; that comparison had to wait for later work.</p>
+        <span class="k">contamination</span><p class="v">Not a classic train/test leakage problem — SimpleQuestions' test split was randomly shuffled from the same annotation pool as train/validation, so there's no separate held-out collection to leak from. The more relevant caveat is entity coverage, not contamination: the synthetic KB-generated questions exist specifically because, as the paper states, they're "essential to learn embeddings for the entities not appearing in either WebQuestions or SimpleQuestions" — meaning every tested entity has necessarily received some training signal (either from a labeled question or a synthetic one), so the benchmark measures generalization to new phrasings and facts, not to genuinely unseen entities. Separately, WebQuestions' distant-supervision labels (heuristically inferred supporting facts, since only answer strings are given) are themselves a noisy, unverified signal riding on top of the true WebQuestions annotations.</p>
+        <span class="k">what's missed</span><p class="v">SimpleQuestions' headline metric — path-level accuracy — credits a prediction as correct once the subject and relationship of the retrieved fact match the label; it does not directly check that the returned answer string(s) match, which matters for the grouped, potentially multi-object facts the paper's own preprocessing was built to support. The 86% candidate-recall ceiling is also easy to lose in the 62–63% headline: read together, roughly 14% of the loss is entity-linking failure the ranking model can never recover from, a distinction the single accuracy number doesn't surface. And on the Reverb transfer numbers, the higher 67–68% test-time scores don't distinguish gains from the embeddings genuinely generalizing to novel relationship phrasing versus the 17% of Reverb entities that were successfully linked directly to already-seen Freebase entities via the entity-linking step described in Section 3.2.</p>
+        <span class="k">would raise confidence</span><p class="v">A reported variance across repeated training runs — every number in Table 4 is a single point estimate with no error bars, and several of the reported deltas are small: candidates-as-negatives moves WebQuestions F1 by only 0.2 points (41.0% → 41.2%) and SimpleQuestions accuracy by only 0.1 (62.1% → 62.2%), which the paper itself describes only as "slightly better performance." Without repeated runs there's no way to tell whether a gain of that size reflects a systematic effect of the training-source or negative-sampling choice versus ordinary training noise. An explicit answer-string-level (not just path-level) accuracy number for SimpleQuestions would make the metric comparable to how later SimpleQuestions work is actually evaluated. And a breakdown of Reverb performance by whether the entity was directly linked to Freebase versus encoded as raw bag-of-words would clarify how much of the transfer-learning story is genuine embedding generalization.</p>
+      </div>
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>SimpleQuestions itself is the paper's lasting contribution: at 108,442 questions it was, at the time, an order of magnitude larger than WebQuestions, and its single-fact structure made it a durable, widely reused benchmark for factoid KB-QA long after this specific Memory Network implementation was superseded. The method results are credible and honestly scoped — matching, not dramatically beating, the best 2014-era WebQuestions system, and landing short of a Reverb-specialist system in pure transfer — but the paper's own admission that SimpleQuestions has no external baseline to compare against is the sharpest limit on how much confidence to place in its 62–63% headline number as a statement about the state of the art, rather than about this one model family.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Introduces SimpleQuestions: 108,442 human-written questions (75,910 train / 10,845 validation / 21,687 test) each paired to one supporting Freebase fact — roughly an order of magnitude larger than the era's standard benchmark, WebQuestions (3,000 / 778 / 2,032).</li>
+        <li>A Memory Network trained jointly across WebQuestions, SimpleQuestions, synthetic KB questions, and WikiAnswers paraphrases reaches 41.2% F1 on WebQuestions (single run, matching Yang et al. 2014's 41.3%; up to 41.9–42.2% with ensembles), 62.1–63.9% path-level accuracy on SimpleQuestions, and 67–68% on Reverb despite never training on Reverb data.</li>
+        <li>Removing Freebase's mediator nodes (collapsing length-2 hypergraph paths into direct facts) raises the share of WebQuestions answerable with a single fact from ~65% to 86%, and training on multiple QA sources at once only helps — a model trained on WebQuestions alone reaches just 46.6% on SimpleQuestions, versus 61.2–62.2% (FB5M single runs) once SimpleQuestions is included in training.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Large-scale Simple Question Answering with Memory Networks<br>
+        Antoine Bordes, Nicolas Usunier, Sumit Chopra, Jason Weston · 2015 · arXiv<br>
+        <a href="https://arxiv.org/abs/1506.02075">read the original ↗</a> · slug: bordes-2015-simplequestions
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
