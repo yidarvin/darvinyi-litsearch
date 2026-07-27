@@ -8623,6 +8623,22 @@
       "explainer": "papers/puig-2020-watch-and-help.html",
       "audio_url": "https://pod.darvinyi.com/audio/puig-2020-watch-and-help.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "shen-2023-taskbench",
+      "short": "TaskBench",
+      "title": "TaskBench: Benchmarking Large Language Models for Task Automation",
+      "authors": "Shen, Song, Tan, Zhang, Ren, Yuan, Lu, Li, Zhuang",
+      "year": 2023,
+      "date": "2023-11",
+      "venue": "NeurIPS 2023",
+      "citation_count": 166,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Zhejiang University / Microsoft Research Asia",
+      "abstract": "Introduces TaskBench, a benchmark for end-to-end LLM task automation across three stages -- task decomposition, tool selection, and parameter prediction -- built over an explicit Tool Graph that encodes resource and temporal dependencies between tools across three domains (Hugging Face Tools, Multimedia Tools, Daily Life APIs). Data is generated at scale via a Back-Instruct data engine that samples tool subgraphs and has GPT-4 invert them into instructions, filtered by self-critic and human verification; the accompanying TaskEval metrics correlate strongly with human judgment (Kendall's tau = 0.89).",
+      "explainer": "papers/shen-2023-taskbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shen-2023-taskbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14538,6 +14554,27 @@
     { "from": "puig-2020-watch-and-help", "to": "lowe-2017-maddpg" },
     { "from": "puig-2020-watch-and-help", "to": "mnih-2016-a3c" },
     { "from": "puig-2020-watch-and-help", "to": "browne-2012-mcts-survey" },
-    { "from": "jin-2024-mmtom-qa", "to": "puig-2020-watch-and-help" }
+    { "from": "jin-2024-mmtom-qa", "to": "puig-2020-watch-and-help" },
+    { "from": "shen-2023-taskbench", "to": "brown-2020-gpt3" },
+    { "from": "shen-2023-taskbench", "to": "ouyang-2022-instructgpt" },
+    { "from": "shen-2023-taskbench", "to": "openai-2023-gpt4" },
+    { "from": "shen-2023-taskbench", "to": "touvron-2023-llama" },
+    { "from": "shen-2023-taskbench", "to": "shen-2023-hugginggpt" },
+    { "from": "shen-2023-taskbench", "to": "park-2023-generative-agents" },
+    { "from": "shen-2023-taskbench", "to": "wang-2023-voyager" },
+    { "from": "shen-2023-taskbench", "to": "hendrycks-2020-mmlu" },
+    { "from": "shen-2023-taskbench", "to": "cobbe-2021-gsm8k" },
+    { "from": "shen-2023-taskbench", "to": "zhong-2023-agieval" },
+    { "from": "shen-2023-taskbench", "to": "patil-2023-gorilla" },
+    { "from": "shen-2023-taskbench", "to": "qin-2023-toolllm" },
+    { "from": "shen-2023-taskbench", "to": "huang-2023-metatool" },
+    { "from": "shen-2023-taskbench", "to": "li-2023-api-bank" },
+    { "from": "shen-2023-taskbench", "to": "touvron-2023-llama2" },
+    { "from": "shen-2023-taskbench", "to": "liu-2023-agentbench" },
+    { "from": "shen-2023-taskbench", "to": "schick-2023-toolformer" },
+    { "from": "shen-2023-taskbench", "to": "roziere-2023-code-llama" },
+    { "from": "shen-2023-taskbench", "to": "hong-2023-metagpt" },
+    { "from": "kapoor-2024-ai-agents-that-matter", "to": "shen-2023-taskbench" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "shen-2023-taskbench" }
   ]
 }

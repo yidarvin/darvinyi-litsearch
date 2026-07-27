@@ -149,6 +149,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "shen-2023-taskbench",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -161,22 +168,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T12:11 wang-2013-stc: step -> figures",
-    "2026-07-26T12:12 wang-2013-stc: step -> draft",
-    "2026-07-26T12:21 wang-2013-stc: step -> critique (round 1)",
-    "2026-07-26T12:29 wang-2013-stc: 0 open blocker(s) from round 1 (verdict: approve)",
-    "2026-07-26T12:29 wang-2013-stc: step -> verify",
-    "2026-07-26T12:29 wang-2013-stc: step -> queue-ops",
-    "2026-07-26T12:47 wang-2013-stc: step -> podcast",
-    "2026-07-26T12:47 completed wang-2013-stc (verdict=approved, rounds=1)",
-    "2026-07-26T15:47 started dodge-2015-movie-dialog ('Evaluating Prerequisite Qualities for Learning End-to-End Dialog Systems')",
-    "2026-07-26T15:48 dodge-2015-movie-dialog: step -> fetch",
-    "2026-07-26T15:48 dodge-2015-movie-dialog: step -> figures",
-    "2026-07-26T15:48 dodge-2015-movie-dialog: step -> draft",
-    "2026-07-26T15:59 dodge-2015-movie-dialog: step -> critique (round 1)",
-    "2026-07-26T16:05 dodge-2015-movie-dialog: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T16:05 dodge-2015-movie-dialog: step -> revise",
-    "2026-07-26T16:07 dodge-2015-movie-dialog: step -> critique (round 2)",
     "2026-07-26T16:12 dodge-2015-movie-dialog: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-26T16:12 dodge-2015-movie-dialog: step -> verify",
     "2026-07-26T16:12 dodge-2015-movie-dialog: step -> queue-ops",
@@ -210,6 +201,22 @@
     "2026-07-26T22:02 puig-2020-watch-and-help: step -> verify",
     "2026-07-26T22:03 puig-2020-watch-and-help: step -> queue-ops",
     "2026-07-26T22:16 puig-2020-watch-and-help: step -> podcast",
-    "2026-07-26T22:16 completed puig-2020-watch-and-help (verdict=approved, rounds=2)"
+    "2026-07-26T22:16 completed puig-2020-watch-and-help (verdict=approved, rounds=2)",
+    "2026-07-26T22:18 started shen-2023-taskbench ('TaskBench: Benchmarking Large Language Models for Task Automation')",
+    "2026-07-26T22:19 shen-2023-taskbench: step -> fetch",
+    "2026-07-26T22:19 shen-2023-taskbench: step -> figures",
+    "2026-07-26T22:19 shen-2023-taskbench: step -> draft",
+    "2026-07-26T22:29 shen-2023-taskbench: step -> critique (round 1)",
+    "2026-07-26T22:37 shen-2023-taskbench: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T22:37 shen-2023-taskbench: step -> revise",
+    "2026-07-26T22:41 shen-2023-taskbench: step -> critique (round 2)",
+    "2026-07-26T22:48 shen-2023-taskbench: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-26T22:48 shen-2023-taskbench: step -> revise",
+    "2026-07-26T22:49 shen-2023-taskbench: step -> critique (round 3)",
+    "2026-07-26T22:53 shen-2023-taskbench: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-26T22:53 shen-2023-taskbench: step -> verify",
+    "2026-07-26T22:53 shen-2023-taskbench: step -> queue-ops",
+    "2026-07-26T23:09 shen-2023-taskbench: step -> podcast",
+    "2026-07-26T23:09 completed shen-2023-taskbench (verdict=approved, rounds=3)"
   ]
 }
