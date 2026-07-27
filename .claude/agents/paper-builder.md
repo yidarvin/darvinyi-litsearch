@@ -89,8 +89,24 @@ actually uses. → `set-step draft`
    authors, year, `date` derived from the arxiv id or S2's
    `publicationDate`, venue, citation_count, topic, author_group, abstract,
    explainer path) and add citation edges in both directions against every
-   existing node its `references`/`citations` list matches (by
-   arxiv_id/doi/title).
+   existing node its `references`/`citations` list matches.
+
+   **Match on arXiv id first, then doi, and treat title as the weakest
+   signal.** Papers get renamed between preprint and camera-ready, and S2
+   often indexes the old title — API-Bank has been silently dropped twice
+   this way, once as "A Benchmark for Tool-Augmented LLMs" against a node
+   titled "A *Comprehensive* Benchmark …". A node's arXiv id is recoverable
+   from its explainer's canonical `source ↗` link when `papers.json` doesn't
+   carry one (the same trick `scripts/queue_ops.py` uses).
+
+   **S2's reference list is not the bibliography.** It has been incomplete
+   on essentially every paper processed so far — sometimes badly (one record
+   listed 2 references against a ~40-entry bibliography; another listed
+   zero). Always read the paper's own printed bibliography as well, and
+   reconcile the two. Equally: do **not** add an edge just because a
+   reference looks plausible or topically related — confirm it is actually
+   cited. Plausibility is not citation, and a wrong edge is harder to notice
+   than a missing one.
 4. Check this paper against every survey's rubric in `data/surveys.json`
    (not just `survey_id` — a paper can be core to more than one). Tag with
    `python3 scripts/tag_papers.py add <survey_id> <slug>` for each match.

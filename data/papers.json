@@ -8863,6 +8863,22 @@
       "explainer": "papers/hu-2024-infiagent-dabench.html",
       "audio_url": "https://pod.darvinyi.com/audio/hu-2024-infiagent-dabench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "lin-2023-agentsims",
+      "short": "AgentSims",
+      "title": "AgentSims: An Open-Source Sandbox for Large Language Model Evaluation",
+      "authors": "Lin, Zhao, Zhang, Wu, et al.",
+      "year": 2023,
+      "date": "2023-08",
+      "venue": "arXiv",
+      "citation_count": 109,
+      "topic": "Benchmarks & Evals",
+      "author_group": "PTA Studio",
+      "abstract": "Proposes task-based evaluation of LLMs via an open-source, pixel-game sandbox (AgentSims) where LLM agents with pluggable Planning/Memory/Tool-Use systems complete goals in a simulated town; a systems/demo paper that ships the infrastructure and a GUI/SDK but reports no benchmark tasks or quantitative results of its own.",
+      "explainer": "papers/lin-2023-agentsims.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2023-agentsims.mp3",
+      "tags": ["evaluations"]
     }
   ],
   "edges": [
@@ -14984,6 +15000,19 @@
     { "from": "hu-2024-infiagent-dabench", "to": "wu-2023-autogen" },
     { "from": "hu-2024-infiagent-dabench", "to": "li-2023-api-bank" },
     { "from": "hu-2024-infiagent-dabench", "to": "zhou-2023-webarena" },
-    { "from": "ma-2024-spreadsheetbench", "to": "hu-2024-infiagent-dabench" }
+    { "from": "ma-2024-spreadsheetbench", "to": "hu-2024-infiagent-dabench" },
+    { "from": "lin-2023-agentsims", "to": "brown-2020-gpt3" },
+    { "from": "lin-2023-agentsims", "to": "hendrycks-2020-mmlu" },
+    { "from": "lin-2023-agentsims", "to": "srivastava-2022-big-bench" },
+    { "from": "lin-2023-agentsims", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "lin-2023-agentsims", "to": "zhong-2023-agieval" },
+    { "from": "lin-2023-agentsims", "to": "park-2023-generative-agents" },
+    { "from": "lin-2023-agentsims", "to": "wang-2023-voyager" },
+    { "from": "lin-2023-agentsims", "to": "shen-2023-hugginggpt" },
+    { "from": "lin-2023-agentsims", "to": "zhou-2023-lima" },
+    { "from": "lin-2023-agentsims", "to": "openai-2023-gpt4" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "lin-2023-agentsims" },
+    { "from": "nathani-2025-mlgym", "to": "lin-2023-agentsims" },
+    { "from": "debenedetti-2024-agentdojo", "to": "lin-2023-agentsims" }
   ]
 }
