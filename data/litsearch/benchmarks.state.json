@@ -135,6 +135,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "kim-2023-fantom",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -147,22 +154,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T10:30 completed huang-2023-metatool (verdict=approved, rounds=2)",
-    "2026-07-26T10:30 started xiong-2024-mirage ('Benchmarking Retrieval-Augmented Generation for Medicine')",
-    "2026-07-26T10:31 xiong-2024-mirage: step -> fetch",
-    "2026-07-26T10:31 xiong-2024-mirage: step -> figures",
-    "2026-07-26T10:31 xiong-2024-mirage: step -> draft",
-    "2026-07-26T10:40 xiong-2024-mirage: step -> critique (round 1)",
-    "2026-07-26T10:46 xiong-2024-mirage: 1 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T10:46 xiong-2024-mirage: step -> revise",
-    "2026-07-26T10:47 xiong-2024-mirage: step -> critique (round 2)",
-    "2026-07-26T10:49 xiong-2024-mirage: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T10:50 xiong-2024-mirage: step -> verify",
-    "2026-07-26T10:50 xiong-2024-mirage: step -> queue-ops",
-    "2026-07-26T11:06 xiong-2024-mirage: step -> podcast",
-    "2026-07-26T11:06 completed xiong-2024-mirage (verdict=approved, rounds=2)",
-    "2026-07-26T11:06 started chen-2020-meddialog ('MedDialog: A Large-scale Medical Dialogue Dataset')",
-    "2026-07-26T11:07 chen-2020-meddialog: step -> fetch",
     "2026-07-26T11:11 chen-2020-meddialog: step -> figures",
     "2026-07-26T11:11 chen-2020-meddialog: step -> draft",
     "2026-07-26T11:25 chen-2020-meddialog: step -> critique (round 1)",
@@ -196,6 +187,22 @@
     "2026-07-26T16:12 dodge-2015-movie-dialog: step -> verify",
     "2026-07-26T16:12 dodge-2015-movie-dialog: step -> queue-ops",
     "2026-07-26T16:26 dodge-2015-movie-dialog: step -> podcast",
-    "2026-07-26T16:26 completed dodge-2015-movie-dialog (verdict=approved, rounds=2)"
+    "2026-07-26T16:26 completed dodge-2015-movie-dialog (verdict=approved, rounds=2)",
+    "2026-07-26T16:26 started kim-2023-fantom ('FANToM: A Benchmark for Stress-testing Machine Theory of Mind in Interactions')",
+    "2026-07-26T16:26 kim-2023-fantom: step -> fetch",
+    "2026-07-26T16:27 kim-2023-fantom: step -> figures",
+    "2026-07-26T16:28 kim-2023-fantom: step -> draft",
+    "2026-07-26T16:38 kim-2023-fantom: step -> critique (round 1)",
+    "2026-07-26T16:46 kim-2023-fantom: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T16:46 kim-2023-fantom: step -> revise",
+    "2026-07-26T16:49 kim-2023-fantom: step -> critique (round 2)",
+    "2026-07-26T16:53 kim-2023-fantom: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-26T16:53 kim-2023-fantom: step -> revise",
+    "2026-07-26T16:54 kim-2023-fantom: step -> critique (round 3)",
+    "2026-07-26T16:58 kim-2023-fantom: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-26T16:58 kim-2023-fantom: step -> verify",
+    "2026-07-26T16:58 kim-2023-fantom: step -> queue-ops",
+    "2026-07-26T17:14 kim-2023-fantom: step -> podcast",
+    "2026-07-26T17:14 completed kim-2023-fantom (verdict=approved, rounds=3)"
   ]
 }

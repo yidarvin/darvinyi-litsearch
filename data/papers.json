@@ -8591,6 +8591,22 @@
       "explainer": "papers/dodge-2015-movie-dialog.html",
       "audio_url": "https://pod.darvinyi.com/audio/dodge-2015-movie-dialog.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "kim-2023-fantom",
+      "short": "FANToM",
+      "title": "FANToM: A Benchmark for Stress-testing Machine Theory of Mind in Interactions",
+      "authors": "Kim, Sclar, Zhou, Le Bras, Kim, Choi, Sap",
+      "year": 2023,
+      "date": "2023-10",
+      "venue": "EMNLP 2023",
+      "citation_count": 194,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Allen Institute for AI / University of Washington / CMU / Seoul National University",
+      "abstract": "A conversational theory-of-mind (ToM) benchmark built on real information asymmetry: 256 LLM-generated multiparty small-talk conversations where characters leave and rejoin, creating inaccessible information for the returning character, converted into ~10K questions across six converging formats (BeliefQ[Dist./Choice], AnswerabilityQ[List/Y-N], InfoAccessQ[List/Y-N]) about the same fact. A strict conjunctive ALL*/ALL score catches \"illusory ToM\": GPT-4 0613 (June) scores 73.3% on BeliefQ[Choice] alone but only 12.3% on the full-coherence ALL aggregate, versus 87.5% for humans, and neither chain-of-thought nor fine-tuning closes the gap.",
+      "explainer": "papers/kim-2023-fantom.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kim-2023-fantom.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14490,6 +14506,18 @@
     { "from": "li-2017-dailydialog", "to": "wang-2013-stc" },
     { "from": "dodge-2015-movie-dialog", "to": "hermann-2015-cnn-dailymail" },
     { "from": "zhang-2018-personachat", "to": "dodge-2015-movie-dialog" },
-    { "from": "li-2017-dailydialog", "to": "dodge-2015-movie-dialog" }
+    { "from": "li-2017-dailydialog", "to": "dodge-2015-movie-dialog" },
+    { "from": "kim-2023-fantom", "to": "touvron-2023-llama2" },
+    { "from": "kim-2023-fantom", "to": "chung-2022-flan" },
+    { "from": "kim-2023-fantom", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "kim-2023-fantom", "to": "ouyang-2022-instructgpt" },
+    { "from": "kim-2023-fantom", "to": "hendrycks-2020-mmlu" },
+    { "from": "kim-2023-fantom", "to": "rajpurkar-2016-squad" },
+    { "from": "kim-2023-fantom", "to": "openai-2023-gpt4" },
+    { "from": "kim-2023-fantom", "to": "jiang-2023-mistral-7b" },
+    { "from": "kim-2023-fantom", "to": "sakaguchi-2019-winogrande" },
+    { "from": "bean-2025-construct-validity", "to": "kim-2023-fantom" },
+    { "from": "kim-2024-biggenbench", "to": "kim-2023-fantom" },
+    { "from": "jin-2024-mmtom-qa", "to": "kim-2023-fantom" }
   ]
 }
