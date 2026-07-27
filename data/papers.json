@@ -8751,6 +8751,22 @@
       "explainer": "papers/tu-2024-amie.html",
       "audio_url": "https://pod.darvinyi.com/audio/tu-2024-amie.mp3",
       "tags": ["evaluations"]
+    },
+    {
+      "slug": "wang-2020-lccc",
+      "short": "LCCC",
+      "title": "A Large-Scale Chinese Short-Text Conversation Dataset",
+      "authors": "Yida Wang, Pei Ke, Yinhe Zheng, Kaili Huang, Yong Jiang, Xiaoyan Zhu, Minlie Huang",
+      "year": 2020,
+      "date": "2020-08",
+      "venue": "NLPCC 2020",
+      "citation_count": 151,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University",
+      "abstract": "LCCC ships two cleaned Chinese Weibo conversation corpora — a 6.8M-dialogue base version and a 12.0M-dialogue large version mixed with nine other public Chinese corpora — filtered through nine heuristic rules plus two BERT classifiers trained on 110K manually labeled examples, to fix the noisy-social-media problem that had hobbled Chinese dialogue pretraining.",
+      "explainer": "papers/wang-2020-lccc.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2020-lccc.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14740,6 +14756,14 @@
     { "from": "tu-2024-amie", "to": "chen-2020-meddialog" },
     { "from": "tu-2024-amie", "to": "mitchell-2018-model-cards" },
     { "from": "tu-2024-amie", "to": "openai-2023-gpt4" },
-    { "from": "schmidgall-2024-agentclinic", "to": "tu-2024-amie" }
+    { "from": "schmidgall-2024-agentclinic", "to": "tu-2024-amie" },
+    { "from": "wang-2020-lccc", "to": "devlin-2019-bert" },
+    { "from": "wang-2020-lccc", "to": "zhang-2018-personachat" },
+    { "from": "wang-2020-lccc", "to": "li-2017-dailydialog" },
+    { "from": "wang-2020-lccc", "to": "wang-2013-stc" },
+    { "from": "wang-2020-lccc", "to": "radford-2019-gpt2" },
+    { "from": "wang-2020-lccc", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "wang-2020-lccc", "to": "papineni-2002-bleu" },
+    { "from": "wang-2020-lccc", "to": "radford-2018-gpt1" }
   ]
 }

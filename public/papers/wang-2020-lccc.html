@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Large-Scale Chinese Short-Text Conversation Dataset — paper_atlas</title>
+<meta name="description" content="LCCC ships two cleaned Chinese Weibo conversation corpora — a 6.8M-dialogue base version and a 12.0M-dialogue large version — built with a nine-rule heuristic filter plus two BERT classifiers trained on 110K manually labeled examples, to fix the noisy-social-media problem that hobbled earlier Chinese dialogue datasets.">
+<meta property="og:title" content="A Large-Scale Chinese Short-Text Conversation Dataset">
+<meta property="og:description" content="LCCC ships two cleaned Chinese Weibo conversation corpora — a 6.8M-dialogue base version and a 12.0M-dialogue large version — built with a nine-rule heuristic filter plus two BERT classifiers trained on 110K manually labeled examples, to fix the noisy-social-media problem that hobbled earlier Chinese dialogue datasets.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/wang-2020-lccc.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2020 · NLPCC 2020 · Benchmarks &amp; Evals</div>
+      <h1>A Large-Scale Chinese Short-Text Conversation Dataset</h1>
+      <p class="dek">LCCC ships two cleaned Chinese Weibo-rooted conversation corpora — a 6.8-million-dialogue "base" version and a 12.0-million-dialogue "large" version mixed with nine other public Chinese corpora — scrubbed by a nine-rule heuristic filter plus two BERT classifiers trained on 110K manually labeled examples, to fix the noisy-social-media problem that had hobbled Chinese dialogue pretraining.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/wang-2020-lccc.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/wang-2020-lccc.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Yida Wang, Pei Ke, Yinhe Zheng, Kaili Huang, Yong Jiang, Xiaoyan Zhu, Minlie Huang</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>NLPCC 2020</b></span>
+        <span class="fact">citations&nbsp;<b>151</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2008.03946">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/wang-2020-lccc.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-27 (Semantic Scholar)</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2020, pre-training had reshaped open-domain dialogue generation in English: BERT promoted natural-language understanding, GPT drove state-of-the-art generation, and dialogue-specific models built on top of them — DialoGPT (post-trained GPT-2 on 147M Reddit conversations), PLATO, and Meena (a 2.6B-parameter Evolved Transformer trained on 40B words of social-media chat) — pushed open-domain response quality further still. None of that machinery had an equivalent for Chinese, and the paper argues the bottleneck wasn't modeling but data: there was no large-scale, high-quality Chinese dialogue corpus to pre-train on.</p>
+      <p>The two obvious sources both fail in opposite ways. Crowdsourced datasets — Wizard of Wikipedia, Document Grounded Conversations, PERSONA-CHAT, DailyDialog — are clean, but small, because crowdsourcing doesn't scale to GPT-sized pre-training corpora. Public social-media corpora — Weibo, Twitter, Reddit, technical forums — are abundant, but noisy: "online social media contains many negative behaviors, including toxic comments..., threats, insults, identity hates, obscene contents, and many more," and these degrade generation quality and can produce "serious unexpected behaviors." The paper backs this with its own audit of the existing large Chinese Weibo corpus, STC (Wang et al., 2013): using their own blacklist, they estimate that 60% of conversations in STC contain dirty words, sensitive words, or special symbols, and that a model trained directly on STC generates five times as many blacklisted words as one trained on their cleaned corpus. Crowd-sourcing at GPT scale is also ruled out as impractical, since "the amount of data used in the pre-training models is quite large." The gap, then, is a Chinese corpus that is simultaneously large enough to pre-train a GPT-scale model and clean enough not to bake toxic, generic, or context-dependent noise into the model's outputs.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>LCCC is built from 79 million raw conversations crawled from Weibo. The crawl itself is seeded deliberately rather than random: the authors manually select Weibo accounts belonging to professional mass-media outlets, then treat users who comment under those outlets' news posts as "high-quality," on the assumption that automated/spam accounts rarely engage with daily news. Posts and their comment trees from these seed users are then reconstructed into (post, response) conversation sessions via a depth-first-search traversal of each thread, yielding the 79M raw sessions that anchor both LCCC releases.</p>
+      <p>From that shared 79M-conversation base, two releases are produced. <strong>LCCC-base</strong> filters only the raw Weibo crawl through what the paper calls an "extremely strict" version of the cleaning pipeline. <strong>LCCC-large</strong> mixes the same 79M Weibo conversations with nine additional public Chinese corpora — six treated as single-turn data (the Chinese Chatterbot Corpus, the PTT Gossiping Corpus, a subtitle corpus, the Xiaohuangji corpus, the Qingyun Corpus, and the Tieba Corpus) and three treated as multi-turn data (the Douban Conversation Corpus, an E-commercial Conversation Corpus, and an unnamed Chinese chat corpus drawn from the GPT2-chitchat project) — then runs the same pipeline with a relaxed classifier confidence threshold, described as "strict" rather than "extremely strict."</p>
+      <p>The cleaning pipeline itself is two-phase. <strong>Phase 1 (rule-based)</strong> applies nine heuristic filters: (1) strip platform tags such as "Reply to @***"; (2) remove URL strings; (3) split any conversation longer than 30 turns into sub-conversations under 30 turns; (4) collapse a phrase or word repeated more than 6 times in one sentence down to a single copy; (5) drop dialogues whose response is too long or too short; (6) drop dialogues whose response is flagged as an advertisement by the classifier from the original STC paper (Wang et al., 2013); (7) drop dialogues where 90% of the response's tri-grams are high-frequency tri-grams (a filter borrowed from DialoGPT); (8) drop dialogues whose response takes specific generic forms; (9) drop dialogues where the response is identical to the post. Alongside the rules, a five-category blacklist removes any dialogue containing: (1) dirty words, sensitive words, or dialect terms; (2) special-topic words (their example: the drug name levofloxacin); (3) names, appellations, or unrecognized abbreviations; (4) special symbols and emoji; (5) platform-specific signs such as ad, image, or video markers.</p>
+      <p><strong>Phase 2 (classifier-based)</strong> handles noise that rules can't catch — semantic and grammatical problems, plus conversations whose meaning depends on context outside the visible post/response — using two separately trained BERT classifiers. The first is trained on 100,000 manually labeled conversations to catch: (1) disfluent responses or serious typos; (2) incomplete information; (3) time-sensitive topics; (4) festivals, places, gender, or time references in the response that never appeared in the post; (5) posts and responses that are simply irrelevant to each other. It reaches 73.76% classification accuracy on its test set. The second is trained on a separate 10,000-utterance manually labeled set targeting context-dependent messages — utterances that can't be judged as noisy or clean without information beyond the pair itself — and reaches 77.60% test accuracy. Together the two batches account for the abstract's headline "110K dialogue pairs" of manual annotation.</p>
+      <p>On top of the corpus, the paper also releases pre-training dialogue models. The architecture is a GPT-style Transformer decoder (12 layers, 12 attention heads, 768-dimensional word embeddings, 513-dimensional position embeddings, 13,088-character vocabulary) that concatenates all history utterances into one long input sequence (following TransferTransfo), adding speaker embeddings during post-training to distinguish turns and BERT-style <span class="mono">[CLS]</span>/<span class="mono">[SEP]</span> tokens to bound the sequence. Four checkpoints are released: <strong>GPTNovel</strong>, pre-trained for 70 epochs on a ~0.5-billion-token Chinese novel corpus spanning comedy, romance, and mystery genres; <strong>CDialGPT<sub>LCCC-base</sub></strong> and <strong>CDialGPT<sub>LCCC-large</sub></strong>, each GPTNovel further post-trained for 30 epochs on LCCC-base or LCCC-large respectively; and <strong>CDialGPT2<sub>LCCC-base</sub></strong>, a GPT-2-style variant post-trained the same way on LCCC-base. All models use AdamW with Noam learning-rate decay, a 1-epoch warmup, a 6.25e-5 max learning rate, batch size 8 with 64 gradient-accumulation steps, and were trained on four RTX 2080Ti GPUs.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>The cleaning pipeline is aggressive. On LCCC-base, the 52,708,955 raw single-turn and 26,749,365 raw multi-turn Weibo dialogues (≈79.5M raw total) are cut down to 3,354,277 cleaned single-turn and 3,466,278 cleaned multi-turn dialogues — about 6.8 million dialogues total, matching the abstract, a roughly 8.6% survival rate. On LCCC-large, 63,251,887 raw single-turn plus 28,189,952 raw multi-turn dialogues (the mixed-corpus pool) clean down to 7,273,804 single-turn and 4,733,955 multi-turn dialogues, ≈12.0 million total. LCCC-base yields ≈20 million utterances (6,708,554 single-turn + 13,365,268 multi-turn utterances) with average utterance lengths of 6.79 words (single-turn) and 8.32 words (multi-turn); LCCC-large yields ≈33 million utterances (14,547,608 single-turn + 18,341,167 multi-turn) at 7.45 and 8.14 average words respectively, with average turns-per-dialogue of 3.86 (LCCC-base multi-turn) and 3.87 (LCCC-large multi-turn). Against prior Chinese conversation datasets — DuConv (29,858 dialogs), Douban (0.5M dialogs), PersonalDialog (20.83M dialogs / 56.26M utterances / 8.47M user profiles), and STC (4.4M pairs / 219,905 posts / 4.3M responses) — LCCC-large's 12M dialogues make it the second-largest entry in the comparison table behind PersonalDialog's 20.83M, and LCCC-base's 6.8M dialogues put it third, ahead of STC, Douban, and DuConv.</p>
+      <p>To evaluate the released models, every checkpoint is fine-tuned on the (older, noisier) STC dataset — 4.4M conversation pairs, split into train plus a 20,000-pair validation set and a disjoint 20,000-pair test set — and compared against three baselines: <strong>GPT2-chitchat</strong>, an existing open Chinese GPT-2 pre-trained on 500K Chinese conversations; a vanilla 6-layer <strong>Transformer</strong>; and a 6-layer GRU <strong>Attn-Seq2Seq</strong> with Bahdanau attention (hidden size 768, chosen to keep parameter counts comparable to the pre-trained models).</p>
+      <table>
+        <thead><tr><th>Model</th><th class="num">Size</th><th class="num">PPL</th><th class="num">BLEU-2</th><th class="num">BLEU-4</th><th class="num">Dist-1</th><th class="num">Dist-2</th><th class="num">Greedy</th><th class="num">Embed. Avg</th></tr></thead>
+        <tbody>
+          <tr><td>Attn-Seq2Seq</td><td class="num">73M</td><td class="num">34.2</td><td class="num">3.93</td><td class="num">0.90</td><td class="num">0.0085</td><td class="num">0.1191</td><td class="num">0.6584</td><td class="num">0.8338</td></tr>
+          <tr><td>Transformer</td><td class="num">113M</td><td class="num">22.10</td><td class="num">6.72</td><td class="num">3.14</td><td class="num">0.0088</td><td class="num">0.1397</td><td class="num">0.6606</td><td class="num">0.8355</td></tr>
+          <tr><td>GPT2-chitchat</td><td class="num">88M</td><td class="num">—</td><td class="num">2.28</td><td class="num">0.54</td><td class="num">0.0103</td><td class="num">0.1625</td><td class="num">0.6154</td><td class="num">0.7894</td></tr>
+          <tr><td>GPTNovel</td><td class="num">104M</td><td class="num">21.27</td><td class="num">5.96</td><td class="num">2.71</td><td class="num">0.0080</td><td class="num">0.1172</td><td class="num">0.6612</td><td class="num">0.8334</td></tr>
+          <tr><td>CDialGPT<sub>LCCC-base</sub></td><td class="num">104M</td><td class="num">18.38</td><td class="num">6.48</td><td class="num">3.08</td><td class="num">0.0083</td><td class="num">0.1268</td><td class="num">0.6621</td><td class="num">0.8354</td></tr>
+          <tr><td>CDialGPT2<sub>LCCC-base</sub></td><td class="num">104M</td><td class="num">22.76</td><td class="num">5.69</td><td class="num">2.50</td><td class="num">0.0077</td><td class="num">0.1087</td><td class="num">0.6624</td><td class="num">0.8346</td></tr>
+          <tr><td>CDialGPT<sub>LCCC-large</sub></td><td class="num">104M</td><td class="num">18.23</td><td class="num">6.63</td><td class="num">3.20</td><td class="num">0.0083</td><td class="num">0.1271</td><td class="num">0.6625</td><td class="num">0.8363</td></tr>
+        </tbody>
+      </table>
+      <p>On automatic metrics (Table 6 in the paper), the LCCC-post-trained models achieve the best perplexity — CDialGPT<sub>LCCC-large</sub> at 18.23 — but worse BLEU-2 than the plain, non-pre-trained Transformer baseline (6.63 vs. 6.72), which the authors note is consistent with prior work (DialoGPT, Li 2020) and argue is acceptable given perplexity's reported strong correlation with human judgment (citing Meena). GPT2-chitchat posts the highest Dist-1/Dist-2 diversity scores (0.0103 / 0.1625), but the authors attribute this to "poor generation quality," which they in turn attribute to "the small scale of the model" itself (88M parameters versus 104M for GPTNovel and every CDialGPT checkpoint) rather than to genuine diversity. Comparing GPTNovel (pre-trained on the novel corpus only) against CDialGPT<sub>LCCC-base</sub> and CDialGPT<sub>LCCC-large</sub> isolates the effect of LCCC post-training itself: PPL improves from 21.27 → 18.38 → 18.23, and BLEU-2 from 5.96 → 6.48 → 6.63, moving consistently in the right direction as more/cleaner LCCC data is added.</p>
+      <p>Human evaluation (200 samples per model, 1,000 total, rated by 3 judges on a 2/1/0 fluency-relevance-informativeness scale) tells a similar story: CDialGPT<sub>LCCC-large</sub> scores highest (Score 1.217; 48.6% rated +2, 24.5% +1, 27.0% +0), ahead of CDialGPT<sub>LCCC-base</sub> (1.152), Transformer (1.084), Attn-Seq2Seq (0.756), and GPT2-chitchat (0.677). Fleiss' kappa across the five models ranges 0.3941–0.4544, which the authors themselves describe as "fair-moderate agreement."</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>The strongest part of the paper's own evidence is the ablation hiding in plain sight: GPTNovel → CDialGPT<sub>LCCC-base</sub> → CDialGPT<sub>LCCC-large</sub> is a clean progression of the same architecture with progressively more/cleaner post-training data, and PPL/BLEU-2/BLEU-4/Greedy Matching/Embedding Average all move consistently in the right direction across that progression — genuine, if modest, evidence that LCCC's data quality (or scale) helps. But the evaluation loop has a structural blind spot: every model, including the LCCC-post-trained ones, is fine-tuned and tested on STC — the very Weibo corpus the paper's introduction indicts as roughly 60% noisy by its own blacklist. That means the headline perplexity gains are measured against a noisy, in-domain reference distribution, not against a clean target. The paper never reports generation quality on a genuinely clean, held-out test set (e.g., a slice of LCCC itself), so it can't distinguish "the model learned to fit STC's references slightly better" from "the model actually generates less noisy, more relevant Chinese text" — the property LCCC was built to enable.</p>
+      <p>The single biggest quantitative claim in the paper's motivation — that a model trained on STC generates <em>five times</em> more blacklisted words than one trained on LCCC, and that 60% of STC conversations contain blacklisted content — appears in one paragraph of Section 3.3 with no accompanying table, no stated sample size, and no specification of which model configuration produced "the model trained on STC" (none of the seven rows in the automatic-metrics table is labeled that way; STC in this paper is a shared fine-tuning target for every model, not a distinct comparison condition). This is the number most likely to be quoted from the paper, and it's the least rigorously supported one in it.</p>
+      <p>The cleaning pipeline's own quality is validated only by classifier accuracy on its own held-out test split (73.76% and 77.60%) — there's no independent precision/recall breakdown, and no external audit of how much good dialogue is discarded as a false positive versus how much noise survives as a false negative. Given that only about 8.6% of the raw 79M Weibo conversations survive into LCCC-base, the filter is extremely aggressive; the paper doesn't discuss whether this trades away conversational diversity for safety (a plausible reading of why GPT2-chitchat, trained on a smaller, less-filtered 500K-conversation corpus, posts the highest Dist-1/Dist-2 scores in the whole comparison despite being judged the weakest model overall). Finally, the human-evaluation deltas between adjacent systems (e.g. 1.152 vs. 1.217, or 1.084 vs. 1.152) are read as meaningful improvements, but with Fleiss' kappa of only 0.39–0.45 ("fair-moderate agreement" by the authors' own description) and no significance test reported, close scores shouldn't be over-interpreted.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Attn-Seq2Seq, Transformer, and GPT2-chitchat were reasonable, comparably-sized 2020 baselines; GPTNovel (novel-corpus-only pre-training) functions as a genuine built-in ablation isolating LCCC's contribution, though the paper never frames it as one.</p>
+        <span class="k">contamination</span><p class="v">No classical train/test leakage — the STC fine-tuning test split is disjoint from training. But LCCC itself has been a public, widely reused GitHub resource (CDial-GPT) since 2020; any modern Chinese LLM's numbers involving LCCC or LCCC-derived checkpoints should be assumed pretraining-contaminated.</p>
+        <span class="k">what's missed</span><p class="v">Every model is fine-tuned and evaluated on STC, the 60%-noisy corpus LCCC was built to replace — so the paper never measures generation quality against a clean, non-Weibo target. The flagship "5× fewer blacklist words" claim has no supporting table, sample size, or model spec.</p>
+        <span class="k">would raise confidence</span><p class="v">A clean, non-Weibo held-out evaluation set; precision/recall for the two BERT filters against an independently audited gold sample (not just self-reported test accuracy); a documented protocol for the blacklist-word comparison; significance testing on the close human-evaluation deltas.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>LCCC's real contribution is scale-plus-cleanliness of Chinese conversational pre-training data, not a new evaluation protocol — and by fine-tuning and testing exclusively on the very noisy Weibo benchmark (STC) it was designed to move past, the paper demonstrates its data-quality gains within a narrow lens without ever showing that a cleaner pre-training corpus produces cleaner generation on a genuinely held-out target.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>LCCC releases two cleaned Chinese Weibo-based conversation corpora — LCCC-base (6.8M dialogues, Weibo only, "extremely strict" cleaning) and LCCC-large (12.0M dialogues, Weibo mixed with nine other public Chinese corpora, "strict" cleaning) — built via a two-phase pipeline: nine heuristic rules plus a five-category blacklist, then two BERT classifiers trained on 110K manually labeled examples (100K conversations + 10K utterances), reaching 73.76% and 77.60% test accuracy.</li>
+        <li>The filter is aggressive: only about 8.6% of the raw 79M crawled Weibo conversations survive into LCCC-base, and the authors estimate 60% of the older STC dataset contains blacklisted content, with an STC-trained model generating five times as many blacklisted words as an LCCC-trained one — though that specific comparison isn't backed by a table.</li>
+        <li>GPT-style models post-trained on LCCC (CDialGPT/CDialGPT2) reach the best perplexity (18.23 for CDialGPT<sub>LCCC-large</sub>) and the best human-evaluation score (1.217) among the models tested, but score worse on BLEU-2 than the plain, non-pre-trained Transformer baseline (6.63 vs. 6.72) — cleaner pre-training data doesn't win on every automatic metric.</li>
+        <li>Every model, including the LCCC-post-trained ones, is fine-tuned and evaluated on STC — the same noisy Weibo dataset LCCC was built to replace — so the paper never directly tests whether its cleaning produces less noisy generation on a target distribution outside Weibo.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        A Large-Scale Chinese Short-Text Conversation Dataset<br>
+        Yida Wang, Pei Ke, Yinhe Zheng, Kaili Huang, Yong Jiang, Xiaoyan Zhu, Minlie Huang · 2020 · NLPCC 2020<br>
+        <a href="https://arxiv.org/abs/2008.03946">read the original ↗</a> · slug: wang-2020-lccc
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

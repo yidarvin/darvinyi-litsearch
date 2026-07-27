@@ -205,6 +205,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "wang-2020-lccc",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -217,19 +224,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T01:27 saha-2018-csqa: step -> figures",
-    "2026-07-27T01:28 saha-2018-csqa: step -> draft",
-    "2026-07-27T01:41 saha-2018-csqa: step -> critique (round 1)",
-    "2026-07-27T01:48 saha-2018-csqa: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T01:48 saha-2018-csqa: step -> revise",
-    "2026-07-27T01:50 saha-2018-csqa: step -> critique (round 2)",
-    "2026-07-27T01:53 saha-2018-csqa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T01:53 saha-2018-csqa: step -> verify",
-    "2026-07-27T01:54 saha-2018-csqa: step -> queue-ops",
-    "2026-07-27T02:08 saha-2018-csqa: step -> podcast",
-    "2026-07-27T02:08 completed saha-2018-csqa (verdict=approved, rounds=2)",
-    "2026-07-27T02:10 started le-2019-tomi ('Revisiting the Evaluation of Theory of Mind through Question Answering')",
-    "2026-07-27T02:11 le-2019-tomi: step -> fetch",
     "2026-07-27T02:11 le-2019-tomi: step -> figures",
     "2026-07-27T02:11 le-2019-tomi: step -> draft",
     "2026-07-27T02:20 le-2019-tomi: step -> critique (round 1)",
@@ -266,6 +260,19 @@
     "2026-07-27T04:13 tu-2024-amie: step -> verify",
     "2026-07-27T04:13 tu-2024-amie: step -> queue-ops",
     "2026-07-27T04:28 tu-2024-amie: step -> podcast",
-    "2026-07-27T04:28 completed tu-2024-amie (verdict=approved, rounds=2)"
+    "2026-07-27T04:28 completed tu-2024-amie (verdict=approved, rounds=2)",
+    "2026-07-27T04:29 started wang-2020-lccc ('A Large-Scale Chinese Short-Text Conversation Dataset')",
+    "2026-07-27T04:31 wang-2020-lccc: step -> fetch",
+    "2026-07-27T04:31 wang-2020-lccc: step -> figures",
+    "2026-07-27T04:32 wang-2020-lccc: step -> draft",
+    "2026-07-27T04:42 wang-2020-lccc: step -> critique (round 1)",
+    "2026-07-27T04:48 wang-2020-lccc: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T04:48 wang-2020-lccc: step -> revise",
+    "2026-07-27T04:50 wang-2020-lccc: step -> critique (round 2)",
+    "2026-07-27T04:54 wang-2020-lccc: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T04:54 wang-2020-lccc: step -> verify",
+    "2026-07-27T04:54 wang-2020-lccc: step -> queue-ops",
+    "2026-07-27T05:09 wang-2020-lccc: step -> podcast",
+    "2026-07-27T05:09 completed wang-2020-lccc (verdict=approved, rounds=2)"
   ]
 }
