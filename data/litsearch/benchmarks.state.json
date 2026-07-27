@@ -268,6 +268,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "arora-2023-jeebench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -280,19 +287,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T08:46 guo-2024-stabletoolbench: step -> figures",
-    "2026-07-27T08:48 guo-2024-stabletoolbench: step -> draft",
-    "2026-07-27T08:58 guo-2024-stabletoolbench: step -> critique (round 1)",
-    "2026-07-27T09:08 guo-2024-stabletoolbench: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T09:08 guo-2024-stabletoolbench: step -> revise",
-    "2026-07-27T09:12 guo-2024-stabletoolbench: step -> critique (round 2)",
-    "2026-07-27T09:16 guo-2024-stabletoolbench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T09:16 guo-2024-stabletoolbench: step -> verify",
-    "2026-07-27T09:17 guo-2024-stabletoolbench: step -> queue-ops",
-    "2026-07-27T09:32 guo-2024-stabletoolbench: step -> podcast",
-    "2026-07-27T09:32 completed guo-2024-stabletoolbench (verdict=approved, rounds=2)",
-    "2026-07-27T09:34 started hu-2024-infiagent-dabench ('InfiAgent-DABench: Evaluating Agents on Data Analysis Tasks')",
-    "2026-07-27T09:34 hu-2024-infiagent-dabench: step -> fetch",
     "2026-07-27T09:35 hu-2024-infiagent-dabench: step -> figures",
     "2026-07-27T09:35 hu-2024-infiagent-dabench: step -> draft",
     "2026-07-27T09:50 hu-2024-infiagent-dabench: step -> critique (round 1)",
@@ -329,6 +323,19 @@
     "2026-07-27T11:25 liu-2023-bolaa: step -> verify",
     "2026-07-27T11:25 liu-2023-bolaa: step -> queue-ops",
     "2026-07-27T11:39 liu-2023-bolaa: step -> podcast",
-    "2026-07-27T11:39 completed liu-2023-bolaa (verdict=approved, rounds=2)"
+    "2026-07-27T11:39 completed liu-2023-bolaa (verdict=approved, rounds=2)",
+    "2026-07-27T11:41 started arora-2023-jeebench ('Have LLMs Advanced Enough? A Challenging Problem Solving Benchmark For Large Language Models')",
+    "2026-07-27T11:41 arora-2023-jeebench: step -> fetch",
+    "2026-07-27T11:41 arora-2023-jeebench: step -> figures",
+    "2026-07-27T11:43 arora-2023-jeebench: step -> draft",
+    "2026-07-27T11:58 arora-2023-jeebench: step -> critique (round 1)",
+    "2026-07-27T12:07 arora-2023-jeebench: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T12:07 arora-2023-jeebench: step -> revise",
+    "2026-07-27T12:10 arora-2023-jeebench: step -> critique (round 2)",
+    "2026-07-27T12:15 arora-2023-jeebench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T12:15 arora-2023-jeebench: step -> verify",
+    "2026-07-27T12:16 arora-2023-jeebench: step -> queue-ops",
+    "2026-07-27T12:31 arora-2023-jeebench: step -> podcast",
+    "2026-07-27T12:31 completed arora-2023-jeebench (verdict=approved, rounds=2)"
   ]
 }

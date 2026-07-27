@@ -8894,6 +8894,22 @@
       "abstract": "Compares six LLM agent architectures (Zeroshot, ZeroshotThink, ReAct, PlanAct, PlanReAct, and the proposed BOLAA) across fifteen LLM backbones on WebShop and HotPotQA. BOLAA orchestrates specialist \"labor\" agents through a controller module and wins on most but not all backbones -- 11/15 on WebShop reward and recall -- and is evaluated on WebShop only, never on HotPotQA.",
       "explainer": "papers/liu-2023-bolaa.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2023-bolaa.mp3"
+    },
+    {
+      "slug": "arora-2023-jeebench",
+      "short": "JEEBench",
+      "title": "Have LLMs Advanced Enough? A Challenging Problem Solving Benchmark For Large Language Models",
+      "authors": "Arora, Singh, Mausam",
+      "year": 2023,
+      "date": "2023-05",
+      "venue": "EMNLP 2023",
+      "citation_count": 100,
+      "topic": "Benchmarks & Evals",
+      "author_group": "IIT Delhi",
+      "abstract": "515 pre-engineering Physics/Chemistry/Math problems from 8 years of India's IIT JEE-Advanced exam, spanning single- and multi-correct MCQ, integer- and numeric-answer formats with JEE's own partial-credit and negative-marking rules. GPT-4 with chain-of-thought and self-consistency reaches only 38.9% overall; naive prompting with the exam's marking scheme actually lowers GPT-4's score, motivating a confidence-thresholding method that projects it into the 80th-90th percentile of 2023 human test-takers.",
+      "explainer": "papers/arora-2023-jeebench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/arora-2023-jeebench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15052,6 +15068,19 @@
     { "from": "koh-2024-visualwebarena", "to": "liu-2023-bolaa" },
     { "from": "mialon-2023-gaia", "to": "liu-2023-bolaa" },
     { "from": "mcintosh-2024-benchmark-inadequacies", "to": "liu-2023-bolaa" },
-    { "from": "deshpande-2025-trail", "to": "liu-2023-bolaa" }
+    { "from": "deshpande-2025-trail", "to": "liu-2023-bolaa" },
+    { "from": "arora-2023-jeebench", "to": "cobbe-2021-gsm8k" },
+    { "from": "arora-2023-jeebench", "to": "hendrycks-2020-mmlu" },
+    { "from": "arora-2023-jeebench", "to": "hendrycks-2021-math" },
+    { "from": "arora-2023-jeebench", "to": "valmeekam-2022-planbench" },
+    { "from": "arora-2023-jeebench", "to": "wang-2022-self-consistency" },
+    { "from": "arora-2023-jeebench", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "arora-2023-jeebench", "to": "shinn-2023-reflexion" },
+    { "from": "arora-2023-jeebench", "to": "bubeck-2023-sparks-agi" },
+    { "from": "arora-2023-jeebench", "to": "madaan-2023-self-refine" },
+    { "from": "arora-2023-jeebench", "to": "taori-2023-alpaca" },
+    { "from": "arora-2023-jeebench", "to": "lu-2022-scienceqa" },
+    { "from": "arora-2023-jeebench", "to": "lightman-2023-verify-step-by-step" },
+    { "from": "chang-2023-llm-eval-survey", "to": "arora-2023-jeebench" }
   ]
 }
