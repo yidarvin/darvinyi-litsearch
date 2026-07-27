@@ -8639,6 +8639,22 @@
       "explainer": "papers/shen-2023-taskbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/shen-2023-taskbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "samvelyan-2019-smac",
+      "short": "SMAC",
+      "title": "The StarCraft Multi-Agent Challenge",
+      "authors": "Samvelyan, Rashid, Schroeder de Witt, Farquhar, et al.",
+      "year": 2019,
+      "date": "2019-02",
+      "venue": "AAMAS 2019",
+      "citation_count": 1266,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Oxford",
+      "abstract": "Introduces SMAC, 14 partially-observable StarCraft II micromanagement scenarios where each unit is its own decentralised learning agent battling the game's scripted AI, grouped into Easy/Hard/Super-Hard tiers, released with PyMARL, an open-source framework implementing QMIX, QTRAN, COMA, VDN, and IQL.",
+      "explainer": "papers/samvelyan-2019-smac.html",
+      "audio_url": "https://pod.darvinyi.com/audio/samvelyan-2019-smac.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14575,6 +14591,10 @@
     { "from": "shen-2023-taskbench", "to": "roziere-2023-code-llama" },
     { "from": "shen-2023-taskbench", "to": "hong-2023-metagpt" },
     { "from": "kapoor-2024-ai-agents-that-matter", "to": "shen-2023-taskbench" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "shen-2023-taskbench" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "shen-2023-taskbench" },
+    { "from": "samvelyan-2019-smac", "to": "lowe-2017-maddpg" },
+    { "from": "samvelyan-2019-smac", "to": "foerster-2017-coma" },
+    { "from": "samvelyan-2019-smac", "to": "bellemare-2013-ale" },
+    { "from": "puig-2020-watch-and-help", "to": "samvelyan-2019-smac" }
   ]
 }

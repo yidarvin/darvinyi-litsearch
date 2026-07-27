@@ -156,6 +156,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-26"
+    },
+    {
+      "slug": "samvelyan-2019-smac",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-26"
     }
   ],
   "skipped": [],
@@ -168,19 +175,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T16:12 dodge-2015-movie-dialog: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-26T16:12 dodge-2015-movie-dialog: step -> verify",
-    "2026-07-26T16:12 dodge-2015-movie-dialog: step -> queue-ops",
-    "2026-07-26T16:26 dodge-2015-movie-dialog: step -> podcast",
-    "2026-07-26T16:26 completed dodge-2015-movie-dialog (verdict=approved, rounds=2)",
-    "2026-07-26T16:26 started kim-2023-fantom ('FANToM: A Benchmark for Stress-testing Machine Theory of Mind in Interactions')",
-    "2026-07-26T16:26 kim-2023-fantom: step -> fetch",
-    "2026-07-26T16:27 kim-2023-fantom: step -> figures",
-    "2026-07-26T16:28 kim-2023-fantom: step -> draft",
-    "2026-07-26T16:38 kim-2023-fantom: step -> critique (round 1)",
-    "2026-07-26T16:46 kim-2023-fantom: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T16:46 kim-2023-fantom: step -> revise",
-    "2026-07-26T16:49 kim-2023-fantom: step -> critique (round 2)",
     "2026-07-26T16:53 kim-2023-fantom: 2 open blocker(s) from round 2 (verdict: revise)",
     "2026-07-26T16:53 kim-2023-fantom: step -> revise",
     "2026-07-26T16:54 kim-2023-fantom: step -> critique (round 3)",
@@ -217,6 +211,19 @@
     "2026-07-26T22:53 shen-2023-taskbench: step -> verify",
     "2026-07-26T22:53 shen-2023-taskbench: step -> queue-ops",
     "2026-07-26T23:09 shen-2023-taskbench: step -> podcast",
-    "2026-07-26T23:09 completed shen-2023-taskbench (verdict=approved, rounds=3)"
+    "2026-07-26T23:09 completed shen-2023-taskbench (verdict=approved, rounds=3)",
+    "2026-07-26T23:12 started samvelyan-2019-smac ('The StarCraft Multi-Agent Challenge')",
+    "2026-07-26T23:12 samvelyan-2019-smac: step -> fetch",
+    "2026-07-26T23:13 samvelyan-2019-smac: step -> figures",
+    "2026-07-26T23:13 samvelyan-2019-smac: step -> draft",
+    "2026-07-26T23:25 samvelyan-2019-smac: step -> critique (round 1)",
+    "2026-07-26T23:33 samvelyan-2019-smac: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-26T23:33 samvelyan-2019-smac: step -> revise",
+    "2026-07-26T23:36 samvelyan-2019-smac: step -> critique (round 2)",
+    "2026-07-26T23:40 samvelyan-2019-smac: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-26T23:40 samvelyan-2019-smac: step -> verify",
+    "2026-07-26T23:40 samvelyan-2019-smac: step -> queue-ops",
+    "2026-07-26T23:54 samvelyan-2019-smac: step -> podcast",
+    "2026-07-26T23:54 completed samvelyan-2019-smac (verdict=approved, rounds=2)"
   ]
 }
