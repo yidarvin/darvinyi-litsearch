@@ -212,6 +212,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "li-2024-embodied-agent-interface",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -224,19 +231,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T02:11 le-2019-tomi: step -> figures",
-    "2026-07-27T02:11 le-2019-tomi: step -> draft",
-    "2026-07-27T02:20 le-2019-tomi: step -> critique (round 1)",
-    "2026-07-27T02:27 le-2019-tomi: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T02:27 le-2019-tomi: step -> revise",
-    "2026-07-27T02:30 le-2019-tomi: step -> critique (round 2)",
-    "2026-07-27T02:34 le-2019-tomi: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T02:34 le-2019-tomi: step -> verify",
-    "2026-07-27T02:34 le-2019-tomi: step -> queue-ops",
-    "2026-07-27T02:47 le-2019-tomi: step -> podcast",
-    "2026-07-27T02:47 completed le-2019-tomi (verdict=approved, rounds=2)",
-    "2026-07-27T02:49 started shao-2024-privacylens ('PrivacyLens: Evaluating Privacy Norm Awareness of Language Models in Action')",
-    "2026-07-27T02:49 shao-2024-privacylens: step -> fetch",
     "2026-07-27T02:49 shao-2024-privacylens: step -> figures",
     "2026-07-27T02:50 shao-2024-privacylens: step -> draft",
     "2026-07-27T03:03 shao-2024-privacylens: step -> critique (round 1)",
@@ -273,6 +267,19 @@
     "2026-07-27T04:54 wang-2020-lccc: step -> verify",
     "2026-07-27T04:54 wang-2020-lccc: step -> queue-ops",
     "2026-07-27T05:09 wang-2020-lccc: step -> podcast",
-    "2026-07-27T05:09 completed wang-2020-lccc (verdict=approved, rounds=2)"
+    "2026-07-27T05:09 completed wang-2020-lccc (verdict=approved, rounds=2)",
+    "2026-07-27T05:12 started li-2024-embodied-agent-interface ('Embodied Agent Interface: Benchmarking LLMs for Embodied Decision Making')",
+    "2026-07-27T05:13 li-2024-embodied-agent-interface: step -> fetch",
+    "2026-07-27T05:13 li-2024-embodied-agent-interface: step -> figures",
+    "2026-07-27T05:17 li-2024-embodied-agent-interface: step -> draft",
+    "2026-07-27T05:32 li-2024-embodied-agent-interface: step -> critique (round 1)",
+    "2026-07-27T05:43 li-2024-embodied-agent-interface: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T05:43 li-2024-embodied-agent-interface: step -> revise",
+    "2026-07-27T05:47 li-2024-embodied-agent-interface: step -> critique (round 2)",
+    "2026-07-27T05:51 li-2024-embodied-agent-interface: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T05:51 li-2024-embodied-agent-interface: step -> verify",
+    "2026-07-27T05:52 li-2024-embodied-agent-interface: step -> queue-ops",
+    "2026-07-27T06:06 li-2024-embodied-agent-interface: step -> podcast",
+    "2026-07-27T06:06 completed li-2024-embodied-agent-interface (verdict=approved, rounds=2)"
   ]
 }

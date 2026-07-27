@@ -8767,6 +8767,22 @@
       "explainer": "papers/wang-2020-lccc.html",
       "audio_url": "https://pod.darvinyi.com/audio/wang-2020-lccc.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "li-2024-embodied-agent-interface",
+      "short": "EAI",
+      "title": "Embodied Agent Interface: Benchmarking LLMs for Embodied Decision Making",
+      "authors": "Li, Zhao, Wang, Wang, Zhou, …, Mao, Wu",
+      "year": 2024,
+      "date": "2024-10",
+      "venue": "NeurIPS 2024 D&B",
+      "citation_count": 151,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "A shared, linear-temporal-logic interface that formalizes embodied decision making into four separable ability modules — goal interpretation, subgoal decomposition, action sequencing, transition modeling — each graded in isolation (other modules held at ground truth) against a named error taxonomy, across both BEHAVIOR (state goals) and VirtualHome (temporally-ordered goals). Evaluating 18 LLMs (180 runs total), o1-preview leads BEHAVIOR's average module success rate (74.9% vs. 64.2% for runner-up Claude-3.5 Sonnet) but not VirtualHome's, where Claude-3.5 Sonnet and Gemini 1.5 Pro both reach 65.7% against o1-preview's 64.4%; for GPT-4o, runtime planning errors (16.2% additional-step, 15.5% missing-step) dominate over grammar/format errors.",
+      "explainer": "papers/li-2024-embodied-agent-interface.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-embodied-agent-interface.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -14764,6 +14780,16 @@
     { "from": "wang-2020-lccc", "to": "radford-2019-gpt2" },
     { "from": "wang-2020-lccc", "to": "liu-2016-dialogue-eval-metrics" },
     { "from": "wang-2020-lccc", "to": "papineni-2002-bleu" },
-    { "from": "wang-2020-lccc", "to": "radford-2018-gpt1" }
+    { "from": "wang-2020-lccc", "to": "radford-2018-gpt1" },
+    { "from": "li-2024-embodied-agent-interface", "to": "wei-2022-cot" },
+    { "from": "li-2024-embodied-agent-interface", "to": "srivastava-2022-big-bench" },
+    { "from": "li-2024-embodied-agent-interface", "to": "liang-2022-helm" },
+    { "from": "li-2024-embodied-agent-interface", "to": "ahn-2022-saycan" },
+    { "from": "li-2024-embodied-agent-interface", "to": "wang-2023-voyager" },
+    { "from": "li-2024-embodied-agent-interface", "to": "hao-2023-rap" },
+    { "from": "li-2024-embodied-agent-interface", "to": "huang-2022-zero-shot-planner" },
+    { "from": "li-2024-embodied-agent-interface", "to": "liu-2023-llm-p" },
+    { "from": "li-2024-embodied-agent-interface", "to": "wang-2023-deps" },
+    { "from": "li-2024-embodied-agent-interface", "to": "valmeekam-2022-planbench" }
   ]
 }
