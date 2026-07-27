@@ -102,11 +102,25 @@ actually uses. → `set-step draft`
    **S2's reference list is not the bibliography.** It has been incomplete
    on essentially every paper processed so far — sometimes badly (one record
    listed 2 references against a ~40-entry bibliography; another listed
-   zero). Always read the paper's own printed bibliography as well, and
-   reconcile the two. Equally: do **not** add an edge just because a
-   reference looks plausible or topically related — confirm it is actually
-   cited. Plausibility is not citation, and a wrong edge is harder to notice
-   than a missing one.
+   zero) — and it has also contained outright **false positives**, entries
+   with clean title matches to real nodes that the paper never cites. Treat
+   it as a hint in both directions. The printed bibliography is ground
+   truth, and that **includes supplementary/appendix material**: an S2 entry
+   missing from the main reference list may still be a real citation from
+   the supplement, so don't reject on the main PDF alone. Equally: do **not**
+   add an edge just because a reference looks plausible or topically related
+   — confirm it is actually cited. Plausibility is not citation, and a wrong
+   edge is harder to notice than a missing one.
+
+   **Check whether you have the published version.** arXiv often serves a
+   preprint that predates the camera-ready, and the gap is not cosmetic — on
+   MMDialog the fetched arXiv v3 was 13 pages while the ACL camera-ready is
+   16 and contains an entire human-correlation study, plus bibliography
+   entries the preprint lacks. This matters most for **criticisms of
+   omission**: before writing "the paper never validates X" or "no ablation
+   is reported", confirm that section is genuinely absent from the
+   *published* version, not just from the copy you downloaded. Accusing
+   authors of not doing work they did is worse than missing a number.
 4. Check this paper against every survey's rubric in `data/surveys.json`
    (not just `survey_id` — a paper can be core to more than one). Tag with
    `python3 scripts/tag_papers.py add <survey_id> <slug>` for each match.

@@ -296,6 +296,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "feng-2023-mmdialog",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -308,22 +315,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T11:41 arora-2023-jeebench: step -> figures",
-    "2026-07-27T11:43 arora-2023-jeebench: step -> draft",
-    "2026-07-27T11:58 arora-2023-jeebench: step -> critique (round 1)",
-    "2026-07-27T12:07 arora-2023-jeebench: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T12:07 arora-2023-jeebench: step -> revise",
-    "2026-07-27T12:10 arora-2023-jeebench: step -> critique (round 2)",
-    "2026-07-27T12:15 arora-2023-jeebench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T12:15 arora-2023-jeebench: step -> verify",
-    "2026-07-27T12:16 arora-2023-jeebench: step -> queue-ops",
-    "2026-07-27T12:31 arora-2023-jeebench: step -> podcast",
-    "2026-07-27T12:31 completed arora-2023-jeebench (verdict=approved, rounds=2)",
-    "2026-07-27T12:33 started alonso-2024-medexpqa ('MedExpQA: Multilingual Benchmarking of Large Language Models for Medical Question Answering')",
-    "2026-07-27T12:33 alonso-2024-medexpqa: step -> fetch",
-    "2026-07-27T12:33 alonso-2024-medexpqa: step -> figures",
-    "2026-07-27T12:36 alonso-2024-medexpqa: step -> draft",
-    "2026-07-27T12:45 alonso-2024-medexpqa: step -> critique (round 1)",
     "2026-07-27T12:53 alonso-2024-medexpqa: 5 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-27T12:53 alonso-2024-medexpqa: step -> revise",
     "2026-07-27T12:56 alonso-2024-medexpqa: step -> critique (round 2)",
@@ -357,6 +348,22 @@
     "2026-07-27T14:34 shu-2021-agent: step -> verify",
     "2026-07-27T14:35 shu-2021-agent: step -> queue-ops",
     "2026-07-27T14:50 shu-2021-agent: step -> podcast",
-    "2026-07-27T14:50 completed shu-2021-agent (verdict=approved, rounds=2)"
+    "2026-07-27T14:50 completed shu-2021-agent (verdict=approved, rounds=2)",
+    "2026-07-27T14:52 started feng-2023-mmdialog ('MMDialog: A Large-scale Multi-turn Dialogue Dataset Towards Multi-modal Open-domain Conversation')",
+    "2026-07-27T14:53 feng-2023-mmdialog: step -> fetch",
+    "2026-07-27T14:53 feng-2023-mmdialog: step -> figures",
+    "2026-07-27T14:55 feng-2023-mmdialog: step -> draft",
+    "2026-07-27T15:05 feng-2023-mmdialog: step -> critique (round 1)",
+    "2026-07-27T15:15 feng-2023-mmdialog: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T15:15 feng-2023-mmdialog: step -> revise",
+    "2026-07-27T15:19 feng-2023-mmdialog: step -> critique (round 2)",
+    "2026-07-27T15:26 feng-2023-mmdialog: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-27T15:26 feng-2023-mmdialog: step -> revise",
+    "2026-07-27T15:27 feng-2023-mmdialog: step -> critique (round 3)",
+    "2026-07-27T15:31 feng-2023-mmdialog: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-27T15:31 feng-2023-mmdialog: step -> verify",
+    "2026-07-27T15:32 feng-2023-mmdialog: step -> queue-ops",
+    "2026-07-27T15:46 feng-2023-mmdialog: step -> podcast",
+    "2026-07-27T15:46 completed feng-2023-mmdialog (verdict=approved, rounds=3)"
   ]
 }

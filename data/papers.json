@@ -8958,6 +8958,22 @@
       "explainer": "papers/shu-2021-agent.html",
       "audio_url": "https://pod.darvinyi.com/audio/shu-2021-agent.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "feng-2023-mmdialog",
+      "short": "MMDialog",
+      "title": "MMDialog: A Large-scale Multi-turn Dialogue Dataset Towards Multi-modal Open-domain Conversation",
+      "authors": "Feng, Sun, Xu, Zhao, Yang, Tao, Zhao, Lin",
+      "year": 2023,
+      "date": "2022-11",
+      "venue": "ACL 2023",
+      "citation_count": 81,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Peking University / Microsoft",
+      "abstract": "Mines 1.08M real multi-turn dialogues and 1.53M images from social media across 4,184 hashtag topics (88x more dialogues than PhotoChat, the prior human-human dataset it benchmarks itself against), then defines generation and retrieval response-prediction tasks plus a CLIP-based MM-Relevance metric to score multi-modal responses whose text/image ordering doesn't align with the ground truth.",
+      "explainer": "papers/feng-2023-mmdialog.html",
+      "audio_url": "https://pod.darvinyi.com/audio/feng-2023-mmdialog.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -15147,6 +15163,15 @@
     { "from": "shu-2021-agent", "to": "puig-2020-watch-and-help" },
     { "from": "shu-2021-agent", "to": "lowe-2017-maddpg" },
     { "from": "shu-2021-agent", "to": "deng-2009-imagenet" },
-    { "from": "jin-2024-mmtom-qa", "to": "shu-2021-agent" }
+    { "from": "jin-2024-mmtom-qa", "to": "shu-2021-agent" },
+    { "from": "feng-2023-mmdialog", "to": "chen-2015-coco-captions" },
+    { "from": "feng-2023-mmdialog", "to": "goyal-2017-vqa-v2" },
+    { "from": "feng-2023-mmdialog", "to": "lin-2004-rouge" },
+    { "from": "feng-2023-mmdialog", "to": "papineni-2002-bleu" },
+    { "from": "feng-2023-mmdialog", "to": "zhang-2018-personachat" },
+    { "from": "feng-2023-mmdialog", "to": "li-2017-dailydialog" },
+    { "from": "feng-2023-mmdialog", "to": "wang-2013-stc" },
+    { "from": "maharana-2024-locomo", "to": "feng-2023-mmdialog" },
+    { "from": "zheng-2023-mt-bench", "to": "feng-2023-mmdialog" }
   ]
 }
