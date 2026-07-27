@@ -226,6 +226,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "yoran-2024-assistantbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -238,19 +245,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T03:37 tu-2024-amie: step -> figures",
-    "2026-07-27T03:45 tu-2024-amie: step -> draft",
-    "2026-07-27T03:54 tu-2024-amie: step -> critique (round 1)",
-    "2026-07-27T04:04 tu-2024-amie: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T04:04 tu-2024-amie: step -> revise",
-    "2026-07-27T04:07 tu-2024-amie: step -> critique (round 2)",
-    "2026-07-27T04:13 tu-2024-amie: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T04:13 tu-2024-amie: step -> verify",
-    "2026-07-27T04:13 tu-2024-amie: step -> queue-ops",
-    "2026-07-27T04:28 tu-2024-amie: step -> podcast",
-    "2026-07-27T04:28 completed tu-2024-amie (verdict=approved, rounds=2)",
-    "2026-07-27T04:29 started wang-2020-lccc ('A Large-Scale Chinese Short-Text Conversation Dataset')",
-    "2026-07-27T04:31 wang-2020-lccc: step -> fetch",
     "2026-07-27T04:31 wang-2020-lccc: step -> figures",
     "2026-07-27T04:32 wang-2020-lccc: step -> draft",
     "2026-07-27T04:42 wang-2020-lccc: step -> critique (round 1)",
@@ -287,6 +281,19 @@
     "2026-07-27T06:43 zhu-2025-multiagentbench: step -> verify",
     "2026-07-27T06:43 zhu-2025-multiagentbench: step -> queue-ops",
     "2026-07-27T06:57 zhu-2025-multiagentbench: step -> podcast",
-    "2026-07-27T06:57 completed zhu-2025-multiagentbench (verdict=approved, rounds=2)"
+    "2026-07-27T06:57 completed zhu-2025-multiagentbench (verdict=approved, rounds=2)",
+    "2026-07-27T07:00 started yoran-2024-assistantbench ('AssistantBench: Can Web Agents Solve Realistic and Time-Consuming Tasks?')",
+    "2026-07-27T07:01 yoran-2024-assistantbench: step -> fetch",
+    "2026-07-27T07:01 yoran-2024-assistantbench: step -> figures",
+    "2026-07-27T07:04 yoran-2024-assistantbench: step -> draft",
+    "2026-07-27T07:15 yoran-2024-assistantbench: step -> critique (round 1)",
+    "2026-07-27T07:24 yoran-2024-assistantbench: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T07:24 yoran-2024-assistantbench: step -> revise",
+    "2026-07-27T07:26 yoran-2024-assistantbench: step -> critique (round 2)",
+    "2026-07-27T07:31 yoran-2024-assistantbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T07:31 yoran-2024-assistantbench: step -> verify",
+    "2026-07-27T07:32 yoran-2024-assistantbench: step -> queue-ops",
+    "2026-07-27T07:47 yoran-2024-assistantbench: step -> podcast",
+    "2026-07-27T07:47 completed yoran-2024-assistantbench (verdict=approved, rounds=2)"
   ]
 }
