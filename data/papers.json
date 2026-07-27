@@ -8687,6 +8687,22 @@
       "explainer": "papers/bard-2019-hanabi.html",
       "audio_url": "https://pod.darvinyi.com/audio/bard-2019-hanabi.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "saha-2018-csqa",
+      "short": "CSQA",
+      "title": "Complex Sequential Question Answering: Towards Learning to Converse Over Linked Question Answer Pairs with a Knowledge Graph",
+      "authors": "Saha, Pahuja, Khapra, Sankaranarayanan, Chandar",
+      "year": 2018,
+      "date": "2018-01",
+      "venue": "AAAI",
+      "citation_count": 212,
+      "topic": "Benchmarks & Evals",
+      "author_group": "IBM Research",
+      "abstract": "Introduces CSQA: 200K dialogs and 1.6M turns built over a filtered 21.2M-tuple Wikidata subgraph, each conversation requiring logical, quantitative, and comparative reasoning plus coreference/ellipsis resolution and clarification — and shows a HRED + key-value memory network hybrid reaches only 15.83% recall / 6.7% precision overall, collapsing to 0.29% recall on entity-retrieval quantitative-reasoning questions.",
+      "explainer": "papers/saha-2018-csqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/saha-2018-csqa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -14644,6 +14660,9 @@
     { "from": "paglieri-2024-balrog", "to": "bard-2019-hanabi" },
     { "from": "puig-2020-watch-and-help", "to": "bard-2019-hanabi" },
     { "from": "bard-2019-hanabi", "to": "kocsis-2006-uct" },
-    { "from": "bard-2019-hanabi", "to": "sutton-1998-rl-intro" }
+    { "from": "bard-2019-hanabi", "to": "sutton-1998-rl-intro" },
+    { "from": "saha-2018-csqa", "to": "dodge-2015-movie-dialog" },
+    { "from": "saha-2018-csqa", "to": "bordes-2015-simplequestions" },
+    { "from": "saha-2018-csqa", "to": "rajpurkar-2016-squad" }
   ]
 }

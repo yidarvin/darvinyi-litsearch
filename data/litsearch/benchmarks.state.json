@@ -177,6 +177,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "saha-2018-csqa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -189,19 +196,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-26T22:37 shen-2023-taskbench: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-26T22:37 shen-2023-taskbench: step -> revise",
-    "2026-07-26T22:41 shen-2023-taskbench: step -> critique (round 2)",
-    "2026-07-26T22:48 shen-2023-taskbench: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-07-26T22:48 shen-2023-taskbench: step -> revise",
-    "2026-07-26T22:49 shen-2023-taskbench: step -> critique (round 3)",
-    "2026-07-26T22:53 shen-2023-taskbench: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-07-26T22:53 shen-2023-taskbench: step -> verify",
-    "2026-07-26T22:53 shen-2023-taskbench: step -> queue-ops",
-    "2026-07-26T23:09 shen-2023-taskbench: step -> podcast",
-    "2026-07-26T23:09 completed shen-2023-taskbench (verdict=approved, rounds=3)",
-    "2026-07-26T23:12 started samvelyan-2019-smac ('The StarCraft Multi-Agent Challenge')",
-    "2026-07-26T23:12 samvelyan-2019-smac: step -> fetch",
     "2026-07-26T23:13 samvelyan-2019-smac: step -> figures",
     "2026-07-26T23:13 samvelyan-2019-smac: step -> draft",
     "2026-07-26T23:25 samvelyan-2019-smac: step -> critique (round 1)",
@@ -238,6 +232,19 @@
     "2026-07-27T01:12 bard-2019-hanabi: step -> verify",
     "2026-07-27T01:13 bard-2019-hanabi: step -> queue-ops",
     "2026-07-27T01:25 bard-2019-hanabi: step -> podcast",
-    "2026-07-27T01:25 completed bard-2019-hanabi (verdict=approved, rounds=2)"
+    "2026-07-27T01:25 completed bard-2019-hanabi (verdict=approved, rounds=2)",
+    "2026-07-27T01:27 started saha-2018-csqa ('Complex Sequential Question Answering: Towards Learning to Converse Over Linked Question Answer Pairs with a Knowledge Graph')",
+    "2026-07-27T01:27 saha-2018-csqa: step -> fetch",
+    "2026-07-27T01:27 saha-2018-csqa: step -> figures",
+    "2026-07-27T01:28 saha-2018-csqa: step -> draft",
+    "2026-07-27T01:41 saha-2018-csqa: step -> critique (round 1)",
+    "2026-07-27T01:48 saha-2018-csqa: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T01:48 saha-2018-csqa: step -> revise",
+    "2026-07-27T01:50 saha-2018-csqa: step -> critique (round 2)",
+    "2026-07-27T01:53 saha-2018-csqa: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T01:53 saha-2018-csqa: step -> verify",
+    "2026-07-27T01:54 saha-2018-csqa: step -> queue-ops",
+    "2026-07-27T02:08 saha-2018-csqa: step -> podcast",
+    "2026-07-27T02:08 completed saha-2018-csqa (verdict=approved, rounds=2)"
   ]
 }
