@@ -9326,6 +9326,22 @@
       "explainer": "papers/voorhees-2000-trec-qa.html",
       "audio_url": "https://pod.darvinyi.com/audio/voorhees-2000-trec-qa.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "wu-2017-smn",
+      "short": "SMN",
+      "title": "Sequential Matching Network: A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots",
+      "authors": "Yu Wu, Wei Wu, Chen Xing, Zhoujun Li, Ming Zhou",
+      "year": 2017,
+      "date": "2016-12",
+      "venue": "ACL 2017",
+      "citation_count": 508,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Beihang University / Microsoft Research",
+      "abstract": "SMN matches a candidate response against every utterance in a conversation context at the word level and the segment level first, distilling each pair into a matching vector via CNN, then accumulates that sequence of vectors through a GRU in chronological order instead of collapsing the whole context to one vector before matching. Alongside the architecture, the paper releases the Douban Conversation Corpus -- 1.1M crawled dyadic dialogues with a 10,000-pair test set retrieved from a Sina Weibo index and human-labeled by three judges -- described as the first human-labeled multi-turn response-selection dataset, and beats every 2017 baseline on Ubuntu R10@1 (0.723 vs. 0.662) and Douban P@1 (0.393 vs. 0.349).",
+      "explainer": "papers/wu-2017-smn.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2017-smn.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15812,6 +15828,9 @@
     { "from": "saha-2018-csqa", "to": "voorhees-2000-trec-qa" },
     { "from": "gao-2021-simcse", "to": "voorhees-2000-trec-qa" },
     { "from": "zhao-2021-calibrate", "to": "voorhees-2000-trec-qa" },
-    { "from": "lu-2021-fantastically-ordered", "to": "voorhees-2000-trec-qa" }
+    { "from": "lu-2021-fantastically-ordered", "to": "voorhees-2000-trec-qa" },
+    { "from": "wu-2017-smn", "to": "wang-2013-stc" },
+    { "from": "wang-2020-lccc", "to": "wu-2017-smn" },
+    { "from": "feng-2023-mmdialog", "to": "wu-2017-smn" }
   ]
 }

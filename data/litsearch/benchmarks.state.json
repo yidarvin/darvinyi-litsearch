@@ -457,6 +457,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "wu-2017-smn",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -488,16 +495,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T09:41 started ye-2025-tooleyes ('ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios')",
-    "2026-07-28T09:41 ye-2025-tooleyes: step -> fetch",
-    "2026-07-28T09:41 ye-2025-tooleyes: step -> figures",
-    "2026-07-28T09:41 ye-2025-tooleyes: step -> draft",
-    "2026-07-28T09:41 ye-2025-tooleyes: step -> critique (round 1)",
-    "2026-07-28T10:06 ye-2025-tooleyes: step -> critique (round 2)",
-    "2026-07-28T10:18 ye-2025-tooleyes: step -> verify",
-    "2026-07-28T10:19 ye-2025-tooleyes: step -> queue-ops",
-    "2026-07-28T10:19 ye-2025-tooleyes: step -> podcast",
-    "2026-07-28T10:32 completed ye-2025-tooleyes (verdict=approved, rounds=2)",
     "2026-07-28T10:34 started shi-2025-toolret (\"Retrieval Models Aren't Tool-Savvy: Benchmarking Tool Retrieval for Large Language Models\")",
     "2026-07-28T10:35 shi-2025-toolret: step -> fetch",
     "2026-07-28T10:35 shi-2025-toolret: step -> figures",
@@ -537,6 +534,16 @@
     "2026-07-28T14:41 voorhees-2000-trec-qa: step -> verify",
     "2026-07-28T14:42 voorhees-2000-trec-qa: step -> queue-ops",
     "2026-07-28T14:42 voorhees-2000-trec-qa: step -> podcast",
-    "2026-07-28T14:56 completed voorhees-2000-trec-qa (verdict=approved, rounds=2)"
+    "2026-07-28T14:56 completed voorhees-2000-trec-qa (verdict=approved, rounds=2)",
+    "2026-07-28T14:58 started wu-2017-smn ('Sequential Matching Network: A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots')",
+    "2026-07-28T15:01 wu-2017-smn: step -> fetch",
+    "2026-07-28T15:01 wu-2017-smn: step -> figures",
+    "2026-07-28T15:04 wu-2017-smn: step -> draft",
+    "2026-07-28T15:17 wu-2017-smn: step -> critique (round 1)",
+    "2026-07-28T15:31 wu-2017-smn: step -> critique (round 2)",
+    "2026-07-28T15:41 wu-2017-smn: step -> verify",
+    "2026-07-28T15:42 wu-2017-smn: step -> queue-ops",
+    "2026-07-28T15:42 wu-2017-smn: step -> podcast",
+    "2026-07-28T16:06 completed wu-2017-smn (verdict=approved, rounds=2)"
   ]
 }
