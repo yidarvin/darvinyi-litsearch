@@ -8990,6 +8990,22 @@
       "explainer": "papers/liu-2020-meddg.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2020-meddg.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "kumar-2024-longlamp",
+      "short": "LongLaMP",
+      "title": "LongLaMP: A Benchmark for Personalized Long-form Text Generation",
+      "authors": "Kumar, Viswanathan, Yerra, Salemi, Rossi, Dernoncourt, Deilamsalehy, Chen, Zhang, Agarwal, Lipka, Van Nguyen, Nguyen, Zamani",
+      "year": 2024,
+      "date": "2024-07",
+      "venue": "arXiv",
+      "citation_count": 79,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UMass Amherst / Adobe Research",
+      "abstract": "Extends LaMP's short-form personalization benchmark to long-text generation with four retrieval-augmented tasks -- Personalized Email Completion, Abstract Generation, Review Writing, and Topic Writing -- each with a user (cold-start) and temporal/random split. Personalizing zero-shot LLaMA2/GPT-3.5 and fine-tuned FLAN-T5-base with a tuned retriever (BM25 or Contriever) improves over non-personalized generation on every task, with gains ranging from single digits on Review Writing up to a 169.40% ROUGE-L gain on Email Completion.",
+      "explainer": "papers/kumar-2024-longlamp.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kumar-2024-longlamp.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15192,6 +15208,13 @@
     { "from": "zheng-2023-mt-bench", "to": "feng-2023-mmdialog" },
     { "from": "liu-2020-meddg", "to": "chen-2020-meddialog" },
     { "from": "liu-2020-meddg", "to": "radford-2019-gpt2" },
-    { "from": "chen-2022-imcs21", "to": "liu-2020-meddg" }
+    { "from": "chen-2022-imcs21", "to": "liu-2020-meddg" },
+    { "from": "kumar-2024-longlamp", "to": "zhang-2018-personachat" },
+    { "from": "kumar-2024-longlamp", "to": "liu-2023-lost-in-the-middle" },
+    { "from": "kumar-2024-longlamp", "to": "touvron-2023-llama" },
+    { "from": "kumar-2024-longlamp", "to": "openai-2023-gpt4" },
+    { "from": "kumar-2024-longlamp", "to": "banerjee-2005-meteor" },
+    { "from": "kumar-2024-longlamp", "to": "lin-2004-rouge" },
+    { "from": "kumar-2024-longlamp", "to": "chung-2022-flan" }
   ]
 }

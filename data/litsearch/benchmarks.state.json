@@ -310,6 +310,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "kumar-2024-longlamp",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -322,19 +329,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T13:50 chen-2022-imcs21: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T13:50 chen-2022-imcs21: step -> verify",
-    "2026-07-27T13:51 chen-2022-imcs21: step -> queue-ops",
-    "2026-07-27T14:05 chen-2022-imcs21: step -> podcast",
-    "2026-07-27T14:05 completed chen-2022-imcs21 (verdict=approved, rounds=2)",
-    "2026-07-27T14:07 started shu-2021-agent ('AGENT: A Benchmark for Core Psychological Reasoning')",
-    "2026-07-27T14:07 shu-2021-agent: step -> fetch",
-    "2026-07-27T14:08 shu-2021-agent: step -> figures",
-    "2026-07-27T14:08 shu-2021-agent: step -> draft",
-    "2026-07-27T14:19 shu-2021-agent: step -> critique (round 1)",
-    "2026-07-27T14:28 shu-2021-agent: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T14:28 shu-2021-agent: step -> revise",
-    "2026-07-27T14:30 shu-2021-agent: step -> critique (round 2)",
     "2026-07-27T14:34 shu-2021-agent: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-27T14:34 shu-2021-agent: step -> verify",
     "2026-07-27T14:35 shu-2021-agent: step -> queue-ops",
@@ -371,6 +365,19 @@
     "2026-07-27T16:23 liu-2020-meddg: step -> verify",
     "2026-07-27T16:23 liu-2020-meddg: step -> queue-ops",
     "2026-07-27T16:37 liu-2020-meddg: step -> podcast",
-    "2026-07-27T16:37 completed liu-2020-meddg (verdict=approved, rounds=3)"
+    "2026-07-27T16:37 completed liu-2020-meddg (verdict=approved, rounds=3)",
+    "2026-07-27T16:39 started kumar-2024-longlamp ('LongLaMP: A Benchmark for Personalized Long-form Text Generation')",
+    "2026-07-27T16:40 kumar-2024-longlamp: step -> fetch",
+    "2026-07-27T16:40 kumar-2024-longlamp: step -> figures",
+    "2026-07-27T16:43 kumar-2024-longlamp: step -> draft",
+    "2026-07-27T16:52 kumar-2024-longlamp: step -> critique (round 1)",
+    "2026-07-27T17:02 kumar-2024-longlamp: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T17:02 kumar-2024-longlamp: step -> revise",
+    "2026-07-27T17:07 kumar-2024-longlamp: step -> critique (round 2)",
+    "2026-07-27T17:12 kumar-2024-longlamp: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T17:12 kumar-2024-longlamp: step -> verify",
+    "2026-07-27T17:13 kumar-2024-longlamp: step -> queue-ops",
+    "2026-07-27T17:27 kumar-2024-longlamp: step -> podcast",
+    "2026-07-27T17:27 completed kumar-2024-longlamp (verdict=approved, rounds=2)"
   ]
 }
