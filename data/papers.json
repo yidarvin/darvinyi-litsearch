@@ -9150,6 +9150,22 @@
       "explainer": "papers/tian-2025-mmina.html",
       "audio_url": "https://pod.darvinyi.com/audio/tian-2025-mmina.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "xiao-2024-flowbench",
+      "short": "FlowBench",
+      "title": "FlowBench: Revisiting and Benchmarking Workflow-Guided Planning for LLM-based Agents",
+      "authors": "Xiao, Ma, Wang, Wu, Zhao, Wang, Huang, Li",
+      "year": 2024,
+      "date": "2024-06",
+      "venue": "Findings of EMNLP 2024",
+      "citation_count": 48,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Zhejiang University / Alibaba Group",
+      "abstract": "The first benchmark for workflow-guided LLM-agent planning: 51 scenarios across 6 domains (customer service, personal assistant, e-tailing, travel, logistics, RPA), each with the same human-verified workflow expressed in three formats (text, code, Mermaid flowchart) and evaluated at both static turn-level and simulated multi-turn session-level. Even GPT-4o's best configuration reaches only a 43.2% single-scenario and 40.9% cross-scenario session-level success rate, and flowchart-formatted knowledge gives the most consistent tool-invocation gain across models.",
+      "explainer": "papers/xiao-2024-flowbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xiao-2024-flowbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15464,6 +15480,24 @@
     { "from": "tian-2025-mmina", "to": "wei-2021-flan" },
     { "from": "yehudai-2025-agent-eval-survey", "to": "tian-2025-mmina" },
     { "from": "yoran-2024-assistantbench", "to": "tian-2025-mmina" },
-    { "from": "rawles-2024-androidworld", "to": "tian-2025-mmina" }
+    { "from": "rawles-2024-androidworld", "to": "tian-2025-mmina" },
+    { "from": "xiao-2024-flowbench", "to": "valmeekam-2022-planbench" },
+    { "from": "xiao-2024-flowbench", "to": "yao-2022-react" },
+    { "from": "xiao-2024-flowbench", "to": "schick-2023-toolformer" },
+    { "from": "xiao-2024-flowbench", "to": "touvron-2023-llama" },
+    { "from": "xiao-2024-flowbench", "to": "patil-2023-gorilla" },
+    { "from": "xiao-2024-flowbench", "to": "zhou-2023-webarena" },
+    { "from": "xiao-2024-flowbench", "to": "qin-2023-toolllm" },
+    { "from": "xiao-2024-flowbench", "to": "hong-2023-metagpt" },
+    { "from": "xiao-2024-flowbench", "to": "wu-2023-smartplay" },
+    { "from": "xiao-2024-flowbench", "to": "liu-2023-agentbench" },
+    { "from": "xiao-2024-flowbench", "to": "deng-2023-mind2web" },
+    { "from": "xiao-2024-flowbench", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "xiao-2024-flowbench", "to": "wei-2022-cot" },
+    { "from": "xiao-2024-flowbench", "to": "openai-2023-gpt4" },
+    { "from": "xiao-2024-flowbench", "to": "huang-2022-zero-shot-planner" },
+    { "from": "yehudai-2025-agent-eval-survey", "to": "xiao-2024-flowbench" },
+    { "from": "barres-2025-tau2-bench", "to": "xiao-2024-flowbench" },
+    { "from": "kapoor-2024-ai-agents-that-matter", "to": "xiao-2024-flowbench" }
   ]
 }

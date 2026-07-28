@@ -380,6 +380,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "xiao-2024-flowbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -399,16 +406,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T21:31 chan-2024-negotiationtom: step -> verify",
-    "2026-07-27T21:32 chan-2024-negotiationtom: step -> queue-ops",
-    "2026-07-27T21:32 chan-2024-negotiationtom: step -> podcast",
-    "2026-07-27T22:00 completed chan-2024-negotiationtom (verdict=approved, rounds=2)",
-    "2026-07-27T22:02 started chen-2025-acebench ('ACEBench: Who Wins the Match Point in Tool Usage?')",
-    "2026-07-27T22:04 chen-2025-acebench: step -> fetch",
-    "2026-07-27T22:04 chen-2025-acebench: step -> figures",
-    "2026-07-27T22:06 chen-2025-acebench: step -> draft",
-    "2026-07-27T22:28 chen-2025-acebench: step -> critique (round 1)",
-    "2026-07-27T22:41 chen-2025-acebench: step -> critique (round 2)",
     "2026-07-27T22:50 chen-2025-acebench: step -> critique (round 3)",
     "2026-07-27T22:53 chen-2025-acebench: step -> verify",
     "2026-07-27T22:54 chen-2025-acebench: step -> queue-ops",
@@ -448,6 +445,16 @@
     "2026-07-28T02:02 tian-2025-mmina: step -> verify",
     "2026-07-28T02:03 tian-2025-mmina: step -> queue-ops",
     "2026-07-28T02:03 tian-2025-mmina: step -> podcast",
-    "2026-07-28T02:19 completed tian-2025-mmina (verdict=approved, rounds=2)"
+    "2026-07-28T02:19 completed tian-2025-mmina (verdict=approved, rounds=2)",
+    "2026-07-28T02:22 started xiao-2024-flowbench ('FlowBench: Revisiting and Benchmarking Workflow-Guided Planning for LLM-based Agents')",
+    "2026-07-28T02:23 xiao-2024-flowbench: step -> fetch",
+    "2026-07-28T02:23 xiao-2024-flowbench: step -> figures",
+    "2026-07-28T02:26 xiao-2024-flowbench: step -> draft",
+    "2026-07-28T02:44 xiao-2024-flowbench: step -> critique (round 1)",
+    "2026-07-28T03:01 xiao-2024-flowbench: step -> critique (round 2)",
+    "2026-07-28T03:13 xiao-2024-flowbench: step -> verify",
+    "2026-07-28T03:14 xiao-2024-flowbench: step -> queue-ops",
+    "2026-07-28T03:14 xiao-2024-flowbench: step -> podcast",
+    "2026-07-28T03:30 completed xiao-2024-flowbench (verdict=approved, rounds=2)"
   ]
 }

@@ -112,6 +112,26 @@ actually uses. → `set-step draft`
    — confirm it is actually cited. Plausibility is not citation, and a wrong
    edge is harder to notice than a missing one.
 
+   **Read every metric's definition before you quote a number under it.**
+   Two metrics with similar names in adjacent columns is the single most
+   expensive trap seen so far, because misreading one poisons the results
+   *and* the critique at once. On EmpatheticDialogues, P@1,100 (a fixed
+   1-of-100 diagnostic with the true response included) was read as the
+   model's deployed candidate pool — so the critique then faulted the paper
+   for "conflating candidate pools", a charge its own method section
+   refutes. On MMInA, a *hop* success rate (partial credit per website) was
+   quoted as a *task* success rate (strict full chain); the value under the
+   right metric was 0. Before writing the results section, write down what
+   each column actually measures, then check that the method, results, and
+   critique sections all use those definitions the same way.
+
+   **Where a table is wide or has repeated column groups, establish its
+   whole shape first.** MMInA's Table 2 produced eight separate blockers —
+   18 rows in three input groups, two metrics per hop bucket. Patching such
+   a table claim-by-claim against a critique's evidence lines reproduces its
+   errors; re-derive the row count, group membership, and column-to-metric
+   mapping in one pass, then fix everything that depends on it.
+
    **Check the direction of every comparison, not just the numbers.** A
    *reversed* comparison quotes two real values from the right table and
    still says the opposite of what they mean — on NegotiationToM the page
