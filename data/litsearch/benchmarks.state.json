@@ -345,6 +345,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "chan-2024-negotiationtom",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -357,16 +364,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T17:07 kumar-2024-longlamp: step -> critique (round 2)",
-    "2026-07-27T17:12 kumar-2024-longlamp: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T17:12 kumar-2024-longlamp: step -> verify",
-    "2026-07-27T17:13 kumar-2024-longlamp: step -> queue-ops",
-    "2026-07-27T17:27 kumar-2024-longlamp: step -> podcast",
-    "2026-07-27T17:27 completed kumar-2024-longlamp (verdict=approved, rounds=2)",
-    "2026-07-27T17:29 started chen-2024-tombench ('ToMBench: Benchmarking Theory of Mind in Large Language Models')",
-    "2026-07-27T17:29 chen-2024-tombench: step -> fetch",
-    "2026-07-27T17:30 chen-2024-tombench: step -> figures",
-    "2026-07-27T17:30 chen-2024-tombench: step -> draft",
     "2026-07-27T17:43 chen-2024-tombench: step -> critique (round 1)",
     "2026-07-27T17:54 chen-2024-tombench: 2 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-27T17:54 chen-2024-tombench: step -> revise",
@@ -406,6 +403,16 @@
     "2026-07-27T20:40 gandhi-2021-bib: step -> verify",
     "2026-07-27T20:41 gandhi-2021-bib: step -> queue-ops",
     "2026-07-27T20:41 gandhi-2021-bib: step -> podcast",
-    "2026-07-27T20:56 completed gandhi-2021-bib (verdict=approved, rounds=2)"
+    "2026-07-27T20:56 completed gandhi-2021-bib (verdict=approved, rounds=2)",
+    "2026-07-27T20:58 started chan-2024-negotiationtom ('NegotiationToM: A Benchmark for Stress-testing Machine Theory of Mind on Negotiation Surrounding')",
+    "2026-07-27T20:58 chan-2024-negotiationtom: step -> fetch",
+    "2026-07-27T20:58 chan-2024-negotiationtom: step -> figures",
+    "2026-07-27T20:59 chan-2024-negotiationtom: step -> draft",
+    "2026-07-27T21:13 chan-2024-negotiationtom: step -> critique (round 1)",
+    "2026-07-27T21:25 chan-2024-negotiationtom: step -> critique (round 2)",
+    "2026-07-27T21:31 chan-2024-negotiationtom: step -> verify",
+    "2026-07-27T21:32 chan-2024-negotiationtom: step -> queue-ops",
+    "2026-07-27T21:32 chan-2024-negotiationtom: step -> podcast",
+    "2026-07-27T22:00 completed chan-2024-negotiationtom (verdict=approved, rounds=2)"
   ]
 }

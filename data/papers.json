@@ -9070,6 +9070,22 @@
       "explainer": "papers/gandhi-2021-bib.html",
       "audio_url": "https://pod.darvinyi.com/audio/gandhi-2021-bib.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "chan-2024-negotiationtom",
+      "short": "NegotiationToM",
+      "title": "NegotiationToM: A Benchmark for Stress-testing Machine Theory of Mind on Negotiation Surrounding",
+      "authors": "Chan, Jiayang, Yim, Deng, Fan, Li, Liu, Zhang, Wang, Song",
+      "year": 2024,
+      "date": "2024-04",
+      "venue": "EMNLP 2024",
+      "citation_count": 58,
+      "topic": "Benchmarks & Evals",
+      "author_group": "HKUST",
+      "abstract": "A theory-of-mind benchmark built on 395 real human-to-human negotiation dialogues from the CaSiNo corpus, scoring desire, belief, and intention (per the Belief-Desire-Intention agent model) separately at every conversation round rather than relying on synthetic templates. Six 2023-era LLMs (GPT-4, ChatGPT, Claude-v1.3/v2.1, LLaMA-2-Chat 13B/70B) trail human annotators by 27.85-48.98 points depending on the dimension, even with chain-of-thought.",
+      "explainer": "papers/chan-2024-negotiationtom.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chan-2024-negotiationtom.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15310,6 +15326,16 @@
     { "from": "xu-2024-opentom", "to": "press-2022-compositionality-gap" },
     { "from": "xu-2024-opentom", "to": "bubeck-2023-sparks-agi" },
     { "from": "sabour-2024-emobench", "to": "wei-2022-cot" },
-    { "from": "sabour-2024-emobench", "to": "openai-2023-gpt4" }
+    { "from": "sabour-2024-emobench", "to": "openai-2023-gpt4" },
+    { "from": "chan-2024-negotiationtom", "to": "kim-2023-fantom" },
+    { "from": "chan-2024-negotiationtom", "to": "le-2019-tomi" },
+    { "from": "chan-2024-negotiationtom", "to": "openai-2023-gpt4" },
+    { "from": "chan-2024-negotiationtom", "to": "touvron-2023-llama2" },
+    { "from": "chan-2024-negotiationtom", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "chan-2024-negotiationtom", "to": "ouyang-2022-instructgpt" },
+    { "from": "chan-2024-negotiationtom", "to": "brown-2020-gpt3" },
+    { "from": "chan-2024-negotiationtom", "to": "bubeck-2023-sparks-agi" },
+    { "from": "chan-2024-negotiationtom", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "chan-2024-negotiationtom", "to": "taori-2023-alpaca" }
   ]
 }
