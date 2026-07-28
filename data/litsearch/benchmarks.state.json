@@ -317,6 +317,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "chen-2024-tombench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -329,19 +336,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T14:34 shu-2021-agent: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T14:34 shu-2021-agent: step -> verify",
-    "2026-07-27T14:35 shu-2021-agent: step -> queue-ops",
-    "2026-07-27T14:50 shu-2021-agent: step -> podcast",
-    "2026-07-27T14:50 completed shu-2021-agent (verdict=approved, rounds=2)",
-    "2026-07-27T14:52 started feng-2023-mmdialog ('MMDialog: A Large-scale Multi-turn Dialogue Dataset Towards Multi-modal Open-domain Conversation')",
-    "2026-07-27T14:53 feng-2023-mmdialog: step -> fetch",
-    "2026-07-27T14:53 feng-2023-mmdialog: step -> figures",
-    "2026-07-27T14:55 feng-2023-mmdialog: step -> draft",
-    "2026-07-27T15:05 feng-2023-mmdialog: step -> critique (round 1)",
-    "2026-07-27T15:15 feng-2023-mmdialog: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T15:15 feng-2023-mmdialog: step -> revise",
-    "2026-07-27T15:19 feng-2023-mmdialog: step -> critique (round 2)",
     "2026-07-27T15:26 feng-2023-mmdialog: 2 open blocker(s) from round 2 (verdict: revise)",
     "2026-07-27T15:26 feng-2023-mmdialog: step -> revise",
     "2026-07-27T15:27 feng-2023-mmdialog: step -> critique (round 3)",
@@ -378,6 +372,19 @@
     "2026-07-27T17:12 kumar-2024-longlamp: step -> verify",
     "2026-07-27T17:13 kumar-2024-longlamp: step -> queue-ops",
     "2026-07-27T17:27 kumar-2024-longlamp: step -> podcast",
-    "2026-07-27T17:27 completed kumar-2024-longlamp (verdict=approved, rounds=2)"
+    "2026-07-27T17:27 completed kumar-2024-longlamp (verdict=approved, rounds=2)",
+    "2026-07-27T17:29 started chen-2024-tombench ('ToMBench: Benchmarking Theory of Mind in Large Language Models')",
+    "2026-07-27T17:29 chen-2024-tombench: step -> fetch",
+    "2026-07-27T17:30 chen-2024-tombench: step -> figures",
+    "2026-07-27T17:30 chen-2024-tombench: step -> draft",
+    "2026-07-27T17:43 chen-2024-tombench: step -> critique (round 1)",
+    "2026-07-27T17:54 chen-2024-tombench: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-27T17:54 chen-2024-tombench: step -> revise",
+    "2026-07-27T17:55 chen-2024-tombench: step -> critique (round 2)",
+    "2026-07-27T17:59 chen-2024-tombench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-27T17:59 chen-2024-tombench: step -> verify",
+    "2026-07-27T18:00 chen-2024-tombench: step -> queue-ops",
+    "2026-07-27T18:16 chen-2024-tombench: step -> podcast",
+    "2026-07-27T18:16 completed chen-2024-tombench (verdict=approved, rounds=2)"
   ]
 }

@@ -9006,6 +9006,22 @@
       "explainer": "papers/kumar-2024-longlamp.html",
       "audio_url": "https://pod.darvinyi.com/audio/kumar-2024-longlamp.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "chen-2024-tombench",
+      "short": "ToMBench",
+      "title": "ToMBench: Benchmarking Theory of Mind in Large Language Models",
+      "authors": "Chen, Wu, Zhou, Wen, Bi, Jiang, Cao, Hu, Lai, Xiong, Huang",
+      "year": 2024,
+      "date": "2024-02",
+      "venue": "ACL 2024",
+      "citation_count": 71,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua CoAI",
+      "abstract": "A bilingual (Chinese/English) theory-of-mind benchmark built entirely from scratch to avoid contamination: 2,860 multiple-choice questions across 8 psychology-grounded ToM tasks and 31 ATOMS abilities. GPT-4 trails a 20-student human baseline by over 10 points on average, and the gap widens to 16.2 points under a stricter 'coherent test' requiring every question about a story to be answered correctly.",
+      "explainer": "papers/chen-2024-tombench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2024-tombench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15215,6 +15231,13 @@
     { "from": "kumar-2024-longlamp", "to": "openai-2023-gpt4" },
     { "from": "kumar-2024-longlamp", "to": "banerjee-2005-meteor" },
     { "from": "kumar-2024-longlamp", "to": "lin-2004-rouge" },
-    { "from": "kumar-2024-longlamp", "to": "chung-2022-flan" }
+    { "from": "kumar-2024-longlamp", "to": "chung-2022-flan" },
+    { "from": "chen-2024-tombench", "to": "kim-2023-fantom" },
+    { "from": "chen-2024-tombench", "to": "le-2019-tomi" },
+    { "from": "chen-2024-tombench", "to": "bubeck-2023-sparks-agi" },
+    { "from": "chen-2024-tombench", "to": "touvron-2023-llama2" },
+    { "from": "chen-2024-tombench", "to": "openai-2023-gpt4" },
+    { "from": "chen-2024-tombench", "to": "bai-2023-qwen" },
+    { "from": "chen-2024-tombench", "to": "jiang-2023-mistral-7b" }
   ]
 }
