@@ -401,6 +401,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "ye-2024-rotbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -420,16 +427,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T00:51 rashkin-2019-empatheticdialogues: step -> critique (round 2)",
-    "2026-07-28T01:00 rashkin-2019-empatheticdialogues: step -> verify",
-    "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> queue-ops",
-    "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> podcast",
-    "2026-07-28T01:17 completed rashkin-2019-empatheticdialogues (verdict=approved, rounds=2)",
-    "2026-07-28T01:19 started zhang-2024-mmina ('MMInA: Benchmarking Multihop Multimodal Internet Agents')",
-    "2026-07-28T01:22 zhang-2024-mmina: step -> fetch",
-    "2026-07-28T01:22 zhang-2024-mmina: step -> figures",
-    "2026-07-28T01:24 zhang-2024-mmina: step -> draft",
-    "2026-07-28T01:38 skipped zhang-2024-mmina (slug corrected to tian-2025-mmina (first author is Shulin Tian, venue Findings of ACL 2025))",
     "2026-07-28T01:38 started tian-2025-mmina ('MMInA: Benchmarking Multihop Multimodal Internet Agents')",
     "2026-07-28T01:38 tian-2025-mmina: step -> fetch",
     "2026-07-28T01:38 tian-2025-mmina: step -> figures",
@@ -469,6 +466,16 @@
     "2026-07-28T05:18 bogin-2024-super: step -> verify",
     "2026-07-28T05:19 bogin-2024-super: step -> queue-ops",
     "2026-07-28T05:19 bogin-2024-super: step -> podcast",
-    "2026-07-28T05:35 completed bogin-2024-super (verdict=approved, rounds=2)"
+    "2026-07-28T05:35 completed bogin-2024-super (verdict=approved, rounds=2)",
+    "2026-07-28T05:38 started ye-2024-rotbench ('RoTBench: A Multi-Level Benchmark for Evaluating the Robustness of Large Language Models in Tool Learning')",
+    "2026-07-28T05:39 ye-2024-rotbench: step -> fetch",
+    "2026-07-28T05:39 ye-2024-rotbench: step -> figures",
+    "2026-07-28T05:55 ye-2024-rotbench: step -> draft",
+    "2026-07-28T05:56 ye-2024-rotbench: step -> critique (round 1)",
+    "2026-07-28T06:12 ye-2024-rotbench: step -> critique (round 2)",
+    "2026-07-28T06:20 ye-2024-rotbench: step -> verify",
+    "2026-07-28T06:21 ye-2024-rotbench: step -> queue-ops",
+    "2026-07-28T06:21 ye-2024-rotbench: step -> podcast",
+    "2026-07-28T06:53 completed ye-2024-rotbench (verdict=approved, rounds=2)"
   ]
 }

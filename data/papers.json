@@ -9198,6 +9198,22 @@
       "explainer": "papers/bogin-2024-super.html",
       "audio_url": "https://pod.darvinyi.com/audio/bogin-2024-super.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "ye-2024-rotbench",
+      "short": "RoTBench",
+      "title": "RoTBench: A Multi-Level Benchmark for Evaluating the Robustness of Large Language Models in Tool Learning",
+      "authors": "Ye, Wu, Gao, Huang, Li, Li, Fan, Zhang, Gui, Huang",
+      "year": 2024,
+      "date": "2024-01",
+      "venue": "EMNLP 2024 Main",
+      "citation_count": 46,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Fudan University",
+      "abstract": "Tests six widely-used LLMs across five environments of increasing tool/parameter-name noise (Clean, Slight, Medium, Heavy, Union) over three staged tool-use scores (tool selection, parameter identification, content filling). GPT-4's tool-selection accuracy falls from 80.00 to 58.10 Clean-to-Union while three human graders drop only 2.86 points on the same items, but the top scorer under noise isn't fixed: NexusRaven-13B-v2 beats GPT-4 on all three stages under Heavy noise, while GPT-4 wins all three under Union. RoTTuning, a LoRA fine-tune on noise-augmented trajectories, narrows this range for the resulting RoTLLaMA model.",
+      "explainer": "papers/ye-2024-rotbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ye-2024-rotbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15570,6 +15586,16 @@
     { "from": "bogin-2024-super", "to": "wang-2023-voyager" },
     { "from": "yehudai-2025-agent-eval-survey", "to": "bogin-2024-super" },
     { "from": "nathani-2025-mlgym", "to": "bogin-2024-super" },
-    { "from": "zhuge-2024-agent-as-judge", "to": "bogin-2024-super" }
+    { "from": "zhuge-2024-agent-as-judge", "to": "bogin-2024-super" },
+    { "from": "ye-2024-rotbench", "to": "huang-2023-metatool" },
+    { "from": "ye-2024-rotbench", "to": "qin-2023-toolllm" },
+    { "from": "ye-2024-rotbench", "to": "touvron-2023-llama" },
+    { "from": "ye-2024-rotbench", "to": "touvron-2023-llama2" },
+    { "from": "ye-2024-rotbench", "to": "schick-2023-toolformer" },
+    { "from": "ye-2024-rotbench", "to": "bai-2022-constitutional-ai" },
+    { "from": "ye-2024-rotbench", "to": "yao-2022-react" },
+    { "from": "ye-2024-rotbench", "to": "brown-2020-gpt3" },
+    { "from": "ye-2024-rotbench", "to": "roziere-2023-code-llama" },
+    { "from": "ye-2024-rotbench", "to": "openai-2023-gpt4" }
   ]
 }
