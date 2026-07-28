@@ -429,6 +429,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "shi-2025-toolret",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -460,16 +467,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T05:19 bogin-2024-super: step -> podcast",
-    "2026-07-28T05:35 completed bogin-2024-super (verdict=approved, rounds=2)",
-    "2026-07-28T05:38 started ye-2024-rotbench ('RoTBench: A Multi-Level Benchmark for Evaluating the Robustness of Large Language Models in Tool Learning')",
-    "2026-07-28T05:39 ye-2024-rotbench: step -> fetch",
-    "2026-07-28T05:39 ye-2024-rotbench: step -> figures",
-    "2026-07-28T05:55 ye-2024-rotbench: step -> draft",
-    "2026-07-28T05:56 ye-2024-rotbench: step -> critique (round 1)",
-    "2026-07-28T06:12 ye-2024-rotbench: step -> critique (round 2)",
-    "2026-07-28T06:20 ye-2024-rotbench: step -> verify",
-    "2026-07-28T06:21 ye-2024-rotbench: step -> queue-ops",
     "2026-07-28T06:21 ye-2024-rotbench: step -> podcast",
     "2026-07-28T06:53 completed ye-2024-rotbench (verdict=approved, rounds=2)",
     "2026-07-28T06:55 started basu-2024-api-blend ('API-BLEND: A Comprehensive Corpora for Training and Benchmarking API LLMs')",
@@ -509,6 +506,16 @@
     "2026-07-28T10:18 ye-2025-tooleyes: step -> verify",
     "2026-07-28T10:19 ye-2025-tooleyes: step -> queue-ops",
     "2026-07-28T10:19 ye-2025-tooleyes: step -> podcast",
-    "2026-07-28T10:32 completed ye-2025-tooleyes (verdict=approved, rounds=2)"
+    "2026-07-28T10:32 completed ye-2025-tooleyes (verdict=approved, rounds=2)",
+    "2026-07-28T10:34 started shi-2025-toolret (\"Retrieval Models Aren't Tool-Savvy: Benchmarking Tool Retrieval for Large Language Models\")",
+    "2026-07-28T10:35 shi-2025-toolret: step -> fetch",
+    "2026-07-28T10:35 shi-2025-toolret: step -> figures",
+    "2026-07-28T10:44 shi-2025-toolret: step -> draft",
+    "2026-07-28T10:53 shi-2025-toolret: step -> critique (round 1)",
+    "2026-07-28T11:13 shi-2025-toolret: step -> critique (round 2)",
+    "2026-07-28T11:22 shi-2025-toolret: step -> verify",
+    "2026-07-28T11:23 shi-2025-toolret: step -> queue-ops",
+    "2026-07-28T11:23 shi-2025-toolret: step -> podcast",
+    "2026-07-28T11:39 completed shi-2025-toolret (verdict=approved, rounds=2)"
   ]
 }

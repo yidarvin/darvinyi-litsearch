@@ -9262,6 +9262,22 @@
       "explainer": "papers/ye-2025-tooleyes.html",
       "audio_url": "https://pod.darvinyi.com/audio/ye-2025-tooleyes.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "shi-2025-toolret",
+      "short": "ToolRet",
+      "title": "Retrieval Models Aren't Tool-Savvy: Benchmarking Tool Retrieval for Large Language Models",
+      "authors": "Shi, Wang, Yan, Ren, Wang, Yin, Ren",
+      "year": 2025,
+      "date": "2025-03",
+      "venue": "Findings of ACL 2025",
+      "citation_count": 41,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Shandong University / Baidu",
+      "abstract": "Introduces TOOLRET, a heterogeneous tool-retrieval benchmark built by reformatting 7.6k tasks and 43k tools from 30+ existing tool-use datasets into an MTEB-style test bed spanning Web API, Code Function, and Customized App tool formats. Benchmarking 26 retrievers across six model families finds even the strongest instruction-pretrained embedder, NV-Embed-v1, reaches only 33.83 average nDCG@10 zero-shot -- far below the same models' scores on conventional IR benchmarks -- and that this retrieval shortfall measurably degrades the ToolBench pass rate of downstream tool-use agents.",
+      "explainer": "papers/shi-2025-toolret.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shi-2025-toolret.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15698,6 +15714,24 @@
     { "from": "ye-2025-tooleyes", "to": "lu-2023-chameleon" },
     { "from": "ye-2024-rotbench", "to": "ye-2025-tooleyes" },
     { "from": "kim-2024-biggenbench", "to": "ye-2025-tooleyes" },
-    { "from": "guo-2024-stabletoolbench", "to": "ye-2025-tooleyes" }
+    { "from": "guo-2024-stabletoolbench", "to": "ye-2025-tooleyes" },
+    { "from": "shi-2025-toolret", "to": "zhuo-2024-bigcodebench" },
+    { "from": "shi-2025-toolret", "to": "ye-2024-rotbench" },
+    { "from": "shi-2025-toolret", "to": "shen-2023-taskbench" },
+    { "from": "shi-2025-toolret", "to": "huang-2023-metatool" },
+    { "from": "shi-2025-toolret", "to": "ruan-2023-toolemu" },
+    { "from": "shi-2025-toolret", "to": "qin-2023-toolllm" },
+    { "from": "shi-2025-toolret", "to": "patil-2023-gorilla" },
+    { "from": "shi-2025-toolret", "to": "li-2023-api-bank" },
+    { "from": "shi-2025-toolret", "to": "izacard-2021-contriever" },
+    { "from": "shi-2025-toolret", "to": "karpukhin-2020-dpr" },
+    { "from": "shi-2025-toolret", "to": "kwiatkowski-2019-natural-questions" },
+    { "from": "shi-2025-toolret", "to": "yang-2018-hotpotqa" },
+    { "from": "shi-2025-toolret", "to": "gebru-2018-datasheets" },
+    { "from": "shi-2025-toolret", "to": "guo-2024-stabletoolbench" },
+    { "from": "shi-2025-toolret", "to": "ye-2025-tooleyes" },
+    { "from": "shi-2025-toolret", "to": "chang-2023-llm-eval-survey" },
+    { "from": "shi-2025-toolret", "to": "lu-2023-chameleon" },
+    { "from": "shi-2025-toolret", "to": "ma-2024-mnms" }
   ]
 }
