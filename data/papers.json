@@ -9134,6 +9134,22 @@
       "explainer": "papers/rashkin-2019-empatheticdialogues.html",
       "audio_url": "https://pod.darvinyi.com/audio/rashkin-2019-empatheticdialogues.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "tian-2025-mmina",
+      "short": "MMInA",
+      "title": "MMInA: Benchmarking Multihop Multimodal Internet Agents",
+      "authors": "Tian, Zhang, Chen, Liu",
+      "year": 2025,
+      "date": "2024-04",
+      "venue": "Findings of ACL 2025",
+      "citation_count": 50,
+      "topic": "Benchmarks & Evals",
+      "author_group": "NTU Singapore",
+      "abstract": "A 1,050-task benchmark for multihop, multimodal Internet agents across 14 evolving real-world websites (avg. 2.85 hops, up to 10), scored with both a granular hop-level and a strict, sequential task-level success metric. GPT-4V reaches 21.8% overall task success against a 96.3% human ceiling, and a memory-augmented agent that replays past trajectories measurably improves single- and multi-hop performance.",
+      "explainer": "papers/tian-2025-mmina.html",
+      "audio_url": "https://pod.darvinyi.com/audio/tian-2025-mmina.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15426,6 +15442,28 @@
     { "from": "sabour-2024-emobench", "to": "rashkin-2019-empatheticdialogues" },
     { "from": "zheng-2024-lmsys-chat-1m", "to": "rashkin-2019-empatheticdialogues" },
     { "from": "feng-2023-mmdialog", "to": "rashkin-2019-empatheticdialogues" },
-    { "from": "hendrycks-2020-ethics", "to": "rashkin-2019-empatheticdialogues" }
+    { "from": "hendrycks-2020-ethics", "to": "rashkin-2019-empatheticdialogues" },
+    { "from": "tian-2025-mmina", "to": "openai-2023-gpt4" },
+    { "from": "tian-2025-mmina", "to": "guo-2025-deepseek-r1" },
+    { "from": "tian-2025-mmina", "to": "roziere-2023-code-llama" },
+    { "from": "tian-2025-mmina", "to": "he-2024-webvoyager" },
+    { "from": "tian-2025-mmina", "to": "deng-2023-mind2web" },
+    { "from": "tian-2025-mmina", "to": "koh-2024-visualwebarena" },
+    { "from": "tian-2025-mmina", "to": "li-2023-api-bank" },
+    { "from": "tian-2025-mmina", "to": "liu-2023-llava" },
+    { "from": "tian-2025-mmina", "to": "liu-2023-agentbench" },
+    { "from": "tian-2025-mmina", "to": "liu-2023-bolaa" },
+    { "from": "tian-2025-mmina", "to": "mialon-2023-gaia" },
+    { "from": "tian-2025-mmina", "to": "patil-2023-gorilla" },
+    { "from": "tian-2025-mmina", "to": "yao-2022-webshop" },
+    { "from": "tian-2025-mmina", "to": "yao-2022-react" },
+    { "from": "tian-2025-mmina", "to": "zheng-2024-seeact" },
+    { "from": "tian-2025-mmina", "to": "zhou-2023-webarena" },
+    { "from": "tian-2025-mmina", "to": "ouyang-2022-instructgpt" },
+    { "from": "tian-2025-mmina", "to": "chung-2022-flan" },
+    { "from": "tian-2025-mmina", "to": "wei-2021-flan" },
+    { "from": "yehudai-2025-agent-eval-survey", "to": "tian-2025-mmina" },
+    { "from": "yoran-2024-assistantbench", "to": "tian-2025-mmina" },
+    { "from": "rawles-2024-androidworld", "to": "tian-2025-mmina" }
   ]
 }

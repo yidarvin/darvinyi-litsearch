@@ -373,9 +373,23 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "tian-2025-mmina",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
-  "skipped": [],
+  "skipped": [
+    {
+      "title": "MMInA: Benchmarking Multihop Multimodal Internet Agents",
+      "slug": "zhang-2024-mmina",
+      "reason": "slug corrected to tian-2025-mmina (first author is Shulin Tian, venue Findings of ACL 2025)",
+      "date": "2026-07-28"
+    }
+  ],
   "survey_build": {
     "step": null,
     "round": 0,
@@ -385,21 +399,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T20:08 gandhi-2021-bib: step -> fetch",
-    "2026-07-27T20:09 gandhi-2021-bib: step -> figures",
-    "2026-07-27T20:10 gandhi-2021-bib: step -> draft",
-    "2026-07-27T20:22 gandhi-2021-bib: step -> critique (round 1)",
-    "2026-07-27T20:35 gandhi-2021-bib: step -> critique (round 2)",
-    "2026-07-27T20:40 gandhi-2021-bib: step -> verify",
-    "2026-07-27T20:41 gandhi-2021-bib: step -> queue-ops",
-    "2026-07-27T20:41 gandhi-2021-bib: step -> podcast",
-    "2026-07-27T20:56 completed gandhi-2021-bib (verdict=approved, rounds=2)",
-    "2026-07-27T20:58 started chan-2024-negotiationtom ('NegotiationToM: A Benchmark for Stress-testing Machine Theory of Mind on Negotiation Surrounding')",
-    "2026-07-27T20:58 chan-2024-negotiationtom: step -> fetch",
-    "2026-07-27T20:58 chan-2024-negotiationtom: step -> figures",
-    "2026-07-27T20:59 chan-2024-negotiationtom: step -> draft",
-    "2026-07-27T21:13 chan-2024-negotiationtom: step -> critique (round 1)",
-    "2026-07-27T21:25 chan-2024-negotiationtom: step -> critique (round 2)",
     "2026-07-27T21:31 chan-2024-negotiationtom: step -> verify",
     "2026-07-27T21:32 chan-2024-negotiationtom: step -> queue-ops",
     "2026-07-27T21:32 chan-2024-negotiationtom: step -> podcast",
@@ -434,6 +433,21 @@
     "2026-07-28T01:00 rashkin-2019-empatheticdialogues: step -> verify",
     "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> queue-ops",
     "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> podcast",
-    "2026-07-28T01:17 completed rashkin-2019-empatheticdialogues (verdict=approved, rounds=2)"
+    "2026-07-28T01:17 completed rashkin-2019-empatheticdialogues (verdict=approved, rounds=2)",
+    "2026-07-28T01:19 started zhang-2024-mmina ('MMInA: Benchmarking Multihop Multimodal Internet Agents')",
+    "2026-07-28T01:22 zhang-2024-mmina: step -> fetch",
+    "2026-07-28T01:22 zhang-2024-mmina: step -> figures",
+    "2026-07-28T01:24 zhang-2024-mmina: step -> draft",
+    "2026-07-28T01:38 skipped zhang-2024-mmina (slug corrected to tian-2025-mmina (first author is Shulin Tian, venue Findings of ACL 2025))",
+    "2026-07-28T01:38 started tian-2025-mmina ('MMInA: Benchmarking Multihop Multimodal Internet Agents')",
+    "2026-07-28T01:38 tian-2025-mmina: step -> fetch",
+    "2026-07-28T01:38 tian-2025-mmina: step -> figures",
+    "2026-07-28T01:38 tian-2025-mmina: step -> draft",
+    "2026-07-28T01:38 tian-2025-mmina: step -> critique (round 1)",
+    "2026-07-28T01:53 tian-2025-mmina: step -> critique (round 2)",
+    "2026-07-28T02:02 tian-2025-mmina: step -> verify",
+    "2026-07-28T02:03 tian-2025-mmina: step -> queue-ops",
+    "2026-07-28T02:03 tian-2025-mmina: step -> podcast",
+    "2026-07-28T02:19 completed tian-2025-mmina (verdict=approved, rounds=2)"
   ]
 }
