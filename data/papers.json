@@ -9054,6 +9054,22 @@
       "explainer": "papers/xu-2024-opentom.html",
       "audio_url": "https://pod.darvinyi.com/audio/xu-2024-opentom.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "gandhi-2021-bib",
+      "short": "BIB",
+      "title": "Baby Intuitions Benchmark (BIB): Discerning the goals, preferences, and actions of others",
+      "authors": "Gandhi, Stojnic, Lake, Dillon",
+      "year": 2021,
+      "date": "2021-02",
+      "venue": "NeurIPS 2021",
+      "citation_count": 58,
+      "topic": "Benchmarks & Evals",
+      "author_group": "NYU",
+      "abstract": "A five-family violation-of-expectation (VoE) video benchmark adapted directly from developmental-psychology infant experiments -- goal-object preference, agent-specific preference binding, obstacle/inaccessible goals, instrumental action, and rational-vs-irrational efficiency -- procedurally generated in a 2D/3D grid world with a single canonical background-training/evaluation split. Three passively-trained baselines (BC-MLP, BC-RNN, a ToMnet-style video model) clear chance on obstacle and efficiency tasks but sit at or below chance on preference (26.3-48.3%) and multi-agent binding (48.2-50.3%), and collapse on the blocking-barrier instrumental-action sub-task (47.1-62.9%), leaving BIB, per the authors, an open challenge.",
+      "explainer": "papers/gandhi-2021-bib.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gandhi-2021-bib.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15244,7 +15260,10 @@
     { "from": "shu-2021-agent", "to": "puig-2020-watch-and-help" },
     { "from": "shu-2021-agent", "to": "lowe-2017-maddpg" },
     { "from": "shu-2021-agent", "to": "deng-2009-imagenet" },
+    { "from": "shu-2021-agent", "to": "gandhi-2021-bib" },
     { "from": "jin-2024-mmtom-qa", "to": "shu-2021-agent" },
+    { "from": "jin-2024-mmtom-qa", "to": "gandhi-2021-bib" },
+    { "from": "gandhi-2021-bib", "to": "shu-2021-agent" },
     { "from": "feng-2023-mmdialog", "to": "chen-2015-coco-captions" },
     { "from": "feng-2023-mmdialog", "to": "goyal-2017-vqa-v2" },
     { "from": "feng-2023-mmdialog", "to": "lin-2004-rouge" },

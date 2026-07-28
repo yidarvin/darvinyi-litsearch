@@ -271,8 +271,17 @@ unfinished work. Steps:
    `public/papers/<slug>.html` plus the paper PDF, writes the 3-voice
    script, renders the MP3 with Kokoro (~18 min), publishes to the NAS and
    rebuilds the RSS feed. Integration is through the shared slug only.
-2. Confirm it's live: `curl -sI https://pod.darvinyi.com/audio/<slug>.mp3`
-   → `200`. Don't proceed on anything else.
+   **Launch the render detached** (`nohup … & disown`) if you're running it
+   from a subagent: a turn boundary kills the agent's process tree, and a
+   foreground render dies with it partway through — observed once, on
+   OpenToM, costing a full re-render.
+2. Confirm it's live **and byte-identical to the local render** — a stale
+   or truncated file also returns `200`, so status alone proves nothing:
+   `curl -sI "https://pod.darvinyi.com/audio/<slug>.mp3?cb=$RANDOM"` → `200`,
+   and its `Content-Length` must equal
+   `stat -f %z ~/Projects/darvinyi-podcast/audio/<slug>.mp3`. Compare MD5s
+   too when you want proof rather than a strong hint. Cache-bust the URL;
+   an uncached edge response can otherwise describe the previous file.
 3. Link it: `python3 scripts/inject_podcast.py --set <slug>` (stamps the
    canonical `audio_url` **and** injects the on-page `listen ♪` pill +
    `<audio>` player — never hand-write either).

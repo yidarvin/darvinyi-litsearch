@@ -338,6 +338,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "gandhi-2021-bib",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -350,16 +357,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T16:23 liu-2020-meddg: step -> queue-ops",
-    "2026-07-27T16:37 liu-2020-meddg: step -> podcast",
-    "2026-07-27T16:37 completed liu-2020-meddg (verdict=approved, rounds=3)",
-    "2026-07-27T16:39 started kumar-2024-longlamp ('LongLaMP: A Benchmark for Personalized Long-form Text Generation')",
-    "2026-07-27T16:40 kumar-2024-longlamp: step -> fetch",
-    "2026-07-27T16:40 kumar-2024-longlamp: step -> figures",
-    "2026-07-27T16:43 kumar-2024-longlamp: step -> draft",
-    "2026-07-27T16:52 kumar-2024-longlamp: step -> critique (round 1)",
-    "2026-07-27T17:02 kumar-2024-longlamp: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T17:02 kumar-2024-longlamp: step -> revise",
     "2026-07-27T17:07 kumar-2024-longlamp: step -> critique (round 2)",
     "2026-07-27T17:12 kumar-2024-longlamp: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-27T17:12 kumar-2024-longlamp: step -> verify",
@@ -399,6 +396,16 @@
     "2026-07-27T19:49 xu-2024-opentom: step -> verify",
     "2026-07-27T19:50 xu-2024-opentom: step -> queue-ops",
     "2026-07-27T19:50 xu-2024-opentom: step -> podcast",
-    "2026-07-27T20:05 completed xu-2024-opentom (verdict=approved, rounds=2)"
+    "2026-07-27T20:05 completed xu-2024-opentom (verdict=approved, rounds=2)",
+    "2026-07-27T20:06 started gandhi-2021-bib ('Baby Intuitions Benchmark (BIB): Discerning the goals, preferences, and actions of others')",
+    "2026-07-27T20:08 gandhi-2021-bib: step -> fetch",
+    "2026-07-27T20:09 gandhi-2021-bib: step -> figures",
+    "2026-07-27T20:10 gandhi-2021-bib: step -> draft",
+    "2026-07-27T20:22 gandhi-2021-bib: step -> critique (round 1)",
+    "2026-07-27T20:35 gandhi-2021-bib: step -> critique (round 2)",
+    "2026-07-27T20:40 gandhi-2021-bib: step -> verify",
+    "2026-07-27T20:41 gandhi-2021-bib: step -> queue-ops",
+    "2026-07-27T20:41 gandhi-2021-bib: step -> podcast",
+    "2026-07-27T20:56 completed gandhi-2021-bib (verdict=approved, rounds=2)"
   ]
 }
