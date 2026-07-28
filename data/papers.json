@@ -9294,6 +9294,22 @@
       "explainer": "papers/li-2026-agentskillos.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2026-agentskillos.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "muennighoff-2023-mteb",
+      "short": "MTEB",
+      "title": "MTEB: Massive Text Embedding Benchmark",
+      "authors": "Muennighoff, Tazi, Magne, Reimers",
+      "year": 2023,
+      "date": "2022-10",
+      "venue": "EACL 2023",
+      "citation_count": 972,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Hugging Face",
+      "abstract": "Unifies text-embedding evaluation into one harness spanning 8 task types — classification, clustering, pair classification, reranking, retrieval, STS, summarization, bitext mining — across 58 datasets and 112 languages, where prior benchmarks (SentEval, USEB, BEIR) each covered only a slice of that space. Benchmarking 33 models, from Glove through a 7.1B-parameter SGPT-BLOOM and OpenAI's Embeddings API, finds no model wins every task: ST5-XXL leads Classification/Clustering/STS/Avg, GTR-XL leads Pair Classification, MPNet leads Reranking, SGPT-5.8B-msmarco leads Retrieval, and multilingual MPNet leads Summarization. The single “Avg” column is a mean over all 56 English-subset dataset scores rather than an equal blend of the 7 task types, so Retrieval (15 datasets) and Classification (12) dominate it while Summarization (1 dataset) barely registers — a task imbalance the authors name in their own limitations section but don't correct, compounded by an explicit choice to ignore train/test contamination between MTEB datasets and model pretraining corpora.",
+      "explainer": "papers/muennighoff-2023-mteb.html",
+      "audio_url": "https://pod.darvinyi.com/audio/muennighoff-2023-mteb.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -15762,6 +15778,18 @@
     { "from": "li-2026-agentskillos", "to": "patil-2023-gorilla" },
     { "from": "li-2026-agentskillos", "to": "qin-2023-toolllm" },
     { "from": "li-2026-agentskillos", "to": "li-2023-api-bank" },
-    { "from": "li-2026-agentskillos", "to": "shen-2023-taskbench" }
+    { "from": "li-2026-agentskillos", "to": "shen-2023-taskbench" },
+    { "from": "muennighoff-2023-mteb", "to": "srivastava-2022-big-bench" },
+    { "from": "muennighoff-2023-mteb", "to": "chowdhery-2022-palm" },
+    { "from": "muennighoff-2023-mteb", "to": "gao-2021-simcse" },
+    { "from": "muennighoff-2023-mteb", "to": "thakur-2021-beir" },
+    { "from": "muennighoff-2023-mteb", "to": "raffel-2020-t5" },
+    { "from": "muennighoff-2023-mteb", "to": "wang-2019-superglue" },
+    { "from": "muennighoff-2023-mteb", "to": "wang-2018-glue" },
+    { "from": "muennighoff-2023-mteb", "to": "devlin-2019-bert" },
+    { "from": "muennighoff-2023-mteb", "to": "radford-2019-gpt2" },
+    { "from": "muennighoff-2023-mteb", "to": "izacard-2021-contriever" },
+    { "from": "shi-2025-toolret", "to": "muennighoff-2023-mteb" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "muennighoff-2023-mteb" }
   ]
 }

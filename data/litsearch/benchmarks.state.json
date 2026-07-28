@@ -443,6 +443,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "muennighoff-2023-mteb",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -474,16 +481,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T07:49 basu-2024-api-blend: step -> podcast",
-    "2026-07-28T08:05 completed basu-2024-api-blend (verdict=approved, rounds=2)",
-    "2026-07-28T08:07 started xie-2025-medagentsbench ('MedicalAgentsBench: Comparing Reasoning Models and Agent Frameworks for Complex Medical Reasoning')",
-    "2026-07-28T08:08 skipped xie-2025-medagentsbench (queue metadata wrong: author 'Xie' not in author list (true first author Yanjun Shao), title differs, and paper is published in Patterns 2026 not arXiv-only; re-slugging to shao-2026-medagentsbench)",
-    "2026-07-28T08:08 started shao-2026-medagentsbench ('MedicalAgentsBench for Complex Medical Reasoning: Comparing Internalized Reasoning Models versus Externalized Agent-based Frameworks')",
-    "2026-07-28T08:10 shao-2026-medagentsbench: step -> fetch",
-    "2026-07-28T08:12 shao-2026-medagentsbench: step -> figures",
-    "2026-07-28T08:13 shao-2026-medagentsbench: step -> draft",
-    "2026-07-28T08:31 shao-2026-medagentsbench: step -> critique (round 1)",
-    "2026-07-28T08:48 shao-2026-medagentsbench: step -> critique (round 2)",
     "2026-07-28T08:58 shao-2026-medagentsbench: step -> verify",
     "2026-07-28T08:59 shao-2026-medagentsbench: step -> queue-ops",
     "2026-07-28T08:59 shao-2026-medagentsbench: step -> podcast",
@@ -523,6 +520,16 @@
     "2026-07-28T12:25 li-2026-agentskillos: step -> verify",
     "2026-07-28T12:26 li-2026-agentskillos: step -> queue-ops",
     "2026-07-28T12:26 li-2026-agentskillos: step -> podcast",
-    "2026-07-28T12:42 completed li-2026-agentskillos (verdict=approved, rounds=2)"
+    "2026-07-28T12:42 completed li-2026-agentskillos (verdict=approved, rounds=2)",
+    "2026-07-28T12:44 started muennighoff-2023-mteb ('MTEB: Massive Text Embedding Benchmark')",
+    "2026-07-28T12:45 muennighoff-2023-mteb: step -> fetch",
+    "2026-07-28T12:46 muennighoff-2023-mteb: step -> figures",
+    "2026-07-28T12:46 muennighoff-2023-mteb: step -> draft",
+    "2026-07-28T13:05 muennighoff-2023-mteb: step -> critique (round 1)",
+    "2026-07-28T13:32 muennighoff-2023-mteb: step -> critique (round 2)",
+    "2026-07-28T13:43 muennighoff-2023-mteb: step -> verify",
+    "2026-07-28T13:44 muennighoff-2023-mteb: step -> queue-ops",
+    "2026-07-28T13:44 muennighoff-2023-mteb: step -> podcast",
+    "2026-07-28T14:05 completed muennighoff-2023-mteb (verdict=approved, rounds=2)"
   ]
 }
