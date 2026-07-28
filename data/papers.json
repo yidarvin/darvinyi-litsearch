@@ -9118,6 +9118,22 @@
       "explainer": "papers/ma-2024-mnms.html",
       "audio_url": "https://pod.darvinyi.com/audio/ma-2024-mnms.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "rashkin-2019-empatheticdialogues",
+      "short": "EmpatheticDialogues",
+      "title": "Towards Empathetic Open-domain Conversation Models: A New Benchmark and Dataset",
+      "authors": "Rashkin, Smith, Li, Boureau",
+      "year": 2019,
+      "date": "2018-11",
+      "venue": "ACL 2019",
+      "citation_count": 1195,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UW / Meta AI",
+      "abstract": "EMPATHETICDIALOGUES: a 24,850-conversation, 32-emotion-label crowdsourced benchmark where a Speaker describes a personal situation tied to an assigned emotion and a Listener (blind to the label and situation text) responds, so models can be scored on whether they acknowledge feelings rather than merely stay on-topic. Simply giving a pretrained retrieval model ED's own utterances as candidates lifts human-rated Empathy from 2.82 to 3.45; fine-tuning reaches 3.76, and prepending an external emotion/topic classifier's top label pushes BERT-based retrieval to 4.03, against a 4.19 gold-response ceiling.",
+      "explainer": "papers/rashkin-2019-empatheticdialogues.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rashkin-2019-empatheticdialogues.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15399,6 +15415,17 @@
     { "from": "ma-2024-mnms", "to": "madaan-2023-self-refine" },
     { "from": "ma-2024-mnms", "to": "wang-2022-self-consistency" },
     { "from": "schmidgall-2024-agentclinic", "to": "ma-2024-mnms" },
-    { "from": "guo-2025-visualtoolbench", "to": "ma-2024-mnms" }
+    { "from": "guo-2025-visualtoolbench", "to": "ma-2024-mnms" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "zhang-2018-personachat" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "li-2017-dailydialog" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "devlin-2019-bert" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "radford-2019-gpt2" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "papineni-2002-bleu" },
+    { "from": "xu-2022-msc", "to": "rashkin-2019-empatheticdialogues" },
+    { "from": "sabour-2024-emobench", "to": "rashkin-2019-empatheticdialogues" },
+    { "from": "zheng-2024-lmsys-chat-1m", "to": "rashkin-2019-empatheticdialogues" },
+    { "from": "feng-2023-mmdialog", "to": "rashkin-2019-empatheticdialogues" },
+    { "from": "hendrycks-2020-ethics", "to": "rashkin-2019-empatheticdialogues" }
   ]
 }

@@ -366,6 +366,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "rashkin-2019-empatheticdialogues",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [],
@@ -378,16 +385,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T19:09 xu-2024-opentom: step -> fetch",
-    "2026-07-27T19:09 xu-2024-opentom: step -> figures",
-    "2026-07-27T19:13 xu-2024-opentom: step -> draft",
-    "2026-07-27T19:27 xu-2024-opentom: step -> critique (round 1)",
-    "2026-07-27T19:42 xu-2024-opentom: step -> critique (round 2)",
-    "2026-07-27T19:49 xu-2024-opentom: step -> verify",
-    "2026-07-27T19:50 xu-2024-opentom: step -> queue-ops",
-    "2026-07-27T19:50 xu-2024-opentom: step -> podcast",
-    "2026-07-27T20:05 completed xu-2024-opentom (verdict=approved, rounds=2)",
-    "2026-07-27T20:06 started gandhi-2021-bib ('Baby Intuitions Benchmark (BIB): Discerning the goals, preferences, and actions of others')",
     "2026-07-27T20:08 gandhi-2021-bib: step -> fetch",
     "2026-07-27T20:09 gandhi-2021-bib: step -> figures",
     "2026-07-27T20:10 gandhi-2021-bib: step -> draft",
@@ -427,6 +424,16 @@
     "2026-07-27T23:52 ma-2024-mnms: step -> verify",
     "2026-07-27T23:53 ma-2024-mnms: step -> queue-ops",
     "2026-07-27T23:53 ma-2024-mnms: step -> podcast",
-    "2026-07-28T00:15 completed ma-2024-mnms (verdict=approved, rounds=2)"
+    "2026-07-28T00:15 completed ma-2024-mnms (verdict=approved, rounds=2)",
+    "2026-07-28T00:17 started rashkin-2019-empatheticdialogues ('Towards Empathetic Open-domain Conversation Models: A New Benchmark and Dataset')",
+    "2026-07-28T00:19 rashkin-2019-empatheticdialogues: step -> fetch",
+    "2026-07-28T00:19 rashkin-2019-empatheticdialogues: step -> figures",
+    "2026-07-28T00:20 rashkin-2019-empatheticdialogues: step -> draft",
+    "2026-07-28T00:37 rashkin-2019-empatheticdialogues: step -> critique (round 1)",
+    "2026-07-28T00:51 rashkin-2019-empatheticdialogues: step -> critique (round 2)",
+    "2026-07-28T01:00 rashkin-2019-empatheticdialogues: step -> verify",
+    "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> queue-ops",
+    "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> podcast",
+    "2026-07-28T01:17 completed rashkin-2019-empatheticdialogues (verdict=approved, rounds=2)"
   ]
 }

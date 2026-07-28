@@ -27,6 +27,16 @@ Entries with a null `citation_count` are backfilled from Semantic Scholar first
 (batch endpoint, `$S2_API_KEY` honoured per CLAUDE.md). Anything still unknown
 scores 0 for citations and is flagged in the output rather than guessed.
 
+CAVEAT -- the backfill looks up `arXiv:<id>`, and for a paper RETITLED between
+preprint and camera-ready that id can resolve to a stale preprint record whose
+citation count is a small fraction of the real one. EmpatheticDialogues is the
+worst case seen: `arXiv:1811.00207` returns "I Know the Feeling: Learning to
+Converse with Empathy" with 51 citations, while the ACL camera-ready record
+(P19-1534) has 1195 -- a 23x undercount that ranks a foundational dataset like
+a minor workshop paper. There is no cheap automatic fix (the two records aren't
+cross-linked), so treat a surprisingly low count on a well-known paper as
+suspect and re-search S2 by the camera-ready title before trusting the order.
+
 Only the ordering of that survey's `core` entries changes: each keeps one of the
 slots those entries already occupied, so the ~1,000 hand-curated general entries
 and every `foundational` entry stay exactly where they are. Nothing is added,
