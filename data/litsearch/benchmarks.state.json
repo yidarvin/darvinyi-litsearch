@@ -450,6 +450,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "voorhees-2000-trec-qa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -481,16 +488,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T08:58 shao-2026-medagentsbench: step -> verify",
-    "2026-07-28T08:59 shao-2026-medagentsbench: step -> queue-ops",
-    "2026-07-28T08:59 shao-2026-medagentsbench: step -> podcast",
-    "2026-07-28T09:16 completed shao-2026-medagentsbench (verdict=approved, rounds=2)",
-    "2026-07-28T09:19 started ye-2024-tooleyes ('ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios')",
-    "2026-07-28T09:21 ye-2024-tooleyes: step -> fetch",
-    "2026-07-28T09:22 ye-2024-tooleyes: step -> figures",
-    "2026-07-28T09:26 ye-2024-tooleyes: step -> draft",
-    "2026-07-28T09:39 ye-2024-tooleyes: step -> critique (round 1)",
-    "2026-07-28T09:41 skipped ye-2024-tooleyes (slug corrected to ye-2025-tooleyes: published at COLING 2025 (aclanthology 2025.coling-main.12), queue said arXiv)",
     "2026-07-28T09:41 started ye-2025-tooleyes ('ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios')",
     "2026-07-28T09:41 ye-2025-tooleyes: step -> fetch",
     "2026-07-28T09:41 ye-2025-tooleyes: step -> figures",
@@ -530,6 +527,16 @@
     "2026-07-28T13:43 muennighoff-2023-mteb: step -> verify",
     "2026-07-28T13:44 muennighoff-2023-mteb: step -> queue-ops",
     "2026-07-28T13:44 muennighoff-2023-mteb: step -> podcast",
-    "2026-07-28T14:05 completed muennighoff-2023-mteb (verdict=approved, rounds=2)"
+    "2026-07-28T14:05 completed muennighoff-2023-mteb (verdict=approved, rounds=2)",
+    "2026-07-28T14:08 started voorhees-2000-trec-qa ('Building a Question Answering Test Collection')",
+    "2026-07-28T14:11 voorhees-2000-trec-qa: step -> fetch",
+    "2026-07-28T14:11 voorhees-2000-trec-qa: step -> figures",
+    "2026-07-28T14:12 voorhees-2000-trec-qa: step -> draft",
+    "2026-07-28T14:21 voorhees-2000-trec-qa: step -> critique (round 1)",
+    "2026-07-28T14:35 voorhees-2000-trec-qa: step -> critique (round 2)",
+    "2026-07-28T14:41 voorhees-2000-trec-qa: step -> verify",
+    "2026-07-28T14:42 voorhees-2000-trec-qa: step -> queue-ops",
+    "2026-07-28T14:42 voorhees-2000-trec-qa: step -> podcast",
+    "2026-07-28T14:56 completed voorhees-2000-trec-qa (verdict=approved, rounds=2)"
   ]
 }

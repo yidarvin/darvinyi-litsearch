@@ -9310,6 +9310,22 @@
       "explainer": "papers/muennighoff-2023-mteb.html",
       "audio_url": "https://pod.darvinyi.com/audio/muennighoff-2023-mteb.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "voorhees-2000-trec-qa",
+      "short": "TREC-8 QA Track",
+      "title": "Building a Question Answering Test Collection",
+      "authors": "Voorhees, Tice",
+      "year": 2000,
+      "date": "2000-07",
+      "venue": "ACM SIGIR",
+      "citation_count": 651,
+      "topic": "Benchmarks & Evals",
+      "author_group": "NIST",
+      "abstract": "Reports on the TREC-8 Question Answering track, the first large-scale, domain-independent QA evaluation: 200 closed-class fact questions (198 scorable) over a 528K-document newswire/newspaper collection. Of the 45 runs submitted by 20 participating organizations, 41 were scored by mean reciprocal rank. Three independent assessors judged every answer string — about 6% of judgments were contested (mean overlap .641) — yet system rankings stayed stable under different judgment sets (Kendall's tau .9146–.9976), while building a truly reusable QA test collection (one scoring new, unjudged runs without re-judging) remained unsolved.",
+      "explainer": "papers/voorhees-2000-trec-qa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/voorhees-2000-trec-qa.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -15790,6 +15806,12 @@
     { "from": "muennighoff-2023-mteb", "to": "radford-2019-gpt2" },
     { "from": "muennighoff-2023-mteb", "to": "izacard-2021-contriever" },
     { "from": "shi-2025-toolret", "to": "muennighoff-2023-mteb" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "muennighoff-2023-mteb" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "muennighoff-2023-mteb" },
+    { "from": "rajpurkar-2016-squad", "to": "voorhees-2000-trec-qa" },
+    { "from": "joshi-2017-triviaqa", "to": "voorhees-2000-trec-qa" },
+    { "from": "saha-2018-csqa", "to": "voorhees-2000-trec-qa" },
+    { "from": "gao-2021-simcse", "to": "voorhees-2000-trec-qa" },
+    { "from": "zhao-2021-calibrate", "to": "voorhees-2000-trec-qa" },
+    { "from": "lu-2021-fantastically-ordered", "to": "voorhees-2000-trec-qa" }
   ]
 }
