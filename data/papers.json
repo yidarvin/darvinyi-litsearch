@@ -9246,6 +9246,22 @@
       "explainer": "papers/shao-2026-medagentsbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/shao-2026-medagentsbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "ye-2025-tooleyes",
+      "short": "ToolEyes",
+      "title": "ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios",
+      "authors": "Ye, Li, Gao, Huang, Wu, Li, Fan, Dou, Ji, Zhang, Gui, Huang",
+      "year": 2025,
+      "date": "2024-01",
+      "venue": "COLING 2025",
+      "citation_count": 42,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Fudan University",
+      "abstract": "Introduces ToolEyes, a fine-grained evaluation system that scores LLM tool use across seven real-world scenarios (568 real, invocable tools) on five capability dimensions -- format alignment, intent comprehension, behavioral planning, tool selection, and answer organization -- rather than just final-answer correctness against a predetermined gold trace. Across ten LLMs, GPT-4 tops every scenario (70.31% overall) but still manages only 35.70% on behavioral planning, and enlarging LLaMA-2-chat from 7B to 70B parameters collapses its score (13.59% to 5.29%), traced to a formatting failure that breaks output parsing in 91% of its trials.",
+      "explainer": "papers/ye-2025-tooleyes.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ye-2025-tooleyes.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15659,6 +15675,29 @@
     { "from": "shao-2026-medagentsbench", "to": "wei-2022-cot" },
     { "from": "shao-2026-medagentsbench", "to": "jin-2020-medqa" },
     { "from": "shao-2026-medagentsbench", "to": "hendrycks-2020-mmlu" },
-    { "from": "shao-2026-medagentsbench", "to": "jin-2019-pubmedqa" }
+    { "from": "shao-2026-medagentsbench", "to": "jin-2019-pubmedqa" },
+    { "from": "ye-2025-tooleyes", "to": "ye-2024-rotbench" },
+    { "from": "ye-2025-tooleyes", "to": "huang-2023-metatool" },
+    { "from": "ye-2025-tooleyes", "to": "qin-2023-toolllm" },
+    { "from": "ye-2025-tooleyes", "to": "patil-2023-gorilla" },
+    { "from": "ye-2025-tooleyes", "to": "li-2023-api-bank" },
+    { "from": "ye-2025-tooleyes", "to": "schick-2023-toolformer" },
+    { "from": "ye-2025-tooleyes", "to": "yao-2022-react" },
+    { "from": "ye-2025-tooleyes", "to": "shen-2023-taskbench" },
+    { "from": "ye-2025-tooleyes", "to": "roziere-2023-code-llama" },
+    { "from": "ye-2025-tooleyes", "to": "touvron-2023-llama2" },
+    { "from": "ye-2025-tooleyes", "to": "touvron-2023-llama" },
+    { "from": "ye-2025-tooleyes", "to": "bai-2022-constitutional-ai" },
+    { "from": "ye-2025-tooleyes", "to": "chung-2022-flan" },
+    { "from": "ye-2025-tooleyes", "to": "bai-2022-hh-rlhf" },
+    { "from": "ye-2025-tooleyes", "to": "su-2021-roformer" },
+    { "from": "ye-2025-tooleyes", "to": "brown-2020-gpt3" },
+    { "from": "ye-2025-tooleyes", "to": "openai-2023-gpt4" },
+    { "from": "ye-2025-tooleyes", "to": "wei-2022-cot" },
+    { "from": "ye-2025-tooleyes", "to": "wei-2022-emergent-abilities" },
+    { "from": "ye-2025-tooleyes", "to": "lu-2023-chameleon" },
+    { "from": "ye-2024-rotbench", "to": "ye-2025-tooleyes" },
+    { "from": "kim-2024-biggenbench", "to": "ye-2025-tooleyes" },
+    { "from": "guo-2024-stabletoolbench", "to": "ye-2025-tooleyes" }
   ]
 }

@@ -42,7 +42,29 @@ After you finish each step, checkpoint it before doing anything else:
 rejects illegal transitions, so if this errors, stop and report the error —
 don't work around it).
 
-**`resolve`** — Procedure A step 2. Confirm the arxiv id/DOI via Semantic
+**`resolve`** — Procedure A step 2. **Treat the queue entry's `authors`,
+`venue` and `year` as unverified hints, not facts.** Many entries were queued
+while the paper was still a preprint, and the fields go stale or were wrong to
+begin with — three consecutive papers proved it: one queued as "Xie et al."
+had no Xie in the author list at all (and was published in *Patterns*, not
+arXiv); one queued as "arXiv" was COLING 2025; one queued as ACL 2024 was
+Findings, not Main. Two of those changed the slug's year, and a slug is
+permanent once published. So at `resolve`, before writing any file:
+  - Get the author **order** from arXiv's `citation_author` meta tags (S2's
+    ordering is sometimes wrong — it put the second author first on
+    MedAgentsBench).
+  - Search for a published version by title, not just by arXiv id. S2 often
+    keeps two records — the preprint one carries the citations, the venue one
+    carries the venue — and a title search is what surfaces the second.
+    Cross-check the ACL Anthology / publisher DOI when a venue turns up.
+  - `year` is the **publication** year and governs the slug; `date` is the
+    arXiv preprint month and governs timeline placement. They legitimately
+    differ (see CLAUDE.md).
+If the first author or the year differs from the queue entry, **stop and
+report before writing anything** — re-slugging costs nothing now and is
+impossible later.
+
+Then confirm the arxiv id/DOI via Semantic
 Scholar and the web (authors + year must match the queue entry); send the
 S2 API key on every request: `curl -s -H "x-api-key: $S2_API_KEY"
 "https://api.semanticscholar.org/graph/v1/paper/<id>?fields=..."` (back off

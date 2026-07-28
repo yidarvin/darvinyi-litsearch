@@ -422,6 +422,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "ye-2025-tooleyes",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -436,6 +443,12 @@
       "slug": "xie-2025-medagentsbench",
       "reason": "queue metadata wrong: author 'Xie' not in author list (true first author Yanjun Shao), title differs, and paper is published in Patterns 2026 not arXiv-only; re-slugging to shao-2026-medagentsbench",
       "date": "2026-07-28"
+    },
+    {
+      "title": "ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios",
+      "slug": "ye-2024-tooleyes",
+      "reason": "slug corrected to ye-2025-tooleyes: published at COLING 2025 (aclanthology 2025.coling-main.12), queue said arXiv",
+      "date": "2026-07-28"
     }
   ],
   "survey_build": {
@@ -447,22 +460,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T03:34 liao-2024-saps: step -> figures",
-    "2026-07-28T03:35 liao-2024-saps: step -> draft",
-    "2026-07-28T03:46 liao-2024-saps: step -> critique (round 1)",
-    "2026-07-28T04:08 liao-2024-saps: step -> critique (round 2)",
-    "2026-07-28T04:18 liao-2024-saps: step -> verify",
-    "2026-07-28T04:18 liao-2024-saps: step -> queue-ops",
-    "2026-07-28T04:18 liao-2024-saps: step -> podcast",
-    "2026-07-28T04:31 completed liao-2024-saps (verdict=approved, rounds=2)",
-    "2026-07-28T04:34 started bogin-2024-super ('SUPER: Evaluating Agents on Setting Up and Executing Tasks from Research Repositories')",
-    "2026-07-28T04:36 bogin-2024-super: step -> fetch",
-    "2026-07-28T04:37 bogin-2024-super: step -> figures",
-    "2026-07-28T04:38 bogin-2024-super: step -> draft",
-    "2026-07-28T04:56 bogin-2024-super: step -> critique (round 1)",
-    "2026-07-28T05:09 bogin-2024-super: step -> critique (round 2)",
-    "2026-07-28T05:18 bogin-2024-super: step -> verify",
-    "2026-07-28T05:19 bogin-2024-super: step -> queue-ops",
     "2026-07-28T05:19 bogin-2024-super: step -> podcast",
     "2026-07-28T05:35 completed bogin-2024-super (verdict=approved, rounds=2)",
     "2026-07-28T05:38 started ye-2024-rotbench ('RoTBench: A Multi-Level Benchmark for Evaluating the Robustness of Large Language Models in Tool Learning')",
@@ -496,6 +493,22 @@
     "2026-07-28T08:58 shao-2026-medagentsbench: step -> verify",
     "2026-07-28T08:59 shao-2026-medagentsbench: step -> queue-ops",
     "2026-07-28T08:59 shao-2026-medagentsbench: step -> podcast",
-    "2026-07-28T09:16 completed shao-2026-medagentsbench (verdict=approved, rounds=2)"
+    "2026-07-28T09:16 completed shao-2026-medagentsbench (verdict=approved, rounds=2)",
+    "2026-07-28T09:19 started ye-2024-tooleyes ('ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios')",
+    "2026-07-28T09:21 ye-2024-tooleyes: step -> fetch",
+    "2026-07-28T09:22 ye-2024-tooleyes: step -> figures",
+    "2026-07-28T09:26 ye-2024-tooleyes: step -> draft",
+    "2026-07-28T09:39 ye-2024-tooleyes: step -> critique (round 1)",
+    "2026-07-28T09:41 skipped ye-2024-tooleyes (slug corrected to ye-2025-tooleyes: published at COLING 2025 (aclanthology 2025.coling-main.12), queue said arXiv)",
+    "2026-07-28T09:41 started ye-2025-tooleyes ('ToolEyes: Fine-Grained Evaluation for Tool Learning Capabilities of Large Language Models in Real-world Scenarios')",
+    "2026-07-28T09:41 ye-2025-tooleyes: step -> fetch",
+    "2026-07-28T09:41 ye-2025-tooleyes: step -> figures",
+    "2026-07-28T09:41 ye-2025-tooleyes: step -> draft",
+    "2026-07-28T09:41 ye-2025-tooleyes: step -> critique (round 1)",
+    "2026-07-28T10:06 ye-2025-tooleyes: step -> critique (round 2)",
+    "2026-07-28T10:18 ye-2025-tooleyes: step -> verify",
+    "2026-07-28T10:19 ye-2025-tooleyes: step -> queue-ops",
+    "2026-07-28T10:19 ye-2025-tooleyes: step -> podcast",
+    "2026-07-28T10:32 completed ye-2025-tooleyes (verdict=approved, rounds=2)"
   ]
 }
