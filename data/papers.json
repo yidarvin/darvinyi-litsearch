@@ -9214,6 +9214,22 @@
       "explainer": "papers/ye-2024-rotbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/ye-2024-rotbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "basu-2024-api-blend",
+      "short": "API-BLEND",
+      "title": "API-BLEND: A Comprehensive Corpora for Training and Benchmarking API LLMs",
+      "authors": "Basu, Abdelaziz, Chaudhury, Dan, Crouse, Munawar, Austel, Kumaravel, Muthusamy, Kapanipathi, Lastras",
+      "year": 2024,
+      "date": "2024-02",
+      "venue": "ACL 2024 (Main Conference)",
+      "citation_count": 45,
+      "topic": "Benchmarks & Evals",
+      "author_group": "IBM Research",
+      "abstract": "Repurposes five human-annotated dialogue/semantic-parsing datasets (SGD, MultiWOZ, ATIS, SNIPS, TopV2) into API-call-sequence training/in-domain-test data via LLM-assisted and grammar-based conversion, then holds out five out-of-distribution suites (ToolLLM, API-Bank, ToolBench, ToolAlpaca, plus a newly-built SeqToolQA) purely for benchmarking. Four of five models fine-tuned on the combined corpus beat two existing tool-tuned checkpoints (ToolLLaMA-2-7B, Lynx-7B) on every weighted-average OOD metric (the fifth ties/trails on Parameter-F1), though the paper notes those two were built for a different evaluation protocol.",
+      "explainer": "papers/basu-2024-api-blend.html",
+      "audio_url": "https://pod.darvinyi.com/audio/basu-2024-api-blend.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15596,6 +15612,25 @@
     { "from": "ye-2024-rotbench", "to": "yao-2022-react" },
     { "from": "ye-2024-rotbench", "to": "brown-2020-gpt3" },
     { "from": "ye-2024-rotbench", "to": "roziere-2023-code-llama" },
-    { "from": "ye-2024-rotbench", "to": "openai-2023-gpt4" }
+    { "from": "ye-2024-rotbench", "to": "openai-2023-gpt4" },
+    { "from": "basu-2024-api-blend", "to": "huang-2023-metatool" },
+    { "from": "basu-2024-api-blend", "to": "qin-2023-toolllm" },
+    { "from": "basu-2024-api-blend", "to": "li-2023-api-bank" },
+    { "from": "basu-2024-api-blend", "to": "patil-2023-gorilla" },
+    { "from": "basu-2024-api-blend", "to": "schick-2023-toolformer" },
+    { "from": "basu-2024-api-blend", "to": "yao-2022-react" },
+    { "from": "basu-2024-api-blend", "to": "li-2023-starcoder" },
+    { "from": "basu-2024-api-blend", "to": "touvron-2023-llama2" },
+    { "from": "basu-2024-api-blend", "to": "openai-2023-gpt4" },
+    { "from": "basu-2024-api-blend", "to": "dettmers-2023-qlora" },
+    { "from": "basu-2024-api-blend", "to": "brown-2020-gpt3" },
+    { "from": "basu-2024-api-blend", "to": "shinn-2023-reflexion" },
+    { "from": "basu-2024-api-blend", "to": "yang-2018-hotpotqa" },
+    { "from": "basu-2024-api-blend", "to": "chung-2022-flan" },
+    { "from": "basu-2024-api-blend", "to": "beltagy-2020-longformer" },
+    { "from": "basu-2024-api-blend", "to": "cobbe-2021-gsm8k" },
+    { "from": "basu-2024-api-blend", "to": "radford-2019-gpt2" },
+    { "from": "zhang-2024-agent-security-bench", "to": "basu-2024-api-blend" },
+    { "from": "yehudai-2025-agent-eval-survey", "to": "basu-2024-api-blend" }
   ]
 }

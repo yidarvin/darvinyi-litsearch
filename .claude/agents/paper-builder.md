@@ -91,6 +91,16 @@ actually uses. → `set-step draft`
    applied at revise time, those pages converged cleanly. Doing it up front
    is strictly cheaper than doing it after a critic finds ten things.
 
+   **Every error found in a transcription so far has been in its prose, never
+   in its cells.** On SUPER it was the file's one non-tabular inference (that
+   two problem sets used disjoint repositories, which the paper never says);
+   on API-BLEND it was a summary bullet asserting five models beat two
+   baselines "on every metric — confirmed across the board" when the cells
+   directly above it showed one model tying on one metric and trailing on
+   another. So: copy cells verbatim, and treat any sentence you write *about*
+   the cells as a claim needing the same check as page prose. Mark anything
+   that isn't a cell or a caption as an inference and cite its page.
+
    Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill
    `templates/explainer.html` → `public/papers/<slug>.html`, writing every
