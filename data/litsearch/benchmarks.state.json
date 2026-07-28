@@ -352,6 +352,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "chen-2025-acebench",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -364,17 +371,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T17:43 chen-2024-tombench: step -> critique (round 1)",
-    "2026-07-27T17:54 chen-2024-tombench: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-27T17:54 chen-2024-tombench: step -> revise",
-    "2026-07-27T17:55 chen-2024-tombench: step -> critique (round 2)",
-    "2026-07-27T17:59 chen-2024-tombench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-27T17:59 chen-2024-tombench: step -> verify",
-    "2026-07-27T18:00 chen-2024-tombench: step -> queue-ops",
-    "2026-07-27T18:16 chen-2024-tombench: step -> podcast",
-    "2026-07-27T18:16 completed chen-2024-tombench (verdict=approved, rounds=2)",
-    "2026-07-27T18:19 started sabour-2024-emobench ('EmoBench: Evaluating the Emotional Intelligence of Large Language Models')",
-    "2026-07-27T18:21 sabour-2024-emobench: step -> fetch",
     "2026-07-27T18:21 sabour-2024-emobench: step -> figures",
     "2026-07-27T18:22 sabour-2024-emobench: step -> figures",
     "2026-07-27T18:23 sabour-2024-emobench: step -> draft",
@@ -413,6 +409,17 @@
     "2026-07-27T21:31 chan-2024-negotiationtom: step -> verify",
     "2026-07-27T21:32 chan-2024-negotiationtom: step -> queue-ops",
     "2026-07-27T21:32 chan-2024-negotiationtom: step -> podcast",
-    "2026-07-27T22:00 completed chan-2024-negotiationtom (verdict=approved, rounds=2)"
+    "2026-07-27T22:00 completed chan-2024-negotiationtom (verdict=approved, rounds=2)",
+    "2026-07-27T22:02 started chen-2025-acebench ('ACEBench: Who Wins the Match Point in Tool Usage?')",
+    "2026-07-27T22:04 chen-2025-acebench: step -> fetch",
+    "2026-07-27T22:04 chen-2025-acebench: step -> figures",
+    "2026-07-27T22:06 chen-2025-acebench: step -> draft",
+    "2026-07-27T22:28 chen-2025-acebench: step -> critique (round 1)",
+    "2026-07-27T22:41 chen-2025-acebench: step -> critique (round 2)",
+    "2026-07-27T22:50 chen-2025-acebench: step -> critique (round 3)",
+    "2026-07-27T22:53 chen-2025-acebench: step -> verify",
+    "2026-07-27T22:54 chen-2025-acebench: step -> queue-ops",
+    "2026-07-27T22:54 chen-2025-acebench: step -> podcast",
+    "2026-07-27T23:09 completed chen-2025-acebench (verdict=approved, rounds=3)"
   ]
 }

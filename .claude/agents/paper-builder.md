@@ -112,6 +112,23 @@ actually uses. → `set-step draft`
    — confirm it is actually cited. Plausibility is not citation, and a wrong
    edge is harder to notice than a missing one.
 
+   **Check the direction of every comparison, not just the numbers.** A
+   *reversed* comparison quotes two real values from the right table and
+   still says the opposite of what they mean — on NegotiationToM the page
+   called its 7.0 questions/context "notably longer" than FANToM's 12.9.
+   It reads as fluent and survives a number-by-number check, because both
+   numbers are correct. After writing any "more/less/longer/higher than"
+   sentence, re-read it against the cells and confirm the inequality points
+   the way you wrote it.
+
+   **Make the page agree with itself.** Before finishing, re-read what your
+   method and results sections already said, then check the critique
+   against them. On NegotiationToM the critique faulted the paper for
+   reporting only an aggregate kappa while the method section quoted all
+   six per-sub-question values; on BIB the two sections described the
+   baselines differently. Neither section was wrong alone — the page was
+   arguing with itself, which no single-section check catches.
+
    **Check whether you have the published version.** arXiv often serves a
    preprint that predates the camera-ready, and the gap is not cosmetic — on
    MMDialog the fetched arXiv v3 was 13 pages while the ACL camera-ready is
