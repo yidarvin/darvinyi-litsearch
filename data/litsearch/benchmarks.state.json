@@ -324,6 +324,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "sabour-2024-emobench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-27"
     }
   ],
   "skipped": [],
@@ -336,17 +343,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T15:26 feng-2023-mmdialog: 2 open blocker(s) from round 2 (verdict: revise)",
-    "2026-07-27T15:26 feng-2023-mmdialog: step -> revise",
-    "2026-07-27T15:27 feng-2023-mmdialog: step -> critique (round 3)",
-    "2026-07-27T15:31 feng-2023-mmdialog: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-07-27T15:31 feng-2023-mmdialog: step -> verify",
-    "2026-07-27T15:32 feng-2023-mmdialog: step -> queue-ops",
-    "2026-07-27T15:46 feng-2023-mmdialog: step -> podcast",
-    "2026-07-27T15:46 completed feng-2023-mmdialog (verdict=approved, rounds=3)",
-    "2026-07-27T15:48 started liu-2020-meddg ('MedDG: An Entity-Centric Medical Consultation Dataset for Entity-Aware Medical Dialogue Generation')",
-    "2026-07-27T15:49 liu-2020-meddg: step -> fetch",
-    "2026-07-27T15:51 liu-2020-meddg: step -> figures",
     "2026-07-27T15:51 liu-2020-meddg: step -> draft",
     "2026-07-27T16:01 liu-2020-meddg: step -> critique (round 1)",
     "2026-07-27T16:10 liu-2020-meddg: 6 open blocker(s) from round 1 (verdict: revise)",
@@ -385,6 +381,17 @@
     "2026-07-27T17:59 chen-2024-tombench: step -> verify",
     "2026-07-27T18:00 chen-2024-tombench: step -> queue-ops",
     "2026-07-27T18:16 chen-2024-tombench: step -> podcast",
-    "2026-07-27T18:16 completed chen-2024-tombench (verdict=approved, rounds=2)"
+    "2026-07-27T18:16 completed chen-2024-tombench (verdict=approved, rounds=2)",
+    "2026-07-27T18:19 started sabour-2024-emobench ('EmoBench: Evaluating the Emotional Intelligence of Large Language Models')",
+    "2026-07-27T18:21 sabour-2024-emobench: step -> fetch",
+    "2026-07-27T18:21 sabour-2024-emobench: step -> figures",
+    "2026-07-27T18:22 sabour-2024-emobench: step -> figures",
+    "2026-07-27T18:23 sabour-2024-emobench: step -> draft",
+    "2026-07-27T18:33 sabour-2024-emobench: step -> critique (round 1)",
+    "2026-07-27T18:47 sabour-2024-emobench: step -> critique (round 2)",
+    "2026-07-27T18:51 sabour-2024-emobench: step -> verify",
+    "2026-07-27T18:52 sabour-2024-emobench: step -> queue-ops",
+    "2026-07-27T18:52 sabour-2024-emobench: step -> podcast",
+    "2026-07-27T19:06 completed sabour-2024-emobench (verdict=approved, rounds=2)"
   ]
 }

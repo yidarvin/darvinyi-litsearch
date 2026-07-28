@@ -9022,6 +9022,22 @@
       "explainer": "papers/chen-2024-tombench.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2024-tombench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "sabour-2024-emobench",
+      "short": "EmoBench",
+      "title": "EmoBench: Evaluating the Emotional Intelligence of Large Language Models",
+      "authors": "Sabour, Liu, Zhang, Liu, Zhou, Sunaryo, Li, Lee, Mihalcea, Huang",
+      "year": 2024,
+      "date": "2024-02",
+      "venue": "ACL 2024",
+      "citation_count": 71,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua CoAI",
+      "abstract": "A theory-grounded, hand-crafted bilingual (English/Chinese) benchmark spanning two machine-EI capabilities -- Emotional Understanding (200 MCQs: emotion + cause recognition across complex emotions, personal beliefs, cues, and theory-of-mind-style perspective-taking) and Emotional Application (200 MCQs: choosing the most effective response to an emotional dilemma) -- engineered so scenarios reward inferring an unstated cause rather than pattern-matching. Across 12 tested LLMs, GPT-4 leads (59.75%/54.12% EU accuracy, EN/ZH) but still trails the average of 48 recruited human participants and never beats the top human scorers; chain-of-thought prompting mostly doesn't help and actively hurts sub-14B models.",
+      "explainer": "papers/sabour-2024-emobench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sabour-2024-emobench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15238,6 +15254,15 @@
     { "from": "chen-2024-tombench", "to": "touvron-2023-llama2" },
     { "from": "chen-2024-tombench", "to": "openai-2023-gpt4" },
     { "from": "chen-2024-tombench", "to": "bai-2023-qwen" },
-    { "from": "chen-2024-tombench", "to": "jiang-2023-mistral-7b" }
+    { "from": "chen-2024-tombench", "to": "jiang-2023-mistral-7b" },
+    { "from": "sabour-2024-emobench", "to": "kim-2023-fantom" },
+    { "from": "sabour-2024-emobench", "to": "zhou-2023-sotopia" },
+    { "from": "sabour-2024-emobench", "to": "bai-2023-qwen" },
+    { "from": "sabour-2024-emobench", "to": "touvron-2023-llama2" },
+    { "from": "sabour-2024-emobench", "to": "zhong-2023-agieval" },
+    { "from": "sabour-2024-emobench", "to": "brown-2020-gpt3" },
+    { "from": "sabour-2024-emobench", "to": "li-2017-dailydialog" },
+    { "from": "sabour-2024-emobench", "to": "wei-2022-cot" },
+    { "from": "sabour-2024-emobench", "to": "openai-2023-gpt4" }
   ]
 }
