@@ -192,7 +192,16 @@ critic is factually wrong, quote the exact PDF text (with page number from
 `paper.txt`) that proves it — the critic adjudicates the disagreement, you
 don't get to just ignore a blocker. Write one entry per blocker id to
 `work/<slug>/response-r<N>.md`. Touch nothing unrelated to a blocker — a
-revise pass is not a second chance to improve unrelated prose. Re-run
+revise pass is not a second chance to improve unrelated prose.
+
+**Re-derive the blocker's facts from the paper; don't copy them out of the
+critique.** A blocker's `evidence` line can itself be wrong, and a repair
+that trusts it writes the critic's error onto the page under your name. On
+ACEBench a blocker asserted two models held "the two lowest" scores; the
+correct sort put a third model between them, and the resulting sentence
+quoted both numbers side by side while stating the inequality backwards.
+When a blocker involves an ordering, a count, or a superlative, recount it
+from the table yourself rather than adjusting the old number. Re-run
 `python3 scripts/lint_pages.py <slug> --fix` before finishing. You do not
 advance the step yourself here either — the orchestrator moves `critique`
 to round `N+1` once it has your response.

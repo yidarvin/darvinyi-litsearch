@@ -9102,6 +9102,22 @@
       "explainer": "papers/chen-2025-acebench.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2025-acebench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "ma-2024-mnms",
+      "short": "m&m's",
+      "title": "m&m's: A Benchmark to Evaluate Tool-Use for multi-step multi-modal Tasks",
+      "authors": "Ma, Huang, Zhang, Gupta, Krishna",
+      "year": 2024,
+      "date": "2024-03",
+      "venue": "ECCV 2024",
+      "citation_count": 52,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Washington / AI2",
+      "abstract": "Introduces m&m's, a tool-use planning benchmark of 4,427 auto-generated multi-step multi-modal queries (1,565 human-verified, 882 tool-balanced for evaluation) built over 33 real, callable tools -- 13 multi-modal ML models, 11 image-processing modules, 9 free public APIs -- with real image/audio/text inputs rather than placeholder filenames or LLM-emulated execution. Evaluating 10 LLMs across 2 planning strategies, 2 plan formats, and 3 feedback types on tool-F1, argname-F1, and pass rate, it finds multi-step planning beats step-by-step for every model tested, verification/execution feedback trades under 5 points of tool-F1 for large pass-rate gains, and JSON format holds comparable tool-F1 to code with a much higher pass rate.",
+      "explainer": "papers/ma-2024-mnms.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ma-2024-mnms.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15363,6 +15379,26 @@
     { "from": "chen-2025-acebench", "to": "deepseek-2024-v3" },
     { "from": "chen-2025-acebench", "to": "schick-2023-toolformer" },
     { "from": "chen-2025-acebench", "to": "patil-2025-bfcl" },
-    { "from": "chen-2025-acebench", "to": "gou-2023-tora" }
+    { "from": "chen-2025-acebench", "to": "gou-2023-tora" },
+    { "from": "ma-2024-mnms", "to": "huang-2023-metatool" },
+    { "from": "ma-2024-mnms", "to": "mialon-2023-gaia" },
+    { "from": "ma-2024-mnms", "to": "qin-2023-toolllm" },
+    { "from": "ma-2024-mnms", "to": "schick-2023-toolformer" },
+    { "from": "ma-2024-mnms", "to": "shen-2023-hugginggpt" },
+    { "from": "ma-2024-mnms", "to": "shen-2023-taskbench" },
+    { "from": "ma-2024-mnms", "to": "shinn-2023-reflexion" },
+    { "from": "ma-2024-mnms", "to": "wang-2023-voyager" },
+    { "from": "ma-2024-mnms", "to": "wu-2023-autogen" },
+    { "from": "ma-2024-mnms", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "ma-2024-mnms", "to": "yao-2022-react" },
+    { "from": "ma-2024-mnms", "to": "deng-2009-imagenet" },
+    { "from": "ma-2024-mnms", "to": "rajpurkar-2016-squad" },
+    { "from": "ma-2024-mnms", "to": "ruan-2023-toolemu" },
+    { "from": "ma-2024-mnms", "to": "yang-2018-hotpotqa" },
+    { "from": "ma-2024-mnms", "to": "yao-2022-webshop" },
+    { "from": "ma-2024-mnms", "to": "madaan-2023-self-refine" },
+    { "from": "ma-2024-mnms", "to": "wang-2022-self-consistency" },
+    { "from": "schmidgall-2024-agentclinic", "to": "ma-2024-mnms" },
+    { "from": "guo-2025-visualtoolbench", "to": "ma-2024-mnms" }
   ]
 }

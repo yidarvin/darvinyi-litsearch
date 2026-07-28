@@ -359,6 +359,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-27"
+    },
+    {
+      "slug": "ma-2024-mnms",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [],
@@ -371,16 +378,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T18:21 sabour-2024-emobench: step -> figures",
-    "2026-07-27T18:22 sabour-2024-emobench: step -> figures",
-    "2026-07-27T18:23 sabour-2024-emobench: step -> draft",
-    "2026-07-27T18:33 sabour-2024-emobench: step -> critique (round 1)",
-    "2026-07-27T18:47 sabour-2024-emobench: step -> critique (round 2)",
-    "2026-07-27T18:51 sabour-2024-emobench: step -> verify",
-    "2026-07-27T18:52 sabour-2024-emobench: step -> queue-ops",
-    "2026-07-27T18:52 sabour-2024-emobench: step -> podcast",
-    "2026-07-27T19:06 completed sabour-2024-emobench (verdict=approved, rounds=2)",
-    "2026-07-27T19:08 started xu-2024-opentom ('OpenToM: A Comprehensive Benchmark for Evaluating Theory-of-Mind Reasoning Capabilities of Large Language Models')",
     "2026-07-27T19:09 xu-2024-opentom: step -> fetch",
     "2026-07-27T19:09 xu-2024-opentom: step -> figures",
     "2026-07-27T19:13 xu-2024-opentom: step -> draft",
@@ -420,6 +417,16 @@
     "2026-07-27T22:53 chen-2025-acebench: step -> verify",
     "2026-07-27T22:54 chen-2025-acebench: step -> queue-ops",
     "2026-07-27T22:54 chen-2025-acebench: step -> podcast",
-    "2026-07-27T23:09 completed chen-2025-acebench (verdict=approved, rounds=3)"
+    "2026-07-27T23:09 completed chen-2025-acebench (verdict=approved, rounds=3)",
+    "2026-07-27T23:11 started ma-2024-mnms (\"m&m's: A Benchmark to Evaluate Tool-Use for multi-step multi-modal Tasks\")",
+    "2026-07-27T23:12 ma-2024-mnms: step -> fetch",
+    "2026-07-27T23:12 ma-2024-mnms: step -> figures",
+    "2026-07-27T23:16 ma-2024-mnms: step -> draft",
+    "2026-07-27T23:30 ma-2024-mnms: step -> critique (round 1)",
+    "2026-07-27T23:43 ma-2024-mnms: step -> critique (round 2)",
+    "2026-07-27T23:52 ma-2024-mnms: step -> verify",
+    "2026-07-27T23:53 ma-2024-mnms: step -> queue-ops",
+    "2026-07-27T23:53 ma-2024-mnms: step -> podcast",
+    "2026-07-28T00:15 completed ma-2024-mnms (verdict=approved, rounds=2)"
   ]
 }
