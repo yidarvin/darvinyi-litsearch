@@ -9278,6 +9278,22 @@
       "explainer": "papers/shi-2025-toolret.html",
       "audio_url": "https://pod.darvinyi.com/audio/shi-2025-toolret.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "li-2026-agentskillos",
+      "short": "AgentSkillOS",
+      "title": "Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale",
+      "authors": "Li, Mu, Chen, Ren, Cui, Zhang, Bai, Hu",
+      "year": 2026,
+      "date": "2026-03",
+      "venue": "arXiv",
+      "citation_count": 41,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Shanghai Artificial Intelligence Laboratory",
+      "abstract": "Introduces AgentSkillOS, a two-stage framework that organizes decentralized Claude Agent Skill ecosystems of up to 200,000 skills (drawn from a marketplace of 280,000+ as of Feb 2026) into a capability tree via recursive LLM categorization, then retrieves and composes skills into DAG-based execution plans under three orchestration strategies (Quality-/Efficiency-/Simplicity-First). Also constructs a 30-task, five-category benchmark of artifact-rich deliverables scored via LLM-judge pairwise comparison aggregated with a Bradley-Terry model; across ecosystem sizes from 200 to 200K skills, the DAG-orchestrated variants beat both native flat skill invocation and a skill-free baseline, and an ablation shows DAG orchestration helps even when the agent is handed the oracle skill set directly.",
+      "explainer": "papers/li-2026-agentskillos.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2026-agentskillos.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15732,6 +15748,20 @@
     { "from": "shi-2025-toolret", "to": "ye-2025-tooleyes" },
     { "from": "shi-2025-toolret", "to": "chang-2023-llm-eval-survey" },
     { "from": "shi-2025-toolret", "to": "lu-2023-chameleon" },
-    { "from": "shi-2025-toolret", "to": "ma-2024-mnms" }
+    { "from": "shi-2025-toolret", "to": "ma-2024-mnms" },
+    { "from": "li-2026-agentskillos", "to": "jimenez-2023-swe-bench" },
+    { "from": "li-2026-agentskillos", "to": "xie-2024-osworld" },
+    { "from": "li-2026-agentskillos", "to": "yao-2022-react" },
+    { "from": "li-2026-agentskillos", "to": "lewis-2020-rag" },
+    { "from": "li-2026-agentskillos", "to": "schick-2023-toolformer" },
+    { "from": "li-2026-agentskillos", "to": "zhou-2023-webarena" },
+    { "from": "li-2026-agentskillos", "to": "mialon-2023-gaia" },
+    { "from": "li-2026-agentskillos", "to": "chen-2024-scienceagentbench" },
+    { "from": "li-2026-agentskillos", "to": "shen-2023-hugginggpt" },
+    { "from": "li-2026-agentskillos", "to": "liu-2023-agentbench" },
+    { "from": "li-2026-agentskillos", "to": "patil-2023-gorilla" },
+    { "from": "li-2026-agentskillos", "to": "qin-2023-toolllm" },
+    { "from": "li-2026-agentskillos", "to": "li-2023-api-bank" },
+    { "from": "li-2026-agentskillos", "to": "shen-2023-taskbench" }
   ]
 }

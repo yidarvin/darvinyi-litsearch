@@ -436,6 +436,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "li-2026-agentskillos",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -467,16 +474,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T06:21 ye-2024-rotbench: step -> podcast",
-    "2026-07-28T06:53 completed ye-2024-rotbench (verdict=approved, rounds=2)",
-    "2026-07-28T06:55 started basu-2024-api-blend ('API-BLEND: A Comprehensive Corpora for Training and Benchmarking API LLMs')",
-    "2026-07-28T06:56 basu-2024-api-blend: step -> fetch",
-    "2026-07-28T06:57 basu-2024-api-blend: step -> figures",
-    "2026-07-28T07:01 basu-2024-api-blend: step -> draft",
-    "2026-07-28T07:24 basu-2024-api-blend: step -> critique (round 1)",
-    "2026-07-28T07:39 basu-2024-api-blend: step -> critique (round 2)",
-    "2026-07-28T07:47 basu-2024-api-blend: step -> verify",
-    "2026-07-28T07:49 basu-2024-api-blend: step -> queue-ops",
     "2026-07-28T07:49 basu-2024-api-blend: step -> podcast",
     "2026-07-28T08:05 completed basu-2024-api-blend (verdict=approved, rounds=2)",
     "2026-07-28T08:07 started xie-2025-medagentsbench ('MedicalAgentsBench: Comparing Reasoning Models and Agent Frameworks for Complex Medical Reasoning')",
@@ -516,6 +513,16 @@
     "2026-07-28T11:22 shi-2025-toolret: step -> verify",
     "2026-07-28T11:23 shi-2025-toolret: step -> queue-ops",
     "2026-07-28T11:23 shi-2025-toolret: step -> podcast",
-    "2026-07-28T11:39 completed shi-2025-toolret (verdict=approved, rounds=2)"
+    "2026-07-28T11:39 completed shi-2025-toolret (verdict=approved, rounds=2)",
+    "2026-07-28T11:41 started li-2026-agentskillos ('Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale')",
+    "2026-07-28T11:42 li-2026-agentskillos: step -> fetch",
+    "2026-07-28T11:43 li-2026-agentskillos: step -> figures",
+    "2026-07-28T11:44 li-2026-agentskillos: step -> draft",
+    "2026-07-28T11:56 li-2026-agentskillos: step -> critique (round 1)",
+    "2026-07-28T12:14 li-2026-agentskillos: step -> critique (round 2)",
+    "2026-07-28T12:25 li-2026-agentskillos: step -> verify",
+    "2026-07-28T12:26 li-2026-agentskillos: step -> queue-ops",
+    "2026-07-28T12:26 li-2026-agentskillos: step -> podcast",
+    "2026-07-28T12:42 completed li-2026-agentskillos (verdict=approved, rounds=2)"
   ]
 }
