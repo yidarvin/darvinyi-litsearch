@@ -9166,6 +9166,22 @@
       "explainer": "papers/xiao-2024-flowbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/xiao-2024-flowbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "liao-2024-saps",
+      "short": "SAPS",
+      "title": "Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator",
+      "authors": "Liao, Meng, Wang, Liu, Wang, Wang",
+      "year": 2024,
+      "date": "2024-03",
+      "venue": "arXiv",
+      "citation_count": 47,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Shanghai Jiao Tong University",
+      "abstract": "AIE grades a 'doctor LLM' on a real multi-turn consultation with State-Aware Patient Simulator (SAPS) -- a state tracker, memory bank, and response generator that classify each doctor action into 10 categories and respond in character -- instead of a multiple-choice medical exam question. Even the strongest tested model, GPT-4, only recalls 38.69% of patient information (COVERAGE) and reaches 64.00% diagnostic accuracy on 50 real hospital cases, while SAPS itself correlates with human patient judgments better than prompting an off-the-shelf LLM to role-play a patient (Spearman 0.63 vs. 0.24 on CAUTIOUS).",
+      "explainer": "papers/liao-2024-saps.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liao-2024-saps.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15498,6 +15514,18 @@
     { "from": "xiao-2024-flowbench", "to": "huang-2022-zero-shot-planner" },
     { "from": "yehudai-2025-agent-eval-survey", "to": "xiao-2024-flowbench" },
     { "from": "barres-2025-tau2-bench", "to": "xiao-2024-flowbench" },
-    { "from": "kapoor-2024-ai-agents-that-matter", "to": "xiao-2024-flowbench" }
+    { "from": "kapoor-2024-ai-agents-that-matter", "to": "xiao-2024-flowbench" },
+    { "from": "liao-2024-saps", "to": "jin-2019-pubmedqa" },
+    { "from": "liao-2024-saps", "to": "jin-2020-medqa" },
+    { "from": "liao-2024-saps", "to": "hendrycks-2020-mmlu" },
+    { "from": "liao-2024-saps", "to": "singhal-2023-med-palm" },
+    { "from": "liao-2024-saps", "to": "tu-2024-amie" },
+    { "from": "liao-2024-saps", "to": "chen-2022-imcs21" },
+    { "from": "liao-2024-saps", "to": "liu-2020-meddg" },
+    { "from": "liao-2024-saps", "to": "openai-2023-gpt4" },
+    { "from": "liao-2024-saps", "to": "bai-2023-qwen" },
+    { "from": "liao-2024-saps", "to": "liu-2023-g-eval" },
+    { "from": "liao-2024-saps", "to": "lin-2004-rouge" },
+    { "from": "schmidgall-2024-agentclinic", "to": "liao-2024-saps" }
   ]
 }
