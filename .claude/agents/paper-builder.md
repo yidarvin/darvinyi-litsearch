@@ -91,15 +91,27 @@ actually uses. → `set-step draft`
    applied at revise time, those pages converged cleanly. Doing it up front
    is strictly cheaper than doing it after a critic finds ten things.
 
-   **Every error found in a transcription so far has been in its prose, never
-   in its cells.** On SUPER it was the file's one non-tabular inference (that
-   two problem sets used disjoint repositories, which the paper never says);
-   on API-BLEND it was a summary bullet asserting five models beat two
+   **Errors show up in both the prose and the cells, so check both.** The
+   prose cases: SUPER's file carried one non-tabular inference (that two
+   problem sets used disjoint repositories, which the paper never says);
+   API-BLEND's carried a summary bullet asserting five models beat two
    baselines "on every metric — confirmed across the board" when the cells
-   directly above it showed one model tying on one metric and trailing on
-   another. So: copy cells verbatim, and treat any sentence you write *about*
-   the cells as a claim needing the same check as page prose. Mark anything
-   that isn't a cell or a caption as an inference and cite its page.
+   directly above showed one model tying on one metric and trailing on
+   another. So mark anything that isn't a cell or caption as an inference,
+   cite its page, and treat every sentence you write *about* the cells as a
+   claim needing the same check as page prose.
+
+   But a mistyped **cell** is the more dangerous failure, because the file
+   then looks authoritative. On MedAgentsBench one Average cell was
+   transcribed `34.1` where the paper prints `34.5`, and the file's own
+   prose went on to mark the paper's body-text "34.1%" as *verified* against
+   that bad cell — a self-confirming loop that hid a real paper-internal
+   discrepancy and put the wrong number on the page in three places. So:
+   **when a transcribed row has an Average/Total column, re-sum the row and
+   confirm it lands on the printed value.** That one arithmetic check would
+   have caught it (310.4/9 = 34.49, not 34.1). And never treat a match
+   between the paper's prose and your own transcription as verification —
+   verification means the paper's prose against the paper's table.
 
    Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill

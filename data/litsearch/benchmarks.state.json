@@ -415,6 +415,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "shao-2026-medagentsbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -422,6 +429,12 @@
       "title": "MMInA: Benchmarking Multihop Multimodal Internet Agents",
       "slug": "zhang-2024-mmina",
       "reason": "slug corrected to tian-2025-mmina (first author is Shulin Tian, venue Findings of ACL 2025)",
+      "date": "2026-07-28"
+    },
+    {
+      "title": "MedicalAgentsBench: Comparing Reasoning Models and Agent Frameworks for Complex Medical Reasoning",
+      "slug": "xie-2025-medagentsbench",
+      "reason": "queue metadata wrong: author 'Xie' not in author list (true first author Yanjun Shao), title differs, and paper is published in Patterns 2026 not arXiv-only; re-slugging to shao-2026-medagentsbench",
       "date": "2026-07-28"
     }
   ],
@@ -434,18 +447,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T02:22 started xiao-2024-flowbench ('FlowBench: Revisiting and Benchmarking Workflow-Guided Planning for LLM-based Agents')",
-    "2026-07-28T02:23 xiao-2024-flowbench: step -> fetch",
-    "2026-07-28T02:23 xiao-2024-flowbench: step -> figures",
-    "2026-07-28T02:26 xiao-2024-flowbench: step -> draft",
-    "2026-07-28T02:44 xiao-2024-flowbench: step -> critique (round 1)",
-    "2026-07-28T03:01 xiao-2024-flowbench: step -> critique (round 2)",
-    "2026-07-28T03:13 xiao-2024-flowbench: step -> verify",
-    "2026-07-28T03:14 xiao-2024-flowbench: step -> queue-ops",
-    "2026-07-28T03:14 xiao-2024-flowbench: step -> podcast",
-    "2026-07-28T03:30 completed xiao-2024-flowbench (verdict=approved, rounds=2)",
-    "2026-07-28T03:33 started liao-2024-saps ('Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator')",
-    "2026-07-28T03:34 liao-2024-saps: step -> fetch",
     "2026-07-28T03:34 liao-2024-saps: step -> figures",
     "2026-07-28T03:35 liao-2024-saps: step -> draft",
     "2026-07-28T03:46 liao-2024-saps: step -> critique (round 1)",
@@ -483,6 +484,18 @@
     "2026-07-28T07:47 basu-2024-api-blend: step -> verify",
     "2026-07-28T07:49 basu-2024-api-blend: step -> queue-ops",
     "2026-07-28T07:49 basu-2024-api-blend: step -> podcast",
-    "2026-07-28T08:05 completed basu-2024-api-blend (verdict=approved, rounds=2)"
+    "2026-07-28T08:05 completed basu-2024-api-blend (verdict=approved, rounds=2)",
+    "2026-07-28T08:07 started xie-2025-medagentsbench ('MedicalAgentsBench: Comparing Reasoning Models and Agent Frameworks for Complex Medical Reasoning')",
+    "2026-07-28T08:08 skipped xie-2025-medagentsbench (queue metadata wrong: author 'Xie' not in author list (true first author Yanjun Shao), title differs, and paper is published in Patterns 2026 not arXiv-only; re-slugging to shao-2026-medagentsbench)",
+    "2026-07-28T08:08 started shao-2026-medagentsbench ('MedicalAgentsBench for Complex Medical Reasoning: Comparing Internalized Reasoning Models versus Externalized Agent-based Frameworks')",
+    "2026-07-28T08:10 shao-2026-medagentsbench: step -> fetch",
+    "2026-07-28T08:12 shao-2026-medagentsbench: step -> figures",
+    "2026-07-28T08:13 shao-2026-medagentsbench: step -> draft",
+    "2026-07-28T08:31 shao-2026-medagentsbench: step -> critique (round 1)",
+    "2026-07-28T08:48 shao-2026-medagentsbench: step -> critique (round 2)",
+    "2026-07-28T08:58 shao-2026-medagentsbench: step -> verify",
+    "2026-07-28T08:59 shao-2026-medagentsbench: step -> queue-ops",
+    "2026-07-28T08:59 shao-2026-medagentsbench: step -> podcast",
+    "2026-07-28T09:16 completed shao-2026-medagentsbench (verdict=approved, rounds=2)"
   ]
 }

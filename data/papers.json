@@ -9230,6 +9230,22 @@
       "explainer": "papers/basu-2024-api-blend.html",
       "audio_url": "https://pod.darvinyi.com/audio/basu-2024-api-blend.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "shao-2026-medagentsbench",
+      "short": "MedicalAgentsBench",
+      "title": "MedicalAgentsBench for Complex Medical Reasoning: Comparing Internalized Reasoning Models versus Externalized Agent-based Frameworks",
+      "authors": "Shao, Tang, Sohn, Chen, Liao, Zhang, Xiang, Wu, Zhao, Wu, Shi, Cohan, Gerstein",
+      "year": 2026,
+      "date": "2025-03",
+      "venue": "Patterns",
+      "citation_count": 43,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Yale University",
+      "abstract": "A 862-question, difficulty-filtered medical-reasoning hard set (drawn from MedQA, PubMedQA, MedMCQA, MedBullets, MMLU, MMLU-Pro, MedExQA, and MedXpertQA, keeping only questions fewer than 50% of tested models answer correctly, plus MELD contamination screening and human reasoning-depth annotation) built to compare internalized reasoning models (o1-mini, o3-mini, DeepSeek-R1) against nine externalized agent methods (CoT-SC, Multi-Persona, Self-Refine, MedPrompt, MedAgents, MDAgents, SPO, AFlow) on the same base models. Both routes independently improve accuracy and their gains compound: o3-mini + MDAgents reaches the highest overall accuracy (35.1%), and Pareto analysis of accuracy against inference cost shows internalized reasoning models dominating the high-performance end of the frontier while lightweight workflow optimization (e.g., GPT-4o-mini + SPO) anchors the cheap end.",
+      "explainer": "papers/shao-2026-medagentsbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shao-2026-medagentsbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15631,6 +15647,18 @@
     { "from": "basu-2024-api-blend", "to": "cobbe-2021-gsm8k" },
     { "from": "basu-2024-api-blend", "to": "radford-2019-gpt2" },
     { "from": "zhang-2024-agent-security-bench", "to": "basu-2024-api-blend" },
-    { "from": "yehudai-2025-agent-eval-survey", "to": "basu-2024-api-blend" }
+    { "from": "yehudai-2025-agent-eval-survey", "to": "basu-2024-api-blend" },
+    { "from": "shao-2026-medagentsbench", "to": "zuo-2025-medxpertqa" },
+    { "from": "shao-2026-medagentsbench", "to": "guo-2025-deepseek-r1" },
+    { "from": "shao-2026-medagentsbench", "to": "wang-2024-mmlu-pro" },
+    { "from": "shao-2026-medagentsbench", "to": "xiong-2024-mirage" },
+    { "from": "shao-2026-medagentsbench", "to": "madaan-2023-self-refine" },
+    { "from": "shao-2026-medagentsbench", "to": "openai-2023-gpt4" },
+    { "from": "shao-2026-medagentsbench", "to": "singhal-2023-med-palm" },
+    { "from": "shao-2026-medagentsbench", "to": "wang-2022-self-consistency" },
+    { "from": "shao-2026-medagentsbench", "to": "wei-2022-cot" },
+    { "from": "shao-2026-medagentsbench", "to": "jin-2020-medqa" },
+    { "from": "shao-2026-medagentsbench", "to": "hendrycks-2020-mmlu" },
+    { "from": "shao-2026-medagentsbench", "to": "jin-2019-pubmedqa" }
   ]
 }
