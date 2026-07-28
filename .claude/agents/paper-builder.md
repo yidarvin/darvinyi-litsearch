@@ -75,6 +75,23 @@ figures actually belong in the explainer and write your choice to
 actually uses. → `set-step draft`
 
 **`draft`** — Procedure A steps 7–8, in full:
+0. **Transcribe the result tables to `work/<slug>/tables.md` before writing a
+   word of prose.** For each table you intend to quote: its caption, what
+   each column measures (including whether higher or lower is better), what
+   the row groups are, and the cells themselves. Then note which comparisons
+   are legal — same table, same block, same metric.
+
+   This step exists because it measurably works. Papers with one simple
+   result table have been averaging ~5 round-1 blockers; the three with
+   dense multi-metric tables (an 18-row × 2-metric grid, a turn-level/
+   session-level pair sharing column names, a set of confusion matrices
+   alongside eight metrics) each hit exactly 10, and nearly all of those
+   blockers were table misreadings rather than writing problems. When the
+   same "transcribe first, then fix everything at once" discipline was
+   applied at revise time, those pages converged cleanly. Doing it up front
+   is strictly cheaper than doing it after a critic finds ten things.
+
+   Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill
    `templates/explainer.html` → `public/papers/<slug>.html`, writing every
    section — hero, the gap, how it works, what they found, does it hold up?,

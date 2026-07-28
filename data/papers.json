@@ -9182,6 +9182,22 @@
       "explainer": "papers/liao-2024-saps.html",
       "audio_url": "https://pod.darvinyi.com/audio/liao-2024-saps.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "bogin-2024-super",
+      "short": "SUPER",
+      "title": "SUPER: Evaluating Agents on Setting Up and Executing Tasks from Research Repositories",
+      "authors": "Bogin, Yang, Gupta, Richardson, Bransom, Clark, Sabharwal, Khot",
+      "year": 2024,
+      "date": "2024-09",
+      "venue": "EMNLP 2024",
+      "citation_count": 47,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Allen Institute for AI",
+      "abstract": "A benchmark testing whether LLM agents can set up and execute research tasks from low-profile (median 14 GitHub stars) ML/NLP repositories: 45 expert-solved end-to-end tasks, 152 masked sub-problems derived from them via code-cell removal, and 604 auto-generated tasks scored by a proxy metric. The strongest agent (SWE-Agent/GPT-4o) solves only 16.3% of end-to-end tasks and 46.1% of sub-problems, with open-source models lagging far behind.",
+      "explainer": "papers/bogin-2024-super.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bogin-2024-super.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15526,6 +15542,34 @@
     { "from": "liao-2024-saps", "to": "bai-2023-qwen" },
     { "from": "liao-2024-saps", "to": "liu-2023-g-eval" },
     { "from": "liao-2024-saps", "to": "lin-2004-rouge" },
-    { "from": "schmidgall-2024-agentclinic", "to": "liao-2024-saps" }
+    { "from": "schmidgall-2024-agentclinic", "to": "liao-2024-saps" },
+    { "from": "bogin-2024-super", "to": "yang-2024-swe-agent" },
+    { "from": "bogin-2024-super", "to": "xie-2024-osworld" },
+    { "from": "bogin-2024-super", "to": "jain-2024-livecodebench" },
+    { "from": "bogin-2024-super", "to": "polo-2024-tinybenchmarks" },
+    { "from": "bogin-2024-super", "to": "he-2024-webvoyager" },
+    { "from": "bogin-2024-super", "to": "shen-2023-taskbench" },
+    { "from": "bogin-2024-super", "to": "mialon-2023-gaia" },
+    { "from": "bogin-2024-super", "to": "jimenez-2023-swe-bench" },
+    { "from": "bogin-2024-super", "to": "huang-2023-mlagentbench" },
+    { "from": "bogin-2024-super", "to": "zhou-2023-webarena" },
+    { "from": "bogin-2024-super", "to": "patil-2023-gorilla" },
+    { "from": "bogin-2024-super", "to": "li-2023-api-bank" },
+    { "from": "bogin-2024-super", "to": "park-2023-generative-agents" },
+    { "from": "bogin-2024-super", "to": "shinn-2023-reflexion" },
+    { "from": "bogin-2024-super", "to": "lai-2022-ds-1000" },
+    { "from": "bogin-2024-super", "to": "press-2022-compositionality-gap" },
+    { "from": "bogin-2024-super", "to": "yao-2022-react" },
+    { "from": "bogin-2024-super", "to": "yao-2022-webshop" },
+    { "from": "bogin-2024-super", "to": "austin-2021-mbpp" },
+    { "from": "bogin-2024-super", "to": "chen-2021-codex" },
+    { "from": "bogin-2024-super", "to": "hendrycks-2021-apps" },
+    { "from": "bogin-2024-super", "to": "devlin-2019-bert" },
+    { "from": "bogin-2024-super", "to": "wang-2024-openhands" },
+    { "from": "bogin-2024-super", "to": "openai-2023-gpt4" },
+    { "from": "bogin-2024-super", "to": "wang-2023-voyager" },
+    { "from": "yehudai-2025-agent-eval-survey", "to": "bogin-2024-super" },
+    { "from": "nathani-2025-mlgym", "to": "bogin-2024-super" },
+    { "from": "zhuge-2024-agent-as-judge", "to": "bogin-2024-super" }
   ]
 }

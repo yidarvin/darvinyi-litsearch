@@ -394,6 +394,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "bogin-2024-super",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -413,16 +420,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-27T23:43 ma-2024-mnms: step -> critique (round 2)",
-    "2026-07-27T23:52 ma-2024-mnms: step -> verify",
-    "2026-07-27T23:53 ma-2024-mnms: step -> queue-ops",
-    "2026-07-27T23:53 ma-2024-mnms: step -> podcast",
-    "2026-07-28T00:15 completed ma-2024-mnms (verdict=approved, rounds=2)",
-    "2026-07-28T00:17 started rashkin-2019-empatheticdialogues ('Towards Empathetic Open-domain Conversation Models: A New Benchmark and Dataset')",
-    "2026-07-28T00:19 rashkin-2019-empatheticdialogues: step -> fetch",
-    "2026-07-28T00:19 rashkin-2019-empatheticdialogues: step -> figures",
-    "2026-07-28T00:20 rashkin-2019-empatheticdialogues: step -> draft",
-    "2026-07-28T00:37 rashkin-2019-empatheticdialogues: step -> critique (round 1)",
     "2026-07-28T00:51 rashkin-2019-empatheticdialogues: step -> critique (round 2)",
     "2026-07-28T01:00 rashkin-2019-empatheticdialogues: step -> verify",
     "2026-07-28T01:01 rashkin-2019-empatheticdialogues: step -> queue-ops",
@@ -462,6 +459,16 @@
     "2026-07-28T04:18 liao-2024-saps: step -> verify",
     "2026-07-28T04:18 liao-2024-saps: step -> queue-ops",
     "2026-07-28T04:18 liao-2024-saps: step -> podcast",
-    "2026-07-28T04:31 completed liao-2024-saps (verdict=approved, rounds=2)"
+    "2026-07-28T04:31 completed liao-2024-saps (verdict=approved, rounds=2)",
+    "2026-07-28T04:34 started bogin-2024-super ('SUPER: Evaluating Agents on Setting Up and Executing Tasks from Research Repositories')",
+    "2026-07-28T04:36 bogin-2024-super: step -> fetch",
+    "2026-07-28T04:37 bogin-2024-super: step -> figures",
+    "2026-07-28T04:38 bogin-2024-super: step -> draft",
+    "2026-07-28T04:56 bogin-2024-super: step -> critique (round 1)",
+    "2026-07-28T05:09 bogin-2024-super: step -> critique (round 2)",
+    "2026-07-28T05:18 bogin-2024-super: step -> verify",
+    "2026-07-28T05:19 bogin-2024-super: step -> queue-ops",
+    "2026-07-28T05:19 bogin-2024-super: step -> podcast",
+    "2026-07-28T05:35 completed bogin-2024-super (verdict=approved, rounds=2)"
   ]
 }
