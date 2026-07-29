@@ -549,6 +549,15 @@
         "SkillsBench (arXiv 2026-02, 78 authors). 2 critic rounds, 5 blockers: wrong model count (14 vs 15, and 14+3 != 18), a figcaption confusing a count with a ring percentage (53 Extended vs the 61% label), a FABRICATED edge to zhu-2025-agentic-benchmarks (S2 false positive, absent from the printed bibliography), a MISSED edge to koh-2024-visualwebarena (already a node; S2's record has no ArXiv externalId so arxiv-id-only matching dropped it -- and the builder then proposed it as a queue discovery), and an over-asserted takeaway contradicting the paper's own hedge. r2 approve after the critic independently title-matched the whole printed bibliography against all 610 nodes. Episode bm_fable 153.8 wpm, byte-verified."
       ],
       "date": "2026-07-29"
+    },
+    {
+      "slug": "vilares-2019-headqa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "HEAD-QA (ACL 2019). 2 critic rounds, 5 blockers: a false 'every real baseline beats the controls' that the page's own reprinted table refuted, an accuracy number leaking into a POINTS range, a claim that neural readers ran on Spanish (they only ever ran on HEAD-QA-EN), a false 'every strong system is neural' excluding the two IR baselines that actually win, and 'question 21' for 'image no. 21'. r2 approve; I then fixed two critic notes (a 3-vs-4 neural-system count the page contradicted itself on, and scoping the controls claim to the six-area average). Episode bf_lily 153.5 wpm, byte-verified; two of its added findings were verified and folded into the page -- BiDAF also falls under the Length control on the supervised split, and the controls are Spanish-only so every control-vs-neural comparison crosses languages."
+      ],
+      "date": "2026-07-29"
     }
   ],
   "skipped": [
@@ -580,19 +589,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T23:51 zhou-2018-document-grounded: step -> verify",
-    "2026-07-28T23:52 zhou-2018-document-grounded: step -> queue-ops",
-    "2026-07-28T23:55 zhou-2018-document-grounded: step -> podcast",
-    "2026-07-29T00:09 zhou-2018-document-grounded: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-29T00:09 completed zhou-2018-document-grounded (verdict=approved, rounds=2)",
-    "2026-07-29T00:10 started hafner-2022-crafter ('Benchmarking the Spectrum of Agent Capabilities')",
-    "2026-07-29T00:11 hafner-2022-crafter: step -> fetch",
-    "2026-07-29T00:12 hafner-2022-crafter: step -> figures",
-    "2026-07-29T00:14 hafner-2022-crafter: step -> draft",
-    "2026-07-29T00:23 hafner-2022-crafter: step -> critique (round 1)",
-    "2026-07-29T00:31 hafner-2022-crafter: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-29T00:31 hafner-2022-crafter: step -> revise",
-    "2026-07-29T00:36 hafner-2022-crafter: step -> critique (round 2)",
     "2026-07-29T00:44 hafner-2022-crafter: 2 open blocker(s) from round 2 (verdict: revise)",
     "2026-07-29T00:44 hafner-2022-crafter: step -> revise",
     "2026-07-29T00:48 hafner-2022-crafter: step -> critique (round 3)",
@@ -629,6 +625,19 @@
     "2026-07-29T03:15 li-2026-skillsbench: step -> verify",
     "2026-07-29T03:16 li-2026-skillsbench: step -> queue-ops",
     "2026-07-29T03:16 li-2026-skillsbench: step -> podcast",
-    "2026-07-29T03:27 completed li-2026-skillsbench (verdict=approved, rounds=2)"
+    "2026-07-29T03:27 completed li-2026-skillsbench (verdict=approved, rounds=2)",
+    "2026-07-29T03:30 started vilares-2019-headqa ('HEAD-QA: A Healthcare Dataset for Complex Reasoning')",
+    "2026-07-29T03:49 vilares-2019-headqa: step -> fetch",
+    "2026-07-29T03:49 vilares-2019-headqa: step -> figures",
+    "2026-07-29T03:49 vilares-2019-headqa: step -> draft",
+    "2026-07-29T03:49 vilares-2019-headqa: step -> critique (round 1)",
+    "2026-07-29T04:00 vilares-2019-headqa: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-29T04:00 vilares-2019-headqa: step -> revise",
+    "2026-07-29T04:05 vilares-2019-headqa: step -> critique (round 2)",
+    "2026-07-29T04:15 vilares-2019-headqa: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-29T04:15 vilares-2019-headqa: step -> verify",
+    "2026-07-29T04:16 vilares-2019-headqa: step -> queue-ops",
+    "2026-07-29T04:16 vilares-2019-headqa: step -> podcast",
+    "2026-07-29T04:30 completed vilares-2019-headqa (verdict=approved, rounds=2)"
   ]
 }

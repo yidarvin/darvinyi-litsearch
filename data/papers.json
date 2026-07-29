@@ -9517,6 +9517,22 @@
       "explainer": "papers/li-2026-skillsbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2026-skillsbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "vilares-2019-headqa",
+      "short": "HEAD-QA",
+      "title": "HEAD-QA: A Healthcare Dataset for Complex Reasoning",
+      "authors": "Vilares, Gómez-Rodríguez",
+      "year": 2019,
+      "date": "2019-06",
+      "venue": "ACL 2019",
+      "citation_count": 151,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Universidade da Coruña",
+      "abstract": "6,765 multiple-choice questions lifted from Spain's real healthcare-specialization licensing exams (medicine, nursing, pharmacology, psychology, biology, chemistry), released in Spanish plus a machine-translated English version, HEAD-QA-EN — where the best 2019 baseline, a non-neural information-retrieval model, still falls short of the exam's own pass mark in every one of the six subject areas.",
+      "explainer": "papers/vilares-2019-headqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/vilares-2019-headqa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16119,6 +16135,12 @@
     { "from": "li-2026-skillsbench", "to": "austin-2021-mbpp" },
     { "from": "li-2026-skillsbench", "to": "brown-2020-gpt3" },
     { "from": "li-2026-skillsbench", "to": "lewis-2020-rag" },
-    { "from": "li-2026-agentskillos", "to": "li-2026-skillsbench" }
+    { "from": "li-2026-agentskillos", "to": "li-2026-skillsbench" },
+    { "from": "vilares-2019-headqa", "to": "clark-2018-arc-science" },
+    { "from": "vilares-2019-headqa", "to": "rajpurkar-2016-squad" },
+    { "from": "vilares-2019-headqa", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "vilares-2019-headqa", "to": "papineni-2002-bleu" },
+    { "from": "alonso-2024-medexpqa", "to": "vilares-2019-headqa" },
+    { "from": "shao-2026-medagentsbench", "to": "vilares-2019-headqa" }
   ]
 }
