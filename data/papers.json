@@ -9374,6 +9374,21 @@
       "explainer": "papers/dinan-2019-convai2.html",
       "audio_url": "https://pod.darvinyi.com/audio/dinan-2019-convai2.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "fader-2013-paralex",
+      "short": "Paralex",
+      "title": "Paraphrase-Driven Learning for Open Question Answering",
+      "authors": "Fader, Zettlemoyer, Etzioni",
+      "year": 2013,
+      "date": "2013-08",
+      "venue": "ACL 2013",
+      "citation_count": 393,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Washington",
+      "abstract": "Introduces Paralex, a system that learns to map open-domain questions to queries over a noisy 15M-fact web-extraction database (REVERB) with no manually labeled questions, bootstrapping a lexicon and linear ranking function from 16 seed templates and an 18M-pair WikiAnswers paraphrase corpus. On a held-out set of 698 known-answerable questions, it reaches 0.42 recall / 0.77 precision (0.54 F1), more than quadrupling the seed lexicon's recall at roughly an 8% relative precision cost.",
+      "explainer": "papers/fader-2013-paralex.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fader-2013-paralex.mp3"
     }
   ],
   "edges": [
@@ -15880,6 +15895,8 @@
     { "from": "dinan-2019-convai2", "to": "devlin-2019-bert" },
     { "from": "rashkin-2019-empatheticdialogues", "to": "dinan-2019-convai2" },
     { "from": "lewis-2019-bart", "to": "dinan-2019-convai2" },
-    { "from": "press-2022-compositionality-gap", "to": "dinan-2019-convai2" }
+    { "from": "press-2022-compositionality-gap", "to": "dinan-2019-convai2" },
+    { "from": "bordes-2015-simplequestions", "to": "fader-2013-paralex" },
+    { "from": "antol-2015-vqa", "to": "fader-2013-paralex" }
   ]
 }

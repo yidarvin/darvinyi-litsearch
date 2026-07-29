@@ -113,15 +113,25 @@ actually uses. → `set-step draft`
    applied at revise time, those pages converged cleanly. Doing it up front
    is strictly cheaper than doing it after a critic finds ten things.
 
-   **Errors show up in both the prose and the cells, so check both.** The
-   prose cases: SUPER's file carried one non-tabular inference (that two
-   problem sets used disjoint repositories, which the paper never says);
-   API-BLEND's carried a summary bullet asserting five models beat two
-   baselines "on every metric — confirmed across the board" when the cells
-   directly above showed one model tying on one metric and trailing on
-   another. So mark anything that isn't a cell or caption as an inference,
-   cite its page, and treat every sentence you write *about* the cells as a
-   claim needing the same check as page prose.
+   **Keep interpretation out of this file.** Record only: captions, the
+   column→metric mapping (with direction), row groups, the cells
+   themselves, and flat statements of which comparisons are legal
+   (same table / same block / same metric). Do **not** write evaluative
+   summaries — no "X is the largest drop", no "all models beat Y", no
+   "confirmed across the board". Those belong on the page, where the critic
+   checks them; here they are trusted downstream (the podcast step reads
+   this file) and nothing re-derives them.
+
+   This is the most persistent defect in the pipeline: on five separate
+   papers the transcribed **cells were correct while a prose summary above
+   them was wrong** — a non-tabular inference about disjoint repositories
+   the paper never claimed; "five models beat both baselines on every
+   metric" when one tied and one trailed; "23 models" against its own
+   26-item list; "five of six finalists outscored the baseline" when two
+   did; and "the single most damaging removal" for what was actually the
+   smallest of four drops. Three of those reached a published page. If you
+   genuinely need a note that isn't a cell or caption, mark it explicitly
+   as an inference and cite the page it came from.
 
    But a mistyped **cell** is the more dangerous failure, because the file
    then looks authoritative. On MedAgentsBench one Average cell was

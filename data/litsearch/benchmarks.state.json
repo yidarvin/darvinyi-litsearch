@@ -478,6 +478,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "fader-2013-paralex",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -509,16 +516,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T12:44 started muennighoff-2023-mteb ('MTEB: Massive Text Embedding Benchmark')",
-    "2026-07-28T12:45 muennighoff-2023-mteb: step -> fetch",
-    "2026-07-28T12:46 muennighoff-2023-mteb: step -> figures",
-    "2026-07-28T12:46 muennighoff-2023-mteb: step -> draft",
-    "2026-07-28T13:05 muennighoff-2023-mteb: step -> critique (round 1)",
-    "2026-07-28T13:32 muennighoff-2023-mteb: step -> critique (round 2)",
-    "2026-07-28T13:43 muennighoff-2023-mteb: step -> verify",
-    "2026-07-28T13:44 muennighoff-2023-mteb: step -> queue-ops",
-    "2026-07-28T13:44 muennighoff-2023-mteb: step -> podcast",
-    "2026-07-28T14:05 completed muennighoff-2023-mteb (verdict=approved, rounds=2)",
     "2026-07-28T14:08 started voorhees-2000-trec-qa ('Building a Question Answering Test Collection')",
     "2026-07-28T14:11 voorhees-2000-trec-qa: step -> fetch",
     "2026-07-28T14:11 voorhees-2000-trec-qa: step -> figures",
@@ -558,6 +555,16 @@
     "2026-07-28T17:38 dinan-2019-convai2: step -> verify",
     "2026-07-28T17:39 dinan-2019-convai2: step -> queue-ops",
     "2026-07-28T17:39 dinan-2019-convai2: step -> podcast",
-    "2026-07-28T17:54 completed dinan-2019-convai2 (verdict=approved, rounds=2)"
+    "2026-07-28T17:54 completed dinan-2019-convai2 (verdict=approved, rounds=2)",
+    "2026-07-28T17:57 started fader-2013-paralex ('Paraphrase-Driven Learning for Open Question Answering')",
+    "2026-07-28T17:59 fader-2013-paralex: step -> fetch",
+    "2026-07-28T17:59 fader-2013-paralex: step -> figures",
+    "2026-07-28T18:01 fader-2013-paralex: step -> draft",
+    "2026-07-28T18:10 fader-2013-paralex: step -> critique (round 1)",
+    "2026-07-28T18:26 fader-2013-paralex: step -> critique (round 2)",
+    "2026-07-28T18:32 fader-2013-paralex: step -> verify",
+    "2026-07-28T18:33 fader-2013-paralex: step -> queue-ops",
+    "2026-07-28T18:33 fader-2013-paralex: step -> podcast",
+    "2026-07-28T18:50 completed fader-2013-paralex (verdict=approved, rounds=2)"
   ]
 }
