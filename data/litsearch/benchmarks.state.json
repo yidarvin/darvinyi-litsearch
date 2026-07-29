@@ -522,6 +522,15 @@
         "EMNLP 2018 CMU DoG dataset. 2 critic rounds (r1: 3 blockers -- false 'paper contradicts itself on turn counts' accusation, wrong 'shared document' scenario across 4 surfaces, unsupported split-holdout claim; r2 approve). Episode bf_emma 154.2 wpm, byte-verified."
       ],
       "date": "2026-07-29"
+    },
+    {
+      "slug": "hafner-2022-crafter",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Crafter (ICLR 2022, sole author Hafner). 3 critic rounds. r1: 4 blockers (Table A.1/B.1 conflation -- wrong agents on Wake Up, false 'only reward agent to place a furnace', wood rows quoted as stone rows, invented figcaption detail). r2: 2 new blockers -- the r1 fix introduced a false superlative and a false 'paper contradicts itself' charge, both from reading 1-decimal table rounding as true zeros; critic resolved them by parsing bar heights out of the PDF vector stream (Figures 6-7 are log-floored at 0.01%). r3: approve. Episode bm_daniel 157.9 wpm, byte-verified; its three added findings (Hafner co-authors Plan2Explore, score/return use different windows, human +/-6.8 is partition noise) were independently verified and two folded into the page."
+      ],
+      "date": "2026-07-29"
     }
   ],
   "skipped": [
@@ -553,22 +562,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T18:54 papoudakis-2021-marl-benchmark: step -> draft",
-    "2026-07-28T19:09 papoudakis-2021-marl-benchmark: step -> critique (round 1)",
-    "2026-07-28T19:25 papoudakis-2021-marl-benchmark: step -> critique (round 2)",
-    "2026-07-28T19:33 papoudakis-2021-marl-benchmark: step -> verify",
-    "2026-07-28T19:34 papoudakis-2021-marl-benchmark: step -> queue-ops",
-    "2026-07-28T19:34 papoudakis-2021-marl-benchmark: step -> podcast",
-    "2026-07-28T19:59 completed papoudakis-2021-marl-benchmark (verdict=approved, rounds=2)",
-    "2026-07-28T20:01 started liu-2023-logieval ('Evaluating the Logical Reasoning Ability of ChatGPT and GPT-4')",
-    "2026-07-28T20:02 liu-2023-logieval: step -> fetch",
-    "2026-07-28T20:02 liu-2023-logieval: step -> figures",
-    "2026-07-28T20:04 liu-2023-logieval: step -> draft",
-    "2026-07-28T20:21 liu-2023-logieval: step -> critique (round 1)",
-    "2026-07-28T20:38 liu-2023-logieval: step -> critique (round 2)",
-    "2026-07-28T20:46 liu-2023-logieval: step -> verify",
-    "2026-07-28T20:47 liu-2023-logieval: step -> queue-ops",
-    "2026-07-28T20:47 liu-2023-logieval: step -> podcast",
     "2026-07-28T21:02 completed liu-2023-logieval (verdict=approved, rounds=2)",
     "2026-07-28T21:05 started srivastava-2021-behavior ('BEHAVIOR: Benchmark for Everyday Household Activities in Virtual, Interactive, and Ecological Environments')",
     "2026-07-28T21:08 srivastava-2021-behavior: step -> fetch",
@@ -602,6 +595,22 @@
     "2026-07-28T23:52 zhou-2018-document-grounded: step -> queue-ops",
     "2026-07-28T23:55 zhou-2018-document-grounded: step -> podcast",
     "2026-07-29T00:09 zhou-2018-document-grounded: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-29T00:09 completed zhou-2018-document-grounded (verdict=approved, rounds=2)"
+    "2026-07-29T00:09 completed zhou-2018-document-grounded (verdict=approved, rounds=2)",
+    "2026-07-29T00:10 started hafner-2022-crafter ('Benchmarking the Spectrum of Agent Capabilities')",
+    "2026-07-29T00:11 hafner-2022-crafter: step -> fetch",
+    "2026-07-29T00:12 hafner-2022-crafter: step -> figures",
+    "2026-07-29T00:14 hafner-2022-crafter: step -> draft",
+    "2026-07-29T00:23 hafner-2022-crafter: step -> critique (round 1)",
+    "2026-07-29T00:31 hafner-2022-crafter: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-29T00:31 hafner-2022-crafter: step -> revise",
+    "2026-07-29T00:36 hafner-2022-crafter: step -> critique (round 2)",
+    "2026-07-29T00:44 hafner-2022-crafter: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-29T00:44 hafner-2022-crafter: step -> revise",
+    "2026-07-29T00:48 hafner-2022-crafter: step -> critique (round 3)",
+    "2026-07-29T00:56 hafner-2022-crafter: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-29T00:56 hafner-2022-crafter: step -> verify",
+    "2026-07-29T01:00 hafner-2022-crafter: step -> queue-ops",
+    "2026-07-29T01:01 hafner-2022-crafter: step -> podcast",
+    "2026-07-29T01:18 completed hafner-2022-crafter (verdict=approved, rounds=3)"
   ]
 }

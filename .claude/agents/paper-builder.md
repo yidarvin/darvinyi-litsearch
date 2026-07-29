@@ -145,6 +145,19 @@ actually uses. → `set-step draft`
    between the paper's prose and your own transcription as verification —
    verification means the paper's prose against the paper's table.
 
+   **Record each table's precision, and never read a rounded cell as an
+   exact value.** A `0.0` in a table that rounds to one decimal means
+   "below 0.05", not "zero" — and papers routinely plot the same numbers at
+   finer resolution elsewhere. On Crafter this cost two full critic rounds:
+   the appendix tables round to 0.1% while Figures 6–7 use a log axis
+   floored at 0.01%, so several `0.0%` cells had visible bars. Reading them
+   as zeros produced a false "the only agent to craft a stone tool"
+   superlative and then a false charge that the paper contradicted its own
+   prose — when the prose was right and the table was merely coarse.
+   So: **when a table cell and the paper's prose appear to disagree, assume
+   you are misreading the table's precision until you have checked the
+   figures.** Never resolve such a conflict silently in the table's favour.
+
    Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill
    `templates/explainer.html` → `public/papers/<slug>.html`, writing every

@@ -9469,6 +9469,22 @@
       "explainer": "papers/zhou-2018-document-grounded.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhou-2018-document-grounded.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "hafner-2022-crafter",
+      "short": "Crafter",
+      "title": "Benchmarking the Spectrum of Agent Capabilities",
+      "authors": "Hafner",
+      "year": 2022,
+      "date": "2021-09",
+      "venue": "ICLR 2022",
+      "citation_count": 219,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Google Research (Brain Team) / University of Toronto",
+      "abstract": "Introduces Crafter, a procedurally generated 2D open-world survival game (Minecraft-like foraging, crafting, and combat) that evaluates a wide spectrum of RL agent abilities within a single fast environment via 22 semantically meaningful achievements, aggregated into a difficulty-weighted geometric-mean score. The best 2021 baseline, DreamerV2, scores 10.0% versus 50.5% for human experts, and no learned agent ever collects a diamond or crafts an iron tool.",
+      "explainer": "papers/hafner-2022-crafter.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hafner-2022-crafter.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16028,6 +16044,14 @@
     { "from": "zhou-2018-document-grounded", "to": "zhang-2018-personachat" },
     { "from": "zhou-2018-document-grounded", "to": "papineni-2002-bleu" },
     { "from": "feng-2023-mmdialog", "to": "zhou-2018-document-grounded" },
-    { "from": "wang-2020-lccc", "to": "zhou-2018-document-grounded" }
+    { "from": "wang-2020-lccc", "to": "zhou-2018-document-grounded" },
+    { "from": "hafner-2022-crafter", "to": "bellemare-2013-ale" },
+    { "from": "hafner-2022-crafter", "to": "brockman-2016-openai-gym" },
+    { "from": "hafner-2022-crafter", "to": "hessel-2018-rainbow" },
+    { "from": "hafner-2022-crafter", "to": "schulman-2017-ppo" },
+    { "from": "hafner-2022-crafter", "to": "mnih-2015-dqn" },
+    { "from": "paglieri-2024-balrog", "to": "hafner-2022-crafter" },
+    { "from": "wu-2023-smartplay", "to": "hafner-2022-crafter" },
+    { "from": "hafner-2023-dreamerv3", "to": "hafner-2022-crafter" }
   ]
 }
