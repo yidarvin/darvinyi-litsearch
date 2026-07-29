@@ -9421,6 +9421,22 @@
       "explainer": "papers/liu-2023-logieval.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2023-logieval.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "srivastava-2021-behavior",
+      "short": "BEHAVIOR",
+      "title": "BEHAVIOR: Benchmark for Everyday Household Activities in Virtual, Interactive, and Ecological Environments",
+      "authors": "Srivastava, Li, Lingelbach, Martín-Martín, Xia, et al.",
+      "year": 2021,
+      "date": "2021-08",
+      "venue": "CoRL 2021",
+      "citation_count": 257,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "Introduces BEHAVIOR, a simulated embodied-AI benchmark of 100 household activities (cleaning, cooking, tidying, packing) drawn from the American Time Use Survey and defined declaratively via BDDL, a predicate-logic language whose initial/goal conditions let iGibson 2.0 generate unlimited scene instances and score a graduated success metric Q rather than matching a fixed trajectory. 500 human VR demonstrations (758.5 min) anchor the efficiency metrics, and SAC/PPO baselines score Q=0 on nearly all of even the 12 simplest activities under realistic sensing and physics; removing physics alone lifts most of them off zero, while removing sensing realism alone barely does.",
+      "explainer": "papers/srivastava-2021-behavior.html",
+      "audio_url": "https://pod.darvinyi.com/audio/srivastava-2021-behavior.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15430,6 +15446,7 @@
     { "from": "li-2024-embodied-agent-interface", "to": "liu-2023-llm-p" },
     { "from": "li-2024-embodied-agent-interface", "to": "wang-2023-deps" },
     { "from": "li-2024-embodied-agent-interface", "to": "valmeekam-2022-planbench" },
+    { "from": "li-2024-embodied-agent-interface", "to": "srivastava-2021-behavior" },
     { "from": "zhu-2025-multiagentbench", "to": "mialon-2023-gaia" },
     { "from": "zhu-2025-multiagentbench", "to": "hong-2023-metagpt" },
     { "from": "zhu-2025-multiagentbench", "to": "qin-2023-toolllm" },
@@ -15955,6 +15972,16 @@
     { "from": "liu-2023-logieval", "to": "openai-2023-gpt4" },
     { "from": "jain-2024-livecodebench", "to": "liu-2023-logieval" },
     { "from": "lin-2023-agentsims", "to": "liu-2023-logieval" },
-    { "from": "chang-2023-llm-eval-survey", "to": "liu-2023-logieval" }
+    { "from": "chang-2023-llm-eval-survey", "to": "liu-2023-logieval" },
+    { "from": "srivastava-2021-behavior", "to": "marino-2019-ok-vqa" },
+    { "from": "srivastava-2021-behavior", "to": "haarnoja-2018-sac" },
+    { "from": "srivastava-2021-behavior", "to": "schulman-2017-ppo" },
+    { "from": "srivastava-2021-behavior", "to": "brockman-2016-openai-gym" },
+    { "from": "srivastava-2021-behavior", "to": "lin-2014-coco" },
+    { "from": "srivastava-2021-behavior", "to": "vinyals-2019-alphastar" },
+    { "from": "srivastava-2021-behavior", "to": "deng-2009-imagenet" },
+    { "from": "wu-2023-smartplay", "to": "srivastava-2021-behavior" },
+    { "from": "liu-2023-agentbench", "to": "srivastava-2021-behavior" },
+    { "from": "ahn-2022-saycan", "to": "srivastava-2021-behavior" }
   ]
 }
