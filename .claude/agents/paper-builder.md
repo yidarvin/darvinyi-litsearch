@@ -183,6 +183,16 @@ actually uses. → `set-step draft`
    from its explainer's canonical `source ↗` link when `papers.json` doesn't
    carry one (the same trick `scripts/queue_ops.py` uses).
 
+   **But always run the title pass too — never stop at arXiv id.** "arXiv
+   first" is about *precedence*, not about skipping the other passes: some
+   S2 records carry only DBLP/DOI externalIds and **no `ArXiv` key at all**,
+   so an id-only sweep doesn't merely rank them lower, it never sees them.
+   VisualWebArena was missed exactly this way on SkillsBench — already a
+   node, plainly in the printed bibliography, dropped by the match, and then
+   proposed back as a new queue "discovery." After matching, sanity-check by
+   walking the **printed bibliography** and asking which entries are nodes;
+   that catches what the id sweep structurally cannot.
+
    **S2's reference list is not the bibliography.** It has been incomplete
    on essentially every paper processed so far — sometimes badly (one record
    listed 2 references against a ~40-entry bibliography; another listed

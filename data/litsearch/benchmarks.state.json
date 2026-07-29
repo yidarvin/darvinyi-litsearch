@@ -540,6 +540,15 @@
         "PHYRE (NeurIPS 2019). 3 critic rounds, 12 blockers total -- all in interpretive prose; the critic independently cleared the AUCCESS definition, all 8 headline numbers, the MEM anomaly and all 6 edges in round 1. r1 (10): false 'every agent' quantifiers contradicted by the page's own table, an invented within-task feedback leak, OPTIMAL misused to justify budgets, 10k test vs 100k training budgets conflated, a mislabeled figcaption, an inverted reading of 4.4, 'roughly halves' for a 29.5% drop, a term ('interaction networks') absent from the paper, two wrong Figure 2 readings, and an over-scoped MEM claim. r2 (2): both fixes replaced a wrong claim with a differently-wrong one in the same spot -- resolved by deleting the brittle figure-recurrence count outright and re-anchoring the coverage sentence at a single x. r3: approve. Episode bf_emma 149.7 wpm, byte-verified; its added arithmetic and 4 PDF-sourced details independently checked."
       ],
       "date": "2026-07-29"
+    },
+    {
+      "slug": "li-2026-skillsbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "SkillsBench (arXiv 2026-02, 78 authors). 2 critic rounds, 5 blockers: wrong model count (14 vs 15, and 14+3 != 18), a figcaption confusing a count with a ring percentage (53 Extended vs the 61% label), a FABRICATED edge to zhu-2025-agentic-benchmarks (S2 false positive, absent from the printed bibliography), a MISSED edge to koh-2024-visualwebarena (already a node; S2's record has no ArXiv externalId so arxiv-id-only matching dropped it -- and the builder then proposed it as a queue discovery), and an over-asserted takeaway contradicting the paper's own hedge. r2 approve after the critic independently title-matched the whole printed bibliography against all 610 nodes. Episode bm_fable 153.8 wpm, byte-verified."
+      ],
+      "date": "2026-07-29"
     }
   ],
   "skipped": [
@@ -571,19 +580,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T22:54 zhang-2022-cblue: step -> critique (round 2)",
-    "2026-07-28T23:02 zhang-2022-cblue: step -> verify",
-    "2026-07-28T23:03 zhang-2022-cblue: step -> queue-ops",
-    "2026-07-28T23:03 zhang-2022-cblue: step -> podcast",
-    "2026-07-28T23:21 completed zhang-2022-cblue (verdict=approved, rounds=2)",
-    "2026-07-28T23:25 started zhou-2018-document-grounded ('A Dataset for Document Grounded Conversations')",
-    "2026-07-28T23:28 zhou-2018-document-grounded: step -> fetch",
-    "2026-07-28T23:28 zhou-2018-document-grounded: step -> figures",
-    "2026-07-28T23:28 zhou-2018-document-grounded: step -> draft",
-    "2026-07-28T23:36 zhou-2018-document-grounded: step -> critique (round 1)",
-    "2026-07-28T23:44 zhou-2018-document-grounded: step -> revise",
-    "2026-07-28T23:44 zhou-2018-document-grounded: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-28T23:47 zhou-2018-document-grounded: step -> critique (round 2)",
     "2026-07-28T23:51 zhou-2018-document-grounded: step -> verify",
     "2026-07-28T23:52 zhou-2018-document-grounded: step -> queue-ops",
     "2026-07-28T23:55 zhou-2018-document-grounded: step -> podcast",
@@ -620,6 +616,19 @@
     "2026-07-29T02:18 bakhtin-2019-phyre: step -> verify",
     "2026-07-29T02:19 bakhtin-2019-phyre: step -> queue-ops",
     "2026-07-29T02:19 bakhtin-2019-phyre: step -> podcast",
-    "2026-07-29T02:34 completed bakhtin-2019-phyre (verdict=approved, rounds=3)"
+    "2026-07-29T02:34 completed bakhtin-2019-phyre (verdict=approved, rounds=3)",
+    "2026-07-29T02:35 started li-2026-skillsbench ('SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks')",
+    "2026-07-29T02:36 li-2026-skillsbench: step -> fetch",
+    "2026-07-29T02:36 li-2026-skillsbench: step -> figures",
+    "2026-07-29T02:39 li-2026-skillsbench: step -> draft",
+    "2026-07-29T02:49 li-2026-skillsbench: step -> critique (round 1)",
+    "2026-07-29T03:02 li-2026-skillsbench: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-29T03:02 li-2026-skillsbench: step -> revise",
+    "2026-07-29T03:06 li-2026-skillsbench: step -> critique (round 2)",
+    "2026-07-29T03:15 li-2026-skillsbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-29T03:15 li-2026-skillsbench: step -> verify",
+    "2026-07-29T03:16 li-2026-skillsbench: step -> queue-ops",
+    "2026-07-29T03:16 li-2026-skillsbench: step -> podcast",
+    "2026-07-29T03:27 completed li-2026-skillsbench (verdict=approved, rounds=2)"
   ]
 }
