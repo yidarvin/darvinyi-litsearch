@@ -9358,6 +9358,22 @@
       "explainer": "papers/zheng-2022-minif2f.html",
       "audio_url": "https://pod.darvinyi.com/audio/zheng-2022-minif2f.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "dinan-2019-convai2",
+      "short": "ConvAI2",
+      "title": "The Second Conversational Intelligence Challenge (ConvAI2)",
+      "authors": "Dinan, Logacheva, Malykh, …, Burtsev, Weston",
+      "year": 2019,
+      "date": "2019-01",
+      "venue": "The NeurIPS '18 Competition",
+      "citation_count": 403,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Meta AI (FAIR)",
+      "abstract": "A NeurIPS 2018 competition report describing ConvAI2, a Persona-Chat-based open-domain chatbot benchmark run across 23 teams: automatic metrics (perplexity, F1, Hits@1/20) crowned Hugging Face the winner on every score, but the Mechanical Turk human-evaluation grand prize went to Lost in Conversation (engagingness 3.11 vs. 2.68/4). The paper's own stress tests show a fixed nonsense reply beating every competitor's F1 score.",
+      "explainer": "papers/dinan-2019-convai2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dinan-2019-convai2.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15857,6 +15873,13 @@
     { "from": "shao-2024-deepseekmath", "to": "zheng-2022-minif2f" },
     { "from": "he-2024-olympiadbench", "to": "zheng-2022-minif2f" },
     { "from": "brown-2024-monkeys", "to": "zheng-2022-minif2f" },
-    { "from": "glazer-2024-frontiermath", "to": "zheng-2022-minif2f" }
+    { "from": "glazer-2024-frontiermath", "to": "zheng-2022-minif2f" },
+    { "from": "dinan-2019-convai2", "to": "zhang-2018-personachat" },
+    { "from": "dinan-2019-convai2", "to": "wu-2017-smn" },
+    { "from": "dinan-2019-convai2", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "dinan-2019-convai2", "to": "devlin-2019-bert" },
+    { "from": "rashkin-2019-empatheticdialogues", "to": "dinan-2019-convai2" },
+    { "from": "lewis-2019-bart", "to": "dinan-2019-convai2" },
+    { "from": "press-2022-compositionality-gap", "to": "dinan-2019-convai2" }
   ]
 }

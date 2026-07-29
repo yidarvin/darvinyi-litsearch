@@ -471,6 +471,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "dinan-2019-convai2",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -502,16 +509,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T11:41 started li-2026-agentskillos ('Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale')",
-    "2026-07-28T11:42 li-2026-agentskillos: step -> fetch",
-    "2026-07-28T11:43 li-2026-agentskillos: step -> figures",
-    "2026-07-28T11:44 li-2026-agentskillos: step -> draft",
-    "2026-07-28T11:56 li-2026-agentskillos: step -> critique (round 1)",
-    "2026-07-28T12:14 li-2026-agentskillos: step -> critique (round 2)",
-    "2026-07-28T12:25 li-2026-agentskillos: step -> verify",
-    "2026-07-28T12:26 li-2026-agentskillos: step -> queue-ops",
-    "2026-07-28T12:26 li-2026-agentskillos: step -> podcast",
-    "2026-07-28T12:42 completed li-2026-agentskillos (verdict=approved, rounds=2)",
     "2026-07-28T12:44 started muennighoff-2023-mteb ('MTEB: Massive Text Embedding Benchmark')",
     "2026-07-28T12:45 muennighoff-2023-mteb: step -> fetch",
     "2026-07-28T12:46 muennighoff-2023-mteb: step -> figures",
@@ -551,6 +548,16 @@
     "2026-07-28T16:44 zheng-2022-minif2f: step -> verify",
     "2026-07-28T16:45 zheng-2022-minif2f: step -> queue-ops",
     "2026-07-28T16:45 zheng-2022-minif2f: step -> podcast",
-    "2026-07-28T17:01 completed zheng-2022-minif2f (verdict=approved, rounds=2)"
+    "2026-07-28T17:01 completed zheng-2022-minif2f (verdict=approved, rounds=2)",
+    "2026-07-28T17:04 started dinan-2019-convai2 ('The Second Conversational Intelligence Challenge (ConvAI2)')",
+    "2026-07-28T17:09 dinan-2019-convai2: step -> fetch",
+    "2026-07-28T17:09 dinan-2019-convai2: step -> figures",
+    "2026-07-28T17:10 dinan-2019-convai2: step -> draft",
+    "2026-07-28T17:19 dinan-2019-convai2: step -> critique (round 1)",
+    "2026-07-28T17:32 dinan-2019-convai2: step -> critique (round 2)",
+    "2026-07-28T17:38 dinan-2019-convai2: step -> verify",
+    "2026-07-28T17:39 dinan-2019-convai2: step -> queue-ops",
+    "2026-07-28T17:39 dinan-2019-convai2: step -> podcast",
+    "2026-07-28T17:54 completed dinan-2019-convai2 (verdict=approved, rounds=2)"
   ]
 }
