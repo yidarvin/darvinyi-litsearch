@@ -492,6 +492,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "liu-2023-logieval",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -523,16 +530,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T14:58 started wu-2017-smn ('Sequential Matching Network: A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots')",
-    "2026-07-28T15:01 wu-2017-smn: step -> fetch",
-    "2026-07-28T15:01 wu-2017-smn: step -> figures",
-    "2026-07-28T15:04 wu-2017-smn: step -> draft",
-    "2026-07-28T15:17 wu-2017-smn: step -> critique (round 1)",
-    "2026-07-28T15:31 wu-2017-smn: step -> critique (round 2)",
-    "2026-07-28T15:41 wu-2017-smn: step -> verify",
-    "2026-07-28T15:42 wu-2017-smn: step -> queue-ops",
-    "2026-07-28T15:42 wu-2017-smn: step -> podcast",
-    "2026-07-28T16:06 completed wu-2017-smn (verdict=approved, rounds=2)",
     "2026-07-28T16:09 started zheng-2022-minif2f ('MiniF2F: a cross-system benchmark for formal Olympiad-level mathematics')",
     "2026-07-28T16:11 zheng-2022-minif2f: step -> fetch",
     "2026-07-28T16:11 zheng-2022-minif2f: step -> figures",
@@ -572,6 +569,16 @@
     "2026-07-28T19:33 papoudakis-2021-marl-benchmark: step -> verify",
     "2026-07-28T19:34 papoudakis-2021-marl-benchmark: step -> queue-ops",
     "2026-07-28T19:34 papoudakis-2021-marl-benchmark: step -> podcast",
-    "2026-07-28T19:59 completed papoudakis-2021-marl-benchmark (verdict=approved, rounds=2)"
+    "2026-07-28T19:59 completed papoudakis-2021-marl-benchmark (verdict=approved, rounds=2)",
+    "2026-07-28T20:01 started liu-2023-logieval ('Evaluating the Logical Reasoning Ability of ChatGPT and GPT-4')",
+    "2026-07-28T20:02 liu-2023-logieval: step -> fetch",
+    "2026-07-28T20:02 liu-2023-logieval: step -> figures",
+    "2026-07-28T20:04 liu-2023-logieval: step -> draft",
+    "2026-07-28T20:21 liu-2023-logieval: step -> critique (round 1)",
+    "2026-07-28T20:38 liu-2023-logieval: step -> critique (round 2)",
+    "2026-07-28T20:46 liu-2023-logieval: step -> verify",
+    "2026-07-28T20:47 liu-2023-logieval: step -> queue-ops",
+    "2026-07-28T20:47 liu-2023-logieval: step -> podcast",
+    "2026-07-28T21:02 completed liu-2023-logieval (verdict=approved, rounds=2)"
   ]
 }

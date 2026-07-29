@@ -9405,6 +9405,22 @@
       "explainer": "papers/papoudakis-2021-marl-benchmark.html",
       "audio_url": "https://pod.darvinyi.com/audio/papoudakis-2021-marl-benchmark.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "liu-2023-logieval",
+      "short": "LogiEval",
+      "title": "Evaluating the Logical Reasoning Ability of ChatGPT and GPT-4",
+      "authors": "Liu, Ning, Teng, Liu, Zhou, Zhang",
+      "year": 2023,
+      "date": "2023-04",
+      "venue": "arXiv",
+      "citation_count": 338,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Westlake University",
+      "abstract": "Runs ChatGPT and GPT-4 zero/one-shot on five multi-choice logical-reasoning benchmarks (LogiQA 2.0 English/Chinese, ReClor, AR-LSAT, and a newly-built out-of-distribution split) and six NLI datasets against a fine-tuned RoBERTa baseline and human scores. Both models beat RoBERTa on most sets but drop sharply on AR-LSAT and the OOD split; the paper releases the whole prompt-style harness as a benchmark suite named LogiEval.",
+      "explainer": "papers/liu-2023-logieval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-logieval.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15927,6 +15943,18 @@
     { "from": "papoudakis-2021-marl-benchmark", "to": "lillicrap-2016-ddpg" },
     { "from": "papoudakis-2021-marl-benchmark", "to": "mnih-2015-dqn" },
     { "from": "papoudakis-2021-marl-benchmark", "to": "silver-2014-dpg" },
-    { "from": "papoudakis-2021-marl-benchmark", "to": "bellemare-2013-ale" }
+    { "from": "papoudakis-2021-marl-benchmark", "to": "bellemare-2013-ale" },
+    { "from": "liu-2023-logieval", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "liu-2023-logieval", "to": "brown-2020-gpt3" },
+    { "from": "liu-2023-logieval", "to": "raffel-2020-t5" },
+    { "from": "liu-2023-logieval", "to": "liu-2019-roberta" },
+    { "from": "liu-2023-logieval", "to": "wang-2018-glue" },
+    { "from": "liu-2023-logieval", "to": "williams-2017-multinli" },
+    { "from": "liu-2023-logieval", "to": "bowman-2015-snli" },
+    { "from": "liu-2023-logieval", "to": "devlin-2019-bert" },
+    { "from": "liu-2023-logieval", "to": "openai-2023-gpt4" },
+    { "from": "jain-2024-livecodebench", "to": "liu-2023-logieval" },
+    { "from": "lin-2023-agentsims", "to": "liu-2023-logieval" },
+    { "from": "chang-2023-llm-eval-survey", "to": "liu-2023-logieval" }
   ]
 }

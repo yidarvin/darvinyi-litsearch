@@ -281,6 +281,14 @@ unfinished work. Steps:
    authoring time. Prefer `bf_alice`, `bm_lewis`, `am_puck`, `bm_george`
    and similar.
 
+   **Number-dense scripts also run long, whatever the voice.** The word
+   counter scores "87.20" as one word while the synthesiser spends about a
+   second and a half on it, so a results-heavy episode overshoots the ~155
+   wpm assumption by roughly 10–15% (LogiEval landed 12% over on
+   `am_puck`, a voice that hits 156 on ordinary prose). That is tolerable —
+   budget for it rather than cutting substance, and don't misread it as a
+   voice problem.
+
    **Launch the render detached** (`nohup … & disown`) if you're running it
    from a subagent: a turn boundary kills the agent's process tree, and a
    foreground render dies with it partway through — observed once, on
