@@ -513,6 +513,15 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "zhou-2018-document-grounded",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "EMNLP 2018 CMU DoG dataset. 2 critic rounds (r1: 3 blockers -- false 'paper contradicts itself on turn counts' accusation, wrong 'shared document' scenario across 4 surfaces, unsupported split-holdout claim; r2 approve). Episode bf_emma 154.2 wpm, byte-verified."
+      ],
+      "date": "2026-07-29"
     }
   ],
   "skipped": [
@@ -544,19 +553,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T17:57 started fader-2013-paralex ('Paraphrase-Driven Learning for Open Question Answering')",
-    "2026-07-28T17:59 fader-2013-paralex: step -> fetch",
-    "2026-07-28T17:59 fader-2013-paralex: step -> figures",
-    "2026-07-28T18:01 fader-2013-paralex: step -> draft",
-    "2026-07-28T18:10 fader-2013-paralex: step -> critique (round 1)",
-    "2026-07-28T18:26 fader-2013-paralex: step -> critique (round 2)",
-    "2026-07-28T18:32 fader-2013-paralex: step -> verify",
-    "2026-07-28T18:33 fader-2013-paralex: step -> queue-ops",
-    "2026-07-28T18:33 fader-2013-paralex: step -> podcast",
-    "2026-07-28T18:50 completed fader-2013-paralex (verdict=approved, rounds=2)",
-    "2026-07-28T18:52 started papoudakis-2021-marl-benchmark ('Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks')",
-    "2026-07-28T18:53 papoudakis-2021-marl-benchmark: step -> fetch",
-    "2026-07-28T18:54 papoudakis-2021-marl-benchmark: step -> figures",
     "2026-07-28T18:54 papoudakis-2021-marl-benchmark: step -> draft",
     "2026-07-28T19:09 papoudakis-2021-marl-benchmark: step -> critique (round 1)",
     "2026-07-28T19:25 papoudakis-2021-marl-benchmark: step -> critique (round 2)",
@@ -593,6 +589,19 @@
     "2026-07-28T23:02 zhang-2022-cblue: step -> verify",
     "2026-07-28T23:03 zhang-2022-cblue: step -> queue-ops",
     "2026-07-28T23:03 zhang-2022-cblue: step -> podcast",
-    "2026-07-28T23:21 completed zhang-2022-cblue (verdict=approved, rounds=2)"
+    "2026-07-28T23:21 completed zhang-2022-cblue (verdict=approved, rounds=2)",
+    "2026-07-28T23:25 started zhou-2018-document-grounded ('A Dataset for Document Grounded Conversations')",
+    "2026-07-28T23:28 zhou-2018-document-grounded: step -> fetch",
+    "2026-07-28T23:28 zhou-2018-document-grounded: step -> figures",
+    "2026-07-28T23:28 zhou-2018-document-grounded: step -> draft",
+    "2026-07-28T23:36 zhou-2018-document-grounded: step -> critique (round 1)",
+    "2026-07-28T23:44 zhou-2018-document-grounded: step -> revise",
+    "2026-07-28T23:44 zhou-2018-document-grounded: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-28T23:47 zhou-2018-document-grounded: step -> critique (round 2)",
+    "2026-07-28T23:51 zhou-2018-document-grounded: step -> verify",
+    "2026-07-28T23:52 zhou-2018-document-grounded: step -> queue-ops",
+    "2026-07-28T23:55 zhou-2018-document-grounded: step -> podcast",
+    "2026-07-29T00:09 zhou-2018-document-grounded: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-29T00:09 completed zhou-2018-document-grounded (verdict=approved, rounds=2)"
   ]
 }

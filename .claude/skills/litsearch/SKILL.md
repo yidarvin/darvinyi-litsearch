@@ -289,6 +289,15 @@ unfinished work. Steps:
    budget for it rather than cutting substance, and don't misread it as a
    voice problem.
 
+   **The overshoot disappears if you spell the numbers out in the script.**
+   House style already writes years as words ("twenty eighteen"); extend it
+   to every dense token — "twenty-one point eight", "forty-three point nine
+   percent" — and the word counter becomes honest, because each token now
+   costs the counter what it costs the synthesiser. CMU DoG carried a dozen
+   such figures and landed at 154.2 wpm on `bf_emma` against a 155
+   prediction: 0.6% over, versus the 10–15% budgeted. Prefer this to
+   padding the estimate.
+
    **Launch the render detached** (`nohup … & disown`) if you're running it
    from a subagent: a turn boundary kills the agent's process tree, and a
    foreground render dies with it partway through — observed once, on

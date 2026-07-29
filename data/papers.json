@@ -9453,6 +9453,22 @@
       "explainer": "papers/zhang-2022-cblue.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2022-cblue.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhou-2018-document-grounded",
+      "short": "CMU DoG",
+      "title": "A Dataset for Document Grounded Conversations",
+      "authors": "Zhou, Prabhumoye, Black",
+      "year": 2018,
+      "date": "2018-09",
+      "venue": "EMNLP 2018",
+      "citation_count": 249,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Carnegie Mellon University",
+      "abstract": "Introduces CMU DoG, a 4,112-conversation crowdsourced dataset in which two humans discuss a Wikipedia movie article — only one worker can see it in 2,128 conversations and both can see it in the other 1,984 — mapping every turn to a document section, and shows that conditioning a seq2seq generator on that section measurably improves perplexity (10.11 vs. 21.8), engagement (43.9% vs. 36.4% pairwise preference), and fluency (3.84 vs. 2.88 on a 1-4 scale) over an ungrounded baseline.",
+      "explainer": "papers/zhou-2018-document-grounded.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2018-document-grounded.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16008,6 +16024,10 @@
     { "from": "zhang-2022-cblue", "to": "gebru-2018-datasheets" },
     { "from": "zhang-2022-cblue", "to": "chen-2020-meddialog" },
     { "from": "zhang-2022-cblue", "to": "liu-2020-meddg" },
-    { "from": "chen-2022-imcs21", "to": "zhang-2022-cblue" }
+    { "from": "chen-2022-imcs21", "to": "zhang-2022-cblue" },
+    { "from": "zhou-2018-document-grounded", "to": "zhang-2018-personachat" },
+    { "from": "zhou-2018-document-grounded", "to": "papineni-2002-bleu" },
+    { "from": "feng-2023-mmdialog", "to": "zhou-2018-document-grounded" },
+    { "from": "wang-2020-lccc", "to": "zhou-2018-document-grounded" }
   ]
 }

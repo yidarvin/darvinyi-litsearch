@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Dataset for Document Grounded Conversations — paper_atlas</title>
+<meta name="description" content="Introduces CMU DoG, a 4,112-conversation crowdsourced dataset in which two humans discuss a Wikipedia movie article — only one worker can see it in 2,128 conversations and both can see it in the other 1,984 — mapping every turn to a document section, and shows that conditioning a seq2seq generator on that section measurably improves perplexity, engagement, and fluency over an ungrounded baseline.">
+<meta property="og:title" content="A Dataset for Document Grounded Conversations">
+<meta property="og:description" content="Introduces CMU DoG, a 4,112-conversation crowdsourced dataset in which two humans discuss a Wikipedia movie article — only one worker can see it in 2,128 conversations and both can see it in the other 1,984 — mapping every turn to a document section, and shows that conditioning a seq2seq generator on that section measurably improves perplexity, engagement, and fluency over an ungrounded baseline.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/zhou-2018-document-grounded.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2018 · EMNLP 2018 · Benchmarks &amp; Evals</div>
+      <h1>A Dataset for Document Grounded Conversations</h1>
+      <p class="dek">Introduces CMU DoG, a 4,112-conversation crowdsourced dataset in which two humans discuss a Wikipedia movie article — only one worker can see it in 2,128 conversations and both can see it in the other 1,984 — mapping every turn to a document section, and shows that conditioning a seq2seq generator on that section measurably improves perplexity, engagement, and fluency over an ungrounded baseline.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/zhou-2018-document-grounded.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/zhou-2018-document-grounded.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Kangyan Zhou, Shrimai Prabhumoye, Alan W. Black</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>EMNLP 2018</b></span>
+        <span class="fact">citations&nbsp;<b>249</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1809.07358">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/zhou-2018-document-grounded.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-28</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2018, most public conversational datasets fell into two camps, and neither gave a model a real, checkable source of information to talk about. Scripted-dialog corpora built from movie transcripts (Danescu-Niculescu-Mizil and Lee's Cornell Movie corpus, Lison and Tiedemann's OpenSubtitles2016) supply huge volumes of turns, but the "conversations" are lines an actor spoke, not two people actually exchanging information — the paper's own Table 3 puts Cornell Movie's average length at just 1.38 turns. The Ubuntu Dialogue Corpus (Lowe et al., 2015) is grounded in real technical-support logs, but only in the narrow, formulaic domain of Ubuntu troubleshooting. PersonaChat (Zhang et al., 2018) moves toward grounding by giving each worker a short list of predefined persona facts to draw on, but a handful of one-line facts is not a document — there is no larger source text a system could actually cite, quote, or be checked against. The Frames dataset (El Asri et al., 2017) grounds conversations in a task (booking a trip) rather than in explanatory text.</p>
+      <p>The authors' gap, stated plainly: no existing dataset paired real, extended, two-human conversations with an actual reference <em>document</em> — the kind of grounding a system would need to explain a topic, answer follow-up questions about it, and be held accountable for using the source material rather than inventing content. They also wanted the conversations to be long enough, and the turn-to-source mapping precise enough, that a model's response could be tied back to a specific passage of the document, not just to the conversation history.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <h3>Building the document set</h3>
+      <p>The authors picked movies as the grounding domain — engaging and widely known enough that Mechanical Turk workers would stay on-task — and selected 30 Wikipedia articles spanning genres (thriller, super-hero, animation, romantic, biopic, etc.). Each article was distilled into a document <span class="mono">d<sub>i</sub></span> of four sections {s<sub>1</sub>, s<sub>2</sub>, s<sub>3</sub>, s<sub>4</sub>}: <span class="mono">s<sub>1</sub></span> is basic information (year, genre, director, cast, critical response, review-site ratings); <span class="mono">s<sub>2</sub>–s<sub>4</sub></span> are three key-scene plot paragraphs, each roughly 7 sentences / 143 words, extracted automatically from the article and lightly hand-edited for consistent length and detail.</p>
+      <h3>Collecting the conversations</h3>
+      <p>Pairs of AMT workers chatted about a document under one of two scenarios. In <strong>Scenario 1</strong>, only one worker sees the document; that worker is told to reveal the movie and persuade the other to watch (or not watch) it, while the other worker tries to gather enough information to decide whether to watch. In <strong>Scenario 2</strong>, both workers see the same document and are asked to discuss its content and say whether they like or dislike the movie. In both scenarios workers must reach at least 12 turns. The document is revealed section-by-section: both workers start with only <span class="mono">s<sub>1</sub></span>, and after 3 turns of discussion (6 turns on the first section, to allow for greetings) the next section is shown — so every turn range in a transcript can be mapped back to the specific section that prompted it.</p>
+      <p>The resulting corpus has <strong>4,112 conversations</strong> (2,128 from Scenario 1, 1,984 from Scenario 2). To grade how much a conversation actually draws on the document rather than drifting off-topic, the authors compute a BLEU score (Papineni et al., 2002) between a conversation's utterances and its source document, then split conversations into three quality tiers: <strong>Rating 1</strong> (BLEU ≤ 0.1, low document use), <strong>Rating 3</strong> (more than 12 turns and BLEU &gt; 0.587 — a threshold set as the mean, 0.385, plus one standard deviation, 0.202, of BLEU scores for non-Rating-1 conversations), and <strong>Rating 2</strong> for everything in between. Workers with document access average a BLEU score of 0.22 against the document, versus 0.03 for workers without it — evidence that document-havers use its content, but not verbatim.</p>
+      <table>
+        <thead><tr><th>Statistic</th><th class="num">Rating 1</th><th class="num">Rating 2</th><th class="num">Rating 3</th></tr></thead>
+        <tbody>
+          <tr><td>Conversations</td><td class="num">1,443</td><td class="num">2,142</td><td class="num">527</td></tr>
+          <tr><td>Utterances</td><td class="num">28,536</td><td class="num">80,104</td><td class="num">21,360</td></tr>
+          <tr><td>Avg. utterances / conversation</td><td class="num">19.77</td><td class="num">35.39</td><td class="num">40.53</td></tr>
+          <tr><td>Avg. utterance length</td><td class="num">7.51</td><td class="num">10.56</td><td class="num">16.57</td></tr>
+        </tbody>
+      </table>
+      <h3>The generative models</h3>
+      <p>Two encoder-decoder models are compared, differing only in whether the decoder sees the current document section. Both use a two-layer bidirectional LSTM encoder and an LSTM decoder (hidden size 300, word-embedding size 100, dropout 0.3), global attention (Luong et al., 2015) with a copy mechanism (See et al., 2017) for handling out-of-vocabulary tokens, Adam (lr 0.001), and beam search of width 5 at inference. Vocabulary is capped at the 10,000 most frequent of the corpus's 46,000 total tokens. The <strong>SEQ</strong> baseline is a plain sequence-to-sequence model: given the current utterance <span class="mono">x<sub>i</sub></span>, it encodes a representation <span class="mono">h<sub>x<sub>i</sub></sub></span> and generates the next utterance token-by-token from it. <strong>SEQS</strong> extends this by additionally encoding the current document section <span class="mono">s<sub>i</sub></span> with the same encoder:</p>
+      <div class="eq">
+        h<sub>t</sub>&nbsp;=&nbsp;[x<sub>t−1</sub>;&nbsp;h<sub>s</sub>]
+        <span class="note">// SEQS's decoder input at each step t: the previous-token embedding concatenated with the encoded section representation h_s</span>
+      </div>
+      <p>Both models are trained and tested on the full dataset — all conversations, regardless of quality rating or scenario — with an 0.8 / 0.05 / 0.15 train/validation/test split.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Against comparable prior dialog corpora, CMU DoG sits between them in scale but is denser in turns per conversation than the other real-conversation datasets it's compared to:</p>
+      <table>
+        <thead><tr><th>Dataset</th><th class="num"># Utterances</th><th class="num">Avg. # of Turns</th></tr></thead>
+        <tbody>
+          <tr><td>CMU DoG</td><td class="num">130,000</td><td class="num">31</td></tr>
+          <tr><td>Persona-Chat (Zhang et al., 2018)</td><td class="num">164,356</td><td class="num">14</td></tr>
+          <tr><td>Cornell Movie (Danescu-Niculescu-Mizil and Lee, 2011)</td><td class="num">304,713</td><td class="num">1.38</td></tr>
+          <tr><td>Frames (El Asri et al., 2017)</td><td class="num">19,986</td><td class="num">15</td></tr>
+        </tbody>
+      </table>
+      <p>A separate token-overlap analysis checks whether workers actually pull from the newly revealed section rather than staying fixated on earlier ones. Measuring the overlap between a section's tokens and nearby utterance tokens (excluding stop words and tokens already used in prior turns/sections), the authors report an overlap statistic (NW) of 0.78 for Scenario 1 and 5.84 for Scenario 2, alongside an average response-span length (LT) of 12.85 and 117.12 tokens respectively — evidence, in the authors' framing, that workers pick up and use the newly revealed section rather than only recycling earlier ones.</p>
+      <p>For the generation models, three evaluations compare SEQ (no document access) against SEQS (current section access):</p>
+      <table>
+        <thead><tr><th>Metric</th><th class="num">SEQ</th><th class="num">SEQS</th><th class="num">Δ (SEQS − SEQ)</th></tr></thead>
+        <tbody>
+          <tr><td>Perplexity (test-set LM, lower is better)</td><td class="num">21.8</td><td class="num">10.11</td><td class="num">−11.69</td></tr>
+          <tr><td>Engagement — % chosen, pairwise (higher is better; "No Preference" 19.6%)</td><td class="num">36.4</td><td class="num">43.9</td><td class="num">+7.5</td></tr>
+          <tr><td>Fluency — 1–4 human scale (higher is better)</td><td class="num">2.88</td><td class="num">3.84</td><td class="num">+0.96</td></tr>
+        </tbody>
+      </table>
+      <p>Perplexity, computed from a trigram language model (SRILM) trained on the training-set responses, drops from 21.8 for SEQ to 10.11 for SEQS. In a pairwise human-preference test (90 sampled responses per model, 3 annotators each, majority vote, with a "No Preference" option available), SEQS-generated responses were chosen 43.9% of the time versus 36.4% for SEQ, with no preference expressed 19.6% of the time. In a separate 1–4 fluency rating (120 sampled responses per model, 3 annotators each), SEQS scored 3.84 against SEQ's 2.88. All three results point the same direction: giving the decoder access to the currently-discussed document section improves the model along every axis the paper measures.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>As a dataset-introduction paper, CMU DoG's real contribution is the corpus and its turn-to-section mapping; the SEQ/SEQS comparison is best read as a minimal ablation demonstrating the data is usable, not as a benchmark result establishing a state of the art. Read that way, several aspects of the evaluation and the dataset's own reporting deserve a closer look.</p>
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">SEQ and SEQS are the same architecture with one difference — whether the decoder sees the current document section — so the comparison isolates that one variable cleanly, but no other model family is tested. There is no retrieval baseline (surprisingly strong in other dialog benchmarks of the era) and no memory-network-style baseline that reads the document more explicitly than concatenating an encoded section vector at every decoder step. The paper doesn't claim otherwise, but a reader benchmarking against CMU DoG today should not treat SEQS's numbers as a ceiling.</p>
+        <span class="k">contamination</span><p class="v">The entire dataset is built from only <strong>30</strong> Wikipedia movie documents, and the paper states only the 0.8/0.05/0.15 train/validation/test proportions — it never says what unit the split is performed over, or whether a document's conversations are kept together on one side of the split. That is an omission, not a demonstrated leak: if the split is not document-aware, then with 4,112 conversations spread across just 30 documents it would be likely that every document in test also appears in training via other conversations about the same movie, which would let SEQS's perplexity and human-eval gains partly reflect prior exposure to the relevant document's content rather than generalization to a genuinely unseen source document. But the paper simply doesn't say, so this can't be confirmed from the text itself — only flagged as a gap worth closing.</p>
+        <span class="k">what's missed</span><p class="v">None of the three headline metrics directly measures whether a generated response is factually faithful to the document — the paper's actual thesis. Perplexity scores fluency against a language model, not correctness against the source text; the human studies ask about engagingness and readability, not whether a document-grounded claim in the response is actually true. The human evaluations are also small and unaccompanied by any inter-annotator agreement statistic: 90 sampled responses per model for engagement (270 total votes across 3 raters, reduced further by a 19.6% "No Preference" share) and 120 for fluency, with majority vote taken but no agreement score (e.g. Fleiss' kappa) reported for either.</p>
+        <span class="k">would raise confidence</span><p class="v">A document-held-out split (documents used in training never appear in test) would let a reader distinguish real grounding generalization from document memorization; a retrieval or memory-network baseline would show whether SEQS's edge survives stronger competition; an automatic faithfulness metric checked against the source document — not just fluency — would directly test the paper's own claim; and reporting inter-annotator agreement for the engagement and fluency studies would let a reader judge how reliable the 7.5-point and 0.96-point gaps really are.</p>
+      </div>
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>The dataset is a genuine and useful artifact — 4,112 real two-person conversations grounded in a document with an explicit turn-to-section mapping, something the 2018 dialog-dataset landscape didn't have. Note that the paper reports two different turns-per-conversation figures under two different, explicitly stated definitions: Table 3's 31 (utterances ÷ conversations) and the abstract/§2.3's 21.43 (where a "turn" is defined as a speaker-to-speaker exchange, so a run of same-speaker utterances collapses into one turn) — these are reconciled by definition, not a discrepancy. Table 4 does have a real reporting slip, though: its printed "Average # utterances/conversation" for Rating 2 (35.39) does not reproduce from the table's own Total # of utterances (80,104) divided by Total # of conversations (2,142), which comes to 37.40 — Ratings 1, 3, and the combined 2&amp;3 column do reproduce cleanly from their own totals, so this looks like an isolated error in the Rating 2 column specifically. Anyone citing that particular figure should check the released conversation files rather than take it at face value.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Introduces CMU DoG: 4,112 crowdsourced two-party conversations (2,128 one-sided-document, 1,984 both-have-document) grounded in 30 Wikipedia movie articles split into 4 sections each, with every stretch of turns mapped to the section that prompted it, plus a BLEU-derived 3-tier quality rating (Rating 1: 1,443 conversations, low document use; Rating 2: 2,142; Rating 3: 527, high document use, &gt;12 turns).</li>
+        <li>Conditioning a seq2seq generator on the current document section (SEQS) beats a section-blind baseline (SEQ) on every axis tested: test-set perplexity (10.11 vs. 21.8), pairwise engagement preference (43.9% vs. 36.4%, with 19.6% no-preference), and 1–4 human fluency rating (3.84 vs. 2.88).</li>
+        <li>Read the SEQ/SEQS comparison as an ablation, not a state-of-the-art benchmark result — no retrieval or memory-based baseline is tested, the paper never states whether its 0.8/0.05/0.15 train/validation/test split holds documents constant across splits (a real concern given only 30 underlying documents, but unverifiable from the paper itself), and none of the three metrics directly checks factual faithfulness to the source document. Table 4's Rating 2 average utterances/conversation (35.39) also doesn't reproduce from its own printed totals (80,104 ÷ 2,142 = 37.40) — worth checking the released data directly before citing that figure.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        A Dataset for Document Grounded Conversations<br>
+        Kangyan Zhou, Shrimai Prabhumoye, Alan W. Black · 2018 · EMNLP 2018<br>
+        <a href="https://arxiv.org/abs/1809.07358">read the original ↗</a> · slug: zhou-2018-document-grounded
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
