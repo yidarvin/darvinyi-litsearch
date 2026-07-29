@@ -9437,6 +9437,22 @@
       "explainer": "papers/srivastava-2021-behavior.html",
       "audio_url": "https://pod.darvinyi.com/audio/srivastava-2021-behavior.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhang-2022-cblue",
+      "short": "CBLUE",
+      "title": "CBLUE: A Chinese Biomedical Language Understanding Evaluation Benchmark",
+      "authors": "Zhang, Chen, Bi, Liang, Li, … (23 authors)",
+      "year": 2022,
+      "date": "2021-06",
+      "venue": "ACL 2022",
+      "citation_count": 250,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Zhejiang University / Alibaba",
+      "abstract": "The first Chinese biomedical NLU benchmark: eight tasks built from real clinical trials, EHRs, medical forums, and search logs (NER, relation extraction, diagnosis normalization, classification, sentence similarity, and search-intent/relevance), left in their natural long-tailed, non-i.i.d. distribution rather than balanced. Across 11 fine-tuned Chinese pretrained language models, including a purpose-built medical BERT, every model trails trained amateur human annotators on every one of the eight tasks (best single-model average 70.0 vs. human 77.1), and the medical-domain model actually finishes below plain general-domain BERT-base.",
+      "explainer": "papers/zhang-2022-cblue.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2022-cblue.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15982,6 +15998,16 @@
     { "from": "srivastava-2021-behavior", "to": "deng-2009-imagenet" },
     { "from": "wu-2023-smartplay", "to": "srivastava-2021-behavior" },
     { "from": "liu-2023-agentbench", "to": "srivastava-2021-behavior" },
-    { "from": "ahn-2022-saycan", "to": "srivastava-2021-behavior" }
+    { "from": "ahn-2022-saycan", "to": "srivastava-2021-behavior" },
+    { "from": "zhang-2022-cblue", "to": "wang-2018-glue" },
+    { "from": "zhang-2022-cblue", "to": "wang-2019-superglue" },
+    { "from": "zhang-2022-cblue", "to": "devlin-2019-bert" },
+    { "from": "zhang-2022-cblue", "to": "liu-2019-roberta" },
+    { "from": "zhang-2022-cblue", "to": "lan-2019-albert" },
+    { "from": "zhang-2022-cblue", "to": "jin-2019-pubmedqa" },
+    { "from": "zhang-2022-cblue", "to": "gebru-2018-datasheets" },
+    { "from": "zhang-2022-cblue", "to": "chen-2020-meddialog" },
+    { "from": "zhang-2022-cblue", "to": "liu-2020-meddg" },
+    { "from": "chen-2022-imcs21", "to": "zhang-2022-cblue" }
   ]
 }

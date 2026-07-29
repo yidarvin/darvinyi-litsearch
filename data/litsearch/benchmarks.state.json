@@ -506,6 +506,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "zhang-2022-cblue",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -537,16 +544,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T17:04 started dinan-2019-convai2 ('The Second Conversational Intelligence Challenge (ConvAI2)')",
-    "2026-07-28T17:09 dinan-2019-convai2: step -> fetch",
-    "2026-07-28T17:09 dinan-2019-convai2: step -> figures",
-    "2026-07-28T17:10 dinan-2019-convai2: step -> draft",
-    "2026-07-28T17:19 dinan-2019-convai2: step -> critique (round 1)",
-    "2026-07-28T17:32 dinan-2019-convai2: step -> critique (round 2)",
-    "2026-07-28T17:38 dinan-2019-convai2: step -> verify",
-    "2026-07-28T17:39 dinan-2019-convai2: step -> queue-ops",
-    "2026-07-28T17:39 dinan-2019-convai2: step -> podcast",
-    "2026-07-28T17:54 completed dinan-2019-convai2 (verdict=approved, rounds=2)",
     "2026-07-28T17:57 started fader-2013-paralex ('Paraphrase-Driven Learning for Open Question Answering')",
     "2026-07-28T17:59 fader-2013-paralex: step -> fetch",
     "2026-07-28T17:59 fader-2013-paralex: step -> figures",
@@ -586,6 +583,16 @@
     "2026-07-28T21:50 srivastava-2021-behavior: step -> verify",
     "2026-07-28T21:51 srivastava-2021-behavior: step -> queue-ops",
     "2026-07-28T21:51 srivastava-2021-behavior: step -> podcast",
-    "2026-07-28T22:10 completed srivastava-2021-behavior (verdict=approved, rounds=2)"
+    "2026-07-28T22:10 completed srivastava-2021-behavior (verdict=approved, rounds=2)",
+    "2026-07-28T22:13 started zhang-2022-cblue ('CBLUE: A Chinese Biomedical Language Understanding Evaluation Benchmark')",
+    "2026-07-28T22:15 zhang-2022-cblue: step -> fetch",
+    "2026-07-28T22:15 zhang-2022-cblue: step -> figures",
+    "2026-07-28T22:16 zhang-2022-cblue: step -> draft",
+    "2026-07-28T22:40 zhang-2022-cblue: step -> critique (round 1)",
+    "2026-07-28T22:54 zhang-2022-cblue: step -> critique (round 2)",
+    "2026-07-28T23:02 zhang-2022-cblue: step -> verify",
+    "2026-07-28T23:03 zhang-2022-cblue: step -> queue-ops",
+    "2026-07-28T23:03 zhang-2022-cblue: step -> podcast",
+    "2026-07-28T23:21 completed zhang-2022-cblue (verdict=approved, rounds=2)"
   ]
 }
