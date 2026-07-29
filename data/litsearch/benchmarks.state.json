@@ -531,6 +531,15 @@
         "Crafter (ICLR 2022, sole author Hafner). 3 critic rounds. r1: 4 blockers (Table A.1/B.1 conflation -- wrong agents on Wake Up, false 'only reward agent to place a furnace', wood rows quoted as stone rows, invented figcaption detail). r2: 2 new blockers -- the r1 fix introduced a false superlative and a false 'paper contradicts itself' charge, both from reading 1-decimal table rounding as true zeros; critic resolved them by parsing bar heights out of the PDF vector stream (Figures 6-7 are log-floored at 0.01%). r3: approve. Episode bm_daniel 157.9 wpm, byte-verified; its three added findings (Hafner co-authors Plan2Explore, score/return use different windows, human +/-6.8 is partition noise) were independently verified and two folded into the page."
       ],
       "date": "2026-07-29"
+    },
+    {
+      "slug": "bakhtin-2019-phyre",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "PHYRE (NeurIPS 2019). 3 critic rounds, 12 blockers total -- all in interpretive prose; the critic independently cleared the AUCCESS definition, all 8 headline numbers, the MEM anomaly and all 6 edges in round 1. r1 (10): false 'every agent' quantifiers contradicted by the page's own table, an invented within-task feedback leak, OPTIMAL misused to justify budgets, 10k test vs 100k training budgets conflated, a mislabeled figcaption, an inverted reading of 4.4, 'roughly halves' for a 29.5% drop, a term ('interaction networks') absent from the paper, two wrong Figure 2 readings, and an over-scoped MEM claim. r2 (2): both fixes replaced a wrong claim with a differently-wrong one in the same spot -- resolved by deleting the brittle figure-recurrence count outright and re-anchoring the coverage sentence at a single x. r3: approve. Episode bf_emma 149.7 wpm, byte-verified; its added arithmetic and 4 PDF-sourced details independently checked."
+      ],
+      "date": "2026-07-29"
     }
   ],
   "skipped": [
@@ -562,22 +571,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T21:02 completed liu-2023-logieval (verdict=approved, rounds=2)",
-    "2026-07-28T21:05 started srivastava-2021-behavior ('BEHAVIOR: Benchmark for Everyday Household Activities in Virtual, Interactive, and Ecological Environments')",
-    "2026-07-28T21:08 srivastava-2021-behavior: step -> fetch",
-    "2026-07-28T21:08 srivastava-2021-behavior: step -> figures",
-    "2026-07-28T21:08 srivastava-2021-behavior: step -> draft",
-    "2026-07-28T21:24 srivastava-2021-behavior: step -> critique (round 1)",
-    "2026-07-28T21:40 srivastava-2021-behavior: step -> critique (round 2)",
-    "2026-07-28T21:50 srivastava-2021-behavior: step -> verify",
-    "2026-07-28T21:51 srivastava-2021-behavior: step -> queue-ops",
-    "2026-07-28T21:51 srivastava-2021-behavior: step -> podcast",
-    "2026-07-28T22:10 completed srivastava-2021-behavior (verdict=approved, rounds=2)",
-    "2026-07-28T22:13 started zhang-2022-cblue ('CBLUE: A Chinese Biomedical Language Understanding Evaluation Benchmark')",
-    "2026-07-28T22:15 zhang-2022-cblue: step -> fetch",
-    "2026-07-28T22:15 zhang-2022-cblue: step -> figures",
-    "2026-07-28T22:16 zhang-2022-cblue: step -> draft",
-    "2026-07-28T22:40 zhang-2022-cblue: step -> critique (round 1)",
     "2026-07-28T22:54 zhang-2022-cblue: step -> critique (round 2)",
     "2026-07-28T23:02 zhang-2022-cblue: step -> verify",
     "2026-07-28T23:03 zhang-2022-cblue: step -> queue-ops",
@@ -611,6 +604,22 @@
     "2026-07-29T00:56 hafner-2022-crafter: step -> verify",
     "2026-07-29T01:00 hafner-2022-crafter: step -> queue-ops",
     "2026-07-29T01:01 hafner-2022-crafter: step -> podcast",
-    "2026-07-29T01:18 completed hafner-2022-crafter (verdict=approved, rounds=3)"
+    "2026-07-29T01:18 completed hafner-2022-crafter (verdict=approved, rounds=3)",
+    "2026-07-29T01:21 started bakhtin-2019-phyre ('PHYRE: A New Benchmark for Physical Reasoning')",
+    "2026-07-29T01:22 bakhtin-2019-phyre: step -> fetch",
+    "2026-07-29T01:22 bakhtin-2019-phyre: step -> figures",
+    "2026-07-29T01:23 bakhtin-2019-phyre: step -> draft",
+    "2026-07-29T01:37 bakhtin-2019-phyre: step -> critique (round 1)",
+    "2026-07-29T01:47 bakhtin-2019-phyre: 10 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-29T01:47 bakhtin-2019-phyre: step -> revise",
+    "2026-07-29T01:55 bakhtin-2019-phyre: step -> critique (round 2)",
+    "2026-07-29T02:08 bakhtin-2019-phyre: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-29T02:08 bakhtin-2019-phyre: step -> revise",
+    "2026-07-29T02:11 bakhtin-2019-phyre: step -> critique (round 3)",
+    "2026-07-29T02:18 bakhtin-2019-phyre: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-29T02:18 bakhtin-2019-phyre: step -> verify",
+    "2026-07-29T02:19 bakhtin-2019-phyre: step -> queue-ops",
+    "2026-07-29T02:19 bakhtin-2019-phyre: step -> podcast",
+    "2026-07-29T02:34 completed bakhtin-2019-phyre (verdict=approved, rounds=3)"
   ]
 }

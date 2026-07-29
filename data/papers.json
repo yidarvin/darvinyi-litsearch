@@ -9485,6 +9485,22 @@
       "explainer": "papers/hafner-2022-crafter.html",
       "audio_url": "https://pod.darvinyi.com/audio/hafner-2022-crafter.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "bakhtin-2019-phyre",
+      "short": "PHYRE",
+      "title": "PHYRE: A New Benchmark for Physical Reasoning",
+      "authors": "Bakhtin, van der Maaten, Johnson, Gustafson, Girshick",
+      "year": 2019,
+      "date": "2019-08",
+      "venue": "NeurIPS 2019",
+      "citation_count": 190,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Facebook AI Research",
+      "abstract": "PHYRE benchmarks physical reasoning as a single-action puzzle game: an agent places one ball (PHYRE-B) or two (PHYRE-2B) into a deterministic 2D physics simulator to satisfy a goal, scored by AUCCESS, a log-weighted area under the success-vs-attempts curve that rewards solving new puzzles in few tries. Across 5,000 tasks (25 templates x 100 tasks per tier), the best 2019 baseline -- an online-updating deep Q-network -- reaches only 56.2% AUCCESS on PHYRE-B and 39.6% on PHYRE-2B when tested on templates it never trained on, versus 77.6% and 67.8% on templates it has already seen.",
+      "explainer": "papers/bakhtin-2019-phyre.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bakhtin-2019-phyre.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16052,6 +16068,12 @@
     { "from": "hafner-2022-crafter", "to": "mnih-2015-dqn" },
     { "from": "paglieri-2024-balrog", "to": "hafner-2022-crafter" },
     { "from": "wu-2023-smartplay", "to": "hafner-2022-crafter" },
-    { "from": "hafner-2023-dreamerv3", "to": "hafner-2022-crafter" }
+    { "from": "hafner-2023-dreamerv3", "to": "hafner-2022-crafter" },
+    { "from": "bakhtin-2019-phyre", "to": "schulman-2017-ppo" },
+    { "from": "bakhtin-2019-phyre", "to": "mnih-2016-a3c" },
+    { "from": "bakhtin-2019-phyre", "to": "antol-2015-vqa" },
+    { "from": "bakhtin-2019-phyre", "to": "mnih-2015-dqn" },
+    { "from": "bakhtin-2019-phyre", "to": "todorov-2012-mujoco" },
+    { "from": "shu-2021-agent", "to": "bakhtin-2019-phyre" }
   ]
 }
