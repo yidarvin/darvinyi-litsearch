@@ -485,6 +485,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "papoudakis-2021-marl-benchmark",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -516,16 +523,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T14:08 started voorhees-2000-trec-qa ('Building a Question Answering Test Collection')",
-    "2026-07-28T14:11 voorhees-2000-trec-qa: step -> fetch",
-    "2026-07-28T14:11 voorhees-2000-trec-qa: step -> figures",
-    "2026-07-28T14:12 voorhees-2000-trec-qa: step -> draft",
-    "2026-07-28T14:21 voorhees-2000-trec-qa: step -> critique (round 1)",
-    "2026-07-28T14:35 voorhees-2000-trec-qa: step -> critique (round 2)",
-    "2026-07-28T14:41 voorhees-2000-trec-qa: step -> verify",
-    "2026-07-28T14:42 voorhees-2000-trec-qa: step -> queue-ops",
-    "2026-07-28T14:42 voorhees-2000-trec-qa: step -> podcast",
-    "2026-07-28T14:56 completed voorhees-2000-trec-qa (verdict=approved, rounds=2)",
     "2026-07-28T14:58 started wu-2017-smn ('Sequential Matching Network: A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots')",
     "2026-07-28T15:01 wu-2017-smn: step -> fetch",
     "2026-07-28T15:01 wu-2017-smn: step -> figures",
@@ -565,6 +562,16 @@
     "2026-07-28T18:32 fader-2013-paralex: step -> verify",
     "2026-07-28T18:33 fader-2013-paralex: step -> queue-ops",
     "2026-07-28T18:33 fader-2013-paralex: step -> podcast",
-    "2026-07-28T18:50 completed fader-2013-paralex (verdict=approved, rounds=2)"
+    "2026-07-28T18:50 completed fader-2013-paralex (verdict=approved, rounds=2)",
+    "2026-07-28T18:52 started papoudakis-2021-marl-benchmark ('Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks')",
+    "2026-07-28T18:53 papoudakis-2021-marl-benchmark: step -> fetch",
+    "2026-07-28T18:54 papoudakis-2021-marl-benchmark: step -> figures",
+    "2026-07-28T18:54 papoudakis-2021-marl-benchmark: step -> draft",
+    "2026-07-28T19:09 papoudakis-2021-marl-benchmark: step -> critique (round 1)",
+    "2026-07-28T19:25 papoudakis-2021-marl-benchmark: step -> critique (round 2)",
+    "2026-07-28T19:33 papoudakis-2021-marl-benchmark: step -> verify",
+    "2026-07-28T19:34 papoudakis-2021-marl-benchmark: step -> queue-ops",
+    "2026-07-28T19:34 papoudakis-2021-marl-benchmark: step -> podcast",
+    "2026-07-28T19:59 completed papoudakis-2021-marl-benchmark (verdict=approved, rounds=2)"
   ]
 }

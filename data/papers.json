@@ -9389,6 +9389,22 @@
       "abstract": "Introduces Paralex, a system that learns to map open-domain questions to queries over a noisy 15M-fact web-extraction database (REVERB) with no manually labeled questions, bootstrapping a lexicon and linear ranking function from 16 seed templates and an 18M-pair WikiAnswers paraphrase corpus. On a held-out set of 698 known-answerable questions, it reaches 0.42 recall / 0.77 precision (0.54 F1), more than quadrupling the seed lexicon's recall at roughly an 8% relative precision cost.",
       "explainer": "papers/fader-2013-paralex.html",
       "audio_url": "https://pod.darvinyi.com/audio/fader-2013-paralex.mp3"
+    },
+    {
+      "slug": "papoudakis-2021-marl-benchmark",
+      "short": "MARL Benchmark",
+      "title": "Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks",
+      "authors": "Papoudakis, Christianos, Schäfer, Albrecht",
+      "year": 2021,
+      "date": "2020-06",
+      "venue": "NeurIPS 2021 Datasets and Benchmarks",
+      "citation_count": 368,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Edinburgh",
+      "abstract": "A systematic comparison of nine deep multi-agent RL algorithms (independent learning, centralised policy gradient, value decomposition) across 25 cooperative tasks in matrix games, MPE, SMAC, and two new open-sourced environments the authors built, Level-Based Foraging and Multi-Robot Warehouse (RWARE). No algorithm wins everywhere; value-decomposition and off-policy methods collapse to near-zero returns in RWARE's sparse-reward regime, and so does COMA despite being on-policy, while the remaining on-policy actor-critic methods keep learning. Ships the EPyMARL codebase extending PyMARL with five additional algorithms and configurable implementation details.",
+      "explainer": "papers/papoudakis-2021-marl-benchmark.html",
+      "audio_url": "https://pod.darvinyi.com/audio/papoudakis-2021-marl-benchmark.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -15897,6 +15913,20 @@
     { "from": "lewis-2019-bart", "to": "dinan-2019-convai2" },
     { "from": "press-2022-compositionality-gap", "to": "dinan-2019-convai2" },
     { "from": "bordes-2015-simplequestions", "to": "fader-2013-paralex" },
-    { "from": "antol-2015-vqa", "to": "fader-2013-paralex" }
+    { "from": "antol-2015-vqa", "to": "fader-2013-paralex" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "samvelyan-2019-smac" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "bard-2019-hanabi" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "henderson-2017-deep-rl-that-matters" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "schulman-2017-ppo" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "lowe-2017-maddpg" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "foerster-2017-coma" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "jang-2016-gumbel-softmax" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "sukhbaatar-2016-commnet" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "foerster-2016-dial" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "mnih-2016-a3c" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "lillicrap-2016-ddpg" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "mnih-2015-dqn" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "silver-2014-dpg" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "bellemare-2013-ale" }
   ]
 }
