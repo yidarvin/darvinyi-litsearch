@@ -271,6 +271,16 @@ unfinished work. Steps:
    `public/papers/<slug>.html` plus the paper PDF, writes the 3-voice
    script, renders the MP3 with Kokoro (~18 min), publishes to the NAS and
    rebuilds the RSS feed. Integration is through the shared slug only.
+   **Don't use the `af_nicole` guest voice.** It renders ~24% slower than
+   every other voice in the cast, so a script sized for the style guide's
+   ~155 wpm assumption comes out far longer than intended. Measured across
+   the published catalogue: 88 `af_nicole` episodes run at a median 115 wpm
+   (range 107–121) against 511 others at 150 (range 136–176) — the two
+   ranges do not overlap. Nothing is wrong with the audio, it is just
+   longer than planned, and the flat wpm assumption makes that invisible at
+   authoring time. Prefer `bf_alice`, `bm_lewis`, `am_puck`, `bm_george`
+   and similar.
+
    **Launch the render detached** (`nohup … & disown`) if you're running it
    from a subagent: a turn boundary kills the agent's process tree, and a
    foreground render dies with it partway through — observed once, on

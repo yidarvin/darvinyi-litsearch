@@ -9342,6 +9342,22 @@
       "explainer": "papers/wu-2017-smn.html",
       "audio_url": "https://pod.darvinyi.com/audio/wu-2017-smn.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zheng-2022-minif2f",
+      "short": "MiniF2F",
+      "title": "MiniF2F: a cross-system benchmark for formal Olympiad-level mathematics",
+      "authors": "Zheng, Han, Polu",
+      "year": 2022,
+      "date": "2021-09",
+      "venue": "ICLR 2022",
+      "citation_count": 426,
+      "topic": "Benchmarks & Evals",
+      "author_group": "OpenAI",
+      "abstract": "488 competition-math problem statements (20 IMO, 15 AIME, 45 AMC, plus a 130-problem formalized MATH subset and 34 custom statements) manually formalized into Metamath, Lean, and (partially) Isabelle/HOL Light, so neural theorem provers built for different proof assistants can be compared on the same problems instead of each system's own siloed test split. Success is kernel-verified proof search (Pass@N), not string match or a learned judge. The same GPT-f methodology scores 1.3% Pass@1 on Metamath vs. 24.6% on Lean, a gap the authors attribute to Lean's access to high-level automation tactics; the non-neural tidy baseline reaches 18.0% in Lean.",
+      "explainer": "papers/zheng-2022-minif2f.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zheng-2022-minif2f.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15831,6 +15847,16 @@
     { "from": "lu-2021-fantastically-ordered", "to": "voorhees-2000-trec-qa" },
     { "from": "wu-2017-smn", "to": "wang-2013-stc" },
     { "from": "wang-2020-lccc", "to": "wu-2017-smn" },
-    { "from": "feng-2023-mmdialog", "to": "wu-2017-smn" }
+    { "from": "feng-2023-mmdialog", "to": "wu-2017-smn" },
+    { "from": "zheng-2022-minif2f", "to": "brown-2020-gpt3" },
+    { "from": "zheng-2022-minif2f", "to": "hendrycks-2021-math" },
+    { "from": "zheng-2022-minif2f", "to": "wang-2018-glue" },
+    { "from": "zheng-2022-minif2f", "to": "rajpurkar-2016-squad" },
+    { "from": "zheng-2022-minif2f", "to": "deng-2009-imagenet" },
+    { "from": "arora-2023-jeebench", "to": "zheng-2022-minif2f" },
+    { "from": "shao-2024-deepseekmath", "to": "zheng-2022-minif2f" },
+    { "from": "he-2024-olympiadbench", "to": "zheng-2022-minif2f" },
+    { "from": "brown-2024-monkeys", "to": "zheng-2022-minif2f" },
+    { "from": "glazer-2024-frontiermath", "to": "zheng-2022-minif2f" }
   ]
 }

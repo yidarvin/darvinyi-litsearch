@@ -464,6 +464,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-07-28"
+    },
+    {
+      "slug": "zheng-2022-minif2f",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-07-28"
     }
   ],
   "skipped": [
@@ -495,16 +502,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-28T10:34 started shi-2025-toolret (\"Retrieval Models Aren't Tool-Savvy: Benchmarking Tool Retrieval for Large Language Models\")",
-    "2026-07-28T10:35 shi-2025-toolret: step -> fetch",
-    "2026-07-28T10:35 shi-2025-toolret: step -> figures",
-    "2026-07-28T10:44 shi-2025-toolret: step -> draft",
-    "2026-07-28T10:53 shi-2025-toolret: step -> critique (round 1)",
-    "2026-07-28T11:13 shi-2025-toolret: step -> critique (round 2)",
-    "2026-07-28T11:22 shi-2025-toolret: step -> verify",
-    "2026-07-28T11:23 shi-2025-toolret: step -> queue-ops",
-    "2026-07-28T11:23 shi-2025-toolret: step -> podcast",
-    "2026-07-28T11:39 completed shi-2025-toolret (verdict=approved, rounds=2)",
     "2026-07-28T11:41 started li-2026-agentskillos ('Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale')",
     "2026-07-28T11:42 li-2026-agentskillos: step -> fetch",
     "2026-07-28T11:43 li-2026-agentskillos: step -> figures",
@@ -544,6 +541,16 @@
     "2026-07-28T15:41 wu-2017-smn: step -> verify",
     "2026-07-28T15:42 wu-2017-smn: step -> queue-ops",
     "2026-07-28T15:42 wu-2017-smn: step -> podcast",
-    "2026-07-28T16:06 completed wu-2017-smn (verdict=approved, rounds=2)"
+    "2026-07-28T16:06 completed wu-2017-smn (verdict=approved, rounds=2)",
+    "2026-07-28T16:09 started zheng-2022-minif2f ('MiniF2F: a cross-system benchmark for formal Olympiad-level mathematics')",
+    "2026-07-28T16:11 zheng-2022-minif2f: step -> fetch",
+    "2026-07-28T16:11 zheng-2022-minif2f: step -> figures",
+    "2026-07-28T16:11 zheng-2022-minif2f: step -> draft",
+    "2026-07-28T16:24 zheng-2022-minif2f: step -> critique (round 1)",
+    "2026-07-28T16:37 zheng-2022-minif2f: step -> critique (round 2)",
+    "2026-07-28T16:44 zheng-2022-minif2f: step -> verify",
+    "2026-07-28T16:45 zheng-2022-minif2f: step -> queue-ops",
+    "2026-07-28T16:45 zheng-2022-minif2f: step -> podcast",
+    "2026-07-28T17:01 completed zheng-2022-minif2f (verdict=approved, rounds=2)"
   ]
 }
