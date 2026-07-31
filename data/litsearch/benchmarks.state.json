@@ -666,6 +666,15 @@
         "Hi-ToM (EMNLP 2023 Findings). 2 critic rounds, 8 blockers -- including a THIRD fabricated quotation on this page ('structural costs' attributed to OpenToM, phrase absent from it), a false universal across 3 surfaces (all four models collapsing to zero before the top order -- false for GPT-4 at 0.45 and Claude at 0.30), 'near-perfect' extended to 1st order when the paper reserves it for 0th, an appended 'across all five categories' universal, a figcaption calling a deceptive message truthful, over-attributed run dates, and 4 missing edges. r2 approve; I then fixed a stale alt text still carrying the claim B1 removed. ROOT CAUSE recorded in paper-builder.md: a zero-hit grep is a claim about tooling first -- three mechanisms have each produced false 'not cited' results (line-broken names, small-caps, and embedded NUL bytes). S2's citation list for this paper matched ZERO nodes despite four real citers. I scanned all 86 work/*/paper.txt and stripped NUL bytes from 4 of them, which had been silently breaking grep. Episode bm_fable 159.9 wpm, byte-verified; it independently re-verified the OpenToM quote and noted an abstract-only check would have produced a false negative."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "zharmagambetov-2025-agentdam",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "AgentDAM (NeurIPS 2025). 2 critic rounds, 6 blockers: a figure caption misreading Figure 5 as evaluation-run stability when it is dataset-construction elbow evidence; two missed edges (CoT, tau-bench); a dedupe failure where report.json proposed tau-bench as a NEW candidate though yao-2024-tau-bench is already a node AND a missed edge; an axis conflation ('every number in Tables 3-5 flows through the judge' -- utility comes from a binary env reward); and an invented 'GPT-based' attribution. r2 left one residual: the B1 fix said leakage is HIGHEST at one sample per seed when it is LOWEST (curves rise into the plateau) -- I verified against the paper's own 'high variance and lower performance' and fixed it. Builder self-caught 2 false superlatives and 3 quotation issues before submitting; all three of its universal claims held row-by-row. tables.md self-certified one false claim (representation splice is text-only for BOTH Llamas) -- corrected, never reached the page. Episode bf_isabella 159.5 wpm, byte-verified; its finding that Llama-3.3-70B generated the benchmark's user_data AND is one of the six graded agents was verified and added to the critique."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -697,19 +706,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T00:56 weller-2025-followir: step -> figures",
-    "2026-07-31T01:08 weller-2025-followir: step -> draft",
-    "2026-07-31T01:14 weller-2025-followir: step -> critique (round 1)",
-    "2026-07-31T01:31 weller-2025-followir: 8 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T01:31 weller-2025-followir: step -> revise",
-    "2026-07-31T01:38 weller-2025-followir: step -> critique (round 2)",
-    "2026-07-31T01:48 weller-2025-followir: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T01:48 weller-2025-followir: step -> verify",
-    "2026-07-31T01:49 weller-2025-followir: step -> queue-ops",
-    "2026-07-31T01:49 weller-2025-followir: step -> podcast",
-    "2026-07-31T02:06 completed weller-2025-followir (verdict=approved, rounds=2)",
-    "2026-07-31T02:09 started riochet-2022-intphys ('IntPhys 2019: A Benchmark for Visual Intuitive Physics Understanding')",
-    "2026-07-31T02:10 riochet-2022-intphys: step -> fetch",
     "2026-07-31T02:11 riochet-2022-intphys: step -> figures",
     "2026-07-31T02:18 riochet-2022-intphys: step -> draft",
     "2026-07-31T02:31 riochet-2022-intphys: step -> critique (round 1)",
@@ -746,6 +742,19 @@
     "2026-07-31T05:42 he-2023-hi-tom: step -> verify",
     "2026-07-31T05:42 he-2023-hi-tom: step -> queue-ops",
     "2026-07-31T05:43 he-2023-hi-tom: step -> podcast",
-    "2026-07-31T05:54 completed he-2023-hi-tom (verdict=approved, rounds=2)"
+    "2026-07-31T05:54 completed he-2023-hi-tom (verdict=approved, rounds=2)",
+    "2026-07-31T05:57 started zharmagambetov-2025-agentdam ('AgentDAM: Privacy Leakage Evaluation for Autonomous Web Agents')",
+    "2026-07-31T05:58 zharmagambetov-2025-agentdam: step -> fetch",
+    "2026-07-31T05:58 zharmagambetov-2025-agentdam: step -> figures",
+    "2026-07-31T06:01 zharmagambetov-2025-agentdam: step -> draft",
+    "2026-07-31T06:13 zharmagambetov-2025-agentdam: step -> critique (round 1)",
+    "2026-07-31T06:24 zharmagambetov-2025-agentdam: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T06:24 zharmagambetov-2025-agentdam: step -> revise",
+    "2026-07-31T06:30 zharmagambetov-2025-agentdam: step -> critique (round 2)",
+    "2026-07-31T06:38 zharmagambetov-2025-agentdam: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T06:38 zharmagambetov-2025-agentdam: step -> verify",
+    "2026-07-31T06:39 zharmagambetov-2025-agentdam: step -> queue-ops",
+    "2026-07-31T06:39 zharmagambetov-2025-agentdam: step -> podcast",
+    "2026-07-31T06:53 completed zharmagambetov-2025-agentdam (verdict=approved, rounds=2)"
   ]
 }

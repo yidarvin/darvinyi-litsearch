@@ -9725,6 +9725,22 @@
       "explainer": "papers/he-2023-hi-tom.html",
       "audio_url": "https://pod.darvinyi.com/audio/he-2023-hi-tom.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zharmagambetov-2025-agentdam",
+      "short": "AgentDAM",
+      "title": "AgentDAM: Privacy Leakage Evaluation for Autonomous Web Agents",
+      "authors": "Zharmagambetov, Guo, Evtimov, Pavlova, Salakhutdinov, Chaudhuri",
+      "year": 2025,
+      "date": "2025-03",
+      "venue": "NeurIPS 2025",
+      "citation_count": 71,
+      "topic": "Benchmarks & Evals",
+      "author_group": "FAIR at Meta",
+      "abstract": "246 realistic web-navigation tasks across self-hosted Reddit, GitLab, and shopping replicas (WebArena/VisualWebArena), each seeded with sensitive facts the agent doesn't need, scoring agents on utility (task success) and a privacy score (1 - leakage rate, judged by gpt-4o) as two separate axes. All six evaluated agents leak task-irrelevant sensitive data before mitigation (privacy scores 0.541-0.902), probing an LLM about privacy over- or under-estimates its in-action behavior depending on model family, and a privacy-aware chain-of-thought prompt raises every model's privacy score but lowers every model's utility too.",
+      "explainer": "papers/zharmagambetov-2025-agentdam.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zharmagambetov-2025-agentdam.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16490,6 +16506,23 @@
     { "from": "he-2023-hi-tom", "to": "bender-2021-stochastic-parrots" },
     { "from": "he-2023-hi-tom", "to": "wei-2022-cot" },
     { "from": "he-2023-hi-tom", "to": "openai-2023-gpt4" },
-    { "from": "xu-2024-opentom", "to": "he-2023-hi-tom" }
+    { "from": "xu-2024-opentom", "to": "he-2023-hi-tom" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "andriushchenko-2025-agentharm" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "koh-2024-visualwebarena" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "ruan-2023-toolemu" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "shao-2024-privacylens" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "zhang-2024-agent-security-bench" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "zhou-2023-webarena" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "deng-2023-mind2web" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "openai-2023-gpt4" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "hurst-2024-gpt-4o" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "patil-2023-gorilla" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "polo-2024-tinybenchmarks" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "yang-2023-set-of-mark" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "debenedetti-2024-agentdojo" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "glazer-2024-frontiermath" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "zheng-2024-seeact" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "wei-2022-cot" },
+    { "from": "zharmagambetov-2025-agentdam", "to": "yao-2024-tau-bench" }
   ]
 }
