@@ -9533,6 +9533,22 @@
       "explainer": "papers/vilares-2019-headqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/vilares-2019-headqa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "chen-2025-jama-medbullets",
+      "short": "JAMA/Medbullets",
+      "title": "Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions",
+      "authors": "Chen, Fang, Singla, Dredze",
+      "year": 2025,
+      "date": "2024-02",
+      "venue": "NAACL 2025",
+      "citation_count": 146,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Johns Hopkins University",
+      "abstract": "Introduces two challenging medical QA datasets with expert-written explanations — JAMA Clinical Challenge (1,524 real clinical cases across 13 domains) and Medbullets (308 recent USMLE Step 2/3-style questions) — and evaluates seven LLMs on both answer accuracy and explanation quality. Both datasets prove harder than MedQA for six of seven models (GPT-4 drops over 12 points from MedQA-4 to Medbullets-4), and automatic explanation metrics correlate only weakly with a 30-example Prolific rater study.",
+      "explainer": "papers/chen-2025-jama-medbullets.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2025-jama-medbullets.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16141,6 +16157,25 @@
     { "from": "vilares-2019-headqa", "to": "hermann-2015-cnn-dailymail" },
     { "from": "vilares-2019-headqa", "to": "papineni-2002-bleu" },
     { "from": "alonso-2024-medexpqa", "to": "vilares-2019-headqa" },
-    { "from": "shao-2026-medagentsbench", "to": "vilares-2019-headqa" }
+    { "from": "shao-2026-medagentsbench", "to": "vilares-2019-headqa" },
+    { "from": "chen-2025-jama-medbullets", "to": "touvron-2023-llama2" },
+    { "from": "chen-2025-jama-medbullets", "to": "liu-2023-g-eval" },
+    { "from": "chen-2025-jama-medbullets", "to": "singhal-2023-med-palm" },
+    { "from": "chen-2025-jama-medbullets", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "chen-2025-jama-medbullets", "to": "chowdhery-2022-palm" },
+    { "from": "chen-2025-jama-medbullets", "to": "wang-2022-self-consistency" },
+    { "from": "chen-2025-jama-medbullets", "to": "ouyang-2022-instructgpt" },
+    { "from": "chen-2025-jama-medbullets", "to": "jin-2020-medqa" },
+    { "from": "chen-2025-jama-medbullets", "to": "hendrycks-2020-mmlu" },
+    { "from": "chen-2025-jama-medbullets", "to": "brown-2020-gpt3" },
+    { "from": "chen-2025-jama-medbullets", "to": "sellam-2020-bleurt" },
+    { "from": "chen-2025-jama-medbullets", "to": "lewis-2019-bart" },
+    { "from": "chen-2025-jama-medbullets", "to": "liu-2019-roberta" },
+    { "from": "chen-2025-jama-medbullets", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "chen-2025-jama-medbullets", "to": "lin-2004-rouge" },
+    { "from": "chen-2025-jama-medbullets", "to": "devlin-2019-bert" },
+    { "from": "chen-2025-jama-medbullets", "to": "wei-2022-cot" },
+    { "from": "chen-2025-jama-medbullets", "to": "openai-2023-gpt4" },
+    { "from": "shao-2026-medagentsbench", "to": "chen-2025-jama-medbullets" }
   ]
 }

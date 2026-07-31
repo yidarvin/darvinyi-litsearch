@@ -558,6 +558,15 @@
         "HEAD-QA (ACL 2019). 2 critic rounds, 5 blockers: a false 'every real baseline beats the controls' that the page's own reprinted table refuted, an accuracy number leaking into a POINTS range, a claim that neural readers ran on Spanish (they only ever ran on HEAD-QA-EN), a false 'every strong system is neural' excluding the two IR baselines that actually win, and 'question 21' for 'image no. 21'. r2 approve; I then fixed two critic notes (a 3-vs-4 neural-system count the page contradicted itself on, and scoping the controls claim to the six-area average). Episode bf_lily 153.5 wpm, byte-verified; two of its added findings were verified and folded into the page -- BiDAF also falls under the Length control on the supervised split, and the controls are Spanish-only so every control-vs-neural comparison crosses languages."
       ],
       "date": "2026-07-29"
+    },
+    {
+      "slug": "chen-2025-jama-medbullets",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "JAMA Clinical Challenge + Medbullets (NAACL 2025, arXiv 2024-02). 2 critic rounds, 3 blockers -- the serious one an integrity error: the draft called the human raters 'physicians' across 13 surfaces incl. the node abstract and both meta descriptions, when the paper says Prolific crowdworkers screened for a Master's/Doctorate in Medicine/Healthcare at $12/hr. Also a false 'largest gap' superlative and a takeaway merging the two datasets' exceptions (MedAlpaca is Medbullets-only; JAMA's improver is Llama 2). r2 approve. Episode bm_daniel 160.1 wpm, byte-verified; it caught two of its own errors mid-render and flagged a correlation-magnitude error on the page (CTC Consistency -0.37 exceeds the quoted 0.32) which I verified and fixed, plus two transcription errors in tables.md."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -589,19 +598,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-29T00:44 hafner-2022-crafter: 2 open blocker(s) from round 2 (verdict: revise)",
-    "2026-07-29T00:44 hafner-2022-crafter: step -> revise",
-    "2026-07-29T00:48 hafner-2022-crafter: step -> critique (round 3)",
-    "2026-07-29T00:56 hafner-2022-crafter: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-07-29T00:56 hafner-2022-crafter: step -> verify",
-    "2026-07-29T01:00 hafner-2022-crafter: step -> queue-ops",
-    "2026-07-29T01:01 hafner-2022-crafter: step -> podcast",
-    "2026-07-29T01:18 completed hafner-2022-crafter (verdict=approved, rounds=3)",
-    "2026-07-29T01:21 started bakhtin-2019-phyre ('PHYRE: A New Benchmark for Physical Reasoning')",
-    "2026-07-29T01:22 bakhtin-2019-phyre: step -> fetch",
-    "2026-07-29T01:22 bakhtin-2019-phyre: step -> figures",
-    "2026-07-29T01:23 bakhtin-2019-phyre: step -> draft",
-    "2026-07-29T01:37 bakhtin-2019-phyre: step -> critique (round 1)",
     "2026-07-29T01:47 bakhtin-2019-phyre: 10 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-29T01:47 bakhtin-2019-phyre: step -> revise",
     "2026-07-29T01:55 bakhtin-2019-phyre: step -> critique (round 2)",
@@ -638,6 +634,19 @@
     "2026-07-29T04:15 vilares-2019-headqa: step -> verify",
     "2026-07-29T04:16 vilares-2019-headqa: step -> queue-ops",
     "2026-07-29T04:16 vilares-2019-headqa: step -> podcast",
-    "2026-07-29T04:30 completed vilares-2019-headqa (verdict=approved, rounds=2)"
+    "2026-07-29T04:30 completed vilares-2019-headqa (verdict=approved, rounds=2)",
+    "2026-07-29T04:32 started chen-2025-jama-medbullets ('Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions')",
+    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> fetch",
+    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> figures",
+    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> draft",
+    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> critique (round 1)",
+    "2026-07-30T16:53 chen-2025-jama-medbullets: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T16:53 chen-2025-jama-medbullets: step -> revise",
+    "2026-07-30T16:59 chen-2025-jama-medbullets: step -> critique (round 2)",
+    "2026-07-30T17:07 chen-2025-jama-medbullets: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-30T17:07 chen-2025-jama-medbullets: step -> verify",
+    "2026-07-30T17:07 chen-2025-jama-medbullets: step -> queue-ops",
+    "2026-07-30T17:08 chen-2025-jama-medbullets: step -> podcast",
+    "2026-07-30T17:26 completed chen-2025-jama-medbullets (verdict=approved, rounds=2)"
   ]
 }
