@@ -263,10 +263,24 @@ actually uses. → `set-step draft`
       small-caps — the three things that break title matching.
    3. Only then consult S2, to catch citations the bibliography parse
       mangled and to sweep the *incoming* direction.
-   4. In `report.json`, state the bibliography's reference count, how many
-      you matched, and how many S2 returned as null stubs. A large stub
-      count is a signal to re-read the bibliography by hand, not a reason to
-      trust the sweep.
+   4. **Write the parse to `work/<slug>/bibliography.tsv`** — one row per
+      reference: `surname<TAB>year<TAB>title<TAB>matched_slug_or_blank`.
+      This is not paperwork; it is the only way anyone can tell whether you
+      actually ran the surname+year pass. Then in `report.json` state the
+      bibliography's reference count, how many you matched, and how many S2
+      returned as null stubs. A large stub count is a signal to re-read the
+      bibliography by hand, not a reason to trust the sweep.
+
+   **Four consecutive papers shipped a missed edge because the builder
+   matched on arXiv id instead**, each time with this section in front of
+   it, and each time the miss was an S2 null stub — the exact class an id
+   pass cannot see. On EmbodiedEval the builder added the ReAct edge from an
+   in-text parenthetical and dropped its co-citation, Chain-of-Thought, from
+   the same pair of brackets. If your report says you matched "by arXiv id,"
+   you did not follow this procedure. An id has to come *from* somewhere; for
+   a null stub there is nowhere for it to come from, which is the whole
+   point. **Surname and year are printed in the bibliography for every
+   reference, unconditionally — that is why they are the primary key.**
 
    And never write "X isn't a node" in `report.json` without grepping
    `data/papers.json` for it. DA-Code's report justified dropping the GPT-4
