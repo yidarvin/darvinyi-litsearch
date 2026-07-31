@@ -9805,6 +9805,22 @@
       "explainer": "papers/lu-2025-agentrewardbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/lu-2025-agentrewardbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "cassano-2024-canitedit",
+      "short": "CanItEdit",
+      "title": "Can It Edit? Evaluating the Ability of Large Language Models to Follow Code Editing Instructions",
+      "authors": "Cassano, Li, Sethi, Shinn, Brennan-Jones, Ginesin, Berman, Chakhnashvili, Lozhkov, Anderson, Guha",
+      "year": 2024,
+      "date": "2023-12",
+      "venue": "COLM 2024",
+      "citation_count": 63,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Northeastern University",
+      "abstract": "105 hand-written Python instructional code-editing problems (210 once paired with both a terse ‘lazy’ and a detailed ‘descriptive’ instruction per task), each with a hidden test suite and a companion ExcessCode metric that penalizes untested extra code in passing completions. GPT-4 leads pass@1 (63.33/51.95 descriptive/lazy) over the best existing open model, but fine-tuning DeepSeekCoder-Base on two new commit-derived datasets (EditPackFT + Commits2023FT) produces EditCoder, which beats GPT-3.5-Turbo on descriptive instructions at both 33B and 6.7B.",
+      "explainer": "papers/cassano-2024-canitedit.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cassano-2024-canitedit.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16640,6 +16656,21 @@
     { "from": "lu-2025-agentrewardbench", "to": "zhuge-2024-agent-as-judge" },
     { "from": "lu-2025-agentrewardbench", "to": "lambert-2024-rewardbench" },
     { "from": "lu-2025-agentrewardbench", "to": "brockman-2016-openai-gym" },
-    { "from": "malik-2026-rewardbench2", "to": "lu-2025-agentrewardbench" }
+    { "from": "malik-2026-rewardbench2", "to": "lu-2025-agentrewardbench" },
+    { "from": "cassano-2024-canitedit", "to": "guo-2024-deepseek-coder" },
+    { "from": "cassano-2024-canitedit", "to": "jimenez-2023-swe-bench" },
+    { "from": "cassano-2024-canitedit", "to": "zheng-2024-lmsys-chat-1m" },
+    { "from": "cassano-2024-canitedit", "to": "roziere-2023-code-llama" },
+    { "from": "cassano-2024-canitedit", "to": "liu-2023-evalplus" },
+    { "from": "cassano-2024-canitedit", "to": "shinn-2023-reflexion" },
+    { "from": "cassano-2024-canitedit", "to": "ouyang-2022-instructgpt" },
+    { "from": "cassano-2024-canitedit", "to": "austin-2021-mbpp" },
+    { "from": "cassano-2024-canitedit", "to": "chen-2021-codex" },
+    { "from": "cassano-2024-canitedit", "to": "li-2023-starcoder" },
+    { "from": "cassano-2024-canitedit", "to": "lozhkov-2024-starcoder2" },
+    { "from": "cassano-2024-canitedit", "to": "openai-2023-gpt4" },
+    { "from": "gautam-2025-refactorbench", "to": "cassano-2024-canitedit" },
+    { "from": "zhuge-2024-agent-as-judge", "to": "cassano-2024-canitedit" },
+    { "from": "bogin-2024-super", "to": "cassano-2024-canitedit" }
   ]
 }

@@ -711,6 +711,15 @@
         "COLM 2025; 2 critic rounds, 7 blockers r1 (self-contradicting recall table, two false quantifier ranges, metric/row swap, false 'every benchmark' claim, 2 missed edges); approve r2. 628 nodes / 6833 edges. Podcast bm_lewis 27m30s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "cassano-2024-canitedit",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "COLM 2024 (13th metadata correction, OpenReview-confirmed; S2/DBLP say arXiv 2023). 2 critic rounds, 1 blocker r1: page scoped universals over Table 3's 19 rows as the whole evaluation, missing Table 8's 6 further combos and the StarCoderBase-1b reversal (4.90 descr vs 5.48 lazy) - true count 24/25. 629 nodes / 6848 edges. Podcast bf_lily 25m27s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -742,17 +751,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T06:58 paech-2023-eq-bench: step -> figures",
-    "2026-07-31T06:59 paech-2023-eq-bench: step -> draft",
-    "2026-07-31T07:10 paech-2023-eq-bench: step -> critique (round 1)",
-    "2026-07-31T07:25 paech-2023-eq-bench: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T07:25 paech-2023-eq-bench: step -> revise",
-    "2026-07-31T07:32 paech-2023-eq-bench: step -> critique (round 2)",
-    "2026-07-31T07:44 paech-2023-eq-bench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T07:44 paech-2023-eq-bench: step -> verify",
-    "2026-07-31T07:45 paech-2023-eq-bench: step -> queue-ops",
-    "2026-07-31T07:45 paech-2023-eq-bench: step -> podcast",
-    "2026-07-31T08:00 completed paech-2023-eq-bench (verdict=approved, rounds=2)",
     "2026-07-31T08:02 started li-2025-legalagentbench ('LegalAgentBench: Evaluating LLM Agents in Legal Domain')",
     "2026-07-31T08:06 li-2025-legalagentbench: step -> fetch",
     "2026-07-31T08:06 li-2025-legalagentbench: step -> figures",
@@ -791,6 +789,17 @@
     "2026-07-31T11:16 lu-2025-agentrewardbench: step -> verify",
     "2026-07-31T11:17 lu-2025-agentrewardbench: step -> queue-ops",
     "2026-07-31T11:17 lu-2025-agentrewardbench: step -> podcast",
-    "2026-07-31T11:33 completed lu-2025-agentrewardbench (verdict=approved, rounds=2)"
+    "2026-07-31T11:33 completed lu-2025-agentrewardbench (verdict=approved, rounds=2)",
+    "2026-07-31T11:34 started cassano-2024-canitedit ('Can It Edit? Evaluating the Ability of Large Language Models to Follow Code Editing Instructions')",
+    "2026-07-31T11:53 cassano-2024-canitedit: step -> fetch",
+    "2026-07-31T11:53 cassano-2024-canitedit: step -> figures",
+    "2026-07-31T11:53 cassano-2024-canitedit: step -> draft",
+    "2026-07-31T11:53 cassano-2024-canitedit: step -> critique (round 1)",
+    "2026-07-31T12:06 cassano-2024-canitedit: step -> revise",
+    "2026-07-31T12:10 cassano-2024-canitedit: step -> critique (round 2)",
+    "2026-07-31T12:16 cassano-2024-canitedit: step -> verify",
+    "2026-07-31T12:17 cassano-2024-canitedit: step -> queue-ops",
+    "2026-07-31T12:17 cassano-2024-canitedit: step -> podcast",
+    "2026-07-31T12:29 completed cassano-2024-canitedit (verdict=approved, rounds=2)"
   ]
 }

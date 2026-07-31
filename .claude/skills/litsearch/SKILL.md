@@ -298,6 +298,18 @@ unfinished work. Steps:
    prediction: 0.6% over, versus the 10–15% budgeted. Prefer this to
    padding the estimate.
 
+   **When you paste a verified fact into the episode brief, paste the
+   page's wording, not the critic's shorthand for it.** The critic writes
+   compressed summaries of claims it *cleared* — and the compression is
+   where the scoping qualifier goes missing. On CanItEdit the critic
+   recorded "'only open model exceeding a closed model' holds exhaustively";
+   the page actually says *"among these **existing (non-fine-tuned)** open
+   models"*, which is what makes it true — EditCoder-33b (55.90) and
+   EditCoder-6.7b (48.33) both clear GPT-3.5-Turbo's 48.14, but they are
+   the paper's own fine-tunes. The brief relayed the shorthand and asserted
+   something false; the episode agent caught it against `tables.md` and
+   used the page's version instead. Quote the page, or re-read the cells.
+
    **Launch the render detached** (`nohup … & disown`) if you're running it
    from a subagent: a turn boundary kills the agent's process tree, and a
    foreground render dies with it partway through — observed once, on
