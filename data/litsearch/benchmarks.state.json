@@ -729,6 +729,15 @@
         "NeurIPS 2023 MATH-AI workshop (venue independently confirmed). 2 critic rounds, 7 blockers r1 + 2 in newly-written r1-fix prose (Table 8 '6 of 8' fraction that was really two columns' FN counts; a raster estimate printed as exact 62.7%) + 1 note (Table 2 range understated 3-6 vs true 3-12) - all 3 fixed by hand. B1 was a 7th false-negative mechanism: S2 null-stub reference record + post-publication retitling. B2 added the evaluations tag (rubric grader is a co-headline contribution per the abstract). 630 nodes / 6885 edges. Podcast af_bella 29m30s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "huang-2024-dacode",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "EMNLP 2024 (14th metadata correction; confirmed 3 ways). 2 critic rounds, 4 blockers r1: false 'only benchmark with both ticks' (MLAgentBench also qualifies); invented 'five files' count; grading tolerance attached to tables when the paper grants it only to charts; 3 missed edges from S2 null-stub references (12 of 32 refs were stubs, MLAgentBench absent entirely). Page's 3 claims-against-the-paper all verified and kept. 631 nodes / 6901 edges. Podcast am_fenrir 30m24s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -760,17 +769,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T09:00 li-2025-legalagentbench: step -> podcast",
-    "2026-07-31T09:13 completed li-2025-legalagentbench (verdict=approved, rounds=2)",
-    "2026-07-31T09:16 started zang-2021-photochat ('PhotoChat: A Human-Human Dialogue Dataset with Photo Sharing Behavior for Joint Image-Text Modeling')",
-    "2026-07-31T09:22 zang-2021-photochat: step -> fetch",
-    "2026-07-31T09:22 zang-2021-photochat: step -> figures",
-    "2026-07-31T09:25 zang-2021-photochat: step -> draft",
-    "2026-07-31T09:50 zang-2021-photochat: step -> critique (round 1)",
-    "2026-07-31T10:03 zang-2021-photochat: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T10:03 zang-2021-photochat: step -> revise",
-    "2026-07-31T10:07 zang-2021-photochat: step -> critique (round 2)",
-    "2026-07-31T10:17 zang-2021-photochat: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-31T10:17 zang-2021-photochat: step -> verify",
     "2026-07-31T10:18 zang-2021-photochat: step -> queue-ops",
     "2026-07-31T10:18 zang-2021-photochat: step -> podcast",
@@ -809,6 +807,17 @@
     "2026-07-31T13:19 sawada-2023-arb: step -> verify",
     "2026-07-31T13:19 sawada-2023-arb: step -> queue-ops",
     "2026-07-31T13:19 sawada-2023-arb: step -> podcast",
-    "2026-07-31T13:35 completed sawada-2023-arb (verdict=approved, rounds=2)"
+    "2026-07-31T13:35 completed sawada-2023-arb (verdict=approved, rounds=2)",
+    "2026-07-31T13:37 started huang-2024-dacode ('DA-Code: Agent Data Science Code Generation Benchmark for Large Language Models')",
+    "2026-07-31T13:58 huang-2024-dacode: step -> fetch",
+    "2026-07-31T13:58 huang-2024-dacode: step -> figures",
+    "2026-07-31T13:58 huang-2024-dacode: step -> draft",
+    "2026-07-31T13:58 huang-2024-dacode: step -> critique (round 1)",
+    "2026-07-31T14:11 huang-2024-dacode: step -> revise",
+    "2026-07-31T14:15 huang-2024-dacode: step -> critique (round 2)",
+    "2026-07-31T14:21 huang-2024-dacode: step -> verify",
+    "2026-07-31T14:21 huang-2024-dacode: step -> queue-ops",
+    "2026-07-31T14:21 huang-2024-dacode: step -> podcast",
+    "2026-07-31T14:35 completed huang-2024-dacode (verdict=approved, rounds=2)"
   ]
 }

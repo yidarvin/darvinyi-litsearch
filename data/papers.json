@@ -9837,6 +9837,22 @@
       "explainer": "papers/sawada-2023-arb.html",
       "audio_url": "https://pod.darvinyi.com/audio/sawada-2023-arb.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "huang-2024-dacode",
+      "short": "DA-Code",
+      "title": "DA-Code: Agent Data Science Code Generation Benchmark for Large Language Models",
+      "authors": "Huang, Luo, Yu, Zhang, Lei, Wei, He, Huang, Liu, Zhao, Liu",
+      "year": 2024,
+      "date": "2024-10",
+      "venue": "EMNLP 2024",
+      "citation_count": 58,
+      "topic": "Agents",
+      "author_group": "Institute of Automation, CAS",
+      "abstract": "A 500-task agent benchmark for data science code generation, run inside a Docker sandbox with Bash/Python/SQL actions and graded by executing the model's code rather than string-matching it. Tasks span data wrangling, machine learning, and exploratory data analysis, average 5.7 files and 85 lines of reference solution each. The paper's own DA-Agent baseline outperforms OpenDevin, AutoGen, and X-Agent under GPT-4, but even GPT-4 + DA-Agent clears only 30.5% overall.",
+      "explainer": "papers/huang-2024-dacode.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2024-dacode.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16724,6 +16740,22 @@
     { "from": "cao-2025-generalizable-eval-survey", "to": "sawada-2023-arb" },
     { "from": "glazer-2024-frontiermath", "to": "sawada-2023-arb" },
     { "from": "mcintosh-2024-benchmark-inadequacies", "to": "sawada-2023-arb" },
-    { "from": "chang-2023-llm-eval-survey", "to": "sawada-2023-arb" }
+    { "from": "chang-2023-llm-eval-survey", "to": "sawada-2023-arb" },
+    { "from": "huang-2024-dacode", "to": "xie-2024-osworld" },
+    { "from": "huang-2024-dacode", "to": "hu-2024-infiagent-dabench" },
+    { "from": "huang-2024-dacode", "to": "jimenez-2023-swe-bench" },
+    { "from": "huang-2024-dacode", "to": "wu-2023-autogen" },
+    { "from": "huang-2024-dacode", "to": "yang-2023-intercode" },
+    { "from": "huang-2024-dacode", "to": "lai-2022-ds-1000" },
+    { "from": "huang-2024-dacode", "to": "yao-2022-react" },
+    { "from": "huang-2024-dacode", "to": "chen-2021-codex" },
+    { "from": "huang-2024-dacode", "to": "yu-2018-spider" },
+    { "from": "huang-2024-dacode", "to": "huang-2023-mlagentbench" },
+    { "from": "huang-2024-dacode", "to": "shinn-2023-reflexion" },
+    { "from": "huang-2024-dacode", "to": "wang-2024-openhands" },
+    { "from": "huang-2024-dacode", "to": "openai-2023-gpt4" },
+    { "from": "huang-2024-dacode", "to": "yang-2024-swe-agent" },
+    { "from": "huang-2024-dacode", "to": "wang-2023-plan-and-solve" },
+    { "from": "bean-2025-construct-validity", "to": "huang-2024-dacode" }
   ]
 }

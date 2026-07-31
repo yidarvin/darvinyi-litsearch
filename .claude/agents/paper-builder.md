@@ -225,11 +225,37 @@ actually uses. → `set-step draft`
    would have started to help — and because the node had *also* been
    retitled to "PlanBench" after publication, the printed-bibliography pass
    missed it too. Both mechanisms had to fire together, and both do fire
-   often. So: **after the three passes, list every reference S2 returned
-   with a null `paperId` and match those by hand against the node index**,
-   using the printed bibliography's own author+year rather than either
-   title. A null stub is the one reference class your automated sweep is
+   often. A null stub is the one reference class your automated sweep is
    guaranteed to drop silently.
+
+   **So don't sweep S2's reference list at all — sweep the printed
+   bibliography, and use S2 only to enrich it.** This is not advice, it is
+   the required order of operations, because "check the stubs afterwards"
+   has already failed once: DA-Code's S2 record carried **12 null stubs out
+   of 32 references and omitted MLAgentBench entirely**, and the builder —
+   who had this very paragraph in front of it — still shipped three missed
+   edges (GPT-4, SWE-agent, Plan-and-Solve), each of them printed plainly in
+   the bibliography *and* cited in-text. Mechanically:
+
+   1. Extract the paper's own reference list from `paper.txt` and parse it
+      into `(first author surname, year, title)` triples. That list is
+      complete by construction; S2's is not.
+   2. Match **every** triple against the node index on **surname + year
+      first**, then title. Author+year survives retitling, truncation, and
+      small-caps — the three things that break title matching.
+   3. Only then consult S2, to catch citations the bibliography parse
+      mangled and to sweep the *incoming* direction.
+   4. In `report.json`, state the bibliography's reference count, how many
+      you matched, and how many S2 returned as null stubs. A large stub
+      count is a signal to re-read the bibliography by hand, not a reason to
+      trust the sweep.
+
+   And never write "X isn't a node" in `report.json` without grepping
+   `data/papers.json` for it. DA-Code's report justified dropping the GPT-4
+   tech report on the grounds that base-model reports aren't nodes — while
+   `openai-2023-gpt4` sat in the graph with an in-degree of 158, and the
+   four most comparable agent-benchmark nodes all already carried that
+   exact edge.
 
    **A retitled paper often has more than one S2 record — sweep them all.**
    S2 frequently keeps the preprint and the camera-ready as separate
