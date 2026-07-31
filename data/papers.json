@@ -9757,6 +9757,22 @@
       "explainer": "papers/paech-2023-eq-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/paech-2023-eq-bench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "li-2025-legalagentbench",
+      "short": "LegalAgentBench",
+      "title": "LegalAgentBench: Evaluating LLM Agents in Legal Domain",
+      "authors": "Li, Chen, Yang, Ai, Jia, Liu, Lin, Wu, Yuan, Hu, Wang, Liu, Huang",
+      "year": 2025,
+      "date": "2024-12",
+      "venue": "ACL 2025 (Main, Long Papers)",
+      "citation_count": 72,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University / Zhipu AI",
+      "abstract": "A 300-task, tool-using agent benchmark built over 17 real Chinese legal databases (14 tabular, 3 retrieval, spanning company registries, court/law-firm directories, enforcement cases, 55,347 legal articles, and 2,370 guiding cases) and 37 tools, with tasks ranging from 1- to 5-hop chained lookups plus parallel \"writing\" tasks. Scoring uses keyword-based success rate (final answer) and process rate (that same final answer checked against an expanded key_answer + key_middle keyword set), not exact match or an LLM judge; GPT-4o under ReAct posts the best success rate (79.08% aggregate), while GLM-4-Plus's process rate exceeds GPT-4o's under every scaffold tested (Plan-and-Solve, Plan-and-Execute, ReAct).",
+      "explainer": "papers/li-2025-legalagentbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2025-legalagentbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16551,6 +16567,25 @@
     { "from": "paech-2023-eq-bench", "to": "hendrycks-2021-math" },
     { "from": "paech-2023-eq-bench", "to": "zheng-2023-mt-bench" },
     { "from": "sabour-2024-emobench", "to": "paech-2023-eq-bench" },
-    { "from": "huang-2025-rubric-anchors", "to": "paech-2023-eq-bench" }
+    { "from": "huang-2025-rubric-anchors", "to": "paech-2023-eq-bench" },
+    { "from": "li-2025-legalagentbench", "to": "openai-2023-gpt4" },
+    { "from": "li-2025-legalagentbench", "to": "bai-2023-qwen" },
+    { "from": "li-2025-legalagentbench", "to": "chen-2024-t-eval" },
+    { "from": "li-2025-legalagentbench", "to": "zeng-2024-chatglm" },
+    { "from": "li-2025-legalagentbench", "to": "guha-2023-legalbench" },
+    { "from": "li-2025-legalagentbench", "to": "huang-2023-metatool" },
+    { "from": "li-2025-legalagentbench", "to": "li-2024-llm-judges-survey" },
+    { "from": "li-2025-legalagentbench", "to": "liu-2023-agentbench" },
+    { "from": "li-2025-legalagentbench", "to": "liu-2023-llm-p" },
+    { "from": "li-2025-legalagentbench", "to": "qin-2023-toolllm" },
+    { "from": "li-2025-legalagentbench", "to": "shen-2023-hugginggpt" },
+    { "from": "li-2025-legalagentbench", "to": "shinn-2023-reflexion" },
+    { "from": "li-2025-legalagentbench", "to": "touvron-2023-llama" },
+    { "from": "li-2025-legalagentbench", "to": "wang-2023-plan-and-solve" },
+    { "from": "li-2025-legalagentbench", "to": "wei-2022-cot" },
+    { "from": "li-2025-legalagentbench", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "li-2025-legalagentbench", "to": "yao-2022-react" },
+    { "from": "li-2025-legalagentbench", "to": "ye-2025-tooleyes" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "li-2025-legalagentbench" }
   ]
 }

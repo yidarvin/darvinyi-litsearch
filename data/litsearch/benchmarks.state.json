@@ -684,6 +684,15 @@
         "EQ-Bench (arXiv 2023-12, sole author). 2 critic rounds, 8 blockers: the best-of-two protocol misdescribed as two independent runs (it is first-pass vs post-critique from ONE administration), n=25 where the SECEU overlap is 9, two models cited in a correlation pool they aren't in, an invented cost argument attributed to the paper, invented dialogue specifics, a 3-vs-4 checkpoint count, a softened table discrepancy, and then r2's B8 on the correlation n's. Builder correctly withheld nothing this time -- the appendix discrepancy WAS on the page and its report wrongly said otherwise. RESOLVED A CONFLICT MYSELF: the episode claimed AlpacaEval n=8, the critic said 7; computing Pearson directly settles it -- 8 rows carry both scores but the printed 0.91 only reproduces at n=7 (r=0.9054); including Mistral-7B gives 0.799, and its AlpacaEval cell 54.52 is identical to its ARC cell. Added that to the page so a reader can check it. Also corrected tables.md's Table 6 count (11 models x 3 = 33 rows, not 10 x 30). Episode bf_emma ~157 wpm, byte-verified."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "li-2025-legalagentbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "LegalAgentBench (ACL 2025, arXiv 2024-12; 10th queue-metadata correction -- queue said arXiv 2024). 2 critic rounds, 4 blockers. BEST BUILDER RUN OF THE SESSION: it independently found THREE paper claims that don't hold (the 'gap can reach 65%' -- true max 47.5; 'GLM-4-Plus surpasses GPT-4o across all tasks' -- loses 5 of 18 cells; 'all baselines decreased as hops increased' -- 13 of 24 rows non-monotonic), used the weaker true statement in each case, reported rather than asserted, AND caught its own directional error mid-draft. All three adjudicated correct by the critic. Blockers: the two figures were under each other's captions; the process rate was described as reading the trajectory on 5 surfaces when it scores the same final-answer text as success rate (proved by arithmetic -- process falls BELOW success at 5-hop, impossible under a trajectory scan); and a missed edge to liu-2023-llm-p that was in S2's refs AND the printed bibliography. r2 caught a HALF-APPLIED FIX: after the builder swapped images and I relabelled captions and in-text refs, the alt attributes were left inverted. Added a neutral 65%-vs-47.5 note and a parenthetical that the paper names the metric both 'process rate' and 'progress rate'. Episode bm_daniel 159.1 wpm, byte-verified; it caught 3 of its own drafting errors before rendering."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -715,19 +724,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T03:18 jansen-2024-discoveryworld: step -> figures",
-    "2026-07-31T03:24 jansen-2024-discoveryworld: step -> draft",
-    "2026-07-31T03:38 jansen-2024-discoveryworld: step -> critique (round 1)",
-    "2026-07-31T03:53 jansen-2024-discoveryworld: 8 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T03:53 jansen-2024-discoveryworld: step -> revise",
-    "2026-07-31T03:58 jansen-2024-discoveryworld: step -> critique (round 2)",
-    "2026-07-31T04:07 jansen-2024-discoveryworld: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T04:07 jansen-2024-discoveryworld: step -> verify",
-    "2026-07-31T04:08 jansen-2024-discoveryworld: step -> queue-ops",
-    "2026-07-31T04:08 jansen-2024-discoveryworld: step -> podcast",
-    "2026-07-31T04:28 completed jansen-2024-discoveryworld (verdict=approved, rounds=2)",
-    "2026-07-31T04:32 started he-2023-hi-tom ('Hi-ToM: A Benchmark for Evaluating Higher-Order Theory of Mind Reasoning in Large Language Models')",
-    "2026-07-31T04:40 he-2023-hi-tom: step -> fetch",
     "2026-07-31T04:40 he-2023-hi-tom: step -> figures",
     "2026-07-31T04:40 he-2023-hi-tom: step -> draft",
     "2026-07-31T04:58 he-2023-hi-tom: step -> critique (round 1)",
@@ -764,6 +760,19 @@
     "2026-07-31T07:44 paech-2023-eq-bench: step -> verify",
     "2026-07-31T07:45 paech-2023-eq-bench: step -> queue-ops",
     "2026-07-31T07:45 paech-2023-eq-bench: step -> podcast",
-    "2026-07-31T08:00 completed paech-2023-eq-bench (verdict=approved, rounds=2)"
+    "2026-07-31T08:00 completed paech-2023-eq-bench (verdict=approved, rounds=2)",
+    "2026-07-31T08:02 started li-2025-legalagentbench ('LegalAgentBench: Evaluating LLM Agents in Legal Domain')",
+    "2026-07-31T08:06 li-2025-legalagentbench: step -> fetch",
+    "2026-07-31T08:06 li-2025-legalagentbench: step -> figures",
+    "2026-07-31T08:10 li-2025-legalagentbench: step -> draft",
+    "2026-07-31T08:20 li-2025-legalagentbench: step -> critique (round 1)",
+    "2026-07-31T08:34 li-2025-legalagentbench: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T08:34 li-2025-legalagentbench: step -> revise",
+    "2026-07-31T08:48 li-2025-legalagentbench: step -> critique (round 2)",
+    "2026-07-31T08:58 li-2025-legalagentbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T08:58 li-2025-legalagentbench: step -> verify",
+    "2026-07-31T08:59 li-2025-legalagentbench: step -> queue-ops",
+    "2026-07-31T09:00 li-2025-legalagentbench: step -> podcast",
+    "2026-07-31T09:13 completed li-2025-legalagentbench (verdict=approved, rounds=2)"
   ]
 }
