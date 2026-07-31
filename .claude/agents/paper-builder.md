@@ -215,6 +215,22 @@ actually uses. → `set-step draft`
    `grep -a` or read the file in Python. When a sweep of a well-cited paper
    returns *zero* node matches, suspect the sweep, not the literature.
 
+   **An S2 reference entry can be a null stub, and then no id pass and no
+   title pass can possibly match it.** S2 sometimes returns a reference as
+   `{paperId: null, externalIds: null, title: "<truncated mid-sentence>"}` —
+   it has not resolved the citation to a paper at all, so there is no arXiv
+   id, no DOI, and only a fragment of a title to match on. On ARB the
+   PlanBench reference came back as `"Large language models still can't plan
+   (a benchmark for LLMs on"` — cut off exactly where the node's own title
+   would have started to help — and because the node had *also* been
+   retitled to "PlanBench" after publication, the printed-bibliography pass
+   missed it too. Both mechanisms had to fire together, and both do fire
+   often. So: **after the three passes, list every reference S2 returned
+   with a null `paperId` and match those by hand against the node index**,
+   using the printed bibliography's own author+year rather than either
+   title. A null stub is the one reference class your automated sweep is
+   guaranteed to drop silently.
+
    **A retitled paper often has more than one S2 record — sweep them all.**
    S2 frequently keeps the preprint and the camera-ready as separate
    entries, each with its own citation list. On IntPhys the canonical record

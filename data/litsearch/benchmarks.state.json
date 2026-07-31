@@ -720,6 +720,15 @@
         "COLM 2024 (13th metadata correction, OpenReview-confirmed; S2/DBLP say arXiv 2023). 2 critic rounds, 1 blocker r1: page scoped universals over Table 3's 19 rows as the whole evaluation, missing Table 8's 6 further combos and the StarCoderBase-1b reversal (4.90 descr vs 5.48 lazy) - true count 24/25. 629 nodes / 6848 edges. Podcast bf_lily 25m27s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "sawada-2023-arb",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "NeurIPS 2023 MATH-AI workshop (venue independently confirmed). 2 critic rounds, 7 blockers r1 + 2 in newly-written r1-fix prose (Table 8 '6 of 8' fraction that was really two columns' FN counts; a raster estimate printed as exact 62.7%) + 1 note (Table 2 range understated 3-6 vs true 3-12) - all 3 fixed by hand. B1 was a 7th false-negative mechanism: S2 null-stub reference record + post-publication retitling. B2 added the evaluations tag (rubric grader is a co-headline contribution per the abstract). 630 nodes / 6885 edges. Podcast af_bella 29m30s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -751,17 +760,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T08:02 started li-2025-legalagentbench ('LegalAgentBench: Evaluating LLM Agents in Legal Domain')",
-    "2026-07-31T08:06 li-2025-legalagentbench: step -> fetch",
-    "2026-07-31T08:06 li-2025-legalagentbench: step -> figures",
-    "2026-07-31T08:10 li-2025-legalagentbench: step -> draft",
-    "2026-07-31T08:20 li-2025-legalagentbench: step -> critique (round 1)",
-    "2026-07-31T08:34 li-2025-legalagentbench: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T08:34 li-2025-legalagentbench: step -> revise",
-    "2026-07-31T08:48 li-2025-legalagentbench: step -> critique (round 2)",
-    "2026-07-31T08:58 li-2025-legalagentbench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T08:58 li-2025-legalagentbench: step -> verify",
-    "2026-07-31T08:59 li-2025-legalagentbench: step -> queue-ops",
     "2026-07-31T09:00 li-2025-legalagentbench: step -> podcast",
     "2026-07-31T09:13 completed li-2025-legalagentbench (verdict=approved, rounds=2)",
     "2026-07-31T09:16 started zang-2021-photochat ('PhotoChat: A Human-Human Dialogue Dataset with Photo Sharing Behavior for Joint Image-Text Modeling')",
@@ -800,6 +798,17 @@
     "2026-07-31T12:16 cassano-2024-canitedit: step -> verify",
     "2026-07-31T12:17 cassano-2024-canitedit: step -> queue-ops",
     "2026-07-31T12:17 cassano-2024-canitedit: step -> podcast",
-    "2026-07-31T12:29 completed cassano-2024-canitedit (verdict=approved, rounds=2)"
+    "2026-07-31T12:29 completed cassano-2024-canitedit (verdict=approved, rounds=2)",
+    "2026-07-31T12:30 started sawada-2023-arb ('ARB: Advanced Reasoning Benchmark for Large Language Models')",
+    "2026-07-31T12:46 sawada-2023-arb: step -> fetch",
+    "2026-07-31T12:46 sawada-2023-arb: step -> figures",
+    "2026-07-31T12:46 sawada-2023-arb: step -> draft",
+    "2026-07-31T12:46 sawada-2023-arb: step -> critique (round 1)",
+    "2026-07-31T13:02 sawada-2023-arb: step -> revise",
+    "2026-07-31T13:10 sawada-2023-arb: step -> critique (round 2)",
+    "2026-07-31T13:19 sawada-2023-arb: step -> verify",
+    "2026-07-31T13:19 sawada-2023-arb: step -> queue-ops",
+    "2026-07-31T13:19 sawada-2023-arb: step -> podcast",
+    "2026-07-31T13:35 completed sawada-2023-arb (verdict=approved, rounds=2)"
   ]
 }
