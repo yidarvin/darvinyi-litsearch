@@ -196,6 +196,17 @@ actually uses. → `set-step draft`
    from its explainer's canonical `source ↗` link when `papers.json` doesn't
    carry one (the same trick `scripts/queue_ops.py` uses).
 
+   **A retitled paper often has more than one S2 record — sweep them all.**
+   S2 frequently keeps the preprint and the camera-ready as separate
+   entries, each with its own citation list. On IntPhys the canonical record
+   sat beside CorpusIds 261677351 ("…Physics *Reasoning*", 58 citations) and
+   54796583 (11), and sweeping only the canonical one left 69 citers
+   unexamined — which is how the BIB → IntPhys edge went missing. Whenever
+   the title you were given differs from the arXiv `citation_title`, or the
+   venue year is years after the preprint, search S2 **by both titles**,
+   collect every record that resolves to the same work, and union their
+   citation lists before deciding an edge doesn't exist.
+
    **But always run the title pass too — never stop at arXiv id.** "arXiv
    first" is about *precedence*, not about skipping the other passes: some
    S2 records carry only DBLP/DOI externalIds and **no `ArXiv` key at all**,
@@ -328,7 +339,21 @@ ACEBench a blocker asserted two models held "the two lowest" scores; the
 correct sort put a third model between them, and the resulting sentence
 quoted both numbers side by side while stating the inequality backwards.
 When a blocker involves an ordering, a count, or a superlative, recount it
-from the table yourself rather than adjusting the old number. Re-run
+from the table yourself rather than adjusting the old number.
+
+**The replacement claim is the likeliest place to ship a new error — check
+it as hard as you checked the old one.** On three consecutive papers a
+round-2 fix introduced a fresh defect of the same species it was repairing:
+one false uniqueness claim swapped for another ("the only cell where an
+open model beats GPT-4"); a version note that fixed a count and then said a
+model "trails every comparison below" when it ranked sixth of eighteen; and
+a superlative repair that reversed the comparison, writing "a smaller
+absolute gain" for +5.07 against +2.1 — while the builder's *own response
+file* stated the direction correctly one paragraph away. So: after writing
+a replacement, verify it against every row exactly as if it were a fresh
+claim, and re-read your own response file for a sentence that contradicts
+what you just put on the page. Prefer the weaker true statement; a fix that
+drops a comparison entirely is better than a fix that inverts one. Re-run
 `python3 scripts/lint_pages.py <slug> --fix` before finishing. You do not
 advance the step yourself here either — the orchestrator moves `critique`
 to round `N+1` once it has your response.

@@ -9677,6 +9677,22 @@
       "explainer": "papers/weller-2025-followir.html",
       "audio_url": "https://pod.darvinyi.com/audio/weller-2025-followir.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "riochet-2022-intphys",
+      "short": "IntPhys 2019",
+      "title": "IntPhys 2019: A Benchmark for Visual Intuitive Physics Understanding",
+      "authors": "Riochet, Castro, Bernard, Lerer, Fergus, Izard, Dupoux",
+      "year": 2022,
+      "date": "2018-03",
+      "venue": "IEEE TPAMI 2022",
+      "citation_count": 91,
+      "topic": "Benchmarks & Evals",
+      "author_group": "INRIA / Facebook AI Research",
+      "abstract": "IntPhys 2019 adapts the developmental-psychology \"violation of expectation\" paradigm into a plug-in physics benchmark: any vision system emits one plausibility score per game-engine video clip and is scored on whether pixel-matched impossible clips (object permanence, shape constancy, spatio-temporal continuity) come out less plausible than their possible twins. Two 2018-era self-supervised baselines (a CNN encoder-decoder, a conditional GAN) score well above chance when violations are visible but collapse to chance-level error the moment they happen behind an occluder, a pattern humans only partly share.",
+      "explainer": "papers/riochet-2022-intphys.html",
+      "audio_url": "https://pod.darvinyi.com/audio/riochet-2022-intphys.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16411,6 +16427,10 @@
     { "from": "weller-2025-followir", "to": "singhal-2023-med-palm" },
     { "from": "weller-2025-followir", "to": "brown-2020-gpt3" },
     { "from": "weller-2025-followir", "to": "liang-2022-helm" },
-    { "from": "shi-2025-toolret", "to": "weller-2025-followir" }
+    { "from": "shi-2025-toolret", "to": "weller-2025-followir" },
+    { "from": "riochet-2022-intphys", "to": "russakovsky-2015-ilsvrc" },
+    { "from": "shu-2021-agent", "to": "riochet-2022-intphys" },
+    { "from": "bakhtin-2019-phyre", "to": "riochet-2022-intphys" },
+    { "from": "gandhi-2021-bib", "to": "riochet-2022-intphys" }
   ]
 }
