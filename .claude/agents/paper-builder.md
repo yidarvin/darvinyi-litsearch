@@ -145,6 +145,19 @@ actually uses. → `set-step draft`
    between the paper's prose and your own transcription as verification —
    verification means the paper's prose against the paper's table.
 
+   **The re-sum will not catch a row *shift*, so anchor on a column too.**
+   Dropping one cell and picking up its neighbour leaves the mean almost
+   unchanged: on PersonaMem a row transcribed `… 0.42, 0.37, 0.43, 0.39,
+   0.31 …` against a true `… 0.42, 0.43, 0.39, 0.34, 0.31 …` (a `0.37`
+   bled in from the row below) still averaged to the printed `0.43`, and
+   sailed through the arithmetic check. After transcribing a wide row,
+   **name the column each of two or three specific cells belongs to and
+   re-read those cells at that column position.** A shift shows up
+   instantly; a re-sum never will. This matters most for results printed as
+   **figures** rather than text tables — three consecutive papers left a
+   shifted or mistyped row in `tables.md`, and figure-rendered heatmaps
+   were the common factor.
+
    **Record each table's precision, and never read a rounded cell as an
    exact value.** A `0.0` in a table that rounds to one decimal means
    "below 0.05", not "zero" — and papers routinely plot the same numbers at

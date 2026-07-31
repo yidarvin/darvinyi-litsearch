@@ -585,6 +585,15 @@
         "PersonaMem (COLM 2025, arXiv 2025-04). 2 critic rounds, 7 blockers -- a reversed comparison across 4 surfaces (18% is BELOW the 25% floor, not 'barely above'), a false critique claim repeated 4x (RAG tested at 128k, not only 32k), an invented aggregation mechanism attributed to Appendix D.1, an altered quotation, a wrong benchmark count (3 not 2), a non-exhaustive ordering missing an exact 0.43 tie, and meta tags contradicting the body on persona count. I separately corrected the venue to COLM 2025 (PDF header on all 28 pages; DBLP had only CoRR), replaced 2 paraphrases sitting in quote marks with verbatim Figure 1 text, and fixed a second tables.md row shift verified at 900 dpi. Episode bm_fable 163.1 wpm, byte-verified 3 ways; its per-model split finding (12/15 below chance, and Claude-3.7-Sonnet last overall yet best on the hardest type) was verified at 900 dpi and added."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "nematzadeh-2018-tom-qa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "ToM-bAbI (EMNLP 2018). 2 critic rounds, 4 blockers: two MISSED inbound edges (QLoRA and BiGGen Bench both cite it -- the builder swept only the topical ToM cluster), a wrong story/question structure that contradicted the page's own takeaway (one question per test example, not four), 'had already solved bAbI' on six surfaces when the paper's own S4 says the best memory net fails 6 of 20 tasks under its joint training, and an altered quotation. r2 approve. tables.md was CLEAN for the first time in four papers -- the new column-anchoring check (a re-sum cannot catch a row shift) worked. Episode bf_alice 159.0 wpm, byte-verified 3 ways; its best-of-ten-runs finding (S5: MemN2N results are max-of-10 selections, which is why Figure 3's box plots sit far below the headline numbers) was verified and added to the critique. Queue net -1: the builder's only new candidate was already queued."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -616,19 +625,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-29T03:49 vilares-2019-headqa: step -> figures",
-    "2026-07-29T03:49 vilares-2019-headqa: step -> draft",
-    "2026-07-29T03:49 vilares-2019-headqa: step -> critique (round 1)",
-    "2026-07-29T04:00 vilares-2019-headqa: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-29T04:00 vilares-2019-headqa: step -> revise",
-    "2026-07-29T04:05 vilares-2019-headqa: step -> critique (round 2)",
-    "2026-07-29T04:15 vilares-2019-headqa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-29T04:15 vilares-2019-headqa: step -> verify",
-    "2026-07-29T04:16 vilares-2019-headqa: step -> queue-ops",
-    "2026-07-29T04:16 vilares-2019-headqa: step -> podcast",
-    "2026-07-29T04:30 completed vilares-2019-headqa (verdict=approved, rounds=2)",
-    "2026-07-29T04:32 started chen-2025-jama-medbullets ('Benchmarking Large Language Models on Answering and Explaining Challenging Medical Questions')",
-    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> fetch",
     "2026-07-30T16:42 chen-2025-jama-medbullets: step -> figures",
     "2026-07-30T16:42 chen-2025-jama-medbullets: step -> draft",
     "2026-07-30T16:42 chen-2025-jama-medbullets: step -> critique (round 1)",
@@ -665,6 +661,19 @@
     "2026-07-30T18:59 jiang-2025-personamem: step -> verify",
     "2026-07-30T19:00 jiang-2025-personamem: step -> queue-ops",
     "2026-07-30T19:00 jiang-2025-personamem: step -> podcast",
-    "2026-07-30T19:19 completed jiang-2025-personamem (verdict=approved, rounds=2)"
+    "2026-07-30T19:19 completed jiang-2025-personamem (verdict=approved, rounds=2)",
+    "2026-07-30T19:22 started nematzadeh-2018-tom-qa ('Evaluating Theory of Mind in Question Answering')",
+    "2026-07-30T19:23 nematzadeh-2018-tom-qa: step -> fetch",
+    "2026-07-30T19:23 nematzadeh-2018-tom-qa: step -> figures",
+    "2026-07-30T19:25 nematzadeh-2018-tom-qa: step -> draft",
+    "2026-07-30T19:35 nematzadeh-2018-tom-qa: step -> critique (round 1)",
+    "2026-07-30T19:48 nematzadeh-2018-tom-qa: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T19:48 nematzadeh-2018-tom-qa: step -> revise",
+    "2026-07-30T19:51 nematzadeh-2018-tom-qa: step -> critique (round 2)",
+    "2026-07-30T20:00 nematzadeh-2018-tom-qa: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-30T20:00 nematzadeh-2018-tom-qa: step -> verify",
+    "2026-07-30T20:01 nematzadeh-2018-tom-qa: step -> queue-ops",
+    "2026-07-30T20:01 nematzadeh-2018-tom-qa: step -> podcast",
+    "2026-07-30T20:15 completed nematzadeh-2018-tom-qa (verdict=approved, rounds=2)"
   ]
 }

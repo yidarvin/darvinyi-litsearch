@@ -9581,6 +9581,22 @@
       "explainer": "papers/jiang-2025-personamem.html",
       "audio_url": "https://pod.darvinyi.com/audio/jiang-2025-personamem.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "nematzadeh-2018-tom-qa",
+      "short": "ToM-bAbI",
+      "title": "Evaluating Theory of Mind in Question Answering",
+      "authors": "Nematzadeh, Burns, Grant, Gopnik, Griffiths",
+      "year": 2018,
+      "date": "2018-08",
+      "venue": "EMNLP 2018",
+      "citation_count": 111,
+      "topic": "Benchmarks & Evals",
+      "author_group": "DeepMind / UC Berkeley",
+      "abstract": "ToM-bAbI turns the Sally-Anne and Ice-cream-Van false-belief experiments into a bAbI-style QA dataset with true-, false-, and second-order-false-belief tasks, each paired with four question types (memory, reality, first-order, second-order) across 12 task/question combinations, one question per generated example, so a correct belief answer can be checked against control questions the way developmental psychologists check children. Four published, near-state-of-the-art-on-bAbI models (MemN2N, Multiple Observer, EntNet, RelNet) all fail to clear the paper's own 95% success bar on the full ToM dataset (best: RelNet at 94.31%), and every model's accuracy drops further once distractor sentences are added at test time.",
+      "explainer": "papers/nematzadeh-2018-tom-qa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/nematzadeh-2018-tom-qa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16224,6 +16240,13 @@
     { "from": "jiang-2025-personamem", "to": "srivastava-2022-big-bench" },
     { "from": "jiang-2025-personamem", "to": "xu-2022-msc" },
     { "from": "jiang-2025-personamem", "to": "lewis-2020-rag" },
-    { "from": "jiang-2025-personamem", "to": "guo-2025-deepseek-r1" }
+    { "from": "jiang-2025-personamem", "to": "guo-2025-deepseek-r1" },
+    { "from": "le-2019-tomi", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "kim-2023-fantom", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "xu-2024-opentom", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "jin-2024-mmtom-qa", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "chan-2024-negotiationtom", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "dettmers-2023-qlora", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "kim-2024-biggenbench", "to": "nematzadeh-2018-tom-qa" }
   ]
 }
