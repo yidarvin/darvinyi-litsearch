@@ -9693,6 +9693,22 @@
       "explainer": "papers/riochet-2022-intphys.html",
       "audio_url": "https://pod.darvinyi.com/audio/riochet-2022-intphys.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "jansen-2024-discoveryworld",
+      "short": "DiscoveryWorld",
+      "title": "DiscoveryWorld: A Virtual Environment for Developing and Evaluating Automated Scientific Discovery Agents",
+      "authors": "Jansen, Côté, Khot, Bransom, Dalvi Mishra, Majumder, Tafjord, Clark",
+      "year": 2024,
+      "date": "2024-06",
+      "venue": "NeurIPS 2024 D&B",
+      "citation_count": 82,
+      "topic": "Benchmarks & Evals",
+      "author_group": "AI2 / Microsoft Research",
+      "abstract": "DiscoveryWorld is a 120-task virtual laboratory across eight scientific domains and three difficulty levels, scoring agents on three separate axes -- task completion, procedural correctness, and discovered explanatory knowledge -- rather than a single pass/fail number. Zero-shot GPT-4o agents (ReAct, Plan+Execute, Hypothesizer) complete at best 38% of Easy and 18% of Challenge tasks (ReAct) and discover at best 34% of gold knowledge on Easy tasks (Hypothesizer), collapsing to 10% or less at Challenge for every agent, well behind the 66% completion and 55% knowledge accuracy of 11 Upwork-recruited human scientists tested on the harder Normal/Challenge tasks alone.",
+      "explainer": "papers/jansen-2024-discoveryworld.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jansen-2024-discoveryworld.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16431,6 +16447,18 @@
     { "from": "riochet-2022-intphys", "to": "russakovsky-2015-ilsvrc" },
     { "from": "shu-2021-agent", "to": "riochet-2022-intphys" },
     { "from": "bakhtin-2019-phyre", "to": "riochet-2022-intphys" },
-    { "from": "gandhi-2021-bib", "to": "riochet-2022-intphys" }
+    { "from": "gandhi-2021-bib", "to": "riochet-2022-intphys" },
+    { "from": "jansen-2024-discoveryworld", "to": "huang-2023-mlagentbench" },
+    { "from": "jansen-2024-discoveryworld", "to": "yao-2022-react" },
+    { "from": "jansen-2024-discoveryworld", "to": "yang-2023-intercode" },
+    { "from": "jansen-2024-discoveryworld", "to": "wang-2023-plan-and-solve" },
+    { "from": "jansen-2024-discoveryworld", "to": "zhou-2023-webarena" },
+    { "from": "jansen-2024-discoveryworld", "to": "brockman-2016-openai-gym" },
+    { "from": "bogin-2024-super", "to": "jansen-2024-discoveryworld" },
+    { "from": "yehudai-2025-agent-eval-survey", "to": "jansen-2024-discoveryworld" },
+    { "from": "nathani-2025-mlgym", "to": "jansen-2024-discoveryworld" },
+    { "from": "zhuge-2024-agent-as-judge", "to": "jansen-2024-discoveryworld" },
+    { "from": "starace-2025-paperbench", "to": "jansen-2024-discoveryworld" },
+    { "from": "wijk-2024-re-bench", "to": "jansen-2024-discoveryworld" }
   ]
 }

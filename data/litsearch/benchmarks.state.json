@@ -648,6 +648,15 @@
         "IntPhys 2019 (TPAMI 2022, arXiv 2018-03; 9th queue-metadata correction -- retitled between preprint and publication, queue said year 2018). 2 critic rounds, 4 blockers: one MISSED inbound edge (BIB), an inverted developmental timeline in a figcaption, shuffled-ID masks attributed to train instead of dev/test, and a false 'best-performing configuration' parenthetical. r2 approve -- and notably the B4 replacement (aggregated CNN identical to long-term CNN) was verified 192/192 cells, the first revision in four papers not to ship a fresh error. ROOT CAUSE of the missed edge, now in paper-builder.md: S2 keeps DUPLICATE records for retitled papers (2 extra CorpusIds, 69 unswept citers). Builder did excellent version work -- diffed arXiv v3 against the HAL manuscript (24/24 pages identical) rather than asserting, and correctly withheld a suspected paper inconsistency until the critic adjudicated it real. Episode bm_daniel 163.8 wpm, byte-verified; it caught that the page's 0.48-0.53 range was looser than the data (true range 0.48-0.52 across 15 cells) -- verified and tightened, and removed the tables.md gloss that seeded it."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "jansen-2024-discoveryworld",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "DiscoveryWorld (NeurIPS 2024 D&B). 2 critic rounds, 8 blockers, two of them new failure modes: (1) the node's citation_count (82) leaked out of the hero facts strip into the prose as a claimed '82-point human/agent gap' -- the real figure is 43; (2) a real inbound citation from PaperBench was WRONGLY EXCLUDED because the citing PDF's text layer breaks the name as 'DIS- COVERYWORLD' -- the de-hyphenation rule applies to searching for a paper's name in a citing PDF, not just to quotations. Also: a procedure range that omitted Challenge, false exclusivity on 'the two hardest tasks' (three qualify), an 'in the 60s' characterization no cell supports, a false 'at best 8%' (ReAct reaches 10%), and an invented '1D' detail. Edges 9 -> 12. r2 approve with all four replacement claims verified clean. I separately fixed a gap-direction error the critic flagged as non-blocking (the gap NARROWS at Challenge, 53 -> 38 points) plus an unsupported latency claim and a typo. Episode bm_lewis 140.5 wpm, byte-verified; it discarded two renders after its own numeric audits, and its one page-level flag (a '32x32 tile grid' claim) was a false positive -- the paper states that verbatim."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -679,19 +688,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T22:45 kim-2024-medexqa: step -> figures",
-    "2026-07-30T22:49 kim-2024-medexqa: step -> draft",
-    "2026-07-30T23:06 kim-2024-medexqa: step -> critique (round 1)",
-    "2026-07-30T23:19 kim-2024-medexqa: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-30T23:19 kim-2024-medexqa: step -> revise",
-    "2026-07-30T23:28 kim-2024-medexqa: step -> critique (round 2)",
-    "2026-07-30T23:37 kim-2024-medexqa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-30T23:37 kim-2024-medexqa: step -> verify",
-    "2026-07-30T23:38 kim-2024-medexqa: step -> queue-ops",
-    "2026-07-30T23:38 kim-2024-medexqa: step -> podcast",
-    "2026-07-30T23:50 completed kim-2024-medexqa (verdict=approved, rounds=2)",
-    "2026-07-30T23:53 started wang-2024-gta ('GTA: A Benchmark for General Tool Agents')",
-    "2026-07-30T23:54 wang-2024-gta: step -> fetch",
     "2026-07-30T23:59 wang-2024-gta: step -> figures",
     "2026-07-30T23:59 wang-2024-gta: step -> draft",
     "2026-07-31T00:11 wang-2024-gta: step -> critique (round 1)",
@@ -728,6 +724,19 @@
     "2026-07-31T03:01 riochet-2022-intphys: step -> verify",
     "2026-07-31T03:02 riochet-2022-intphys: step -> queue-ops",
     "2026-07-31T03:03 riochet-2022-intphys: step -> podcast",
-    "2026-07-31T03:13 completed riochet-2022-intphys (verdict=approved, rounds=2)"
+    "2026-07-31T03:13 completed riochet-2022-intphys (verdict=approved, rounds=2)",
+    "2026-07-31T03:16 started jansen-2024-discoveryworld ('DiscoveryWorld: A Virtual Environment for Developing and Evaluating Automated Scientific Discovery Agents')",
+    "2026-07-31T03:17 jansen-2024-discoveryworld: step -> fetch",
+    "2026-07-31T03:18 jansen-2024-discoveryworld: step -> figures",
+    "2026-07-31T03:24 jansen-2024-discoveryworld: step -> draft",
+    "2026-07-31T03:38 jansen-2024-discoveryworld: step -> critique (round 1)",
+    "2026-07-31T03:53 jansen-2024-discoveryworld: 8 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T03:53 jansen-2024-discoveryworld: step -> revise",
+    "2026-07-31T03:58 jansen-2024-discoveryworld: step -> critique (round 2)",
+    "2026-07-31T04:07 jansen-2024-discoveryworld: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T04:07 jansen-2024-discoveryworld: step -> verify",
+    "2026-07-31T04:08 jansen-2024-discoveryworld: step -> queue-ops",
+    "2026-07-31T04:08 jansen-2024-discoveryworld: step -> podcast",
+    "2026-07-31T04:28 completed jansen-2024-discoveryworld (verdict=approved, rounds=2)"
   ]
 }
