@@ -215,6 +215,24 @@ actually uses. → `set-step draft`
    `grep -a` or read the file in Python. When a sweep of a well-cited paper
    returns *zero* node matches, suspect the sweep, not the literature.
 
+   **But de-hyphenation is itself a false-negative source — it eats real
+   hyphens inside model names.** `CodeLlama-34B` broken across a line
+   extracts as `CodeLlama-\n34B`, which naive de-hyphenation collapses to
+   `CodeLlama34B`, so a search for the *correctly* spelled name now fails on
+   your normalized copy. This bit on DataSciBench: a check for
+   "Meta-Llama-3-8B-Instruct and CodeLlama-34B-Instruct" returned nothing
+   while the sentence sat plainly in the paper. Model names, dataset names,
+   and hyphenated benchmarks are exactly the tokens most likely to break
+   across a line, so **search hyphen-insensitively**: strip all hyphens from
+   both haystack and needle, or match on a hyphen-free distinctive fragment
+   (`CodeLlama34BInstruct`) rather than the printed form.
+
+   And **`grep -c` counts matching *lines*, not matches.** A page shipped
+   the claim that a word "appears exactly once in the paper" because
+   `grep -c` returned 1 on a term that occurred three times, twice on the
+   same line. Use `finditer` and print each hit with context; never let a
+   count alone license a claim about frequency.
+
    **An S2 reference entry can be a null stub, and then no id pass and no
    title pass can possibly match it.** S2 sometimes returns a reference as
    `{paperId: null, externalIds: null, title: "<truncated mid-sentence>"}` —

@@ -9853,6 +9853,22 @@
       "explainer": "papers/huang-2024-dacode.html",
       "audio_url": "https://pod.darvinyi.com/audio/huang-2024-dacode.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhang-2026-datascibench",
+      "short": "DataSciBench",
+      "title": "DataSciBench: An LLM Agent Benchmark for Data Science",
+      "authors": "Zhang, Zhoubian, Cai, Li, Yang, Wang, Dong, Hu, Tang, Yue",
+      "year": 2026,
+      "date": "2025-02",
+      "venue": "Findings of ACL 2026",
+      "citation_count": 54,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University / Zhipu AI",
+      "abstract": "222 real data-science prompts, 519 hand-verified test cases, and a Task-Function-Code framework that turns each open-ended prompt (clean data, fit a model, save a chart, write a report) into boolean/threshold-checkable subtask evaluations across 25 aggregate functions. GPT-4o tops all 23 evaluated models on every one of the nine columns of the main results table (composite Score 64.51%), DeepSeek-Coder-33B-Instruct is the strongest open-source model (56.76%), and completion rate collapses from a 23-model average of 37.76% on easy prompts to 3.83% on hard ones.",
+      "explainer": "papers/zhang-2026-datascibench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2026-datascibench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16756,6 +16772,21 @@
     { "from": "huang-2024-dacode", "to": "openai-2023-gpt4" },
     { "from": "huang-2024-dacode", "to": "yang-2024-swe-agent" },
     { "from": "huang-2024-dacode", "to": "wang-2023-plan-and-solve" },
-    { "from": "bean-2025-construct-validity", "to": "huang-2024-dacode" }
+    { "from": "bean-2025-construct-validity", "to": "huang-2024-dacode" },
+    { "from": "zhang-2026-datascibench", "to": "openai-2023-gpt4" },
+    { "from": "zhang-2026-datascibench", "to": "chen-2021-codex" },
+    { "from": "zhang-2026-datascibench", "to": "zeng-2024-chatglm" },
+    { "from": "zhang-2026-datascibench", "to": "guo-2024-deepseek-coder" },
+    { "from": "zhang-2026-datascibench", "to": "hu-2024-infiagent-dabench" },
+    { "from": "zhang-2026-datascibench", "to": "huang-2023-mlagentbench" },
+    { "from": "zhang-2026-datascibench", "to": "hurst-2024-gpt-4o" },
+    { "from": "zhang-2026-datascibench", "to": "jain-2024-livecodebench" },
+    { "from": "zhang-2026-datascibench", "to": "lai-2022-ds-1000" },
+    { "from": "zhang-2026-datascibench", "to": "lozhkov-2024-starcoder2" },
+    { "from": "zhang-2026-datascibench", "to": "roziere-2023-code-llama" },
+    { "from": "zhang-2026-datascibench", "to": "wang-2022-self-consistency" },
+    { "from": "zhang-2026-datascibench", "to": "yang-2024-qwen2" },
+    { "from": "zhang-2026-datascibench", "to": "yao-2022-react" },
+    { "from": "zhang-2026-datascibench", "to": "zhuo-2024-bigcodebench" }
   ]
 }

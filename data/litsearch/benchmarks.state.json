@@ -738,6 +738,15 @@
         "EMNLP 2024 (14th metadata correction; confirmed 3 ways). 2 critic rounds, 4 blockers r1: false 'only benchmark with both ticks' (MLAgentBench also qualifies); invented 'five files' count; grading tolerance attached to tables when the paper grants it only to charts; 3 missed edges from S2 null-stub references (12 of 32 refs were stubs, MLAgentBench absent entirely). Page's 3 claims-against-the-paper all verified and kept. 631 nodes / 6901 edges. Podcast am_fenrir 30m24s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "zhang-2026-datascibench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Findings of ACL 2026 (15th metadata correction; DBLP conf/acl/ZhangZCLYWDHTY26). 2 critic rounds, 9 blockers r1 + 1 new defect in the r1-fix prose. Notable: Figure 1's inlined image was a crop of the whole page-1 title block (extract_figures.py bug on two-column first pages - spawned task_8de53566); 23-model averages attached to individual models; GPT-4o's 9-column sweep unscoped while appendix Table 5 has it losing 3; CR rubric mis-stated to inflate the critique. Added the paper's own Tables 5/6 contamination split (81.81 BCB vs 24.32 curated). 632 nodes / 6916 edges. Podcast bf_emma 27m06s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -769,18 +778,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T10:17 zang-2021-photochat: step -> verify",
-    "2026-07-31T10:18 zang-2021-photochat: step -> queue-ops",
-    "2026-07-31T10:18 zang-2021-photochat: step -> podcast",
-    "2026-07-31T10:29 completed zang-2021-photochat (verdict=approved, rounds=2)",
-    "2026-07-31T10:32 started lu-2025-agentrewardbench ('AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories')",
-    "2026-07-31T10:35 lu-2025-agentrewardbench: step -> fetch",
-    "2026-07-31T10:35 lu-2025-agentrewardbench: step -> figures",
-    "2026-07-31T10:39 lu-2025-agentrewardbench: step -> draft",
-    "2026-07-31T10:55 lu-2025-agentrewardbench: step -> critique (round 1)",
-    "2026-07-31T11:06 lu-2025-agentrewardbench: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T11:06 lu-2025-agentrewardbench: step -> revise",
-    "2026-07-31T11:09 lu-2025-agentrewardbench: step -> critique (round 2)",
     "2026-07-31T11:16 lu-2025-agentrewardbench: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-07-31T11:16 lu-2025-agentrewardbench: step -> verify",
     "2026-07-31T11:17 lu-2025-agentrewardbench: step -> queue-ops",
@@ -818,6 +815,18 @@
     "2026-07-31T14:21 huang-2024-dacode: step -> verify",
     "2026-07-31T14:21 huang-2024-dacode: step -> queue-ops",
     "2026-07-31T14:21 huang-2024-dacode: step -> podcast",
-    "2026-07-31T14:35 completed huang-2024-dacode (verdict=approved, rounds=2)"
+    "2026-07-31T14:35 completed huang-2024-dacode (verdict=approved, rounds=2)",
+    "2026-07-31T14:36 started zhang-2026-datascibench ('DataSciBench: An LLM Agent Benchmark for Data Science')",
+    "2026-07-31T14:54 zhang-2026-datascibench: step -> fetch",
+    "2026-07-31T14:54 zhang-2026-datascibench: step -> figures",
+    "2026-07-31T14:54 zhang-2026-datascibench: step -> draft",
+    "2026-07-31T14:54 zhang-2026-datascibench: step -> draft",
+    "2026-07-31T14:54 zhang-2026-datascibench: step -> critique (round 1)",
+    "2026-07-31T15:10 zhang-2026-datascibench: step -> revise",
+    "2026-07-31T15:19 zhang-2026-datascibench: step -> critique (round 2)",
+    "2026-07-31T15:31 zhang-2026-datascibench: step -> verify",
+    "2026-07-31T15:32 zhang-2026-datascibench: step -> queue-ops",
+    "2026-07-31T15:32 zhang-2026-datascibench: step -> podcast",
+    "2026-07-31T15:46 completed zhang-2026-datascibench (verdict=approved, rounds=2)"
   ]
 }
