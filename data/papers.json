@@ -9789,6 +9789,22 @@
       "explainer": "papers/zang-2021-photochat.html",
       "audio_url": "https://pod.darvinyi.com/audio/zang-2021-photochat.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "lu-2025-agentrewardbench",
+      "short": "AgentRewardBench",
+      "title": "AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories",
+      "authors": "Lù, Kazemnejad, Meade, Patel, Shin, Zambrano, Stańczak, Shaw, Pal, Reddy",
+      "year": 2025,
+      "date": "2025-04",
+      "venue": "COLM 2025",
+      "citation_count": 70,
+      "topic": "Benchmarks & Evals",
+      "author_group": "McGill / Mila",
+      "abstract": "AgentRewardBench pairs 1,302 web-agent trajectories, each labeled by expert human annotators for success, side effects, and repetition, with scores from 12 LLM judges and each benchmark's rule-based checker. No LLM judge reaches 70% precision on the success question, and rule-based evaluation is shown to systematically underestimate agent success relative to experts, sometimes flipping which agent looks better.",
+      "explainer": "papers/lu-2025-agentrewardbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lu-2025-agentrewardbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16609,6 +16625,21 @@
     { "from": "zang-2021-photochat", "to": "lin-2014-coco" },
     { "from": "zang-2021-photochat", "to": "devlin-2019-bert" },
     { "from": "feng-2023-mmdialog", "to": "zang-2021-photochat" },
-    { "from": "maharana-2024-locomo", "to": "zang-2021-photochat" }
+    { "from": "maharana-2024-locomo", "to": "zang-2021-photochat" },
+    { "from": "lu-2025-agentrewardbench", "to": "hurst-2024-gpt-4o" },
+    { "from": "lu-2025-agentrewardbench", "to": "yoran-2024-assistantbench" },
+    { "from": "lu-2025-agentrewardbench", "to": "he-2024-webvoyager" },
+    { "from": "lu-2025-agentrewardbench", "to": "zheng-2024-seeact" },
+    { "from": "lu-2025-agentrewardbench", "to": "zhou-2023-webarena" },
+    { "from": "lu-2025-agentrewardbench", "to": "deng-2023-mind2web" },
+    { "from": "lu-2025-agentrewardbench", "to": "zheng-2023-mt-bench" },
+    { "from": "lu-2025-agentrewardbench", "to": "rafailov-2023-dpo" },
+    { "from": "lu-2025-agentrewardbench", "to": "openai-2023-gpt4" },
+    { "from": "lu-2025-agentrewardbench", "to": "yao-2022-webshop" },
+    { "from": "lu-2025-agentrewardbench", "to": "koh-2024-visualwebarena" },
+    { "from": "lu-2025-agentrewardbench", "to": "zhuge-2024-agent-as-judge" },
+    { "from": "lu-2025-agentrewardbench", "to": "lambert-2024-rewardbench" },
+    { "from": "lu-2025-agentrewardbench", "to": "brockman-2016-openai-gym" },
+    { "from": "malik-2026-rewardbench2", "to": "lu-2025-agentrewardbench" }
   ]
 }

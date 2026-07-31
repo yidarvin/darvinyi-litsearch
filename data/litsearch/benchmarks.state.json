@@ -702,6 +702,15 @@
         "PhotoChat (ACL 2021). 2 critic rounds, 3 blockers: an INVERTED filter condition (the page stated the margin test as the requirement when footnote 2 makes it the disqualifier), two more invented specifics ('a coffee cup' for black tea; 'confuses puffins with a duck after keying on atlantic' inverting the paper's double 'fails to'), and the disputed 58.1 superlative asserted in the page's own voice on 5 surfaces. Builder correctly withheld BOTH suspected inconsistencies and caught 2 of its own queue candidates as already-queued. The critic then settled the 58.1-vs-58.9 question decisively by extracting PDF FONT RUNS: Table 2 bolds each column max, marking T5-3B's 58.9 as best F1 while the prose headlines 58.1. Page now attributes rather than asserts, and reproduces the paper's bolding in both reprinted tables so a reader sees it. Episode am_puck 154.8 wpm, byte-verified; it found a FIFTH grep false-negative mechanism -- fi/fl LIGATURES, present in 43 of 90 extracted texts -- now recorded in paper-builder.md alongside line-broken names, small-caps, NUL bytes and spaced multiplication signs."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "lu-2025-agentrewardbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "COLM 2025; 2 critic rounds, 7 blockers r1 (self-contradicting recall table, two false quantifier ranges, metric/row swap, false 'every benchmark' claim, 2 missed edges); approve r2. 628 nodes / 6833 edges. Podcast bm_lewis 27m30s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -733,19 +742,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T05:58 zharmagambetov-2025-agentdam: step -> figures",
-    "2026-07-31T06:01 zharmagambetov-2025-agentdam: step -> draft",
-    "2026-07-31T06:13 zharmagambetov-2025-agentdam: step -> critique (round 1)",
-    "2026-07-31T06:24 zharmagambetov-2025-agentdam: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T06:24 zharmagambetov-2025-agentdam: step -> revise",
-    "2026-07-31T06:30 zharmagambetov-2025-agentdam: step -> critique (round 2)",
-    "2026-07-31T06:38 zharmagambetov-2025-agentdam: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T06:38 zharmagambetov-2025-agentdam: step -> verify",
-    "2026-07-31T06:39 zharmagambetov-2025-agentdam: step -> queue-ops",
-    "2026-07-31T06:39 zharmagambetov-2025-agentdam: step -> podcast",
-    "2026-07-31T06:53 completed zharmagambetov-2025-agentdam (verdict=approved, rounds=2)",
-    "2026-07-31T06:56 started paech-2023-eq-bench ('EQ-Bench: An Emotional Intelligence Benchmark for Large Language Models')",
-    "2026-07-31T06:58 paech-2023-eq-bench: step -> fetch",
     "2026-07-31T06:58 paech-2023-eq-bench: step -> figures",
     "2026-07-31T06:59 paech-2023-eq-bench: step -> draft",
     "2026-07-31T07:10 paech-2023-eq-bench: step -> critique (round 1)",
@@ -782,6 +778,19 @@
     "2026-07-31T10:17 zang-2021-photochat: step -> verify",
     "2026-07-31T10:18 zang-2021-photochat: step -> queue-ops",
     "2026-07-31T10:18 zang-2021-photochat: step -> podcast",
-    "2026-07-31T10:29 completed zang-2021-photochat (verdict=approved, rounds=2)"
+    "2026-07-31T10:29 completed zang-2021-photochat (verdict=approved, rounds=2)",
+    "2026-07-31T10:32 started lu-2025-agentrewardbench ('AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories')",
+    "2026-07-31T10:35 lu-2025-agentrewardbench: step -> fetch",
+    "2026-07-31T10:35 lu-2025-agentrewardbench: step -> figures",
+    "2026-07-31T10:39 lu-2025-agentrewardbench: step -> draft",
+    "2026-07-31T10:55 lu-2025-agentrewardbench: step -> critique (round 1)",
+    "2026-07-31T11:06 lu-2025-agentrewardbench: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T11:06 lu-2025-agentrewardbench: step -> revise",
+    "2026-07-31T11:09 lu-2025-agentrewardbench: step -> critique (round 2)",
+    "2026-07-31T11:16 lu-2025-agentrewardbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T11:16 lu-2025-agentrewardbench: step -> verify",
+    "2026-07-31T11:17 lu-2025-agentrewardbench: step -> queue-ops",
+    "2026-07-31T11:17 lu-2025-agentrewardbench: step -> podcast",
+    "2026-07-31T11:33 completed lu-2025-agentrewardbench (verdict=approved, rounds=2)"
   ]
 }

@@ -205,8 +205,12 @@ actually uses. → `set-step draft`
    the whole file as binary and report nothing at all (four extracted texts
    had one); **ligatures** — `ﬁ` and `ﬂ` are single codepoints, so a search
    for "first" or "fails" misses, and **43 of 90 extracted texts contain
-   them**; and a spaced multiplication sign, where the paper prints
-   `32 × 32` and you searched `32x32`. So: normalize before you conclude —
+   them**; a spaced multiplication sign, where the paper prints
+   `32 × 32` and you searched `32x32`; and **S2 returning a truncated or
+   garbled title** — it lists RewardBench as "Evaluating reward", so a title
+   match against the node's real title fails even though the record is right
+   there, so match on a distinctive substring and on the arXiv id from the
+   *printed* bibliography rather than S2's title string. So: normalize before you conclude —
    de-hyphenate, casefold, expand ligatures, collapse whitespace, and use
    `grep -a` or read the file in Python. When a sweep of a well-cited paper
    returns *zero* node matches, suspect the sweep, not the literature.
