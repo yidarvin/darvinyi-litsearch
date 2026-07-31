@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who did What: A Large-Scale Person-Centered Cloze Dataset — paper_atlas</title>
+<meta name="description" content="A 200,000+ question fill-in-the-blank reading comprehension dataset where the passage and the question come from two independently written news articles rather than a summary, entities are never anonymized, and four shortcut baselines are explicitly suppressed by construction.">
+<meta property="og:title" content="Who did What: A Large-Scale Person-Centered Cloze Dataset">
+<meta property="og:description" content="A 200,000+ question fill-in-the-blank reading comprehension dataset where the passage and the question come from two independently written news articles rather than a summary, entities are never anonymized, and four shortcut baselines are explicitly suppressed by construction.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/onishi-2016-who-did-what.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2016 · EMNLP 2016 · Benchmarks &amp; Evals</div>
+      <h1>Who did What: A Large-Scale Person-Centered Cloze Dataset</h1>
+      <p class="dek">A 200,000+ question fill-in-the-blank reading comprehension dataset where the passage and the question come from two independently written news articles rather than a shared summary, entities are never anonymized, and four cheap shortcut baselines are explicitly suppressed by construction.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/onishi-2016-who-did-what.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/onishi-2016-who-did-what.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Takeshi Onishi, Hai Wang, Mohit Bansal, Kevin Gimpel, David A. McAllester — Toyota Technological Institute at Chicago</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>EMNLP 2016</b></span>
+        <span class="fact">citations&nbsp;<b>142</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1608.05457">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/onishi-2016-who-did-what.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-07-30</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2016 the dominant large-scale reading-comprehension benchmarks were the CNN and Daily Mail cloze datasets (Hermann et al., 2015): a passage is a news article, and the question is a bullet-point <em>summary</em> sentence of that same article with one entity blanked out. That construction leaves a shortcut a system can exploit without reading closely: because the question sentence is drawn from the same article's own summary, it tends to stay syntactically close to sentences inside the passage. WDW instead forms question and passage from two separate articles, which the authors say reduces that syntactic similarity and increases the need for deeper semantic analysis; it also leaves entities un-anonymized rather than replaced with IDs, which the authors say permits the use of external resources to improve performance while remaining difficult for language models due to suppression. The paper's own related-work discussion notes that the Children's Book Test (Hill et al., 2016) has a different design: each problem gives 20 consecutive sentences from a children's story, then a 21st sentence with one word deleted and a list of ten candidate words to fill it — "the next event in a story is often not determined — surprises arise," which the authors point to as part of why human accuracy on CBT (82%) sits below what they measure on their own dataset (84%).</p>
+      <p>The paper's stated goal is a cloze dataset that widens the gap between what a shallow heuristic can solve and what a human can solve — a larger human/machine gap than the CNN or CBT datasets show — by closing off the shortcuts at the source rather than leaving them for a system to (not) exploit.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>Every Who-did-What (WDW) problem is built from the LDC English Gigaword newswire corpus in two independent passes. First, a random <strong>question article</strong> is drawn and its first sentence — the "question sentence" — is parsed with the Stanford NER system and the Stanford PCFG parser. Every person named entity in that sentence is a deletion candidate; for a chosen entity, the algorithm walks up the parse tree to find the full noun phrase headed by that entity (so deleting the second name in "President Obama met yesterday with Apple Founder Steve Jobs" removes the whole phrase "Apple Founder Steve Jobs," not just "Steve Jobs") — this denies a system the local descriptor as a free clue. About 700,000 question sentences are generated this way, from roughly 8% of Gigaword's articles.</p>
+      <p>Second, a <strong>separate</strong> article is retrieved as the passage using Apache Lucene, querying on the question sentence and requiring the deleted entity to appear in the returned article, restricted to articles published within 1, 3, 7, or 14 days of the question article. Any candidate passage containing a sentence that shares more than 78% of its words with the question, or that reproduces the five words immediately to either side of the blank, is rejected — this is the paper's explicit anti-leakage filter against near-duplicate phrasing. The choice list is then built from every person named entity in the passage not already named in the question, with subset names collapsed into their longer form ("Obama" is dropped if "Barack Obama" is also present) and ambiguous shared-surname cases discarded (e.g., a passage naming both "Bill Clinton" and "Hillary Clinton" when the blank is "Clinton"). A problem is kept only if this leaves between two and five choices; the five-choice ceiling exists specifically to keep sports articles with long roster lists out of the dataset. A separate deduplication pass then removes near-identical questions (measured by bag-of-words intersection over the smaller bag's size).</p>
+
+      <div class="callout">
+        <div class="lbl">// example problem (Table 1)</div>
+        <p><strong>Passage</strong> (excerpt): "Tottenham won 2-0 at Hapoel Tel Aviv in UEFA Cup action on Thursday night&nbsp;… Keane scored the first goal … with Dimitar Berbatov … heading a second … Spurs manager Juande Ramos has won the UEFA Cup in the last two seasons …"<br>
+        <strong>Question</strong>: "Tottenham manager Juande Ramos has hinted he will allow XXX to leave if the Bulgaria striker makes it clear he is unhappy."<br>
+        <strong>Choices</strong>: (1) Robbie Keane (2) Dimitar Berbatov — correct answer: (2).</p>
+      </div>
+
+      <p>The paper's distinguishing step is <strong>baseline suppression</strong>. The authors identify four cheap heuristics that can answer a cloze question without reading it: selecting the first-mentioned person in the passage, selecting the most-frequent person in the passage, and two language-model baselines — a 5-gram model trained on Gigaword (minus articles too similar to any question) filling the blank directly, and a unigram model picking the most frequent surname from that same 5-gram model's counts. Rather than discard suppressed questions arbitrarily, they pose an optimization that keeps as many questions as possible subject to capping each baseline's post-suppression accuracy at a target <span class="mono">k</span> (set to the random-guessing rate):</p>
+
+      <div class="eq">
+        max<sub>α(C)</sub> Σ<sub>C</sub> α(C)·|T(C)|&nbsp;&nbsp;subject to&nbsp;&nbsp;∀i:&nbsp; Σ<sub>C:C<sub>i</sub>=1</sub> α(C)·|T(C)| / N ≤ k
+        <span class="note">// T(C): the questions solved by exactly the subset C of the four baselines · α(C): the keep-rate applied to that subset · N: total questions · k: the random-guessing accuracy target</span>
+      </div>
+
+      <p>Applying this suppression removed <strong>49.9%</strong> of the candidate questions. Table 2 shows what it bought: before suppression, first-person-in-passage solved 60% of questions and most-frequent-person solved 61%; after suppression both fall to 32–33%, close to the paper's own measured random-guessing rate of 32% (WDW has three choices on average, so blind guessing is well above the naive 1/5). The two language-model baselines drop similarly, from 53% (5-gram) and 43% (unigram) down to 33% and 32%.</p>
+
+      <table>
+        <thead><tr><th>Baseline</th><th class="num">Accuracy before</th><th class="num">Accuracy after</th></tr></thead>
+        <tbody>
+          <tr><td>First person in passage</td><td class="num">0.60</td><td class="num">0.32</td></tr>
+          <tr><td>Most frequent person</td><td class="num">0.61</td><td class="num">0.33</td></tr>
+          <tr><td>n-gram (5-gram LM)</td><td class="num">0.53</td><td class="num">0.33</td></tr>
+          <tr><td>Unigram</td><td class="num">0.43</td><td class="num">0.32</td></tr>
+          <tr><td>Random*</td><td class="num">0.32</td><td class="num">0.32</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted)">*Random performance is a deterministic function of how often each choice-set size occurs; many questions have only two choices, roughly three on average.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>After suppression and deduplication, the final split has <strong>127,786</strong> training questions, <strong>10,000</strong> validation and <strong>10,000</strong> test questions (valid+test are a random split of the 20,000 most recent problems by question-article date, to keep training-set subject matter from overlapping the eval sets). The paper also releases a larger, less-suppressed <strong>"relaxed" training set</strong> of <strong>185,978</strong> questions (built with a looser value of <span class="mono">k</span>), which has a slightly different difficulty distribution from the fully-suppressed train/valid/test. Questions average 3.4–3.5 choices and 325–378 tokens of passage; vocabulary size is 347,406 for the relaxed training set and 308,602 across the fully-suppressed train/valid/test data.</p>
+      <p>Human accuracy, measured by two annotators on a sample of 100 questions, was <strong>84/100</strong> — above the paper's cited human estimates of 75% for CNN (Chen et al., 2016) and 82% for the CBT named-entity task (Hill et al., 2016). The authors attribute most of WDW's remaining 16% human error rate to noise from automatic named-entity recognition and parsing rather than to genuine ambiguity.</p>
+      <p>On the machine side, non-neural baselines span 0.46–0.52: word overlap reaches 0.47, the sliding-window and distance baselines from Richardson et al. (2013) reach 0.48 and 0.46 individually (0.51 combined), and the feature-based semantic system of Wang et al. (2015) tops the group at 0.52. Four published neural readers were run on WDW, with entities anonymized (replaced by IDs, matching the CNN/Daily Mail setup) for the Attentive and Stanford Readers: the Attentive Reader (Hermann et al., 2015) scores 0.53 (0.55 on the relaxed training set) — essentially level with the best non-neural baseline, a single point apart; the Stanford Reader (Chen et al., 2016) scores 0.64 (0.65 relaxed), the strongest machine system; the Attention Sum (AS) Reader (Kadlec et al., 2016) scores 0.57 (0.59 relaxed); and the Gated-Attention (GA) Reader (Dhingra et al., 2016) scores 0.57 (0.60 relaxed). All four neural readers trail human accuracy (84/100), and all four numbers are below the same models' published CNN accuracies — 0.63, 0.73, 0.70, and 0.74 respectively, each drawn from its original paper rather than rerun by the WDW authors.</p>
+
+      <table>
+        <thead><tr><th>System</th><th class="num">WDW</th><th class="num">CNN (as published)</th></tr></thead>
+        <tbody>
+          <tr><td>Word overlap</td><td class="num">0.47</td><td class="num">–</td></tr>
+          <tr><td>Sliding window + Distance</td><td class="num">0.51</td><td class="num">–</td></tr>
+          <tr><td>Semantic features (Wang et al., 2015)</td><td class="num">0.52</td><td class="num">–</td></tr>
+          <tr><td>Attentive Reader</td><td class="num">0.53 (0.55 relaxed)</td><td class="num">0.63</td></tr>
+          <tr><td>Stanford Reader</td><td class="num">0.64 (0.65 relaxed)</td><td class="num">0.73</td></tr>
+          <tr><td>AS Reader</td><td class="num">0.57 (0.59 relaxed)</td><td class="num">0.70</td></tr>
+          <tr><td>GA Reader</td><td class="num">0.57 (0.60 relaxed)</td><td class="num">0.74</td></tr>
+          <tr><td>Human</td><td class="num">84/100</td><td class="num">0.75+</td></tr>
+        </tbody>
+      </table>
+
+      <p>Two things stand out in that table. First, every one of the four neural readers drops on WDW relative to CNN — the Attentive and Stanford Readers by up to 10 points (0.63→0.53, using the standard, non-relaxed training set), the AS and GA Readers by up to 17 points (0.74→0.57). Second, the <em>ranking</em> flips: on CNN, GA (0.74) and Stanford (0.73) lead, with AS (0.70) ahead of Attentive (0.63); on WDW, Stanford (0.64/0.65) is clearly the strongest neural reader, with AS and GA tied around 0.57–0.60 and Attentive lowest. The paper attributes this to the AS/GA Readers explicitly leveraging answer frequency in the passage — exactly the heuristic that most-frequent-person suppression was designed to remove.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>The core methodological move — suppressing baselines by construction rather than just reporting their scores — is unusual for its time and is the paper's strongest contribution: instead of only diagnosing that CNN/DM is gameable (as Chen et al., 2016 had just shown), WDW actively closes off the shortcuts at the source. The optimization in Section 3 targets each shortcut's post-suppression accuracy at the random-guessing rate, and Table 2 shows it lands close to that target for all four baselines. That is a genuinely different response to the shortcut-learning problem than most contemporary benchmarks offered.</p>
+      <p>That said, several things temper how far the results should be read. The CNN comparison numbers in Table 4 are not rerun by the authors — they are copied from four different original papers (Hermann et al., 2015; Chen et al., 2016; Kadlec et al., 2016; Dhingra et al., 2016), each with its own training setup, hyperparameters, and possibly preprocessing. The "up to 10%" and "up to 17%" drops the paper reports are real arithmetic on real published numbers, but they are cross-paper comparisons, not a single controlled experiment — a difference in training budget or tuning could in principle explain part of the gap, though the direction and rough size of the drop is consistent across all four systems, which argues against that being the whole story. The human-performance number (84/100) rests on just two annotators scoring 100 questions — a useful sanity check but a small sample, and the paper does not report inter-annotator agreement. The authors themselves attribute a large share of the remaining 16% human error to NER/parsing noise in problem formation rather than genuine reading difficulty, which means part of what looks like task difficulty is actually dataset construction noise that isn't separately quantified.</p>
+      <p>On leakage: the two-independent-articles design plus the 78%-word-overlap and flanking-five-word filters are a deliberate, well-specified defense against the closest form of contamination this task style is prone to — a passage sentence that is a near-paraphrase of the question. The date-based train/valid/test split (valid and test are the most recent 20,000 problems) limits topical overlap between training and evaluation, though it is a temporal split rather than an explicit dedup against future subject matter, so some cross-set entity or event overlap is still possible for slow-moving news stories.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Four heuristic baselines (first-person, most-frequent-person, 5-gram LM, unigram) are suppressed by construction rather than merely reported, and four contemporary neural readers (Attentive, Stanford, AS, GA) are evaluated directly on WDW; the CNN-side numbers used for comparison are pulled from each system's own paper, not rerun under a shared setup. The four readers are also not run under matched conditions: &sect;4 says the data was anonymized (entities replaced by IDs) <em>for the Attentive and Stanford Readers</em> and says nothing of the sort for AS/GA &mdash; and those are precisely the two pairs whose relative ranking flips against CNN. The paper explains the flip by the AS/GA readers' explicit attention mechanism, without controlling for the anonymization difference.</p>
+        <span class="k">contamination</span><p class="v">Question and passage always come from two different Gigaword articles, with an explicit filter rejecting passages that share &gt;78% of a sentence's words with the question or reproduce the five words flanking the blank; train/valid/test are split by question-article date rather than by explicit topic dedup.</p>
+        <span class="k">what's missed</span><p class="v">No inter-annotator agreement is reported for the 84/100 human score (two annotators, 100 questions); no breakdown of how much of the 16% human error rate is NER/parsing noise versus genuine ambiguity; no per-choice-count or per-passage-length error analysis.</p>
+        <span class="k">would raise confidence</span><p class="v">A larger, agreement-scored human evaluation; the four neural readers rerun by the WDW authors on both CNN and WDW under one shared implementation to isolate the dataset effect from cross-paper implementation differences; an explicit quantification of NER/parsing-noise-driven errors separate from genuine comprehension difficulty.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>WDW is a well-specified response to a real problem — CNN/Daily Mail's summary-derived, anonymized cloze format leaves shortcuts a model can exploit without comprehension — and its suppression-by-optimization construction is a substantive methodological contribution, not just a bigger dataset. The headline claim that models drop 10–17 points on WDW relative to CNN is real arithmetic on real numbers, but it leans on cross-paper CNN baselines and a two-annotator human estimate, so it should be read as a strong signal that the earlier readers were partly exploiting shortcuts, not as a tightly controlled ablation isolating exactly how much.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>WDW builds every problem from two <em>independent</em> Gigaword articles (question sentence from one, passage from another) instead of an article-plus-its-own-summary, and never anonymizes the person named entities that serve as answer choices.</li>
+        <li>Its signature step is baseline suppression by optimization: four cheap heuristics (first-person, most-frequent-person, 5-gram LM, unigram) are pushed down to near-random accuracy (0.32–0.33) by discarding 49.9% of candidate questions, rather than just reporting that the heuristics work.</li>
+        <li>All four neural readers tested (Attentive, Stanford, AS, GA) score lower on WDW than their published CNN numbers — drops of up to 10 points for Attentive/Stanford and up to 17 points for the frequency-leaning AS/GA Readers — and the system ranking itself flips, with Stanford Reader topping WDW versus GA Reader topping CNN.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Who did What: A Large-Scale Person-Centered Cloze Dataset<br>
+        Takeshi Onishi, Hai Wang, Mohit Bansal, Kevin Gimpel, David A. McAllester · 2016 · EMNLP 2016<br>
+        <a href="https://arxiv.org/abs/1608.05457">read the original ↗</a> · slug: onishi-2016-who-did-what
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

@@ -9549,6 +9549,22 @@
       "explainer": "papers/chen-2025-jama-medbullets.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2025-jama-medbullets.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "onishi-2016-who-did-what",
+      "short": "Who-did-What",
+      "title": "Who did What: A Large-Scale Person-Centered Cloze Dataset",
+      "authors": "Onishi, Wang, Bansal, Gimpel, McAllester",
+      "year": 2016,
+      "date": "2016-08",
+      "venue": "EMNLP 2016",
+      "citation_count": 142,
+      "topic": "Benchmarks & Evals",
+      "author_group": "TTIC",
+      "abstract": "A 200,000+ question person-centered cloze reading-comprehension dataset built from LDC Gigaword news, where the question sentence and the passage always come from two independently written articles (rather than an article and its own summary as in CNN/Daily Mail) and person entities are never anonymized. An optimization-based suppression step removes 49.9% of candidate questions to push four shortcut baselines (first-mentioned person, most-frequent person, n-gram and unigram language models) down to near-random accuracy, while human accuracy stays at 84/100.",
+      "explainer": "papers/onishi-2016-who-did-what.html",
+      "audio_url": "https://pod.darvinyi.com/audio/onishi-2016-who-did-what.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16176,6 +16192,10 @@
     { "from": "chen-2025-jama-medbullets", "to": "devlin-2019-bert" },
     { "from": "chen-2025-jama-medbullets", "to": "wei-2022-cot" },
     { "from": "chen-2025-jama-medbullets", "to": "openai-2023-gpt4" },
-    { "from": "shao-2026-medagentsbench", "to": "chen-2025-jama-medbullets" }
+    { "from": "shao-2026-medagentsbench", "to": "chen-2025-jama-medbullets" },
+    { "from": "onishi-2016-who-did-what", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "kwiatkowski-2019-natural-questions", "to": "onishi-2016-who-did-what" },
+    { "from": "joshi-2017-triviaqa", "to": "onishi-2016-who-did-what" },
+    { "from": "saha-2018-csqa", "to": "onishi-2016-who-did-what" }
   ]
 }

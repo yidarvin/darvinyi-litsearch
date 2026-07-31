@@ -567,6 +567,15 @@
         "JAMA Clinical Challenge + Medbullets (NAACL 2025, arXiv 2024-02). 2 critic rounds, 3 blockers -- the serious one an integrity error: the draft called the human raters 'physicians' across 13 surfaces incl. the node abstract and both meta descriptions, when the paper says Prolific crowdworkers screened for a Master's/Doctorate in Medicine/Healthcare at $12/hr. Also a false 'largest gap' superlative and a takeaway merging the two datasets' exceptions (MedAlpaca is Medbullets-only; JAMA's improver is Llama 2). r2 approve. Episode bm_daniel 160.1 wpm, byte-verified; it caught two of its own errors mid-render and flagged a correlation-magnitude error on the page (CTC Consistency -0.37 exceeds the quoted 0.32) which I verified and fixed, plus two transcription errors in tables.md."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "onishi-2016-who-did-what",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Who did What (EMNLP 2016). 2 critic rounds, 4 blockers, all prose-level -- the page contradicted its own reprinted table ('well below' for a 0.01 gap), 'most' where the paper says 'many', a reversed direction ('closes' vs 'widens' the human/machine gap) in a sentence that contradicted its own appositive, and a wrong CBT description. Two risky builder calls both held up under 500-dpi coordinate verification: a reconstructed Table 3 column order and a §1-vs-§4 regime split (relaxed vs standard train). Queue net -1 -- no candidates worth adding, claim critic-verified. Episode bf_isabella 155.7 wpm, byte-verified; its anonymization-confound finding (only Attentive/Stanford were anonymized, and those are exactly the readers whose ranking flips) was verified and added to the critique."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -598,19 +607,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-29T01:47 bakhtin-2019-phyre: 10 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-29T01:47 bakhtin-2019-phyre: step -> revise",
-    "2026-07-29T01:55 bakhtin-2019-phyre: step -> critique (round 2)",
-    "2026-07-29T02:08 bakhtin-2019-phyre: 2 open blocker(s) from round 2 (verdict: revise)",
-    "2026-07-29T02:08 bakhtin-2019-phyre: step -> revise",
-    "2026-07-29T02:11 bakhtin-2019-phyre: step -> critique (round 3)",
-    "2026-07-29T02:18 bakhtin-2019-phyre: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-07-29T02:18 bakhtin-2019-phyre: step -> verify",
-    "2026-07-29T02:19 bakhtin-2019-phyre: step -> queue-ops",
-    "2026-07-29T02:19 bakhtin-2019-phyre: step -> podcast",
-    "2026-07-29T02:34 completed bakhtin-2019-phyre (verdict=approved, rounds=3)",
-    "2026-07-29T02:35 started li-2026-skillsbench ('SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks')",
-    "2026-07-29T02:36 li-2026-skillsbench: step -> fetch",
     "2026-07-29T02:36 li-2026-skillsbench: step -> figures",
     "2026-07-29T02:39 li-2026-skillsbench: step -> draft",
     "2026-07-29T02:49 li-2026-skillsbench: step -> critique (round 1)",
@@ -647,6 +643,19 @@
     "2026-07-30T17:07 chen-2025-jama-medbullets: step -> verify",
     "2026-07-30T17:07 chen-2025-jama-medbullets: step -> queue-ops",
     "2026-07-30T17:08 chen-2025-jama-medbullets: step -> podcast",
-    "2026-07-30T17:26 completed chen-2025-jama-medbullets (verdict=approved, rounds=2)"
+    "2026-07-30T17:26 completed chen-2025-jama-medbullets (verdict=approved, rounds=2)",
+    "2026-07-30T17:28 started onishi-2016-who-did-what ('Who did What: A Large-Scale Person-Centered Cloze Dataset')",
+    "2026-07-30T17:29 onishi-2016-who-did-what: step -> fetch",
+    "2026-07-30T17:29 onishi-2016-who-did-what: step -> figures",
+    "2026-07-30T17:32 onishi-2016-who-did-what: step -> draft",
+    "2026-07-30T17:39 onishi-2016-who-did-what: step -> critique (round 1)",
+    "2026-07-30T17:47 onishi-2016-who-did-what: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T17:47 onishi-2016-who-did-what: step -> revise",
+    "2026-07-30T17:51 onishi-2016-who-did-what: step -> critique (round 2)",
+    "2026-07-30T17:56 onishi-2016-who-did-what: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-30T17:56 onishi-2016-who-did-what: step -> verify",
+    "2026-07-30T17:56 onishi-2016-who-did-what: step -> queue-ops",
+    "2026-07-30T17:56 onishi-2016-who-did-what: step -> podcast",
+    "2026-07-30T18:12 completed onishi-2016-who-did-what (verdict=approved, rounds=2)"
   ]
 }
