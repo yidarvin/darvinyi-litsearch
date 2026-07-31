@@ -9661,6 +9661,22 @@
       "explainer": "papers/wang-2024-gta.html",
       "audio_url": "https://pod.darvinyi.com/audio/wang-2024-gta.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "weller-2025-followir",
+      "short": "FollowIR",
+      "title": "FollowIR: Evaluating and Teaching Information Retrieval Models to Follow Instructions",
+      "authors": "Weller, Chang, MacAvaney, Lo, Cohan, Van Durme, Lawrie, Soldaini",
+      "year": 2025,
+      "date": "2024-03",
+      "venue": "NAACL 2025 (Long)",
+      "citation_count": 90,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Johns Hopkins / AI2",
+      "abstract": "FollowIR repurposes the professional-annotator narratives behind three deeply-judged TREC collections (Robust04, Common Core 2017, News21) into a benchmark that tests whether retrieval models change their rankings when that narrative is deliberately altered, scored with a new pairwise metric, p-MRR, that isolates instruction-following from ordinary keyword search. Most retrieval and embedding models score at or below zero average p-MRR; positive scores appear almost only for 3B+-parameter or general instruction-tuned LLM rerankers, and fine-tuning one of those (Mistral-7B-Instruct-v0.2) into FollowIR-7B raises average p-MRR from +10.1 to +12.2 and lifts the concurrent InstructIR benchmark's Robustness@10 from 35.3 to 71.5.",
+      "explainer": "papers/weller-2025-followir.html",
+      "audio_url": "https://pod.darvinyi.com/audio/weller-2025-followir.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16373,6 +16389,28 @@
     { "from": "wang-2024-gta", "to": "ouyang-2022-instructgpt" },
     { "from": "wang-2024-gta", "to": "shen-2023-hugginggpt" },
     { "from": "guo-2025-visualtoolbench", "to": "wang-2024-gta" },
-    { "from": "shi-2025-toolret", "to": "wang-2024-gta" }
+    { "from": "shi-2025-toolret", "to": "wang-2024-gta" },
+    { "from": "weller-2025-followir", "to": "izacard-2021-contriever" },
+    { "from": "weller-2025-followir", "to": "thakur-2021-beir" },
+    { "from": "weller-2025-followir", "to": "karpukhin-2020-dpr" },
+    { "from": "weller-2025-followir", "to": "muennighoff-2023-mteb" },
+    { "from": "weller-2025-followir", "to": "jiang-2023-mistral-7b" },
+    { "from": "weller-2025-followir", "to": "jimenez-2023-swe-bench" },
+    { "from": "weller-2025-followir", "to": "qin-2023-toolllm" },
+    { "from": "weller-2025-followir", "to": "rafailov-2023-dpo" },
+    { "from": "weller-2025-followir", "to": "bai-2022-hh-rlhf" },
+    { "from": "weller-2025-followir", "to": "ouyang-2022-instructgpt" },
+    { "from": "weller-2025-followir", "to": "touvron-2023-llama" },
+    { "from": "weller-2025-followir", "to": "touvron-2023-llama2" },
+    { "from": "weller-2025-followir", "to": "chen-2021-codex" },
+    { "from": "weller-2025-followir", "to": "khattab-2020-colbert" },
+    { "from": "weller-2025-followir", "to": "sanh-2021-t0" },
+    { "from": "weller-2025-followir", "to": "wei-2021-flan" },
+    { "from": "weller-2025-followir", "to": "chung-2022-flan" },
+    { "from": "weller-2025-followir", "to": "chiang-2024-chatbot-arena" },
+    { "from": "weller-2025-followir", "to": "singhal-2023-med-palm" },
+    { "from": "weller-2025-followir", "to": "brown-2020-gpt3" },
+    { "from": "weller-2025-followir", "to": "liang-2022-helm" },
+    { "from": "shi-2025-toolret", "to": "weller-2025-followir" }
   ]
 }

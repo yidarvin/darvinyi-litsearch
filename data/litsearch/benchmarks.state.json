@@ -630,6 +630,15 @@
         "GTA (NeurIPS 2024 D&B). 2 critic rounds, 4 blockers -- but all three counting claims held on first pass (2 of 16 clear 40%, the other 14 under 25% max 23.62, exactly 4 flat-zero ArgAcc), second paper running with clean quantifiers. Blockers: a bottom-line callout saying 'every other model under 25%' that four other surfaces on the same page contradicted (GPT-4o is 41.52); the REGIME TRAP sprung -- 89.55 Creativity F1 is END-TO-END, not step-by-step, so the takeaway's cross-regime contrast was built on a same-regime pair; 'four families' where the paper lists six; and an inverted size comparison (67B/70B called larger than 72B). I added a caveat that the replacement contrast (85.19 InstAcc vs 46.59 AnsAcc) spans two different metrics, since the benchmark reports none under both regimes. tables.md clean 5th paper running; all 15 edges correct first pass with a verified strong negative across 12 cluster papers. Episode bm_fable 154.4 wpm, byte-verified 3 ways; it avoided the regime trap entirely and did a least-squares voice regression over 618 episodes."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "weller-2025-followir",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "FollowIR (NAACL 2025, arXiv 2024-03; 8th queue-metadata correction -- queue said venue arXiv). 2 critic rounds, 9 blockers total: inverted Common Core sampling, a FABRICATED quotation, a 'not trained on retrieval data' qualifier applied to models it doesn't cover, five-vs-four model categories, a missed Codex edge, a SPURIOUS GPT-4 edge the report falsely claimed was bibliography-verified, a needed version-provenance note, a false 'largest gains anywhere' superlative, and then r2's B9 -- the B8 fix reversed a comparison the builder's own response file had stated correctly (Llama-3-8B's +5.07 exceeds FollowIR-7B's +2.1). I fixed B9 myself. I ALSO had to correct my own provenance note: the critic's B7 evidence (RR vs MRR, 'dozens per query') described arXiv v1, not the v3 the source link serves -- v3 matches the camera-ready on both, so I narrowed the note to the appendix-lettering difference I verified. Episode bf_emma 154.5 wpm, byte-verified 3 ways; its unescaped-'<' rendering flag was a false positive (HTML5 treats '<'+space as literal) but I escaped it anyway."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -661,19 +670,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T20:41 zhao-2020-ape210k: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-30T20:41 zhao-2020-ape210k: step -> revise",
-    "2026-07-30T20:47 zhao-2020-ape210k: step -> critique (round 2)",
-    "2026-07-30T20:56 zhao-2020-ape210k: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-07-30T20:56 zhao-2020-ape210k: step -> revise",
-    "2026-07-30T20:59 zhao-2020-ape210k: step -> critique (round 3)",
-    "2026-07-30T21:09 zhao-2020-ape210k: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-07-30T21:09 zhao-2020-ape210k: step -> verify",
-    "2026-07-30T21:10 zhao-2020-ape210k: step -> queue-ops",
-    "2026-07-30T21:11 zhao-2020-ape210k: step -> podcast",
-    "2026-07-30T21:23 completed zhao-2020-ape210k (verdict=approved, rounds=3)",
-    "2026-07-30T21:25 started chen-2024-t-eval ('T-Eval: Evaluating the Tool Utilization Capability of Large Language Models Step by Step')",
-    "2026-07-30T21:26 chen-2024-t-eval: step -> fetch",
     "2026-07-30T21:28 chen-2024-t-eval: step -> figures",
     "2026-07-30T21:29 chen-2024-t-eval: step -> draft",
     "2026-07-30T21:50 chen-2024-t-eval: step -> critique (round 1)",
@@ -710,6 +706,19 @@
     "2026-07-31T00:37 wang-2024-gta: step -> verify",
     "2026-07-31T00:38 wang-2024-gta: step -> queue-ops",
     "2026-07-31T00:39 wang-2024-gta: step -> podcast",
-    "2026-07-31T00:50 completed wang-2024-gta (verdict=approved, rounds=2)"
+    "2026-07-31T00:50 completed wang-2024-gta (verdict=approved, rounds=2)",
+    "2026-07-31T00:53 started weller-2025-followir ('FollowIR: Evaluating and Teaching Information Retrieval Models to Follow Instructions')",
+    "2026-07-31T00:55 weller-2025-followir: step -> fetch",
+    "2026-07-31T00:56 weller-2025-followir: step -> figures",
+    "2026-07-31T01:08 weller-2025-followir: step -> draft",
+    "2026-07-31T01:14 weller-2025-followir: step -> critique (round 1)",
+    "2026-07-31T01:31 weller-2025-followir: 8 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T01:31 weller-2025-followir: step -> revise",
+    "2026-07-31T01:38 weller-2025-followir: step -> critique (round 2)",
+    "2026-07-31T01:48 weller-2025-followir: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T01:48 weller-2025-followir: step -> verify",
+    "2026-07-31T01:49 weller-2025-followir: step -> queue-ops",
+    "2026-07-31T01:49 weller-2025-followir: step -> podcast",
+    "2026-07-31T02:06 completed weller-2025-followir (verdict=approved, rounds=2)"
   ]
 }
