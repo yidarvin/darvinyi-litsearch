@@ -9645,6 +9645,22 @@
       "explainer": "papers/kim-2024-medexqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/kim-2024-medexqa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "wang-2024-gta",
+      "short": "GTA",
+      "title": "GTA: A Benchmark for General Tool Agents",
+      "authors": "Wang, Ma, Li, Zhang, Chen, Chen, Le",
+      "year": 2024,
+      "date": "2024-07",
+      "venue": "NeurIPS 2024 (Datasets & Benchmarks Track)",
+      "citation_count": 92,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Shanghai AI Laboratory",
+      "abstract": "GTA benchmarks 16 LLM-based tool agents on 229 human-written, tool-implicit tasks that require a real, deployed 14-tool platform (perception, operation, logic, creativity) and authentic multimodal inputs, scoring both a step-by-step diagnostic mode and an end-to-end mode where the agent actually executes the tool chain. GPT-4-1106-Preview and GPT-4o are the only models to clear 40% end-to-end answer accuracy (46.59% and 41.52%); the remaining 14 models all score under 25%, with argument-name prediction the consistent bottleneck.",
+      "explainer": "papers/wang-2024-gta.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2024-gta.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16342,6 +16358,21 @@
     { "from": "kim-2024-medexqa", "to": "banerjee-2005-meteor" },
     { "from": "kim-2024-medexqa", "to": "jiang-2023-mistral-7b" },
     { "from": "shao-2026-medagentsbench", "to": "kim-2024-medexqa" },
-    { "from": "chen-2025-jama-medbullets", "to": "kim-2024-medexqa" }
+    { "from": "chen-2025-jama-medbullets", "to": "kim-2024-medexqa" },
+    { "from": "wang-2024-gta", "to": "xie-2024-osworld" },
+    { "from": "wang-2024-gta", "to": "ma-2024-mnms" },
+    { "from": "wang-2024-gta", "to": "mialon-2023-gaia" },
+    { "from": "wang-2024-gta", "to": "jiang-2023-mistral-7b" },
+    { "from": "wang-2024-gta", "to": "bai-2023-qwen" },
+    { "from": "wang-2024-gta", "to": "qin-2023-toolllm" },
+    { "from": "wang-2024-gta", "to": "patil-2023-gorilla" },
+    { "from": "wang-2024-gta", "to": "li-2023-api-bank" },
+    { "from": "wang-2024-gta", "to": "openai-2023-gpt4" },
+    { "from": "wang-2024-gta", "to": "yao-2022-react" },
+    { "from": "wang-2024-gta", "to": "yao-2022-webshop" },
+    { "from": "wang-2024-gta", "to": "ouyang-2022-instructgpt" },
+    { "from": "wang-2024-gta", "to": "shen-2023-hugginggpt" },
+    { "from": "guo-2025-visualtoolbench", "to": "wang-2024-gta" },
+    { "from": "shi-2025-toolret", "to": "wang-2024-gta" }
   ]
 }

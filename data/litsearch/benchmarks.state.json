@@ -621,6 +621,15 @@
         "MedExQA (BioNLP@ACL 2024). 2 critic rounds, 6 blockers -- but ALL THREE of the builder's uniqueness claims survived exhaustive checking, a first in eleven papers. Blockers: a figcaption asserting what its own table refutes plus a nonexistent model (Meditron-13B; the family is Medinote), an inverted quantifier (Phi-2 was the exception, not the rule), GPT-4 listed under a logits-only header, a tie reported as a lead, one missed edge (Mistral-7B), and an unsupported 'independently written' provenance claim across 8 surfaces. Added the paper's own Limitations disclosure that the human eval was done by three of the authors at 5 samples/specialty with no IAA. tables.md clean 4th paper running. Episode bf_isabella 148.3 wpm, byte-verified 3 ways; it correctly reverted its own inject_podcast call rather than touching papers.json. Its finding that the paper never accounts for the SECOND explanation set -- the headline contribution -- was verified and is now the lead item in the critique."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "wang-2024-gta",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "GTA (NeurIPS 2024 D&B). 2 critic rounds, 4 blockers -- but all three counting claims held on first pass (2 of 16 clear 40%, the other 14 under 25% max 23.62, exactly 4 flat-zero ArgAcc), second paper running with clean quantifiers. Blockers: a bottom-line callout saying 'every other model under 25%' that four other surfaces on the same page contradicted (GPT-4o is 41.52); the REGIME TRAP sprung -- 89.55 Creativity F1 is END-TO-END, not step-by-step, so the takeaway's cross-regime contrast was built on a same-regime pair; 'four families' where the paper lists six; and an inverted size comparison (67B/70B called larger than 72B). I added a caveat that the replacement contrast (85.19 InstAcc vs 46.59 AnsAcc) spans two different metrics, since the benchmark reports none under both regimes. tables.md clean 5th paper running; all 15 edges correct first pass with a verified strong negative across 12 cluster papers. Episode bm_fable 154.4 wpm, byte-verified 3 ways; it avoided the regime trap entirely and did a least-squares voice regression over 618 episodes."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -652,19 +661,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T19:48 nematzadeh-2018-tom-qa: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-30T19:48 nematzadeh-2018-tom-qa: step -> revise",
-    "2026-07-30T19:51 nematzadeh-2018-tom-qa: step -> critique (round 2)",
-    "2026-07-30T20:00 nematzadeh-2018-tom-qa: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-30T20:00 nematzadeh-2018-tom-qa: step -> verify",
-    "2026-07-30T20:01 nematzadeh-2018-tom-qa: step -> queue-ops",
-    "2026-07-30T20:01 nematzadeh-2018-tom-qa: step -> podcast",
-    "2026-07-30T20:15 completed nematzadeh-2018-tom-qa (verdict=approved, rounds=2)",
-    "2026-07-30T20:18 started zhao-2020-ape210k ('Ape210K: A Large-Scale and Template-Rich Dataset of Math Word Problems')",
-    "2026-07-30T20:19 zhao-2020-ape210k: step -> fetch",
-    "2026-07-30T20:20 zhao-2020-ape210k: step -> figures",
-    "2026-07-30T20:21 zhao-2020-ape210k: step -> draft",
-    "2026-07-30T20:30 zhao-2020-ape210k: step -> critique (round 1)",
     "2026-07-30T20:41 zhao-2020-ape210k: 4 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-30T20:41 zhao-2020-ape210k: step -> revise",
     "2026-07-30T20:47 zhao-2020-ape210k: step -> critique (round 2)",
@@ -701,6 +697,19 @@
     "2026-07-30T23:37 kim-2024-medexqa: step -> verify",
     "2026-07-30T23:38 kim-2024-medexqa: step -> queue-ops",
     "2026-07-30T23:38 kim-2024-medexqa: step -> podcast",
-    "2026-07-30T23:50 completed kim-2024-medexqa (verdict=approved, rounds=2)"
+    "2026-07-30T23:50 completed kim-2024-medexqa (verdict=approved, rounds=2)",
+    "2026-07-30T23:53 started wang-2024-gta ('GTA: A Benchmark for General Tool Agents')",
+    "2026-07-30T23:54 wang-2024-gta: step -> fetch",
+    "2026-07-30T23:59 wang-2024-gta: step -> figures",
+    "2026-07-30T23:59 wang-2024-gta: step -> draft",
+    "2026-07-31T00:11 wang-2024-gta: step -> critique (round 1)",
+    "2026-07-31T00:23 wang-2024-gta: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T00:23 wang-2024-gta: step -> revise",
+    "2026-07-31T00:28 wang-2024-gta: step -> critique (round 2)",
+    "2026-07-31T00:37 wang-2024-gta: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T00:37 wang-2024-gta: step -> verify",
+    "2026-07-31T00:38 wang-2024-gta: step -> queue-ops",
+    "2026-07-31T00:39 wang-2024-gta: step -> podcast",
+    "2026-07-31T00:50 completed wang-2024-gta (verdict=approved, rounds=2)"
   ]
 }
