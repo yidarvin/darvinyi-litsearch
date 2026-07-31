@@ -612,6 +612,15 @@
         "T-Eval (ACL 2024, arXiv 2023-12). 2 critic rounds. r1 (4): a false uniqueness claim the page's own table contradicted (Qwen-72B INSTRUCT-JSON 98.3 > GPT-4 95.9 is one of four counterexamples) traced to an interpretive gloss in tables.md; a spliced quotation; 4 missed outbound edges; and a missed inbound edge from BFCL recorded as unverifiable. r2 (1): the revision introduced a fresh false universal ('trails every comparison below' -- InternLM-20B actually ranks 6th of 18); I fixed that clause myself. Builder self-caught 2 false quantifiers before submitting and correctly withheld a paper-internal inconsistency. 34 edges, the largest batch this session, independently re-verified by the critic. tables.md clean 3rd paper running. Episode bf_lily 151.1 wpm, byte-verified; its INSTRUCT-inversion finding was verified and added, though I corrected its claim that INSTRUCT is Qwen-72B's worst ability (REASON is lower, 59.5 vs 63.1)."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "kim-2024-medexqa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "MedExQA (BioNLP@ACL 2024). 2 critic rounds, 6 blockers -- but ALL THREE of the builder's uniqueness claims survived exhaustive checking, a first in eleven papers. Blockers: a figcaption asserting what its own table refutes plus a nonexistent model (Meditron-13B; the family is Medinote), an inverted quantifier (Phi-2 was the exception, not the rule), GPT-4 listed under a logits-only header, a tie reported as a lead, one missed edge (Mistral-7B), and an unsupported 'independently written' provenance claim across 8 surfaces. Added the paper's own Limitations disclosure that the human eval was done by three of the authors at 5 samples/specialty with no IAA. tables.md clean 4th paper running. Episode bf_isabella 148.3 wpm, byte-verified 3 ways; it correctly reverted its own inject_podcast call rather than touching papers.json. Its finding that the paper never accounts for the SECOND explanation set -- the headline contribution -- was verified and is now the lead item in the critique."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -643,19 +652,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T18:40 jiang-2025-personamem: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-30T18:40 jiang-2025-personamem: step -> revise",
-    "2026-07-30T18:45 jiang-2025-personamem: step -> critique (round 2)",
-    "2026-07-30T18:59 jiang-2025-personamem: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-30T18:59 jiang-2025-personamem: step -> verify",
-    "2026-07-30T19:00 jiang-2025-personamem: step -> queue-ops",
-    "2026-07-30T19:00 jiang-2025-personamem: step -> podcast",
-    "2026-07-30T19:19 completed jiang-2025-personamem (verdict=approved, rounds=2)",
-    "2026-07-30T19:22 started nematzadeh-2018-tom-qa ('Evaluating Theory of Mind in Question Answering')",
-    "2026-07-30T19:23 nematzadeh-2018-tom-qa: step -> fetch",
-    "2026-07-30T19:23 nematzadeh-2018-tom-qa: step -> figures",
-    "2026-07-30T19:25 nematzadeh-2018-tom-qa: step -> draft",
-    "2026-07-30T19:35 nematzadeh-2018-tom-qa: step -> critique (round 1)",
     "2026-07-30T19:48 nematzadeh-2018-tom-qa: 4 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-30T19:48 nematzadeh-2018-tom-qa: step -> revise",
     "2026-07-30T19:51 nematzadeh-2018-tom-qa: step -> critique (round 2)",
@@ -692,6 +688,19 @@
     "2026-07-30T22:26 chen-2024-t-eval: step -> verify",
     "2026-07-30T22:26 chen-2024-t-eval: step -> queue-ops",
     "2026-07-30T22:27 chen-2024-t-eval: step -> podcast",
-    "2026-07-30T22:39 completed chen-2024-t-eval (verdict=approved, rounds=2)"
+    "2026-07-30T22:39 completed chen-2024-t-eval (verdict=approved, rounds=2)",
+    "2026-07-30T22:42 started kim-2024-medexqa ('MedExQA: Medical Question Answering Benchmark with Multiple Explanations')",
+    "2026-07-30T22:44 kim-2024-medexqa: step -> fetch",
+    "2026-07-30T22:45 kim-2024-medexqa: step -> figures",
+    "2026-07-30T22:49 kim-2024-medexqa: step -> draft",
+    "2026-07-30T23:06 kim-2024-medexqa: step -> critique (round 1)",
+    "2026-07-30T23:19 kim-2024-medexqa: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T23:19 kim-2024-medexqa: step -> revise",
+    "2026-07-30T23:28 kim-2024-medexqa: step -> critique (round 2)",
+    "2026-07-30T23:37 kim-2024-medexqa: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-30T23:37 kim-2024-medexqa: step -> verify",
+    "2026-07-30T23:38 kim-2024-medexqa: step -> queue-ops",
+    "2026-07-30T23:38 kim-2024-medexqa: step -> podcast",
+    "2026-07-30T23:50 completed kim-2024-medexqa (verdict=approved, rounds=2)"
   ]
 }

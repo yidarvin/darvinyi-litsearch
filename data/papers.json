@@ -9629,6 +9629,22 @@
       "explainer": "papers/chen-2024-t-eval.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2024-t-eval.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "kim-2024-medexqa",
+      "short": "MedExQA",
+      "title": "MedExQA: Medical Question Answering Benchmark with Multiple Explanations",
+      "authors": "Kim, Wu, Abdulle, Wu",
+      "year": 2024,
+      "date": "2024-06",
+      "venue": "BioNLP 2024 (ACL Workshop)",
+      "citation_count": 93,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University College London",
+      "abstract": "MedExQA is a 965-question medical QA benchmark spanning five specialties underrepresented in existing datasets -- biomedical engineering, clinical laboratory science, clinical psychology, occupational therapy, and speech-language pathology -- and pairs every question with two reference explanations, human-validated for distinct writing styles, letting generation-quality metrics score against multiple references instead of one.",
+      "explainer": "papers/kim-2024-medexqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kim-2024-medexqa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16315,6 +16331,17 @@
     { "from": "ye-2024-rotbench", "to": "chen-2024-t-eval" },
     { "from": "guo-2024-stabletoolbench", "to": "chen-2024-t-eval" },
     { "from": "shi-2025-toolret", "to": "chen-2024-t-eval" },
-    { "from": "patil-2025-bfcl", "to": "chen-2024-t-eval" }
+    { "from": "patil-2025-bfcl", "to": "chen-2024-t-eval" },
+    { "from": "kim-2024-medexqa", "to": "jin-2020-medqa" },
+    { "from": "kim-2024-medexqa", "to": "hendrycks-2020-mmlu" },
+    { "from": "kim-2024-medexqa", "to": "touvron-2023-llama2" },
+    { "from": "kim-2024-medexqa", "to": "openai-2023-gpt4" },
+    { "from": "kim-2024-medexqa", "to": "devlin-2019-bert" },
+    { "from": "kim-2024-medexqa", "to": "papineni-2002-bleu" },
+    { "from": "kim-2024-medexqa", "to": "lin-2004-rouge" },
+    { "from": "kim-2024-medexqa", "to": "banerjee-2005-meteor" },
+    { "from": "kim-2024-medexqa", "to": "jiang-2023-mistral-7b" },
+    { "from": "shao-2026-medagentsbench", "to": "kim-2024-medexqa" },
+    { "from": "chen-2025-jama-medbullets", "to": "kim-2024-medexqa" }
   ]
 }
