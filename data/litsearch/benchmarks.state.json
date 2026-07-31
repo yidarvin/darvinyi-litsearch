@@ -576,6 +576,15 @@
         "Who did What (EMNLP 2016). 2 critic rounds, 4 blockers, all prose-level -- the page contradicted its own reprinted table ('well below' for a 0.01 gap), 'most' where the paper says 'many', a reversed direction ('closes' vs 'widens' the human/machine gap) in a sentence that contradicted its own appositive, and a wrong CBT description. Two risky builder calls both held up under 500-dpi coordinate verification: a reconstructed Table 3 column order and a §1-vs-§4 regime split (relaxed vs standard train). Queue net -1 -- no candidates worth adding, claim critic-verified. Episode bf_isabella 155.7 wpm, byte-verified; its anonymization-confound finding (only Attentive/Stanford were anonymized, and those are exactly the readers whose ranking flips) was verified and added to the critique."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "jiang-2025-personamem",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "PersonaMem (COLM 2025, arXiv 2025-04). 2 critic rounds, 7 blockers -- a reversed comparison across 4 surfaces (18% is BELOW the 25% floor, not 'barely above'), a false critique claim repeated 4x (RAG tested at 128k, not only 32k), an invented aggregation mechanism attributed to Appendix D.1, an altered quotation, a wrong benchmark count (3 not 2), a non-exhaustive ordering missing an exact 0.43 tie, and meta tags contradicting the body on persona count. I separately corrected the venue to COLM 2025 (PDF header on all 28 pages; DBLP had only CoRR), replaced 2 paraphrases sitting in quote marks with verbatim Figure 1 text, and fixed a second tables.md row shift verified at 900 dpi. Episode bm_fable 163.1 wpm, byte-verified 3 ways; its per-model split finding (12/15 below chance, and Claude-3.7-Sonnet last overall yet best on the hardest type) was verified at 900 dpi and added."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -607,19 +616,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-29T02:36 li-2026-skillsbench: step -> figures",
-    "2026-07-29T02:39 li-2026-skillsbench: step -> draft",
-    "2026-07-29T02:49 li-2026-skillsbench: step -> critique (round 1)",
-    "2026-07-29T03:02 li-2026-skillsbench: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-29T03:02 li-2026-skillsbench: step -> revise",
-    "2026-07-29T03:06 li-2026-skillsbench: step -> critique (round 2)",
-    "2026-07-29T03:15 li-2026-skillsbench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-29T03:15 li-2026-skillsbench: step -> verify",
-    "2026-07-29T03:16 li-2026-skillsbench: step -> queue-ops",
-    "2026-07-29T03:16 li-2026-skillsbench: step -> podcast",
-    "2026-07-29T03:27 completed li-2026-skillsbench (verdict=approved, rounds=2)",
-    "2026-07-29T03:30 started vilares-2019-headqa ('HEAD-QA: A Healthcare Dataset for Complex Reasoning')",
-    "2026-07-29T03:49 vilares-2019-headqa: step -> fetch",
     "2026-07-29T03:49 vilares-2019-headqa: step -> figures",
     "2026-07-29T03:49 vilares-2019-headqa: step -> draft",
     "2026-07-29T03:49 vilares-2019-headqa: step -> critique (round 1)",
@@ -656,6 +652,19 @@
     "2026-07-30T17:56 onishi-2016-who-did-what: step -> verify",
     "2026-07-30T17:56 onishi-2016-who-did-what: step -> queue-ops",
     "2026-07-30T17:56 onishi-2016-who-did-what: step -> podcast",
-    "2026-07-30T18:12 completed onishi-2016-who-did-what (verdict=approved, rounds=2)"
+    "2026-07-30T18:12 completed onishi-2016-who-did-what (verdict=approved, rounds=2)",
+    "2026-07-30T18:15 started jiang-2025-personamem ('Know Me, Respond to Me: Benchmarking LLMs for Dynamic User Profiling and Personalized Responses at Scale')",
+    "2026-07-30T18:16 jiang-2025-personamem: step -> fetch",
+    "2026-07-30T18:16 jiang-2025-personamem: step -> figures",
+    "2026-07-30T18:22 jiang-2025-personamem: step -> draft",
+    "2026-07-30T18:27 jiang-2025-personamem: step -> critique (round 1)",
+    "2026-07-30T18:40 jiang-2025-personamem: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T18:40 jiang-2025-personamem: step -> revise",
+    "2026-07-30T18:45 jiang-2025-personamem: step -> critique (round 2)",
+    "2026-07-30T18:59 jiang-2025-personamem: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-30T18:59 jiang-2025-personamem: step -> verify",
+    "2026-07-30T19:00 jiang-2025-personamem: step -> queue-ops",
+    "2026-07-30T19:00 jiang-2025-personamem: step -> podcast",
+    "2026-07-30T19:19 completed jiang-2025-personamem (verdict=approved, rounds=2)"
   ]
 }
