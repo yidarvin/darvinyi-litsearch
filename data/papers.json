@@ -9741,6 +9741,22 @@
       "explainer": "papers/zharmagambetov-2025-agentdam.html",
       "audio_url": "https://pod.darvinyi.com/audio/zharmagambetov-2025-agentdam.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "paech-2023-eq-bench",
+      "short": "EQ-Bench",
+      "title": "EQ-Bench: An Emotional Intelligence Benchmark for Large Language Models",
+      "authors": "Paech",
+      "year": 2023,
+      "date": "2023-12",
+      "venue": "arXiv",
+      "citation_count": 71,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Independent",
+      "abstract": "A 60-question benchmark that asks a model to rate the intensity of four emotions felt by a character in a GPT-4-generated dialogue depicting conflict or tension, scoring each answer by 10 minus the summed absolute difference between the model's normalized (sum-to-10) ratings and author-chosen normalized reference ratings -- a relative-ranking metric, not accuracy. Across 25 models, GPT-4-0613 scores highest (62.52) and correlates strongly with MMLU (Pearson r=0.97) and Chatbot Arena ELO (r=0.94), but only weakly with SECEU (r=0.22), the one other emotional-understanding benchmark it is explicitly built to improve on.",
+      "explainer": "papers/paech-2023-eq-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/paech-2023-eq-bench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16523,6 +16539,18 @@
     { "from": "zharmagambetov-2025-agentdam", "to": "glazer-2024-frontiermath" },
     { "from": "zharmagambetov-2025-agentdam", "to": "zheng-2024-seeact" },
     { "from": "zharmagambetov-2025-agentdam", "to": "wei-2022-cot" },
-    { "from": "zharmagambetov-2025-agentdam", "to": "yao-2024-tau-bench" }
+    { "from": "zharmagambetov-2025-agentdam", "to": "yao-2024-tau-bench" },
+    { "from": "paech-2023-eq-bench", "to": "hendrycks-2020-mmlu" },
+    { "from": "paech-2023-eq-bench", "to": "zellers-2019-hellaswag" },
+    { "from": "paech-2023-eq-bench", "to": "clark-2018-arc-science" },
+    { "from": "paech-2023-eq-bench", "to": "lin-2021-truthfulqa" },
+    { "from": "paech-2023-eq-bench", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "paech-2023-eq-bench", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "paech-2023-eq-bench", "to": "touvron-2023-llama2" },
+    { "from": "paech-2023-eq-bench", "to": "openai-2023-gpt4" },
+    { "from": "paech-2023-eq-bench", "to": "hendrycks-2021-math" },
+    { "from": "paech-2023-eq-bench", "to": "zheng-2023-mt-bench" },
+    { "from": "sabour-2024-emobench", "to": "paech-2023-eq-bench" },
+    { "from": "huang-2025-rubric-anchors", "to": "paech-2023-eq-bench" }
   ]
 }

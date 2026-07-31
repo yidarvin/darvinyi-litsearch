@@ -675,6 +675,15 @@
         "AgentDAM (NeurIPS 2025). 2 critic rounds, 6 blockers: a figure caption misreading Figure 5 as evaluation-run stability when it is dataset-construction elbow evidence; two missed edges (CoT, tau-bench); a dedupe failure where report.json proposed tau-bench as a NEW candidate though yao-2024-tau-bench is already a node AND a missed edge; an axis conflation ('every number in Tables 3-5 flows through the judge' -- utility comes from a binary env reward); and an invented 'GPT-based' attribution. r2 left one residual: the B1 fix said leakage is HIGHEST at one sample per seed when it is LOWEST (curves rise into the plateau) -- I verified against the paper's own 'high variance and lower performance' and fixed it. Builder self-caught 2 false superlatives and 3 quotation issues before submitting; all three of its universal claims held row-by-row. tables.md self-certified one false claim (representation splice is text-only for BOTH Llamas) -- corrected, never reached the page. Episode bf_isabella 159.5 wpm, byte-verified; its finding that Llama-3.3-70B generated the benchmark's user_data AND is one of the six graded agents was verified and added to the critique."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "paech-2023-eq-bench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "EQ-Bench (arXiv 2023-12, sole author). 2 critic rounds, 8 blockers: the best-of-two protocol misdescribed as two independent runs (it is first-pass vs post-critique from ONE administration), n=25 where the SECEU overlap is 9, two models cited in a correlation pool they aren't in, an invented cost argument attributed to the paper, invented dialogue specifics, a 3-vs-4 checkpoint count, a softened table discrepancy, and then r2's B8 on the correlation n's. Builder correctly withheld nothing this time -- the appendix discrepancy WAS on the page and its report wrongly said otherwise. RESOLVED A CONFLICT MYSELF: the episode claimed AlpacaEval n=8, the critic said 7; computing Pearson directly settles it -- 8 rows carry both scores but the printed 0.91 only reproduces at n=7 (r=0.9054); including Mistral-7B gives 0.799, and its AlpacaEval cell 54.52 is identical to its ARC cell. Added that to the page so a reader can check it. Also corrected tables.md's Table 6 count (11 models x 3 = 33 rows, not 10 x 30). Episode bf_emma ~157 wpm, byte-verified."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -706,19 +715,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T02:11 riochet-2022-intphys: step -> figures",
-    "2026-07-31T02:18 riochet-2022-intphys: step -> draft",
-    "2026-07-31T02:31 riochet-2022-intphys: step -> critique (round 1)",
-    "2026-07-31T02:45 riochet-2022-intphys: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T02:45 riochet-2022-intphys: step -> revise",
-    "2026-07-31T02:51 riochet-2022-intphys: step -> critique (round 2)",
-    "2026-07-31T03:01 riochet-2022-intphys: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T03:01 riochet-2022-intphys: step -> verify",
-    "2026-07-31T03:02 riochet-2022-intphys: step -> queue-ops",
-    "2026-07-31T03:03 riochet-2022-intphys: step -> podcast",
-    "2026-07-31T03:13 completed riochet-2022-intphys (verdict=approved, rounds=2)",
-    "2026-07-31T03:16 started jansen-2024-discoveryworld ('DiscoveryWorld: A Virtual Environment for Developing and Evaluating Automated Scientific Discovery Agents')",
-    "2026-07-31T03:17 jansen-2024-discoveryworld: step -> fetch",
     "2026-07-31T03:18 jansen-2024-discoveryworld: step -> figures",
     "2026-07-31T03:24 jansen-2024-discoveryworld: step -> draft",
     "2026-07-31T03:38 jansen-2024-discoveryworld: step -> critique (round 1)",
@@ -755,6 +751,19 @@
     "2026-07-31T06:38 zharmagambetov-2025-agentdam: step -> verify",
     "2026-07-31T06:39 zharmagambetov-2025-agentdam: step -> queue-ops",
     "2026-07-31T06:39 zharmagambetov-2025-agentdam: step -> podcast",
-    "2026-07-31T06:53 completed zharmagambetov-2025-agentdam (verdict=approved, rounds=2)"
+    "2026-07-31T06:53 completed zharmagambetov-2025-agentdam (verdict=approved, rounds=2)",
+    "2026-07-31T06:56 started paech-2023-eq-bench ('EQ-Bench: An Emotional Intelligence Benchmark for Large Language Models')",
+    "2026-07-31T06:58 paech-2023-eq-bench: step -> fetch",
+    "2026-07-31T06:58 paech-2023-eq-bench: step -> figures",
+    "2026-07-31T06:59 paech-2023-eq-bench: step -> draft",
+    "2026-07-31T07:10 paech-2023-eq-bench: step -> critique (round 1)",
+    "2026-07-31T07:25 paech-2023-eq-bench: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T07:25 paech-2023-eq-bench: step -> revise",
+    "2026-07-31T07:32 paech-2023-eq-bench: step -> critique (round 2)",
+    "2026-07-31T07:44 paech-2023-eq-bench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T07:44 paech-2023-eq-bench: step -> verify",
+    "2026-07-31T07:45 paech-2023-eq-bench: step -> queue-ops",
+    "2026-07-31T07:45 paech-2023-eq-bench: step -> podcast",
+    "2026-07-31T08:00 completed paech-2023-eq-bench (verdict=approved, rounds=2)"
   ]
 }
