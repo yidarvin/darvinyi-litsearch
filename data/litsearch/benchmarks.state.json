@@ -594,6 +594,15 @@
         "ToM-bAbI (EMNLP 2018). 2 critic rounds, 4 blockers: two MISSED inbound edges (QLoRA and BiGGen Bench both cite it -- the builder swept only the topical ToM cluster), a wrong story/question structure that contradicted the page's own takeaway (one question per test example, not four), 'had already solved bAbI' on six surfaces when the paper's own S4 says the best memory net fails 6 of 20 tasks under its joint training, and an altered quotation. r2 approve. tables.md was CLEAN for the first time in four papers -- the new column-anchoring check (a re-sum cannot catch a row shift) worked. Episode bf_alice 159.0 wpm, byte-verified 3 ways; its best-of-ten-runs finding (S5: MemN2N results are max-of-10 selections, which is why Figure 3's box plots sit far below the headline numbers) was verified and added to the critique. Queue net -1: the builder's only new candidate was already queued."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "zhao-2020-ape210k",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Ape210K (arXiv 2020-09, WITHDRAWN by its authors 2020-10-09). 3 critic rounds. r1: the page never mentioned the withdrawal, and its contamination row was premised on a public release; plus an invented causal claim, a false 'every prior SOTA model' quantifier, and a figure crop clipping the skip connection. r2: MY round-1 direction was wrong -- I over-read the withdrawal notice as 'never released', and the builder faithfully implemented it, so the page swung to asserting the dataset is unobtainable. It isn't: github.com/Chenny0808/ape210k (203 stars) has carried a full copy since 2020-10-13, four days after the withdrawal, and HuggingFace since 2023-05-22 (both verified by me). r3 approve on the accurate framing: official URL dead, third-party copy circulating, so leakage risk is LIVE and provenance is separately unverifiable. I verified the mirror's valid/test splits are 5,000 each, matching the paper. tables.md clean 2nd paper running. Episode bm_daniel 161.6 wpm, byte-verified 3 ways."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -625,22 +634,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> figures",
-    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> draft",
-    "2026-07-30T16:42 chen-2025-jama-medbullets: step -> critique (round 1)",
-    "2026-07-30T16:53 chen-2025-jama-medbullets: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-30T16:53 chen-2025-jama-medbullets: step -> revise",
-    "2026-07-30T16:59 chen-2025-jama-medbullets: step -> critique (round 2)",
-    "2026-07-30T17:07 chen-2025-jama-medbullets: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-30T17:07 chen-2025-jama-medbullets: step -> verify",
-    "2026-07-30T17:07 chen-2025-jama-medbullets: step -> queue-ops",
-    "2026-07-30T17:08 chen-2025-jama-medbullets: step -> podcast",
-    "2026-07-30T17:26 completed chen-2025-jama-medbullets (verdict=approved, rounds=2)",
-    "2026-07-30T17:28 started onishi-2016-who-did-what ('Who did What: A Large-Scale Person-Centered Cloze Dataset')",
-    "2026-07-30T17:29 onishi-2016-who-did-what: step -> fetch",
-    "2026-07-30T17:29 onishi-2016-who-did-what: step -> figures",
-    "2026-07-30T17:32 onishi-2016-who-did-what: step -> draft",
-    "2026-07-30T17:39 onishi-2016-who-did-what: step -> critique (round 1)",
     "2026-07-30T17:47 onishi-2016-who-did-what: 4 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-30T17:47 onishi-2016-who-did-what: step -> revise",
     "2026-07-30T17:51 onishi-2016-who-did-what: step -> critique (round 2)",
@@ -674,6 +667,22 @@
     "2026-07-30T20:00 nematzadeh-2018-tom-qa: step -> verify",
     "2026-07-30T20:01 nematzadeh-2018-tom-qa: step -> queue-ops",
     "2026-07-30T20:01 nematzadeh-2018-tom-qa: step -> podcast",
-    "2026-07-30T20:15 completed nematzadeh-2018-tom-qa (verdict=approved, rounds=2)"
+    "2026-07-30T20:15 completed nematzadeh-2018-tom-qa (verdict=approved, rounds=2)",
+    "2026-07-30T20:18 started zhao-2020-ape210k ('Ape210K: A Large-Scale and Template-Rich Dataset of Math Word Problems')",
+    "2026-07-30T20:19 zhao-2020-ape210k: step -> fetch",
+    "2026-07-30T20:20 zhao-2020-ape210k: step -> figures",
+    "2026-07-30T20:21 zhao-2020-ape210k: step -> draft",
+    "2026-07-30T20:30 zhao-2020-ape210k: step -> critique (round 1)",
+    "2026-07-30T20:41 zhao-2020-ape210k: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T20:41 zhao-2020-ape210k: step -> revise",
+    "2026-07-30T20:47 zhao-2020-ape210k: step -> critique (round 2)",
+    "2026-07-30T20:56 zhao-2020-ape210k: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-07-30T20:56 zhao-2020-ape210k: step -> revise",
+    "2026-07-30T20:59 zhao-2020-ape210k: step -> critique (round 3)",
+    "2026-07-30T21:09 zhao-2020-ape210k: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-07-30T21:09 zhao-2020-ape210k: step -> verify",
+    "2026-07-30T21:10 zhao-2020-ape210k: step -> queue-ops",
+    "2026-07-30T21:11 zhao-2020-ape210k: step -> podcast",
+    "2026-07-30T21:23 completed zhao-2020-ape210k (verdict=approved, rounds=3)"
   ]
 }

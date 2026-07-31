@@ -9597,6 +9597,22 @@
       "explainer": "papers/nematzadeh-2018-tom-qa.html",
       "audio_url": "https://pod.darvinyi.com/audio/nematzadeh-2018-tom-qa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhao-2020-ape210k",
+      "short": "Ape210K",
+      "title": "Ape210K: A Large-Scale and Template-Rich Dataset of Math Word Problems",
+      "authors": "Zhao, Shang, Liu, Wang, Liu",
+      "year": 2020,
+      "date": "2020-09",
+      "venue": "arXiv",
+      "citation_count": 96,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Yuanfudao / Fenbi",
+      "abstract": "Ape210K is a Chinese-language elementary-school math word problem dataset of 210,488 problems and 56,532 unique equation templates -- 9x the problem count and 25x the template diversity of what the paper calls the previous largest public dataset, Math23K -- with 37.70% of its equation templates requiring an external constant not stated in the problem text (vs. 0.80% for Math23K). A copy-augmented, feature-enriched seq2seq baseline reaches 77.5% on Math23K and 70.20% on Ape210K's own test set, ahead of the two open-source solvers the authors re-ran on Ape210K. The paper was withdrawn by its authors in October 2020: the arXiv notice says the dataset \"is not going public,\" and the authors call the reported experiments \"meaningless and irreproducible without access to the dataset.\" The release URL from the v1 abstract is now dead, though a third-party copy has circulated on GitHub and HuggingFace since days after the withdrawal, of unverified provenance.",
+      "explainer": "papers/zhao-2020-ape210k.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhao-2020-ape210k.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16247,6 +16263,8 @@
     { "from": "jin-2024-mmtom-qa", "to": "nematzadeh-2018-tom-qa" },
     { "from": "chan-2024-negotiationtom", "to": "nematzadeh-2018-tom-qa" },
     { "from": "dettmers-2023-qlora", "to": "nematzadeh-2018-tom-qa" },
-    { "from": "kim-2024-biggenbench", "to": "nematzadeh-2018-tom-qa" }
+    { "from": "kim-2024-biggenbench", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "cobbe-2021-gsm8k", "to": "zhao-2020-ape210k" },
+    { "from": "arora-2023-jeebench", "to": "zhao-2020-ape210k" }
   ]
 }
