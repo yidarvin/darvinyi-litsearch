@@ -9709,6 +9709,22 @@
       "explainer": "papers/jansen-2024-discoveryworld.html",
       "audio_url": "https://pod.darvinyi.com/audio/jansen-2024-discoveryworld.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "he-2023-hi-tom",
+      "short": "Hi-ToM",
+      "title": "Hi-ToM: A Benchmark for Evaluating Higher-Order Theory of Mind Reasoning in Large Language Models",
+      "authors": "He, Wu, Jia, Mihalcea, Chen, Deng",
+      "year": 2023,
+      "date": "2023-10",
+      "venue": "EMNLP Findings",
+      "citation_count": 73,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Michigan / Westlake University",
+      "abstract": "Extends Sally-Anne-style Theory-of-Mind QA (ToM-QA, ToMi) past their 1st/2nd-order ceiling to a full 0th-4th-order question ladder on the same story, and adds deceptive public/private agent communication as a new mechanism. All four tested LLMs (GPT-4-32k, GPT-3.5-turbo, Claude-instant, Guanaco-65B) stay under 60% overall accuracy, and the stricter, cumulative joint-accuracy metric collapses toward zero by the 3rd/4th order, worse under deception and in longer multi-chapter stories; chain-of-thought prompting yields only small, inconsistent gains and hurts three of four models on deceptive stories.",
+      "explainer": "papers/he-2023-hi-tom.html",
+      "audio_url": "https://pod.darvinyi.com/audio/he-2023-hi-tom.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -15512,6 +15528,7 @@
     { "from": "jin-2024-mmtom-qa", "to": "huang-2022-zero-shot-planner" },
     { "from": "jin-2024-mmtom-qa", "to": "zadeh-2019-social-iq" },
     { "from": "jin-2024-mmtom-qa", "to": "antol-2015-vqa" },
+    { "from": "jin-2024-mmtom-qa", "to": "he-2023-hi-tom" },
     { "from": "li-2017-dailydialog", "to": "liu-2016-dialogue-eval-metrics" },
     { "from": "li-2017-dailydialog", "to": "hermann-2015-cnn-dailymail" },
     { "from": "maharana-2024-locomo", "to": "li-2017-dailydialog" },
@@ -15930,6 +15947,7 @@
     { "from": "chen-2024-tombench", "to": "openai-2023-gpt4" },
     { "from": "chen-2024-tombench", "to": "bai-2023-qwen" },
     { "from": "chen-2024-tombench", "to": "jiang-2023-mistral-7b" },
+    { "from": "chen-2024-tombench", "to": "he-2023-hi-tom" },
     { "from": "sabour-2024-emobench", "to": "kim-2023-fantom" },
     { "from": "sabour-2024-emobench", "to": "zhou-2023-sotopia" },
     { "from": "sabour-2024-emobench", "to": "bai-2023-qwen" },
@@ -15937,6 +15955,7 @@
     { "from": "sabour-2024-emobench", "to": "zhong-2023-agieval" },
     { "from": "sabour-2024-emobench", "to": "brown-2020-gpt3" },
     { "from": "sabour-2024-emobench", "to": "li-2017-dailydialog" },
+    { "from": "sabour-2024-emobench", "to": "he-2023-hi-tom" },
     { "from": "xu-2024-opentom", "to": "kim-2023-fantom" },
     { "from": "xu-2024-opentom", "to": "le-2019-tomi" },
     { "from": "xu-2024-opentom", "to": "zhou-2023-sotopia" },
@@ -16459,6 +16478,18 @@
     { "from": "nathani-2025-mlgym", "to": "jansen-2024-discoveryworld" },
     { "from": "zhuge-2024-agent-as-judge", "to": "jansen-2024-discoveryworld" },
     { "from": "starace-2025-paperbench", "to": "jansen-2024-discoveryworld" },
-    { "from": "wijk-2024-re-bench", "to": "jansen-2024-discoveryworld" }
+    { "from": "wijk-2024-re-bench", "to": "jansen-2024-discoveryworld" },
+    { "from": "he-2023-hi-tom", "to": "nematzadeh-2018-tom-qa" },
+    { "from": "he-2023-hi-tom", "to": "le-2019-tomi" },
+    { "from": "he-2023-hi-tom", "to": "bubeck-2023-sparks-agi" },
+    { "from": "he-2023-hi-tom", "to": "park-2023-generative-agents" },
+    { "from": "he-2023-hi-tom", "to": "touvron-2023-llama" },
+    { "from": "he-2023-hi-tom", "to": "dettmers-2023-qlora" },
+    { "from": "he-2023-hi-tom", "to": "devlin-2019-bert" },
+    { "from": "he-2023-hi-tom", "to": "wang-2023-fair-evaluators" },
+    { "from": "he-2023-hi-tom", "to": "bender-2021-stochastic-parrots" },
+    { "from": "he-2023-hi-tom", "to": "wei-2022-cot" },
+    { "from": "he-2023-hi-tom", "to": "openai-2023-gpt4" },
+    { "from": "xu-2024-opentom", "to": "he-2023-hi-tom" }
   ]
 }

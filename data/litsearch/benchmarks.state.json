@@ -657,6 +657,15 @@
         "DiscoveryWorld (NeurIPS 2024 D&B). 2 critic rounds, 8 blockers, two of them new failure modes: (1) the node's citation_count (82) leaked out of the hero facts strip into the prose as a claimed '82-point human/agent gap' -- the real figure is 43; (2) a real inbound citation from PaperBench was WRONGLY EXCLUDED because the citing PDF's text layer breaks the name as 'DIS- COVERYWORLD' -- the de-hyphenation rule applies to searching for a paper's name in a citing PDF, not just to quotations. Also: a procedure range that omitted Challenge, false exclusivity on 'the two hardest tasks' (three qualify), an 'in the 60s' characterization no cell supports, a false 'at best 8%' (ReAct reaches 10%), and an invented '1D' detail. Edges 9 -> 12. r2 approve with all four replacement claims verified clean. I separately fixed a gap-direction error the critic flagged as non-blocking (the gap NARROWS at Challenge, 53 -> 38 points) plus an unsupported latency claim and a typo. Episode bm_lewis 140.5 wpm, byte-verified; it discarded two renders after its own numeric audits, and its one page-level flag (a '32x32 tile grid' claim) was a false positive -- the paper states that verbatim."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "he-2023-hi-tom",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Hi-ToM (EMNLP 2023 Findings). 2 critic rounds, 8 blockers -- including a THIRD fabricated quotation on this page ('structural costs' attributed to OpenToM, phrase absent from it), a false universal across 3 surfaces (all four models collapsing to zero before the top order -- false for GPT-4 at 0.45 and Claude at 0.30), 'near-perfect' extended to 1st order when the paper reserves it for 0th, an appended 'across all five categories' universal, a figcaption calling a deceptive message truthful, over-attributed run dates, and 4 missing edges. r2 approve; I then fixed a stale alt text still carrying the claim B1 removed. ROOT CAUSE recorded in paper-builder.md: a zero-hit grep is a claim about tooling first -- three mechanisms have each produced false 'not cited' results (line-broken names, small-caps, and embedded NUL bytes). S2's citation list for this paper matched ZERO nodes despite four real citers. I scanned all 86 work/*/paper.txt and stripped NUL bytes from 4 of them, which had been silently breaking grep. Episode bm_fable 159.9 wpm, byte-verified; it independently re-verified the OpenToM quote and noted an abstract-only check would have produced a false negative."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -688,19 +697,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T23:59 wang-2024-gta: step -> figures",
-    "2026-07-30T23:59 wang-2024-gta: step -> draft",
-    "2026-07-31T00:11 wang-2024-gta: step -> critique (round 1)",
-    "2026-07-31T00:23 wang-2024-gta: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T00:23 wang-2024-gta: step -> revise",
-    "2026-07-31T00:28 wang-2024-gta: step -> critique (round 2)",
-    "2026-07-31T00:37 wang-2024-gta: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T00:37 wang-2024-gta: step -> verify",
-    "2026-07-31T00:38 wang-2024-gta: step -> queue-ops",
-    "2026-07-31T00:39 wang-2024-gta: step -> podcast",
-    "2026-07-31T00:50 completed wang-2024-gta (verdict=approved, rounds=2)",
-    "2026-07-31T00:53 started weller-2025-followir ('FollowIR: Evaluating and Teaching Information Retrieval Models to Follow Instructions')",
-    "2026-07-31T00:55 weller-2025-followir: step -> fetch",
     "2026-07-31T00:56 weller-2025-followir: step -> figures",
     "2026-07-31T01:08 weller-2025-followir: step -> draft",
     "2026-07-31T01:14 weller-2025-followir: step -> critique (round 1)",
@@ -737,6 +733,19 @@
     "2026-07-31T04:07 jansen-2024-discoveryworld: step -> verify",
     "2026-07-31T04:08 jansen-2024-discoveryworld: step -> queue-ops",
     "2026-07-31T04:08 jansen-2024-discoveryworld: step -> podcast",
-    "2026-07-31T04:28 completed jansen-2024-discoveryworld (verdict=approved, rounds=2)"
+    "2026-07-31T04:28 completed jansen-2024-discoveryworld (verdict=approved, rounds=2)",
+    "2026-07-31T04:32 started he-2023-hi-tom ('Hi-ToM: A Benchmark for Evaluating Higher-Order Theory of Mind Reasoning in Large Language Models')",
+    "2026-07-31T04:40 he-2023-hi-tom: step -> fetch",
+    "2026-07-31T04:40 he-2023-hi-tom: step -> figures",
+    "2026-07-31T04:40 he-2023-hi-tom: step -> draft",
+    "2026-07-31T04:58 he-2023-hi-tom: step -> critique (round 1)",
+    "2026-07-31T05:18 he-2023-hi-tom: 8 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T05:18 he-2023-hi-tom: step -> revise",
+    "2026-07-31T05:32 he-2023-hi-tom: step -> critique (round 2)",
+    "2026-07-31T05:42 he-2023-hi-tom: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T05:42 he-2023-hi-tom: step -> verify",
+    "2026-07-31T05:42 he-2023-hi-tom: step -> queue-ops",
+    "2026-07-31T05:43 he-2023-hi-tom: step -> podcast",
+    "2026-07-31T05:54 completed he-2023-hi-tom (verdict=approved, rounds=2)"
   ]
 }

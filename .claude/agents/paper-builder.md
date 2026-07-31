@@ -196,6 +196,18 @@ actually uses. → `set-step draft`
    from its explainer's canonical `source ↗` link when `papers.json` doesn't
    carry one (the same trick `scripts/queue_ops.py` uses).
 
+   **A zero-hit grep is a claim about your tooling before it is a claim
+   about the paper.** Three separate mechanisms have each produced a false
+   "not cited" on this pipeline: a name broken across a line as
+   `DIS- COVERYWORLD` (de-hyphenate first); small-caps rendering, where the
+   PDF prints `DISCOVERYWORLD` and you searched mixed case (compare
+   case-insensitively); and an **embedded NUL byte**, which makes `grep`
+   treat the whole file as binary and report nothing at all — four of the
+   corpus's extracted texts had one. Use `grep -a`, or read the file in
+   Python and normalize, before concluding a citation is absent. When a
+   sweep of a well-cited paper returns *zero* node matches, suspect the
+   sweep, not the literature.
+
    **A retitled paper often has more than one S2 record — sweep them all.**
    S2 frequently keeps the preprint and the camera-ready as separate
    entries, each with its own citation list. On IntPhys the canonical record
