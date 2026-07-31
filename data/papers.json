@@ -9869,6 +9869,22 @@
       "explainer": "papers/zhang-2026-datascibench.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2026-datascibench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "cheng-2025-embodiedeval",
+      "short": "EmbodiedEval",
+      "title": "EmbodiedEval: Evaluate Multimodal LLMs as Embodied Agents",
+      "authors": "Cheng, Tu, Li, Dai, Hu, Hu, Li, Shi, Yu, Chen, Shi, Sun",
+      "year": 2025,
+      "date": "2025-01",
+      "venue": "arXiv",
+      "citation_count": 52,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University",
+      "abstract": "A 328-task, 125-scene interactive benchmark built on the LEGENT simulator that evaluates multimodal LLMs across five embodied task categories (navigation, object interaction, social interaction, attribute QA, spatial QA) via a discrete candidate-action interface. GPT-4o is the best of 19 evaluated MLLMs at 25.00% overall success (32.42% goal-condition success) against a 97.26% non-expert human baseline, with interaction tasks consistently harder than QA and navigation across nearly every model.",
+      "explainer": "papers/cheng-2025-embodiedeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cheng-2025-embodiedeval.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16787,6 +16803,18 @@
     { "from": "zhang-2026-datascibench", "to": "wang-2022-self-consistency" },
     { "from": "zhang-2026-datascibench", "to": "yang-2024-qwen2" },
     { "from": "zhang-2026-datascibench", "to": "yao-2022-react" },
-    { "from": "zhang-2026-datascibench", "to": "zhuo-2024-bigcodebench" }
+    { "from": "zhang-2026-datascibench", "to": "zhuo-2024-bigcodebench" },
+    { "from": "cheng-2025-embodiedeval", "to": "ahn-2022-saycan" },
+    { "from": "cheng-2025-embodiedeval", "to": "fu-2024-video-mme" },
+    { "from": "cheng-2025-embodiedeval", "to": "he-2024-olympiadbench" },
+    { "from": "cheng-2025-embodiedeval", "to": "li-2024-embodied-agent-interface" },
+    { "from": "cheng-2025-embodiedeval", "to": "liu-2023-agentbench" },
+    { "from": "cheng-2025-embodiedeval", "to": "liu-2023-llava" },
+    { "from": "cheng-2025-embodiedeval", "to": "liu-2024-mmbench" },
+    { "from": "cheng-2025-embodiedeval", "to": "lu-2024-mathvista" },
+    { "from": "cheng-2025-embodiedeval", "to": "srivastava-2021-behavior" },
+    { "from": "cheng-2025-embodiedeval", "to": "wei-2022-cot" },
+    { "from": "cheng-2025-embodiedeval", "to": "yao-2022-react" },
+    { "from": "cheng-2025-embodiedeval", "to": "yue-2024-mmmu" }
   ]
 }
