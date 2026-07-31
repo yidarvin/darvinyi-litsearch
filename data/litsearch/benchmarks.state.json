@@ -603,6 +603,15 @@
         "Ape210K (arXiv 2020-09, WITHDRAWN by its authors 2020-10-09). 3 critic rounds. r1: the page never mentioned the withdrawal, and its contamination row was premised on a public release; plus an invented causal claim, a false 'every prior SOTA model' quantifier, and a figure crop clipping the skip connection. r2: MY round-1 direction was wrong -- I over-read the withdrawal notice as 'never released', and the builder faithfully implemented it, so the page swung to asserting the dataset is unobtainable. It isn't: github.com/Chenny0808/ape210k (203 stars) has carried a full copy since 2020-10-13, four days after the withdrawal, and HuggingFace since 2023-05-22 (both verified by me). r3 approve on the accurate framing: official URL dead, third-party copy circulating, so leakage risk is LIVE and provenance is separately unverifiable. I verified the mirror's valid/test splits are 5,000 each, matching the paper. tables.md clean 2nd paper running. Episode bm_daniel 161.6 wpm, byte-verified 3 ways."
       ],
       "date": "2026-07-30"
+    },
+    {
+      "slug": "chen-2024-t-eval",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "T-Eval (ACL 2024, arXiv 2023-12). 2 critic rounds. r1 (4): a false uniqueness claim the page's own table contradicted (Qwen-72B INSTRUCT-JSON 98.3 > GPT-4 95.9 is one of four counterexamples) traced to an interpretive gloss in tables.md; a spliced quotation; 4 missed outbound edges; and a missed inbound edge from BFCL recorded as unverifiable. r2 (1): the revision introduced a fresh false universal ('trails every comparison below' -- InternLM-20B actually ranks 6th of 18); I fixed that clause myself. Builder self-caught 2 false quantifiers before submitting and correctly withheld a paper-internal inconsistency. 34 edges, the largest batch this session, independently re-verified by the critic. tables.md clean 3rd paper running. Episode bf_lily 151.1 wpm, byte-verified; its INSTRUCT-inversion finding was verified and added, though I corrected its claim that INSTRUCT is Qwen-72B's worst ability (REASON is lower, 59.5 vs 63.1)."
+      ],
+      "date": "2026-07-30"
     }
   ],
   "skipped": [
@@ -634,19 +643,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-30T17:47 onishi-2016-who-did-what: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-30T17:47 onishi-2016-who-did-what: step -> revise",
-    "2026-07-30T17:51 onishi-2016-who-did-what: step -> critique (round 2)",
-    "2026-07-30T17:56 onishi-2016-who-did-what: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-30T17:56 onishi-2016-who-did-what: step -> verify",
-    "2026-07-30T17:56 onishi-2016-who-did-what: step -> queue-ops",
-    "2026-07-30T17:56 onishi-2016-who-did-what: step -> podcast",
-    "2026-07-30T18:12 completed onishi-2016-who-did-what (verdict=approved, rounds=2)",
-    "2026-07-30T18:15 started jiang-2025-personamem ('Know Me, Respond to Me: Benchmarking LLMs for Dynamic User Profiling and Personalized Responses at Scale')",
-    "2026-07-30T18:16 jiang-2025-personamem: step -> fetch",
-    "2026-07-30T18:16 jiang-2025-personamem: step -> figures",
-    "2026-07-30T18:22 jiang-2025-personamem: step -> draft",
-    "2026-07-30T18:27 jiang-2025-personamem: step -> critique (round 1)",
     "2026-07-30T18:40 jiang-2025-personamem: 7 open blocker(s) from round 1 (verdict: revise)",
     "2026-07-30T18:40 jiang-2025-personamem: step -> revise",
     "2026-07-30T18:45 jiang-2025-personamem: step -> critique (round 2)",
@@ -683,6 +679,19 @@
     "2026-07-30T21:09 zhao-2020-ape210k: step -> verify",
     "2026-07-30T21:10 zhao-2020-ape210k: step -> queue-ops",
     "2026-07-30T21:11 zhao-2020-ape210k: step -> podcast",
-    "2026-07-30T21:23 completed zhao-2020-ape210k (verdict=approved, rounds=3)"
+    "2026-07-30T21:23 completed zhao-2020-ape210k (verdict=approved, rounds=3)",
+    "2026-07-30T21:25 started chen-2024-t-eval ('T-Eval: Evaluating the Tool Utilization Capability of Large Language Models Step by Step')",
+    "2026-07-30T21:26 chen-2024-t-eval: step -> fetch",
+    "2026-07-30T21:28 chen-2024-t-eval: step -> figures",
+    "2026-07-30T21:29 chen-2024-t-eval: step -> draft",
+    "2026-07-30T21:50 chen-2024-t-eval: step -> critique (round 1)",
+    "2026-07-30T22:04 chen-2024-t-eval: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-30T22:04 chen-2024-t-eval: step -> revise",
+    "2026-07-30T22:11 chen-2024-t-eval: step -> critique (round 2)",
+    "2026-07-30T22:26 chen-2024-t-eval: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-30T22:26 chen-2024-t-eval: step -> verify",
+    "2026-07-30T22:26 chen-2024-t-eval: step -> queue-ops",
+    "2026-07-30T22:27 chen-2024-t-eval: step -> podcast",
+    "2026-07-30T22:39 completed chen-2024-t-eval (verdict=approved, rounds=2)"
   ]
 }
