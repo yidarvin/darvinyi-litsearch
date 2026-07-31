@@ -9773,6 +9773,22 @@
       "explainer": "papers/li-2025-legalagentbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2025-legalagentbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zang-2021-photochat",
+      "short": "PhotoChat",
+      "title": "PhotoChat: A Human-Human Dialogue Dataset with Photo Sharing Behavior for Joint Image-Text Modeling",
+      "authors": "Zang, Liu, Wang, Song, Zhang, Chen",
+      "year": 2021,
+      "date": "2021-07",
+      "venue": "ACL-IJCNLP 2021",
+      "citation_count": 69,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Google Research / Kuaishou Technology",
+      "abstract": "Pairs 12,286 human-human Mechanical Turk dialogues with a single photo shared mid-conversation -- visible to only one side until at least five turns have passed -- sourced from 10,917 filtered Open Images V4 photos, then defines two tasks: predicting whether a photo will be shared on the next turn (58.1% F1 headline, T5-base; Table 2 also lists T5-3B at 58.9%) and retrieving which of 1,000 candidate photos the dialogue is about (10.4% recall@1 best).",
+      "explainer": "papers/zang-2021-photochat.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zang-2021-photochat.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16586,6 +16602,13 @@
     { "from": "li-2025-legalagentbench", "to": "yao-2023-tree-of-thoughts" },
     { "from": "li-2025-legalagentbench", "to": "yao-2022-react" },
     { "from": "li-2025-legalagentbench", "to": "ye-2025-tooleyes" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "li-2025-legalagentbench" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "li-2025-legalagentbench" },
+    { "from": "zang-2021-photochat", "to": "raffel-2020-t5" },
+    { "from": "zang-2021-photochat", "to": "lan-2019-albert" },
+    { "from": "zang-2021-photochat", "to": "antol-2015-vqa" },
+    { "from": "zang-2021-photochat", "to": "lin-2014-coco" },
+    { "from": "zang-2021-photochat", "to": "devlin-2019-bert" },
+    { "from": "feng-2023-mmdialog", "to": "zang-2021-photochat" },
+    { "from": "maharana-2024-locomo", "to": "zang-2021-photochat" }
   ]
 }

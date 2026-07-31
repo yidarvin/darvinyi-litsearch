@@ -693,6 +693,15 @@
         "LegalAgentBench (ACL 2025, arXiv 2024-12; 10th queue-metadata correction -- queue said arXiv 2024). 2 critic rounds, 4 blockers. BEST BUILDER RUN OF THE SESSION: it independently found THREE paper claims that don't hold (the 'gap can reach 65%' -- true max 47.5; 'GLM-4-Plus surpasses GPT-4o across all tasks' -- loses 5 of 18 cells; 'all baselines decreased as hops increased' -- 13 of 24 rows non-monotonic), used the weaker true statement in each case, reported rather than asserted, AND caught its own directional error mid-draft. All three adjudicated correct by the critic. Blockers: the two figures were under each other's captions; the process rate was described as reading the trajectory on 5 surfaces when it scores the same final-answer text as success rate (proved by arithmetic -- process falls BELOW success at 5-hop, impossible under a trajectory scan); and a missed edge to liu-2023-llm-p that was in S2's refs AND the printed bibliography. r2 caught a HALF-APPLIED FIX: after the builder swapped images and I relabelled captions and in-text refs, the alt attributes were left inverted. Added a neutral 65%-vs-47.5 note and a parenthetical that the paper names the metric both 'process rate' and 'progress rate'. Episode bm_daniel 159.1 wpm, byte-verified; it caught 3 of its own drafting errors before rendering."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "zang-2021-photochat",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "PhotoChat (ACL 2021). 2 critic rounds, 3 blockers: an INVERTED filter condition (the page stated the margin test as the requirement when footnote 2 makes it the disqualifier), two more invented specifics ('a coffee cup' for black tea; 'confuses puffins with a duck after keying on atlantic' inverting the paper's double 'fails to'), and the disputed 58.1 superlative asserted in the page's own voice on 5 surfaces. Builder correctly withheld BOTH suspected inconsistencies and caught 2 of its own queue candidates as already-queued. The critic then settled the 58.1-vs-58.9 question decisively by extracting PDF FONT RUNS: Table 2 bolds each column max, marking T5-3B's 58.9 as best F1 while the prose headlines 58.1. Page now attributes rather than asserts, and reproduces the paper's bolding in both reprinted tables so a reader sees it. Episode am_puck 154.8 wpm, byte-verified; it found a FIFTH grep false-negative mechanism -- fi/fl LIGATURES, present in 43 of 90 extracted texts -- now recorded in paper-builder.md alongside line-broken names, small-caps, NUL bytes and spaced multiplication signs."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -724,19 +733,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T04:40 he-2023-hi-tom: step -> figures",
-    "2026-07-31T04:40 he-2023-hi-tom: step -> draft",
-    "2026-07-31T04:58 he-2023-hi-tom: step -> critique (round 1)",
-    "2026-07-31T05:18 he-2023-hi-tom: 8 open blocker(s) from round 1 (verdict: revise)",
-    "2026-07-31T05:18 he-2023-hi-tom: step -> revise",
-    "2026-07-31T05:32 he-2023-hi-tom: step -> critique (round 2)",
-    "2026-07-31T05:42 he-2023-hi-tom: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-07-31T05:42 he-2023-hi-tom: step -> verify",
-    "2026-07-31T05:42 he-2023-hi-tom: step -> queue-ops",
-    "2026-07-31T05:43 he-2023-hi-tom: step -> podcast",
-    "2026-07-31T05:54 completed he-2023-hi-tom (verdict=approved, rounds=2)",
-    "2026-07-31T05:57 started zharmagambetov-2025-agentdam ('AgentDAM: Privacy Leakage Evaluation for Autonomous Web Agents')",
-    "2026-07-31T05:58 zharmagambetov-2025-agentdam: step -> fetch",
     "2026-07-31T05:58 zharmagambetov-2025-agentdam: step -> figures",
     "2026-07-31T06:01 zharmagambetov-2025-agentdam: step -> draft",
     "2026-07-31T06:13 zharmagambetov-2025-agentdam: step -> critique (round 1)",
@@ -773,6 +769,19 @@
     "2026-07-31T08:58 li-2025-legalagentbench: step -> verify",
     "2026-07-31T08:59 li-2025-legalagentbench: step -> queue-ops",
     "2026-07-31T09:00 li-2025-legalagentbench: step -> podcast",
-    "2026-07-31T09:13 completed li-2025-legalagentbench (verdict=approved, rounds=2)"
+    "2026-07-31T09:13 completed li-2025-legalagentbench (verdict=approved, rounds=2)",
+    "2026-07-31T09:16 started zang-2021-photochat ('PhotoChat: A Human-Human Dialogue Dataset with Photo Sharing Behavior for Joint Image-Text Modeling')",
+    "2026-07-31T09:22 zang-2021-photochat: step -> fetch",
+    "2026-07-31T09:22 zang-2021-photochat: step -> figures",
+    "2026-07-31T09:25 zang-2021-photochat: step -> draft",
+    "2026-07-31T09:50 zang-2021-photochat: step -> critique (round 1)",
+    "2026-07-31T10:03 zang-2021-photochat: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-07-31T10:03 zang-2021-photochat: step -> revise",
+    "2026-07-31T10:07 zang-2021-photochat: step -> critique (round 2)",
+    "2026-07-31T10:17 zang-2021-photochat: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-07-31T10:17 zang-2021-photochat: step -> verify",
+    "2026-07-31T10:18 zang-2021-photochat: step -> queue-ops",
+    "2026-07-31T10:18 zang-2021-photochat: step -> podcast",
+    "2026-07-31T10:29 completed zang-2021-photochat (verdict=approved, rounds=2)"
   ]
 }
