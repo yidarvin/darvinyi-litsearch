@@ -977,6 +977,12 @@
       "slug": "lin-2006-reusable-qa-collection",
       "reason": "Reached the queue head only via an inflated citation_count (283). That figure came from S2 CorpusId 16596123, whose DOI 10.1002/ASI.V57:7 is a JASIST *issue*-level DOI, so it aggregates citations to every paper in that issue (surveillance, organizational learning, blogging). The clean record (CorpusId 36452116, DOI 10.1002/asi.20348) has 50 citations, all topically coherent. Corrected the queue entry to 50 and re-sorted; the paper remains queued at its true priority. PDF cached at work/lin-2006-reusable-qa-collection/.",
       "date": "2026-08-01"
+    },
+    {
+      "title": "An evaluation framework for clinical use of large language models in patient interaction tasks",
+      "slug": "johri-2025-craft-md",
+      "reason": "No obtainable full text. Nature Medicine 31(1):77-86, DOI 10.1038/s41591-024-03328-5 is paywalled; Semantic Scholar reports no openAccessPdf, Europe PMC reports isOpenAccess=N with no PMCID, and there is no arXiv preprint. The only preprint is medRxiv 10.1101/2023.09.12.23295399, which is a materially DIFFERENT paper: 8 authors vs the published 12, and scoped to GPT-4/GPT-3.5 on skin disease only. medRxiv records no link to the Nature Medicine DOI. Building an explainer labelled as the 2025 12-author paper from the 2023 8-author preprint would repeat the Voorhees 2001 error (fetching a related-but-different paper), and the critic verifies quotations character-by-character against the supplied PDF, so a version mismatch would be invisible to the loop. Queue entry retained but demoted out of the core work-list (survey/role removed) so it stops reaching the head on every reprioritization; restore both fields if access ever opens.",
+      "date": "2026-08-01"
     }
   ],
   "survey_build": {
@@ -988,8 +994,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T10:38 qin-2024-worldsimbench: step -> verify",
-    "2026-08-01T10:39 qin-2024-worldsimbench: step -> queue-ops",
     "2026-08-01T10:39 qin-2024-worldsimbench: step -> podcast",
     "2026-08-01T10:51 completed qin-2024-worldsimbench (verdict=approved, rounds=2)",
     "2026-08-01T10:52 started li-2024-simpler ('Evaluating Real-World Robot Manipulation Policies in Simulation')",
@@ -1037,6 +1041,8 @@
     "2026-08-01T15:04 osband-2020-bsuite: step -> verify",
     "2026-08-01T15:04 osband-2020-bsuite: step -> queue-ops",
     "2026-08-01T15:04 osband-2020-bsuite: step -> podcast",
-    "2026-08-01T15:24 completed osband-2020-bsuite (verdict=approved, rounds=3)"
+    "2026-08-01T15:24 completed osband-2020-bsuite (verdict=approved, rounds=3)",
+    "2026-08-01T15:26 started johri-2025-craft-md ('An evaluation framework for clinical use of large language models in patient interaction tasks')",
+    "2026-08-01T15:26 skipped johri-2025-craft-md (No obtainable full text. Nature Medicine 31(1):77-86, DOI 10.1038/s41591-024-03328-5 is paywalled; Semantic Scholar reports no openAccessPdf, Europe PMC reports isOpenAccess=N with no PMCID, and there is no arXiv preprint. The only preprint is medRxiv 10.1101/2023.09.12.23295399, which is a materially DIFFERENT paper: 8 authors vs the published 12, and scoped to GPT-4/GPT-3.5 on skin disease only. medRxiv records no link to the Nature Medicine DOI. Building an explainer labelled as the 2025 12-author paper from the 2023 8-author preprint would repeat the Voorhees 2001 error (fetching a related-but-different paper), and the critic verifies quotations character-by-character against the supplied PDF, so a version mismatch would be invisible to the loop. Queue entry retained but demoted out of the core work-list (survey/role removed) so it stops reaching the head on every reprioritization; restore both fields if access ever opens.)"
   ]
 }
