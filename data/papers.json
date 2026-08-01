@@ -10061,6 +10061,22 @@
       "explainer": "papers/kembhavi-2017-tqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/kembhavi-2017-tqa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "mattson-2020-mlperf-training",
+      "short": "MLPerf Training",
+      "title": "MLPerf Training Benchmark",
+      "authors": "Mattson, Cheng, Coleman, Diamos, Micikevicius, …, Yamazaki, Young, Zaharia",
+      "year": 2020,
+      "date": "2019-10",
+      "venue": "MLSys 2020",
+      "citation_count": 392,
+      "topic": "Benchmarks & Evals",
+      "author_group": "MLPerf consortium",
+      "abstract": "A 37-author, cross-industry consortium (Google, NVIDIA, Intel, Facebook, Harvard, Stanford, and more) defines MLPerf, a systems benchmark that measures how fast a specific hardware-and-software system trains a specific model to a fixed, pre-agreed quality target — not how good the trained model is. The v0.5 suite spans seven tasks (image classification, two flavors of object detection/segmentation, two flavors of translation, recommendation, and 9×9 Go) sharing a time-to-train metric, closed/open divisions, and three availability categories. Between the first two rounds (v0.5 to v0.6, on unchanged underlying hardware), the fastest 16-chip result improved by an average of 1.3× while the chip count behind each round's best result grew by an average of 5.5× — gains the paper attributes to a mix of better implementations, rule changes, and software-stack improvements without quantifying the split.",
+      "explainer": "papers/mattson-2020-mlperf-training.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mattson-2020-mlperf-training.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17093,6 +17109,15 @@
     { "from": "lu-2024-mathvista", "to": "kembhavi-2017-tqa" },
     { "from": "lu-2022-scienceqa", "to": "kembhavi-2017-tqa" },
     { "from": "vilares-2019-headqa", "to": "kembhavi-2017-tqa" },
-    { "from": "clark-2018-arc-science", "to": "kembhavi-2017-tqa" }
+    { "from": "clark-2018-arc-science", "to": "kembhavi-2017-tqa" },
+    { "from": "mattson-2020-mlperf-training", "to": "deng-2009-imagenet" },
+    { "from": "mattson-2020-mlperf-training", "to": "lin-2014-coco" },
+    { "from": "mattson-2020-mlperf-training", "to": "devlin-2019-bert" },
+    { "from": "mattson-2020-mlperf-training", "to": "silver-2016-alphago" },
+    { "from": "mattson-2020-mlperf-training", "to": "silver-2017-alphago-zero" },
+    { "from": "mattson-2020-mlperf-training", "to": "silver-2018-alphazero" },
+    { "from": "mattson-2020-mlperf-training", "to": "radford-2019-gpt2" },
+    { "from": "dao-2022-flashattention", "to": "mattson-2020-mlperf-training" },
+    { "from": "li-2026-skillsbench", "to": "mattson-2020-mlperf-training" }
   ]
 }

@@ -855,6 +855,15 @@
         "CVPR 2017, 390 citations. FIRST non-arXiv paper in a long while: no arXiv version exists, so the source link is the CVF open-access PDF (corpus precedent: deng-2009-imagenet links a PDF, papineni-2002-bleu links ACL Anthology), and date='2017-07' comes from CLAUDE.md's non-arXiv fallback. backfill_dates.py finds no arXiv id in that link and so leaves it alone. S2's references endpoint returns nothing for this paper (publisher elided it), making the bibliography parse the ONLY path to out-edges. 2 critic rounds, 3 blockers r1, all the same species - results attributed to a wider population than they cover. The worst: Table 1 reports Text T/F and Text MC for only 2 of 4 baselines (Text+Image and Text+DPG are N/A on both text columns), but the page said 'every baseline' on three surfaces INCLUDING the node abstract - the same surface that got missed last paper. Also a nonexistent '49-50% band' (both cells are 50.2/50.4, above the floor) and two conditioned statistics stated unconditioned, contradicted by the page's own inlined Figure 3(c). Builder work that held up: its own verbatim-quote audit was verified complete (34 quotes), all four hand re-crops correct after the extractor mis-cropped two and missed one entirely, and the edge sweep complete in both directions. 644 nodes / 7030 edges. Podcast bf_lily 29m21s."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "mattson-2020-mlperf-training",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "MLSys 2020, 392 citations, 37 authors (elided). A SYSTEMS benchmark - measures time-to-train to a fixed quality target, not model capability - which made the capability-vs-systems frame the page's whole job. 2 critic rounds, 7 blockers r1; round 2 clean. The builder DECLINED the benchmarks tag, arguing the rubric is LLM-scoped; I adjudicated against it on precedent I verified myself (tay-2020-long-range-arena is tagged and likewise ranks architectures for efficiency, not capability; TREC-QA/LFW/CIFAR/CelebA/OpenImages show LLM-era scoping isn't enforced; Gym/ALE/RLBench show 'not a dataset' isn't disqualifying; and the queue entry itself says survey=benchmarks role=core). evaluations correctly declined. Blockers included a FABRICATED author affiliation (Baidu, on 5 surfaces - every Baidu mention in the paper is the DeepBench citation), the node abstract wrong for the THIRD consecutive paper, and one of the builder's own accusations that didn't survive (demanding the 1.3x be decomposed into a hardware-scale component that is zero by construction). First use of the new surfaces_checked artifact: all 7 blockers, all 7 surfaces, and the critic audited 4 entries end-to-end and found every file+line citation exact. The episode agent then caught 2 attribution errors both builder and critic missed - the throughput criticism belongs to Fathom+Google TF Benchmarks not Fathom+TBD, and SPEC is for Unix servers not microprocessors. Both verified and fixed. Builder found NO core queue candidates. 645 nodes / 7039 edges. Podcast bm_daniel 26m09s."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -886,17 +895,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T23:34 james-2020-rlbench: step -> revise",
-    "2026-07-31T23:37 james-2020-rlbench: step -> critique (round 2)",
-    "2026-07-31T23:44 james-2020-rlbench: step -> verify",
-    "2026-07-31T23:45 james-2020-rlbench: step -> queue-ops",
-    "2026-07-31T23:45 james-2020-rlbench: step -> podcast",
-    "2026-07-31T23:55 completed james-2020-rlbench (verdict=approved, rounds=2)",
-    "2026-07-31T23:58 started zhu-2020-robosuite ('robosuite: A Modular Simulation Framework and Benchmark for Robot Learning')",
-    "2026-08-01T00:14 zhu-2020-robosuite: step -> fetch",
-    "2026-08-01T00:14 zhu-2020-robosuite: step -> figures",
-    "2026-08-01T00:14 zhu-2020-robosuite: step -> draft",
-    "2026-08-01T00:14 zhu-2020-robosuite: step -> critique (round 1)",
     "2026-08-01T00:28 zhu-2020-robosuite: step -> revise",
     "2026-08-01T00:36 zhu-2020-robosuite: step -> critique (round 2)",
     "2026-08-01T00:47 zhu-2020-robosuite: step -> verify",
@@ -935,6 +933,17 @@
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> verify",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> queue-ops",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> podcast",
-    "2026-08-01T04:12 completed kembhavi-2017-tqa (verdict=approved, rounds=2)"
+    "2026-08-01T04:12 completed kembhavi-2017-tqa (verdict=approved, rounds=2)",
+    "2026-08-01T04:15 started mattson-2020-mlperf-training ('MLPerf Training Benchmark')",
+    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> fetch",
+    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> figures",
+    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> draft",
+    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> critique (round 1)",
+    "2026-08-01T04:49 mattson-2020-mlperf-training: step -> revise",
+    "2026-08-01T04:53 mattson-2020-mlperf-training: step -> critique (round 2)",
+    "2026-08-01T04:59 mattson-2020-mlperf-training: step -> verify",
+    "2026-08-01T05:00 mattson-2020-mlperf-training: step -> queue-ops",
+    "2026-08-01T05:00 mattson-2020-mlperf-training: step -> podcast",
+    "2026-08-01T05:19 completed mattson-2020-mlperf-training (verdict=approved, rounds=2)"
   ]
 }
