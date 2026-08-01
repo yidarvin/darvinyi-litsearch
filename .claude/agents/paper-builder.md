@@ -453,6 +453,29 @@ to round `N+1` once it has your response.
 
 ## What you never do
 
+**Never run a mutating git command** — no `checkout`, `restore`, `stash`,
+`reset`, `clean`, `commit`, `add`, `rm`. Read-only (`status`, `diff`, `log`,
+`show`) is fine. A builder once ran `git checkout -- data/papers.json` and
+destroyed uncommitted work that was not its own; the working tree routinely
+holds the orchestrator's in-flight edits, and git cannot tell your bad write
+from their good one.
+
+**The reason this keeps getting violated is that you will, at some point,
+botch a write to `data/papers.json` and want to undo it.** That instinct is
+right; reaching for git is not. So do this instead, *before* you write:
+
+```
+cp data/papers.json /tmp/papers.json.bak       # your own undo point
+```
+
+Then if a write goes wrong, `cp /tmp/papers.json.bak data/papers.json`
+restores exactly what you started from and touches nothing else. Take the
+backup as the first action of any step that writes the graph — it costs
+nothing and it removes the only situation in which git looks tempting. If
+you have already botched a write and have no backup, **say so in your final
+message and stop**; the orchestrator can restore it safely and would much
+rather do that than discover it later.
+
 Never insert into or remove from `data/queue.json`. Never call
 `litsearch.py complete-paper`, `skip-paper`, or `set-step critique` — those
 are orchestrator calls that happen after your report is reviewed. Never

@@ -9901,6 +9901,22 @@
       "explainer": "papers/bedi-2025-medhelm.html",
       "audio_url": "https://pod.darvinyi.com/audio/bedi-2025-medhelm.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "qian-2025-userbench",
+      "short": "UserBench",
+      "title": "UserBench: An Interactive Gym Environment for User-Centric Agents",
+      "authors": "Qian, Liu, Prabhakar, Liu, Zhang, …, Savarese, Xiong, Wang",
+      "year": 2025,
+      "date": "2025-07",
+      "venue": "arXiv",
+      "citation_count": 52,
+      "topic": "Agents",
+      "author_group": "Salesforce AI Research",
+      "abstract": "A Gymnasium environment for travel planning where a GPT-4o-driven simulated user starts with an underspecified goal and reveals preferences incrementally and implicitly, forcing the agent to elicit intent rather than just execute search/answer tools. Across 11 open- and closed-source models, GPT-4o tops both a single-choice setting (Score 0.329) and a multi-choice setting (0.710), but even the best models actively elicit under 30% of ground-truth preferences in the main single-choice evaluation, and preference-elicitation rate is dissociated from final Score across models.",
+      "explainer": "papers/qian-2025-userbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/qian-2025-userbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16837,6 +16853,19 @@
     { "from": "bedi-2025-medhelm", "to": "srivastava-2022-big-bench" },
     { "from": "bedi-2025-medhelm", "to": "min-2023-factscore" },
     { "from": "bedi-2025-medhelm", "to": "gu-2024-llm-judge-survey" },
-    { "from": "bedi-2025-medhelm", "to": "jin-2020-medqa" }
+    { "from": "bedi-2025-medhelm", "to": "jin-2020-medqa" },
+    { "from": "qian-2025-userbench", "to": "barres-2025-tau2-bench" },
+    { "from": "qian-2025-userbench", "to": "deng-2023-mind2web" },
+    { "from": "qian-2025-userbench", "to": "guo-2025-deepseek-r1" },
+    { "from": "qian-2025-userbench", "to": "guo-2024-deepseek-coder" },
+    { "from": "qian-2025-userbench", "to": "huang-2023-metatool" },
+    { "from": "qian-2025-userbench", "to": "jin-2025-search-r1" },
+    { "from": "qian-2025-userbench", "to": "li-2023-api-bank" },
+    { "from": "qian-2025-userbench", "to": "lin-2024-wildbench" },
+    { "from": "qian-2025-userbench", "to": "shao-2024-deepseekmath" },
+    { "from": "qian-2025-userbench", "to": "yao-2024-tau-bench" },
+    { "from": "qian-2025-userbench", "to": "zhu-2025-multiagentbench" },
+    { "from": "elfeki-2026-hil-bench", "to": "qian-2025-userbench" },
+    { "from": "pu-2026-lhaw", "to": "qian-2025-userbench" }
   ]
 }

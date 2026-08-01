@@ -765,6 +765,15 @@
         "arXiv 2025 (16th metadata correction: queue said year 2026, arXiv 2505 = May 2025). 81 authors, elided per liang-2022-helm convention. 2 critic rounds, 6 blockers r1; round 2 clean. All 3 of the page's claims-against-the-paper upheld, incl. that the abstract's '40% lower computational cost' is unsupported by its own tables (40 occurs exactly once in the paper; every candidate reading lands 8-17%). Blockers: 2 superlatives falsified by another row of the same table, a false quantifier the paper itself contradicts one sentence later, a false 'contamination not discussed anywhere' (p.3 fn.1), a count bound to the wrong object, and the missing evaluations tag (adjudicated in the critic's favour). bibliography.tsv artifact worked - 27 refs confirmed as the real count in seconds. 634 nodes / 6934 edges. Podcast bf_isabella 27m06s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "qian-2025-userbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "arXiv 2025; no venue correction (SEA @ NeurIPS 2025 workshop poster + ACL ARR submission only). 2 critic rounds, 8 blockers r1 - the most since DataSciBench; round 2 clean. Two of the builder's four accusations against the paper were WRONG (the 80% search-validity pushback ignored Table 4; the Table 6 'discrepancy' is the paper's own documented Travel-22/33/44 choice-ablation subset). Also: a total reported as an active figure (27.32 vs 24.06 - the exact nesting collapse), a caption falsified by the figure the page inlines, a superlative false on 2 columns of the same table, 2 bad quotations (a hybrid and a dropped word), and an invented provenance. Builder ran git checkout on papers.json mid-draft and self-reported; verified nothing lost. 635 nodes / 6947 edges. Podcast bm_fable 25m51s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -796,17 +805,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T13:19 sawada-2023-arb: step -> verify",
-    "2026-07-31T13:19 sawada-2023-arb: step -> queue-ops",
-    "2026-07-31T13:19 sawada-2023-arb: step -> podcast",
-    "2026-07-31T13:35 completed sawada-2023-arb (verdict=approved, rounds=2)",
-    "2026-07-31T13:37 started huang-2024-dacode ('DA-Code: Agent Data Science Code Generation Benchmark for Large Language Models')",
-    "2026-07-31T13:58 huang-2024-dacode: step -> fetch",
-    "2026-07-31T13:58 huang-2024-dacode: step -> figures",
-    "2026-07-31T13:58 huang-2024-dacode: step -> draft",
-    "2026-07-31T13:58 huang-2024-dacode: step -> critique (round 1)",
-    "2026-07-31T14:11 huang-2024-dacode: step -> revise",
-    "2026-07-31T14:15 huang-2024-dacode: step -> critique (round 2)",
     "2026-07-31T14:21 huang-2024-dacode: step -> verify",
     "2026-07-31T14:21 huang-2024-dacode: step -> queue-ops",
     "2026-07-31T14:21 huang-2024-dacode: step -> podcast",
@@ -845,6 +843,17 @@
     "2026-07-31T17:28 bedi-2025-medhelm: step -> verify",
     "2026-07-31T17:29 bedi-2025-medhelm: step -> queue-ops",
     "2026-07-31T17:29 bedi-2025-medhelm: step -> podcast",
-    "2026-07-31T17:40 completed bedi-2025-medhelm (verdict=approved, rounds=2)"
+    "2026-07-31T17:40 completed bedi-2025-medhelm (verdict=approved, rounds=2)",
+    "2026-07-31T17:43 started qian-2025-userbench ('UserBench: An Interactive Gym Environment for User-Centric Agents')",
+    "2026-07-31T18:02 qian-2025-userbench: step -> fetch",
+    "2026-07-31T18:02 qian-2025-userbench: step -> figures",
+    "2026-07-31T18:02 qian-2025-userbench: step -> draft",
+    "2026-07-31T18:02 qian-2025-userbench: step -> critique (round 1)",
+    "2026-07-31T18:15 qian-2025-userbench: step -> revise",
+    "2026-07-31T18:19 qian-2025-userbench: step -> critique (round 2)",
+    "2026-07-31T18:27 qian-2025-userbench: step -> verify",
+    "2026-07-31T18:27 qian-2025-userbench: step -> queue-ops",
+    "2026-07-31T18:27 qian-2025-userbench: step -> podcast",
+    "2026-07-31T18:40 completed qian-2025-userbench (verdict=approved, rounds=2)"
   ]
 }

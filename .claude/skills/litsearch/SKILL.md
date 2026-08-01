@@ -310,6 +310,19 @@ unfinished work. Steps:
    something false; the episode agent caught it against `tables.md` and
    used the page's version instead. Quote the page, or re-read the cells.
 
+   It happened a second time on UserBench, in the other direction: the
+   critic's shorthand read "single-choice top-3 by Score is
+   GPT-4o/Gemini-2.5-Pro/Claude-4-Sonnet at 82.48 / 77.40 / 74.28" — true,
+   but those figures are the **Search Attempt Valid** column, not Score
+   (which is 0.329 / 0.317 / 0.307). The brief repeated it as "Single-choice
+   Score, top three: GPT-4o 82.48…", and the episode agent again went to the
+   explainer, which labels the column correctly, and ignored the brief. So
+   the failure mode is specific and repeatable: **when a sentence names a
+   ranking and a number that come from two different columns, the column
+   label is the thing that gets dropped in transcription.** Every figure you
+   put in a brief must carry its column name, and if you cannot state the
+   column, you have not verified the number.
+
    **Launch the render detached** (`nohup … & disown`) if you're running it
    from a subagent: a turn boundary kills the agent's process tree, and a
    foreground render dies with it partway through — observed once, on
