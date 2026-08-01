@@ -10013,6 +10013,22 @@
       "explainer": "papers/zhu-2020-robosuite.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhu-2020-robosuite.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "miao-2020-asdiv",
+      "short": "ASDiv",
+      "title": "A Diverse Corpus for Evaluating and Developing English Math Word Problem Solvers",
+      "authors": "Miao, Liang, Su",
+      "year": 2020,
+      "date": "2020-07",
+      "venue": "ACL 2020",
+      "citation_count": 489,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Academia Sinica",
+      "abstract": "Introduces ASDiv (Academia Sinica Diverse MWP Dataset), 2,305 English math word problems spanning 24 problem types and six grade levels (G1–G6), plus a bidirectional-BLEU lexicon usage diversity (LD/CLD) metric on which ASDiv scores highest of eight compared corpora on whole-corpus measures (CLD 0.49 vs MathQA's 0.05). Evaluating three pre-LLM solvers (LCA++, UnitDep, GTS) shows the neural GTS solver collapsing from 86% on low-diversity MathQA-C to 36% on the full, type-diverse ASDiv, with the two statistical solvers failing on MathQA-C entirely and grade 5–6 problems nearly unsolved (1–7%) across all three.",
+      "explainer": "papers/miao-2020-asdiv.html",
+      "audio_url": "https://pod.darvinyi.com/audio/miao-2020-asdiv.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17009,6 +17025,19 @@
     { "from": "zhu-2020-robosuite", "to": "todorov-2012-mujoco" },
     { "from": "liu-2023-libero", "to": "zhu-2020-robosuite" },
     { "from": "srivastava-2021-behavior", "to": "zhu-2020-robosuite" },
-    { "from": "wang-2023-voyager", "to": "zhu-2020-robosuite" }
+    { "from": "wang-2023-voyager", "to": "zhu-2020-robosuite" },
+    { "from": "miao-2020-asdiv", "to": "papineni-2002-bleu" },
+    { "from": "cobbe-2021-gsm8k", "to": "miao-2020-asdiv" },
+    { "from": "hendrycks-2021-math", "to": "miao-2020-asdiv" },
+    { "from": "zhao-2020-ape210k", "to": "miao-2020-asdiv" },
+    { "from": "wei-2022-cot", "to": "miao-2020-asdiv" },
+    { "from": "wang-2022-self-consistency", "to": "miao-2020-asdiv" },
+    { "from": "uesato-2022-process-outcome-feedback", "to": "miao-2020-asdiv" },
+    { "from": "schick-2023-toolformer", "to": "miao-2020-asdiv" },
+    { "from": "sawada-2023-arb", "to": "miao-2020-asdiv" },
+    { "from": "gou-2023-tora", "to": "miao-2020-asdiv" },
+    { "from": "guo-2024-deepseek-coder", "to": "miao-2020-asdiv" },
+    { "from": "nath-2024-goal-conditioned", "to": "miao-2020-asdiv" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "miao-2020-asdiv" }
   ]
 }

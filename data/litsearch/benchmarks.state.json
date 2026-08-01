@@ -828,6 +828,15 @@
         "arXiv-only, 707 citations. No metadata correction needed (queue already correct). 2 critic rounds, 7 blockers r1 - the most on any paper this run; round 2 clean. The distinctive finding survived: arXiv v3 (Jan 2025) contradicts itself, with the Abstract describing 'our new release robosuite v1.5' while S1 scopes the reported results to 'the v1.0 robosuite release'. B3 was partly my error - my brief said 2 versions when there are 3 (v2 2022-11-15), and the builder sharpened my imprecise framing into a false claim that most citations accrued against v1; true split across the three windows is ~18/37/41 percent of 707. Other blockers: a Figure 4 misread (Panda led 5 of 9, not 'nearly every task'), a false 'the one task' quantifier, an invented 'UT Austin' attribution (the word appears nowhere; only Stanford PAIR is named), a misstated training protocol, a false Spot-commercial-availability claim, and an unsupported claim that the environments expose no success signal (p.4 documents that they do). Builder correctly avoided a false SAC edge - robosuite cites arXiv 1812.05905, not the node's 1801.01290. 641 nodes / 6994 edges. Podcast bf_isabella 21m59s."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "miao-2020-asdiv",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "ACL 2020, 489 citations. Builder was killed mid-build by an API stall and resumed from transcript; no data was lost (graph was untouched). Deliberate date exception: date='2020-07' not the arXiv month, because the arXiv posting (2021-06-30) POSTDATES the ACL publication by a year - S2 publicationDate 2020-07-01, and every ACL-2020 node in the corpus has date <= venue year. backfill_dates.py would try to undo this; recorded in report.json. 2 critic rounds, 6 blockers r1 + 6 hand-applied notes after approval. Blockers: an 'ASDiv wins on every statistic' universal falsified by the paper's OWN Figures 5-6 (MathQA leads test-vs-train at 0.85 LD / 0.66 SD) and by its own p.10 sentence; an invented 84% where the paper prints 85%; a GTS-only 0.86 attributed to a plural solver set; an altered quotation; Algebra-1 called multi-variable; and the missing evaluations tag (adjudicated in the critic's favour - the lexicon-diversity metric is a leakage measure and a genuinely new way to evaluate). Three of the six were cases where the page already stated the correct fact elsewhere. Edge sweep came back fully clean in both directions (20 refs vs 641 nodes -> 1 match; all 489 citers mapped -> 12 in-edges, zero missing/extra). 642 nodes / 7007 edges. Podcast am_puck 25m18s."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -859,17 +868,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T20:21 yu-2019-meta-world: step -> revise",
-    "2026-07-31T20:26 yu-2019-meta-world: step -> critique (round 2)",
-    "2026-07-31T20:35 yu-2019-meta-world: step -> verify",
-    "2026-07-31T20:36 yu-2019-meta-world: step -> queue-ops",
-    "2026-07-31T20:36 yu-2019-meta-world: step -> podcast",
-    "2026-07-31T20:48 completed yu-2019-meta-world (verdict=approved, rounds=2)",
-    "2026-07-31T20:51 started kuznetsova-2020-open-images-v4 ('The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale')",
-    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> fetch",
-    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> figures",
-    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> draft",
-    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> critique (round 1)",
     "2026-07-31T21:30 kuznetsova-2020-open-images-v4: step -> revise",
     "2026-07-31T21:34 kuznetsova-2020-open-images-v4: step -> critique (round 2)",
     "2026-07-31T21:40 kuznetsova-2020-open-images-v4: step -> verify",
@@ -908,6 +906,17 @@
     "2026-08-01T00:47 zhu-2020-robosuite: step -> verify",
     "2026-08-01T00:48 zhu-2020-robosuite: step -> queue-ops",
     "2026-08-01T00:48 zhu-2020-robosuite: step -> podcast",
-    "2026-08-01T01:04 completed zhu-2020-robosuite (verdict=approved, rounds=2)"
+    "2026-08-01T01:04 completed zhu-2020-robosuite (verdict=approved, rounds=2)",
+    "2026-08-01T01:07 started miao-2020-asdiv ('A Diverse Corpus for Evaluating and Developing English Math Word Problem Solvers')",
+    "2026-08-01T01:32 miao-2020-asdiv: step -> fetch",
+    "2026-08-01T01:32 miao-2020-asdiv: step -> figures",
+    "2026-08-01T01:32 miao-2020-asdiv: step -> draft",
+    "2026-08-01T01:32 miao-2020-asdiv: step -> critique (round 1)",
+    "2026-08-01T01:44 miao-2020-asdiv: step -> revise",
+    "2026-08-01T01:48 miao-2020-asdiv: step -> critique (round 2)",
+    "2026-08-01T01:57 miao-2020-asdiv: step -> verify",
+    "2026-08-01T01:58 miao-2020-asdiv: step -> queue-ops",
+    "2026-08-01T01:58 miao-2020-asdiv: step -> podcast",
+    "2026-08-01T02:10 completed miao-2020-asdiv (verdict=approved, rounds=2)"
   ]
 }
