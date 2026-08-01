@@ -756,6 +756,15 @@
         "arXiv 2025 (v2 Apr); no venue correction - only an ACL ARR submission and a CVPR 2026 workshop poster exist. 2 critic rounds, 4 blockers r1: missed CoT edge (S2 null stub; builder matched by arXiv id instead of surname+year as instructed); a superlative falsified by its own table's Human row (96.81 vs 11.34); a figure caption attributing 5 task-category shares to 4 scene sources; a non-verbatim quotation. Builder caught and re-cropped 2 mis-cropped figures using the warning added after DataSciBench. 633 nodes / 6928 edges. Podcast bf_alice 26m12s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "bedi-2025-medhelm",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "arXiv 2025 (16th metadata correction: queue said year 2026, arXiv 2505 = May 2025). 81 authors, elided per liang-2022-helm convention. 2 critic rounds, 6 blockers r1; round 2 clean. All 3 of the page's claims-against-the-paper upheld, incl. that the abstract's '40% lower computational cost' is unsupported by its own tables (40 occurs exactly once in the paper; every candidate reading lands 8-17%). Blockers: 2 superlatives falsified by another row of the same table, a false quantifier the paper itself contradicts one sentence later, a false 'contamination not discussed anywhere' (p.3 fn.1), a count bound to the wrong object, and the missing evaluations tag (adjudicated in the critic's favour). bibliography.tsv artifact worked - 27 refs confirmed as the real count in seconds. 634 nodes / 6934 edges. Podcast bf_isabella 27m06s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -787,18 +796,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T12:10 cassano-2024-canitedit: step -> critique (round 2)",
-    "2026-07-31T12:16 cassano-2024-canitedit: step -> verify",
-    "2026-07-31T12:17 cassano-2024-canitedit: step -> queue-ops",
-    "2026-07-31T12:17 cassano-2024-canitedit: step -> podcast",
-    "2026-07-31T12:29 completed cassano-2024-canitedit (verdict=approved, rounds=2)",
-    "2026-07-31T12:30 started sawada-2023-arb ('ARB: Advanced Reasoning Benchmark for Large Language Models')",
-    "2026-07-31T12:46 sawada-2023-arb: step -> fetch",
-    "2026-07-31T12:46 sawada-2023-arb: step -> figures",
-    "2026-07-31T12:46 sawada-2023-arb: step -> draft",
-    "2026-07-31T12:46 sawada-2023-arb: step -> critique (round 1)",
-    "2026-07-31T13:02 sawada-2023-arb: step -> revise",
-    "2026-07-31T13:10 sawada-2023-arb: step -> critique (round 2)",
     "2026-07-31T13:19 sawada-2023-arb: step -> verify",
     "2026-07-31T13:19 sawada-2023-arb: step -> queue-ops",
     "2026-07-31T13:19 sawada-2023-arb: step -> podcast",
@@ -836,6 +833,18 @@
     "2026-07-31T16:28 cheng-2025-embodiedeval: step -> verify",
     "2026-07-31T16:29 cheng-2025-embodiedeval: step -> queue-ops",
     "2026-07-31T16:29 cheng-2025-embodiedeval: step -> podcast",
-    "2026-07-31T16:40 completed cheng-2025-embodiedeval (verdict=approved, rounds=2)"
+    "2026-07-31T16:40 completed cheng-2025-embodiedeval (verdict=approved, rounds=2)",
+    "2026-07-31T16:41 started bedi-2025-medhelm ('MedHELM: Holistic Evaluation of Large Language Models for Medical Tasks')",
+    "2026-07-31T17:04 bedi-2025-medhelm: step -> fetch",
+    "2026-07-31T17:04 bedi-2025-medhelm: step -> figures",
+    "2026-07-31T17:04 bedi-2025-medhelm: step -> draft",
+    "2026-07-31T17:05 bedi-2025-medhelm: step -> draft",
+    "2026-07-31T17:05 bedi-2025-medhelm: step -> critique (round 1)",
+    "2026-07-31T17:18 bedi-2025-medhelm: step -> revise",
+    "2026-07-31T17:22 bedi-2025-medhelm: step -> critique (round 2)",
+    "2026-07-31T17:28 bedi-2025-medhelm: step -> verify",
+    "2026-07-31T17:29 bedi-2025-medhelm: step -> queue-ops",
+    "2026-07-31T17:29 bedi-2025-medhelm: step -> podcast",
+    "2026-07-31T17:40 completed bedi-2025-medhelm (verdict=approved, rounds=2)"
   ]
 }

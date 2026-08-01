@@ -9885,6 +9885,22 @@
       "explainer": "papers/cheng-2025-embodiedeval.html",
       "audio_url": "https://pod.darvinyi.com/audio/cheng-2025-embodiedeval.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "bedi-2025-medhelm",
+      "short": "MedHELM",
+      "title": "MedHELM: Holistic Evaluation of Large Language Models for Medical Tasks",
+      "authors": "Bedi, Cui, Fuentes, Unell, Wornow, …, Liang, Pfeffer, Shah",
+      "year": 2025,
+      "date": "2025-05",
+      "venue": "arXiv",
+      "citation_count": 70,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "A clinician-validated evaluation framework for medical LLMs: 29 clinicians (96.7% category-assignment agreement) shaped a taxonomy of 5 categories, 22 subcategories, and 121 tasks, mapped onto a 35-benchmark suite (17 existing, 5 reformulated, 13 new — 12 EHR-based; 14 public, 7 gated, 14 private) scored by exact-match/F1 for closed-ended tasks and a three-model LLM jury for open-ended ones. Evaluating nine frontier LLMs, DeepSeek R1 (66% win-rate) and o3-mini (64%, highest macro-average at 0.77) lead, with Claude 3.5 Sonnet matching much of that performance at lower estimated cost; the LLM-jury reaches ICC=0.47 against clinician ratings (vs. 0.43 clinician-clinician agreement), though that comparison is validated on only 2 of the 13 open-ended benchmarks.",
+      "explainer": "papers/bedi-2025-medhelm.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bedi-2025-medhelm.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -16815,6 +16831,12 @@
     { "from": "cheng-2025-embodiedeval", "to": "srivastava-2021-behavior" },
     { "from": "cheng-2025-embodiedeval", "to": "wei-2022-cot" },
     { "from": "cheng-2025-embodiedeval", "to": "yao-2022-react" },
-    { "from": "cheng-2025-embodiedeval", "to": "yue-2024-mmmu" }
+    { "from": "cheng-2025-embodiedeval", "to": "yue-2024-mmmu" },
+    { "from": "bedi-2025-medhelm", "to": "arora-2025-healthbench" },
+    { "from": "bedi-2025-medhelm", "to": "liang-2022-helm" },
+    { "from": "bedi-2025-medhelm", "to": "srivastava-2022-big-bench" },
+    { "from": "bedi-2025-medhelm", "to": "min-2023-factscore" },
+    { "from": "bedi-2025-medhelm", "to": "gu-2024-llm-judge-survey" },
+    { "from": "bedi-2025-medhelm", "to": "jin-2020-medqa" }
   ]
 }
