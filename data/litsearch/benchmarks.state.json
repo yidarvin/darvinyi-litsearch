@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "fisch-2019-mrqa",
-    "queue_title": "MRQA 2019 Shared Task: Evaluating Generalization in Reading Comprehension",
-    "arxiv_id": "1910.09753",
-    "step": "podcast",
-    "round": 2,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -889,6 +882,15 @@
         "CVPR 2024, 356 citations, non-arXiv (CVF source). 2 critic rounds, 7 blockers r1; round 2 clean. evaluations tag ADDED on the critic's ruling, overruling the builder: the paper numbers 'Evaluation' as a contribution, Fig 1 says 'our proposed LLM-Match metric', S5 is titled 'Human Alignment and Robustness of LLM-Match' - and decisively, liu-2024-mmbench (the protocol OpenEQA adapts) itself carries evaluations, as do 62 of 151 evaluations papers dual-tagged. Blockers: a non-monotone 'weakest to strongest' ordering, a false universal the paper's own observation 5 contradicts, 'consistently' for the paper's 'generally' plus an increase called a drop, a false accusation about the abstract, and the node abstract labelling question counts as scan counts (missed surface #5 in a row). B1's missed in-edge (li-2024-embodied-agent-interface) was invisible from OpenEQA's side because BOTH papers' S2 reference lists are publisher-elided - a one-directional sweep is structurally blind there. The builder's zero-hit result across ten embodied-AI nodes was verified correct (critic re-derived 54 refs and swept 356 citers five ways). Episode agent then caught THREE errors in my brief: 24 authors not ~19, six affiliations not three, and - importantly - the paper DOES claim 'the first open-vocabulary benchmark' four times including unqualified, where I told it the paper doesn't. It also surfaced that the 86.8 human ceiling rests on TWO participants (S3, verbatim), which the page never said; I verified and added it, since that is half the headline gap. 647 nodes / 7064 edges. Podcast bf_alice 26m40s."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "fisch-2019-mrqa",
+      "rounds": 2,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "Fixed at verify: '18 extractive datasets' -> 18 QA datasets (page+node); Figure 1 blue series is 'Best result' not D-Net (RACE bar 53.9 = Delphi; macro 68.9 = D-Net -> one cell inconsistent)."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -926,7 +928,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T03:50 kembhavi-2017-tqa: step -> critique (round 2)",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> verify",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> queue-ops",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> podcast",
@@ -975,6 +976,7 @@
     "2026-08-01T08:22 fisch-2019-mrqa: step -> critique (round 2)",
     "2026-08-01T08:29 fisch-2019-mrqa: step -> verify",
     "2026-08-01T08:30 fisch-2019-mrqa: step -> queue-ops",
-    "2026-08-01T08:30 fisch-2019-mrqa: step -> podcast"
+    "2026-08-01T08:30 fisch-2019-mrqa: step -> podcast",
+    "2026-08-01T08:51 completed fisch-2019-mrqa (verdict=approved_with_notes, rounds=2)"
   ]
 }
