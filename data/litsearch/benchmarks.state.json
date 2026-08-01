@@ -846,6 +846,15 @@
         "COLING 2020, 463 citations, 32 authors (elided per liang-2022-helm convention). No metadata correction needed. Paper has NO figures at all - 15 pages, 7 tables, zero images - though arXiv's comments field still says '10 pages, 4 figures' (stale from an earlier version); page is built entirely from transcribed HTML tables, which the critic re-derived from PDF word coordinates rather than paper.txt. 2 critic rounds, 5 blockers r1; round 2 clean. Builder self-caught 2 superlative errors before shipping (first time that class was caught upstream) but one of the fixes reached only 3 of 4 surfaces - the node abstract still carried the stale claim, so the graph contradicted the explainer it links to. Other blockers: 'every 2020-era baseline ~10 points behind humans' (true only of the best; ALBERT-tiny is 29.08 behind); an invented SuperGLUE per-task-normalization claim that also contradicted the page 2 paragraphs earlier; 2 fabricated quotes ('close to 0' for 'almost 0', and 'translationese' which appears nowhere); and a missed in-edge from DeepSeek-R1, hidden by S2 carrying its Nature retitle. evaluations correctly declined - GLUE/SuperGLUE/CBLUE/LexGLUE are all benchmarks-only. 643 nodes / 7021 edges. Podcast bf_emma 25m36s."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "kembhavi-2017-tqa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "CVPR 2017, 390 citations. FIRST non-arXiv paper in a long while: no arXiv version exists, so the source link is the CVF open-access PDF (corpus precedent: deng-2009-imagenet links a PDF, papineni-2002-bleu links ACL Anthology), and date='2017-07' comes from CLAUDE.md's non-arXiv fallback. backfill_dates.py finds no arXiv id in that link and so leaves it alone. S2's references endpoint returns nothing for this paper (publisher elided it), making the bibliography parse the ONLY path to out-edges. 2 critic rounds, 3 blockers r1, all the same species - results attributed to a wider population than they cover. The worst: Table 1 reports Text T/F and Text MC for only 2 of 4 baselines (Text+Image and Text+DPG are N/A on both text columns), but the page said 'every baseline' on three surfaces INCLUDING the node abstract - the same surface that got missed last paper. Also a nonexistent '49-50% band' (both cells are 50.2/50.4, above the floor) and two conditioned statistics stated unconditioned, contradicted by the page's own inlined Figure 3(c). Builder work that held up: its own verbatim-quote audit was verified complete (34 quotes), all four hand re-crops correct after the extractor mis-cropped two and missed one entirely, and the edge sweep complete in both directions. 644 nodes / 7030 edges. Podcast bf_lily 29m21s."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -877,17 +886,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T22:38 liu-2023-libero: step -> revise",
-    "2026-07-31T22:43 liu-2023-libero: step -> critique (round 2)",
-    "2026-07-31T22:52 liu-2023-libero: step -> verify",
-    "2026-07-31T22:53 liu-2023-libero: step -> queue-ops",
-    "2026-07-31T22:53 liu-2023-libero: step -> podcast",
-    "2026-07-31T23:10 completed liu-2023-libero (verdict=approved, rounds=2)",
-    "2026-07-31T23:12 started james-2020-rlbench ('RLBench: The Robot Learning Benchmark & Learning Environment')",
-    "2026-07-31T23:24 james-2020-rlbench: step -> fetch",
-    "2026-07-31T23:24 james-2020-rlbench: step -> figures",
-    "2026-07-31T23:24 james-2020-rlbench: step -> draft",
-    "2026-07-31T23:24 james-2020-rlbench: step -> critique (round 1)",
     "2026-07-31T23:34 james-2020-rlbench: step -> revise",
     "2026-07-31T23:37 james-2020-rlbench: step -> critique (round 2)",
     "2026-07-31T23:44 james-2020-rlbench: step -> verify",
@@ -926,6 +924,17 @@
     "2026-08-01T02:55 xu-2020-clue: step -> verify",
     "2026-08-01T02:55 xu-2020-clue: step -> queue-ops",
     "2026-08-01T02:55 xu-2020-clue: step -> podcast",
-    "2026-08-01T03:09 completed xu-2020-clue (verdict=approved, rounds=2)"
+    "2026-08-01T03:09 completed xu-2020-clue (verdict=approved, rounds=2)",
+    "2026-08-01T03:13 started kembhavi-2017-tqa ('Are You Smarter Than a Sixth Grader? Textbook Question Answering for Multimodal Machine Comprehension')",
+    "2026-08-01T03:32 kembhavi-2017-tqa: step -> fetch",
+    "2026-08-01T03:32 kembhavi-2017-tqa: step -> figures",
+    "2026-08-01T03:32 kembhavi-2017-tqa: step -> draft",
+    "2026-08-01T03:33 kembhavi-2017-tqa: step -> critique (round 1)",
+    "2026-08-01T03:44 kembhavi-2017-tqa: step -> revise",
+    "2026-08-01T03:50 kembhavi-2017-tqa: step -> critique (round 2)",
+    "2026-08-01T03:57 kembhavi-2017-tqa: step -> verify",
+    "2026-08-01T03:57 kembhavi-2017-tqa: step -> queue-ops",
+    "2026-08-01T03:57 kembhavi-2017-tqa: step -> podcast",
+    "2026-08-01T04:12 completed kembhavi-2017-tqa (verdict=approved, rounds=2)"
   ]
 }

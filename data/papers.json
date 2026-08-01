@@ -10045,6 +10045,22 @@
       "explainer": "papers/xu-2020-clue.html",
       "audio_url": "https://pod.darvinyi.com/audio/xu-2020-clue.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "kembhavi-2017-tqa",
+      "short": "TQA",
+      "title": "Are You Smarter Than A Sixth Grader? Textbook Question Answering for Multimodal Machine Comprehension",
+      "authors": "Kembhavi, Seo, Schwenk, Choi, Farhadi, Hajishirzi",
+      "year": 2017,
+      "date": "2017-07",
+      "venue": "CVPR 2017",
+      "citation_count": 390,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Allen Institute for AI / University of Washington",
+      "abstract": "Introduces Multi-Modal Machine Comprehension (M3C) and the Textbook Question Answering (TQA) dataset: 1,076 middle-school science lessons (78,338 sentences, 3,455 images) paired with 26,260 multiple-choice questions, 12,567 of them tied to a diagram. Of the four 2017 baselines (a Memory-Network text model, a VQA-style CNN+attention diagram model, a diagram-parse-graph model, and BiDAF), only the Memory-Network and BiDAF models were evaluated on text questions, and both land within half a point of random guessing on True/False and only about 10 points above random on Text Multiple Choice; on Diagram Multiple Choice, where all four were evaluated, the best model reaches just +6.3 points over random.",
+      "explainer": "papers/kembhavi-2017-tqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kembhavi-2017-tqa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17068,6 +17084,15 @@
     { "from": "wang-2023-pandalm", "to": "xu-2020-clue" },
     { "from": "shao-2024-deepseek-v2", "to": "xu-2020-clue" },
     { "from": "kimi-2025-k1-5", "to": "xu-2020-clue" },
-    { "from": "guo-2025-deepseek-r1", "to": "xu-2020-clue" }
+    { "from": "guo-2025-deepseek-r1", "to": "xu-2020-clue" },
+    { "from": "kembhavi-2017-tqa", "to": "antol-2015-vqa" },
+    { "from": "kembhavi-2017-tqa", "to": "deng-2009-imagenet" },
+    { "from": "kembhavi-2017-tqa", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "kembhavi-2017-tqa", "to": "lin-2014-coco" },
+    { "from": "kembhavi-2017-tqa", "to": "rajpurkar-2016-squad" },
+    { "from": "lu-2024-mathvista", "to": "kembhavi-2017-tqa" },
+    { "from": "lu-2022-scienceqa", "to": "kembhavi-2017-tqa" },
+    { "from": "vilares-2019-headqa", "to": "kembhavi-2017-tqa" },
+    { "from": "clark-2018-arc-science", "to": "kembhavi-2017-tqa" }
   ]
 }
