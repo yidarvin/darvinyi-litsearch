@@ -10077,6 +10077,22 @@
       "explainer": "papers/mattson-2020-mlperf-training.html",
       "audio_url": "https://pod.darvinyi.com/audio/mattson-2020-mlperf-training.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "li-2022-behavior-1k",
+      "short": "BEHAVIOR-1K",
+      "title": "BEHAVIOR-1K: A Benchmark for Embodied AI with 1,000 Everyday Activities and Realistic Simulation",
+      "authors": "Li, Zhang, Wong, Gokmen, Srivastava, …, Liu, Wu, Fei-Fei",
+      "year": 2022,
+      "date": "2022-12",
+      "venue": "CoRL 2022",
+      "citation_count": 371,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "A 1,000-activity embodied-AI benchmark whose activity list is 909 top-ranked entries from a 1,461-respondent Mechanical Turk preference survey over ~2,090 candidates, plus 91 carried over from the predecessor BEHAVIOR-100, grounded in 50 interactive scenes (5,215 objects, 1,265 categories). A new simulator, OmniGibson (built on NVIDIA Omniverse/PhysX 5), adds fluid, deformable-body, and thermal-effect simulation that a 60-subject perceptual survey rates as more visually realistic (3.20/5) than four comparator engines (1.65-1.74/5). On three hand-picked activities, end-to-end visuomotor RL scores 0.00 while action-primitive RL reaches 0.42-0.88 across its two primitive-based variants — the no-history variant's own 0.42-0.77 collapses back to 0.00 once idealized grasping is replaced with physics-based grasping, an ablation never run on the higher-scoring history variant — and a small real-robot pilot keeps a human-driven baseline (~22% success) visibly separate from a transferred learned policy (0% success).",
+      "explainer": "papers/li-2022-behavior-1k.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2022-behavior-1k.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17118,6 +17134,21 @@
     { "from": "mattson-2020-mlperf-training", "to": "silver-2018-alphazero" },
     { "from": "mattson-2020-mlperf-training", "to": "radford-2019-gpt2" },
     { "from": "dao-2022-flashattention", "to": "mattson-2020-mlperf-training" },
-    { "from": "li-2026-skillsbench", "to": "mattson-2020-mlperf-training" }
+    { "from": "li-2026-skillsbench", "to": "mattson-2020-mlperf-training" },
+    { "from": "li-2022-behavior-1k", "to": "deng-2009-imagenet" },
+    { "from": "li-2022-behavior-1k", "to": "lin-2014-coco" },
+    { "from": "li-2022-behavior-1k", "to": "wang-2018-glue" },
+    { "from": "li-2022-behavior-1k", "to": "rajpurkar-2016-squad" },
+    { "from": "li-2022-behavior-1k", "to": "antol-2015-vqa" },
+    { "from": "li-2022-behavior-1k", "to": "brown-2020-gpt3" },
+    { "from": "li-2022-behavior-1k", "to": "schulman-2017-ppo" },
+    { "from": "li-2022-behavior-1k", "to": "haarnoja-2018-sac" },
+    { "from": "li-2022-behavior-1k", "to": "yu-2019-meta-world" },
+    { "from": "li-2022-behavior-1k", "to": "james-2020-rlbench" },
+    { "from": "li-2022-behavior-1k", "to": "srivastava-2021-behavior" },
+    { "from": "li-2022-behavior-1k", "to": "zhu-2020-robosuite" },
+    { "from": "li-2022-behavior-1k", "to": "brockman-2016-openai-gym" },
+    { "from": "liu-2023-libero", "to": "li-2022-behavior-1k" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "li-2022-behavior-1k" }
   ]
 }

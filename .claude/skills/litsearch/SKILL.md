@@ -323,6 +323,19 @@ unfinished work. Steps:
    put in a brief must carry its column name, and if you cannot state the
    column, you have not verified the number.
 
+   It happened twice more on BEHAVIOR-1K, and the fix is now specific:
+   **build the brief's numbers from `work/<slug>/tables.md`, not from the
+   critique's prose summary.** The brief said grasping accounted for "44% of
+   the errors" — but Figure 5's legend runs *Motion planning | Grasping |
+   Placing | Obj. det. | Policy*, and 44% is the **Policy** slice; grasping
+   is 41%. The page had it right; only the brief was wrong. The same brief
+   said "~35 authors" from the 2024 arXiv expansion when the CoRL title page
+   lists 28. Both times the episode agent went to the paper and ignored the
+   brief, which is now five separate occasions an episode agent has caught
+   something upstream. Treat that as a real check in the pipeline rather
+   than a courtesy, and give it the source files rather than only your
+   summary of them.
+
    **Launch the render detached** (`nohup … & disown`) if you're running it
    from a subagent: a turn boundary kills the agent's process tree, and a
    foreground render dies with it partway through — observed once, on
