@@ -918,6 +918,15 @@
         "2 critic rounds, 6 blockers in r1. Root cause of the headline blocker was in tables.md: Table V's 8 columns were read as '4 Success then 4 Grasp' when they interleave per task, which put the wrong task name (Put Eggplant, not Put Carrot on Plate) on the page. Fixed at source and re-verified against PDF x-coordinates. Other blockers: false metric-scope claim, superlatives Table IV contradicts, a wrong cell (0.087 vs 0.142), merged sample sizes across four surfaces, overstated correlation ceiling. Episode agent then flagged three items: a genuine Table I vs Tables IV/XII drawer-column inconsistency in the paper (verified, added to critique + tables.md), an unsupported 'paired' gloss on the ~1500-episode figure (fixed across four surfaces), and a claim that SIMPLER doesn't cite Meta-World -- that one was wrong, the paper spells it 'Meta-world' at reference [73], so the edge stands. Tagged evaluations in addition to benchmarks: MMRV is a new metric and validated real-to-sim proxy evaluation is a new paradigm."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "chen-2025-robotwin2",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 3 blockers in r1: a nine-vs-eight row count on Table 3 (the 9 traced to tables.md's own flagged-but-used guess), a takeaway comparing against the wrong baseline where the correct baseline would have undercut its own thesis, and a truncated figure whose caption described rows the image didn't contain. Episode agent then found the abstract's third headline number - 'a 10.9% gain in code generation success rate' - appears exactly once in the paper and derives from nothing in Table 1 (like-for-like pairings give 14.7 and 7.4; all-variant means give 9.5). Verified and added to the critique, alongside a wording fix: the 367/228% figures are configuration averages over four tasks, not a single cell. Also replaced tables.md's 'rounding noise' diagnosis of the ACT/DP Average-row mismatch with an explicit 'unexplained, do not diagnose' - rounding cannot explain it, since the other six columns round correctly. Declined evaluations: this is a generator + suite, not a new way to evaluate."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -961,18 +970,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T07:28 majumdar-2024-openeqa: step -> queue-ops",
-    "2026-08-01T07:28 majumdar-2024-openeqa: step -> podcast",
-    "2026-08-01T07:42 completed majumdar-2024-openeqa (verdict=approved, rounds=2)",
-    "2026-08-01T07:45 started fisch-2019-mrqa ('MRQA 2019 Shared Task: Evaluating Generalization in Reading Comprehension')",
-    "2026-08-01T08:04 fisch-2019-mrqa: step -> fetch",
-    "2026-08-01T08:04 fisch-2019-mrqa: step -> figures",
-    "2026-08-01T08:04 fisch-2019-mrqa: step -> draft",
-    "2026-08-01T08:04 fisch-2019-mrqa: step -> critique (round 1)",
-    "2026-08-01T08:16 fisch-2019-mrqa: step -> revise",
-    "2026-08-01T08:22 fisch-2019-mrqa: step -> critique (round 2)",
-    "2026-08-01T08:29 fisch-2019-mrqa: step -> verify",
-    "2026-08-01T08:30 fisch-2019-mrqa: step -> queue-ops",
     "2026-08-01T08:30 fisch-2019-mrqa: step -> podcast",
     "2026-08-01T08:51 completed fisch-2019-mrqa (verdict=approved_with_notes, rounds=2)",
     "2026-08-01T08:53 started lin-2006-reusable-qa-collection ('Building a reusable test collection for question answering')",
@@ -1010,6 +1007,18 @@
     "2026-08-01T11:51 li-2024-simpler: step -> verify",
     "2026-08-01T11:52 li-2024-simpler: step -> queue-ops",
     "2026-08-01T11:52 li-2024-simpler: step -> podcast",
-    "2026-08-01T12:09 completed li-2024-simpler (verdict=approved, rounds=2)"
+    "2026-08-01T12:09 completed li-2024-simpler (verdict=approved, rounds=2)",
+    "2026-08-01T12:10 started chen-2025-robotwin2 ('RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation')",
+    "2026-08-01T12:13 chen-2025-robotwin2: step -> fetch",
+    "2026-08-01T12:13 chen-2025-robotwin2: step -> figures",
+    "2026-08-01T12:19 chen-2025-robotwin2: step -> draft",
+    "2026-08-01T12:33 chen-2025-robotwin2: step -> draft",
+    "2026-08-01T12:33 chen-2025-robotwin2: step -> critique (round 1)",
+    "2026-08-01T12:43 chen-2025-robotwin2: step -> revise",
+    "2026-08-01T12:50 chen-2025-robotwin2: step -> critique (round 2)",
+    "2026-08-01T12:54 chen-2025-robotwin2: step -> verify",
+    "2026-08-01T12:54 chen-2025-robotwin2: step -> queue-ops",
+    "2026-08-01T12:54 chen-2025-robotwin2: step -> podcast",
+    "2026-08-01T13:11 completed chen-2025-robotwin2 (verdict=approved, rounds=2)"
   ]
 }

@@ -10173,6 +10173,22 @@
       "explainer": "papers/li-2024-simpler.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2024-simpler.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "chen-2025-robotwin2",
+      "short": "RoboTwin 2.0",
+      "title": "RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation",
+      "authors": "T. Chen, Z. Chen, B. Chen, Cai, Liu, …, Yang, Luo, Mu",
+      "year": 2025,
+      "date": "2025-06",
+      "venue": "arXiv",
+      "citation_count": 351,
+      "topic": "Benchmarks & Evals",
+      "author_group": "SJTU / HKU MMLab",
+      "abstract": "Builds RoboTwin-OD, a 731-object/147-category annotated asset library, and pairs it with an MLLM-driven expert data-generation pipeline (simulation-in-the-loop code repair via a VLM observer) plus five axes of domain randomization (clutter, background, lighting, tabletop height, language) across five robot embodiments. Instantiates 50 dual-arm tasks and 100,000+ pre-collected trajectories as a scalable data generator and a matching Easy/Hard benchmark; shows domain-randomized (not merely clean) synthetic pretraining is what drives sim-to-real robustness gains for RDT and Pi0 (+31.9%/+29.3% relative over their released-pretrained baselines) and real-robot transfer (a 24.4-point average success-rate gain from 10 real demos + 1,000 synthetic trajectories).",
+      "explainer": "papers/chen-2025-robotwin2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2025-robotwin2.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17269,6 +17285,10 @@
     { "from": "li-2024-simpler", "to": "mees-2022-calvin" },
     { "from": "li-2024-simpler", "to": "srivastava-2021-behavior" },
     { "from": "li-2024-simpler", "to": "yu-2019-meta-world" },
-    { "from": "li-2024-simpler", "to": "zhu-2020-robosuite" }
+    { "from": "li-2024-simpler", "to": "zhu-2020-robosuite" },
+    { "from": "chen-2025-robotwin2", "to": "liu-2023-libero" },
+    { "from": "chen-2025-robotwin2", "to": "mees-2022-calvin" },
+    { "from": "chen-2025-robotwin2", "to": "yu-2019-meta-world" },
+    { "from": "chen-2025-robotwin2", "to": "zhu-2020-robosuite" }
   ]
 }
