@@ -369,6 +369,30 @@ actually uses. → `set-step draft`
    is reported", confirm that section is genuinely absent from the
    *published* version, not just from the copy you downloaded. Accusing
    authors of not doing work they did is worse than missing a number.
+
+   **Every accusation needs a rebuttal search, recorded.** This is the
+   pipeline's most repeated defect: on **four consecutive papers** a
+   builder wrote that the paper omits, contradicts, or overstates
+   something, and the critic found the answer sitting in the paper — a
+   second table the same section summarised (UserBench), a difference the
+   paper explicitly scopes to a subset (UserBench again), a format repair
+   the harness actually performs (MedAgentBench), a crossover the paper
+   explains in a figure caption and a variance study titled *"Seed
+   Sensitivity (n = 10)"* in Appendix C (Meta-World). Twice the honest,
+   narrower version turned out to be the **stronger** critique.
+
+   So for each claim in the critique section that faults the paper, add an
+   entry to `report.json` under `accusations`, with: the claim, and
+   `searched` — the specific places you looked for a rebuttal (which
+   appendices, which figure captions, which sibling tables, which
+   normalized search terms). **An accusation with an empty or hand-wavy
+   `searched` field is not ready to ship.** Concretely, before writing that
+   a paper never reports X: grep the *appendices* for X and its synonyms;
+   read every figure and table **caption** (they carry findings the body
+   omits); and check whether a neighbouring table reports X under a
+   different name. If after that you still believe the gap is real, write
+   the narrow version — "Table 1 carries no dispersion" beats "no variance
+   is reported" and is the one that survives.
 4. Check this paper against every survey's rubric in `data/surveys.json`
    (not just `survey_id` — a paper can be core to more than one). Tag with
    `python3 scripts/tag_papers.py add <survey_id> <slug>` for each match.
