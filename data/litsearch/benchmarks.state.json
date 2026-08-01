@@ -891,6 +891,15 @@
         "Fixed at verify: '18 extractive datasets' -> 18 QA datasets (page+node); Figure 1 blue series is 'Best result' not D-Net (RACE bar 53.9 = Delphi; macro 68.9 = D-Net -> one cell inconsistent)."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "mees-2022-calvin",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 critic rounds. r1: invented reconciliation of the 400-vs-389 contradiction, unsupported 'most benchmarks skip' claim, wrong MTLC range that had also reached the node abstract, mis-cropped figure. r2: B2's fix leaked the priority claim onto the zero-shot split. r3 (fix written by orchestrator): approved. Episode agent then found two further paper defects, both verified and added to the critique: LH-MTLC cells 0.08%/0.17% are arithmetically incompatible with the stated 1,000-chain denominator, and the conclusion restates the priority claim without its hedge and with unseen environments folded in."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -917,6 +926,12 @@
       "slug": "voorhees-2001-trec-qa-track",
       "reason": "Full text not obtainable in verifiable form. NLE 2001 (DOI 10.1017/S1351324901002789) is paywalled at Cambridge; S2's and Unpaywall's sole open-access link for this DOI resolves to a DIFFERENT paper (Voorhees & Tice, 'The TREC-8 Question Answering Track', LREC 2000) - verified by fetching it. NIST hosts the real article (tsapps.nist.gov/publication/get_pdf.cfm?pub_id=151518) but it is a 2001 Type-3 bitmap-font PDF: single-letter font names, no ToUnicode map, 36% printable-ASCII on extraction, pdftotext returns the same garbage. OCR would defeat the pipeline's core guarantee - the critic verifies quotations character-by-character against paper.txt, and with OCR'd text could not distinguish a fabricated quote from an OCR artifact, yielding a page that looks verified but is not. Topic already represented by voorhees-2000-trec-qa (SIGIR 2000, benchmarks+evaluations). LREC 2000 version rejected as substitute at 11 citations.",
       "date": "2026-08-01"
+    },
+    {
+      "title": "Building a reusable test collection for question answering",
+      "slug": "lin-2006-reusable-qa-collection",
+      "reason": "Reached the queue head only via an inflated citation_count (283). That figure came from S2 CorpusId 16596123, whose DOI 10.1002/ASI.V57:7 is a JASIST *issue*-level DOI, so it aggregates citations to every paper in that issue (surveillance, organizational learning, blogging). The clean record (CorpusId 36452116, DOI 10.1002/asi.20348) has 50 citations, all topically coherent. Corrected the queue entry to 50 and re-sorted; the paper remains queued at its true priority. PDF cached at work/lin-2006-reusable-qa-collection/.",
+      "date": "2026-08-01"
     }
   ],
   "survey_build": {
@@ -928,20 +943,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T03:57 kembhavi-2017-tqa: step -> verify",
-    "2026-08-01T03:57 kembhavi-2017-tqa: step -> queue-ops",
-    "2026-08-01T03:57 kembhavi-2017-tqa: step -> podcast",
-    "2026-08-01T04:12 completed kembhavi-2017-tqa (verdict=approved, rounds=2)",
-    "2026-08-01T04:15 started mattson-2020-mlperf-training ('MLPerf Training Benchmark')",
-    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> fetch",
-    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> figures",
-    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> draft",
-    "2026-08-01T04:35 mattson-2020-mlperf-training: step -> critique (round 1)",
-    "2026-08-01T04:49 mattson-2020-mlperf-training: step -> revise",
-    "2026-08-01T04:53 mattson-2020-mlperf-training: step -> critique (round 2)",
-    "2026-08-01T04:59 mattson-2020-mlperf-training: step -> verify",
-    "2026-08-01T05:00 mattson-2020-mlperf-training: step -> queue-ops",
-    "2026-08-01T05:00 mattson-2020-mlperf-training: step -> podcast",
     "2026-08-01T05:19 completed mattson-2020-mlperf-training (verdict=approved, rounds=2)",
     "2026-08-01T05:24 started voorhees-2001-trec-qa-track ('The TREC question answering track')",
     "2026-08-01T05:24 skipped voorhees-2001-trec-qa-track (Full text not obtainable in verifiable form. NLE 2001 (DOI 10.1017/S1351324901002789) is paywalled at Cambridge; S2's and Unpaywall's sole open-access link for this DOI resolves to a DIFFERENT paper (Voorhees & Tice, 'The TREC-8 Question Answering Track', LREC 2000) - verified by fetching it. NIST hosts the real article (tsapps.nist.gov/publication/get_pdf.cfm?pub_id=151518) but it is a 2001 Type-3 bitmap-font PDF: single-letter font names, no ToUnicode map, 36% printable-ASCII on extraction, pdftotext returns the same garbage. OCR would defeat the pipeline's core guarantee - the critic verifies quotations character-by-character against paper.txt, and with OCR'd text could not distinguish a fabricated quote from an OCR artifact, yielding a page that looks verified but is not. Topic already represented by voorhees-2000-trec-qa (SIGIR 2000, benchmarks+evaluations). LREC 2000 version rejected as substitute at 11 citations.)",
@@ -977,6 +978,20 @@
     "2026-08-01T08:29 fisch-2019-mrqa: step -> verify",
     "2026-08-01T08:30 fisch-2019-mrqa: step -> queue-ops",
     "2026-08-01T08:30 fisch-2019-mrqa: step -> podcast",
-    "2026-08-01T08:51 completed fisch-2019-mrqa (verdict=approved_with_notes, rounds=2)"
+    "2026-08-01T08:51 completed fisch-2019-mrqa (verdict=approved_with_notes, rounds=2)",
+    "2026-08-01T08:53 started lin-2006-reusable-qa-collection ('Building a reusable test collection for question answering')",
+    "2026-08-01T08:54 skipped lin-2006-reusable-qa-collection (Reached the queue head only via an inflated citation_count (283). That figure came from S2 CorpusId 16596123, whose DOI 10.1002/ASI.V57:7 is a JASIST *issue*-level DOI, so it aggregates citations to every paper in that issue (surveillance, organizational learning, blogging). The clean record (CorpusId 36452116, DOI 10.1002/asi.20348) has 50 citations, all topically coherent. Corrected the queue entry to 50 and re-sorted; the paper remains queued at its true priority. PDF cached at work/lin-2006-reusable-qa-collection/.)",
+    "2026-08-01T08:54 started mees-2022-calvin ('CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks')",
+    "2026-08-01T08:59 mees-2022-calvin: step -> fetch",
+    "2026-08-01T08:59 mees-2022-calvin: step -> figures",
+    "2026-08-01T08:59 mees-2022-calvin: step -> draft",
+    "2026-08-01T09:12 mees-2022-calvin: step -> critique (round 1)",
+    "2026-08-01T09:22 mees-2022-calvin: step -> revise",
+    "2026-08-01T09:28 mees-2022-calvin: step -> critique (round 2)",
+    "2026-08-01T09:33 mees-2022-calvin: step -> critique (round 3)",
+    "2026-08-01T09:38 mees-2022-calvin: step -> verify",
+    "2026-08-01T09:39 mees-2022-calvin: step -> queue-ops",
+    "2026-08-01T09:39 mees-2022-calvin: step -> podcast",
+    "2026-08-01T09:54 completed mees-2022-calvin (verdict=approved, rounds=3)"
   ]
 }

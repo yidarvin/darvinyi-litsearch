@@ -10125,6 +10125,22 @@
       "explainer": "papers/fisch-2019-mrqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/fisch-2019-mrqa.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "mees-2022-calvin",
+      "short": "CALVIN",
+      "title": "CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks",
+      "authors": "Mees, Hermann, Rosete-Beas, Burgard",
+      "year": 2022,
+      "date": "2021-12",
+      "venue": "IEEE Robotics and Automation Letters (RA-L)",
+      "citation_count": 678,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Freiburg / TU Nuremberg",
+      "abstract": "A from-scratch PyBullet benchmark pairing 24 hours of unscripted, teleoperated \"play\" data across four structurally related tabletop environments (A-D) with a language-conditioned long-horizon control challenge: chain up to five free-form instructions in a row, from a full RGB-D + tactile + proprioceptive sensor suite, with zero-shot transfer to a held-out fourth room. A re-implemented multi-context imitation learning (MCIL) baseline tops out at 54.2% on single-instruction control (MTLC) in its easiest setting but ranges as low as 30.8% across the full sensor/split grid, and manages only 0.08% on the full five-instruction chain (LH-MTLC), collapsing to 0% the moment training crosses environments.",
+      "explainer": "papers/mees-2022-calvin.html",
+      "audio_url": "https://pod.darvinyi.com/audio/mees-2022-calvin.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17203,6 +17219,8 @@
     { "from": "fisch-2019-mrqa", "to": "williams-2017-multinli" },
     { "from": "fisch-2019-mrqa", "to": "voorhees-2000-trec-qa" },
     { "from": "khashabi-2020-unifiedqa", "to": "fisch-2019-mrqa" },
-    { "from": "beltagy-2020-longformer", "to": "fisch-2019-mrqa" }
+    { "from": "beltagy-2020-longformer", "to": "fisch-2019-mrqa" },
+    { "from": "mees-2022-calvin", "to": "yu-2019-meta-world" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "mees-2022-calvin" }
   ]
 }
