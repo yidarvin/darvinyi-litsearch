@@ -470,9 +470,30 @@ file* stated the direction correctly one paragraph away. So: after writing
 a replacement, verify it against every row exactly as if it were a fresh
 claim, and re-read your own response file for a sentence that contradicts
 what you just put on the page. Prefer the weaker true statement; a fix that
-drops a comparison entirely is better than a fix that inverts one. Re-run
-`python3 scripts/lint_pages.py <slug> --fix` before finishing. You do not
-advance the step yourself here either — the orchestrator moves `critique`
+drops a comparison entirely is better than a fix that inverts one.
+
+**A claim lives on seven surfaces, and a fix that reaches six is still a
+defect.** The full set is: the hero **dek**, `<meta name="description">`,
+`og:description`, the **body section** that argues it, the **takeaway**,
+the **verdict grid** row, and — the one that keeps getting missed — the
+node's **`abstract` in `data/papers.json`**. The abstract renders in the
+map's side panel, so when it disagrees with the page, the graph
+contradicts the explainer it links to, in public.
+
+This has now shipped on two consecutive papers. On CLUE a corrected
+superlative reached the results §, critique § and takeaways but not the
+node; on TQA a population error ("every baseline") sat on three surfaces
+including the node, *after* the brief had called that risk out by name.
+Remembering the list demonstrably does not work, so **produce the
+evidence instead**: for each blocker, `response-r<N>.json` must carry a
+`surfaces_checked` object mapping each of the seven surface names to
+either the corrected text or `"n/a — claim does not appear here"`. Grep
+for the claim's distinctive number or phrase across `public/papers/<slug>.html`
+**and** `data/papers.json` rather than reasoning about where you think you
+put it. **A blocker entry with no `surfaces_checked` is not finished.**
+
+Re-run `python3 scripts/lint_pages.py <slug> --fix` before finishing. You do
+not advance the step yourself here either — the orchestrator moves `critique`
 to round `N+1` once it has your response.
 
 ## What you never do
