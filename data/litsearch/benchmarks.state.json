@@ -884,6 +884,12 @@
       "slug": "ye-2024-tooleyes",
       "reason": "slug corrected to ye-2025-tooleyes: published at COLING 2025 (aclanthology 2025.coling-main.12), queue said arXiv",
       "date": "2026-07-28"
+    },
+    {
+      "title": "The TREC question answering track",
+      "slug": "voorhees-2001-trec-qa-track",
+      "reason": "Full text not obtainable in verifiable form. NLE 2001 (DOI 10.1017/S1351324901002789) is paywalled at Cambridge; S2's and Unpaywall's sole open-access link for this DOI resolves to a DIFFERENT paper (Voorhees & Tice, 'The TREC-8 Question Answering Track', LREC 2000) - verified by fetching it. NIST hosts the real article (tsapps.nist.gov/publication/get_pdf.cfm?pub_id=151518) but it is a 2001 Type-3 bitmap-font PDF: single-letter font names, no ToUnicode map, 36% printable-ASCII on extraction, pdftotext returns the same garbage. OCR would defeat the pipeline's core guarantee - the critic verifies quotations character-by-character against paper.txt, and with OCR'd text could not distinguish a fabricated quote from an OCR artifact, yielding a page that looks verified but is not. Topic already represented by voorhees-2000-trec-qa (SIGIR 2000, benchmarks+evaluations). LREC 2000 version rejected as substitute at 11 citations.",
+      "date": "2026-08-01"
     }
   ],
   "survey_build": {
@@ -895,8 +901,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T00:28 zhu-2020-robosuite: step -> revise",
-    "2026-08-01T00:36 zhu-2020-robosuite: step -> critique (round 2)",
     "2026-08-01T00:47 zhu-2020-robosuite: step -> verify",
     "2026-08-01T00:48 zhu-2020-robosuite: step -> queue-ops",
     "2026-08-01T00:48 zhu-2020-robosuite: step -> podcast",
@@ -944,6 +948,8 @@
     "2026-08-01T04:59 mattson-2020-mlperf-training: step -> verify",
     "2026-08-01T05:00 mattson-2020-mlperf-training: step -> queue-ops",
     "2026-08-01T05:00 mattson-2020-mlperf-training: step -> podcast",
-    "2026-08-01T05:19 completed mattson-2020-mlperf-training (verdict=approved, rounds=2)"
+    "2026-08-01T05:19 completed mattson-2020-mlperf-training (verdict=approved, rounds=2)",
+    "2026-08-01T05:24 started voorhees-2001-trec-qa-track ('The TREC question answering track')",
+    "2026-08-01T05:24 skipped voorhees-2001-trec-qa-track (Full text not obtainable in verifiable form. NLE 2001 (DOI 10.1017/S1351324901002789) is paywalled at Cambridge; S2's and Unpaywall's sole open-access link for this DOI resolves to a DIFFERENT paper (Voorhees & Tice, 'The TREC-8 Question Answering Track', LREC 2000) - verified by fetching it. NIST hosts the real article (tsapps.nist.gov/publication/get_pdf.cfm?pub_id=151518) but it is a 2001 Type-3 bitmap-font PDF: single-letter font names, no ToUnicode map, 36% printable-ASCII on extraction, pdftotext returns the same garbage. OCR would defeat the pipeline's core guarantee - the critic verifies quotations character-by-character against paper.txt, and with OCR'd text could not distinguish a fabricated quote from an OCR artifact, yielding a page that looks verified but is not. Topic already represented by voorhees-2000-trec-qa (SIGIR 2000, benchmarks+evaluations). LREC 2000 version rejected as substitute at 11 citations.)"
   ]
 }
