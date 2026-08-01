@@ -909,6 +909,15 @@
         "2 critic rounds. r1: fabricated quotation (two paper sentences blended inside one set of quote marks), an asserted total absence the paper does contradict, wrong datasets in the contamination row, plus two promoted items - the page disagreed with itself on the excluded-model count (four vs five; five is right) and tables.md overclaimed that all Table 6 rows re-sum. Episode agent then found a third undercount: GPT-4o beats HPE on 3 of 7 OE zero-shot dimensions, not 2 (Instruction Alignment 80 vs 60 was missed) - verified and fixed. Also corrected the tables.md RM denominator (20 trials, not 1,000 chains; all 15 cells are multiples of 1/20) and normalized DynamiCrafter spelling. Tagged evaluations in addition to benchmarks: the rubric explicitly permits both, and Implicit Manipulative Evaluation is a genuinely novel protocol."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "li-2024-simpler",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 6 blockers in r1. Root cause of the headline blocker was in tables.md: Table V's 8 columns were read as '4 Success then 4 Grasp' when they interleave per task, which put the wrong task name (Put Eggplant, not Put Carrot on Plate) on the page. Fixed at source and re-verified against PDF x-coordinates. Other blockers: false metric-scope claim, superlatives Table IV contradicts, a wrong cell (0.087 vs 0.142), merged sample sizes across four surfaces, overstated correlation ceiling. Episode agent then flagged three items: a genuine Table I vs Tables IV/XII drawer-column inconsistency in the paper (verified, added to critique + tables.md), an unsupported 'paired' gloss on the ~1500-episode figure (fixed across four surfaces), and a claim that SIMPLER doesn't cite Meta-World -- that one was wrong, the paper spells it 'Meta-world' at reference [73], so the edge stands. Tagged evaluations in addition to benchmarks: MMRV is a new metric and validated real-to-sim proxy evaluation is a new paradigm."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -952,17 +961,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T06:23 li-2022-behavior-1k: step -> queue-ops",
-    "2026-08-01T06:23 li-2022-behavior-1k: step -> podcast",
-    "2026-08-01T06:37 completed li-2022-behavior-1k (verdict=approved, rounds=2)",
-    "2026-08-01T06:40 started majumdar-2024-openeqa ('OpenEQA: Embodied Question Answering in the Era of Foundation Models')",
-    "2026-08-01T07:00 majumdar-2024-openeqa: step -> fetch",
-    "2026-08-01T07:00 majumdar-2024-openeqa: step -> figures",
-    "2026-08-01T07:00 majumdar-2024-openeqa: step -> draft",
-    "2026-08-01T07:00 majumdar-2024-openeqa: step -> critique (round 1)",
-    "2026-08-01T07:12 majumdar-2024-openeqa: step -> revise",
-    "2026-08-01T07:19 majumdar-2024-openeqa: step -> critique (round 2)",
-    "2026-08-01T07:27 majumdar-2024-openeqa: step -> verify",
     "2026-08-01T07:28 majumdar-2024-openeqa: step -> queue-ops",
     "2026-08-01T07:28 majumdar-2024-openeqa: step -> podcast",
     "2026-08-01T07:42 completed majumdar-2024-openeqa (verdict=approved, rounds=2)",
@@ -1001,6 +999,17 @@
     "2026-08-01T10:38 qin-2024-worldsimbench: step -> verify",
     "2026-08-01T10:39 qin-2024-worldsimbench: step -> queue-ops",
     "2026-08-01T10:39 qin-2024-worldsimbench: step -> podcast",
-    "2026-08-01T10:51 completed qin-2024-worldsimbench (verdict=approved, rounds=2)"
+    "2026-08-01T10:51 completed qin-2024-worldsimbench (verdict=approved, rounds=2)",
+    "2026-08-01T10:52 started li-2024-simpler ('Evaluating Real-World Robot Manipulation Policies in Simulation')",
+    "2026-08-01T11:20 li-2024-simpler: step -> fetch",
+    "2026-08-01T11:20 li-2024-simpler: step -> figures",
+    "2026-08-01T11:20 li-2024-simpler: step -> draft",
+    "2026-08-01T11:20 li-2024-simpler: step -> critique (round 1)",
+    "2026-08-01T11:37 li-2024-simpler: step -> revise",
+    "2026-08-01T11:47 li-2024-simpler: step -> critique (round 2)",
+    "2026-08-01T11:51 li-2024-simpler: step -> verify",
+    "2026-08-01T11:52 li-2024-simpler: step -> queue-ops",
+    "2026-08-01T11:52 li-2024-simpler: step -> podcast",
+    "2026-08-01T12:09 completed li-2024-simpler (verdict=approved, rounds=2)"
   ]
 }

@@ -10157,6 +10157,22 @@
       "explainer": "papers/qin-2024-worldsimbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/qin-2024-worldsimbench.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "li-2024-simpler",
+      "short": "SIMPLER",
+      "title": "Evaluating Real-World Robot Manipulation Policies in Simulation",
+      "authors": "Li, Hsu, Gu, Pertsch, Mees, …, Su, Vuong, Xiao",
+      "year": 2024,
+      "date": "2024-05",
+      "venue": "CoRL 2024",
+      "citation_count": 468,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UC San Diego / Stanford / UC Berkeley / Google DeepMind",
+      "abstract": "Builds SIMPLER, a suite of simulated Gym environments for real robot manipulation setups (Google Robot and WidowX + BridgeData V2) that closes real-to-sim control and visual gaps via offline system identification and green-screen/texture-matched \"Visual Matching,\" achieving strong real-and-sim performance correlation (e.g. Pearson r 0.976 on Pick Coke Can, low Mean Maximum Rank Violation) across seven distinct policy checkpoints spanning two robot embodiments — RT-1 at three training stages, RT-1-X, RT-2-X, and Octo-Base on Google Robot, plus Octo-Small added for WidowX + BridgeData V2. Also introduces MMRV, a rank-violation-aware correlation metric, and shows SIMPLER evaluations reproduce real-world policy behavior modes such as sensitivity to camera-pose and table-texture distribution shifts.",
+      "explainer": "papers/li-2024-simpler.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-simpler.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17246,6 +17262,13 @@
     { "from": "khashabi-2020-unifiedqa", "to": "fisch-2019-mrqa" },
     { "from": "beltagy-2020-longformer", "to": "fisch-2019-mrqa" },
     { "from": "mees-2022-calvin", "to": "yu-2019-meta-world" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "mees-2022-calvin" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "mees-2022-calvin" },
+    { "from": "li-2024-simpler", "to": "ahn-2022-saycan" },
+    { "from": "li-2024-simpler", "to": "james-2020-rlbench" },
+    { "from": "li-2024-simpler", "to": "li-2022-behavior-1k" },
+    { "from": "li-2024-simpler", "to": "mees-2022-calvin" },
+    { "from": "li-2024-simpler", "to": "srivastava-2021-behavior" },
+    { "from": "li-2024-simpler", "to": "yu-2019-meta-world" },
+    { "from": "li-2024-simpler", "to": "zhu-2020-robosuite" }
   ]
 }
