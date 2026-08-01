@@ -9917,6 +9917,22 @@
       "explainer": "papers/qian-2025-userbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/qian-2025-userbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "jiang-2025-medagentbench",
+      "short": "MedAgentBench",
+      "title": "MedAgentBench: A Realistic Virtual EHR Environment to Benchmark Medical LLM Agents",
+      "authors": "Jiang, Black, Geng, Park, Zou, Ng, Chen",
+      "year": 2025,
+      "date": "2025-01",
+      "venue": "NEJM AI",
+      "citation_count": 50,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "A 300-task, physician-written benchmark testing LLM agents against a FHIR-compliant virtual EHR built from 100 de-identified Stanford patients (785,207 real clinical records, synthetic identities layered on top). Half the tasks are read-only queries and half are state-changing writes (orders, referrals, documentation); Claude 3.5 Sonnet v2 leads overall (69.67%) and on queries (85.33%), but Gemini-1.5 Pro posts the best action success rate (71.33%) despite a lower overall score, and action-task grading checks the correctness of the proposed write payload rather than a verified database state change.",
+      "explainer": "papers/jiang-2025-medagentbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/jiang-2025-medagentbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16335,6 +16351,7 @@
     { "from": "shao-2026-medagentsbench", "to": "jin-2020-medqa" },
     { "from": "shao-2026-medagentsbench", "to": "hendrycks-2020-mmlu" },
     { "from": "shao-2026-medagentsbench", "to": "jin-2019-pubmedqa" },
+    { "from": "shao-2026-medagentsbench", "to": "jiang-2025-medagentbench" },
     { "from": "ye-2025-tooleyes", "to": "ye-2024-rotbench" },
     { "from": "ye-2025-tooleyes", "to": "huang-2023-metatool" },
     { "from": "ye-2025-tooleyes", "to": "qin-2023-toolllm" },
@@ -16866,6 +16883,10 @@
     { "from": "qian-2025-userbench", "to": "yao-2024-tau-bench" },
     { "from": "qian-2025-userbench", "to": "zhu-2025-multiagentbench" },
     { "from": "elfeki-2026-hil-bench", "to": "qian-2025-userbench" },
-    { "from": "pu-2026-lhaw", "to": "qian-2025-userbench" }
+    { "from": "pu-2026-lhaw", "to": "qian-2025-userbench" },
+    { "from": "jiang-2025-medagentbench", "to": "liu-2023-agentbench" },
+    { "from": "jiang-2025-medagentbench", "to": "patil-2023-gorilla" },
+    { "from": "jiang-2025-medagentbench", "to": "yao-2024-tau-bench" },
+    { "from": "jiang-2025-medagentbench", "to": "schmidgall-2024-agentclinic" }
   ]
 }

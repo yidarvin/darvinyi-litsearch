@@ -774,6 +774,15 @@
         "arXiv 2025; no venue correction (SEA @ NeurIPS 2025 workshop poster + ACL ARR submission only). 2 critic rounds, 8 blockers r1 - the most since DataSciBench; round 2 clean. Two of the builder's four accusations against the paper were WRONG (the 80% search-validity pushback ignored Table 4; the Table 6 'discrepancy' is the paper's own documented Travel-22/33/44 choice-ablation subset). Also: a total reported as an active figure (27.32 vs 24.06 - the exact nesting collapse), a caption falsified by the figure the page inlines, a superlative false on 2 columns of the same table, 2 bad quotations (a hybrid and a dropped word), and an invented provenance. Builder ran git checkout on papers.json mid-draft and self-reported; verified nothing lost. 635 nodes / 6947 edges. Podcast bm_fable 25m51s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "jiang-2025-medagentbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "17th metadata correction, and the most interesting one: venue arXiv -> NEJM AI (vol 2 issue 9, 2025-08-28), resolved via Crossref from a DOI found in the CITING paper's bibliography. Neither DBLP, OpenReview nor S2 had it; the paper carries three different titles across arXiv/DBLP/NEJM. 2 critic rounds, 3 blockers r1: a missed edge (shao-2026-medagentsbench cites this; the builder's grep on the OTHER paper's text hit the hyphenation false negative - reverse-direction sweeps need the same normalization), a false 'no format repair' accusation (the harness does strip tool_code fences), and an invented specific attributing the graders to the two named physicians. Round 2 clean. 636 nodes / 6952 edges. Podcast bm_daniel 22m54s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -805,17 +814,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T14:21 huang-2024-dacode: step -> verify",
-    "2026-07-31T14:21 huang-2024-dacode: step -> queue-ops",
-    "2026-07-31T14:21 huang-2024-dacode: step -> podcast",
-    "2026-07-31T14:35 completed huang-2024-dacode (verdict=approved, rounds=2)",
-    "2026-07-31T14:36 started zhang-2026-datascibench ('DataSciBench: An LLM Agent Benchmark for Data Science')",
-    "2026-07-31T14:54 zhang-2026-datascibench: step -> fetch",
-    "2026-07-31T14:54 zhang-2026-datascibench: step -> figures",
-    "2026-07-31T14:54 zhang-2026-datascibench: step -> draft",
-    "2026-07-31T14:54 zhang-2026-datascibench: step -> draft",
-    "2026-07-31T14:54 zhang-2026-datascibench: step -> critique (round 1)",
-    "2026-07-31T15:10 zhang-2026-datascibench: step -> revise",
     "2026-07-31T15:19 zhang-2026-datascibench: step -> critique (round 2)",
     "2026-07-31T15:31 zhang-2026-datascibench: step -> verify",
     "2026-07-31T15:32 zhang-2026-datascibench: step -> queue-ops",
@@ -854,6 +852,17 @@
     "2026-07-31T18:27 qian-2025-userbench: step -> verify",
     "2026-07-31T18:27 qian-2025-userbench: step -> queue-ops",
     "2026-07-31T18:27 qian-2025-userbench: step -> podcast",
-    "2026-07-31T18:40 completed qian-2025-userbench (verdict=approved, rounds=2)"
+    "2026-07-31T18:40 completed qian-2025-userbench (verdict=approved, rounds=2)",
+    "2026-07-31T18:43 started jiang-2025-medagentbench ('MedAgentBench: A Realistic Virtual EHR Environment to Benchmark Medical LLM Agents')",
+    "2026-07-31T19:00 jiang-2025-medagentbench: step -> fetch",
+    "2026-07-31T19:00 jiang-2025-medagentbench: step -> figures",
+    "2026-07-31T19:00 jiang-2025-medagentbench: step -> draft",
+    "2026-07-31T19:00 jiang-2025-medagentbench: step -> critique (round 1)",
+    "2026-07-31T19:12 jiang-2025-medagentbench: step -> revise",
+    "2026-07-31T19:18 jiang-2025-medagentbench: step -> critique (round 2)",
+    "2026-07-31T19:24 jiang-2025-medagentbench: step -> verify",
+    "2026-07-31T19:25 jiang-2025-medagentbench: step -> queue-ops",
+    "2026-07-31T19:25 jiang-2025-medagentbench: step -> podcast",
+    "2026-07-31T19:36 completed jiang-2025-medagentbench (verdict=approved, rounds=2)"
   ]
 }
