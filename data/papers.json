@@ -10189,6 +10189,22 @@
       "explainer": "papers/chen-2025-robotwin2.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2025-robotwin2.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "qiu-2024-mmedbench",
+      "short": "MMedBench",
+      "title": "Towards Building Multilingual Language Model for Medicine",
+      "authors": "Qiu, Wu, Zhang, Lin, Wang, Zhang, Wang, Xie",
+      "year": 2024,
+      "date": "2024-02",
+      "venue": "Nature Communications",
+      "citation_count": 214,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Shanghai Jiao Tong University / Shanghai AI Laboratory",
+      "abstract": "This paper ships three artifacts: MMedC, a new 25.5-billion-token, six-language medical training corpus; MMedBench, a rationale-annotated multilingual medical QA benchmark (53,566 questions across English, Chinese, Japanese, French, Russian, and Spanish); and MMedLM, MMedLM 2, and MMed-Llama 3, produced by continuing pretraining InternLM, InternLM 2, and Llama 3 on MMedC — the last reaching 67.75% average accuracy versus 62.79% for a same-recipe Llama-3 baseline, and outscoring GPT-3.5 on the nine-task average across four English medical benchmarks (72.59% vs. 67.69%) at 8B parameters.",
+      "explainer": "papers/qiu-2024-mmedbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/qiu-2024-mmedbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17289,6 +17305,22 @@
     { "from": "chen-2025-robotwin2", "to": "liu-2023-libero" },
     { "from": "chen-2025-robotwin2", "to": "mees-2022-calvin" },
     { "from": "chen-2025-robotwin2", "to": "yu-2019-meta-world" },
-    { "from": "chen-2025-robotwin2", "to": "zhu-2020-robosuite" }
+    { "from": "chen-2025-robotwin2", "to": "zhu-2020-robosuite" },
+    { "from": "qiu-2024-mmedbench", "to": "brown-2020-gpt3" },
+    { "from": "qiu-2024-mmedbench", "to": "chung-2022-flan" },
+    { "from": "qiu-2024-mmedbench", "to": "hendrycks-2020-mmlu" },
+    { "from": "qiu-2024-mmedbench", "to": "jiang-2023-mistral-7b" },
+    { "from": "qiu-2024-mmedbench", "to": "jin-2019-pubmedqa" },
+    { "from": "qiu-2024-mmedbench", "to": "jin-2020-medqa" },
+    { "from": "qiu-2024-mmedbench", "to": "lewis-2020-rag" },
+    { "from": "qiu-2024-mmedbench", "to": "lin-2004-rouge" },
+    { "from": "qiu-2024-mmedbench", "to": "openai-2023-gpt4" },
+    { "from": "qiu-2024-mmedbench", "to": "papineni-2002-bleu" },
+    { "from": "qiu-2024-mmedbench", "to": "singhal-2023-med-palm" },
+    { "from": "qiu-2024-mmedbench", "to": "touvron-2023-llama" },
+    { "from": "qiu-2024-mmedbench", "to": "vilares-2019-headqa" },
+    { "from": "qiu-2024-mmedbench", "to": "wang-2022-self-consistency" },
+    { "from": "qiu-2024-mmedbench", "to": "zheng-2023-mt-bench" },
+    { "from": "bedi-2025-medhelm", "to": "qiu-2024-mmedbench" }
   ]
 }

@@ -927,6 +927,15 @@
         "2 critic rounds, 3 blockers in r1: a nine-vs-eight row count on Table 3 (the 9 traced to tables.md's own flagged-but-used guess), a takeaway comparing against the wrong baseline where the correct baseline would have undercut its own thesis, and a truncated figure whose caption described rows the image didn't contain. Episode agent then found the abstract's third headline number - 'a 10.9% gain in code generation success rate' - appears exactly once in the paper and derives from nothing in Table 1 (like-for-like pairings give 14.7 and 7.4; all-variant means give 9.5). Verified and added to the critique, alongside a wording fix: the 367/228% figures are configuration averages over four tasks, not a single cell. Also replaced tables.md's 'rounding noise' diagnosis of the ACT/DP Average-row mismatch with an explicit 'unexplained, do not diagnose' - rounding cannot explain it, since the other six columns round correctly. Declined evaluations: this is a generator + suite, not a new way to evaluate."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "qiu-2024-mmedbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 6 blockers in r1 - three of them summary-surface-only (dek/meta/og/node abstract correct nowhere, body correct everywhere): a nine-tasks-vs-four-benchmarks conflation that also claimed a clean GPT-3.5 sweep the paper loses twice, a 'most of the gap' that is 43.2%, and a dek making MMedBench pair a corpus with itself. Plus a table mislabelling GPT-4 (5-shot, CoT) as zero-shot (source was tables.md, since fixed and annotated), a nonexistent zero-shot regime for the MMed models, and a three-vs-four metric count. Episode agent then found two substantive items, both verified and added to the critique: Table 1's zero-shot GPT-4 average (74.27) does not reconcile with the mean of its own six cells (75.31) while every other row reconciles within 0.02; and the six language columns are not the same task - French test is 48.39% multiple-correct where four other languages are 0%, Russian is processed into binary choice (50% floor), and test splits run 199 to 3,426 under an unweighted macro-mean. Declined evaluations: a rationale-annotated benchmark plus a corpus and models, not a new way to evaluate."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -970,17 +979,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T08:30 fisch-2019-mrqa: step -> podcast",
-    "2026-08-01T08:51 completed fisch-2019-mrqa (verdict=approved_with_notes, rounds=2)",
-    "2026-08-01T08:53 started lin-2006-reusable-qa-collection ('Building a reusable test collection for question answering')",
-    "2026-08-01T08:54 skipped lin-2006-reusable-qa-collection (Reached the queue head only via an inflated citation_count (283). That figure came from S2 CorpusId 16596123, whose DOI 10.1002/ASI.V57:7 is a JASIST *issue*-level DOI, so it aggregates citations to every paper in that issue (surveillance, organizational learning, blogging). The clean record (CorpusId 36452116, DOI 10.1002/asi.20348) has 50 citations, all topically coherent. Corrected the queue entry to 50 and re-sorted; the paper remains queued at its true priority. PDF cached at work/lin-2006-reusable-qa-collection/.)",
-    "2026-08-01T08:54 started mees-2022-calvin ('CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks')",
-    "2026-08-01T08:59 mees-2022-calvin: step -> fetch",
-    "2026-08-01T08:59 mees-2022-calvin: step -> figures",
-    "2026-08-01T08:59 mees-2022-calvin: step -> draft",
-    "2026-08-01T09:12 mees-2022-calvin: step -> critique (round 1)",
-    "2026-08-01T09:22 mees-2022-calvin: step -> revise",
-    "2026-08-01T09:28 mees-2022-calvin: step -> critique (round 2)",
     "2026-08-01T09:33 mees-2022-calvin: step -> critique (round 3)",
     "2026-08-01T09:38 mees-2022-calvin: step -> verify",
     "2026-08-01T09:39 mees-2022-calvin: step -> queue-ops",
@@ -1019,6 +1017,17 @@
     "2026-08-01T12:54 chen-2025-robotwin2: step -> verify",
     "2026-08-01T12:54 chen-2025-robotwin2: step -> queue-ops",
     "2026-08-01T12:54 chen-2025-robotwin2: step -> podcast",
-    "2026-08-01T13:11 completed chen-2025-robotwin2 (verdict=approved, rounds=2)"
+    "2026-08-01T13:11 completed chen-2025-robotwin2 (verdict=approved, rounds=2)",
+    "2026-08-01T13:12 started qiu-2024-mmedbench ('Towards Building Multilingual Language Model for Medicine (MMedBench)')",
+    "2026-08-01T13:33 qiu-2024-mmedbench: step -> fetch",
+    "2026-08-01T13:33 qiu-2024-mmedbench: step -> figures",
+    "2026-08-01T13:33 qiu-2024-mmedbench: step -> draft",
+    "2026-08-01T13:34 qiu-2024-mmedbench: step -> critique (round 1)",
+    "2026-08-01T13:46 qiu-2024-mmedbench: step -> revise",
+    "2026-08-01T13:50 qiu-2024-mmedbench: step -> critique (round 2)",
+    "2026-08-01T13:54 qiu-2024-mmedbench: step -> verify",
+    "2026-08-01T13:54 qiu-2024-mmedbench: step -> queue-ops",
+    "2026-08-01T13:54 qiu-2024-mmedbench: step -> podcast",
+    "2026-08-01T14:16 completed qiu-2024-mmedbench (verdict=approved, rounds=2)"
   ]
 }
