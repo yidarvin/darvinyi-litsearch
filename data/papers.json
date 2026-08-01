@@ -9949,6 +9949,22 @@
       "explainer": "papers/yu-2019-meta-world.html",
       "audio_url": "https://pod.darvinyi.com/audio/yu-2019-meta-world.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "kuznetsova-2020-open-images-v4",
+      "short": "Open Images V4",
+      "title": "The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale",
+      "authors": "Kuznetsova, Rom, Alldrin, Uijlings, Krasin, Pont-Tuset, Kamali, Popov, Malloci, Kolesnikov, Duerig, Ferrari",
+      "year": 2020,
+      "date": "2018-11",
+      "venue": "IJCV",
+      "citation_count": 1631,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Google",
+      "abstract": "9,178,275 Creative-Commons Flickr images unified across three annotation types on the same pictures: 30.1M image-level labels (19,794 classes, machine-proposed then human-verified, positive+negative), 15.4M bounding boxes (600 classes, 17.4x COCO's total box count across COCO's 80 classes), and 374,768 train-split visual-relationship triplets (329 distinct types, 57 classes). Introduces mAP_OI, a detection metric correcting standard PASCAL/COCO mAP for non-exhaustive labeling, class hierarchy, and group-of boxes; box quality validated at 97.7% precision / 98.2% recall on an alphabetically-sampled class audit, image-level label recall measured at 43-59% against a held-out expert re-annotation.",
+      "explainer": "papers/kuznetsova-2020-open-images-v4.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kuznetsova-2020-open-images-v4.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16910,6 +16926,11 @@
     { "from": "yu-2019-meta-world", "to": "schulman-2017-ppo" },
     { "from": "yu-2019-meta-world", "to": "schulman-2015-trpo" },
     { "from": "yu-2019-meta-world", "to": "haarnoja-2018-sac" },
-    { "from": "srivastava-2021-behavior", "to": "yu-2019-meta-world" }
+    { "from": "srivastava-2021-behavior", "to": "yu-2019-meta-world" },
+    { "from": "kuznetsova-2020-open-images-v4", "to": "deng-2009-imagenet" },
+    { "from": "kuznetsova-2020-open-images-v4", "to": "lin-2014-coco" },
+    { "from": "kuznetsova-2020-open-images-v4", "to": "russakovsky-2015-ilsvrc" },
+    { "from": "kuznetsova-2020-open-images-v4", "to": "krizhevsky-2009-cifar" },
+    { "from": "zang-2021-photochat", "to": "kuznetsova-2020-open-images-v4" }
   ]
 }

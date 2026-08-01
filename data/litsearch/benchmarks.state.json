@@ -792,6 +792,15 @@
         "CoRL 2019, 1724 citations - most-cited paper this pipeline has processed. Queue reprioritized before this paper (head had drifted to 40-cite entries while 74 >=100-cite entries waited). arXiv PDF serves v2 (2021) which says it updates the CoRL manuscript but carries no itemized changelog - verified by full-text sweep. 2 critic rounds, 3 blockers r1: a factual error claiming ML10 and ML45 share a train/test split (the held-out fives are disjoint and ML10's test tasks are ML45 training tasks), plus TWO false accusations against the paper - a mis-stated MT50 'internal tension' the paper explains in Figure 16's caption, and a 'no variance reported' claim falsified by Appendix C's n=10 seed-sensitivity bands. Round 2 clean. The episode agent then found a real paper defect both builder and critic missed: p.7's prose inverts the MAML/RL2 pairing for ML10 test (Table 1 says MAML 31.6, RL2 35.8) while the ML45 sentence one line later is correct - added to the page. 637 nodes / 6959 edges. Podcast af_bella 29m35s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "kuznetsova-2020-open-images-v4",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "IJCV 2020, 1631 citations. NO metadata correction - I wrongly told the builder the queue said year 2018 (inferred from the arXiv id instead of reading the entry, which already said 2020/IJCV 2020); the builder caught it. 2 critic rounds, 3 blockers r1: a FABRICATED 'on shared classes' restriction on the 17.4x box-count claim, in 3 places incl. the node abstract - and the fabrication inverts the picture, since the adjacent Table 6 column (Open Images All, 200 classes) has 4.8x FEWER boxes than COCO; a visual-relationship criterion misstated twice in one clause (same-class + 20% overlap, vs the real different-classes + 20% enlargement); and a figure alt/caption that misdescribed the chart above it. Round 2 clean. First use of the new report.json accusations block: all 4 accusations verified TRUE and the critic audited the searches rather than re-deriving, catching one gap (a p.18 mitigation the builder missed). Episode was re-rendered after the agent self-caught a fabricated citation-behaviour claim; Cloudflare serves the superseded render at the canonical URL until the 4h TTL expires - origin and feed are correct. 638 nodes / 6964 edges. Podcast bf_emma 29m23s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -823,17 +832,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T16:21 cheng-2025-embodiedeval: step -> critique (round 2)",
-    "2026-07-31T16:28 cheng-2025-embodiedeval: step -> verify",
-    "2026-07-31T16:29 cheng-2025-embodiedeval: step -> queue-ops",
-    "2026-07-31T16:29 cheng-2025-embodiedeval: step -> podcast",
-    "2026-07-31T16:40 completed cheng-2025-embodiedeval (verdict=approved, rounds=2)",
-    "2026-07-31T16:41 started bedi-2025-medhelm ('MedHELM: Holistic Evaluation of Large Language Models for Medical Tasks')",
-    "2026-07-31T17:04 bedi-2025-medhelm: step -> fetch",
-    "2026-07-31T17:04 bedi-2025-medhelm: step -> figures",
-    "2026-07-31T17:04 bedi-2025-medhelm: step -> draft",
-    "2026-07-31T17:05 bedi-2025-medhelm: step -> draft",
-    "2026-07-31T17:05 bedi-2025-medhelm: step -> critique (round 1)",
     "2026-07-31T17:18 bedi-2025-medhelm: step -> revise",
     "2026-07-31T17:22 bedi-2025-medhelm: step -> critique (round 2)",
     "2026-07-31T17:28 bedi-2025-medhelm: step -> verify",
@@ -872,6 +870,17 @@
     "2026-07-31T20:35 yu-2019-meta-world: step -> verify",
     "2026-07-31T20:36 yu-2019-meta-world: step -> queue-ops",
     "2026-07-31T20:36 yu-2019-meta-world: step -> podcast",
-    "2026-07-31T20:48 completed yu-2019-meta-world (verdict=approved, rounds=2)"
+    "2026-07-31T20:48 completed yu-2019-meta-world (verdict=approved, rounds=2)",
+    "2026-07-31T20:51 started kuznetsova-2020-open-images-v4 ('The Open Images Dataset V4: Unified image classification, object detection, and visual relationship detection at scale')",
+    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> fetch",
+    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> figures",
+    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> draft",
+    "2026-07-31T21:18 kuznetsova-2020-open-images-v4: step -> critique (round 1)",
+    "2026-07-31T21:30 kuznetsova-2020-open-images-v4: step -> revise",
+    "2026-07-31T21:34 kuznetsova-2020-open-images-v4: step -> critique (round 2)",
+    "2026-07-31T21:40 kuznetsova-2020-open-images-v4: step -> verify",
+    "2026-07-31T21:41 kuznetsova-2020-open-images-v4: step -> queue-ops",
+    "2026-07-31T21:41 kuznetsova-2020-open-images-v4: step -> podcast",
+    "2026-07-31T21:59 completed kuznetsova-2020-open-images-v4 (verdict=approved, rounds=2)"
   ]
 }
