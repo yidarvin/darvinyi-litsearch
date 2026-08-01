@@ -801,6 +801,15 @@
         "IJCV 2020, 1631 citations. NO metadata correction - I wrongly told the builder the queue said year 2018 (inferred from the arXiv id instead of reading the entry, which already said 2020/IJCV 2020); the builder caught it. 2 critic rounds, 3 blockers r1: a FABRICATED 'on shared classes' restriction on the 17.4x box-count claim, in 3 places incl. the node abstract - and the fabrication inverts the picture, since the adjacent Table 6 column (Open Images All, 200 classes) has 4.8x FEWER boxes than COCO; a visual-relationship criterion misstated twice in one clause (same-class + 20% overlap, vs the real different-classes + 20% enlargement); and a figure alt/caption that misdescribed the chart above it. Round 2 clean. First use of the new report.json accusations block: all 4 accusations verified TRUE and the critic audited the searches rather than re-deriving, catching one gap (a p.18 mitigation the builder missed). Episode was re-rendered after the agent self-caught a fabricated citation-behaviour claim; Cloudflare serves the superseded render at the canonical URL until the 4h TTL expires - origin and feed are correct. 638 nodes / 6964 edges. Podcast bf_emma 29m23s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "liu-2023-libero",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "NeurIPS 2023, 1255 citations. 2 critic rounds, 3 blockers r1: a wrong comparison set ('best FWT of all five algorithms' when MTL's FWT/NBT cells are literally blank - only 4 report it); a real paper defect the builder had chosen not to assert (Figure 1's box captions are swapped relative to both S4.2 and the thumbnails inside those boxes, verified at 300dpi) - now named on the page; and an invented CORA contents list. Round 2 clean. Second use of the accusations block and the first fully-clean audit: all 3 claims true and all 3 rebuttal searches independently re-verified. The builder also correctly AVOIDED a false edge - LIBERO cites ref [59] in-text as 'SuperGLUE' but the printed entry is Sarlin et al.'s SuperGlue feature-matching paper. 639 nodes / 6971 edges. Podcast bm_lewis 35m07s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -832,17 +841,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T17:18 bedi-2025-medhelm: step -> revise",
-    "2026-07-31T17:22 bedi-2025-medhelm: step -> critique (round 2)",
-    "2026-07-31T17:28 bedi-2025-medhelm: step -> verify",
-    "2026-07-31T17:29 bedi-2025-medhelm: step -> queue-ops",
-    "2026-07-31T17:29 bedi-2025-medhelm: step -> podcast",
-    "2026-07-31T17:40 completed bedi-2025-medhelm (verdict=approved, rounds=2)",
-    "2026-07-31T17:43 started qian-2025-userbench ('UserBench: An Interactive Gym Environment for User-Centric Agents')",
-    "2026-07-31T18:02 qian-2025-userbench: step -> fetch",
-    "2026-07-31T18:02 qian-2025-userbench: step -> figures",
-    "2026-07-31T18:02 qian-2025-userbench: step -> draft",
-    "2026-07-31T18:02 qian-2025-userbench: step -> critique (round 1)",
     "2026-07-31T18:15 qian-2025-userbench: step -> revise",
     "2026-07-31T18:19 qian-2025-userbench: step -> critique (round 2)",
     "2026-07-31T18:27 qian-2025-userbench: step -> verify",
@@ -881,6 +879,17 @@
     "2026-07-31T21:40 kuznetsova-2020-open-images-v4: step -> verify",
     "2026-07-31T21:41 kuznetsova-2020-open-images-v4: step -> queue-ops",
     "2026-07-31T21:41 kuznetsova-2020-open-images-v4: step -> podcast",
-    "2026-07-31T21:59 completed kuznetsova-2020-open-images-v4 (verdict=approved, rounds=2)"
+    "2026-07-31T21:59 completed kuznetsova-2020-open-images-v4 (verdict=approved, rounds=2)",
+    "2026-07-31T22:03 started liu-2023-libero ('LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning')",
+    "2026-07-31T22:23 liu-2023-libero: step -> fetch",
+    "2026-07-31T22:23 liu-2023-libero: step -> figures",
+    "2026-07-31T22:23 liu-2023-libero: step -> draft",
+    "2026-07-31T22:23 liu-2023-libero: step -> critique (round 1)",
+    "2026-07-31T22:38 liu-2023-libero: step -> revise",
+    "2026-07-31T22:43 liu-2023-libero: step -> critique (round 2)",
+    "2026-07-31T22:52 liu-2023-libero: step -> verify",
+    "2026-07-31T22:53 liu-2023-libero: step -> queue-ops",
+    "2026-07-31T22:53 liu-2023-libero: step -> podcast",
+    "2026-07-31T23:10 completed liu-2023-libero (verdict=approved, rounds=2)"
   ]
 }

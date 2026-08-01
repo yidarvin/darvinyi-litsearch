@@ -9965,6 +9965,22 @@
       "explainer": "papers/kuznetsova-2020-open-images-v4.html",
       "audio_url": "https://pod.darvinyi.com/audio/kuznetsova-2020-open-images-v4.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "liu-2023-libero",
+      "short": "LIBERO",
+      "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+      "authors": "Liu, Zhu, Gao, Feng, Liu, Zhu, Stone",
+      "year": 2023,
+      "date": "2023-06",
+      "venue": "NeurIPS 2023",
+      "citation_count": 1255,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UT Austin",
+      "abstract": "A procedurally-generated robot-manipulation benchmark of 130 language-conditioned tasks across four suites (LIBERO-Spatial, -Object, -Goal, -100) that each isolate a different kind of declarative/procedural knowledge shift, built to study lifelong learning in decision-making. Across five algorithms and three policy architectures, the paper's central finding is that plain sequential finetuning beats three purpose-built lifelong-learning methods (ER, EWC, PackNet) on forward transfer, and that naive supervised pretraining hurts rather than helps downstream lifelong performance.",
+      "explainer": "papers/liu-2023-libero.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-libero.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16931,6 +16947,13 @@
     { "from": "kuznetsova-2020-open-images-v4", "to": "lin-2014-coco" },
     { "from": "kuznetsova-2020-open-images-v4", "to": "russakovsky-2015-ilsvrc" },
     { "from": "kuznetsova-2020-open-images-v4", "to": "krizhevsky-2009-cifar" },
-    { "from": "zang-2021-photochat", "to": "kuznetsova-2020-open-images-v4" }
+    { "from": "zang-2021-photochat", "to": "kuznetsova-2020-open-images-v4" },
+    { "from": "liu-2023-libero", "to": "devlin-2019-bert" },
+    { "from": "liu-2023-libero", "to": "radford-2019-gpt2" },
+    { "from": "liu-2023-libero", "to": "srivastava-2021-behavior" },
+    { "from": "liu-2023-libero", "to": "wang-2018-glue" },
+    { "from": "liu-2023-libero", "to": "yu-2019-meta-world" },
+    { "from": "liu-2023-libero", "to": "deng-2009-imagenet" },
+    { "from": "liu-2023-libero", "to": "krizhevsky-2009-cifar" }
   ]
 }
