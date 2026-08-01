@@ -10221,6 +10221,22 @@
       "explainer": "papers/osband-2020-bsuite.html",
       "audio_url": "https://pod.darvinyi.com/audio/osband-2020-bsuite.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "singh-2023-scirepeval",
+      "short": "SciRepEval",
+      "title": "SciRepEval: A Multi-Format Benchmark for Scientific Document Representations",
+      "authors": "Singh, D'Arcy, Cohan, Downey, Feldman",
+      "year": 2023,
+      "date": "2022-11",
+      "venue": "EMNLP 2023",
+      "citation_count": 194,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Allen Institute for AI / Northwestern / Yale",
+      "abstract": "Packages 24 tasks across four formats -- classification, regression, proximity ranking, and ad-hoc search -- into one scientific-document-embedding benchmark, absorbing SciDocs's six tasks as a subset (dropping only its noisy 1,000-example recommendation task) while adding 18 more (8 brand-new). Shows that a single shared multi-task embedding (MTL CLS, 69.0 average) lands on par with -- if anything a hair behind -- not multi-tasking at all (SPECTER2 Base, 69.1), while learning a distinct embedding per task format via control codes or lightweight adapters lifts every variant above MTL CLS, to 69.9-71.2 average, with the best config (an ensemble of a control-code and an adapter model) also setting a new result on the separate MDCR citation-recommendation benchmark -- though the authors disclose, without correcting for, roughly 23% of MDCR's candidate papers already appearing in the model's own pre-training data.",
+      "explainer": "papers/singh-2023-scirepeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/singh-2023-scirepeval.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17350,6 +17366,14 @@
     { "from": "osband-2020-bsuite", "to": "vanhasselt-2016-double-dqn" },
     { "from": "chollet-2019-measure-of-intelligence", "to": "osband-2020-bsuite" },
     { "from": "hafner-2022-crafter", "to": "osband-2020-bsuite" },
-    { "from": "hafner-2023-dreamerv3", "to": "osband-2020-bsuite" }
+    { "from": "hafner-2023-dreamerv3", "to": "osband-2020-bsuite" },
+    { "from": "singh-2023-scirepeval", "to": "brown-2020-gpt3" },
+    { "from": "singh-2023-scirepeval", "to": "devlin-2019-bert" },
+    { "from": "singh-2023-scirepeval", "to": "gao-2021-simcse" },
+    { "from": "singh-2023-scirepeval", "to": "muennighoff-2023-mteb" },
+    { "from": "singh-2023-scirepeval", "to": "peters-2018-elmo" },
+    { "from": "singh-2023-scirepeval", "to": "raffel-2020-t5" },
+    { "from": "singh-2023-scirepeval", "to": "sanh-2021-t0" },
+    { "from": "singh-2023-scirepeval", "to": "wang-2019-superglue" }
   ]
 }

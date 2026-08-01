@@ -945,6 +945,15 @@
         "3 critic rounds. r1: an invented score-quantization mechanism (the page inferred that 4-seed percentage scores could only take 5 discrete values, but no experiment is both percentage-scored and 4-seed - most score continuous normalized regret) and a baseline-vintage claim of 'all pre-2017' contradicted by the paper's own 2018 prior-functions citation, across five surfaces. Promoted quote drift in four places to a blocker. r2 closed both but introduced a fifth drifted quotation ('for 10k episodes' appears nowhere; the paper says 'after'). r3 (fix written by orchestrator) approved. My brief was wrong on two counts and the builder caught both: S2's reference list has 16 entries with no externalIds including mis-parsed body text, not 'zero null stubs' - my check tested only for a missing title - and my edge pass missed brockman-2016-openai-gym (absent from S2 entirely) and chollet-2019-measure-of-intelligence (S2 truncates the title). Tagged evaluations alongside benchmarks."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "singh-2023-scirepeval",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 critic rounds, 7 blockers in r1 - the most on one paper. Three were the page contradicting itself (SPECTER credited with beating baselines it trails; Table 2's significance markers read backwards; 'every variant' where PALs is 69.9). Others: wrong per-format split, reversed direction on 69.0 vs 69.1, wrong count and colour description on the SciDocs block, and a 'baselines frozen at submission' claim contradicted by E5-v2/Instructor/Ada-002 all postdating v1 and being evaluated. r2 closed six but the B2 fix inverted the polarity again; r3 (fix written by orchestrator) approved. The markers inverted twice in review, so I re-derived them from the PDF vector layer myself and rewrote tables.md's marker note from the rules (In-Train x=386.9-402.6 has an underline only at y=275.5, the ensemble row) - the old note read as though 62.9 were not underlined, which is what misled the episode agent into proposing a wrong 'fix'. Episode agent also found a genuine third prose/table mismatch, verified and added: the paper says adapter variants beat MTL CTRL overall with Fusion best, but PALs (an adapter variant per the caption) trails MTL CTRL on all three columns and Fusion ties Adapters at every digit while costing 22M params/format against 1M."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -994,18 +1003,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T10:39 qin-2024-worldsimbench: step -> podcast",
-    "2026-08-01T10:51 completed qin-2024-worldsimbench (verdict=approved, rounds=2)",
-    "2026-08-01T10:52 started li-2024-simpler ('Evaluating Real-World Robot Manipulation Policies in Simulation')",
-    "2026-08-01T11:20 li-2024-simpler: step -> fetch",
-    "2026-08-01T11:20 li-2024-simpler: step -> figures",
-    "2026-08-01T11:20 li-2024-simpler: step -> draft",
-    "2026-08-01T11:20 li-2024-simpler: step -> critique (round 1)",
-    "2026-08-01T11:37 li-2024-simpler: step -> revise",
-    "2026-08-01T11:47 li-2024-simpler: step -> critique (round 2)",
-    "2026-08-01T11:51 li-2024-simpler: step -> verify",
-    "2026-08-01T11:52 li-2024-simpler: step -> queue-ops",
-    "2026-08-01T11:52 li-2024-simpler: step -> podcast",
     "2026-08-01T12:09 completed li-2024-simpler (verdict=approved, rounds=2)",
     "2026-08-01T12:10 started chen-2025-robotwin2 ('RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation')",
     "2026-08-01T12:13 chen-2025-robotwin2: step -> fetch",
@@ -1043,6 +1040,18 @@
     "2026-08-01T15:04 osband-2020-bsuite: step -> podcast",
     "2026-08-01T15:24 completed osband-2020-bsuite (verdict=approved, rounds=3)",
     "2026-08-01T15:26 started johri-2025-craft-md ('An evaluation framework for clinical use of large language models in patient interaction tasks')",
-    "2026-08-01T15:26 skipped johri-2025-craft-md (No obtainable full text. Nature Medicine 31(1):77-86, DOI 10.1038/s41591-024-03328-5 is paywalled; Semantic Scholar reports no openAccessPdf, Europe PMC reports isOpenAccess=N with no PMCID, and there is no arXiv preprint. The only preprint is medRxiv 10.1101/2023.09.12.23295399, which is a materially DIFFERENT paper: 8 authors vs the published 12, and scoped to GPT-4/GPT-3.5 on skin disease only. medRxiv records no link to the Nature Medicine DOI. Building an explainer labelled as the 2025 12-author paper from the 2023 8-author preprint would repeat the Voorhees 2001 error (fetching a related-but-different paper), and the critic verifies quotations character-by-character against the supplied PDF, so a version mismatch would be invisible to the loop. Queue entry retained but demoted out of the core work-list (survey/role removed) so it stops reaching the head on every reprioritization; restore both fields if access ever opens.)"
+    "2026-08-01T15:26 skipped johri-2025-craft-md (No obtainable full text. Nature Medicine 31(1):77-86, DOI 10.1038/s41591-024-03328-5 is paywalled; Semantic Scholar reports no openAccessPdf, Europe PMC reports isOpenAccess=N with no PMCID, and there is no arXiv preprint. The only preprint is medRxiv 10.1101/2023.09.12.23295399, which is a materially DIFFERENT paper: 8 authors vs the published 12, and scoped to GPT-4/GPT-3.5 on skin disease only. medRxiv records no link to the Nature Medicine DOI. Building an explainer labelled as the 2025 12-author paper from the 2023 8-author preprint would repeat the Voorhees 2001 error (fetching a related-but-different paper), and the critic verifies quotations character-by-character against the supplied PDF, so a version mismatch would be invisible to the loop. Queue entry retained but demoted out of the core work-list (survey/role removed) so it stops reaching the head on every reprioritization; restore both fields if access ever opens.)",
+    "2026-08-01T15:26 started singh-2023-scirepeval ('SciRepEval: A Multi-Format Benchmark for Scientific Document Representations')",
+    "2026-08-01T15:50 singh-2023-scirepeval: step -> fetch",
+    "2026-08-01T15:50 singh-2023-scirepeval: step -> figures",
+    "2026-08-01T15:50 singh-2023-scirepeval: step -> draft",
+    "2026-08-01T15:51 singh-2023-scirepeval: step -> critique (round 1)",
+    "2026-08-01T16:02 singh-2023-scirepeval: step -> revise",
+    "2026-08-01T16:07 singh-2023-scirepeval: step -> critique (round 2)",
+    "2026-08-01T16:11 singh-2023-scirepeval: step -> critique (round 3)",
+    "2026-08-01T16:13 singh-2023-scirepeval: step -> verify",
+    "2026-08-01T16:13 singh-2023-scirepeval: step -> queue-ops",
+    "2026-08-01T16:13 singh-2023-scirepeval: step -> podcast",
+    "2026-08-01T16:30 completed singh-2023-scirepeval (verdict=approved, rounds=3)"
   ]
 }
