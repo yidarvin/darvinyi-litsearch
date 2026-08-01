@@ -9981,6 +9981,22 @@
       "explainer": "papers/liu-2023-libero.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2023-libero.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "james-2020-rlbench",
+      "short": "RLBench",
+      "title": "RLBench: The Robot Learning Benchmark & Learning Environment",
+      "authors": "James, Ma, Arrojo, Davison",
+      "year": 2020,
+      "date": "2019-09",
+      "venue": "IEEE RA-L",
+      "citation_count": 996,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Imperial College London",
+      "abstract": "Proposes RLBench, a robot-manipulation benchmark and learning environment of 100 hand-designed tasks sharing one Franka Panda arm, camera rig, and task/variation/episode taxonomy, built on V-REP/PyRep. Every task's demonstrations are generated on demand by a motion planner rather than collected from humans, giving an unlimited supply of demos per task/variation. The paper proposes a versioned \"v1.0\" few-shot challenge (10% held-out tasks, 1/5/20-shot) and sketches reinforcement learning, imitation learning, sim-to-real, multi-task learning, and SLAM as further uses, but reports no learned-agent results of its own.",
+      "explainer": "papers/james-2020-rlbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/james-2020-rlbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16954,6 +16970,22 @@
     { "from": "liu-2023-libero", "to": "wang-2018-glue" },
     { "from": "liu-2023-libero", "to": "yu-2019-meta-world" },
     { "from": "liu-2023-libero", "to": "deng-2009-imagenet" },
-    { "from": "liu-2023-libero", "to": "krizhevsky-2009-cifar" }
+    { "from": "liu-2023-libero", "to": "krizhevsky-2009-cifar" },
+    { "from": "james-2020-rlbench", "to": "russakovsky-2015-ilsvrc" },
+    { "from": "james-2020-rlbench", "to": "brockman-2016-openai-gym" },
+    { "from": "james-2020-rlbench", "to": "mnih-2015-dqn" },
+    { "from": "james-2020-rlbench", "to": "silver-2016-alphago" },
+    { "from": "james-2020-rlbench", "to": "silver-2017-alphago-zero" },
+    { "from": "james-2020-rlbench", "to": "lillicrap-2016-ddpg" },
+    { "from": "james-2020-rlbench", "to": "schulman-2015-trpo" },
+    { "from": "james-2020-rlbench", "to": "schulman-2017-ppo" },
+    { "from": "james-2020-rlbench", "to": "haarnoja-2018-sac" },
+    { "from": "james-2020-rlbench", "to": "fujimoto-2018-td3" },
+    { "from": "james-2020-rlbench", "to": "yu-2019-meta-world" },
+    { "from": "james-2020-rlbench", "to": "lin-2014-coco" },
+    { "from": "james-2020-rlbench", "to": "todorov-2012-mujoco" },
+    { "from": "liu-2023-libero", "to": "james-2020-rlbench" },
+    { "from": "srivastava-2021-behavior", "to": "james-2020-rlbench" },
+    { "from": "yu-2019-meta-world", "to": "james-2020-rlbench" }
   ]
 }
