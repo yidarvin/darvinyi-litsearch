@@ -9933,6 +9933,22 @@
       "explainer": "papers/jiang-2025-medagentbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/jiang-2025-medagentbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "yu-2019-meta-world",
+      "short": "Meta-World",
+      "title": "Meta-World: A Benchmark and Evaluation for Multi-Task and Meta Reinforcement Learning",
+      "authors": "Yu, Quillen, He, Julian, Narayan, Shively, Bellathur, Hausman, Finn, Levine",
+      "year": 2019,
+      "date": "2019-10",
+      "venue": "CoRL 2019",
+      "citation_count": 1724,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford / UC Berkeley / Google",
+      "abstract": "An open-source simulated benchmark of 50 distinct Sawyer-arm manipulation tasks (with parametric object/goal variation within each) for multi-task and meta reinforcement learning, with five evaluation protocols of increasing difficulty (ML1, MT1, MT10/MT50, ML10/ML45). Evaluating 7 baseline algorithms (multi-task PPO/TRPO/SAC/task-embeddings; meta-RL MAML/RL2/PEARL), the paper finds that even state-of-the-art methods struggle to learn many tasks jointly and generalize only modestly to held-out tasks, motivating future work on broader task diversity rather than narrower task-specific tuning.",
+      "explainer": "papers/yu-2019-meta-world.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yu-2019-meta-world.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16887,6 +16903,13 @@
     { "from": "jiang-2025-medagentbench", "to": "liu-2023-agentbench" },
     { "from": "jiang-2025-medagentbench", "to": "patil-2023-gorilla" },
     { "from": "jiang-2025-medagentbench", "to": "yao-2024-tau-bench" },
-    { "from": "jiang-2025-medagentbench", "to": "schmidgall-2024-agentclinic" }
+    { "from": "jiang-2025-medagentbench", "to": "schmidgall-2024-agentclinic" },
+    { "from": "yu-2019-meta-world", "to": "devlin-2019-bert" },
+    { "from": "yu-2019-meta-world", "to": "brockman-2016-openai-gym" },
+    { "from": "yu-2019-meta-world", "to": "todorov-2012-mujoco" },
+    { "from": "yu-2019-meta-world", "to": "schulman-2017-ppo" },
+    { "from": "yu-2019-meta-world", "to": "schulman-2015-trpo" },
+    { "from": "yu-2019-meta-world", "to": "haarnoja-2018-sac" },
+    { "from": "srivastava-2021-behavior", "to": "yu-2019-meta-world" }
   ]
 }

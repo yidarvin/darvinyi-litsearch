@@ -783,6 +783,15 @@
         "17th metadata correction, and the most interesting one: venue arXiv -> NEJM AI (vol 2 issue 9, 2025-08-28), resolved via Crossref from a DOI found in the CITING paper's bibliography. Neither DBLP, OpenReview nor S2 had it; the paper carries three different titles across arXiv/DBLP/NEJM. 2 critic rounds, 3 blockers r1: a missed edge (shao-2026-medagentsbench cites this; the builder's grep on the OTHER paper's text hit the hyphenation false negative - reverse-direction sweeps need the same normalization), a false 'no format repair' accusation (the harness does strip tool_code fences), and an invented specific attributing the graders to the two named physicians. Round 2 clean. 636 nodes / 6952 edges. Podcast bm_daniel 22m54s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "yu-2019-meta-world",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "CoRL 2019, 1724 citations - most-cited paper this pipeline has processed. Queue reprioritized before this paper (head had drifted to 40-cite entries while 74 >=100-cite entries waited). arXiv PDF serves v2 (2021) which says it updates the CoRL manuscript but carries no itemized changelog - verified by full-text sweep. 2 critic rounds, 3 blockers r1: a factual error claiming ML10 and ML45 share a train/test split (the held-out fives are disjoint and ML10's test tasks are ML45 training tasks), plus TWO false accusations against the paper - a mis-stated MT50 'internal tension' the paper explains in Figure 16's caption, and a 'no variance reported' claim falsified by Appendix C's n=10 seed-sensitivity bands. Round 2 clean. The episode agent then found a real paper defect both builder and critic missed: p.7's prose inverts the MAML/RL2 pairing for ML10 test (Table 1 says MAML 31.6, RL2 35.8) while the ML45 sentence one line later is correct - added to the page. 637 nodes / 6959 edges. Podcast af_bella 29m35s."
+      ],
+      "date": "2026-07-31"
     }
   ],
   "skipped": [
@@ -814,17 +823,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T15:19 zhang-2026-datascibench: step -> critique (round 2)",
-    "2026-07-31T15:31 zhang-2026-datascibench: step -> verify",
-    "2026-07-31T15:32 zhang-2026-datascibench: step -> queue-ops",
-    "2026-07-31T15:32 zhang-2026-datascibench: step -> podcast",
-    "2026-07-31T15:46 completed zhang-2026-datascibench (verdict=approved, rounds=2)",
-    "2026-07-31T15:47 started cheng-2025-embodiedeval ('EmbodiedEval: Evaluate Multimodal LLMs as Embodied Agents')",
-    "2026-07-31T16:02 cheng-2025-embodiedeval: step -> fetch",
-    "2026-07-31T16:02 cheng-2025-embodiedeval: step -> figures",
-    "2026-07-31T16:02 cheng-2025-embodiedeval: step -> draft",
-    "2026-07-31T16:02 cheng-2025-embodiedeval: step -> critique (round 1)",
-    "2026-07-31T16:15 cheng-2025-embodiedeval: step -> revise",
     "2026-07-31T16:21 cheng-2025-embodiedeval: step -> critique (round 2)",
     "2026-07-31T16:28 cheng-2025-embodiedeval: step -> verify",
     "2026-07-31T16:29 cheng-2025-embodiedeval: step -> queue-ops",
@@ -863,6 +861,17 @@
     "2026-07-31T19:24 jiang-2025-medagentbench: step -> verify",
     "2026-07-31T19:25 jiang-2025-medagentbench: step -> queue-ops",
     "2026-07-31T19:25 jiang-2025-medagentbench: step -> podcast",
-    "2026-07-31T19:36 completed jiang-2025-medagentbench (verdict=approved, rounds=2)"
+    "2026-07-31T19:36 completed jiang-2025-medagentbench (verdict=approved, rounds=2)",
+    "2026-07-31T19:40 started yu-2019-meta-world ('Meta-World: A Benchmark and Evaluation for Multi-Task and Meta Reinforcement Learning')",
+    "2026-07-31T20:06 yu-2019-meta-world: step -> fetch",
+    "2026-07-31T20:06 yu-2019-meta-world: step -> figures",
+    "2026-07-31T20:06 yu-2019-meta-world: step -> draft",
+    "2026-07-31T20:07 yu-2019-meta-world: step -> critique (round 1)",
+    "2026-07-31T20:21 yu-2019-meta-world: step -> revise",
+    "2026-07-31T20:26 yu-2019-meta-world: step -> critique (round 2)",
+    "2026-07-31T20:35 yu-2019-meta-world: step -> verify",
+    "2026-07-31T20:36 yu-2019-meta-world: step -> queue-ops",
+    "2026-07-31T20:36 yu-2019-meta-world: step -> podcast",
+    "2026-07-31T20:48 completed yu-2019-meta-world (verdict=approved, rounds=2)"
   ]
 }
