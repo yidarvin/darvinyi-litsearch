@@ -819,6 +819,15 @@
         "IEEE RA-L 2020, 996 citations. Real metadata correction, verified by reading the queue entry: it said year 2019 alongside venue 'IEEE RA-L 2020'. 2 critic rounds + 1 hand fix. The load-bearing finding held under exhaustive check: arXiv v1 has NO experiments/results/evaluation section under any heading, no table environment, no numeric result in any figure or caption - it is a pure benchmark proposal, so the page is built around Figure 7's histograms and the few-shot protocol. Version caveat scoped throughout (arXiv v1 preprint only; the RA-L camera-ready is inaccessible). Blockers: an invented 'three-to-fifty-task benchmarks were the norm' range (the paper prints exactly one prior task count); a 'four of the five' count that contradicted the page's own body text (it's five of five); and two fabricated Figure 4 strings. Round 2 found one regression caused by the r1 fix (the maroon variation called 'its fourth' when Figure 4 shows an ellipsis before variation V) - fixed by hand. 3rd accusations-block run, all 5 true and searches adequate. Bidirectional Meta-World edge verified genuine: RLBench cites Meta-World's project website, which predates its arXiv posting. 640 nodes / 6987 edges. Podcast bm_fable 20m48s."
       ],
       "date": "2026-07-31"
+    },
+    {
+      "slug": "zhu-2020-robosuite",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "arXiv-only, 707 citations. No metadata correction needed (queue already correct). 2 critic rounds, 7 blockers r1 - the most on any paper this run; round 2 clean. The distinctive finding survived: arXiv v3 (Jan 2025) contradicts itself, with the Abstract describing 'our new release robosuite v1.5' while S1 scopes the reported results to 'the v1.0 robosuite release'. B3 was partly my error - my brief said 2 versions when there are 3 (v2 2022-11-15), and the builder sharpened my imprecise framing into a false claim that most citations accrued against v1; true split across the three windows is ~18/37/41 percent of 707. Other blockers: a Figure 4 misread (Panda led 5 of 9, not 'nearly every task'), a false 'the one task' quantifier, an invented 'UT Austin' attribution (the word appears nowhere; only Stanford PAIR is named), a misstated training protocol, a false Spot-commercial-availability claim, and an unsupported claim that the environments expose no success signal (p.4 documents that they do). Builder correctly avoided a false SAC edge - robosuite cites arXiv 1812.05905, not the node's 1801.01290. 641 nodes / 6994 edges. Podcast bf_isabella 21m59s."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -850,17 +859,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T19:12 jiang-2025-medagentbench: step -> revise",
-    "2026-07-31T19:18 jiang-2025-medagentbench: step -> critique (round 2)",
-    "2026-07-31T19:24 jiang-2025-medagentbench: step -> verify",
-    "2026-07-31T19:25 jiang-2025-medagentbench: step -> queue-ops",
-    "2026-07-31T19:25 jiang-2025-medagentbench: step -> podcast",
-    "2026-07-31T19:36 completed jiang-2025-medagentbench (verdict=approved, rounds=2)",
-    "2026-07-31T19:40 started yu-2019-meta-world ('Meta-World: A Benchmark and Evaluation for Multi-Task and Meta Reinforcement Learning')",
-    "2026-07-31T20:06 yu-2019-meta-world: step -> fetch",
-    "2026-07-31T20:06 yu-2019-meta-world: step -> figures",
-    "2026-07-31T20:06 yu-2019-meta-world: step -> draft",
-    "2026-07-31T20:07 yu-2019-meta-world: step -> critique (round 1)",
     "2026-07-31T20:21 yu-2019-meta-world: step -> revise",
     "2026-07-31T20:26 yu-2019-meta-world: step -> critique (round 2)",
     "2026-07-31T20:35 yu-2019-meta-world: step -> verify",
@@ -899,6 +897,17 @@
     "2026-07-31T23:44 james-2020-rlbench: step -> verify",
     "2026-07-31T23:45 james-2020-rlbench: step -> queue-ops",
     "2026-07-31T23:45 james-2020-rlbench: step -> podcast",
-    "2026-07-31T23:55 completed james-2020-rlbench (verdict=approved, rounds=2)"
+    "2026-07-31T23:55 completed james-2020-rlbench (verdict=approved, rounds=2)",
+    "2026-07-31T23:58 started zhu-2020-robosuite ('robosuite: A Modular Simulation Framework and Benchmark for Robot Learning')",
+    "2026-08-01T00:14 zhu-2020-robosuite: step -> fetch",
+    "2026-08-01T00:14 zhu-2020-robosuite: step -> figures",
+    "2026-08-01T00:14 zhu-2020-robosuite: step -> draft",
+    "2026-08-01T00:14 zhu-2020-robosuite: step -> critique (round 1)",
+    "2026-08-01T00:28 zhu-2020-robosuite: step -> revise",
+    "2026-08-01T00:36 zhu-2020-robosuite: step -> critique (round 2)",
+    "2026-08-01T00:47 zhu-2020-robosuite: step -> verify",
+    "2026-08-01T00:48 zhu-2020-robosuite: step -> queue-ops",
+    "2026-08-01T00:48 zhu-2020-robosuite: step -> podcast",
+    "2026-08-01T01:04 completed zhu-2020-robosuite (verdict=approved, rounds=2)"
   ]
 }

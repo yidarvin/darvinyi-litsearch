@@ -9997,6 +9997,22 @@
       "explainer": "papers/james-2020-rlbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/james-2020-rlbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhu-2020-robosuite",
+      "short": "robosuite",
+      "title": "robosuite: A Modular Simulation Framework and Benchmark for Robot Learning",
+      "authors": "Zhu, Wong, Mandlekar, Martín-Martín, Joshi, Lin, Maddukuri, Nasiriany, Zhu",
+      "year": 2020,
+      "date": "2020-09",
+      "venue": "arXiv",
+      "citation_count": 707,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UT Austin / Stanford",
+      "abstract": "A modular MuJoCo-based simulation framework for robot manipulation research, offering a composable API over robots, grippers, mobile bases, arenas, and body-part controllers, plus a fixed suite of nine standardized benchmark tasks (Block Lifting, Block Stacking, Pick-and-Place, Nut Assembly, Door Opening, Table Wiping, and three two-arm tasks). The paper's only reported experiment trains Soft Actor-Critic on two robots (Panda, Sawyer) across the nine tasks, reporting that SAC \"solves\" three of them (Block Lifting, Door Opening, Two Arm Peg-in-Hole). The arXiv record now serves v3 (2025), describing the current v1.5 release, while the paper's own text scopes its benchmark results to the original v1.0 release.",
+      "explainer": "papers/zhu-2020-robosuite.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhu-2020-robosuite.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -16986,6 +17002,13 @@
     { "from": "james-2020-rlbench", "to": "todorov-2012-mujoco" },
     { "from": "liu-2023-libero", "to": "james-2020-rlbench" },
     { "from": "srivastava-2021-behavior", "to": "james-2020-rlbench" },
-    { "from": "yu-2019-meta-world", "to": "james-2020-rlbench" }
+    { "from": "yu-2019-meta-world", "to": "james-2020-rlbench" },
+    { "from": "zhu-2020-robosuite", "to": "brockman-2016-openai-gym" },
+    { "from": "zhu-2020-robosuite", "to": "henderson-2017-deep-rl-that-matters" },
+    { "from": "zhu-2020-robosuite", "to": "sutton-1998-rl-intro" },
+    { "from": "zhu-2020-robosuite", "to": "todorov-2012-mujoco" },
+    { "from": "liu-2023-libero", "to": "zhu-2020-robosuite" },
+    { "from": "srivastava-2021-behavior", "to": "zhu-2020-robosuite" },
+    { "from": "wang-2023-voyager", "to": "zhu-2020-robosuite" }
   ]
 }
