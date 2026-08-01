@@ -873,6 +873,15 @@
         "CoRL 2022 (PMLR v205), 371 citations. TWO S2 records exist and the queue entry mixed them - it carried the CoRL title/year/371-cites but an arxiv_id pointing at the 2024 expanded paper (2403.09227, different title, 162 cites). Built the CoRL record from PMLR; critic confirmed zero wrong-record leakage. S2's reference list for this record is literally null, so the 73-ref hand parse was the only path to out-edges; incoming swept across BOTH records (525-citer union). 2 critic rounds, 6 blockers r1 + 1 regression r2 (which the critic owned as its own r1 fix_hint propagated - '35 newly acquired scene types' where the paper counts 35 scenes and Table 1 gives 8 types). Blockers: survey population inverted (fifty responses PER ACTIVITY, not per respondent); related-work groups inverted with 2 reattributed quotes and an invented gloss; Table 3 called monotonic when Kin. Dis. goes 0.00->12.34->10.82; a fabricated 'an unprecedented' quote; the Table 4 ablation merged across populations on FOUR surfaces incl. the node abstract (RL-Prim. only, 42-77%, not 42-88%); and a wrong Figure 5 denominator. Second use of surfaces_checked - all 6 blockers, all 7 surfaces, critic spot-checked and every n/a true. The episode agent then caught TWO errors in MY brief (I mis-assigned Figure 5's 44% to grasping when the legend puts it on Policy, and said ~35 authors from the 2024 version when CoRL lists 28) - the page was already right on both. 646 nodes / 7054 edges. Podcast bf_isabella 30m00s."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "majumdar-2024-openeqa",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "CVPR 2024, 356 citations, non-arXiv (CVF source). 2 critic rounds, 7 blockers r1; round 2 clean. evaluations tag ADDED on the critic's ruling, overruling the builder: the paper numbers 'Evaluation' as a contribution, Fig 1 says 'our proposed LLM-Match metric', S5 is titled 'Human Alignment and Robustness of LLM-Match' - and decisively, liu-2024-mmbench (the protocol OpenEQA adapts) itself carries evaluations, as do 62 of 151 evaluations papers dual-tagged. Blockers: a non-monotone 'weakest to strongest' ordering, a false universal the paper's own observation 5 contradicts, 'consistently' for the paper's 'generally' plus an increase called a drop, a false accusation about the abstract, and the node abstract labelling question counts as scan counts (missed surface #5 in a row). B1's missed in-edge (li-2024-embodied-agent-interface) was invisible from OpenEQA's side because BOTH papers' S2 reference lists are publisher-elided - a one-directional sweep is structurally blind there. The builder's zero-hit result across ten embodied-AI nodes was verified correct (critic re-derived 54 refs and swept 356 citers five ways). Episode agent then caught THREE errors in my brief: 24 authors not ~19, six affiliations not three, and - importantly - the paper DOES claim 'the first open-vocabulary benchmark' four times including unqualified, where I told it the paper doesn't. It also surfaced that the 86.8 human ceiling rests on TWO participants (S3, verbatim), which the page never said; I verified and added it, since that is half the headline gap. 647 nodes / 7064 edges. Podcast bf_alice 26m40s."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -910,17 +919,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T01:57 miao-2020-asdiv: step -> verify",
-    "2026-08-01T01:58 miao-2020-asdiv: step -> queue-ops",
-    "2026-08-01T01:58 miao-2020-asdiv: step -> podcast",
-    "2026-08-01T02:10 completed miao-2020-asdiv (verdict=approved, rounds=2)",
-    "2026-08-01T02:13 started xu-2020-clue ('CLUE: A Chinese Language Understanding Evaluation Benchmark')",
-    "2026-08-01T02:32 xu-2020-clue: step -> fetch",
-    "2026-08-01T02:32 xu-2020-clue: step -> figures",
-    "2026-08-01T02:32 xu-2020-clue: step -> draft",
-    "2026-08-01T02:32 xu-2020-clue: step -> critique (round 1)",
-    "2026-08-01T02:43 xu-2020-clue: step -> revise",
-    "2026-08-01T02:47 xu-2020-clue: step -> critique (round 2)",
     "2026-08-01T02:55 xu-2020-clue: step -> verify",
     "2026-08-01T02:55 xu-2020-clue: step -> queue-ops",
     "2026-08-01T02:55 xu-2020-clue: step -> podcast",
@@ -959,6 +957,17 @@
     "2026-08-01T06:22 li-2022-behavior-1k: step -> verify",
     "2026-08-01T06:23 li-2022-behavior-1k: step -> queue-ops",
     "2026-08-01T06:23 li-2022-behavior-1k: step -> podcast",
-    "2026-08-01T06:37 completed li-2022-behavior-1k (verdict=approved, rounds=2)"
+    "2026-08-01T06:37 completed li-2022-behavior-1k (verdict=approved, rounds=2)",
+    "2026-08-01T06:40 started majumdar-2024-openeqa ('OpenEQA: Embodied Question Answering in the Era of Foundation Models')",
+    "2026-08-01T07:00 majumdar-2024-openeqa: step -> fetch",
+    "2026-08-01T07:00 majumdar-2024-openeqa: step -> figures",
+    "2026-08-01T07:00 majumdar-2024-openeqa: step -> draft",
+    "2026-08-01T07:00 majumdar-2024-openeqa: step -> critique (round 1)",
+    "2026-08-01T07:12 majumdar-2024-openeqa: step -> revise",
+    "2026-08-01T07:19 majumdar-2024-openeqa: step -> critique (round 2)",
+    "2026-08-01T07:27 majumdar-2024-openeqa: step -> verify",
+    "2026-08-01T07:28 majumdar-2024-openeqa: step -> queue-ops",
+    "2026-08-01T07:28 majumdar-2024-openeqa: step -> podcast",
+    "2026-08-01T07:42 completed majumdar-2024-openeqa (verdict=approved, rounds=2)"
   ]
 }
