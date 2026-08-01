@@ -10205,6 +10205,22 @@
       "explainer": "papers/qiu-2024-mmedbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/qiu-2024-mmedbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "osband-2020-bsuite",
+      "short": "bsuite",
+      "title": "Behaviour Suite for Reinforcement Learning",
+      "authors": "Osband, Doron, Hessel, Aslanides, Sezener, Saraiva, McKinney, Lattimore, Szepesvari, Singh, Van Roy, Sutton, Silver, Van Hasselt",
+      "year": 2020,
+      "date": "2019-08",
+      "venue": "ICLR 2020",
+      "citation_count": 212,
+      "topic": "Benchmarks & Evals",
+      "author_group": "DeepMind",
+      "abstract": "Introduces bsuite, a collection of 13 named targeted diagnostic RL environments (expanded to 23 named experiment instances once the 5 basic tasks are crossed with noise and reward-scaling sweeps) organized into 7 capability categories -- basic, generalization, noise, scale, exploration, credit assignment, memory -- each scored [0,1] and reported as a per-capability radar profile rather than a single leaderboard number. A worked example shows Bootstrapped DQN is the only one of three baseline agents to solve the 'deep sea' exploration task reliably, while a recurrent actor-critic is the only one to beat random on memory length, and only up to length 30.",
+      "explainer": "papers/osband-2020-bsuite.html",
+      "audio_url": "https://pod.darvinyi.com/audio/osband-2020-bsuite.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17321,6 +17337,19 @@
     { "from": "qiu-2024-mmedbench", "to": "vilares-2019-headqa" },
     { "from": "qiu-2024-mmedbench", "to": "wang-2022-self-consistency" },
     { "from": "qiu-2024-mmedbench", "to": "zheng-2023-mt-bench" },
-    { "from": "bedi-2025-medhelm", "to": "qiu-2024-mmedbench" }
+    { "from": "bedi-2025-medhelm", "to": "qiu-2024-mmedbench" },
+    { "from": "osband-2020-bsuite", "to": "bellemare-2013-ale" },
+    { "from": "osband-2020-bsuite", "to": "brockman-2016-openai-gym" },
+    { "from": "osband-2020-bsuite", "to": "deng-2009-imagenet" },
+    { "from": "osband-2020-bsuite", "to": "henderson-2017-deep-rl-that-matters" },
+    { "from": "osband-2020-bsuite", "to": "mnih-2015-dqn" },
+    { "from": "osband-2020-bsuite", "to": "mnih-2016-a3c" },
+    { "from": "osband-2020-bsuite", "to": "silver-2016-alphago" },
+    { "from": "osband-2020-bsuite", "to": "silver-2018-alphazero" },
+    { "from": "osband-2020-bsuite", "to": "sutton-1998-rl-intro" },
+    { "from": "osband-2020-bsuite", "to": "vanhasselt-2016-double-dqn" },
+    { "from": "chollet-2019-measure-of-intelligence", "to": "osband-2020-bsuite" },
+    { "from": "hafner-2022-crafter", "to": "osband-2020-bsuite" },
+    { "from": "hafner-2023-dreamerv3", "to": "osband-2020-bsuite" }
   ]
 }

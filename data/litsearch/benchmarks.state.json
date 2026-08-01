@@ -936,6 +936,15 @@
         "2 critic rounds, 6 blockers in r1 - three of them summary-surface-only (dek/meta/og/node abstract correct nowhere, body correct everywhere): a nine-tasks-vs-four-benchmarks conflation that also claimed a clean GPT-3.5 sweep the paper loses twice, a 'most of the gap' that is 43.2%, and a dek making MMedBench pair a corpus with itself. Plus a table mislabelling GPT-4 (5-shot, CoT) as zero-shot (source was tables.md, since fixed and annotated), a nonexistent zero-shot regime for the MMed models, and a three-vs-four metric count. Episode agent then found two substantive items, both verified and added to the critique: Table 1's zero-shot GPT-4 average (74.27) does not reconcile with the mean of its own six cells (75.31) while every other row reconciles within 0.02; and the six language columns are not the same task - French test is 48.39% multiple-correct where four other languages are 0%, Russian is processed into binary choice (50% floor), and test splits run 199 to 3,426 under an unweighted macro-mean. Declined evaluations: a rationale-annotated benchmark plus a corpus and models, not a new way to evaluate."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "osband-2020-bsuite",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 critic rounds. r1: an invented score-quantization mechanism (the page inferred that 4-seed percentage scores could only take 5 discrete values, but no experiment is both percentage-scored and 4-seed - most score continuous normalized regret) and a baseline-vintage claim of 'all pre-2017' contradicted by the paper's own 2018 prior-functions citation, across five surfaces. Promoted quote drift in four places to a blocker. r2 closed both but introduced a fifth drifted quotation ('for 10k episodes' appears nowhere; the paper says 'after'). r3 (fix written by orchestrator) approved. My brief was wrong on two counts and the builder caught both: S2's reference list has 16 entries with no externalIds including mis-parsed body text, not 'zero null stubs' - my check tested only for a missing title - and my edge pass missed brockman-2016-openai-gym (absent from S2 entirely) and chollet-2019-measure-of-intelligence (S2 truncates the title). Tagged evaluations alongside benchmarks."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -979,18 +988,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T09:33 mees-2022-calvin: step -> critique (round 3)",
-    "2026-08-01T09:38 mees-2022-calvin: step -> verify",
-    "2026-08-01T09:39 mees-2022-calvin: step -> queue-ops",
-    "2026-08-01T09:39 mees-2022-calvin: step -> podcast",
-    "2026-08-01T09:54 completed mees-2022-calvin (verdict=approved, rounds=3)",
-    "2026-08-01T09:54 started qin-2024-worldsimbench ('WorldSimBench: Towards Video Generation Models as World Simulators')",
-    "2026-08-01T10:14 qin-2024-worldsimbench: step -> fetch",
-    "2026-08-01T10:14 qin-2024-worldsimbench: step -> figures",
-    "2026-08-01T10:14 qin-2024-worldsimbench: step -> draft",
-    "2026-08-01T10:15 qin-2024-worldsimbench: step -> critique (round 1)",
-    "2026-08-01T10:26 qin-2024-worldsimbench: step -> revise",
-    "2026-08-01T10:33 qin-2024-worldsimbench: step -> critique (round 2)",
     "2026-08-01T10:38 qin-2024-worldsimbench: step -> verify",
     "2026-08-01T10:39 qin-2024-worldsimbench: step -> queue-ops",
     "2026-08-01T10:39 qin-2024-worldsimbench: step -> podcast",
@@ -1028,6 +1025,18 @@
     "2026-08-01T13:54 qiu-2024-mmedbench: step -> verify",
     "2026-08-01T13:54 qiu-2024-mmedbench: step -> queue-ops",
     "2026-08-01T13:54 qiu-2024-mmedbench: step -> podcast",
-    "2026-08-01T14:16 completed qiu-2024-mmedbench (verdict=approved, rounds=2)"
+    "2026-08-01T14:16 completed qiu-2024-mmedbench (verdict=approved, rounds=2)",
+    "2026-08-01T14:16 started osband-2020-bsuite ('Behaviour Suite for Reinforcement Learning')",
+    "2026-08-01T14:38 osband-2020-bsuite: step -> fetch",
+    "2026-08-01T14:38 osband-2020-bsuite: step -> figures",
+    "2026-08-01T14:38 osband-2020-bsuite: step -> draft",
+    "2026-08-01T14:38 osband-2020-bsuite: step -> critique (round 1)",
+    "2026-08-01T14:50 osband-2020-bsuite: step -> revise",
+    "2026-08-01T14:56 osband-2020-bsuite: step -> critique (round 2)",
+    "2026-08-01T15:02 osband-2020-bsuite: step -> critique (round 3)",
+    "2026-08-01T15:04 osband-2020-bsuite: step -> verify",
+    "2026-08-01T15:04 osband-2020-bsuite: step -> queue-ops",
+    "2026-08-01T15:04 osband-2020-bsuite: step -> podcast",
+    "2026-08-01T15:24 completed osband-2020-bsuite (verdict=approved, rounds=3)"
   ]
 }
