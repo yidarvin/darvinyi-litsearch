@@ -900,6 +900,15 @@
         "3 critic rounds. r1: invented reconciliation of the 400-vs-389 contradiction, unsupported 'most benchmarks skip' claim, wrong MTLC range that had also reached the node abstract, mis-cropped figure. r2: B2's fix leaked the priority claim onto the zero-shot split. r3 (fix written by orchestrator): approved. Episode agent then found two further paper defects, both verified and added to the critique: LH-MTLC cells 0.08%/0.17% are arithmetically incompatible with the stated 1,000-chain denominator, and the conclusion restates the priority claim without its hedge and with unseen environments folded in."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "qin-2024-worldsimbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds. r1: fabricated quotation (two paper sentences blended inside one set of quote marks), an asserted total absence the paper does contradict, wrong datasets in the contamination row, plus two promoted items - the page disagreed with itself on the excluded-model count (four vs five; five is right) and tables.md overclaimed that all Table 6 rows re-sum. Episode agent then found a third undercount: GPT-4o beats HPE on 3 of 7 OE zero-shot dimensions, not 2 (Instruction Alignment 80 vs 60 was missed) - verified and fixed. Also corrected the tables.md RM denominator (20 trials, not 1,000 chains; all 15 cells are multiples of 1/20) and normalized DynamiCrafter spelling. Tagged evaluations in addition to benchmarks: the rubric explicitly permits both, and Implicit Manipulative Evaluation is a genuinely novel protocol."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -943,17 +952,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T05:19 completed mattson-2020-mlperf-training (verdict=approved, rounds=2)",
-    "2026-08-01T05:24 started voorhees-2001-trec-qa-track ('The TREC question answering track')",
-    "2026-08-01T05:24 skipped voorhees-2001-trec-qa-track (Full text not obtainable in verifiable form. NLE 2001 (DOI 10.1017/S1351324901002789) is paywalled at Cambridge; S2's and Unpaywall's sole open-access link for this DOI resolves to a DIFFERENT paper (Voorhees & Tice, 'The TREC-8 Question Answering Track', LREC 2000) - verified by fetching it. NIST hosts the real article (tsapps.nist.gov/publication/get_pdf.cfm?pub_id=151518) but it is a 2001 Type-3 bitmap-font PDF: single-letter font names, no ToUnicode map, 36% printable-ASCII on extraction, pdftotext returns the same garbage. OCR would defeat the pipeline's core guarantee - the critic verifies quotations character-by-character against paper.txt, and with OCR'd text could not distinguish a fabricated quote from an OCR artifact, yielding a page that looks verified but is not. Topic already represented by voorhees-2000-trec-qa (SIGIR 2000, benchmarks+evaluations). LREC 2000 version rejected as substitute at 11 citations.)",
-    "2026-08-01T05:26 started li-2022-behavior-1k ('BEHAVIOR-1K: A Benchmark for Embodied AI with 1,000 Everyday Activities and Realistic Simulation')",
-    "2026-08-01T05:47 li-2022-behavior-1k: step -> fetch",
-    "2026-08-01T05:47 li-2022-behavior-1k: step -> figures",
-    "2026-08-01T05:47 li-2022-behavior-1k: step -> draft",
-    "2026-08-01T05:48 li-2022-behavior-1k: step -> critique (round 1)",
-    "2026-08-01T06:03 li-2022-behavior-1k: step -> revise",
-    "2026-08-01T06:11 li-2022-behavior-1k: step -> critique (round 2)",
-    "2026-08-01T06:22 li-2022-behavior-1k: step -> verify",
     "2026-08-01T06:23 li-2022-behavior-1k: step -> queue-ops",
     "2026-08-01T06:23 li-2022-behavior-1k: step -> podcast",
     "2026-08-01T06:37 completed li-2022-behavior-1k (verdict=approved, rounds=2)",
@@ -992,6 +990,17 @@
     "2026-08-01T09:38 mees-2022-calvin: step -> verify",
     "2026-08-01T09:39 mees-2022-calvin: step -> queue-ops",
     "2026-08-01T09:39 mees-2022-calvin: step -> podcast",
-    "2026-08-01T09:54 completed mees-2022-calvin (verdict=approved, rounds=3)"
+    "2026-08-01T09:54 completed mees-2022-calvin (verdict=approved, rounds=3)",
+    "2026-08-01T09:54 started qin-2024-worldsimbench ('WorldSimBench: Towards Video Generation Models as World Simulators')",
+    "2026-08-01T10:14 qin-2024-worldsimbench: step -> fetch",
+    "2026-08-01T10:14 qin-2024-worldsimbench: step -> figures",
+    "2026-08-01T10:14 qin-2024-worldsimbench: step -> draft",
+    "2026-08-01T10:15 qin-2024-worldsimbench: step -> critique (round 1)",
+    "2026-08-01T10:26 qin-2024-worldsimbench: step -> revise",
+    "2026-08-01T10:33 qin-2024-worldsimbench: step -> critique (round 2)",
+    "2026-08-01T10:38 qin-2024-worldsimbench: step -> verify",
+    "2026-08-01T10:39 qin-2024-worldsimbench: step -> queue-ops",
+    "2026-08-01T10:39 qin-2024-worldsimbench: step -> podcast",
+    "2026-08-01T10:51 completed qin-2024-worldsimbench (verdict=approved, rounds=2)"
   ]
 }
