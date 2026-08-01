@@ -29,7 +29,14 @@
     ],
     "seeded": 18
   },
-  "current": null,
+  "current": {
+    "slug": "fisch-2019-mrqa",
+    "queue_title": "MRQA 2019 Shared Task: Evaluating Generalization in Reading Comprehension",
+    "arxiv_id": "1910.09753",
+    "step": "podcast",
+    "round": 2,
+    "open_blockers": []
+  },
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -919,16 +926,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T02:55 xu-2020-clue: step -> verify",
-    "2026-08-01T02:55 xu-2020-clue: step -> queue-ops",
-    "2026-08-01T02:55 xu-2020-clue: step -> podcast",
-    "2026-08-01T03:09 completed xu-2020-clue (verdict=approved, rounds=2)",
-    "2026-08-01T03:13 started kembhavi-2017-tqa ('Are You Smarter Than a Sixth Grader? Textbook Question Answering for Multimodal Machine Comprehension')",
-    "2026-08-01T03:32 kembhavi-2017-tqa: step -> fetch",
-    "2026-08-01T03:32 kembhavi-2017-tqa: step -> figures",
-    "2026-08-01T03:32 kembhavi-2017-tqa: step -> draft",
-    "2026-08-01T03:33 kembhavi-2017-tqa: step -> critique (round 1)",
-    "2026-08-01T03:44 kembhavi-2017-tqa: step -> revise",
     "2026-08-01T03:50 kembhavi-2017-tqa: step -> critique (round 2)",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> verify",
     "2026-08-01T03:57 kembhavi-2017-tqa: step -> queue-ops",
@@ -968,6 +965,16 @@
     "2026-08-01T07:27 majumdar-2024-openeqa: step -> verify",
     "2026-08-01T07:28 majumdar-2024-openeqa: step -> queue-ops",
     "2026-08-01T07:28 majumdar-2024-openeqa: step -> podcast",
-    "2026-08-01T07:42 completed majumdar-2024-openeqa (verdict=approved, rounds=2)"
+    "2026-08-01T07:42 completed majumdar-2024-openeqa (verdict=approved, rounds=2)",
+    "2026-08-01T07:45 started fisch-2019-mrqa ('MRQA 2019 Shared Task: Evaluating Generalization in Reading Comprehension')",
+    "2026-08-01T08:04 fisch-2019-mrqa: step -> fetch",
+    "2026-08-01T08:04 fisch-2019-mrqa: step -> figures",
+    "2026-08-01T08:04 fisch-2019-mrqa: step -> draft",
+    "2026-08-01T08:04 fisch-2019-mrqa: step -> critique (round 1)",
+    "2026-08-01T08:16 fisch-2019-mrqa: step -> revise",
+    "2026-08-01T08:22 fisch-2019-mrqa: step -> critique (round 2)",
+    "2026-08-01T08:29 fisch-2019-mrqa: step -> verify",
+    "2026-08-01T08:30 fisch-2019-mrqa: step -> queue-ops",
+    "2026-08-01T08:30 fisch-2019-mrqa: step -> podcast"
   ]
 }

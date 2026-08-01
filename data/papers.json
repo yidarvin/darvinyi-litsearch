@@ -10109,6 +10109,22 @@
       "explainer": "papers/majumdar-2024-openeqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/majumdar-2024-openeqa.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "fisch-2019-mrqa",
+      "short": "MRQA 2019",
+      "title": "MRQA 2019 Shared Task: Evaluating Generalization in Reading Comprehension",
+      "authors": "Fisch, Talmor, Jia, Seo, Choi, Chen",
+      "year": 2019,
+      "date": "2019-10",
+      "venue": "EMNLP 2019 Workshop (MRQA)",
+      "citation_count": 336,
+      "topic": "Benchmarks & Evals",
+      "author_group": "MIT / Princeton",
+      "abstract": "A shared task built on organizer baselines: 18 existing QA datasets (not all extractive to begin with) are reformatted into one extractive schema and split into 6 training-only, 6 out-of-domain-with-dev, and 6 fully-hidden domains, so every one of the 10 competing teams trains on the same fixed pool and is scored purely on out-of-domain transfer. The winner, D-Net, beat the organizers' BERT-Large baseline 72.5 vs. 61.8 macro-F1, but the organizers' own analysis found in-domain and out-of-domain scores strongly correlated and attributed most of the leaderboard's spread to base pretrained-LM choice (XLNet, ERNIE 2.0) and ensembling rather than to any generalization-specific technique.",
+      "explainer": "papers/fisch-2019-mrqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fisch-2019-mrqa.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17175,6 +17191,18 @@
     { "from": "majumdar-2024-openeqa", "to": "openai-2023-gpt4" },
     { "from": "majumdar-2024-openeqa", "to": "touvron-2023-llama2" },
     { "from": "cheng-2025-embodiedeval", "to": "majumdar-2024-openeqa" },
-    { "from": "li-2024-embodied-agent-interface", "to": "majumdar-2024-openeqa" }
+    { "from": "li-2024-embodied-agent-interface", "to": "majumdar-2024-openeqa" },
+    { "from": "fisch-2019-mrqa", "to": "rajpurkar-2016-squad" },
+    { "from": "fisch-2019-mrqa", "to": "joshi-2017-triviaqa" },
+    { "from": "fisch-2019-mrqa", "to": "kwiatkowski-2019-natural-questions" },
+    { "from": "fisch-2019-mrqa", "to": "yang-2018-hotpotqa" },
+    { "from": "fisch-2019-mrqa", "to": "dua-2019-drop" },
+    { "from": "fisch-2019-mrqa", "to": "kembhavi-2017-tqa" },
+    { "from": "fisch-2019-mrqa", "to": "jia-2017-adversarial-squad" },
+    { "from": "fisch-2019-mrqa", "to": "devlin-2019-bert" },
+    { "from": "fisch-2019-mrqa", "to": "williams-2017-multinli" },
+    { "from": "fisch-2019-mrqa", "to": "voorhees-2000-trec-qa" },
+    { "from": "khashabi-2020-unifiedqa", "to": "fisch-2019-mrqa" },
+    { "from": "beltagy-2020-longformer", "to": "fisch-2019-mrqa" }
   ]
 }
