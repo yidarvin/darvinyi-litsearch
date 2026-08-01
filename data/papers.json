@@ -10029,6 +10029,22 @@
       "explainer": "papers/miao-2020-asdiv.html",
       "audio_url": "https://pod.darvinyi.com/audio/miao-2020-asdiv.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "xu-2020-clue",
+      "short": "CLUE",
+      "title": "CLUE: A Chinese Language Understanding Evaluation Benchmark",
+      "authors": "Xu, Hu, Zhang, Li, Cao, …, Yang, Richardson, Lan",
+      "year": 2020,
+      "date": "2020-04",
+      "venue": "COLING 2020",
+      "citation_count": 463,
+      "topic": "Benchmarks & Evals",
+      "author_group": "CLUE community",
+      "abstract": "A 32-author community consortium builds the first general-purpose Chinese NLU benchmark on the GLUE template: nine tasks (single-sentence, sentence-pair, and machine-reading-comprehension classification), a purpose-built 214GB/76B-word pre-training corpus, and a 514-item hand-crafted linguistic diagnostic set. Across nine fine-tuned Chinese pretrained models, the best average model (RoBERTa-wwm-ext-large, Avg 74.90) trails human performance (Avg 85.09) by roughly 10 points, with the widest per-task gap on C3 (73.28 vs. 96.00, 22.72 points), ahead of the hand-built CLUEWSC2020 coreference task (81.38 vs. 98.00, 16.62 points).",
+      "explainer": "papers/xu-2020-clue.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xu-2020-clue.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17038,6 +17054,20 @@
     { "from": "gou-2023-tora", "to": "miao-2020-asdiv" },
     { "from": "guo-2024-deepseek-coder", "to": "miao-2020-asdiv" },
     { "from": "nath-2024-goal-conditioned", "to": "miao-2020-asdiv" },
-    { "from": "cao-2025-generalizable-eval-survey", "to": "miao-2020-asdiv" }
+    { "from": "cao-2025-generalizable-eval-survey", "to": "miao-2020-asdiv" },
+    { "from": "xu-2020-clue", "to": "wang-2018-glue" },
+    { "from": "xu-2020-clue", "to": "wang-2019-superglue" },
+    { "from": "xu-2020-clue", "to": "devlin-2019-bert" },
+    { "from": "xu-2020-clue", "to": "lan-2019-albert" },
+    { "from": "xu-2020-clue", "to": "liu-2019-roberta" },
+    { "from": "xu-2020-clue", "to": "raffel-2020-t5" },
+    { "from": "xu-2020-clue", "to": "rajpurkar-2016-squad" },
+    { "from": "xu-2020-clue", "to": "conneau-2018-xnli" },
+    { "from": "xu-2020-clue", "to": "williams-2017-multinli" },
+    { "from": "zhang-2022-cblue", "to": "xu-2020-clue" },
+    { "from": "wang-2023-pandalm", "to": "xu-2020-clue" },
+    { "from": "shao-2024-deepseek-v2", "to": "xu-2020-clue" },
+    { "from": "kimi-2025-k1-5", "to": "xu-2020-clue" },
+    { "from": "guo-2025-deepseek-r1", "to": "xu-2020-clue" }
   ]
 }

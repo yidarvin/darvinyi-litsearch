@@ -837,6 +837,15 @@
         "ACL 2020, 489 citations. Builder was killed mid-build by an API stall and resumed from transcript; no data was lost (graph was untouched). Deliberate date exception: date='2020-07' not the arXiv month, because the arXiv posting (2021-06-30) POSTDATES the ACL publication by a year - S2 publicationDate 2020-07-01, and every ACL-2020 node in the corpus has date <= venue year. backfill_dates.py would try to undo this; recorded in report.json. 2 critic rounds, 6 blockers r1 + 6 hand-applied notes after approval. Blockers: an 'ASDiv wins on every statistic' universal falsified by the paper's OWN Figures 5-6 (MathQA leads test-vs-train at 0.85 LD / 0.66 SD) and by its own p.10 sentence; an invented 84% where the paper prints 85%; a GTS-only 0.86 attributed to a plural solver set; an altered quotation; Algebra-1 called multi-variable; and the missing evaluations tag (adjudicated in the critic's favour - the lexicon-diversity metric is a leakage measure and a genuinely new way to evaluate). Three of the six were cases where the page already stated the correct fact elsewhere. Edge sweep came back fully clean in both directions (20 refs vs 641 nodes -> 1 match; all 489 citers mapped -> 12 in-edges, zero missing/extra). 642 nodes / 7007 edges. Podcast am_puck 25m18s."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "xu-2020-clue",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "COLING 2020, 463 citations, 32 authors (elided per liang-2022-helm convention). No metadata correction needed. Paper has NO figures at all - 15 pages, 7 tables, zero images - though arXiv's comments field still says '10 pages, 4 figures' (stale from an earlier version); page is built entirely from transcribed HTML tables, which the critic re-derived from PDF word coordinates rather than paper.txt. 2 critic rounds, 5 blockers r1; round 2 clean. Builder self-caught 2 superlative errors before shipping (first time that class was caught upstream) but one of the fixes reached only 3 of 4 surfaces - the node abstract still carried the stale claim, so the graph contradicted the explainer it links to. Other blockers: 'every 2020-era baseline ~10 points behind humans' (true only of the best; ALBERT-tiny is 29.08 behind); an invented SuperGLUE per-task-normalization claim that also contradicted the page 2 paragraphs earlier; 2 fabricated quotes ('close to 0' for 'almost 0', and 'translationese' which appears nowhere); and a missed in-edge from DeepSeek-R1, hidden by S2 carrying its Nature retitle. evaluations correctly declined - GLUE/SuperGLUE/CBLUE/LexGLUE are all benchmarks-only. 643 nodes / 7021 edges. Podcast bf_emma 25m36s."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -868,17 +877,6 @@
     "pdf": false
   },
   "log": [
-    "2026-07-31T21:30 kuznetsova-2020-open-images-v4: step -> revise",
-    "2026-07-31T21:34 kuznetsova-2020-open-images-v4: step -> critique (round 2)",
-    "2026-07-31T21:40 kuznetsova-2020-open-images-v4: step -> verify",
-    "2026-07-31T21:41 kuznetsova-2020-open-images-v4: step -> queue-ops",
-    "2026-07-31T21:41 kuznetsova-2020-open-images-v4: step -> podcast",
-    "2026-07-31T21:59 completed kuznetsova-2020-open-images-v4 (verdict=approved, rounds=2)",
-    "2026-07-31T22:03 started liu-2023-libero ('LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning')",
-    "2026-07-31T22:23 liu-2023-libero: step -> fetch",
-    "2026-07-31T22:23 liu-2023-libero: step -> figures",
-    "2026-07-31T22:23 liu-2023-libero: step -> draft",
-    "2026-07-31T22:23 liu-2023-libero: step -> critique (round 1)",
     "2026-07-31T22:38 liu-2023-libero: step -> revise",
     "2026-07-31T22:43 liu-2023-libero: step -> critique (round 2)",
     "2026-07-31T22:52 liu-2023-libero: step -> verify",
@@ -917,6 +915,17 @@
     "2026-08-01T01:57 miao-2020-asdiv: step -> verify",
     "2026-08-01T01:58 miao-2020-asdiv: step -> queue-ops",
     "2026-08-01T01:58 miao-2020-asdiv: step -> podcast",
-    "2026-08-01T02:10 completed miao-2020-asdiv (verdict=approved, rounds=2)"
+    "2026-08-01T02:10 completed miao-2020-asdiv (verdict=approved, rounds=2)",
+    "2026-08-01T02:13 started xu-2020-clue ('CLUE: A Chinese Language Understanding Evaluation Benchmark')",
+    "2026-08-01T02:32 xu-2020-clue: step -> fetch",
+    "2026-08-01T02:32 xu-2020-clue: step -> figures",
+    "2026-08-01T02:32 xu-2020-clue: step -> draft",
+    "2026-08-01T02:32 xu-2020-clue: step -> critique (round 1)",
+    "2026-08-01T02:43 xu-2020-clue: step -> revise",
+    "2026-08-01T02:47 xu-2020-clue: step -> critique (round 2)",
+    "2026-08-01T02:55 xu-2020-clue: step -> verify",
+    "2026-08-01T02:55 xu-2020-clue: step -> queue-ops",
+    "2026-08-01T02:55 xu-2020-clue: step -> podcast",
+    "2026-08-01T03:09 completed xu-2020-clue (verdict=approved, rounds=2)"
   ]
 }

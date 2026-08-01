@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLUE: A Chinese Language Understanding Evaluation Benchmark — paper_atlas</title>
+<meta name="description" content="A 32-author community consortium builds the first general-purpose Chinese NLU benchmark: nine tasks, a 214GB pre-training corpus, and a hand-crafted linguistic diagnostic set — with the best baseline still ~10 points behind human performance.">
+<meta property="og:title" content="CLUE: A Chinese Language Understanding Evaluation Benchmark">
+<meta property="og:description" content="A 32-author community consortium builds the first general-purpose Chinese NLU benchmark: nine tasks, a 214GB pre-training corpus, and a hand-crafted linguistic diagnostic set — with the best baseline still ~10 points behind human performance.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/xu-2020-clue.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+tr.human td{color:var(--fg);font-weight:600;background:rgba(45,212,191,.06)}
+caption{caption-side:top;text-align:left;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+  margin-bottom:8px;padding:0}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2020 · COLING 2020 · Benchmarks &amp; Evals</div>
+      <h1>CLUE: A Chinese Language Understanding Evaluation Benchmark</h1>
+      <p class="dek">A 32-author, community-run consortium builds the first general-purpose Chinese NLU benchmark on the GLUE template: nine tasks, a 214GB pre-training corpus, and a hand-crafted linguistic diagnostic set — with the best 2020-era baseline still roughly 10 points behind human performance (weaker baselines trail by up to 29 points).</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/xu-2020-clue.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/xu-2020-clue.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Liang Xu, Hai Hu, Xuanwei Zhang, Lu Li, Chenjie Cao, … (32 authors), Zhengliang Yang, Kyle Richardson, Zhenzhong Lan — CLUE team</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>COLING 2020</b></span>
+        <span class="fact">citations&nbsp;<b>463</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2004.05986">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/xu-2020-clue.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-08-01</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2020, English NLU had a well-worn evaluation stack: <strong>GLUE</strong> (Wang et al., 2018) and its harder sequel <strong>SuperGLUE</strong> (Wang et al., 2019) bundled a handful of sentence- and sentence-pair-level tasks behind one comparable score, and that single-number leaderboard is what drove the rapid iteration behind BERT, XLNet, RoBERTa, and ALBERT. Chinese — spoken, the paper points out, by "one-fourth of the world's population" — had no equivalent. The related-work section is explicit that this isn't for lack of Chinese NLP datasets — it names LCQMC (question matching) and CMRC 2018 (span-extraction MRC) as examples — and the paper's own task descriptions add ChID (idiom cloze) and C3 (multiple-choice MRC) as further individual Chinese datasets that predated CLUE; in no case was there a shared pipeline that gathered several of them under one benchmark with a single comparable score, the way GLUE had done for English. The authors also argue the gap isn't purely a tooling problem: Chinese "is linguistically very different from English and other Indo-European languages," so a benchmark built by translating English tasks would risk testing English-specific phenomena rather than the ones that actually matter for Chinese.</p>
+      <p>A second, less visible gap sits underneath the first: at the time, the authors write, they were "not aware of any large-scale open-source pre-training dataset in Chinese" — existing Chinese pre-training corpora (e.g., the roughly 1.1GB Chinese Wikipedia dump) were far smaller than English's Wikipedia + BooksCorpus + C4-scale resources, which limited how fairly different Chinese pre-trained models could even be compared against each other.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>CLUE is a <strong>community-driven suite</strong>, not a single-lab dataset. The team issued a public call-for-tasks, then selected nine final tasks against five stated criteria: <em>diversity</em> (of task, text length, and training-set size), <em>well-defined and easy-to-process</em> (so users can focus on modeling, not cleanup), <em>moderate difficulty</em> (challenging but solvable — multiple-choice MRC is given as their own example of a task that clears this bar), <em>representative and useful</em> (applicable to real-world use cases), and <em>tailored to Chinese-specific characteristics</em> (e.g., four-character idioms). Seven of the nine tasks were adopted from existing datasets; two — <strong>CLUEWSC2020</strong> and <strong>CSL</strong> — were created by the CLUE team itself because no suitable Chinese sentence/sentence-pair classification task existed for those slots.</p>
+      <p>The nine tasks split into three groups. <strong>Single-sentence classification:</strong> TNEWS (news-title topic classification, 15 classes, sourced from TouTiao headlines before May 2018), IFLYTEK (long app-description classification into 119 categories), and CLUEWSC2020 (a hand-annotated Chinese Winograd Schema anaphora-resolution task built from 36 contemporary literary works). <strong>Sentence-pair classification:</strong> AFQMC (semantic-similarity matching on Ant Financial customer-service queries), CSL (a keyword-vs-abstract judgment task built from CNKI academic papers, with fake keywords generated via TF-IDF), and OCNLI (a from-scratch Chinese NLI dataset — introduced in a companion paper, Hu et al., 2020 — collected the way MNLI was, across five genres, explicitly <em>not</em> translated from XNLI, since the paper argues "the non-translation nature of OCNLI makes it more suitable than XNLI ... as an NLU task specific for Chinese"). <strong>Machine reading comprehension:</strong> CMRC 2018 (Wikipedia span-extraction), ChID (idiom cloze test with ten candidate idioms per blank), and C3 (free-form multiple-choice MRC over mixed-genre documents, 2–4 options per question). Task sizes vary enormously — from 1,244 training examples for CLUEWSC2020 up to 577k for ChID — and each task keeps its own native metric (accuracy for eight of the nine tasks; exact match for CMRC 2018's span extraction).</p>
+
+      <table>
+        <caption>Table 1 — CLUE's nine tasks (train / dev / test sizes, task type, metric, source). "k" = thousands.</caption>
+        <thead><tr><th>Task</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th>Task type</th><th>Metric</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><em>Single-Sentence Tasks</em></td></tr>
+          <tr><td>TNEWS</td><td class="num">53.3k</td><td class="num">10k</td><td class="num">10k</td><td>short text classification</td><td>acc.</td><td>news title + keywords</td></tr>
+          <tr><td>IFLYTEK</td><td class="num">12.1k</td><td class="num">2.6k</td><td class="num">2.6k</td><td>long text classification</td><td>acc.</td><td>app descriptions</td></tr>
+          <tr><td>CLUEWSC2020</td><td class="num">1,244</td><td class="num">304</td><td class="num">290</td><td>coreference resolution</td><td>acc.</td><td>Chinese fiction books</td></tr>
+          <tr><td colspan="7"><em>Sentence Pair Tasks</em></td></tr>
+          <tr><td>AFQMC</td><td class="num">34.3k</td><td class="num">4.3k</td><td class="num">3.9k</td><td>semantic similarity</td><td>acc.</td><td>online customer service</td></tr>
+          <tr><td>CSL</td><td class="num">20k</td><td class="num">3k</td><td class="num">3k</td><td>keyword recognition</td><td>acc.</td><td>academic (CNKI)</td></tr>
+          <tr><td>OCNLI</td><td class="num">50k</td><td class="num">3k</td><td class="num">3k</td><td>natural language inference</td><td>acc.</td><td>5 genres</td></tr>
+          <tr><td colspan="7"><em>Machine Reading Comprehension Tasks</em></td></tr>
+          <tr><td>CMRC 2018</td><td class="num">10k</td><td class="num">3.4k</td><td class="num">4.9k</td><td>answer span extraction</td><td>EM</td><td>Wikipedia</td></tr>
+          <tr><td>ChID</td><td class="num">577k</td><td class="num">23k</td><td class="num">23k</td><td>multiple-choice, idiom</td><td>acc.</td><td>novel, essay, news</td></tr>
+          <tr><td>C3</td><td class="num">11.9k</td><td class="num">3.8k</td><td class="num">3.9k</td><td>multiple-choice, free-form</td><td>acc.</td><td>mixed-genre</td></tr>
+        </tbody>
+      </table>
+
+      <p>Beyond the nine tasks, CLUE ships two more resources. A <strong>pre-training corpus</strong>: 214GB of raw text (~76 billion Chinese words), assembled from three sources — CLUECorpus2020-small (14GB: news, WebText Q&amp;A, Chinese Wikipedia, e-commerce comments), CLUECorpus2020 (100GB from Common Crawl), and CLUEOSCAR (100GB after filtering the OSCAR multilingual corpus down from 250GB of raw Chinese). Three of the nine baseline models in the paper (two ALBERT variants and RoBERTa-large) were pre-trained on this corpus specifically. And a <strong>diagnostic dataset</strong>: 514 hand-crafted Chinese sentence pairs, framed as three-way NLI (entailment / neutral / contradiction), written from scratch by Chinese linguists across 9 linguistic categories (anaphora, argument structure, common sense, comparatives, double negation, lexical semantics, monotonicity, negation, and "time of event" — Chinese aspect markers like 着/了/过). The paper is explicit that these items were <em>not</em> translated from GLUE's English diagnostics, to avoid testing English- or Western-culture-specific phenomena; the label distribution is balanced enough that the majority-class baseline is 35.1%.</p>
+
+      <p>Nine pre-trained Chinese models are evaluated as baselines: BERT-base, BERT-wwm-ext-base, ALBERT-tiny, ALBERT-xxlarge, ERNIE-base, XLNet-mid, RoBERTa-large, RoBERTa-wwm-ext-base, and RoBERTa-wwm-ext-large. Each is fine-tuned separately per task, three times, with the best dev-set checkpoint used to report test results. Human performance for four tasks (OCNLI, CMRC 2018, ChID, C3) is imported directly from those datasets' own original papers. For the remaining five tasks (TNEWS, IFLYTEK, CLUEWSC2020, AFQMC, CSL), the authors ran their own two-stage annotation, following SuperGLUE's protocol: annotators first practiced on 30–50 dev-set items and discussed their errors, then each independently labeled 100 test items; the reported "human" score is the majority vote of three annotators on those 100 items.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Table 2 is CLUE's main leaderboard: nine baseline models across all nine tasks, plus a human row. <strong>Avg</strong> is the paper's own unweighted mean across all nine columns (eight accuracy scores and one EM score) — a suite-level number, not any single task's score. The best-performing model on average is <strong>RoBERTa-wwm-ext-large</strong> (Avg 74.90), just ahead of <strong>ALBERT-xxlarge</strong> (Avg 72.49); the weakest is <strong>ALBERT-tiny</strong> (Avg 56.01), a model with only about 1/20th the parameters of BERT-base, included specifically to measure the cost of going small. Every model trails the human row (Avg 85.09) — the paper's own framing puts the best model "roughly 11 points lower than human performance on average" (the exact gap between 85.09 and 74.90 is 10.19 points; the Conclusion instead rounds this to "∼10% below").</p>
+
+      <table>
+        <caption>Table 2 — Baseline model performance on all nine CLUE tasks (accuracy unless noted; CMRC is exact match). Bold/underline formatting from the original table (best-per-column / best-per-model) is not reproduced here — only the numbers are.</caption>
+        <thead><tr><th>Model</th><th class="num">Avg</th><th class="num">TNEWS</th><th class="num">IFLYTEK</th><th class="num">CLUEWSC<br>2020</th><th class="num">AFQMC</th><th class="num">CSL</th><th class="num">OCNLI</th><th class="num">CMRC<br>(EM)</th><th class="num">ChID</th><th class="num">C3</th></tr></thead>
+        <tbody>
+          <tr><td>BERT-base</td><td class="num">69.20</td><td class="num">56.58</td><td class="num">60.29</td><td class="num">63.45</td><td class="num">73.70</td><td class="num">80.36</td><td class="num">72.20</td><td class="num">69.72</td><td class="num">82.04</td><td class="num">64.50</td></tr>
+          <tr><td>BERT-wwm-ext-base</td><td class="num">70.27</td><td class="num">56.84</td><td class="num">59.43</td><td class="num">62.41</td><td class="num">74.07</td><td class="num">80.63</td><td class="num">74.42</td><td class="num">73.23</td><td class="num">82.90</td><td class="num">68.50</td></tr>
+          <tr><td>ALBERT-tiny</td><td class="num">56.01</td><td class="num">53.35</td><td class="num">48.71</td><td class="num">63.38</td><td class="num">69.92</td><td class="num">74.56</td><td class="num">65.12</td><td class="num">53.68</td><td class="num">43.53</td><td class="num">31.86</td></tr>
+          <tr><td>ALBERT-xxlarge</td><td class="num">72.49</td><td class="num">59.46</td><td class="num">62.89</td><td class="num">61.54</td><td class="num">75.60</td><td class="num">83.63</td><td class="num">77.70</td><td class="num">75.15</td><td class="num">83.15</td><td class="num">73.28</td></tr>
+          <tr><td>ERNIE-base</td><td class="num">69.72</td><td class="num">58.33</td><td class="num">58.96</td><td class="num">63.44</td><td class="num">73.83</td><td class="num">79.10</td><td class="num">74.11</td><td class="num">73.32</td><td class="num">82.28</td><td class="num">64.10</td></tr>
+          <tr><td>XLNet-mid</td><td class="num">68.58</td><td class="num">56.24</td><td class="num">57.85</td><td class="num">61.04</td><td class="num">70.50</td><td class="num">81.26</td><td class="num">72.63</td><td class="num">66.51</td><td class="num">83.47</td><td class="num">67.68</td></tr>
+          <tr><td>RoBERTa-large</td><td class="num">71.01</td><td class="num">57.86</td><td class="num">62.55</td><td class="num">62.44</td><td class="num">74.02</td><td class="num">81.36</td><td class="num">76.82</td><td class="num">76.11</td><td class="num">84.50</td><td class="num">63.44</td></tr>
+          <tr><td>RoBERTa-wwm-ext-base</td><td class="num">71.17</td><td class="num">56.94</td><td class="num">60.31</td><td class="num">72.07</td><td class="num">74.04</td><td class="num">81.00</td><td class="num">74.72</td><td class="num">73.89</td><td class="num">83.62</td><td class="num">63.90</td></tr>
+          <tr><td>RoBERTa-wwm-ext-large</td><td class="num">74.90</td><td class="num">58.61</td><td class="num">62.98</td><td class="num">81.38</td><td class="num">76.55</td><td class="num">82.13</td><td class="num">78.20</td><td class="num">76.58</td><td class="num">85.37</td><td class="num">72.32</td></tr>
+          <tr class="human"><td>Human</td><td class="num">85.09</td><td class="num">71.00</td><td class="num">66.00</td><td class="num">98.00</td><td class="num">81.0</td><td class="num">84.0</td><td class="num">90.30</td><td class="num">92.40</td><td class="num">87.10</td><td class="num">96.00</td></tr>
+        </tbody>
+      </table>
+
+      <p>Three findings the authors call out specifically. <strong>Scale and pre-training data help, roughly as expected:</strong> results improve with model size, more pre-training data, or whole-word masking, and RoBERTa-wwm-ext-large / ALBERT-xxlarge — "the largest models in Chinese at the time of writing" — are the top two by Avg. <strong>ALBERT-tiny's drop is task-dependent, not uniform:</strong> against BERT-base, the gap is "almost 0" on CLUEWSC2020 (63.45 → 63.38, a 0.07-point difference) but "up to 40 percentage" on ChID (82.04 → 43.53, an actual 38.51-point drop) and "roughly 12 percentage points" on IFLYTEK (60.29 → 48.71, an actual 11.58-point drop) — the paper's read is that small models cope with single-sentence and sentence-pair tasks reasonably well but degrade sharply on tasks requiring more global, document-level understanding. <strong>CLUEWSC2020 is the task the paper's own prose singles out</strong> for a wide human/model gap: the best model (RoBERTa-wwm-ext-large, also the single highest score in that column) reaches 81.38 against a human score of 98.00 — "about 17 percentage points" behind (16.62 points exactly) — which the authors contrast with SuperGLUE's English WSC, where they say RoBERTa reached "89% against 100% for humans," a narrower gap than what they observe for the Chinese version. That said, CLUEWSC2020's 16.62-point gap is not actually the largest in the table: recomputing the same best-model-vs-human gap for every column shows <strong>C3 has the widest gap of any of the nine tasks</strong>, 22.72 points (human 96.00 vs. the best model's 73.28, from ALBERT-xxlarge) — a comparison the paper's own prose doesn't make explicitly, since its C3 discussion focuses on ALBERT-tiny's especially low score (about 32%) rather than on how far the best-performing model falls short of humans there.</p>
+
+      <p>The paper also separately reports a smaller "two-stage" human-annotation table (Table 3) for the five tasks where human numbers were collected fresh rather than imported: three individual annotators, their average, and their majority vote (which is what feeds into Table 2's Human row) side-by-side with a "best model" row. That "best model" row is <strong>RoBERTa-wwm-ext-large's own scores</strong> on those five tasks (TNEWS 58.61 / AFQMC 76.55≈76.5 / CSL 82.13 / IFLYTEK 62.98 / CLUEWSC2020 81.38) — i.e., the single model with the best overall Avg — not the per-task best across all nine models: on CSL, ALBERT-xxlarge actually scores higher (83.63) than the 82.13 shown as "best model," and the same is true on TNEWS, where ALBERT-xxlarge's 59.46 beats the 58.61 shown here.</p>
+
+      <p>On the 514-item linguistic diagnostic set, three models (BERT-base, RoBERTa-wwm-ext-large, XLNet-mid — each fine-tuned on OCNLI, then evaluated zero-shot on the diagnostics) top out at 61.5% (RoBERTa-wwm-ext-large), with BERT-base at 53.5% and XLNet-mid at 54.7%. The paper states that <strong>Monotonicity</strong> "is the hardest, similar to GLUE diagnostics" — true for RoBERTa-wwm-ext-large and XLNet-mid, whose per-category low is Monotonicity at 43.3 apiece, but not for BERT-base: its per-category low is actually Comparative at 36.0, below its own Monotonicity score of 41.7 — though the paper's very next sentence concedes as much, adding that "it seems that BERT also has a hard time dealing with comparatives." So the "hardest category" claim in the paper's prose holds for two of the three models evaluated on the diagnostics, not all three.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>CLUE is transparent about its own construction in ways that make it easy to evaluate on its own terms — the task-selection criteria, the two-stage human-annotation protocol, and the exact pre-training recipe for each baseline are all spelled out. But a few of its design choices are worth pressure-testing.</p>
+
+      <p><strong>Task balance is by category, not by scale.</strong> The suite is explicitly balanced across three task types (three single-sentence, three sentence-pair, three MRC tasks), but the underlying data sizes are wildly uneven: CLUEWSC2020 has just 1,244 training examples and a 290-example test set, while ChID has 577k training examples and a 23k-example test set. A 290-example test set gives fairly coarse accuracy estimates — a handful of flipped predictions moves the score by a full percentage point or more — yet CLUEWSC2020 also carries a notably wide 16.62-point gap between its best model and human performance — the second-widest of any task in the suite, behind only C3's 22.72 points. The paper doesn't report any variance or confidence interval around that number, so it's hard to know how much of CLUEWSC2020's "hard task" story is signal versus noise from its unusually small (290-example) test set — by far the smallest of the nine.</p>
+
+      <p><strong>The human baseline is two different measurement protocols stitched into one row.</strong> For OCNLI, CMRC 2018, ChID, and C3, "Human" in Table 2 is imported wholesale from each dataset's own original paper — different annotator pools, different instructions, different eras. For the other five tasks, it's the CLUE team's own majority-vote-of-three annotators on 100 test items, after a short training pass. Both are reasonable methodologies individually and each is disclosed, but averaging four externally-sourced human numbers with five internally-collected ones into a single "Human Avg" of 85.09 treats two different measurement processes as interchangeable without discussing whether they are.</p>
+
+      <p><strong>Averaging accuracy and EM into one Avg column isn't discussed.</strong> Table 2's Avg blends eight accuracy scores (over class counts ranging from 2 to 119) with one exact-match score (CMRC 2018) into a single unweighted mean — the same design GLUE and SuperGLUE use, and the same design that later drew criticism for those benchmarks (unequal task difficulty and label-space size mean a point of accuracy on a 2-class task isn't the same unit as a point of accuracy on a 119-class task). CLUE inherits this by construction; the paper doesn't add or discuss any weighting or normalization beyond the plain mean.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Nine baselines spanning BERT, BERT-wwm-ext, ALBERT (tiny + xxlarge), ERNIE, XLNet, and three RoBERTa variants — a reasonably broad, contemporary (for 2020) spread of the pre-trained-Transformer landscape, each fine-tuned per-task with its own tuned hyperparameters (Table 7 in the appendix). No zero-shot or few-shot LLM baselines are included or expected — this is a pre-ChatGPT-era fine-tuning benchmark by construction.</p>
+        <span class="k">contamination</span><p class="v">Not discussed anywhere in the paper — searched the body text and all four appendices (Dataset Samples, pre-training/fine-tuning hyperparameters, Additional Baseline Details, Dataset Filtering) for "contamination," "leakage," "overlap," and "dedup," and found no analysis of overlap between the 214GB CLUE pre-training corpus (which includes 100GB of Common Crawl and 100GB of filtered OSCAR) and the downstream task test sets (several of which, like CMRC 2018 from Wikipedia and CSL from CNKI abstracts, plausibly overlap with generic web/encyclopedia crawls). This is a real, undisclosed gap rather than a misreading — CLUE's own text simply never raises it.</p>
+        <span class="k">what's missed</span><p class="v">No confidence intervals or variance across the three fine-tuning runs per model (the paper says the best-of-three dev checkpoint is reported, but not the spread); no per-task breakdown of how the 100-item human-annotation samples were selected beyond "randomly chosen"; and, since this is a 2020 fine-tuning benchmark, nothing about how CLUE would fare against a frontier instruction-tuned LLM in zero/few-shot mode — an omission that isn't a flaw of the paper (it predates that evaluation paradigm) but does limit how directly its numbers translate to today's model landscape.</p>
+        <span class="k">would raise confidence</span><p class="v">A reported spread (not just the best) across the three fine-tuning runs per model per task; an explicit train/test overlap check between the pre-training corpus and the nine task test sets, especially CMRC 2018 and CSL; and a documented rationale (or at least an acknowledgment) for averaging accuracy and EM together in one Avg number, given that CLUE inherits the same unweighted-average design GLUE and SuperGLUE use without discussing whether it's meaningful across such heterogeneous tasks.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>CLUE's own related-work section only measures itself against the absence of a prior Chinese multi-task NLU suite, not against a claim of solving Chinese NLU outright — and on that narrower claim it delivers: nine tasks, a from-scratch diagnostic set, and a purpose-built 214GB pre-training corpus, released with working code and a public leaderboard. The paper is also candid about where the ceiling still is: the Conclusion explicitly frames the ~10-point human/model gap as room for the field to close, and anticipates that "once models have reached human performance," the benchmark itself would need to extend to "newer tasks, or newer forms of evaluation." That is in fact roughly what happened to the English benchmarks CLUE takes as its template (GLUE and SuperGLUE, both of which saturated within a few years, per the paper's own conclusion); the paper doesn't speculate about how quickly that would happen for Chinese, and the nine tasks here — built for fine-tuned BERT-scale models — say nothing by themselves about how a modern instruction-tuned LLM would perform on them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>CLUE is a 32-author, community-run consortium benchmark: nine Chinese NLU tasks (three single-sentence, three sentence-pair, three MRC), two of them (CLUEWSC2020, CSL) built from scratch by the team, plus a 214GB/~76B-word pre-training corpus and a 514-item hand-crafted linguistic diagnostic set — all explicitly modeled on GLUE/SuperGLUE's format but designed for Chinese-specific phenomena, not translated from English.</li>
+        <li>Across nine 2020-era baselines (BERT/BERT-wwm-ext/ALBERT/ERNIE/XLNet/RoBERTa variants), the best average model (RoBERTa-wwm-ext-large, Avg 74.90) trails the human row (Avg 85.09) by 10.19 points. Per-task, the widest best-model-vs-human gap is actually on C3 (73.28 vs. 96.00 — 22.72 points), not on CLUEWSC2020 (81.38 vs. 98.00 — 16.62 points), even though CLUEWSC2020 is the task the paper's own prose calls out specifically ("about 17 percentage points" behind, wider than the equivalent English WSC gap it cites from SuperGLUE).</li>
+        <li>The paper never discusses potential overlap between its own 214GB Common-Crawl-and-OSCAR-derived pre-training corpus and its downstream test sets, and the suite's single Avg score quietly averages accuracy (across class counts from 2 to 119) together with exact-match — both are worth keeping in mind whenever a single CLUE number is quoted on its own.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        CLUE: A Chinese Language Understanding Evaluation Benchmark<br>
+        Xu, Hu, Zhang, Li, Cao, …, Yang, Richardson, Lan · 2020 · COLING 2020<br>
+        <a href="https://arxiv.org/abs/2004.05986">read the original ↗</a> · slug: xu-2020-clue
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
