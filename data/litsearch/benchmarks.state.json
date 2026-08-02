@@ -1125,6 +1125,15 @@
         "Second evaluations tag in six papers, applied over the builder's decline. The deciding criterion came from the critic while it was arguing the OPPOSITE side: a taxonomy is a way to evaluate when a later paper runs a protocol with it and reports a number in its units — FaithDial reports Fleiss' kappa on BEGIN's classes (0.75) and states its headline 94.4% faithful as a distribution over them. Honest counter-evidence is on the page: BEGIN disclaims methodological novelty, calling itself 'a similar meta-evaluation' and crediting Durmus et al. 2022. Three critic rounds. Round 2's blocker was a regression traceable to MY OWN round-1 blocker prose: I wrote 'the page prints 46.1 in its own table two rows later' as shorthand and the builder transcribed 'two rows apart' onto the page; the cells are adjacent. Lesson recorded — blocker-message prose gets copied verbatim into page text and must be written to page standards. I also propagated the builder's 'one dev-set cell' undercount into the critic brief; there are two (46.3 and 46.1), and the critic caught it despite my framing. Mutual citation with dziri-2022-faithdial verified genuine in both directions (BEGIN v3 June 2022 postdates FaithDial's April preprint). Podcast render initially failed silently — reaped with its background shell — and was recovered under nohup; that trap is now documented in CLAUDE.md. Queue reprioritized: core head went from 79 to 1,240 citations."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "yang-2021-superb",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Best draft the pipeline has produced. The inward-first self-consistency checklist caught SIX defects before the critic saw the page, two of them undercounted-uniqueness claims — the class that had shipped on eight consecutive papers. That procedure went into paper-builder.md two papers ago after exhortation failed; this is the first run where it worked as designed. Critic rebuilt all 180 cells of Table 2 from span bboxes and the font layer: no column shift, in the worst layout faced yet (wide grid, cramped two-column Interspeech). New hazard handled correctly: SUPERB mixes higher- and lower-is-better metrics (PER/WER/CER/EER/DER invert), directions read off the PDF's own arrow glyphs, every 'best' direction-aware. Builder's headline finding, independently confirmed twice: the paper contains NO aggregate SUPERB score under any name — the single-number ranking everyone cites exists only on the external leaderboard. Applied evaluations alongside benchmarks on the frozen-encoder protocol plus s3prl plus the binding constrained-track footnote. Episode agent then found the sharpest thing on the page: the prose credits its two most quotable wins to unqualified 'HuBERT' where the winner is Base, not Large — Large is 0.0353 vs Base 0.0736 on QbE (less than half) and 5.98 vs 5.11 on ASV — likely the origin of the 'HuBERT Large wins SUPERB' folk memory. Verified and added. It also queried the page's GLUE private-test-set claim; checked against our own reviewed GLUE node, which names the four (CoLA, MNLI, QQP, WNLI) and notes the other five use public labels — page correct, no change."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1174,21 +1183,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T10:51 started niklaus-2023-lextreme ('LEXTREME: A Multi-Lingual and Multi-Task Benchmark for the Legal Domain')",
-    "2026-08-02T10:51 niklaus-2023-lextreme: step -> fetch",
-    "2026-08-02T11:03 niklaus-2023-lextreme: step -> figures",
-    "2026-08-02T11:03 niklaus-2023-lextreme: step -> draft",
-    "2026-08-02T11:13 niklaus-2023-lextreme: step -> draft",
-    "2026-08-02T11:26 niklaus-2023-lextreme: step -> critique (round 1)",
-    "2026-08-02T11:26 niklaus-2023-lextreme: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T11:41 niklaus-2023-lextreme: step -> revise",
-    "2026-08-02T11:41 niklaus-2023-lextreme: step -> critique (round 2)",
-    "2026-08-02T11:41 niklaus-2023-lextreme: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T11:41 niklaus-2023-lextreme: step -> revise",
-    "2026-08-02T11:41 niklaus-2023-lextreme: step -> critique (round 3)",
-    "2026-08-02T11:41 niklaus-2023-lextreme: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T11:41 niklaus-2023-lextreme: step -> verify",
-    "2026-08-02T11:42 niklaus-2023-lextreme: step -> queue-ops",
     "2026-08-02T11:43 niklaus-2023-lextreme: step -> podcast",
     "2026-08-02T11:56 completed niklaus-2023-lextreme (verdict=approved, rounds=3)",
     "2026-08-02T11:58 started zhu-2024-dyval ('DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks')",
@@ -1223,6 +1217,21 @@
     "2026-08-02T14:07 dziri-2022-begin: step -> verify",
     "2026-08-02T14:08 dziri-2022-begin: step -> queue-ops",
     "2026-08-02T14:08 dziri-2022-begin: step -> podcast",
-    "2026-08-02T14:23 completed dziri-2022-begin (verdict=approved, rounds=3)"
+    "2026-08-02T14:23 completed dziri-2022-begin (verdict=approved, rounds=3)",
+    "2026-08-02T14:25 started yang-2021-superb ('SUPERB: Speech processing Universal PERformance Benchmark')",
+    "2026-08-02T14:25 yang-2021-superb: step -> fetch",
+    "2026-08-02T14:30 yang-2021-superb: step -> fetch",
+    "2026-08-02T14:30 yang-2021-superb: step -> figures",
+    "2026-08-02T14:30 yang-2021-superb: step -> draft",
+    "2026-08-02T14:46 yang-2021-superb: step -> draft",
+    "2026-08-02T14:59 yang-2021-superb: step -> critique (round 1)",
+    "2026-08-02T14:59 yang-2021-superb: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T15:13 yang-2021-superb: step -> revise",
+    "2026-08-02T15:13 yang-2021-superb: step -> critique (round 2)",
+    "2026-08-02T15:13 yang-2021-superb: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-02T15:13 yang-2021-superb: step -> verify",
+    "2026-08-02T15:13 yang-2021-superb: step -> queue-ops",
+    "2026-08-02T15:14 yang-2021-superb: step -> podcast",
+    "2026-08-02T15:26 completed yang-2021-superb (verdict=approved, rounds=2)"
   ]
 }

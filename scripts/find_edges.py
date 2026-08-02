@@ -11,7 +11,7 @@ Candidates are *leads*, not authority: the builder must confirm each against
 the paper's printed bibliography before writing it into data/papers.json.
 
 This exists because the same sweep was being retyped inline for every paper,
-and four distinct matcher gaps were found the hard way, each of which had
+and five distinct matcher gaps were found the hard way, each of which had
 already cost or nearly cost a real edge:
 
   1. LINE-BREAK HYPHENS. Bibliographies break titles across lines, so
@@ -33,6 +33,12 @@ already cost or nearly cost a real edge:
      A Benchmark..." vs "API-Bank: A *Comprehensive* Benchmark..."), so
      exact title equality is not sufficient. Fall back to a fuzzy ratio and
      report it as a weaker signal.
+
+  5. TRUNCATED CITATION PAGES. S2 caps a citations page at 1000 rows, and
+     a staged file sitting exactly on that boundary is silently partial.
+     SUPERB has 1240 citers, so an unpaged fetch would have hidden 240 of
+     them and made "0 incoming" unverifiable. This script warns on the
+     boundary; the fix is to re-fetch with `&offset=1000` and merge.
 
 Semantic Scholar's reference lists are also simply incomplete -- DyVal's
 84-entry list omits the GPT-4 Technical Report that its printed
@@ -125,6 +131,19 @@ def main():
     refs = rows("refs.json", "citedPaper")
     cites = rows("cites.json", "citingPaper")
 
+    # Gap 5: S2 caps a citations page at 1000. A staged file sitting exactly
+    # on a 1000-boundary is almost certainly truncated, which makes the
+    # incoming-edge sweep silently partial -- SUPERB has 1240 citers, so a
+    # single unpaged fetch would have hidden 240 of them. Re-fetch with
+    # &offset=1000 (2000, ...) and merge before trusting "0 incoming".
+    warnings = []
+    for name, got in (("cites.json", len(cites)), ("refs.json", len(refs))):
+        if got and got % 1000 == 0:
+            warnings.append(
+                f"{name} holds exactly {got} rows -- that is the S2 page cap, "
+                f"so it is probably truncated. Re-fetch with &offset={got} and "
+                f"merge before trusting the incoming-edge count.")
+
     def match(paper):
         for aid in arxiv_ids(paper.get("externalIds")):
             if aid in by_arxiv:
@@ -171,10 +190,15 @@ def main():
                    "outgoing": len(outgoing), "incoming": len(incoming)},
     }
 
+    result["warnings"] = warnings
+
     if args.json:
         json.dump(result, sys.stdout, indent=1)
         print()
         return
+
+    for w in warnings:
+        print(f"!! {w}\n")
 
     print(f"{args.slug}: {len(refs)} S2 refs, {len(cites)} S2 citers, "
           f"{len(nodes)} nodes in graph\n")

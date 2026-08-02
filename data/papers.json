@@ -10541,6 +10541,22 @@
       "explainer": "papers/dziri-2022-begin.html",
       "audio_url": "https://pod.darvinyi.com/audio/dziri-2022-begin.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "yang-2021-superb",
+      "short": "SUPERB",
+      "title": "SUPERB: Speech processing Universal PERformance Benchmark",
+      "authors": "Yang, Chi, Chuang, Lai, Lakhotia, …, Watanabe, Mohamed, Lee",
+      "year": 2021,
+      "date": "2021-05",
+      "venue": "Interspeech 2021",
+      "citation_count": 1240,
+      "topic": "Benchmarks & Evals",
+      "author_group": "National Taiwan University / Meta AI (FAIR)",
+      "abstract": "A ten-task, four-facet (content, speaker, semantics, paralinguistics) benchmark for self-supervised speech representations: every pretrained model is frozen and paired only with a lightweight, task-specific prediction head, so the score reflects the representation itself rather than downstream capacity. Across fourteen SSL representations plus a log-mel filterbank floor, HuBERT Large tops 8 of 12 scored metrics, while wav2vec 2.0 Large and HuBERT Base split the remaining four (KS/SD and QbE/ASV respectively).",
+      "explainer": "papers/yang-2021-superb.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yang-2021-superb.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17916,6 +17932,11 @@
     { "from": "dziri-2022-begin", "to": "williams-2017-multinli" },
     { "from": "dziri-2022-begin", "to": "zhang-2018-personachat" },
     { "from": "dziri-2022-begin", "to": "zhou-2018-document-grounded" },
-    { "from": "dziri-2022-faithdial", "to": "dziri-2022-begin" }
+    { "from": "dziri-2022-faithdial", "to": "dziri-2022-begin" },
+    { "from": "yang-2021-superb", "to": "devlin-2019-bert" },
+    { "from": "yang-2021-superb", "to": "gururangan-2020-dont-stop-pretraining" },
+    { "from": "yang-2021-superb", "to": "peters-2018-elmo" },
+    { "from": "yang-2021-superb", "to": "wang-2018-glue" },
+    { "from": "niklaus-2023-lextreme", "to": "yang-2021-superb" }
   ]
 }

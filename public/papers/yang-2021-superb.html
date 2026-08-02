@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUPERB: Speech processing Universal PERformance Benchmark — paper_atlas</title>
+<meta name="description" content="The GLUE playbook transplanted into speech: freeze one shared self-supervised encoder, bolt on the smallest possible task head, and see how ten tasks spanning content, speaker, semantics, and paralinguistics actually rank fourteen pretrained representations against a log-mel filterbank baseline.">
+<meta property="og:title" content="SUPERB: Speech processing Universal PERformance Benchmark">
+<meta property="og:description" content="The GLUE playbook transplanted into speech: freeze one shared self-supervised encoder, bolt on the smallest possible task head, and see how ten tasks spanning content, speaker, semantics, and paralinguistics actually rank fourteen pretrained representations against a log-mel filterbank baseline.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/yang-2021-superb.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);font-weight:500;white-space:nowrap}
+td{color:var(--dim);white-space:nowrap}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+td.best{color:var(--accent);font-weight:600}
+td.model{color:var(--fg);font-weight:500;white-space:normal}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2021 · Interspeech 2021 · Benchmarks &amp; Evals</div>
+      <h1>SUPERB: Speech processing Universal PERformance Benchmark</h1>
+      <p class="dek">The GLUE playbook transplanted into speech: freeze one shared self-supervised encoder, bolt on the smallest possible task head, and see how ten tasks spanning content, speaker, semantics, and paralinguistics actually rank fourteen pretrained representations against a log-mel filterbank baseline.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/yang-2021-superb.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/yang-2021-superb.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Yang, Chi, Chuang, Lai, Lakhotia, &hellip;, Watanabe, Mohamed, Lee</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>Interspeech 2021</b></span>
+        <span class="fact">citations&nbsp;<b>1,240</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2105.01051">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/yang-2021-superb.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-08-02</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2021, self-supervised learning had already reshaped NLP and computer vision, and each field had a standard yardstick for it &mdash; GLUE for language, VISSL for vision. Speech had no equivalent. A wave of SSL speech encoders had appeared &mdash; CPC, wav2vec, APC, Mockingjay, PASE+, wav2vec 2.0, HuBERT &mdash; each validated on its own narrow slice of tasks (phoneme classification, speaker ID, ASR, emotion recognition) with different datasets, different downstream architectures, and often "heavyweight downstream training" that let a big enough task-specific model paper over a mediocre representation. That made it impossible to compare techniques or to know whether a gain on one task said anything about the representation's general usefulness.</p>
+      <p>Two partial precedents existed and both fell short of the full picture: the Zero Resource Speech Benchmark 2021 evaluates representation quality with no downstream training at all, while the "universal non-semantic representation" benchmark (Shor et al., 2020) explicitly excludes content-recognition tasks like ASR. SUPERB's gap is a benchmark that (1) spans all four aspects of speech &mdash; content, speaker, semantics, and paralinguistics &mdash; in one suite, (2) uses publicly available, limited-labeled-data tasks so results are reproducible and comparable, and (3) constrains the downstream adaptation to be as lightweight as possible, so that what gets measured is the representation itself rather than how much capacity the downstream model was given to compensate for a weak one.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>SUPERB collects <strong>ten tasks</strong> across four categories. <strong>Content</strong> (from ASR and spoken-term-detection communities): Phoneme Recognition (PR, LibriSpeech train-clean-100/dev-clean/test-clean, metric phone error rate &mdash; PER, lower is better), Automatic Speech Recognition (ASR, same LibriSpeech splits, word error rate &mdash; WER, lower is better, reported both without and with a 4-gram LM decoded via KenLM + flashlight), Keyword Spotting (KS, Speech Commands v1.0, accuracy, higher is better), and Query-by-Example Spoken Term Detection (QbE, the English subset of QUESST 2014, maximum term weighted value &mdash; MTWV, higher is better, computed via DTW over the frozen hidden states with the best distance-function/layer pair reported). <strong>Speaker</strong>: Speaker Identification (SID, VoxCeleb1, accuracy), Automatic Speaker Verification (ASV, VoxCeleb1 without VoxCeleb2 data or augmentation, equal error rate &mdash; EER, lower is better, via an x-vector downstream model with AMSoftmax loss and a cosine-similarity backend), and Speaker Diarization (SD, two-speaker LibriMix, diarization error rate &mdash; DER, lower is better, via a single-layer 512-unit LSTM trained with permutation-invariant-training loss). <strong>Semantics</strong>: Intent Classification (IC, Fluent Speech Commands, accuracy over action/object/location labels) and Slot Filling (SF, Audio SNIPS, reformulated as an ASR problem with slot-types encoded as special tokens &mdash; scored by both slot-type F1, higher is better, and slot-value CER, lower is better). <strong>Paralinguistics</strong>: Emotion Recognition (ER, IEMOCAP, four balanced classes, accuracy, 5-fold cross-validation).</p>
+      <p>The framework itself is deliberately simple: every pretrained model's parameters are <strong>frozen</strong>, its multiple hidden-layer outputs are combined into one representation via a <strong>weighted sum across layers</strong>, and that fixed representation feeds a task-specific prediction head. The heads are kept as lightweight as the task allows &mdash; a frame-wise linear layer with CTC loss for PR; mean-pooling plus a linear layer for the four simplest classification tasks (KS, SID, IC, ER); a 2-layer 1024-unit BLSTM with CTC for ASR (and, reformulated, for SF); the classic x-vector model for ASV; a 1-layer 512-unit LSTM with PIT loss for SD; and DTW directly over frozen hidden states for QbE, which needs no trained head at all. Learning-rate search is capped to a 1e-1&ndash;1e-7 log-scale sweep per representation/task pair to keep the comparison budget-fair across fourteen very differently sized encoders.</p>
+      <p>Fourteen SSL representations are compared (plus the non-SSL FBANK log-mel filterbank as a floor), spanning three pretraining families: <strong>generative</strong> (APC, VQ-APC, Mockingjay, TERA, NPC, DeCoAR 2.0), <strong>discriminative</strong> (modified CPC, wav2vec, vq-wav2vec, wav2vec 2.0 Base/Large, HuBERT Base/Large), and <strong>multi-task</strong> (PASE+). Parameter counts range from 1.84M (modified CPC) to 317.38M (wav2vec 2.0 Large); pretraining data ranges from 50 hours of LibriSpeech (PASE+) to 60,000 hours of LibriLight (modified CPC, wav2vec 2.0 Large, HuBERT Large).</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Table 2 is almost the entire paper's empirical payload &mdash; fifteen rows (FBANK plus fourteen SSL representations) scored across all twelve metric columns (ASR and SF each contribute two); the one number outside it is a prose-only supervised QbE baseline discussed below. Bold cells below reproduce the paper's own typesetting (verified span-by-span against the PDF's font layer, not inferred): every bold cell is independently confirmed here to be the literal best value in its column, so bold reliably means "column optimum" even though the paper's caption never states that convention explicitly.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th class="num">PR<br>PER↓</th>
+            <th class="num">KS<br>Acc↑</th>
+            <th class="num">IC<br>Acc↑</th>
+            <th class="num">SID<br>Acc↑</th>
+            <th class="num">ER<br>Acc↑</th>
+            <th class="num">ASR w/o LM<br>WER↓</th>
+            <th class="num">ASR w/ LM<br>WER↓</th>
+            <th class="num">QbE<br>MTWV↑</th>
+            <th class="num">SF<br>F1↑</th>
+            <th class="num">SF<br>CER↓</th>
+            <th class="num">ASV<br>EER↓</th>
+            <th class="num">SD<br>DER↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="model">FBANK</td><td class="num">82.01</td><td class="num">8.63</td><td class="num">9.10</td><td class="num">8.5E-4</td><td class="num">35.39</td><td class="num">23.18</td><td class="num">15.21</td><td class="num">0.0058</td><td class="num">69.64</td><td class="num">52.94</td><td class="num">9.56</td><td class="num">10.05</td></tr>
+          <tr><td class="model">PASE+</td><td class="num">58.87</td><td class="num">82.54</td><td class="num">29.82</td><td class="num">37.99</td><td class="num">57.86</td><td class="num">25.11</td><td class="num">16.62</td><td class="num">0.0072</td><td class="num">62.14</td><td class="num">60.17</td><td class="num">11.61</td><td class="num">8.68</td></tr>
+          <tr><td class="model">APC</td><td class="num">41.98</td><td class="num">91.01</td><td class="num">74.69</td><td class="num">60.42</td><td class="num">59.33</td><td class="num">21.28</td><td class="num">14.74</td><td class="num">0.0310</td><td class="num">70.46</td><td class="num">50.89</td><td class="num">8.56</td><td class="num">10.53</td></tr>
+          <tr><td class="model">VQ-APC</td><td class="num">41.08</td><td class="num">91.11</td><td class="num">74.48</td><td class="num">60.15</td><td class="num">59.66</td><td class="num">21.20</td><td class="num">15.21</td><td class="num">0.0251</td><td class="num">68.53</td><td class="num">52.91</td><td class="num">8.72</td><td class="num">10.45</td></tr>
+          <tr><td class="model">NPC</td><td class="num">43.81</td><td class="num">88.96</td><td class="num">69.44</td><td class="num">55.92</td><td class="num">59.08</td><td class="num">20.20</td><td class="num">13.91</td><td class="num">0.0246</td><td class="num">72.79</td><td class="num">48.44</td><td class="num">9.4</td><td class="num">9.34</td></tr>
+          <tr><td class="model">Mockingjay</td><td class="num">70.19</td><td class="num">83.67</td><td class="num">34.33</td><td class="num">32.29</td><td class="num">50.28</td><td class="num">22.82</td><td class="num">15.48</td><td class="num">6.6E-04</td><td class="num">61.59</td><td class="num">58.89</td><td class="num">11.66</td><td class="num">10.54</td></tr>
+          <tr><td class="model">TERA</td><td class="num">49.17</td><td class="num">89.48</td><td class="num">58.42</td><td class="num">57.57</td><td class="num">56.27</td><td class="num">18.17</td><td class="num">12.16</td><td class="num">0.0013</td><td class="num">67.50</td><td class="num">54.17</td><td class="num">15.89</td><td class="num">9.96</td></tr>
+          <tr><td class="model">DeCoAR 2.0</td><td class="num">14.93</td><td class="num">94.48</td><td class="num">90.80</td><td class="num">74.42</td><td class="num">62.47</td><td class="num">13.02</td><td class="num">9.07</td><td class="num">0.0406</td><td class="num">83.28</td><td class="num">34.73</td><td class="num">7.16</td><td class="num">6.59</td></tr>
+          <tr><td class="model">modified CPC</td><td class="num">42.54</td><td class="num">91.88</td><td class="num">64.09</td><td class="num">39.63</td><td class="num">60.96</td><td class="num">20.18</td><td class="num">13.53</td><td class="num">0.0326</td><td class="num">71.19</td><td class="num">49.91</td><td class="num">12.86</td><td class="num">10.38</td></tr>
+          <tr><td class="model">wav2vec</td><td class="num">31.58</td><td class="num">95.59</td><td class="num">84.92</td><td class="num">56.56</td><td class="num">59.79</td><td class="num">15.86</td><td class="num">11.00</td><td class="num">0.0485</td><td class="num">76.37</td><td class="num">43.71</td><td class="num">7.99</td><td class="num">9.9</td></tr>
+          <tr><td class="model">vq-wav2vec</td><td class="num">33.48</td><td class="num">93.38</td><td class="num">85.68</td><td class="num">38.80</td><td class="num">58.24</td><td class="num">17.71</td><td class="num">12.80</td><td class="num">0.0410</td><td class="num">77.68</td><td class="num">41.54</td><td class="num">10.38</td><td class="num">9.93</td></tr>
+          <tr><td class="model">wav2vec 2.0 Base</td><td class="num">5.74</td><td class="num">96.23</td><td class="num">92.35</td><td class="num">75.18</td><td class="num">63.43</td><td class="num">6.43</td><td class="num">4.79</td><td class="num">0.0233</td><td class="num">88.30</td><td class="num">24.77</td><td class="num">6.02</td><td class="num">6.08</td></tr>
+          <tr><td class="model">wav2vec 2.0 Large</td><td class="num">4.75</td><td class="num best">96.66</td><td class="num">95.28</td><td class="num">86.14</td><td class="num">65.64</td><td class="num">3.75</td><td class="num">3.10</td><td class="num">0.0489</td><td class="num">87.11</td><td class="num">27.31</td><td class="num">5.65</td><td class="num best">5.62</td></tr>
+          <tr><td class="model">HuBERT Base</td><td class="num">5.41</td><td class="num">96.30</td><td class="num">98.34</td><td class="num">81.42</td><td class="num">64.92</td><td class="num">6.42</td><td class="num">4.79</td><td class="num best">0.0736</td><td class="num">88.53</td><td class="num">25.20</td><td class="num best">5.11</td><td class="num">5.88</td></tr>
+          <tr><td class="model">HuBERT Large</td><td class="num best">3.53</td><td class="num">95.29</td><td class="num best">98.76</td><td class="num best">90.33</td><td class="num best">67.62</td><td class="num best">3.62</td><td class="num best">2.94</td><td class="num">0.0353</td><td class="num best">89.81</td><td class="num best">21.76</td><td class="num">5.98</td><td class="num">5.75</td></tr>
+        </tbody>
+      </table>
+      <p>Column-optimum count: <strong>HuBERT Large wins 8 of the 12 metric columns</strong> (PR, IC, SID, ER, both ASR-WER columns, SF-F1, SF-CER). The other four split between two different representations: <strong>wav2vec 2.0 Large</strong> takes KS (96.66) and SD (5.62 DER), and <strong>HuBERT Base</strong> &mdash; not Large &mdash; takes QbE (0.0736 MTWV) and ASV (5.11 EER). Between them, these three configurations (not one single model) hold every column optimum in the table. QbE is also the one place the paper anchors a table cell against an outside, supervised number: it reports a TIMIT-trained phoneme posteriorgram (PPG) baseline &mdash; prose-only, not in Table 2 &mdash; at 0.052 MTWV, which HuBERT Base's 0.0736 clears.</p>
+      <p>The paper's own reading: "for the tasks using linear models, FBANK cannot work on any task, while SSL representations all perform well to some degree." That holds exactly on the five linear-downstream tasks (PR, KS, IC, SID, ER) &mdash; FBANK is last on all five, and its SID score of 8.5&times;10<sup>-4</sup> is indistinguishable from chance on VoxCeleb1's speaker set. On the four tasks that allow non-linear downstream models (ASR, SF, ASV, SD), the paper notes FBANK "yields better performance than some SSL representations" &mdash; true but bounded: of the fourteen SSL representations, FBANK's ASV (9.56) beats five &mdash; PASE+, Mockingjay, modified CPC, TERA, and vq-wav2vec &mdash; and its SD (10.05) beats four &mdash; APC, VQ-APC, Mockingjay, and modified CPC. Both wav2vec 2.0 sizes and both HuBERT sizes beat FBANK on both metrics; vq-wav2vec is the one exception, trailing FBANK on ASV (10.38 vs. 9.56) while still edging it on SD (9.93 vs. 10.05). HuBERT's own two sizes disagree on three of the twelve columns &mdash; Base actually beats Large on KS (96.30 vs. 95.29), ASV (5.11 vs. 5.98), and, most sharply, QbE (0.0736 vs. 0.0353, more than 2&times;) &mdash; while Large wins the other nine. QbE is the largest reversal between any model's Base and Large size in the table; the only other Base/Large pair, wav2vec 2.0, reverses on just two columns (F1 and SF-CER), and its largest gap there (SF-CER, 27.31 vs. 24.77) is far smaller in ratio terms.</p>
+      <p>There is a subtler slip in the same sentences, and it may be the origin of a persistent folk memory. The results prose credits its two most quotable wins to unqualified &ldquo;HuBERT&rdquo; &mdash; &ldquo;HuBERT ranks the top one in QbE with MTWV 0.074&rdquo; and &ldquo;HuBERT improves upon popular FBANK from 9.56 to 5.10&rdquo; &mdash; but in both cases the winner is HuBERT <em>Base</em>, not the headline Large. On QbE, Large scores <span class="mono">0.0353</span> against Base&rsquo;s <span class="mono">0.0736</span>, less than half; on ASV, Large&rsquo;s <span class="mono">5.98</span> is worse than Base&rsquo;s <span class="mono">5.11</span> (EER, lower is better). A reader who takes the prose at face value comes away believing the largest HuBERT won both.</p>
+      <p>One number does not reconcile cleanly within the paper itself: the results prose states HuBERT "improves upon popular FBANK from 9.56 to <strong>5.10</strong>" on ASV, but the table cell for HuBERT Base's ASV &mdash; the value the sentence is describing &mdash; prints <strong>5.11</strong>. Both numbers are read directly off the PDF (the table cell confirmed at its exact column position); the 0.01 gap looks like a rounding slip in the prose rather than a wrong table entry, but it is a genuine paper-internal inconsistency, not a transcription artifact on this page's part.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>SUPERB's single biggest methodological choice &mdash; freezing every pretrained model and capping the downstream head's capacity &mdash; is also its single biggest interpretive risk. It is precisely the right design for the question the paper asks ("how reusable is this representation with minimal adaptation?"), but it is easy to over-read the resulting table as a statement about SSL's ceiling. wav2vec 2.0 and HuBERT were already known, in the ASR literature this paper cites, to reach much lower WER once fully fine-tuned rather than frozen; the "w/ LM" WER numbers here (down to 2.94 for HuBERT Large) measure what a lightweight BLSTM head can extract from a frozen representation, not what the encoder can do once its own weights move. A representation whose useful signal is more entangled across layers, or less linearly separable, could plausibly rank lower here than it "deserves" under a fairer, fine-tuning-permitted comparison &mdash; the paper is explicit that it deliberately trades that headroom away, but a reader skimming only the table can miss the trade.</p>
+      <p>There is also an unacknowledged domain-overlap issue that the paper's own Table 1 makes visible: several of the strongest representations (wav2vec, wav2vec 2.0 Base, HuBERT Base) are pretrained on LibriSpeech's own 960-hour set, and the two "Large" variants are pretrained on LibriLight, a superset drawn from the same audiobook domain &mdash; while three of the ten downstream tasks (PR, ASR, and SD via LibriMix) are built directly from LibriSpeech. That is not label leakage (the task splits are disjoint from the pretraining splits), but it is a domain match that VoxCeleb1 (SID/ASV), Fluent Speech Commands (IC), Audio SNIPS (SF), Speech Commands v1.0 (KS), and IEMOCAP (ER) do not share with the pretraining corpus. The representations' apparent advantage on the LibriSpeech-family tasks is at least partly a same-domain effect, not purely a "general reusability" effect, and the paper does not separate the two.</p>
+      <p>The paper never computes a single aggregate SUPERB score in its own text &mdash; despite the "leaderboard" framing, this six-page version reports only the fifteen-by-twelve grid above and the single prose-only PPG baseline, with no min-max normalization, rank aggregation, or weighted composite anywhere in the prose. That is arguably the right call: the twelve columns live on wildly different scales (accuracy/F1 columns up near 99, EER and DER at their best in single digits but SF-CER never single-digit anywhere &mdash; it runs 21.76 to 60.17 &mdash; and MTWV confined to the 0&ndash;0.1 range), so a naive unweighted mean would be dominated by whichever metric has the widest spread. But it also means the paper's own text supports no answer to "which single representation is best overall" &mdash; that ranking exists only on the external superbbenchmark.org leaderboard, outside what this paper states and outside what this page can audit.</p>
+      <p>Finally, the task datasets are exactly the kind that saturate: LibriSpeech, VoxCeleb1, IEMOCAP, Speech Commands, Fluent Speech Commands, and Audio SNIPS were all already well-studied by 2021, and the top cluster on several columns is already tight &mdash; among just the four wav2vec 2.0/HuBERT variants, KS spans 1.37 points (96.66 down to 95.29), and both ASV (6.02 down to 5.11, a 0.91-point spread) and SD (6.08 down to 5.62, a 0.46-point spread) span under a full point &mdash; in both cases it is wav2vec 2.0 Base, not either HuBERT size, that sits at the wide end of the cluster. Only ER reports a cross-validation protocol (5-fold); every other task reports a single run with no error bars or seed variance, so a chunk of the fine-grained ranking within that top cluster is not distinguishable from run-to-run noise using what the paper itself reports.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">FBANK is the only non-SSL floor in Table 2; the paper reports exactly one supervised, task-specific, non-frozen comparator anywhere, and it's prose-only, off-table: a TIMIT-trained phoneme posteriorgram (PPG) for QbE at 0.052 MTWV, used to argue HuBERT's 0.0736 is competitive. That is one number for one of ten tasks &mdash; for the other nine, the paper's claim that the framework "yields competitive performance compared to traditional supervised pipelines" rests on citation to prior work alone, not a number this paper computed itself.</p>
+        <span class="k">contamination</span><p class="v">Not label leakage, but a genuine domain-overlap confound: wav2vec/wav2vec 2.0/HuBERT are pretrained on LibriSpeech/LibriLight, and three of the ten downstream tasks (PR, ASR, SD) are built from LibriSpeech itself; the paper does not separate in-domain transfer from general reusability.</p>
+        <span class="k">what's missed</span><p class="v">No aggregate score in the paper's own text (only the external leaderboard computes one); no error bars or seeds beyond ER's 5-fold CV; a same-paper 5.10-vs-5.11 mismatch between the ASV prose and its own table cell for HuBERT Base.</p>
+        <span class="k">would raise confidence</span><p class="v">Seed/fold variance reported for every task the way ER already does it; a fully-fine-tuned upper bound alongside each frozen number to size the headroom being traded away; an explicit statement (in the paper, not just the website) of how columns on different scales would combine into one number; and a disclosed pretraining/downstream-corpus overlap table.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>SUPERB is a well-constructed protocol paper more than a results paper: the ten-task, four-facet suite and the frozen-representation-plus-lightweight-head discipline are the contribution, and they hold up as a standardized way to compare speech representations. The specific 2021 numbers are best read as "what a small head can pull out of a frozen checkpoint," not as a ranking of SSL's ultimate potential, and the domain overlap between LibriSpeech-pretrained encoders and LibriSpeech-derived tasks means the content-task wins deserve a caveat the paper itself doesn't add.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// what to remember</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>SUPERB is GLUE's playbook carried into speech: a multi-task suite spanning many facets with a shared leaderboard, but the object under test sits one layer earlier in the pipeline &mdash; GLUE lets any architecture fine-tune fully, with only four of its nine tasks' test labels held privately, while SUPERB freezes the shared encoder entirely and hands every task the smallest possible head, entirely on public standard datasets, precisely because it wants to isolate representation quality rather than downstream capacity.</li>
+        <li>No single model wins everything: HuBERT Large tops 8 of 12 scored columns, but wav2vec 2.0 Large takes KS and SD, and HuBERT Base &mdash; not Large &mdash; takes QbE (0.0736 vs. Large's 0.0353, more than 2&times;) and ASV (5.11 vs. Large's 5.98, a smaller gap). "HuBERT wins SUPERB" needs a footnote about which HuBERT and which columns.</li>
+        <li>Read the frozen-representation numbers as "reusability with minimal adaptation," not "SSL's ceiling": the same wav2vec 2.0/HuBERT checkpoints were already known to reach much lower WER once fully fine-tuned, and SUPERB explicitly trades that headroom away to isolate what's carried in the frozen features themselves.</li>
+        <li>The paper reports no single aggregate score and no error bars beyond ER's 5-fold CV; the widely-cited "SUPERB score" ranking lives on the external leaderboard site, not in this six-page Interspeech paper's own text &mdash; a distinction worth keeping straight when citing "SUPERB's ranking" for a specific model.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        SUPERB: Speech processing Universal PERformance Benchmark<br>
+        Yang, Chi, Chuang, Lai, Lakhotia, et al. · 2021 · Interspeech 2021<br>
+        <a href="https://arxiv.org/abs/2105.01051">read the original ↗</a> · slug: yang-2021-superb
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
