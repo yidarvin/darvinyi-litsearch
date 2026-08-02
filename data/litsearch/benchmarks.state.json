@@ -1080,6 +1080,15 @@
         "Two critic rounds (7 blockers r1, clean approve r2). B1 repeated the third-consecutive undercounted-uniqueness pattern: the builder found the paper's 'all the models were improved in all the metrics except PPL' claim to be false and framed it as one cell; the full 90-cell sweep gives 4 strict decreases + 1 tie. Three of the seven blockers were claims the page contradicted itself on within a paragraph. Episode agent verified the corrected sweep independently and added the load-bearing caveat that BERT+know freezes the transformer weights, so two of the five non-improving cells are a memory-module ablation on a fixed encoder rather than an end-to-end comparison; also resolved the Table 2 vs Table 3 entity-count tension (built graph vs referenced subgraph; only 14.6% of built triples are ever used). Queued OpenDialKG at High — two of KdConv's novelty claims were falsified by OpenDialKG's row in KdConv's own comparison table, and it isn't a node yet."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "lyu-2024-crud-rag",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Two critic rounds (4 blockers r1, clean approve r2). B1 was the fourth consecutive undercounted uniqueness claim and the first created by a repair: the builder correctly caught that '17 of 30 across the three QA tasks' was mis-scoped, then carried 15 and 17 across unexamined. Truth is 16 of 30 and 14 of 15, because BM25's bleu 24.61 beats Hybrid+Rerank's 24.53 and the paper itself bolds it — and the page's own summary table already said BM25 wins 6 while enumerating 5. Added the enumerate-before-you-claim rule to the builder agent definition at the start of this run; it fired on first drafts (builder self-caught three contradictions) but not on rewrites, which is the remaining gap. I also introduced and immediately caught an error in my own suggestion-fix (attributing GPT-3.5-turbo as fixed baseline to Table 8, which IS the LLM comparison). Builder's novel finding held under independent re-derivation: the paper's own bold 'best' markers are stale in 3 of 30 cells in Tables 6 and 8, clean in 3/4/5/7; the episode agent independently corroborated the incomplete-refresh explanation by finding §4.1's prose still lists six base LLMs against Table 8's eight, now on the page. Declined evaluations: RAGQuestEval has no human-correlation study here, inheriting validity from QuestEval's original paper; QuestEval queued at High to close the provenance gap."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1129,20 +1138,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> queue-ops",
-    "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> podcast",
-    "2026-08-02T03:00 completed zhang-2023-gaokao-bench (verdict=approved, rounds=2)",
-    "2026-08-02T03:02 started enevoldsen-2025-mmteb ('MMTEB: Massive Multilingual Text Embedding Benchmark')",
-    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> fetch",
-    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> figures",
-    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> draft",
-    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> critique (round 1)",
-    "2026-08-02T03:46 enevoldsen-2025-mmteb: step -> revise",
-    "2026-08-02T03:57 enevoldsen-2025-mmteb: step -> critique (round 2)",
-    "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> verify",
-    "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> queue-ops",
-    "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> podcast",
-    "2026-08-02T04:15 completed enevoldsen-2025-mmteb (verdict=approved, rounds=2)",
     "2026-08-02T04:18 started liu-2023-cmexam ('Benchmarking Large Language Models on CMExam - A Comprehensive Chinese Medical Exam Dataset')",
     "2026-08-02T04:20 liu-2023-cmexam: step -> fetch",
     "2026-08-02T04:22 liu-2023-cmexam: step -> figures",
@@ -1178,6 +1173,20 @@
     "2026-08-02T07:37 zhou-2020-kdconv: step -> verify",
     "2026-08-02T07:38 zhou-2020-kdconv: step -> queue-ops",
     "2026-08-02T07:38 zhou-2020-kdconv: step -> podcast",
-    "2026-08-02T07:55 completed zhou-2020-kdconv (verdict=approved, rounds=2)"
+    "2026-08-02T07:55 completed zhou-2020-kdconv (verdict=approved, rounds=2)",
+    "2026-08-02T07:58 started lyu-2024-crud-rag ('CRUD-RAG: A Comprehensive Chinese Benchmark for Retrieval-Augmented Generation of Large Language Models')",
+    "2026-08-02T07:58 lyu-2024-crud-rag: step -> fetch",
+    "2026-08-02T08:05 lyu-2024-crud-rag: step -> figures",
+    "2026-08-02T08:06 lyu-2024-crud-rag: step -> draft",
+    "2026-08-02T08:30 lyu-2024-crud-rag: step -> draft",
+    "2026-08-02T08:45 lyu-2024-crud-rag: step -> critique (round 1)",
+    "2026-08-02T08:45 lyu-2024-crud-rag: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T09:08 lyu-2024-crud-rag: step -> revise",
+    "2026-08-02T09:08 lyu-2024-crud-rag: step -> critique (round 2)",
+    "2026-08-02T09:08 lyu-2024-crud-rag: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-02T09:08 lyu-2024-crud-rag: step -> verify",
+    "2026-08-02T09:09 lyu-2024-crud-rag: step -> queue-ops",
+    "2026-08-02T09:09 lyu-2024-crud-rag: step -> podcast",
+    "2026-08-02T09:22 completed lyu-2024-crud-rag (verdict=approved, rounds=2)"
   ]
 }

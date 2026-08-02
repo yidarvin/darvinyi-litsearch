@@ -10461,6 +10461,22 @@
       "explainer": "papers/zhou-2020-kdconv.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhou-2020-kdconv.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "lyu-2024-crud-rag",
+      "short": "CRUD-RAG",
+      "title": "CRUD-RAG: A Comprehensive Chinese Benchmark for Retrieval-Augmented Generation of Large Language Models",
+      "authors": "Lyu, Li, Niu, …, Xu, Chen",
+      "year": 2025,
+      "date": "2024-01",
+      "venue": "ACM TOIS",
+      "citation_count": 131,
+      "topic": "Benchmarks & Evals",
+      "author_group": "USTC / IAAR (Shanghai)",
+      "abstract": "Borrows the CRUD acronym from database interfaces — Create, Read, Update, Delete — to argue question answering is only one of the ways an LLM touches a knowledge base, then builds a 36,166-instance Chinese benchmark across all four scenarios and ablates the whole RAG pipeline (chunk size, chunk overlap, embedding model, retriever, top-k, LLM) rather than just the generator. No single setting wins across all four: Hybrid+Rerank retrieval takes 14 of the 15 scored cells across the three QA tasks (16 of 30 across the full 6-task grid), but BM25 edges it on 2-document QA's bleu and sweeps every overall-similarity metric on hallucination correction instead.",
+      "explainer": "papers/lyu-2024-crud-rag.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lyu-2024-crud-rag.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17767,6 +17783,13 @@
     { "from": "zhou-2020-kdconv", "to": "papineni-2002-bleu" },
     { "from": "zhou-2020-kdconv", "to": "wu-2017-smn" },
     { "from": "zhou-2020-kdconv", "to": "zhang-2018-personachat" },
-    { "from": "zhou-2020-kdconv", "to": "zhou-2018-document-grounded" }
+    { "from": "zhou-2020-kdconv", "to": "zhou-2018-document-grounded" },
+    { "from": "lyu-2024-crud-rag", "to": "bubeck-2023-sparks-agi" },
+    { "from": "lyu-2024-crud-rag", "to": "izacard-2022-atlas" },
+    { "from": "lyu-2024-crud-rag", "to": "kwiatkowski-2019-natural-questions" },
+    { "from": "lyu-2024-crud-rag", "to": "lewis-2020-rag" },
+    { "from": "lyu-2024-crud-rag", "to": "muennighoff-2023-mteb" },
+    { "from": "lyu-2024-crud-rag", "to": "wei-2022-cot" },
+    { "from": "klearman-2026-semantic-stratification", "to": "lyu-2024-crud-rag" }
   ]
 }

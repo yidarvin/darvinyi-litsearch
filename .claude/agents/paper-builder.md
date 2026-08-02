@@ -292,6 +292,36 @@ actually uses. → `set-step draft`
    human row" are all fine; a bare "strongest", "the only" or "every" is not,
    whenever another row shares the column. Record that sweep in `tables.md`.
 
+   **Counting the paper's own exceptions: find one, then keep going.** The
+   rule above is about your claims. This one is about the paper's. When a
+   paper asserts something universal — "all the models improved on all the
+   metrics", "our method wins on every benchmark", "in all domains" — and
+   you notice a cell that falsifies it, you have found *an* exception, not
+   *the* exception. Three consecutive papers shipped drafts that got this
+   wrong, each undercounting by roughly 4x:
+
+   - FaithDial: "the only metric in the table where FaithDial-trained
+     doesn't win" — there were four.
+   - KdConv: "the one cell in the reported grid where adding knowledge
+     makes a generative metric worse" — a full sweep of the 90 non-PPL
+     cells gave four strict decreases and one exact tie.
+
+   The failure mode is identical every time: you spot one counterexample,
+   the finding feels complete because it already disproves the claim, and
+   you write "the one" without ever enumerating the rest. It also tends to
+   *weaken* the page — five counterexamples is a stronger, more interesting
+   result than one, and on FaithDial the undercount deleted the paper's
+   real accuracy-vs-engagement tradeoff.
+
+   So: **the moment you decide to contradict a paper's universal claim,
+   enumerate the entire comparable set before writing a word about it.**
+   State the denominator you swept ("of the 90 non-PPL cells, 85 improve,
+   4 decrease, 1 ties"), not just the exceptions. Put the sweep in
+   `tables.md` with every cell, so the critic can check your count instead
+   of re-deriving it. And never write in `report.json` that you swept
+   something unless you can name the cells — an asserted check that did
+   not happen is worse than no check, because it stops the critic looking.
+
    **Never write an `audio_url` into the node.** That key is stamped only by
    `scripts/inject_podcast.py --set <slug>`, after the episode actually
    exists and has been confirmed live. It is also the sole guard
