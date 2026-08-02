@@ -10477,6 +10477,22 @@
       "explainer": "papers/lyu-2024-crud-rag.html",
       "audio_url": "https://pod.darvinyi.com/audio/lyu-2024-crud-rag.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhao-2025-prefeval",
+      "short": "PrefEval",
+      "title": "Do LLMs Recognize Your Preferences? Evaluating Personalized Preference Following in LLMs",
+      "authors": "Zhao, Hong, Liu, Hazarika, Lin",
+      "year": 2025,
+      "date": "2025-02",
+      "venue": "ICLR 2025",
+      "citation_count": 121,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Amazon AGI",
+      "abstract": "A 3,000-pair benchmark that states a user preference once, buries it under real multi-session conversation turns stretching up to 100k tokens, and checks whether a later, topically-unrelated query is still answered in line with it. Zero-shot preference-following accuracy for the six core models falls from ~80% to under 30% within 5 turns and keeps decaying toward zero by 300 turns; nine of the ten benchmarked models score under 20% by 10 turns (o1-preview alone holds near 50%). The LLM-based grader is validated against human judgment (86-98% per-checker agreement across 300 sampled evaluations).",
+      "explainer": "papers/zhao-2025-prefeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhao-2025-prefeval.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17790,6 +17806,19 @@
     { "from": "lyu-2024-crud-rag", "to": "lewis-2020-rag" },
     { "from": "lyu-2024-crud-rag", "to": "muennighoff-2023-mteb" },
     { "from": "lyu-2024-crud-rag", "to": "wei-2022-cot" },
-    { "from": "klearman-2026-semantic-stratification", "to": "lyu-2024-crud-rag" }
+    { "from": "klearman-2026-semantic-stratification", "to": "lyu-2024-crud-rag" },
+    { "from": "zhao-2025-prefeval", "to": "bai-2022-constitutional-ai" },
+    { "from": "zhao-2025-prefeval", "to": "bai-2023-longbench" },
+    { "from": "zhao-2025-prefeval", "to": "gao-2021-simcse" },
+    { "from": "zhao-2025-prefeval", "to": "lewis-2020-rag" },
+    { "from": "zhao-2025-prefeval", "to": "liu-2023-lost-in-the-middle" },
+    { "from": "zhao-2025-prefeval", "to": "openai-2023-gpt4" },
+    { "from": "zhao-2025-prefeval", "to": "ouyang-2022-instructgpt" },
+    { "from": "zhao-2025-prefeval", "to": "radford-2019-gpt2" },
+    { "from": "zhao-2025-prefeval", "to": "zhang-2018-personachat" },
+    { "from": "zhao-2025-prefeval", "to": "zheng-2024-lmsys-chat-1m" },
+    { "from": "zhao-2025-prefeval", "to": "zhou-2023-ifeval" },
+    { "from": "jiang-2025-personamem", "to": "zhao-2025-prefeval" },
+    { "from": "qian-2025-userbench", "to": "zhao-2025-prefeval" }
   ]
 }

@@ -1089,6 +1089,15 @@
         "Two critic rounds (4 blockers r1, clean approve r2). B1 was the fourth consecutive undercounted uniqueness claim and the first created by a repair: the builder correctly caught that '17 of 30 across the three QA tasks' was mis-scoped, then carried 15 and 17 across unexamined. Truth is 16 of 30 and 14 of 15, because BM25's bleu 24.61 beats Hybrid+Rerank's 24.53 and the paper itself bolds it — and the page's own summary table already said BM25 wins 6 while enumerating 5. Added the enumerate-before-you-claim rule to the builder agent definition at the start of this run; it fired on first drafts (builder self-caught three contradictions) but not on rewrites, which is the remaining gap. I also introduced and immediately caught an error in my own suggestion-fix (attributing GPT-3.5-turbo as fixed baseline to Table 8, which IS the LLM comparison). Builder's novel finding held under independent re-derivation: the paper's own bold 'best' markers are stale in 3 of 30 cells in Tables 6 and 8, clean in 3/4/5/7; the episode agent independently corroborated the incomplete-refresh explanation by finding §4.1's prose still lists six base LLMs against Table 8's eight, now on the page. Declined evaluations: RAGQuestEval has no human-correlation study here, inheriting validity from QuestEval's original paper; QuestEval queued at High to close the provenance gap."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "zhao-2025-prefeval",
+      "rounds": 4,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "Heaviest revision in the run: 3 critic rounds, 13 blockers, of which 3 were repair-introduced (2 by the builder, 1 by me). Round 1 drew 10 blockers including a count-vs-enumeration mismatch on the page itself (third consecutive paper), an undercounted universal whose disproof was inside an embedded figure (fourth consecutive), and an asserted absence ('preferences never revised') contradicted by a section literally titled Dynamic Preference Following. Round 2 found both builder repairs broken. Round 3 found MY fix broken the same way: I corrected a length label from 3k to 0.2k and did not re-check the claim hanging off it, which is exactly the rule I had written into paper-builder.md that morning. Applied the critic's own fix_hint, then dropped three six-model-mean values I could not trace to printed cells in favour of the ordering claim they supported. Critic resolved the builder's open question against the builder: the abstract's 'below 10% across most models' is defensible unscoped across all three preference forms, so the right action was to write nothing. Declined evaluations despite PrefEval clearing the grader-validation bar FaithDial and CRUD-RAG failed — that bar was disqualifying, not qualifying — but used the critic's finding that the paper never states a human annotator count anywhere. Episode agent found no page errors and independently confirmed the 'least steeply' inversion (o1-preview -36pp vs others already on the floor), now rewritten."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1138,25 +1147,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T04:18 started liu-2023-cmexam ('Benchmarking Large Language Models on CMExam - A Comprehensive Chinese Medical Exam Dataset')",
-    "2026-08-02T04:20 liu-2023-cmexam: step -> fetch",
-    "2026-08-02T04:22 liu-2023-cmexam: step -> figures",
-    "2026-08-02T04:22 liu-2023-cmexam: step -> draft",
-    "2026-08-02T04:59 liu-2023-cmexam: step -> critique (round 1)",
-    "2026-08-02T04:59 liu-2023-cmexam: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T05:20 liu-2023-cmexam: step -> verify",
-    "2026-08-02T05:21 liu-2023-cmexam: step -> queue-ops",
-    "2026-08-02T05:21 liu-2023-cmexam: step -> podcast",
-    "2026-08-02T05:36 completed liu-2023-cmexam (verdict=approved_with_notes, rounds=1)",
-    "2026-08-02T05:38 started dziri-2022-faithdial ('FaithDial: A Faithful Benchmark for Information-Seeking Dialogue')",
-    "2026-08-02T05:38 dziri-2022-faithdial: step -> fetch",
-    "2026-08-02T06:13 dziri-2022-faithdial: step -> figures",
-    "2026-08-02T06:13 dziri-2022-faithdial: step -> draft",
-    "2026-08-02T06:13 dziri-2022-faithdial: step -> critique (round 1)",
-    "2026-08-02T06:13 dziri-2022-faithdial: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T06:28 dziri-2022-faithdial: step -> revise",
-    "2026-08-02T06:28 dziri-2022-faithdial: step -> critique (round 2)",
-    "2026-08-02T06:28 dziri-2022-faithdial: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-02T06:28 dziri-2022-faithdial: step -> verify",
     "2026-08-02T06:29 dziri-2022-faithdial: step -> queue-ops",
     "2026-08-02T06:29 dziri-2022-faithdial: step -> podcast",
@@ -1187,6 +1177,25 @@
     "2026-08-02T09:08 lyu-2024-crud-rag: step -> verify",
     "2026-08-02T09:09 lyu-2024-crud-rag: step -> queue-ops",
     "2026-08-02T09:09 lyu-2024-crud-rag: step -> podcast",
-    "2026-08-02T09:22 completed lyu-2024-crud-rag (verdict=approved, rounds=2)"
+    "2026-08-02T09:22 completed lyu-2024-crud-rag (verdict=approved, rounds=2)",
+    "2026-08-02T09:24 started zhao-2025-prefeval ('Do LLMs Recognize Your Preferences? Evaluating Personalized Preference Following in LLMs')",
+    "2026-08-02T09:24 zhao-2025-prefeval: step -> fetch",
+    "2026-08-02T09:44 zhao-2025-prefeval: step -> figures",
+    "2026-08-02T09:44 zhao-2025-prefeval: step -> draft",
+    "2026-08-02T10:01 zhao-2025-prefeval: step -> critique (round 1)",
+    "2026-08-02T10:01 zhao-2025-prefeval: 10 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T10:29 zhao-2025-prefeval: step -> revise",
+    "2026-08-02T10:29 zhao-2025-prefeval: step -> critique (round 2)",
+    "2026-08-02T10:29 zhao-2025-prefeval: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T10:29 zhao-2025-prefeval: step -> revise",
+    "2026-08-02T10:37 zhao-2025-prefeval: step -> critique (round 3)",
+    "2026-08-02T10:37 zhao-2025-prefeval: 1 open blocker(s) from round 3 (verdict: revise)",
+    "2026-08-02T10:37 zhao-2025-prefeval: step -> revise",
+    "2026-08-02T10:37 zhao-2025-prefeval: step -> critique (round 4)",
+    "2026-08-02T10:37 zhao-2025-prefeval: 0 open blocker(s) from round 4 (verdict: approve)",
+    "2026-08-02T10:37 zhao-2025-prefeval: step -> verify",
+    "2026-08-02T10:38 zhao-2025-prefeval: step -> queue-ops",
+    "2026-08-02T10:38 zhao-2025-prefeval: step -> podcast",
+    "2026-08-02T10:49 completed zhao-2025-prefeval (verdict=approved_with_notes, rounds=4)"
   ]
 }

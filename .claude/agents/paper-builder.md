@@ -633,6 +633,34 @@ claim, and re-read your own response file for a sentence that contradicts
 what you just put on the page. Prefer the weaker true statement; a fix that
 drops a comparison entirely is better than a fix that inverts one.
 
+**Fixing a scope does not verify its numbers — recount them too.** The
+most recent instance of the above had a specific and repeatable shape. On
+CRUD-RAG the page said Hybrid+Rerank "takes 17 of 30 scored cells *across
+the three QA tasks*". The blocker was the scope: 30 is the full six-task
+grid, not the QA subset. The builder fixed exactly that — rewrote the
+scope to "sweeps all 15 scored cells across the three QA tasks (17 of
+30)" — and carried `15` and `17` across untouched, because only the
+scoping had been challenged. Both were wrong: the true counts are 14 of
+15 and 16 of 30, because BM25's bleu of 24.61 beats Hybrid+Rerank's 24.53
+in one QA block and *the paper's own bold marks BM25 as the winner there*.
+
+The lesson generalizes: **a blocker names the part of a claim that is
+provably wrong, not the extent of what is wrong.** When you touch any
+sentence containing a count, re-derive every number in it from the table,
+including the ones nobody questioned. The rule about enumerating a whole
+comparable set before writing a uniqueness claim (see the
+counting-exceptions section above) applies to rewrites exactly as it does
+to first drafts — arguably more, since a rewrite carries the false
+confidence of having already been reviewed once.
+
+**When a count and an enumeration disagree, recount from the table.** That
+same page stated BM25 won six cells and then listed five, in a summary
+table on the page itself. Two other blockers that round were likewise
+page-versus-page contradictions. None of these needed the PDF: one honest
+read of the finished page against itself catches them. Do that read every
+time, and treat any internal mismatch as evidence the *number* is wrong
+rather than something to reconcile in prose.
+
 **A claim lives on seven surfaces, and a fix that reaches six is still a
 defect.** The full set is: the hero **dek**, `<meta name="description">`,
 `og:description`, the **body section** that argues it, the **takeaway**,
