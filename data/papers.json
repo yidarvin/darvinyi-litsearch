@@ -10301,6 +10301,22 @@
       "explainer": "papers/caesar-2020-nuscenes.html",
       "audio_url": "https://pod.darvinyi.com/audio/caesar-2020-nuscenes.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "huang-2024-vbench",
+      "short": "VBench",
+      "title": "VBench: Comprehensive Benchmark Suite for Video Generative Models",
+      "authors": "Huang, He, Yu, …, Lin, Qiao, Liu",
+      "year": 2024,
+      "date": "2023-11",
+      "venue": "CVPR 2024",
+      "citation_count": 1724,
+      "topic": "Benchmarks & Evals",
+      "author_group": "NTU Singapore / Shanghai AI Laboratory",
+      "abstract": "VBench decomposes \"video generation quality\" into 16 disentangled, hierarchical dimensions -- Video Quality (Temporal Quality + Frame-Wise Quality) and Video-Condition Consistency (Semantics + Style + Overall Consistency) -- each scored by a purpose-built automatic metric (DINO, CLIP/ViCLIP, RAFT, the LAION aesthetic predictor, MUSIQ, GRiT, UMT, Tag2Text) and checked against human preference annotations via per-dimension Spearman correlation. That validation is computed over just 4 evaluated models (LaVie, ModelScope, VideoCrafter, CogVideo) per dimension, with ρ ranging from 0.6073 (Color) to 0.9980 (Motion Smoothness) and no reported significance test or inter-annotator agreement statistic.",
+      "explainer": "papers/huang-2024-vbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/huang-2024-vbench.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17483,6 +17499,9 @@
     { "from": "wang-2024-cmb", "to": "jiang-2023-mistral-7b" },
     { "from": "chang-2023-llm-eval-survey", "to": "wang-2024-cmb" },
     { "from": "caesar-2020-nuscenes", "to": "deng-2009-imagenet" },
-    { "from": "qin-2024-worldsimbench", "to": "caesar-2020-nuscenes" }
+    { "from": "qin-2024-worldsimbench", "to": "caesar-2020-nuscenes" },
+    { "from": "huang-2024-vbench", "to": "lin-2014-coco" },
+    { "from": "huang-2024-vbench", "to": "zheng-2023-mt-bench" },
+    { "from": "qin-2024-worldsimbench", "to": "huang-2024-vbench" }
   ]
 }

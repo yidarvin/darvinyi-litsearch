@@ -990,6 +990,15 @@
         "2 critic rounds, 3 blockers: wrong datasets attached to the semantic-maps quote (the paper's refs [45,10] are Lyft L5 and Argoverse, not H3D and ApolloScape, which ship zero map layers), a false 'best in every one of seven columns' where MonoDIS beats Megvii on mAAE, and two figure crops that were page scans - 'Figure 1' was the whole top half of page 1 including byline and abstract, and the hand-re-cropped Figure 4 still carried two lines of body text despite the report claiming otherwise. Re-rendered both from exact bboxes. Incoming edges could not be swept normally here: S2 returned only 500 of 8,635 citers, so I found qin-2024-worldsimbench by hand (it cites Caesar et al. and fine-tunes on the nuScenes training set) and the builder produced an honesty ledger - 12 nodes checked against staged text, 24 flagged unverifiable without their PDFs. Declined evaluations on precedent: metric-first papers (BLEU, ROUGE, CIDEr, SPICE, BLEURT) carry the tag; dataset-first papers that define their own scoring (ImageNet, ILSVRC, MMMU, MathVista) do not, and NDS is machinery for the dataset. Episode agent supplied three verified additions, all applied: the detection benchmark scores 10 of the 23 annotated classes (tracking 7), the rain label is a windshield-condition label by the paper's own admission which makes the near-null rain result uninformative about precipitation, the night drops are confounded by the paper's own note that night scenes have few objects and are harder to annotate, and Table 6's caption says the MonoDIS row is not directly comparable - which is where the quotable 58% comes from."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "huang-2024-vbench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 6 blockers - and notably all six were misattributed sources rather than wrong numbers. Every figure on the page survived independent re-derivation: all 96 Table 1 cells re-checked by PDF word x-position including two column-boundary traps, all 16 Spearman rho values, the n=4 human-alignment claim (confirmed from Figure 5's caption and Supp Table A5's layout independently), the model count, the taxonomy, and the byline. That is the x-coordinate discipline added to paper-builder.md this turn working as intended - the table reads were clean and the errors moved to prose attribution. Blockers were: a quote credited to the related-work section that is in the introduction, Empirical Max stated as retrieval-measured when it is retrieval for 5 dimensions and an asserted 100% for the other 11 (fixing this sharpened the critique), a false 'only', commercial systems credited to related work when they come from Supp L, an unsourced training-source claim that contradicted its own next clause, and a 'comprehensive appears 20 times' count taken from an unscoped whole-document grep that swept in the title, captions, supplement and a bibliography entry - the real figure is 6. Also restored a CSS rule 652 of 660 explainers carry. Tagged evaluations alongside benchmarks: VBench ships no video dataset, its contribution is 16 designed metrics plus their human-preference validation, which is the metric-first pattern (BLEU/CIDEr/BLEURT) rather than the dataset-first one (ImageNet/nuScenes/MMMU). Episode agent then found a live confound the paper never flags, verified and added: the four models are sampled at different resolutions and frame counts, and CogVideo's prompts are machine-translated to Chinese because its inference code requires it - then it is scored on the same suite and lands last on exactly the distortion and semantic-matching dimensions those differences would move."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -1039,17 +1048,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T16:13 singh-2023-scirepeval: step -> verify",
-    "2026-08-01T16:13 singh-2023-scirepeval: step -> queue-ops",
-    "2026-08-01T16:13 singh-2023-scirepeval: step -> podcast",
-    "2026-08-01T16:30 completed singh-2023-scirepeval (verdict=approved, rounds=3)",
-    "2026-08-01T16:30 started cui-2020-mutual ('MuTual: A Dataset for Multi-Turn Dialogue Reasoning')",
-    "2026-08-01T16:51 cui-2020-mutual: step -> fetch",
-    "2026-08-01T16:51 cui-2020-mutual: step -> figures",
-    "2026-08-01T16:51 cui-2020-mutual: step -> draft",
-    "2026-08-01T16:51 cui-2020-mutual: step -> critique (round 1)",
-    "2026-08-01T17:02 cui-2020-mutual: step -> revise",
-    "2026-08-01T17:07 cui-2020-mutual: step -> critique (round 2)",
     "2026-08-01T17:12 cui-2020-mutual: step -> verify",
     "2026-08-01T17:12 cui-2020-mutual: step -> queue-ops",
     "2026-08-01T17:12 cui-2020-mutual: step -> podcast",
@@ -1088,6 +1086,17 @@
     "2026-08-01T20:21 caesar-2020-nuscenes: step -> verify",
     "2026-08-01T20:21 caesar-2020-nuscenes: step -> queue-ops",
     "2026-08-01T20:21 caesar-2020-nuscenes: step -> podcast",
-    "2026-08-01T20:37 completed caesar-2020-nuscenes (verdict=approved, rounds=2)"
+    "2026-08-01T20:37 completed caesar-2020-nuscenes (verdict=approved, rounds=2)",
+    "2026-08-01T20:40 started huang-2024-vbench ('VBench: Comprehensive Benchmark Suite for Video Generative Models')",
+    "2026-08-01T20:45 huang-2024-vbench: step -> fetch",
+    "2026-08-01T20:45 huang-2024-vbench: step -> figures",
+    "2026-08-01T20:51 huang-2024-vbench: step -> draft",
+    "2026-08-01T21:05 huang-2024-vbench: step -> critique (round 1)",
+    "2026-08-01T21:18 huang-2024-vbench: step -> revise",
+    "2026-08-01T21:23 huang-2024-vbench: step -> critique (round 2)",
+    "2026-08-01T21:27 huang-2024-vbench: step -> verify",
+    "2026-08-01T21:27 huang-2024-vbench: step -> queue-ops",
+    "2026-08-01T21:27 huang-2024-vbench: step -> podcast",
+    "2026-08-01T21:40 completed huang-2024-vbench (verdict=approved, rounds=2)"
   ]
 }
