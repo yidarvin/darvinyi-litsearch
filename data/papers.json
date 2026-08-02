@@ -10331,7 +10331,8 @@
       "author_group": "Shanghai Jiao Tong University",
       "abstract": "Introduces GraspNet-1Billion, a 190-scene, 97,280-image RGB-D grasping dataset covering 88 objects, densely annotated with over 1.1 billion analytically-scored 6-DoF grasp poses (force-closure score s = 1.1 − μ). Pairs the dataset with an online evaluation protocol that scores any predicted grasp directly by force-closure rather than matching a fixed hand-labeled set, reports AP over Seen/Unseen/Novel object splits and two RGB-D cameras, and proposes an end-to-end PointNet++-based network (ApproachNet/OperationNet/ToleranceNet) that achieves the best AP on every split.",
       "explainer": "papers/fang-2020-graspnet.html",
-      "tags": ["benchmarks"]
+      "audio_url": "https://pod.darvinyi.com/audio/fang-2020-graspnet.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [

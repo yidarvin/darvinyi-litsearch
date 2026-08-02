@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "fang-2020-graspnet",
-    "queue_title": "GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping",
-    "arxiv_id": null,
-    "step": "critique",
-    "round": 1,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1006,6 +999,15 @@
         "2 critic rounds, 6 blockers - and notably all six were misattributed sources rather than wrong numbers. Every figure on the page survived independent re-derivation: all 96 Table 1 cells re-checked by PDF word x-position including two column-boundary traps, all 16 Spearman rho values, the n=4 human-alignment claim (confirmed from Figure 5's caption and Supp Table A5's layout independently), the model count, the taxonomy, and the byline. That is the x-coordinate discipline added to paper-builder.md this turn working as intended - the table reads were clean and the errors moved to prose attribution. Blockers were: a quote credited to the related-work section that is in the introduction, Empirical Max stated as retrieval-measured when it is retrieval for 5 dimensions and an asserted 100% for the other 11 (fixing this sharpened the critique), a false 'only', commercial systems credited to related work when they come from Supp L, an unsourced training-source claim that contradicted its own next clause, and a 'comprehensive appears 20 times' count taken from an unscoped whole-document grep that swept in the title, captions, supplement and a bibliography entry - the real figure is 6. Also restored a CSS rule 652 of 660 explainers carry. Tagged evaluations alongside benchmarks: VBench ships no video dataset, its contribution is 16 designed metrics plus their human-preference validation, which is the metric-first pattern (BLEU/CIDEr/BLEURT) rather than the dataset-first one (ImageNet/nuScenes/MMMU). Episode agent then found a live confound the paper never flags, verified and added: the four models are sampled at different resolutions and frame counts, and CogVideo's prompts are machine-translated to Chinese because its inference code requires it - then it is scored on the same suite and lands last on exactly the distortion and semantic-matching dimensions those differences would move."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "fang-2020-graspnet",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 3 blockers. B1 was malformed verdict-grid markup (value paragraphs closed with </span> instead of </p>), which I generalized into a corpus sweep - the defect was on three pages including huang-2024-vbench shipped earlier today, 11 value paragraphs total, committed separately. My first regex flagged 16 pages but 13 were false positives whose values contain a nested <span class='mono'>; the applied fix was balance-checked and skipped them, and I verified with an HTML parser afterwards rather than a regex. B2: GG-CNN called the oldest baseline when GPD (2017) predates it (2018). B3: the critic argued for the evaluations tag and was right - the page's own thesis is that the evaluation protocol is the real contribution, and the analytic force-closure scoring is a metric-first contribution; applied. Also promoted two internal contradictions: 300 vs 3,000 real-robot executions (3,000 is right - 10 objects x 3 levels x 100), and an inconsistent mu gloss. S2 elides this paper's reference list entirely, so the printed bibliography was the only outgoing source; 51 rows against a highest printed ref of [51] confirms a complete parse. Episode agent found three more, all verified and fixed: 'Kinect Azure 4A' garbled from the paper's 'Kinect 4 Azure', a '~3x' Seen-to-Novel drop that is 2.6x, and the strongest one - the paper's abstract claims 5 orders of magnitude over previous datasets, which holds only against Cornell's 8,019 (5.2 orders); against Dex-Net 2.0's 6.7M, named two clauses earlier on the page, it is 179x or 2.3 orders. The page now draws that arithmetic."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -1055,12 +1057,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T17:52 su-2024-bright: step -> fetch",
-    "2026-08-01T17:52 su-2024-bright: step -> figures",
-    "2026-08-01T17:52 su-2024-bright: step -> draft",
-    "2026-08-01T17:52 su-2024-bright: step -> critique (round 1)",
-    "2026-08-01T18:06 su-2024-bright: step -> revise",
-    "2026-08-01T18:12 su-2024-bright: step -> critique (round 2)",
     "2026-08-01T18:17 su-2024-bright: step -> critique (round 3)",
     "2026-08-01T18:20 su-2024-bright: step -> verify",
     "2026-08-01T18:21 su-2024-bright: step -> queue-ops",
@@ -1104,6 +1100,12 @@
     "2026-08-01T21:57 fang-2020-graspnet: step -> fetch",
     "2026-08-01T21:57 fang-2020-graspnet: step -> figures",
     "2026-08-01T21:57 fang-2020-graspnet: step -> draft",
-    "2026-08-01T22:02 fang-2020-graspnet: step -> critique (round 1)"
+    "2026-08-01T22:02 fang-2020-graspnet: step -> critique (round 1)",
+    "2026-08-01T22:16 fang-2020-graspnet: step -> revise",
+    "2026-08-01T22:20 fang-2020-graspnet: step -> critique (round 2)",
+    "2026-08-01T22:24 fang-2020-graspnet: step -> verify",
+    "2026-08-01T22:25 fang-2020-graspnet: step -> queue-ops",
+    "2026-08-01T22:25 fang-2020-graspnet: step -> podcast",
+    "2026-08-01T22:36 completed fang-2020-graspnet (verdict=approved, rounds=2)"
   ]
 }
