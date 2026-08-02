@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "wang-2019-mbrl-benchmark",
-    "queue_title": "Benchmarking Model-Based Reinforcement Learning",
-    "arxiv_id": "1907.02057",
-    "step": "critique",
-    "round": 2,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1015,6 +1008,15 @@
         "2 critic rounds, 3 blockers. B1 was malformed verdict-grid markup (value paragraphs closed with </span> instead of </p>), which I generalized into a corpus sweep - the defect was on three pages including huang-2024-vbench shipped earlier today, 11 value paragraphs total, committed separately. My first regex flagged 16 pages but 13 were false positives whose values contain a nested <span class='mono'>; the applied fix was balance-checked and skipped them, and I verified with an HTML parser afterwards rather than a regex. B2: GG-CNN called the oldest baseline when GPD (2017) predates it (2018). B3: the critic argued for the evaluations tag and was right - the page's own thesis is that the evaluation protocol is the real contribution, and the analytic force-closure scoring is a metric-first contribution; applied. Also promoted two internal contradictions: 300 vs 3,000 real-robot executions (3,000 is right - 10 objects x 3 levels x 100), and an inconsistent mu gloss. S2 elides this paper's reference list entirely, so the printed bibliography was the only outgoing source; 51 rows against a highest printed ref of [51] confirms a complete parse. Episode agent found three more, all verified and fixed: 'Kinect Azure 4A' garbled from the paper's 'Kinect 4 Azure', a '~3x' Seen-to-Novel drop that is 2.6x, and the strongest one - the paper's abstract claims 5 orders of magnitude over previous datasets, which holds only against Cornell's 8,019 (5.2 orders); against Dex-Net 2.0's 6.7M, named two clauses earlier on the page, it is 179x or 2.3 orders. The page now draws that arithmetic."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "wang-2019-mbrl-benchmark",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 8 blockers - and seven were the same defect seven times: a superlative falsified by the oracle rows sitting in the same table column. Table 1 places iLQG, GT-CEM and GT-RS alongside the learned-dynamics and model-free rows, and the page called SAC 'the strongest single algorithm on HalfCheetah (4000.7)' while printing GT-CEM's 14777.2 two paragraphs below, called SAC's 2012.7 'the true column-wide maximum' against GT-RS's 2519.0, and captioned a figure 'SAC and TD3 pull ahead of every learned-dynamics method' when MB-MPO is the top curve in that panel. All fixed by scoping rather than deleting. This is the defect class the cross-number check added earlier this turn was meant to catch and did not - the builder wrote a ratio-check note, re-derived one ratio, found no others and stopped - so I extended the agent instruction to cover page-internal contradiction explicitly (728e99b). The r2 critic confirmed the sweep was genuinely performed the second time. Episode agent then found something substantial and verified: Table 1's -ET column does not compare like with like. Its GT-CEM Ant-ET value 226.0+/-178.6 is identified by Table 22 as GT-CEM+ET-Unaware, the planner that ignores termination; the termination-aware oracle scores 8074.2+/-210.2. Its PETS-CEM value 81.6+/-145.8 is identified by Table 24 as Scheme B, an aware scheme whose best recovery is 205.5 against 1165.5. So the apparent collapse of ground-truth planning under early termination is an artifact of which variant was printed, and correcting it strengthens the paper: the dilemma is a model-learning failure, not a planning failure."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -1064,10 +1066,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T19:04 wang-2024-cmb: step -> draft",
-    "2026-08-01T19:05 wang-2024-cmb: step -> critique (round 1)",
-    "2026-08-01T19:18 wang-2024-cmb: step -> revise",
-    "2026-08-01T19:22 wang-2024-cmb: step -> critique (round 2)",
     "2026-08-01T19:27 wang-2024-cmb: step -> critique (round 3)",
     "2026-08-01T19:30 wang-2024-cmb: step -> verify",
     "2026-08-01T19:30 wang-2024-cmb: step -> queue-ops",
@@ -1113,6 +1111,10 @@
     "2026-08-01T23:07 wang-2019-mbrl-benchmark: draft complete, report.json written, awaiting critique",
     "2026-08-01T23:07 wang-2019-mbrl-benchmark: step -> critique (round 1)",
     "2026-08-01T23:19 wang-2019-mbrl-benchmark: step -> revise",
-    "2026-08-01T23:28 wang-2019-mbrl-benchmark: step -> critique (round 2)"
+    "2026-08-01T23:28 wang-2019-mbrl-benchmark: step -> critique (round 2)",
+    "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> verify",
+    "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> queue-ops",
+    "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> podcast",
+    "2026-08-01T23:50 completed wang-2019-mbrl-benchmark (verdict=approved, rounds=2)"
   ]
 }

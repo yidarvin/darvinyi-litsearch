@@ -10347,6 +10347,7 @@
       "author_group": "University of Toronto / Vector Institute / UC Berkeley",
       "abstract": "Benchmarks 11 model-based RL algorithms and 4 model-free baselines across 18 unified OpenAI-Gym environments (including noisy and early-termination variants), finding MBRL roughly matches MFRL at 200k steps but, on most environments, plateaus well below it given more data (Hopper's SLBO is the exception). Names three diagnosed failure modes: the dynamics bottleneck, the planning horizon dilemma, and the early-termination dilemma.",
       "explainer": "papers/wang-2019-mbrl-benchmark.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2019-mbrl-benchmark.mp3",
       "tags": ["benchmarks"]
     }
   ],
