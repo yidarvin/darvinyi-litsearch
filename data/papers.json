@@ -10381,6 +10381,21 @@
       "explainer": "papers/liu-2024-evalcrafter.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2024-evalcrafter.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "zhang-2023-gaokao-bench",
+      "short": "GAOKAO-Bench",
+      "title": "Evaluating the Performance of Large Language Models on GAOKAO Benchmark",
+      "authors": "Zhang, Li, Zong, Ying, He, Qiu, Sun, Li, Meng, Zheng, Zhan, Yin, Hu, Quan",
+      "year": 2023,
+      "date": "2023-05",
+      "venue": "arXiv",
+      "citation_count": 213,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Fudan University / East China Normal University",
+      "abstract": "Converts the real Chinese college-entrance exam (GAOKAO, 2010–2022, 9 subjects, 2,811 questions) into an LLM benchmark: objective questions are auto-graded and subjective questions are scored by two human teachers each, with results converted to the exam's own 750-point-per-track scale. Among the five closed-source models given full human grading, GPT-4-0314 leads both tracks, and a GPT-4-turbo judge given human-written marking criteria correlates with human scores at ρ up to 0.864.",
+      "explainer": "papers/zhang-2023-gaokao-bench.html",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17603,6 +17618,23 @@
     { "from": "liu-2024-evalcrafter", "to": "touvron-2023-llama2" },
     { "from": "liu-2024-evalcrafter", "to": "zheng-2023-mt-bench" },
     { "from": "huang-2024-vbench", "to": "liu-2024-evalcrafter" },
-    { "from": "qin-2024-worldsimbench", "to": "liu-2024-evalcrafter" }
+    { "from": "qin-2024-worldsimbench", "to": "liu-2024-evalcrafter" },
+    { "from": "zhang-2023-gaokao-bench", "to": "brown-2020-gpt3" },
+    { "from": "zhang-2023-gaokao-bench", "to": "bubeck-2023-sparks-agi" },
+    { "from": "zhang-2023-gaokao-bench", "to": "chang-2023-llm-eval-survey" },
+    { "from": "zhang-2023-gaokao-bench", "to": "hendrycks-2020-mmlu" },
+    { "from": "zhang-2023-gaokao-bench", "to": "liang-2022-helm" },
+    { "from": "zhang-2023-gaokao-bench", "to": "openai-2023-gpt4" },
+    { "from": "zhang-2023-gaokao-bench", "to": "ouyang-2022-instructgpt" },
+    { "from": "zhang-2023-gaokao-bench", "to": "rajpurkar-2016-squad" },
+    { "from": "zhang-2023-gaokao-bench", "to": "srivastava-2022-big-bench" },
+    { "from": "zhang-2023-gaokao-bench", "to": "touvron-2023-llama" },
+    { "from": "zhang-2023-gaokao-bench", "to": "wang-2018-glue" },
+    { "from": "zhang-2023-gaokao-bench", "to": "wei-2022-cot" },
+    { "from": "zhang-2023-gaokao-bench", "to": "zheng-2023-mt-bench" },
+    { "from": "zhang-2023-gaokao-bench", "to": "zhong-2023-agieval" },
+    { "from": "bai-2023-qwen", "to": "zhang-2023-gaokao-bench" },
+    { "from": "chang-2023-llm-eval-survey", "to": "zhang-2023-gaokao-bench" },
+    { "from": "wang-2024-cmb", "to": "zhang-2023-gaokao-bench" }
   ]
 }
