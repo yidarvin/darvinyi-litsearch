@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "gu-2023-maniskill2",
-    "queue_title": "ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills",
-    "arxiv_id": "2302.04659",
-    "step": "critique",
-    "round": 2,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1024,6 +1017,15 @@
         "2 critic rounds, 8 blockers - and seven were the same defect seven times: a superlative falsified by the oracle rows sitting in the same table column. Table 1 places iLQG, GT-CEM and GT-RS alongside the learned-dynamics and model-free rows, and the page called SAC 'the strongest single algorithm on HalfCheetah (4000.7)' while printing GT-CEM's 14777.2 two paragraphs below, called SAC's 2012.7 'the true column-wide maximum' against GT-RS's 2519.0, and captioned a figure 'SAC and TD3 pull ahead of every learned-dynamics method' when MB-MPO is the top curve in that panel. All fixed by scoping rather than deleting. This is the defect class the cross-number check added earlier this turn was meant to catch and did not - the builder wrote a ratio-check note, re-derived one ratio, found no others and stopped - so I extended the agent instruction to cover page-internal contradiction explicitly (728e99b). The r2 critic confirmed the sweep was genuinely performed the second time. Episode agent then found something substantial and verified: Table 1's -ET column does not compare like with like. Its GT-CEM Ant-ET value 226.0+/-178.6 is identified by Table 22 as GT-CEM+ET-Unaware, the planner that ignores termination; the termination-aware oracle scores 8074.2+/-210.2. Its PETS-CEM value 81.6+/-145.8 is identified by Table 24 as Scheme B, an aware scheme whose best recovery is 205.5 against 1165.5. So the apparent collapse of ground-truth planning under early termination is an artifact of which variant was printed, and correcting it strengthens the paper: the dilemma is a model-learning failure, not a planning failure."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "gu-2023-maniskill2",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 critic rounds, 13 blockers - the most of any paper in this run, and they were 13 independent claims each failing against its own source rather than one repeated pattern. The two majors: Table 1's ManiSkill2-Sync column was read as async-without-render-server when it is the fully synchronous config, with a conclusion built on the inversion; and the hero figure was a scan of PDF page 1 including the 15-author byline and the entire abstract. Also three arithmetic errors of the class the cross-number instruction now covers (865/2487 = 0.35 called 'less than a third', 1720 vs 4986 called 'orders of magnitude', RLBench grouped as full-contact when Table 10 classes it Abstract), four count/unit errors, and a central critique count that was wrong in the direction that made the accusation weaker - 6 of 20 families have no results, not 4. My own r2 fix then caused a regression (B13) and my r3 fix left a dangling reduced relative clause, both caught. Notably the new page-internal contradiction check fired at build time for the first time: the builder caught two false superlatives before drafting, including that BEHAVIOR-1K's 3324 object models exceed ManiSkill2's 2144. Episode agent found no page errors but caught one in tables.md's own superlative-sweep section - a 'one of only 3 systems implementing physical grasp' count contradicted by the Grasp row it had transcribed two paragraphs above, since Robosuite is Physical too. Corrected to 4 with a note on how the sweep failed. Declined evaluations: ManiSkill2 defines per-task success criteria rather than a portable scoring methodology."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1073,11 +1075,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T19:57 caesar-2020-nuscenes: step -> figures",
-    "2026-08-01T19:57 caesar-2020-nuscenes: step -> draft",
-    "2026-08-01T20:01 caesar-2020-nuscenes: step -> critique (round 1)",
-    "2026-08-01T20:13 caesar-2020-nuscenes: step -> revise",
-    "2026-08-01T20:17 caesar-2020-nuscenes: step -> critique (round 2)",
     "2026-08-01T20:21 caesar-2020-nuscenes: step -> verify",
     "2026-08-01T20:21 caesar-2020-nuscenes: step -> queue-ops",
     "2026-08-01T20:21 caesar-2020-nuscenes: step -> podcast",
@@ -1122,6 +1119,11 @@
     "2026-08-02T00:13 gu-2023-maniskill2: step -> draft",
     "2026-08-02T00:14 gu-2023-maniskill2: step -> critique (round 1)",
     "2026-08-02T00:27 gu-2023-maniskill2: step -> revise",
-    "2026-08-02T00:35 gu-2023-maniskill2: step -> critique (round 2)"
+    "2026-08-02T00:35 gu-2023-maniskill2: step -> critique (round 2)",
+    "2026-08-02T00:43 gu-2023-maniskill2: step -> critique (round 3)",
+    "2026-08-02T00:48 gu-2023-maniskill2: step -> verify",
+    "2026-08-02T00:48 gu-2023-maniskill2: step -> queue-ops",
+    "2026-08-02T00:48 gu-2023-maniskill2: step -> podcast",
+    "2026-08-02T00:59 completed gu-2023-maniskill2 (verdict=approved, rounds=3)"
   ]
 }

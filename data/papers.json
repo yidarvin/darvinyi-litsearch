@@ -10363,6 +10363,7 @@
       "author_group": "UC San Diego / Tsinghua University",
       "abstract": "The second generation of the SAPIEN ManiSkill benchmark: 20 manipulation task families (soft-body, precision peg-in-hole assembly, pick-and-place, and mobile/articulated-object manipulation) spanning 2000+ object models and 4M+ demonstration frames behind a unified multi-controller interface, plus a render-server architecture that lets a visual-RL policy collect samples at about 2000 FPS on a single GPU.",
       "explainer": "papers/gu-2023-maniskill2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gu-2023-maniskill2.mp3",
       "tags": ["benchmarks"]
     }
   ],
