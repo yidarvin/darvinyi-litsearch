@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "enevoldsen-2025-mmteb",
-    "queue_title": "MMTEB: Massive Multilingual Text Embedding Benchmark",
-    "arxiv_id": "2502.13595",
-    "step": "critique",
-    "round": 2,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1051,6 +1044,15 @@
         "2 critic rounds, 4 blockers - the cleanest round-1 in a while, and notably tables.md was honest this round: the critic checked its bold-marker claims against the PDF's actual font names and all 23 bold cells were column maxima exactly as recorded, the first time in four papers the sweep quoted evidence rather than asserting a check. Blockers: the page stated its own headline arithmetic finding falsely ('Table 8 lists no History subtype at all' when Table 8 carries History MCQs; the finding survives once scoped to the missing History subjective row, which tables.md had right), an invented 'training cutoff' premise asserted three times that appears nowhere in the paper, a citation mis-attribution, and a figure alt-text count. Builder found 3 outgoing edges S2 omitted entirely (HELM, LLaMA, CoT) and a genuine paper-internal inconsistency: Table 8's open-ended rows sum to 658 against Table 3's stated 786, while cloze and correction reconcile exactly. Episode agent found no page errors but supplied the page's strongest critique point, verified and added: LLaMA-7b and Baichuan2-7b-Base both score exactly 0.0% on Physics, and Physics MCQs is the only multi-choice row in the benchmark (64 questions, matching Table 3's Multi-Choice total) - so both score zero on precisely the one format where a regex grader must recover a set of answers, while Baichuan2-7b-Base scores 55.3% on Politics in the same row. It also caught an error in my own brief: Table 8's 158.8 is Avg. Length, not marks. Also fixed literal-asterisk emphasis corpus-wide (8 spans across 5 other pages). Declined evaluations: dataset and scoring-protocol first, like ImageNet and MMMU."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "enevoldsen-2025-mmteb",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 5 blockers. B5 was a pipeline-integrity problem I fixed myself: the builder hand-wrote an audio_url into the node at draft time. It 404'd, the page had no player markers, and that key is the only guard complete-paper has on the mandatory podcast step - so the fabricated value would have disarmed the check rather than merely adding a wrong field. Removed it and added a standing prohibition to the builder agent. B2 was the worst content blocker: the page invented a double-counting mechanism for the 250-vs-1000 language gap, refuted by the paper's own Figure 1 (Bitext Mining is credited with 1,043 languages across 21 tasks, so 21x2 cannot explain it). The honest version - roughly 800 languages reachable only through one shallow task type - survives and is now derived from the paper's own operands. Builder's edge work was exemplary given S2 reported referenceCount 0: it parsed a 251-row bibliography as the only source, and the critic verified all 29 edges present with zero false positives and no misses across 665 nodes, including correctly rejecting all six of my crude text-scan leads. It also found the v4 PDF byline carries 87 names against 86 in arXiv/S2 metadata. Episode agent found no page errors but two more paper-internal inconsistencies, both verified and added: Appendix B.3's body says the synthetic queries came from gpt-4o while Figure 7's caption says GPT4-turbo, and the seventeen listed language codes contain only sixteen distinct ones (dan-Latn twice). That makes five internal disagreements in one paper. Declined evaluations per the muennighoff-2023-mteb precedent."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1100,10 +1102,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T22:45 wang-2019-mbrl-benchmark: step -> draft",
-    "2026-08-01T23:07 wang-2019-mbrl-benchmark: draft complete, report.json written, awaiting critique",
-    "2026-08-01T23:07 wang-2019-mbrl-benchmark: step -> critique (round 1)",
-    "2026-08-01T23:19 wang-2019-mbrl-benchmark: step -> revise",
     "2026-08-01T23:28 wang-2019-mbrl-benchmark: step -> critique (round 2)",
     "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> verify",
     "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> queue-ops",
@@ -1149,6 +1147,10 @@
     "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> draft",
     "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> critique (round 1)",
     "2026-08-02T03:46 enevoldsen-2025-mmteb: step -> revise",
-    "2026-08-02T03:57 enevoldsen-2025-mmteb: step -> critique (round 2)"
+    "2026-08-02T03:57 enevoldsen-2025-mmteb: step -> critique (round 2)",
+    "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> verify",
+    "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> queue-ops",
+    "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> podcast",
+    "2026-08-02T04:15 completed enevoldsen-2025-mmteb (verdict=approved, rounds=2)"
   ]
 }

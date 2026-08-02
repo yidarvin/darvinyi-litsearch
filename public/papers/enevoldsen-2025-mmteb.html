@@ -164,12 +164,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2025 · ICLR 2025 · Benchmarks &amp; Evals</div>
       <h1>MMTEB: Massive Multilingual Text Embedding Benchmark</h1>
       <p class="dek">A GitHub-coordinated, point-scored effort by 87 contributors expands MTEB from 58 datasets across 112 languages to over 400 datasets (500+ tasks) across 250+ languages (1,051 ISO codes once ~800 bitext-mining-only languages are counted) — and finds that a 560M-parameter multilingual encoder beats billion-parameter LLM-based embedders on most language subsets, while a re-engineered English benchmark reproduces the original's model ranking (Spearman 0.90) from just 2% of its documents.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/enevoldsen-2025-mmteb.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/enevoldsen-2025-mmteb.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Enevoldsen, Chung, Kerboua, Kardos, … (87 authors — see "how it works" for the contributor structure)</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>ICLR 2025</b></span>
         <span class="fact">citations&nbsp;<b>157</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2502.13595">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/enevoldsen-2025-mmteb.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-08-02</div>
     </div>
@@ -261,6 +276,8 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         <figcaption><b>Figure 9.</b> Model ranking as the number of hard-negative documents per query shrinks from "All" down to 2, for Natural Questions (sparse judgments, 1 relevant doc/query) vs. TREC-COVID (dense judgments, 500+ relevant docs/query). NQ's ranking is stable throughout; TREC-COVID's visibly reorders below 100 documents — the paper's own basis for choosing a conservative 250-document cutoff, not an outside finding.</figcaption>
       </figure>
 
+      <p><strong>Two more places the paper disagrees with itself, both in the synthetic-data appendix.</strong> Appendix B.3's body says the synthetic queries were generated "with gpt-4o"; Figure 7's caption, describing the same dataset, says it "was generated using GPT4-turbo." Those are different models, and nothing distinguishes which run produced the numbers. And the seventeen language codes B.3 lists for those datasets contain only <strong>sixteen distinct</strong> ones &mdash; <span class="mono">dan-Latn</span> is printed twice, at positions 4 and 15. Neither error changes a headline result, but together with the 41-vs-40, 131-vs-132 and 96-vs-74 gaps already noted, that is five internal disagreements in one paper, which is the kind of thing a reader should know before quoting any single figure from it.</p>
+
       <div class="verdict">
         <span class="k">baselines</span><p class="v">12 encoders spanning 22M–7B parameters and both encoder-only and decoder-based (Mistral) architectures — a reasonable spread for a 2024/2025 multilingual embedding paper, though every model is evaluated zero-shot with generic prompts per task category rather than per-task-tuned prompts, which the paper itself notes may understate instruction-tuned models' true ceiling.</p>
         <span class="k">contamination</span><p class="v">Not directly addressed for the retrieval/clustering downsampling (no train/pretraining-leakage analysis is attempted); the one contamination-adjacent design choice is constructing MTEB(eng, v2) as zero-shot by removing MS MARCO and Natural Questions, which are common embedding fine-tuning targets.</p>
@@ -270,7 +287,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
 
       <div class="callout">
         <div class="lbl">// bottom line</div>
-        <p>MMTEB is a genuinely large expansion of MTEB with unusually well-documented efficiency tricks — the clustering and retrieval speedups are validated with real correlation numbers, not just asserted, and the finding that a 560M-parameter XLM-R-based encoder beats 7B-parameter LLM embedders on most language subsets is a solid, table-backed result. The parts worth double-checking before repeating them are the exact scale of "how multilingual": the headline "250+ languages" and the Related Work's "1000+"/"1,051" are both true, but the gap between them isn't double-counting — it's that roughly 800 of those ~1,051 languages are reachable only through bitext-mining tasks, so most of the benchmark's claimed breadth is one shallow task type deep rather than genuinely absent — and the efficiency methodology that's applied across all 250+ core languages is validated almost entirely in English.</p>
+        <p>MMTEB is a genuinely large expansion of MTEB with unusually well-documented efficiency tricks — the clustering and retrieval speedups are validated with real correlation numbers, not just asserted, and the finding that a 560M-parameter XLM-R-based encoder beats 7B-parameter LLM embedders on most language subsets is a solid, table-backed result. The parts worth double-checking before repeating them are the exact scale of "how multilingual": the headline "250+ languages" and the Related Work's "1000+"/"1,051" are both true, but the gap between them isn't double-counting — it's that roughly 800 of those ~1,051 languages are reachable only through bitext-mining tasks, so most of the benchmark's claimed breadth is one shallow task type deep rather than genuinely absent — and the efficiency methodology applied across the whole benchmark is validated almost entirely in English.</p>
       </div>
     </div>
   </section>

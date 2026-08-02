@@ -10411,6 +10411,7 @@
       "author_group": "Aarhus University",
       "abstract": "A GitHub-coordinated, point-scored community effort (87 listed authors, 11 on a 'Managing Team') expands MTEB from 58 datasets/112 languages to over 400 datasets (500+ tasks) across 10 task categories and 250+ languages (1,051 distinct ISO 639-3 codes, of which roughly 800 — mostly low-resource — are reachable only through bitext-mining tasks). A 560M-parameter multilingual-e5-large-instruct beats billion-parameter Mistral-based embedders (GritLM-7B, e5-mistral-7b-instruct) on MTEB(Multilingual) and MTEB(Indic), though GritLM-7B ranks first on MTEB(Europe) instead. New efficiency methods — clustering bootstrapped from a 4% subsample, retrieval capped at the top 250 documents per query via TREC pooling, and inter-task-correlation-based task selection — cut a re-engineered MTEB(eng, v2) (41 tasks per Table 1, though the paper's own §4 states 40 for the same count) to 3.11 GPU-hours (from ~2 days) using ~2% of the original documents while reproducing MTEB(eng, v1)'s model ranking at Spearman 0.90; that efficiency validation, like the clustering speedup's 16.11x/Spearman-0.96 figures, is checked almost entirely on English tasks before being applied uniformly across the benchmark's 250+ languages.",
       "explainer": "papers/enevoldsen-2025-mmteb.html",
+      "audio_url": "https://pod.darvinyi.com/audio/enevoldsen-2025-mmteb.mp3",
       "tags": ["benchmarks"]
     }
   ],
