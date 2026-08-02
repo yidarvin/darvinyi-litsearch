@@ -10525,6 +10525,22 @@
       "explainer": "papers/zhu-2024-dyval.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhu-2024-dyval.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "dziri-2022-begin",
+      "short": "BEGIN",
+      "title": "Evaluating Attribution in Dialogue Systems: The BEGIN Benchmark",
+      "authors": "Dziri, Rashkin, Linzen, Reitter",
+      "year": 2022,
+      "date": "2021-04",
+      "venue": "TACL",
+      "citation_count": 102,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Google Research / University of Alberta",
+      "abstract": "A 12,288-turn, three-way-labeled diagnostic set (23.5% fully attributable, 6.4% generic, 70.1% not attributable) built from four 2021-era dialogue systems (GPT2, T5, DoHA, CTRL-DIALOG) trained on Wizard of Wikipedia, CMU-DoG, and TopicalChat, used to meta-evaluate eight automatic attribution metrics rather than to rank the models themselves. An adversarially-trained NLI classifier (BEGIN-ADVERSARIAL) beats classifiers trained on MNLI, DNLI, or AugWoW on both a T5 and a RoBERTa backbone, but still tops out at 45.9% test macro-F1 against a reported >95% human-annotation precision; every metric tested conflates literal word overlap and knowledge-source length with genuine attribution.",
+      "explainer": "papers/dziri-2022-begin.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dziri-2022-begin.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17886,6 +17902,20 @@
     { "from": "zhu-2024-dyval", "to": "wei-2022-cot" },
     { "from": "zhu-2024-dyval", "to": "zheng-2023-mt-bench" },
     { "from": "zhu-2024-dyval", "to": "zhong-2023-agieval" },
-    { "from": "zhu-2024-dyval", "to": "zhou-2023-lima" }
+    { "from": "zhu-2024-dyval", "to": "zhou-2023-lima" },
+    { "from": "dziri-2022-begin", "to": "dziri-2022-faithdial" },
+    { "from": "dziri-2022-begin", "to": "he-2021-deberta" },
+    { "from": "dziri-2022-begin", "to": "lewis-2019-bart" },
+    { "from": "dziri-2022-begin", "to": "lin-2004-rouge" },
+    { "from": "dziri-2022-begin", "to": "liu-2019-roberta" },
+    { "from": "dziri-2022-begin", "to": "maynez-2020-faithfulness" },
+    { "from": "dziri-2022-begin", "to": "papineni-2002-bleu" },
+    { "from": "dziri-2022-begin", "to": "radford-2019-gpt2" },
+    { "from": "dziri-2022-begin", "to": "raffel-2020-t5" },
+    { "from": "dziri-2022-begin", "to": "sellam-2020-bleurt" },
+    { "from": "dziri-2022-begin", "to": "williams-2017-multinli" },
+    { "from": "dziri-2022-begin", "to": "zhang-2018-personachat" },
+    { "from": "dziri-2022-begin", "to": "zhou-2018-document-grounded" },
+    { "from": "dziri-2022-faithdial", "to": "dziri-2022-begin" }
   ]
 }

@@ -1116,6 +1116,15 @@
         "First evaluations tag applied in five papers, after four consecutive declines; the critic independently affirmed it. DyVal's first stated contribution is 'A dynamic evaluation protocol' with the graph algorithm demoted to contribution 2, and Related Work says it 'is not a detection approach but a new protocol'. Rubric names protocol and paradigm explicitly and permits both tags. Ten blockers over three rounds; five of round 1's were dominance claims contradicted by the page's own cited tables, which is exactly what the new mechanical self-consistency checklist exists to catch - the builder ran it outward at the paper (five genuine paper-internal findings) but not inward at its own prose. After being told, it ran it inward and self-caught a ninth defect. Round 2's single blocker originated in the CRITIC's own round-1 evidence line, which the builder reasonably adopted; the critic caught and disclosed its own error, and the fix was a deletion. Separately I found a bug in my own edge sweep: a len(probe)>25 guard silently skipped 22 of 673 nodes including GPT-4 Technical Report, Mistral 7B, OpenAI Gym and Datasheets, which is how the openai-2023-gpt4 edge went missing; guard fixed, edge added, task chip spawned to re-sweep this session's earlier papers. Episode agent found no page errors and surfaced that the D1-D4 ladder is not nested ((2,2),(3,2),(3,3),(4,2) - D4 deeper but narrower than D3), which explains the non-monotonic steps the page already reported; verified verbatim and added."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "dziri-2022-begin",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Second evaluations tag in six papers, applied over the builder's decline. The deciding criterion came from the critic while it was arguing the OPPOSITE side: a taxonomy is a way to evaluate when a later paper runs a protocol with it and reports a number in its units — FaithDial reports Fleiss' kappa on BEGIN's classes (0.75) and states its headline 94.4% faithful as a distribution over them. Honest counter-evidence is on the page: BEGIN disclaims methodological novelty, calling itself 'a similar meta-evaluation' and crediting Durmus et al. 2022. Three critic rounds. Round 2's blocker was a regression traceable to MY OWN round-1 blocker prose: I wrote 'the page prints 46.1 in its own table two rows later' as shorthand and the builder transcribed 'two rows apart' onto the page; the cells are adjacent. Lesson recorded — blocker-message prose gets copied verbatim into page text and must be written to page standards. I also propagated the builder's 'one dev-set cell' undercount into the critic brief; there are two (46.3 and 46.1), and the critic caught it despite my framing. Mutual citation with dziri-2022-faithdial verified genuine in both directions (BEGIN v3 June 2022 postdates FaithDial's April preprint). Podcast render initially failed silently — reaped with its background shell — and was recovered under nohup; that trap is now documented in CLAUDE.md. Queue reprioritized: core head went from 79 to 1,240 citations."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1165,22 +1174,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T09:44 zhao-2025-prefeval: step -> draft",
-    "2026-08-02T10:01 zhao-2025-prefeval: step -> critique (round 1)",
-    "2026-08-02T10:01 zhao-2025-prefeval: 10 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T10:29 zhao-2025-prefeval: step -> revise",
-    "2026-08-02T10:29 zhao-2025-prefeval: step -> critique (round 2)",
-    "2026-08-02T10:29 zhao-2025-prefeval: 2 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T10:29 zhao-2025-prefeval: step -> revise",
-    "2026-08-02T10:37 zhao-2025-prefeval: step -> critique (round 3)",
-    "2026-08-02T10:37 zhao-2025-prefeval: 1 open blocker(s) from round 3 (verdict: revise)",
-    "2026-08-02T10:37 zhao-2025-prefeval: step -> revise",
-    "2026-08-02T10:37 zhao-2025-prefeval: step -> critique (round 4)",
-    "2026-08-02T10:37 zhao-2025-prefeval: 0 open blocker(s) from round 4 (verdict: approve)",
-    "2026-08-02T10:37 zhao-2025-prefeval: step -> verify",
-    "2026-08-02T10:38 zhao-2025-prefeval: step -> queue-ops",
-    "2026-08-02T10:38 zhao-2025-prefeval: step -> podcast",
-    "2026-08-02T10:49 completed zhao-2025-prefeval (verdict=approved_with_notes, rounds=4)",
     "2026-08-02T10:51 started niklaus-2023-lextreme ('LEXTREME: A Multi-Lingual and Multi-Task Benchmark for the Legal Domain')",
     "2026-08-02T10:51 niklaus-2023-lextreme: step -> fetch",
     "2026-08-02T11:03 niklaus-2023-lextreme: step -> figures",
@@ -1214,6 +1207,22 @@
     "2026-08-02T13:00 zhu-2024-dyval: step -> verify",
     "2026-08-02T13:00 zhu-2024-dyval: step -> queue-ops",
     "2026-08-02T13:01 zhu-2024-dyval: step -> podcast",
-    "2026-08-02T13:13 completed zhu-2024-dyval (verdict=approved, rounds=3)"
+    "2026-08-02T13:13 completed zhu-2024-dyval (verdict=approved, rounds=3)",
+    "2026-08-02T13:16 started dziri-2022-begin ('Evaluating Attribution in Dialogue Systems: The BEGIN Benchmark')",
+    "2026-08-02T13:16 dziri-2022-begin: step -> fetch",
+    "2026-08-02T13:34 dziri-2022-begin: step -> figures",
+    "2026-08-02T13:34 dziri-2022-begin: step -> draft",
+    "2026-08-02T13:47 dziri-2022-begin: step -> critique (round 1)",
+    "2026-08-02T13:47 dziri-2022-begin: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T14:07 dziri-2022-begin: step -> revise",
+    "2026-08-02T14:07 dziri-2022-begin: step -> critique (round 2)",
+    "2026-08-02T14:07 dziri-2022-begin: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T14:07 dziri-2022-begin: step -> revise",
+    "2026-08-02T14:07 dziri-2022-begin: step -> critique (round 3)",
+    "2026-08-02T14:07 dziri-2022-begin: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T14:07 dziri-2022-begin: step -> verify",
+    "2026-08-02T14:08 dziri-2022-begin: step -> queue-ops",
+    "2026-08-02T14:08 dziri-2022-begin: step -> podcast",
+    "2026-08-02T14:23 completed dziri-2022-begin (verdict=approved, rounds=3)"
   ]
 }
