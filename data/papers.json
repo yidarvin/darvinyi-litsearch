@@ -10317,6 +10317,21 @@
       "explainer": "papers/huang-2024-vbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/huang-2024-vbench.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "fang-2020-graspnet",
+      "short": "GraspNet-1Billion",
+      "title": "GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping",
+      "authors": "Fang, Wang, Gou, Lu",
+      "year": 2020,
+      "date": "2020-06",
+      "venue": "CVPR 2020",
+      "citation_count": 851,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Shanghai Jiao Tong University",
+      "abstract": "Introduces GraspNet-1Billion, a 190-scene, 97,280-image RGB-D grasping dataset covering 88 objects, densely annotated with over 1.1 billion analytically-scored 6-DoF grasp poses (force-closure score s = 1.1 − μ). Pairs the dataset with an online evaluation protocol that scores any predicted grasp directly by force-closure rather than matching a fixed hand-labeled set, reports AP over Seen/Unseen/Novel object splits and two RGB-D cameras, and proposes an end-to-end PointNet++-based network (ApproachNet/OperationNet/ToleranceNet) that achieves the best AP on every split.",
+      "explainer": "papers/fang-2020-graspnet.html",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17502,6 +17517,8 @@
     { "from": "qin-2024-worldsimbench", "to": "caesar-2020-nuscenes" },
     { "from": "huang-2024-vbench", "to": "lin-2014-coco" },
     { "from": "huang-2024-vbench", "to": "zheng-2023-mt-bench" },
-    { "from": "qin-2024-worldsimbench", "to": "huang-2024-vbench" }
+    { "from": "qin-2024-worldsimbench", "to": "huang-2024-vbench" },
+    { "from": "fang-2020-graspnet", "to": "lin-2014-coco" },
+    { "from": "li-2024-simpler", "to": "fang-2020-graspnet" }
   ]
 }

@@ -29,7 +29,14 @@
     ],
     "seeded": 18
   },
-  "current": null,
+  "current": {
+    "slug": "fang-2020-graspnet",
+    "queue_title": "GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping",
+    "arxiv_id": null,
+    "step": "critique",
+    "round": 1,
+    "open_blockers": []
+  },
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1048,11 +1055,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T17:12 cui-2020-mutual: step -> verify",
-    "2026-08-01T17:12 cui-2020-mutual: step -> queue-ops",
-    "2026-08-01T17:12 cui-2020-mutual: step -> podcast",
-    "2026-08-01T17:30 completed cui-2020-mutual (verdict=approved, rounds=2)",
-    "2026-08-01T17:30 started su-2024-bright ('BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval')",
     "2026-08-01T17:52 su-2024-bright: step -> fetch",
     "2026-08-01T17:52 su-2024-bright: step -> figures",
     "2026-08-01T17:52 su-2024-bright: step -> draft",
@@ -1097,6 +1099,11 @@
     "2026-08-01T21:27 huang-2024-vbench: step -> verify",
     "2026-08-01T21:27 huang-2024-vbench: step -> queue-ops",
     "2026-08-01T21:27 huang-2024-vbench: step -> podcast",
-    "2026-08-01T21:40 completed huang-2024-vbench (verdict=approved, rounds=2)"
+    "2026-08-01T21:40 completed huang-2024-vbench (verdict=approved, rounds=2)",
+    "2026-08-01T21:42 started fang-2020-graspnet ('GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping')",
+    "2026-08-01T21:57 fang-2020-graspnet: step -> fetch",
+    "2026-08-01T21:57 fang-2020-graspnet: step -> figures",
+    "2026-08-01T21:57 fang-2020-graspnet: step -> draft",
+    "2026-08-01T22:02 fang-2020-graspnet: step -> critique (round 1)"
   ]
 }
