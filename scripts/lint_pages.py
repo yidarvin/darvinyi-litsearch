@@ -144,6 +144,40 @@ def lint_page(slug, node, fix):
         if "…" in node["authors"] or re.search(r',\s*$', node["authors"]):
             findings.append(f"byline == node's own (possibly abbreviated) authors string: {node['authors'][:60]!r}")
 
+    # 8. verdict-grid structure. The critique grid is a flat sequence of
+    # <span class="k">…</span><p class="v">…</p> pairs. Closing a value with
+    # </span> instead of </p> is invisible to the eye and to the build, but
+    # the browser then nests every following pair *inside* that paragraph —
+    # an html5lib parse of one such page returned 5 direct children where the
+    # template defines 8. Three pages shipped with this before it was caught
+    # by a reviewer parsing the HTML, so it is checked here now.
+    vm = re.search(r'<div class="verdict">(.*?)\n\s*</div>', html, re.S)
+    if vm:
+        block = vm.group(1)
+        keys = len(re.findall(r'<span class="k">', block))
+        opens = len(re.findall(r'<p class="v">', block))
+        closes = len(re.findall(r'</p>', block))
+        if keys != opens:
+            findings.append(f"verdict grid: {keys} key spans but {opens} value paragraphs")
+        if opens != closes:
+            findings.append(
+                f"verdict grid: {opens} <p class=\"v\"> opened but {closes} </p> closed "
+                f"— a value paragraph is likely closed with </span>, which nests the "
+                f"following pairs inside it")
+            if fix:
+                # only rewrite a trailing </span> whose paragraph body has
+                # balanced spans of its own; a value may legitimately contain
+                # <span class="mono">…</span>, and 13 pages tripped a naive
+                # pattern on exactly that.
+                def close_values(seg):
+                    parts = re.split(r'(<span class="k">)', seg)
+                    for i, p in enumerate(parts):
+                        mm = re.search(r'(<p class="v">)(.*?)(</span>)(\s*)$', p, re.S)
+                        if mm and mm.group(2).count('<span') == mm.group(2).count('</span>'):
+                            parts[i] = p[:mm.start(3)] + '</p>' + mm.group(4)
+                    return ''.join(parts)
+                html = html[:vm.start(1)] + close_values(block) + html[vm.end(1):]
+
     if fix and html != orig:
         path.write_text(html, encoding="utf-8")
 

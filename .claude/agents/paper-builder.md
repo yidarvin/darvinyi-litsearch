@@ -220,6 +220,46 @@ actually uses. → `set-step draft`
    you are misreading the table's precision until you have checked the
    figures.** Never resolve such a conflict silently in the table's favour.
 
+   **Then check the paper's numbers against *each other*, not only against
+   the paper.** Every check above verifies a number against its source. That
+   catches transcription errors and misses a whole other class: figures that
+   are each transcribed correctly but cannot all be true at once. Four
+   separate papers shipped, or nearly shipped, with one of these, and in
+   every case a *reader* found it by doing arithmetic nobody in the pipeline
+   had done — because verification-against-source, done perfectly, never
+   surfaces it.
+
+   The four, as a checklist of shapes to look for:
+
+   - **A claimed ratio against a number the page already prints.** GraspNet's
+     abstract says its dataset is "5 orders of magnitude larger than previous
+     datasets". True against Cornell's 8,019 grasps (5.2 orders) — but the
+     page named Dex-Net 2.0's 6.7M two clauses earlier, and 1.2B/6.7M is
+     179×, or 2.3 orders. Both numbers were already on the page.
+   - **A metric bounded by its neighbours in the same row.** MuTual prints
+     MRR values that its own R@1 and R@2 make impossible: with 4 candidates
+     MRR must fall in a band about 0.04 wide, and six cells sit outside it.
+     The Random row is the proof — R@1 0.250 and R@2 0.500 are exactly
+     uniform-random, whose MRR is 0.5208, yet the table prints 0.604.
+   - **An average that its own row contradicts.** MMedBench prints GPT-4's
+     zero-shot average as 74.27 where the six per-language cells mean to
+     75.31, while every other row reconciles to within 0.02.
+   - **A headline figure that derives from nothing.** RoboTwin 2.0's abstract
+     claims "a 10.9% gain in code generation success rate"; the string
+     appears once in the paper and no pairing in Table 1 produces it
+     (like-for-like gives +14.7 and +7.4; all-variant means give 9.5).
+
+   So before writing prose, for each table you transcribed: **re-derive any
+   ratio, order-of-magnitude or "N× larger" claim from the operands the paper
+   itself supplies**, and **ask whether any metric in a row is mathematically
+   constrained by the others** (recall@k is monotone in k; MRR is bounded by
+   recall; a mean is bounded by its extremes; percentages over a stated
+   denominator must be multiples of 1/denominator). Record the check in
+   `tables.md` — including when it passes, so the next reader knows it was
+   done. When a check fails, that is a finding, not a transcription bug to
+   quietly fix: state it as the paper's inconsistency and do not invent a
+   reconciliation.
+
    Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill
    `templates/explainer.html` → `public/papers/<slug>.html`, writing every
