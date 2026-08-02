@@ -10397,6 +10397,21 @@
       "explainer": "papers/zhang-2023-gaokao-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2023-gaokao-bench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "enevoldsen-2025-mmteb",
+      "short": "MMTEB",
+      "title": "MMTEB: Massive Multilingual Text Embedding Benchmark",
+      "authors": "Enevoldsen, Chung, Kerboua, Kardos, … (87 authors)",
+      "year": 2025,
+      "date": "2025-02",
+      "venue": "ICLR 2025",
+      "citation_count": 157,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Aarhus University",
+      "abstract": "A GitHub-coordinated, point-scored community effort (87 listed authors, 11 on a 'Managing Team') expands MTEB from 58 datasets/112 languages to over 400 datasets (500+ tasks) across 10 task categories and 250+ languages (1,051 distinct ISO 639-3 codes, of which roughly 800 — mostly low-resource — are reachable only through bitext-mining tasks). A 560M-parameter multilingual-e5-large-instruct beats billion-parameter Mistral-based embedders (GritLM-7B, e5-mistral-7b-instruct) on MTEB(Multilingual) and MTEB(Indic), though GritLM-7B ranks first on MTEB(Europe) instead. New efficiency methods — clustering bootstrapped from a 4% subsample, retrieval capped at the top 250 documents per query via TREC pooling, and inter-task-correlation-based task selection — cut a re-engineered MTEB(eng, v2) (41 tasks per Table 1, though the paper's own §4 states 40 for the same count) to 3.11 GPU-hours (from ~2 days) using ~2% of the original documents while reproducing MTEB(eng, v1)'s model ranking at Spearman 0.90; that efficiency validation, like the clustering speedup's 16.11x/Spearman-0.96 figures, is checked almost entirely on English tasks before being applied uniformly across the benchmark's 250+ languages.",
+      "explainer": "papers/enevoldsen-2025-mmteb.html",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17636,6 +17651,35 @@
     { "from": "zhang-2023-gaokao-bench", "to": "zhong-2023-agieval" },
     { "from": "bai-2023-qwen", "to": "zhang-2023-gaokao-bench" },
     { "from": "chang-2023-llm-eval-survey", "to": "zhang-2023-gaokao-bench" },
-    { "from": "wang-2024-cmb", "to": "zhang-2023-gaokao-bench" }
+    { "from": "wang-2024-cmb", "to": "zhang-2023-gaokao-bench" },
+    { "from": "enevoldsen-2025-mmteb", "to": "austin-2021-mbpp" },
+    { "from": "enevoldsen-2025-mmteb", "to": "cer-2017-sts" },
+    { "from": "enevoldsen-2025-mmteb", "to": "chen-2021-codex" },
+    { "from": "enevoldsen-2025-mmteb", "to": "chollet-2019-measure-of-intelligence" },
+    { "from": "enevoldsen-2025-mmteb", "to": "clark-2018-arc-science" },
+    { "from": "enevoldsen-2025-mmteb", "to": "cobbe-2021-gsm8k" },
+    { "from": "enevoldsen-2025-mmteb", "to": "conneau-2018-xnli" },
+    { "from": "enevoldsen-2025-mmteb", "to": "guha-2023-legalbench" },
+    { "from": "enevoldsen-2025-mmteb", "to": "hendrycks-2021-apps" },
+    { "from": "enevoldsen-2025-mmteb", "to": "hendrycks-2021-math" },
+    { "from": "enevoldsen-2025-mmteb", "to": "izacard-2021-contriever" },
+    { "from": "enevoldsen-2025-mmteb", "to": "jiang-2023-mistral-7b" },
+    { "from": "enevoldsen-2025-mmteb", "to": "kwiatkowski-2019-natural-questions" },
+    { "from": "enevoldsen-2025-mmteb", "to": "lewis-2020-rag" },
+    { "from": "enevoldsen-2025-mmteb", "to": "li-2023-starcoder" },
+    { "from": "enevoldsen-2025-mmteb", "to": "liang-2022-helm" },
+    { "from": "enevoldsen-2025-mmteb", "to": "lozhkov-2024-starcoder2" },
+    { "from": "enevoldsen-2025-mmteb", "to": "malo-2014-good-debt" },
+    { "from": "enevoldsen-2025-mmteb", "to": "muennighoff-2023-mteb" },
+    { "from": "enevoldsen-2025-mmteb", "to": "phan-2025-hle" },
+    { "from": "enevoldsen-2025-mmteb", "to": "sakaguchi-2019-winogrande" },
+    { "from": "enevoldsen-2025-mmteb", "to": "srivastava-2022-big-bench" },
+    { "from": "enevoldsen-2025-mmteb", "to": "su-2024-bright" },
+    { "from": "enevoldsen-2025-mmteb", "to": "thakur-2021-beir" },
+    { "from": "enevoldsen-2025-mmteb", "to": "wang-2018-glue" },
+    { "from": "enevoldsen-2025-mmteb", "to": "wang-2019-superglue" },
+    { "from": "enevoldsen-2025-mmteb", "to": "weller-2025-followir" },
+    { "from": "enevoldsen-2025-mmteb", "to": "yang-2018-hotpotqa" },
+    { "from": "enevoldsen-2025-mmteb", "to": "zellers-2019-hellaswag" }
   ]
 }

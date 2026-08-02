@@ -29,7 +29,14 @@
     ],
     "seeded": 18
   },
-  "current": null,
+  "current": {
+    "slug": "enevoldsen-2025-mmteb",
+    "queue_title": "MMTEB: Massive Multilingual Text Embedding Benchmark",
+    "arxiv_id": "2502.13595",
+    "step": "critique",
+    "round": 2,
+    "open_blockers": []
+  },
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1093,13 +1100,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T22:24 fang-2020-graspnet: step -> verify",
-    "2026-08-01T22:25 fang-2020-graspnet: step -> queue-ops",
-    "2026-08-01T22:25 fang-2020-graspnet: step -> podcast",
-    "2026-08-01T22:36 completed fang-2020-graspnet (verdict=approved, rounds=2)",
-    "2026-08-01T22:40 started wang-2019-mbrl-benchmark ('Benchmarking Model-Based Reinforcement Learning')",
-    "2026-08-01T22:42 wang-2019-mbrl-benchmark: step -> fetch",
-    "2026-08-01T22:42 wang-2019-mbrl-benchmark: step -> figures",
     "2026-08-01T22:45 wang-2019-mbrl-benchmark: step -> draft",
     "2026-08-01T23:07 wang-2019-mbrl-benchmark: draft complete, report.json written, awaiting critique",
     "2026-08-01T23:07 wang-2019-mbrl-benchmark: step -> critique (round 1)",
@@ -1142,6 +1142,13 @@
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> verify",
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> queue-ops",
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> podcast",
-    "2026-08-02T03:00 completed zhang-2023-gaokao-bench (verdict=approved, rounds=2)"
+    "2026-08-02T03:00 completed zhang-2023-gaokao-bench (verdict=approved, rounds=2)",
+    "2026-08-02T03:02 started enevoldsen-2025-mmteb ('MMTEB: Massive Multilingual Text Embedding Benchmark')",
+    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> fetch",
+    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> figures",
+    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> draft",
+    "2026-08-02T03:31 enevoldsen-2025-mmteb: step -> critique (round 1)",
+    "2026-08-02T03:46 enevoldsen-2025-mmteb: step -> revise",
+    "2026-08-02T03:57 enevoldsen-2025-mmteb: step -> critique (round 2)"
   ]
 }

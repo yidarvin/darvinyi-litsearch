@@ -292,6 +292,16 @@ actually uses. → `set-step draft`
    human row" are all fine; a bare "strongest", "the only" or "every" is not,
    whenever another row shares the column. Record that sweep in `tables.md`.
 
+   **Never write an `audio_url` into the node.** That key is stamped only by
+   `scripts/inject_podcast.py --set <slug>`, after the episode actually
+   exists and has been confirmed live. It is also the sole guard
+   `litsearch.py complete-paper` has on the mandatory podcast step, so a
+   hand-written value doesn't just add a wrong field — it disarms the check
+   that would have caught a missing episode. One builder wrote the
+   canonical-looking URL at draft time; it 404'd, the page had no player
+   markers, and `complete-paper` would have passed the paper as done.
+   Leave the key absent and let the orchestrator's podcast step add it.
+
    Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill
    `templates/explainer.html` → `public/papers/<slug>.html`, writing every
