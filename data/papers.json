@@ -10237,6 +10237,22 @@
       "explainer": "papers/singh-2023-scirepeval.html",
       "audio_url": "https://pod.darvinyi.com/audio/singh-2023-scirepeval.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "cui-2020-mutual",
+      "short": "MuTual",
+      "title": "MuTual: A Dataset for Multi-Turn Dialogue Reasoning",
+      "authors": "Cui, Wu, Liu, Zhang, Zhou",
+      "year": 2020,
+      "date": "2020-04",
+      "venue": "ACL 2020",
+      "citation_count": 176,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Microsoft Research Asia / Zhejiang University / Westlake University",
+      "abstract": "MuTual rewrites 8,860 Chinese high-school English listening-comprehension items into a four-candidate next-utterance-selection benchmark for multi-turn dialogue reasoning; a sample of the test set is separately annotated into six reasoning types (Intention, Multi-fact, Situation, Attitude, Others, Algebraic). The best model tested, RoBERTa, reaches 71.3% R@1 on the test set versus a three-expert human ceiling of 93.8%; a companion MuTualplus variant swaps in a generic \"safe\" response for one candidate, testing whether models can recognize when no candidate is an appropriate answer while still picking a genuine answer when one exists.",
+      "explainer": "papers/cui-2020-mutual.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cui-2020-mutual.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17374,6 +17390,15 @@
     { "from": "singh-2023-scirepeval", "to": "peters-2018-elmo" },
     { "from": "singh-2023-scirepeval", "to": "raffel-2020-t5" },
     { "from": "singh-2023-scirepeval", "to": "sanh-2021-t0" },
-    { "from": "singh-2023-scirepeval", "to": "wang-2019-superglue" }
+    { "from": "singh-2023-scirepeval", "to": "wang-2019-superglue" },
+    { "from": "cui-2020-mutual", "to": "clark-2018-arc-science" },
+    { "from": "cui-2020-mutual", "to": "devlin-2019-bert" },
+    { "from": "cui-2020-mutual", "to": "dua-2019-drop" },
+    { "from": "cui-2020-mutual", "to": "liu-2019-roberta" },
+    { "from": "cui-2020-mutual", "to": "talmor-2019-commonsenseqa" },
+    { "from": "cui-2020-mutual", "to": "zhang-2018-personachat" },
+    { "from": "cui-2020-mutual", "to": "radford-2019-gpt2" },
+    { "from": "cui-2020-mutual", "to": "wang-2018-glue" },
+    { "from": "cui-2020-mutual", "to": "wu-2017-smn" }
   ]
 }

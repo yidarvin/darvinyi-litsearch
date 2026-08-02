@@ -954,6 +954,15 @@
         "3 critic rounds, 7 blockers in r1 - the most on one paper. Three were the page contradicting itself (SPECTER credited with beating baselines it trails; Table 2's significance markers read backwards; 'every variant' where PALs is 69.9). Others: wrong per-format split, reversed direction on 69.0 vs 69.1, wrong count and colour description on the SciDocs block, and a 'baselines frozen at submission' claim contradicted by E5-v2/Instructor/Ada-002 all postdating v1 and being evaluated. r2 closed six but the B2 fix inverted the polarity again; r3 (fix written by orchestrator) approved. The markers inverted twice in review, so I re-derived them from the PDF vector layer myself and rewrote tables.md's marker note from the rules (In-Train x=386.9-402.6 has an underline only at y=275.5, the ensemble row) - the old note read as though 62.9 were not underlined, which is what misled the episode agent into proposing a wrong 'fix'. Episode agent also found a genuine third prose/table mismatch, verified and added: the paper says adapter variants beat MTL CTRL overall with Fusion best, but PALs (an adapter variant per the caption) trails MTL CTRL on all three columns and Fusion ties Adapters at every digit while costing 22M params/format against 1M."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "cui-2020-mutual",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 5 blockers in r1: a >50-point drop misattributed to BERT/RoBERTa when the paper's subject is SMN/DAM (and arithmetically impossible for BERT), a twelve-vs-thirteen dataset count stated twice with two mutually inconsistent lists, two node-abstract defects (taxonomy scope, and MuTual-plus's purpose stated backwards), an overstated Table 5 flatness claim (1.9 points is the endpoint delta; the full bucket range is 16.9), and two comparatives contradicted by their own tables. Promoted the bolding suggestion: the page had led with the smallest of four discrepancies. Episode agent then found the sharpest item on the page: six MRR cells in Table 3 are arithmetically impossible given their own R@1/R@2 with four candidates. I re-derived the bound over every row - all six transformer rows and Human sit inside it (RoBERTa 0.836 in [0.830,0.839]; Human 0.964 in [0.962,0.964]), which validates the bound, while Random prints 0.604 against a ceiling of 0.542 despite R@1/R@2 being exactly the theoretical 0.250/0.500, and Dual LSTM's test MRR 0.743 exceeds its own R@2 of 0.491. Added to the critique, narrowed the MuTual-plus argument onto DAM's recall numbers (two of its three legs sat on infeasible cells), and recorded both findings in tables.md along with a rewrite of its Table 4 bolding note, which had contradicted its own cell listings and carried a stray thinking artifact."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -1003,17 +1012,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T12:09 completed li-2024-simpler (verdict=approved, rounds=2)",
-    "2026-08-01T12:10 started chen-2025-robotwin2 ('RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation')",
-    "2026-08-01T12:13 chen-2025-robotwin2: step -> fetch",
-    "2026-08-01T12:13 chen-2025-robotwin2: step -> figures",
-    "2026-08-01T12:19 chen-2025-robotwin2: step -> draft",
-    "2026-08-01T12:33 chen-2025-robotwin2: step -> draft",
-    "2026-08-01T12:33 chen-2025-robotwin2: step -> critique (round 1)",
-    "2026-08-01T12:43 chen-2025-robotwin2: step -> revise",
-    "2026-08-01T12:50 chen-2025-robotwin2: step -> critique (round 2)",
-    "2026-08-01T12:54 chen-2025-robotwin2: step -> verify",
-    "2026-08-01T12:54 chen-2025-robotwin2: step -> queue-ops",
     "2026-08-01T12:54 chen-2025-robotwin2: step -> podcast",
     "2026-08-01T13:11 completed chen-2025-robotwin2 (verdict=approved, rounds=2)",
     "2026-08-01T13:12 started qiu-2024-mmedbench ('Towards Building Multilingual Language Model for Medicine (MMedBench)')",
@@ -1052,6 +1050,17 @@
     "2026-08-01T16:13 singh-2023-scirepeval: step -> verify",
     "2026-08-01T16:13 singh-2023-scirepeval: step -> queue-ops",
     "2026-08-01T16:13 singh-2023-scirepeval: step -> podcast",
-    "2026-08-01T16:30 completed singh-2023-scirepeval (verdict=approved, rounds=3)"
+    "2026-08-01T16:30 completed singh-2023-scirepeval (verdict=approved, rounds=3)",
+    "2026-08-01T16:30 started cui-2020-mutual ('MuTual: A Dataset for Multi-Turn Dialogue Reasoning')",
+    "2026-08-01T16:51 cui-2020-mutual: step -> fetch",
+    "2026-08-01T16:51 cui-2020-mutual: step -> figures",
+    "2026-08-01T16:51 cui-2020-mutual: step -> draft",
+    "2026-08-01T16:51 cui-2020-mutual: step -> critique (round 1)",
+    "2026-08-01T17:02 cui-2020-mutual: step -> revise",
+    "2026-08-01T17:07 cui-2020-mutual: step -> critique (round 2)",
+    "2026-08-01T17:12 cui-2020-mutual: step -> verify",
+    "2026-08-01T17:12 cui-2020-mutual: step -> queue-ops",
+    "2026-08-01T17:12 cui-2020-mutual: step -> podcast",
+    "2026-08-01T17:30 completed cui-2020-mutual (verdict=approved, rounds=2)"
   ]
 }
