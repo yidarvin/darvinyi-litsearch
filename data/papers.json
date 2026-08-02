@@ -10349,6 +10349,21 @@
       "explainer": "papers/wang-2019-mbrl-benchmark.html",
       "audio_url": "https://pod.darvinyi.com/audio/wang-2019-mbrl-benchmark.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "gu-2023-maniskill2",
+      "short": "ManiSkill2",
+      "title": "ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills",
+      "authors": "Gu, Xiang, Li, Ling, Liu, Mu, Tang, Tao, Wei, Yao, Yuan, Xie, Huang, Chen, Su",
+      "year": 2023,
+      "date": "2023-02",
+      "venue": "ICLR 2023",
+      "citation_count": 385,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UC San Diego / Tsinghua University",
+      "abstract": "The second generation of the SAPIEN ManiSkill benchmark: 20 manipulation task families (soft-body, precision peg-in-hole assembly, pick-and-place, and mobile/articulated-object manipulation) spanning 2000+ object models and 4M+ demonstration frames behind a unified multi-controller interface, plus a render-server architecture that lets a visual-RL policy collect samples at about 2000 FPS on a single GPU.",
+      "explainer": "papers/gu-2023-maniskill2.html",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17548,6 +17563,19 @@
     { "from": "wang-2019-mbrl-benchmark", "to": "schulman-2015-trpo" },
     { "from": "wang-2019-mbrl-benchmark", "to": "schulman-2017-ppo" },
     { "from": "osband-2020-bsuite", "to": "wang-2019-mbrl-benchmark" },
-    { "from": "papoudakis-2021-marl-benchmark", "to": "wang-2019-mbrl-benchmark" }
+    { "from": "papoudakis-2021-marl-benchmark", "to": "wang-2019-mbrl-benchmark" },
+    { "from": "gu-2023-maniskill2", "to": "ahn-2022-saycan" },
+    { "from": "gu-2023-maniskill2", "to": "brockman-2016-openai-gym" },
+    { "from": "gu-2023-maniskill2", "to": "james-2020-rlbench" },
+    { "from": "gu-2023-maniskill2", "to": "li-2022-behavior-1k" },
+    { "from": "gu-2023-maniskill2", "to": "mnih-2015-dqn" },
+    { "from": "gu-2023-maniskill2", "to": "schulman-2017-ppo" },
+    { "from": "gu-2023-maniskill2", "to": "srivastava-2021-behavior" },
+    { "from": "gu-2023-maniskill2", "to": "todorov-2012-mujoco" },
+    { "from": "gu-2023-maniskill2", "to": "yu-2019-meta-world" },
+    { "from": "gu-2023-maniskill2", "to": "zhu-2020-robosuite" },
+    { "from": "chen-2025-robotwin2", "to": "gu-2023-maniskill2" },
+    { "from": "li-2024-simpler", "to": "gu-2023-maniskill2" },
+    { "from": "liu-2023-libero", "to": "gu-2023-maniskill2" }
   ]
 }

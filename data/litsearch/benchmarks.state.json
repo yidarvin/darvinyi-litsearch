@@ -29,7 +29,14 @@
     ],
     "seeded": 18
   },
-  "current": null,
+  "current": {
+    "slug": "gu-2023-maniskill2",
+    "queue_title": "ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills",
+    "arxiv_id": "2302.04659",
+    "step": "critique",
+    "round": 2,
+    "open_blockers": []
+  },
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1066,13 +1073,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T19:27 wang-2024-cmb: step -> critique (round 3)",
-    "2026-08-01T19:30 wang-2024-cmb: step -> verify",
-    "2026-08-01T19:30 wang-2024-cmb: step -> queue-ops",
-    "2026-08-01T19:30 wang-2024-cmb: step -> podcast",
-    "2026-08-01T19:42 completed wang-2024-cmb (verdict=approved, rounds=3)",
-    "2026-08-01T19:42 started caesar-2020-nuscenes ('nuScenes: A Multimodal Dataset for Autonomous Driving')",
-    "2026-08-01T19:57 caesar-2020-nuscenes: step -> fetch",
     "2026-08-01T19:57 caesar-2020-nuscenes: step -> figures",
     "2026-08-01T19:57 caesar-2020-nuscenes: step -> draft",
     "2026-08-01T20:01 caesar-2020-nuscenes: step -> critique (round 1)",
@@ -1115,6 +1115,13 @@
     "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> verify",
     "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> queue-ops",
     "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> podcast",
-    "2026-08-01T23:50 completed wang-2019-mbrl-benchmark (verdict=approved, rounds=2)"
+    "2026-08-01T23:50 completed wang-2019-mbrl-benchmark (verdict=approved, rounds=2)",
+    "2026-08-01T23:53 started gu-2023-maniskill2 ('ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills')",
+    "2026-08-02T00:13 gu-2023-maniskill2: step -> fetch",
+    "2026-08-02T00:13 gu-2023-maniskill2: step -> figures",
+    "2026-08-02T00:13 gu-2023-maniskill2: step -> draft",
+    "2026-08-02T00:14 gu-2023-maniskill2: step -> critique (round 1)",
+    "2026-08-02T00:27 gu-2023-maniskill2: step -> revise",
+    "2026-08-02T00:35 gu-2023-maniskill2: step -> critique (round 2)"
   ]
 }

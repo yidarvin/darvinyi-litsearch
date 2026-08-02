@@ -157,6 +157,41 @@ def trim(img, bg_threshold=WHITE_THRESHOLD, pad=10):
     return img.crop((left, top, right, bottom))
 
 
+def artwork_rect(page, region, pad=6):
+    """Shrink `region` to just the figure artwork inside it, or None.
+
+    The band above a caption runs up to the previous caption or the page
+    top, so on a paper's first page it swallows the title block, the byline
+    and the whole abstract — every recent paper processed through this
+    script shipped at least one crop like that, and two shipped a full page
+    scan captioned as a figure.
+
+    Artwork is raster images and vector drawings; running text is neither.
+    So union the bboxes of those inside the region and use that instead.
+    This only ever *narrows* the region, and returns None when the region
+    holds no artwork at all (a figure typeset purely as text, or a table),
+    in which case the caller keeps the original band.
+    """
+    found = None
+    for b in page.get_text("dict")["blocks"]:
+        if b.get("type") == 1:                      # image block
+            bb = fitz.Rect(b["bbox"])
+            if bb.intersects(region):
+                bb = bb & region
+                found = bb if found is None else (found | bb)
+    for d in page.get_drawings():
+        bb = d["rect"]
+        # skip hairlines: page rules and table borders are drawings too
+        if bb.width > 2 and bb.height > 2 and bb.intersects(region):
+            bb = bb & region
+            found = bb if found is None else (found | bb)
+    if found is None or found.is_empty:
+        return None
+    found = fitz.Rect(found.x0 - pad, found.y0 - pad,
+                      found.x1 + pad, found.y1 + pad) & region
+    return None if found.is_empty or found.height < 8 else found
+
+
 def render_region(page, rect):
     """Render a PDF rectangle to a Pillow image at DPI."""
     rect = rect & page.rect           # clamp to page
@@ -178,6 +213,9 @@ def page_regions(page, force_real=False):
     def _finish(region, is_real, fig_no):
         if not is_real:
             return None
+        art = artwork_rect(page, region)
+        if art is not None:
+            region = art
         img = render_region(page, region)
         if img is None:
             return None
