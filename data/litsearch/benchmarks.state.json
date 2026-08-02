@@ -1062,6 +1062,15 @@
         "Critic converged in 2 rounds (6 blockers r1, 1 r2). r2's blocker was my own hand-correction: I changed ICD-11 '27 categories' to 26 on an incomplete Table 9 count (my regex dropped the non-numeric V and X chapters), and the critic correctly reverted it — the paper says 27 in section 2, in Table 2's Unique-values column, and in the Appendix A.2 prompt the annotation pipeline actually ran on. Episode agent then caught a real off-by-one both reviewers missed: Tables 4 and 5 each include an N/A bucket row, so they cover 15 ICD-11 groups + N/A and 14 departments + N/A, not 16 and 15. Fixed and verified."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "dziri-2022-faithdial",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Critic converged in 2 rounds (6 blockers r1, 0 r2 — clean approve). B1 was a superlative the builder's own report claimed to have swept and cleared but hadn't: Table 5's FaithDial block has GPT2 50.4 and DialoGPT 52.3 below the 55.8 the page called lowest; correctly rescoped to the four T5-backbone variants. B2 mattered more than its size — the false 'only metric where FaithDial-trained doesn't win' deleted the engagement-cost tradeoff the critique section existed to make. Tagged benchmarks only; declined evaluations on the critic's read that FaithCritic is a derived training set plus a stock RoBERTa classifier, never meta-validated against human judgment despite being a headline metric in Tables 5 and 8 (that became a critique point instead). Episode agent found no page errors and surfaced a third paper-internal seam: the abstract advertises '12.8 F1 on BEGIN' but Table 4 reports accuracy with a 10.5 gap, and 12.8 appears nowhere else in the paper — now documented on the page."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1111,19 +1120,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T00:27 gu-2023-maniskill2: step -> revise",
-    "2026-08-02T00:35 gu-2023-maniskill2: step -> critique (round 2)",
-    "2026-08-02T00:43 gu-2023-maniskill2: step -> critique (round 3)",
-    "2026-08-02T00:48 gu-2023-maniskill2: step -> verify",
-    "2026-08-02T00:48 gu-2023-maniskill2: step -> queue-ops",
-    "2026-08-02T00:48 gu-2023-maniskill2: step -> podcast",
-    "2026-08-02T00:59 completed gu-2023-maniskill2 (verdict=approved, rounds=3)",
-    "2026-08-02T01:02 started liu-2024-evalcrafter ('EvalCrafter: Benchmarking and Evaluating Large Video Generation Models')",
-    "2026-08-02T01:21 liu-2024-evalcrafter: step -> fetch",
-    "2026-08-02T01:21 liu-2024-evalcrafter: step -> figures",
-    "2026-08-02T01:21 liu-2024-evalcrafter: step -> draft",
-    "2026-08-02T01:22 liu-2024-evalcrafter: step -> critique (round 1)",
-    "2026-08-02T01:34 liu-2024-evalcrafter: step -> revise",
     "2026-08-02T01:39 liu-2024-evalcrafter: step -> critique (round 2)",
     "2026-08-02T01:45 liu-2024-evalcrafter: step -> verify",
     "2026-08-02T01:46 liu-2024-evalcrafter: step -> queue-ops",
@@ -1160,6 +1156,19 @@
     "2026-08-02T05:20 liu-2023-cmexam: step -> verify",
     "2026-08-02T05:21 liu-2023-cmexam: step -> queue-ops",
     "2026-08-02T05:21 liu-2023-cmexam: step -> podcast",
-    "2026-08-02T05:36 completed liu-2023-cmexam (verdict=approved_with_notes, rounds=1)"
+    "2026-08-02T05:36 completed liu-2023-cmexam (verdict=approved_with_notes, rounds=1)",
+    "2026-08-02T05:38 started dziri-2022-faithdial ('FaithDial: A Faithful Benchmark for Information-Seeking Dialogue')",
+    "2026-08-02T05:38 dziri-2022-faithdial: step -> fetch",
+    "2026-08-02T06:13 dziri-2022-faithdial: step -> figures",
+    "2026-08-02T06:13 dziri-2022-faithdial: step -> draft",
+    "2026-08-02T06:13 dziri-2022-faithdial: step -> critique (round 1)",
+    "2026-08-02T06:13 dziri-2022-faithdial: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T06:28 dziri-2022-faithdial: step -> revise",
+    "2026-08-02T06:28 dziri-2022-faithdial: step -> critique (round 2)",
+    "2026-08-02T06:28 dziri-2022-faithdial: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-02T06:28 dziri-2022-faithdial: step -> verify",
+    "2026-08-02T06:29 dziri-2022-faithdial: step -> queue-ops",
+    "2026-08-02T06:29 dziri-2022-faithdial: step -> podcast",
+    "2026-08-02T06:44 completed dziri-2022-faithdial (verdict=approved, rounds=2)"
   ]
 }

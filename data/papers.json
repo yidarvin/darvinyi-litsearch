@@ -10429,6 +10429,22 @@
       "explainer": "papers/liu-2023-cmexam.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2023-cmexam.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "dziri-2022-faithdial",
+      "short": "FaithDial",
+      "title": "FaithDial: A Faithful Benchmark for Information-Seeking Dialogue",
+      "authors": "Dziri, Kamalloo, Milton, Zaiane, Yu, Ponti, Reddy",
+      "year": 2022,
+      "date": "2022-04",
+      "venue": "TACL",
+      "citation_count": 140,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Alberta / Mila",
+      "abstract": "Rather than collecting a new corpus, FaithDial edits Wizard of Wikipedia turn-by-turn: crowdworkers rewrite hallucinated or uncooperative Wizard responses to be faithful to the same knowledge snippet, moving WoW's own audited 20.9% faithful-turn rate to a validated 94.4%. Fine-tuning on FaithDial instead of WoW cuts a T5 model's critic-flagged hallucination from 46.5% to 4.3% and its human-judged hallucination from 55.8% to 23.2%, and the gains mostly transfer zero-shot to CMU-DoG and TopicalChat.",
+      "explainer": "papers/dziri-2022-faithdial.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dziri-2022-faithdial.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17720,6 +17736,16 @@
     { "from": "liu-2023-cmexam", "to": "wang-2019-superglue" },
     { "from": "liu-2023-cmexam", "to": "zellers-2019-hellaswag" },
     { "from": "wang-2024-cmb", "to": "liu-2023-cmexam" },
-    { "from": "xiao-2024-flowbench", "to": "liu-2023-cmexam" }
+    { "from": "xiao-2024-flowbench", "to": "liu-2023-cmexam" },
+    { "from": "dziri-2022-faithdial", "to": "bender-2021-stochastic-parrots" },
+    { "from": "dziri-2022-faithdial", "to": "lewis-2019-bart" },
+    { "from": "dziri-2022-faithdial", "to": "lin-2004-rouge" },
+    { "from": "dziri-2022-faithdial", "to": "liu-2019-roberta" },
+    { "from": "dziri-2022-faithdial", "to": "papineni-2002-bleu" },
+    { "from": "dziri-2022-faithdial", "to": "radford-2019-gpt2" },
+    { "from": "dziri-2022-faithdial", "to": "raffel-2020-t5" },
+    { "from": "dziri-2022-faithdial", "to": "williams-2017-multinli" },
+    { "from": "dziri-2022-faithdial", "to": "zhou-2018-document-grounded" },
+    { "from": "macina-2023-mathdial", "to": "dziri-2022-faithdial" }
   ]
 }
