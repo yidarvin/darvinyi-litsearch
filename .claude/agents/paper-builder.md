@@ -260,6 +260,38 @@ actually uses. → `set-step draft`
    quietly fix: state it as the paper's inconsistency and do not invent a
    reconciliation.
 
+   **Then do the page-internal version, which is a different check and the
+   one that fires most often.** The rules above catch numbers that
+   contradict each other *in the paper*. They do not catch the far more
+   common case: **a claim on your page falsified by a table on your page.**
+   The first paper reviewed after this section was written produced *seven*
+   blockers of exactly that kind — and that builder had dutifully added a
+   "ratio check" note to `tables.md` which re-derived one ratio, found no
+   others, and stopped. The check existed and was never pointed at the right
+   target.
+
+   The mechanism is almost always the same: **a column contains rows you
+   didn't discuss, and your superlative silently excludes them.** In the
+   MBRL benchmark, Table 1 puts three ground-truth-dynamics oracles
+   (`iLQG`, `GT-CEM`, `GT-RS`) in the same columns as the learned-dynamics
+   and model-free rows. The page called SAC "the strongest single algorithm
+   on HalfCheetah at this budget (4000.7)" while printing GT-CEM's 14777.2
+   two paragraphs below; called SAC's 2012.7 "the true column-wide maximum"
+   when GT-RS is 2519.0; wrote "every learned-dynamics method plateaus" when
+   SLBO beats TD3 on Hopper; and captioned a figure "SAC and TD3 pull ahead
+   of every learned-dynamics method" when MB-MPO is the top curve in that
+   very panel and the page's own prose said so.
+
+   So, last thing before you write `report.json`: **re-read every superlative
+   and every comparative on the page and check each against the full column
+   it lives in, including rows you never mention.** Oracle rows, human-
+   performance rows, random baselines and "empirical max" rows are the usual
+   culprits, because they feel like they sit outside the comparison and they
+   do not. Fix by **scoping, not deleting** — "the strongest non-oracle
+   method", "best among the model-free baselines", "highest excluding the
+   human row" are all fine; a bare "strongest", "the only" or "every" is not,
+   whenever another row shares the column. Record that sweep in `tables.md`.
+
    Skip it only when the paper has a single small table with one metric.
 1. Read the paper (text + chosen figures) and fill
    `templates/explainer.html` → `public/papers/<slug>.html`, writing every

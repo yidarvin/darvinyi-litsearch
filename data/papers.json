@@ -10333,6 +10333,21 @@
       "explainer": "papers/fang-2020-graspnet.html",
       "audio_url": "https://pod.darvinyi.com/audio/fang-2020-graspnet.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "wang-2019-mbrl-benchmark",
+      "short": "MBRL Benchmark",
+      "title": "Benchmarking Model-Based Reinforcement Learning",
+      "authors": "Wang, Bao, Clavera, Hoang, Wen, Langlois, Zhang, Zhang, Abbeel, Ba",
+      "year": 2019,
+      "date": "2019-07",
+      "venue": "arXiv",
+      "citation_count": 395,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Toronto / Vector Institute / UC Berkeley",
+      "abstract": "Benchmarks 11 model-based RL algorithms and 4 model-free baselines across 18 unified OpenAI-Gym environments (including noisy and early-termination variants), finding MBRL roughly matches MFRL at 200k steps but, on most environments, plateaus well below it given more data (Hopper's SLBO is the exception). Names three diagnosed failure modes: the dynamics bottleneck, the planning horizon dilemma, and the early-termination dilemma.",
+      "explainer": "papers/wang-2019-mbrl-benchmark.html",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17520,6 +17535,18 @@
     { "from": "huang-2024-vbench", "to": "zheng-2023-mt-bench" },
     { "from": "qin-2024-worldsimbench", "to": "huang-2024-vbench" },
     { "from": "fang-2020-graspnet", "to": "lin-2014-coco" },
-    { "from": "li-2024-simpler", "to": "fang-2020-graspnet" }
+    { "from": "li-2024-simpler", "to": "fang-2020-graspnet" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "brockman-2016-openai-gym" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "deng-2009-imagenet" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "fujimoto-2018-td3" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "haarnoja-2018-sac" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "henderson-2017-deep-rl-that-matters" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "lillicrap-2016-ddpg" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "lin-2014-coco" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "mnih-2016-a3c" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "schulman-2015-trpo" },
+    { "from": "wang-2019-mbrl-benchmark", "to": "schulman-2017-ppo" },
+    { "from": "osband-2020-bsuite", "to": "wang-2019-mbrl-benchmark" },
+    { "from": "papoudakis-2021-marl-benchmark", "to": "wang-2019-mbrl-benchmark" }
   ]
 }
