@@ -158,6 +158,55 @@ actually uses. → `set-step draft`
    shifted or mistyped row in `tables.md`, and figure-rendered heatmaps
    were the common factor.
 
+   **Position is not the anchor — the x-coordinate is.** The advice above
+   says to re-read cells "at that column position", and that is precisely
+   what has kept failing: a table's columns are not evenly spaced, a stub
+   or corner header can occupy a slot that carries no value, and a
+   two-line header can sit visually left of the column it labels. Four
+   consecutive papers shipped a wrong claim from reading by position, and
+   in every case the fix came from the same method — extracting the PDF's
+   word x-centres and matching each value to the header directly above it.
+   On SIMPLER, Table V's eight columns were read as "4 Success then 4
+   Grasp" when they interleave per task, which named the wrong task as the
+   paper's one exception. On CMB, Table 4's consultation-stage row was read
+   one column left, putting 30.09% on `Diagnosis process` — a *stub header
+   carrying no value at all* — when it belongs to `Treatment principles`;
+   the same paper's Table 7 had its Average taken from the
+   Graduate-Entrance-Exam cell. On nuScenes, a bracketed reference pair was
+   resolved by guesswork rather than from the bibliography.
+
+   So, for **every table the page quotes**, record the column x-ranges in
+   `tables.md` alongside the cells:
+
+   ```python
+   import fitz
+   pg = fitz.open("work/<slug>/paper.pdf")[PAGE]      # 0-indexed
+   for b in pg.get_text("dict")["blocks"]:
+       for l in b.get("lines", []):
+           for s in l["spans"]:
+               print(round(s["bbox"][0],1), round(s["bbox"][1],1), repr(s["text"]))
+   ```
+
+   Then state, in the file, each column's x-range and confirm every value
+   you transcribed falls inside its own column's range. Two cheap tells
+   that you have it wrong: **a row with fewer values than headers** (which
+   means one header is a stub and you must find out which), and **values
+   that sum to exactly 100.00 across n cells when you have n+1 labels**.
+   Both appeared in the CMB table and both were visible before any
+   x-coordinate work.
+
+   The same method is the only reliable way to read **bold/underline
+   markers**, which carry meaning in many results tables and which
+   `paper.txt` discards entirely. Marker polarity has been read backwards
+   four times in this pipeline, twice on the same paper. Bold spans show up
+   as a distinct font name (e.g. `NimbusRomNo9L-Medi` against `-Regu`) in
+   the dict above; underlines are thin filled rectangles in
+   `pg.get_drawings()`, sitting a few points below their row's baseline —
+   match them to columns by the same x-ranges. Record what each marker
+   *means* per the table's own caption ("bold = best", "underline = not
+   significantly different from the best") before recording which cells
+   carry it, because the meaning is what gets inverted.
+
    **Record each table's precision, and never read a rounded cell as an
    exact value.** A `0.0` in a table that rounds to one decimal means
    "below 0.05", not "zero" — and papers routinely plot the same numbers at
