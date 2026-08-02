@@ -1071,6 +1071,15 @@
         "Critic converged in 2 rounds (6 blockers r1, 0 r2 — clean approve). B1 was a superlative the builder's own report claimed to have swept and cleared but hadn't: Table 5's FaithDial block has GPT2 50.4 and DialoGPT 52.3 below the 55.8 the page called lowest; correctly rescoped to the four T5-backbone variants. B2 mattered more than its size — the false 'only metric where FaithDial-trained doesn't win' deleted the engagement-cost tradeoff the critique section existed to make. Tagged benchmarks only; declined evaluations on the critic's read that FaithCritic is a derived training set plus a stock RoBERTa classifier, never meta-validated against human judgment despite being a headline metric in Tables 5 and 8 (that became a critique point instead). Episode agent found no page errors and surfaced a third paper-internal seam: the abstract advertises '12.8 F1 on BEGIN' but Table 4 reports accuracy with a 10.5 gap, and 12.8 appears nowhere else in the paper — now documented on the page."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "zhou-2020-kdconv",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Two critic rounds (7 blockers r1, clean approve r2). B1 repeated the third-consecutive undercounted-uniqueness pattern: the builder found the paper's 'all the models were improved in all the metrics except PPL' claim to be false and framed it as one cell; the full 90-cell sweep gives 4 strict decreases + 1 tie. Three of the seven blockers were claims the page contradicted itself on within a paragraph. Episode agent verified the corrected sweep independently and added the load-bearing caveat that BERT+know freezes the transformer weights, so two of the five non-improving cells are a memory-module ablation on a fixed encoder rather than an end-to-end comparison; also resolved the Table 2 vs Table 3 entity-count tension (built graph vs referenced subgraph; only 14.6% of built triples are ever used). Queued OpenDialKG at High — two of KdConv's novelty claims were falsified by OpenDialKG's row in KdConv's own comparison table, and it isn't a node yet."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1120,19 +1129,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T01:39 liu-2024-evalcrafter: step -> critique (round 2)",
-    "2026-08-02T01:45 liu-2024-evalcrafter: step -> verify",
-    "2026-08-02T01:46 liu-2024-evalcrafter: step -> queue-ops",
-    "2026-08-02T01:46 liu-2024-evalcrafter: step -> podcast",
-    "2026-08-02T01:58 completed liu-2024-evalcrafter (verdict=approved, rounds=2)",
-    "2026-08-02T02:00 started zhang-2023-gaokao-bench ('Evaluating the Performance of Large Language Models on GAOKAO Benchmark')",
-    "2026-08-02T02:09 zhang-2023-gaokao-bench: step -> fetch",
-    "2026-08-02T02:09 zhang-2023-gaokao-bench: step -> figures",
-    "2026-08-02T02:09 zhang-2023-gaokao-bench: step -> draft",
-    "2026-08-02T02:27 zhang-2023-gaokao-bench: step -> critique (round 1)",
-    "2026-08-02T02:38 zhang-2023-gaokao-bench: step -> revise",
-    "2026-08-02T02:41 zhang-2023-gaokao-bench: step -> critique (round 2)",
-    "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> verify",
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> queue-ops",
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> podcast",
     "2026-08-02T03:00 completed zhang-2023-gaokao-bench (verdict=approved, rounds=2)",
@@ -1169,6 +1165,19 @@
     "2026-08-02T06:28 dziri-2022-faithdial: step -> verify",
     "2026-08-02T06:29 dziri-2022-faithdial: step -> queue-ops",
     "2026-08-02T06:29 dziri-2022-faithdial: step -> podcast",
-    "2026-08-02T06:44 completed dziri-2022-faithdial (verdict=approved, rounds=2)"
+    "2026-08-02T06:44 completed dziri-2022-faithdial (verdict=approved, rounds=2)",
+    "2026-08-02T06:47 started zhou-2020-kdconv ('KdConv: A Chinese Multi-domain Dialogue Dataset Towards Multi-turn Knowledge-driven Conversation')",
+    "2026-08-02T06:47 zhou-2020-kdconv: step -> fetch",
+    "2026-08-02T07:04 zhou-2020-kdconv: step -> figures",
+    "2026-08-02T07:04 zhou-2020-kdconv: step -> draft",
+    "2026-08-02T07:16 zhou-2020-kdconv: step -> critique (round 1)",
+    "2026-08-02T07:16 zhou-2020-kdconv: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T07:37 zhou-2020-kdconv: step -> revise",
+    "2026-08-02T07:37 zhou-2020-kdconv: step -> critique (round 2)",
+    "2026-08-02T07:37 zhou-2020-kdconv: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-02T07:37 zhou-2020-kdconv: step -> verify",
+    "2026-08-02T07:38 zhou-2020-kdconv: step -> queue-ops",
+    "2026-08-02T07:38 zhou-2020-kdconv: step -> podcast",
+    "2026-08-02T07:55 completed zhou-2020-kdconv (verdict=approved, rounds=2)"
   ]
 }

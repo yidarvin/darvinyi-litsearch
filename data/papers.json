@@ -10445,6 +10445,22 @@
       "explainer": "papers/dziri-2022-faithdial.html",
       "audio_url": "https://pod.darvinyi.com/audio/dziri-2022-faithdial.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhou-2020-kdconv",
+      "short": "KdConv",
+      "title": "KdConv: A Chinese Multi-domain Dialogue Dataset Towards Multi-turn Knowledge-driven Conversation",
+      "authors": "Zhou, Zheng, Huang, Huang, Zhu",
+      "year": 2020,
+      "date": "2020-04",
+      "venue": "ACL 2020",
+      "citation_count": 135,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University",
+      "abstract": "A 4,500-dialogue, 85,596-utterance Chinese benchmark that grounds long, open-ended, multi-topic conversations across three domains (film, music, travel) in domain-specific knowledge graphs, with every utterance sentence-level annotated to the exact knowledge triples it draws on — unlike prior corpora capped at one or two topics or annotated only at the whole-dialogue level.",
+      "explainer": "papers/zhou-2020-kdconv.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhou-2020-kdconv.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17746,6 +17762,11 @@
     { "from": "dziri-2022-faithdial", "to": "raffel-2020-t5" },
     { "from": "dziri-2022-faithdial", "to": "williams-2017-multinli" },
     { "from": "dziri-2022-faithdial", "to": "zhou-2018-document-grounded" },
-    { "from": "macina-2023-mathdial", "to": "dziri-2022-faithdial" }
+    { "from": "macina-2023-mathdial", "to": "dziri-2022-faithdial" },
+    { "from": "zhou-2020-kdconv", "to": "devlin-2019-bert" },
+    { "from": "zhou-2020-kdconv", "to": "papineni-2002-bleu" },
+    { "from": "zhou-2020-kdconv", "to": "wu-2017-smn" },
+    { "from": "zhou-2020-kdconv", "to": "zhang-2018-personachat" },
+    { "from": "zhou-2020-kdconv", "to": "zhou-2018-document-grounded" }
   ]
 }
