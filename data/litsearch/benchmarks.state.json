@@ -1134,6 +1134,15 @@
         "Best draft the pipeline has produced. The inward-first self-consistency checklist caught SIX defects before the critic saw the page, two of them undercounted-uniqueness claims — the class that had shipped on eight consecutive papers. That procedure went into paper-builder.md two papers ago after exhortation failed; this is the first run where it worked as designed. Critic rebuilt all 180 cells of Table 2 from span bboxes and the font layer: no column shift, in the worst layout faced yet (wide grid, cramped two-column Interspeech). New hazard handled correctly: SUPERB mixes higher- and lower-is-better metrics (PER/WER/CER/EER/DER invert), directions read off the PDF's own arrow glyphs, every 'best' direction-aware. Builder's headline finding, independently confirmed twice: the paper contains NO aggregate SUPERB score under any name — the single-number ranking everyone cites exists only on the external leaderboard. Applied evaluations alongside benchmarks on the frozen-encoder protocol plus s3prl plus the binding constrained-track footnote. Episode agent then found the sharpest thing on the page: the prose credits its two most quotable wins to unqualified 'HuBERT' where the winner is Base, not Large — Large is 0.0353 vs Base 0.0736 on QbE (less than half) and 5.98 vs 5.11 on ASV — likely the origin of the 'HuBERT Large wins SUPERB' folk memory. Verified and added. It also queried the page's GLUE private-test-set claim; checked against our own reviewed GLUE node, which names the four (CoLA, MNLI, QQP, WNLI) and notes the other five use public labels — page correct, no change."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "hu-2020-xtreme",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Three critic rounds, every one turning on a counted claim. B1 was a new failure shape: the page's '3 of 5' translation-baseline count was disqualified by a caveat printed in Table 2's OWN caption (translate-test on QA not directly comparable, test questions discarded) — captions carry constraints that bind every count drawn from the table, and had been read as decoration. The repair then introduced a metric-unscoped '4 of 5' that is true on F1 but splits on TyDiQA-GoldP (XLM-R 65.1 F1 / 45.0 EM vs translate-train 64.2 / 49.3); now scoped, with the EM count of 3 of 5 disclosed. B3 exposed a structural gap in the inward self-consistency pass: it runs on the tag-stripped page, which deletes exactly the meta/og/abstract surfaces where the error lived; paper-builder.md now requires extracting those three and appending them before sweeping. Cross-page: adding XTREME retroactively corrected niklaus-2023-lextreme, an already-approved page that miscounted XTREME in BOTH directions (its Table 1 says six tasks, its prose ten datasets; truth is nine of each) — first time processing a new paper has fixed an existing one. Episode agent found no page errors and surfaced a genuine metric-direction contradiction in the paper: section 3.2 scores Tatoeba by error rate (lower better) while Tables 1, 2 and 13 all say Accuracy (higher better); verified and added. It also found the second half of the render trap: Kokoro creates the MP3 as a 0-byte file and streams into it, so an existence test fires a false positive — CLAUDE.md now requires the non-empty test."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1183,22 +1192,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T11:43 niklaus-2023-lextreme: step -> podcast",
-    "2026-08-02T11:56 completed niklaus-2023-lextreme (verdict=approved, rounds=3)",
-    "2026-08-02T11:58 started zhu-2024-dyval ('DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks')",
-    "2026-08-02T11:58 zhu-2024-dyval: step -> fetch",
-    "2026-08-02T12:05 zhu-2024-dyval: step -> figures",
-    "2026-08-02T12:05 zhu-2024-dyval: step -> draft",
-    "2026-08-02T12:22 zhu-2024-dyval: step -> draft",
-    "2026-08-02T12:37 zhu-2024-dyval: step -> critique (round 1)",
-    "2026-08-02T12:37 zhu-2024-dyval: 9 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T13:00 zhu-2024-dyval: step -> revise",
-    "2026-08-02T13:00 zhu-2024-dyval: step -> critique (round 2)",
-    "2026-08-02T13:00 zhu-2024-dyval: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T13:00 zhu-2024-dyval: step -> revise",
-    "2026-08-02T13:00 zhu-2024-dyval: step -> critique (round 3)",
-    "2026-08-02T13:00 zhu-2024-dyval: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T13:00 zhu-2024-dyval: step -> verify",
     "2026-08-02T13:00 zhu-2024-dyval: step -> queue-ops",
     "2026-08-02T13:01 zhu-2024-dyval: step -> podcast",
     "2026-08-02T13:13 completed zhu-2024-dyval (verdict=approved, rounds=3)",
@@ -1232,6 +1225,22 @@
     "2026-08-02T15:13 yang-2021-superb: step -> verify",
     "2026-08-02T15:13 yang-2021-superb: step -> queue-ops",
     "2026-08-02T15:14 yang-2021-superb: step -> podcast",
-    "2026-08-02T15:26 completed yang-2021-superb (verdict=approved, rounds=2)"
+    "2026-08-02T15:26 completed yang-2021-superb (verdict=approved, rounds=2)",
+    "2026-08-02T15:28 started hu-2020-xtreme ('XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual Generalization')",
+    "2026-08-02T15:28 hu-2020-xtreme: step -> fetch",
+    "2026-08-02T15:51 hu-2020-xtreme: step -> figures",
+    "2026-08-02T15:51 hu-2020-xtreme: step -> draft",
+    "2026-08-02T16:06 hu-2020-xtreme: step -> critique (round 1)",
+    "2026-08-02T16:06 hu-2020-xtreme: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T16:19 hu-2020-xtreme: step -> revise",
+    "2026-08-02T16:19 hu-2020-xtreme: step -> critique (round 2)",
+    "2026-08-02T16:19 hu-2020-xtreme: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T16:19 hu-2020-xtreme: step -> revise",
+    "2026-08-02T16:19 hu-2020-xtreme: step -> critique (round 3)",
+    "2026-08-02T16:19 hu-2020-xtreme: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T16:19 hu-2020-xtreme: step -> verify",
+    "2026-08-02T16:20 hu-2020-xtreme: step -> queue-ops",
+    "2026-08-02T16:20 hu-2020-xtreme: step -> podcast",
+    "2026-08-02T16:34 completed hu-2020-xtreme (verdict=approved, rounds=3)"
   ]
 }

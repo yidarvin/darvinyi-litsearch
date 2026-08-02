@@ -10557,6 +10557,22 @@
       "explainer": "papers/yang-2021-superb.html",
       "audio_url": "https://pod.darvinyi.com/audio/yang-2021-superb.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "hu-2020-xtreme",
+      "short": "XTREME",
+      "title": "XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual Generalization",
+      "authors": "Hu, Ruder, Siddhant, Neubig, Firat, Johnson",
+      "year": 2020,
+      "date": "2020-03",
+      "venue": "ICML 2020",
+      "citation_count": 1174,
+      "topic": "Benchmarks & Evals",
+      "author_group": "CMU / Google",
+      "abstract": "A zero-shot cross-lingual transfer suite: 9 established tasks (XNLI, PAWS-X, POS, NER, XQuAD, MLQA, TyDiQA-GoldP, BUCC, Tatoeba) across 40 typologically diverse languages spanning 12 language families, with models fine-tuned on English only and evaluated with no target-language data at all. XLM-R Large beats mBERT on every task (68.2 vs. 59.8 average) but still trails human performance broadly; a machine-translation baseline beats its zero-shot score on 3 of 5 comparable tasks by the raw table, though two of those wins are translate-test QA scores the paper's own caption calls not directly comparable — on the comparable translate-train baseline alone, XLM-R wins 4 of 5.",
+      "explainer": "papers/hu-2020-xtreme.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hu-2020-xtreme.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17937,6 +17953,17 @@
     { "from": "yang-2021-superb", "to": "gururangan-2020-dont-stop-pretraining" },
     { "from": "yang-2021-superb", "to": "peters-2018-elmo" },
     { "from": "yang-2021-superb", "to": "wang-2018-glue" },
-    { "from": "niklaus-2023-lextreme", "to": "yang-2021-superb" }
+    { "from": "niklaus-2023-lextreme", "to": "yang-2021-superb" },
+    { "from": "hu-2020-xtreme", "to": "conneau-2018-xnli" },
+    { "from": "hu-2020-xtreme", "to": "devlin-2019-bert" },
+    { "from": "hu-2020-xtreme", "to": "gururangan-2018-annotation-artifacts" },
+    { "from": "hu-2020-xtreme", "to": "peters-2018-elmo" },
+    { "from": "hu-2020-xtreme", "to": "rajpurkar-2016-squad" },
+    { "from": "hu-2020-xtreme", "to": "wang-2018-glue" },
+    { "from": "hu-2020-xtreme", "to": "wang-2019-superglue" },
+    { "from": "hu-2020-xtreme", "to": "williams-2017-multinli" },
+    { "from": "liang-2022-helm", "to": "hu-2020-xtreme" },
+    { "from": "niklaus-2023-lextreme", "to": "hu-2020-xtreme" },
+    { "from": "shi-2022-mgsm", "to": "hu-2020-xtreme" }
   ]
 }

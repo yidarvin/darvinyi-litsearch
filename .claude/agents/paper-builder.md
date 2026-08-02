@@ -669,6 +669,13 @@ finished HTML, before you write `report.json` — not as a vibe.
 
 1. **Extract the prose.** Strip the base64 (`re.sub(r'data:image/[^"\')]+','',html)`),
    strip tags, collapse whitespace. You now have the page as a reader sees it.
+   **Then extract the three surfaces that stripping tags throws away** — the
+   `<meta name="description">` and `og:description` `content` attributes, and
+   the node's `abstract` in `data/papers.json` — and append them to the text
+   you sweep. On XTREME the body correctly said "translate-train *or*
+   translate-test" while both meta tags said "translate-test" alone, which was
+   false; the inward pass ran on the body only and missed it. A tag-stripped
+   page is not the whole page.
 2. **Pull every claim of dominance** — grep the prose for `best`, `only`,
    `every`, `all`, `none`, `strongest`, `highest`, `lowest`, `outperforms`,
    `beats`, `sweeps`, `never`, `no other`. For each hit, write down the
