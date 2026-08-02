@@ -1053,6 +1053,15 @@
         "2 critic rounds, 5 blockers. B5 was a pipeline-integrity problem I fixed myself: the builder hand-wrote an audio_url into the node at draft time. It 404'd, the page had no player markers, and that key is the only guard complete-paper has on the mandatory podcast step - so the fabricated value would have disarmed the check rather than merely adding a wrong field. Removed it and added a standing prohibition to the builder agent. B2 was the worst content blocker: the page invented a double-counting mechanism for the 250-vs-1000 language gap, refuted by the paper's own Figure 1 (Bitext Mining is credited with 1,043 languages across 21 tasks, so 21x2 cannot explain it). The honest version - roughly 800 languages reachable only through one shallow task type - survives and is now derived from the paper's own operands. Builder's edge work was exemplary given S2 reported referenceCount 0: it parsed a 251-row bibliography as the only source, and the critic verified all 29 edges present with zero false positives and no misses across 665 nodes, including correctly rejecting all six of my crude text-scan leads. It also found the v4 PDF byline carries 87 names against 86 in arXiv/S2 metadata. Episode agent found no page errors but two more paper-internal inconsistencies, both verified and added: Appendix B.3's body says the synthetic queries came from gpt-4o while Figure 7's caption says GPT4-turbo, and the seventeen listed language codes contain only sixteen distinct ones (dan-Latn twice). That makes five internal disagreements in one paper. Declined evaluations per the muennighoff-2023-mteb precedent."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "liu-2023-cmexam",
+      "rounds": 1,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "Critic converged in 2 rounds (6 blockers r1, 1 r2). r2's blocker was my own hand-correction: I changed ICD-11 '27 categories' to 26 on an incomplete Table 9 count (my regex dropped the non-numeric V and X chapters), and the critic correctly reverted it — the paper says 27 in section 2, in Table 2's Unique-values column, and in the Appendix A.2 prompt the annotation pipeline actually ran on. Episode agent then caught a real off-by-one both reviewers missed: Tables 4 and 5 each include an N/A bucket row, so they cover 15 ICD-11 groups + N/A and 14 departments + N/A, not 16 and 15. Fixed and verified."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1102,16 +1111,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T23:28 wang-2019-mbrl-benchmark: step -> critique (round 2)",
-    "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> verify",
-    "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> queue-ops",
-    "2026-08-01T23:34 wang-2019-mbrl-benchmark: step -> podcast",
-    "2026-08-01T23:50 completed wang-2019-mbrl-benchmark (verdict=approved, rounds=2)",
-    "2026-08-01T23:53 started gu-2023-maniskill2 ('ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills')",
-    "2026-08-02T00:13 gu-2023-maniskill2: step -> fetch",
-    "2026-08-02T00:13 gu-2023-maniskill2: step -> figures",
-    "2026-08-02T00:13 gu-2023-maniskill2: step -> draft",
-    "2026-08-02T00:14 gu-2023-maniskill2: step -> critique (round 1)",
     "2026-08-02T00:27 gu-2023-maniskill2: step -> revise",
     "2026-08-02T00:35 gu-2023-maniskill2: step -> critique (round 2)",
     "2026-08-02T00:43 gu-2023-maniskill2: step -> critique (round 3)",
@@ -1151,6 +1150,16 @@
     "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> verify",
     "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> queue-ops",
     "2026-08-02T04:02 enevoldsen-2025-mmteb: step -> podcast",
-    "2026-08-02T04:15 completed enevoldsen-2025-mmteb (verdict=approved, rounds=2)"
+    "2026-08-02T04:15 completed enevoldsen-2025-mmteb (verdict=approved, rounds=2)",
+    "2026-08-02T04:18 started liu-2023-cmexam ('Benchmarking Large Language Models on CMExam - A Comprehensive Chinese Medical Exam Dataset')",
+    "2026-08-02T04:20 liu-2023-cmexam: step -> fetch",
+    "2026-08-02T04:22 liu-2023-cmexam: step -> figures",
+    "2026-08-02T04:22 liu-2023-cmexam: step -> draft",
+    "2026-08-02T04:59 liu-2023-cmexam: step -> critique (round 1)",
+    "2026-08-02T04:59 liu-2023-cmexam: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T05:20 liu-2023-cmexam: step -> verify",
+    "2026-08-02T05:21 liu-2023-cmexam: step -> queue-ops",
+    "2026-08-02T05:21 liu-2023-cmexam: step -> podcast",
+    "2026-08-02T05:36 completed liu-2023-cmexam (verdict=approved_with_notes, rounds=1)"
   ]
 }

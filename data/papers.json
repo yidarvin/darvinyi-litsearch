@@ -10413,6 +10413,22 @@
       "explainer": "papers/enevoldsen-2025-mmteb.html",
       "audio_url": "https://pod.darvinyi.com/audio/enevoldsen-2025-mmteb.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "liu-2023-cmexam",
+      "short": "CMExam",
+      "title": "Benchmarking Large Language Models on CMExam - A Comprehensive Chinese Medical Exam Dataset",
+      "authors": "Liu, Zhou, Hua, Chong, Tian, Liu, Wang, You, Guo, Zhu, Li",
+      "year": 2023,
+      "date": "2023-06",
+      "venue": "NeurIPS 2023 D&B",
+      "citation_count": 145,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Academic + Alibaba",
+      "abstract": "68,119 questions from the real Chinese National Medical Licensing Examination, each gradeable both as multiple-choice and via a free-text solution explanation, plus five expert-annotated dimensions (ICD-11 disease group, clinical department, discipline, competency, difficulty) built with GPT-4-assisted pre-annotation and two-person human review. Zero-shot GPT-4 leads all models at 61.6% accuracy against a 71.6% human baseline, yet on every reasoning metric it scores below all nine CMExam-fine-tuned models that report reasoning scores (two others, BERT-CMExam and RoBERTa-CMExam, are prediction-only), since it favors short, non-reference-matching explanations.",
+      "explainer": "papers/liu-2023-cmexam.html",
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-cmexam.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17681,6 +17697,29 @@
     { "from": "enevoldsen-2025-mmteb", "to": "wang-2019-superglue" },
     { "from": "enevoldsen-2025-mmteb", "to": "weller-2025-followir" },
     { "from": "enevoldsen-2025-mmteb", "to": "yang-2018-hotpotqa" },
-    { "from": "enevoldsen-2025-mmteb", "to": "zellers-2019-hellaswag" }
+    { "from": "enevoldsen-2025-mmteb", "to": "zellers-2019-hellaswag" },
+    { "from": "liu-2023-cmexam", "to": "brown-2020-gpt3" },
+    { "from": "liu-2023-cmexam", "to": "chen-2021-codex" },
+    { "from": "liu-2023-cmexam", "to": "cobbe-2021-gsm8k" },
+    { "from": "liu-2023-cmexam", "to": "devlin-2019-bert" },
+    { "from": "liu-2023-cmexam", "to": "dua-2019-drop" },
+    { "from": "liu-2023-cmexam", "to": "hendrycks-2020-mmlu" },
+    { "from": "liu-2023-cmexam", "to": "jin-2020-medqa" },
+    { "from": "liu-2023-cmexam", "to": "joshi-2017-triviaqa" },
+    { "from": "liu-2023-cmexam", "to": "lin-2003-rouge-predecessor" },
+    { "from": "liu-2023-cmexam", "to": "lin-2021-truthfulqa" },
+    { "from": "liu-2023-cmexam", "to": "liu-2019-roberta" },
+    { "from": "liu-2023-cmexam", "to": "openai-2023-gpt4" },
+    { "from": "liu-2023-cmexam", "to": "papineni-2002-bleu" },
+    { "from": "liu-2023-cmexam", "to": "raffel-2020-t5" },
+    { "from": "liu-2023-cmexam", "to": "sakaguchi-2019-winogrande" },
+    { "from": "liu-2023-cmexam", "to": "singhal-2023-med-palm" },
+    { "from": "liu-2023-cmexam", "to": "taori-2023-alpaca" },
+    { "from": "liu-2023-cmexam", "to": "touvron-2023-llama" },
+    { "from": "liu-2023-cmexam", "to": "wang-2018-glue" },
+    { "from": "liu-2023-cmexam", "to": "wang-2019-superglue" },
+    { "from": "liu-2023-cmexam", "to": "zellers-2019-hellaswag" },
+    { "from": "wang-2024-cmb", "to": "liu-2023-cmexam" },
+    { "from": "xiao-2024-flowbench", "to": "liu-2023-cmexam" }
   ]
 }
