@@ -10379,7 +10379,8 @@
       "author_group": "Tencent AI Lab",
       "abstract": "Builds a 700-prompt text-to-video benchmark and scores 8 T2V systems on 17 objective metrics across four aspects (visual quality, text-video alignment, motion quality, temporal consistency), then fits a per-aspect linear regression to human ratings (1,024 kept from 8,647 collected; 5 of the 8 systems) so the final score correlates with human preference rather than simply averaging the raw metrics -- on motion amplitude, every individual raw metric anti-correlates with human judgment (Spearman as low as -43.3) while the fitted score is +45.0. The paper's own main-text and appendix correlation tables disagree on three of the sixteen rows they share, most notably VQA_A Spearman 42.1 vs 47.8, and three of the eight leaderboard systems were never rated by a human at all.",
       "explainer": "papers/liu-2024-evalcrafter.html",
-      "tags": ["benchmarks"]
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2024-evalcrafter.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [

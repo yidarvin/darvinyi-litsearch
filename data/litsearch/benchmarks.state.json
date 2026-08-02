@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "liu-2024-evalcrafter",
-    "queue_title": "EvalCrafter: Benchmarking and Evaluating Large Video Generation Models",
-    "arxiv_id": "2310.11440",
-    "step": "critique",
-    "round": 2,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1033,6 +1026,15 @@
         "3 critic rounds, 13 blockers - the most of any paper in this run, and they were 13 independent claims each failing against its own source rather than one repeated pattern. The two majors: Table 1's ManiSkill2-Sync column was read as async-without-render-server when it is the fully synchronous config, with a conclusion built on the inversion; and the hero figure was a scan of PDF page 1 including the 15-author byline and the entire abstract. Also three arithmetic errors of the class the cross-number instruction now covers (865/2487 = 0.35 called 'less than a third', 1720 vs 4986 called 'orders of magnitude', RLBench grouped as full-contact when Table 10 classes it Abstract), four count/unit errors, and a central critique count that was wrong in the direction that made the accusation weaker - 6 of 20 families have no results, not 4. My own r2 fix then caused a regression (B13) and my r3 fix left a dangling reduced relative clause, both caught. Notably the new page-internal contradiction check fired at build time for the first time: the builder caught two false superlatives before drafting, including that BEHAVIOR-1K's 3324 object models exceed ManiSkill2's 2144. Episode agent found no page errors but caught one in tables.md's own superlative-sweep section - a 'one of only 3 systems implementing physical grasp' count contradicted by the Grasp row it had transcribed two paragraphs above, since Robosuite is Physical too. Corrected to 4 with a note on how the sweep failed. Declined evaluations: ManiSkill2 defines per-task success criteria rather than a portable scoring methodology."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "liu-2024-evalcrafter",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 10 blockers. The builder's three substantive findings all survived independent re-derivation and form the critique's spine: a real paper-internal inconsistency (Table 3 gives VQA_A's Spearman as 42.1, appendix Table 5 gives 47.8 for the same aspect and statistic), the human-alignment regression fit on only 5 of the 8 leaderboard systems, and no inter-rater agreement statistic anywhere. It also correctly dropped lin-2014-coco from my staged edge list - COCO appears zero times in the paper. Blockers were mostly scope and count errors, including a regression fit described as using 8,647 ratings when it used the 1,024 kept, across five surfaces. B5 marks the third paper where a tables.md sweep asserted a superlative it had not checked against the full column; this time the rewrite quotes every individual negative cell, states the ranking, and names the value that would falsify the claim under a wider scope, which the critic judged to be re-checkable evidence rather than an assertion. Tagged evaluations alongside benchmarks on the VBench precedent - the contribution is metrics plus their human calibration. Episode agent then flagged two appendix passages the critique was harder than warranted for omitting: D.2 describes a rater-qualification gate (100 pre-labeling tasks, above 90% accuracy to qualify) and D.1 defends the 700-prompt size against FETV and VBench. Added the first; the second turned out to critique a claim the page does not make. It also caught that my own brief miscounted the authors surnamed Liu as two when there are three - that error never reached the page."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1082,10 +1084,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T20:51 huang-2024-vbench: step -> draft",
-    "2026-08-01T21:05 huang-2024-vbench: step -> critique (round 1)",
-    "2026-08-01T21:18 huang-2024-vbench: step -> revise",
-    "2026-08-01T21:23 huang-2024-vbench: step -> critique (round 2)",
     "2026-08-01T21:27 huang-2024-vbench: step -> verify",
     "2026-08-01T21:27 huang-2024-vbench: step -> queue-ops",
     "2026-08-01T21:27 huang-2024-vbench: step -> podcast",
@@ -1131,6 +1129,10 @@
     "2026-08-02T01:21 liu-2024-evalcrafter: step -> draft",
     "2026-08-02T01:22 liu-2024-evalcrafter: step -> critique (round 1)",
     "2026-08-02T01:34 liu-2024-evalcrafter: step -> revise",
-    "2026-08-02T01:39 liu-2024-evalcrafter: step -> critique (round 2)"
+    "2026-08-02T01:39 liu-2024-evalcrafter: step -> critique (round 2)",
+    "2026-08-02T01:45 liu-2024-evalcrafter: step -> verify",
+    "2026-08-02T01:46 liu-2024-evalcrafter: step -> queue-ops",
+    "2026-08-02T01:46 liu-2024-evalcrafter: step -> podcast",
+    "2026-08-02T01:58 completed liu-2024-evalcrafter (verdict=approved, rounds=2)"
   ]
 }

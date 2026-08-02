@@ -148,12 +148,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2024 · CVPR 2024 · Benchmarks &amp; Evals</div>
       <h1>EvalCrafter: Benchmarking and Evaluating Large Video Generation Models</h1>
       <p class="dek">A 700-prompt benchmark and a battery of 17 objective metrics across four aspects — visual quality, text-video alignment, motion quality, temporal consistency — for text-to-video models, with a linear-regression step that fits those metrics to human ratings (1,024 kept from 8,647 collected) rather than trusting FVD or Inception Score alone.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/liu-2024-evalcrafter.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/liu-2024-evalcrafter.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Yaofang Liu, Xiaodong Cun, Xuebo Liu, Xintao Wang, Yong Zhang, Haoxin Chen, Yang Liu, Tieyong Zeng, Raymond Chan, Ying Shan</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>CVPR 2024</b></span>
         <span class="fact">citations&nbsp;<b>354</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2310.11440">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/liu-2024-evalcrafter.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-08-02</div>
     </div>
@@ -239,7 +254,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
         </tbody>
       </table>
 
-      <p>The paper's central methodological claim is that the fitted alignment step beats naive averaging of the raw metrics. On visual quality it's a modest win (Spearman ρ 55.4 for "Ours" vs. 55.0 for a plain average of VQA<sub>A</sub>/VQA<sub>T</sub>/IS; Kendall ϕ 41.1 vs. 41.0). On temporal consistency it's 56.7 vs. 54.4 (ρ) and 41.5 vs. 38.9 (ϕ). On text-video alignment, 32.3 vs. 31.9 (ρ) and 22.5 vs. 22.7 (ϕ, a case where the naive average is very slightly higher on this one statistic). The most dramatic gap is on motion amplitude: <strong>every individual metric that feeds it is negatively correlated with human judgment</strong> — Action-Score −14.9, Motion AC-Score −22.1, Flow-Score −43.3 (Spearman) — and a plain average of them is <em>more</em> negative still, at −38.2. The fitted "Ours" score is +45.0. The paper's own explanation (Finding #6) is that users prefer subtle motion, so any metric that rewards more/larger movement points the wrong way; the regression learns to invert that signal rather than simply average it away.</p>
+      <p>The paper's central methodological claim is that the fitted alignment step beats naive averaging of the raw metrics. On visual quality it's a modest win (Spearman ρ 55.4 for "Ours" vs. 55.0 for a plain average of VQA<sub>A</sub>/VQA<sub>T</sub>/IS; Kendall ϕ 41.1 vs. 41.0). On temporal consistency it's 56.7 vs. 54.4 (ρ) and 41.5 vs. 38.9 (ϕ). On text-video alignment, 32.3 vs. 31.9 (ρ) and 22.5 vs. 22.7 (ϕ, a case where the naive average is very slightly higher on this one statistic). The most dramatic gap is on motion amplitude: <strong>every individual metric that feeds it is negatively correlated with human judgment</strong> — Action-Score −14.9, Motion AC-Score −22.1, Flow-Score −43.3 (Spearman) — and their plain average lands at −38.2, worse than two of the three but not as bad as Flow-Score's −43.3. The fitted "Ours" score is +45.0. The paper's own explanation (Finding #6) is that users prefer subtle motion, so any metric that rewards more/larger movement points the wrong way; the regression learns to invert that signal rather than simply average it away.</p>
 
       <p>Beyond the headline numbers, the paper reports ten "Findings," several with specific evidence: camera-motion prompts are followed by none of the evaluated models (Finding #4); resolution barely tracks visual quality — Gen2 (896×512) and Hotshot-XL (672×384) have small resolutions but are both competitive in visual quality, while the two actually-smallest resolutions in the lineup (ModelScope 256×256, Show-1 576×320) are the two lowest-ranked systems on Visual Quality (Finding #5); larger flow doesn't mean users like it more, and PikaLab/Gen2 (both low average flow) are the models users rate highest on motion (Finding #6); and CLIP-Score, despite being "a widely used metric in previous works," correlates weakly with human judgment (Spearman 6.3, Kendall 4.3) compared to BLIP-BLEU's 26.7/19.0 in the same text-video-alignment aspect (Finding #9).</p>
     </div>
@@ -256,7 +271,7 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
 
       <p><strong>The paper's own count of how many systems fed that regression is internally inconsistent.</strong> Immediately after naming the five rated systems, the fitting-procedure sentence says "we randomly choose 80% samples from <em>four</em> different methods as the fitting samples and left the rest 20% samples to verify" — four, not five, with no explanation for which system (or whether one was held out entirely, as opposed to sampled) accounts for the discrepancy. We checked appendix D for a resolution; D.9 addresses a different count question (whether the study used 512 or 700 prompts) but never revisits the four-vs-five methods gap.</p>
 
-      <p><strong>No inter-rater agreement statistic is reported anywhere in the paper.</strong> Seven raters scored 1–5 per aspect, but the paper reports only how well the aggregated/averaged human score correlates with the objective metrics (Table 3/5) — never a Cohen's/Fleiss' kappa, ICC, or similar measure of how much the seven raters agreed with each other. The limitations section admits "the labels used for alignment are collected from only fewer human annotators, which may introduce some bias," without quantifying how much. Filtering 8,647 raw scores down to the 1,024 that were kept is also unexplained beyond "most objective and professional" — no threshold, no worked criterion.</p>
+      <p><strong>No inter-rater agreement statistic is reported anywhere in the paper. Appendix D.2 does describe a rater-<em>qualification</em> gate &mdash; each candidate labels 100 pre-labeling tasks and needs above 90% accuracy to be admitted, otherwise &ldquo;we will consider another supplier&rdquo; &mdash; which is more quality control than the critique above might suggest. But qualification against a known answer key is a different measurement from agreement among raters on the subjective 1&ndash;5 scales, and only the former is reported.</strong> Seven raters scored 1–5 per aspect, but the paper reports only how well the aggregated/averaged human score correlates with the objective metrics (Table 3/5) — never a Cohen's/Fleiss' kappa, ICC, or similar measure of how much the seven raters agreed with each other. The limitations section admits "the labels used for alignment are collected from only fewer human annotators, which may introduce some bias," without quantifying how much. Filtering 8,647 raw scores down to the 1,024 that were kept is also unexplained beyond "most objective and professional" — no threshold, no worked criterion.</p>
 
       <p><strong>Two of the paper's own correlation tables disagree on a specific cell.</strong> The main-text Table 3 reports VQA<sub>A</sub>'s Spearman correlation with human judgment as <strong>42.1</strong>; the appendix's "whole results" Table 5 reports <strong>47.8</strong> for the same aspect × metric cell (we re-verified both independently from the PDF's own word positions, so this isn't a misread on our part). The aspect's Avg. row also differs slightly (55.0 vs. 54.9). Every "Ours" value the paper's method produces is identical across both tables — it's specifically the individual-metric row that doesn't reconcile.</p>
 
