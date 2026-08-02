@@ -1107,6 +1107,15 @@
         "Two critic rounds plus an orchestrator round. The headline score was the hard part: S2's abstract AND the live arXiv v3 landing page both still say 61.3, which is v1's value for both aggregates; the camera-ready's real numbers are 48.5 (Table 5) and 36.0 (Table 6), harmonic mean 41.3, matching Figure 1's printed label and reproducing every other row. My own attempt to verify this failed because XLM-R Large's row name sits at y=132.6 with its 'Large' suffix at y=136.0, splitting the row in a naive span dump; the critic recovered it from the font layer. Builder correctly rejected bommasani-2021-foundation-models from my own lead list (S2 reference data wrong; sole hit is his name inside HELM's author list). Three edges — HELM, LLaMA, PaLM — were findable only after stripping line-break hyphens, a trap that has now hidden real edges on two consecutive papers. B1 and B2 were both claims the page contradicted within its own body, the fourth consecutive paper with that shape. Episode agent then established the 61.3 mechanism precisely: v1 and current arXiv abstracts are byte-identical, so it is stale metadata on every version rather than a v1-to-v3 supersession; I verified by md5 and corrected the page. Fourth consecutive evaluations decline, here because the dual-aggregate scheme is explicitly inherited and the paper's stated contributions are compile-and-evaluate."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "zhu-2024-dyval",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "First evaluations tag applied in five papers, after four consecutive declines; the critic independently affirmed it. DyVal's first stated contribution is 'A dynamic evaluation protocol' with the graph algorithm demoted to contribution 2, and Related Work says it 'is not a detection approach but a new protocol'. Rubric names protocol and paradigm explicitly and permits both tags. Ten blockers over three rounds; five of round 1's were dominance claims contradicted by the page's own cited tables, which is exactly what the new mechanical self-consistency checklist exists to catch - the builder ran it outward at the paper (five genuine paper-internal findings) but not inward at its own prose. After being told, it ran it inward and self-caught a ninth defect. Round 2's single blocker originated in the CRITIC's own round-1 evidence line, which the builder reasonably adopted; the critic caught and disclosed its own error, and the fix was a deletion. Separately I found a bug in my own edge sweep: a len(probe)>25 guard silently skipped 22 of 673 nodes including GPT-4 Technical Report, Mistral 7B, OpenAI Gym and Datasheets, which is how the openai-2023-gpt4 edge went missing; guard fixed, edge added, task chip spawned to re-sweep this session's earlier papers. Episode agent found no page errors and surfaced that the D1-D4 ladder is not nested ((2,2),(3,2),(3,3),(4,2) - D4 deeper but narrower than D3), which explains the non-monotonic steps the page already reported; verified verbatim and added."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1156,23 +1165,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T07:58 started lyu-2024-crud-rag ('CRUD-RAG: A Comprehensive Chinese Benchmark for Retrieval-Augmented Generation of Large Language Models')",
-    "2026-08-02T07:58 lyu-2024-crud-rag: step -> fetch",
-    "2026-08-02T08:05 lyu-2024-crud-rag: step -> figures",
-    "2026-08-02T08:06 lyu-2024-crud-rag: step -> draft",
-    "2026-08-02T08:30 lyu-2024-crud-rag: step -> draft",
-    "2026-08-02T08:45 lyu-2024-crud-rag: step -> critique (round 1)",
-    "2026-08-02T08:45 lyu-2024-crud-rag: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T09:08 lyu-2024-crud-rag: step -> revise",
-    "2026-08-02T09:08 lyu-2024-crud-rag: step -> critique (round 2)",
-    "2026-08-02T09:08 lyu-2024-crud-rag: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-02T09:08 lyu-2024-crud-rag: step -> verify",
-    "2026-08-02T09:09 lyu-2024-crud-rag: step -> queue-ops",
-    "2026-08-02T09:09 lyu-2024-crud-rag: step -> podcast",
-    "2026-08-02T09:22 completed lyu-2024-crud-rag (verdict=approved, rounds=2)",
-    "2026-08-02T09:24 started zhao-2025-prefeval ('Do LLMs Recognize Your Preferences? Evaluating Personalized Preference Following in LLMs')",
-    "2026-08-02T09:24 zhao-2025-prefeval: step -> fetch",
-    "2026-08-02T09:44 zhao-2025-prefeval: step -> figures",
     "2026-08-02T09:44 zhao-2025-prefeval: step -> draft",
     "2026-08-02T10:01 zhao-2025-prefeval: step -> critique (round 1)",
     "2026-08-02T10:01 zhao-2025-prefeval: 10 open blocker(s) from round 1 (verdict: revise)",
@@ -1205,6 +1197,23 @@
     "2026-08-02T11:41 niklaus-2023-lextreme: step -> verify",
     "2026-08-02T11:42 niklaus-2023-lextreme: step -> queue-ops",
     "2026-08-02T11:43 niklaus-2023-lextreme: step -> podcast",
-    "2026-08-02T11:56 completed niklaus-2023-lextreme (verdict=approved, rounds=3)"
+    "2026-08-02T11:56 completed niklaus-2023-lextreme (verdict=approved, rounds=3)",
+    "2026-08-02T11:58 started zhu-2024-dyval ('DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks')",
+    "2026-08-02T11:58 zhu-2024-dyval: step -> fetch",
+    "2026-08-02T12:05 zhu-2024-dyval: step -> figures",
+    "2026-08-02T12:05 zhu-2024-dyval: step -> draft",
+    "2026-08-02T12:22 zhu-2024-dyval: step -> draft",
+    "2026-08-02T12:37 zhu-2024-dyval: step -> critique (round 1)",
+    "2026-08-02T12:37 zhu-2024-dyval: 9 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T13:00 zhu-2024-dyval: step -> revise",
+    "2026-08-02T13:00 zhu-2024-dyval: step -> critique (round 2)",
+    "2026-08-02T13:00 zhu-2024-dyval: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T13:00 zhu-2024-dyval: step -> revise",
+    "2026-08-02T13:00 zhu-2024-dyval: step -> critique (round 3)",
+    "2026-08-02T13:00 zhu-2024-dyval: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T13:00 zhu-2024-dyval: step -> verify",
+    "2026-08-02T13:00 zhu-2024-dyval: step -> queue-ops",
+    "2026-08-02T13:01 zhu-2024-dyval: step -> podcast",
+    "2026-08-02T13:13 completed zhu-2024-dyval (verdict=approved, rounds=3)"
   ]
 }

@@ -661,6 +661,38 @@ read of the finished page against itself catches them. Do that read every
 time, and treat any internal mismatch as evidence the *number* is wrong
 rather than something to reconcile in prose.
 
+**The self-consistency pass, as a mechanical procedure.** Telling you to
+"read the page against itself" has not worked: page-versus-page
+contradictions were blockers on **four consecutive papers** after that
+instruction was already in this file. So do it as a checklist, on the
+finished HTML, before you write `report.json` — not as a vibe.
+
+1. **Extract the prose.** Strip the base64 (`re.sub(r'data:image/[^"\')]+','',html)`),
+   strip tags, collapse whitespace. You now have the page as a reader sees it.
+2. **Pull every claim of dominance** — grep the prose for `best`, `only`,
+   `every`, `all`, `none`, `strongest`, `highest`, `lowest`, `outperforms`,
+   `beats`, `sweeps`, `never`, `no other`. For each hit, write down the
+   subject and the population it quantifies over.
+3. **Look for a second claim about the same subject or population**
+   anywhere else on the page. Two claims about the same population that
+   cannot both be true is the defect. Real instances: "XLM-R Large is the
+   strongest baseline on both aggregates" against, four paragraphs later,
+   "NativeBERT is the single best model in the whole table"; "the other 9
+   are single-jurisdiction" against a method § saying one of them "spans 7
+   European jurisdictions"; "five intervention methods" followed by a list
+   of four.
+4. **Pull every count** — every `N <noun>` where N is a number — and check
+   it against any adjacent enumeration, table, or figure on the page. When
+   they disagree, the count is wrong; recount from the source table.
+5. **Check each length/threshold/scope anchor** ("the shortest gap tested",
+   "at the smallest model size", "in the zero-shot rows") against the claim
+   hanging off it. Anchors get edited without re-checking what depends on
+   them — that has produced its own blockers.
+
+Record in `report.json` what step 2 turned up and how each pair resolved.
+If it turned up nothing, say that explicitly — a page with no dominance
+claims at all is unusual and worth my knowing.
+
 **A claim lives on seven surfaces, and a fix that reaches six is still a
 defect.** The full set is: the hero **dek**, `<meta name="description">`,
 `og:description`, the **body section** that argues it, the **takeaway**,

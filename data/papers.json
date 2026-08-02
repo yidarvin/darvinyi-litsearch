@@ -10509,6 +10509,22 @@
       "explainer": "papers/niklaus-2023-lextreme.html",
       "audio_url": "https://pod.darvinyi.com/audio/niklaus-2023-lextreme.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "zhu-2024-dyval",
+      "short": "DyVal",
+      "title": "DyVal: Dynamic Evaluation of Large Language Models for Reasoning Tasks",
+      "authors": "Zhu, Chen, Wang, Gong, Yang, Xie",
+      "year": 2024,
+      "date": "2023-09",
+      "venue": "ICLR 2024",
+      "citation_count": 107,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Microsoft Research",
+      "abstract": "Proposes DyVal, a dynamic evaluation protocol that generates reasoning problems on the fly from directed acyclic graphs instead of drawing from a fixed test set, with complexity controlled directly by graph depth/width or node/link count. Across 7 math, logical-reasoning, and algorithm tasks, accuracy mostly falls as complexity rises (though not universally), and four of eight tested LLMs score 0% on every DyVal task — three of them despite strong results on existing static benchmarks; DyVal-generated data also improves fine-tuned models on 6 existing benchmarks.",
+      "explainer": "papers/zhu-2024-dyval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhu-2024-dyval.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17853,6 +17869,23 @@
     { "from": "niklaus-2023-lextreme", "to": "wang-2018-glue" },
     { "from": "niklaus-2023-lextreme", "to": "wang-2019-superglue" },
     { "from": "niklaus-2023-lextreme", "to": "xu-2020-clue" },
-    { "from": "niklaus-2023-lextreme", "to": "zhang-2022-cblue" }
+    { "from": "niklaus-2023-lextreme", "to": "zhang-2022-cblue" },
+    { "from": "zhu-2024-dyval", "to": "openai-2023-gpt4" },
+    { "from": "zhu-2024-dyval", "to": "bender-2021-stochastic-parrots" },
+    { "from": "zhu-2024-dyval", "to": "brown-2020-gpt3" },
+    { "from": "zhu-2024-dyval", "to": "bubeck-2023-sparks-agi" },
+    { "from": "zhu-2024-dyval", "to": "chung-2022-flan" },
+    { "from": "zhu-2024-dyval", "to": "cobbe-2021-gsm8k" },
+    { "from": "zhu-2024-dyval", "to": "hendrycks-2020-mmlu" },
+    { "from": "zhu-2024-dyval", "to": "li-2023-api-bank" },
+    { "from": "zhu-2024-dyval", "to": "liang-2022-helm" },
+    { "from": "zhu-2024-dyval", "to": "ribeiro-2020-checklist" },
+    { "from": "zhu-2024-dyval", "to": "sawada-2023-arb" },
+    { "from": "zhu-2024-dyval", "to": "srivastava-2022-big-bench" },
+    { "from": "zhu-2024-dyval", "to": "touvron-2023-llama2" },
+    { "from": "zhu-2024-dyval", "to": "wei-2022-cot" },
+    { "from": "zhu-2024-dyval", "to": "zheng-2023-mt-bench" },
+    { "from": "zhu-2024-dyval", "to": "zhong-2023-agieval" },
+    { "from": "zhu-2024-dyval", "to": "zhou-2023-lima" }
   ]
 }
