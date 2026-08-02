@@ -10269,6 +10269,22 @@
       "explainer": "papers/su-2024-bright.html",
       "audio_url": "https://pod.darvinyi.com/audio/su-2024-bright.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "wang-2024-cmb",
+      "short": "CMB",
+      "title": "CMB: A Comprehensive Medical Benchmark in Chinese",
+      "authors": "Wang, Chen, Song, Zhang, Chen, Xiao, Jiang, Li, Wan, Wang, Li",
+      "year": 2024,
+      "date": "2023-08",
+      "venue": "NAACL 2024",
+      "citation_count": 168,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Chinese University of Hong Kong, Shenzhen",
+      "abstract": "A two-part Chinese medical benchmark: CMB-Exam, 11,200 licensing-exam multiple-choice questions spanning physicians, nurses, technicians and pharmacists (280,839 raw questions total), and CMB-Clin, 208 multi-turn diagnostic questions built from 74 real clinical cases, scored by a GPT-4 judge validated against 320 expert-scored responses (Spearman 0.93).",
+      "explainer": "papers/wang-2024-cmb.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wang-2024-cmb.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17435,6 +17451,20 @@
     { "from": "su-2024-bright", "to": "yang-2018-hotpotqa" },
     { "from": "su-2024-bright", "to": "zhang-2024-gsm1k" },
     { "from": "cao-2025-generalizable-eval-survey", "to": "su-2024-bright" },
-    { "from": "deshpande-2025-trail", "to": "su-2024-bright" }
+    { "from": "deshpande-2025-trail", "to": "su-2024-bright" },
+    { "from": "wang-2024-cmb", "to": "hendrycks-2020-mmlu" },
+    { "from": "wang-2024-cmb", "to": "hendrycks-2021-apps" },
+    { "from": "wang-2024-cmb", "to": "hendrycks-2021-math" },
+    { "from": "wang-2024-cmb", "to": "jin-2020-medqa" },
+    { "from": "wang-2024-cmb", "to": "sawada-2023-arb" },
+    { "from": "wang-2024-cmb", "to": "singhal-2023-med-palm" },
+    { "from": "wang-2024-cmb", "to": "srivastava-2022-big-bench" },
+    { "from": "wang-2024-cmb", "to": "touvron-2023-llama" },
+    { "from": "wang-2024-cmb", "to": "zhang-2022-cblue" },
+    { "from": "wang-2024-cmb", "to": "zheng-2023-mt-bench" },
+    { "from": "wang-2024-cmb", "to": "zhong-2023-agieval" },
+    { "from": "wang-2024-cmb", "to": "bai-2023-qwen" },
+    { "from": "wang-2024-cmb", "to": "jiang-2023-mistral-7b" },
+    { "from": "chang-2023-llm-eval-survey", "to": "wang-2024-cmb" }
   ]
 }
