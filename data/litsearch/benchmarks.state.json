@@ -981,6 +981,15 @@
         "3 critic rounds, 6 blockers. Two were column-position misreads of the same class: Table 4's consultation-stage row was read one column left (30.09% belongs to treatment principles, not diagnosis process, and the paper's own prose says so), and Table 7's JianPeiGPT Average was initially taken from the Graduate-Entrance-Exam cell - the builder caught that one itself pre-draft. Also: an invented reconciliation of the 174-vs-176 category discrepancy that the builder's own tables.md had explicitly warned against, a body-vs-takeaway contradiction on professions, and a misquote. Round 2 opened two new blockers caused by the revision, one of which traces to a round-1 suggestion of the critic's that I promoted to must-fix without verifying it: the claim that AntGLM-Med's Average was the only one in either table that fails to re-derive is false (Sunsimiao-7B's three-shot Average misses by 5.71 against AntGLM-Med's 2.33, and a plain non-asterisked Mistral row misses by 2.04), which collapsed the inference built on it. Replaced with the paper's own Appendix C statement that all three commercial models' results were vendor-submitted after CMB opened - direct evidence rather than inference. Episode agent found no errors but supplied two additions, both verified and added: Table 10's 2-gram keyword comparison (CMB-TCM vs MedQA-USMLE, zero overlap) is measured support for the localization thesis the page argued from prose, and the paper's own finding that TCM subcategories always score lowest closes its premise's loop."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "caesar-2020-nuscenes",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 3 blockers: wrong datasets attached to the semantic-maps quote (the paper's refs [45,10] are Lyft L5 and Argoverse, not H3D and ApolloScape, which ship zero map layers), a false 'best in every one of seven columns' where MonoDIS beats Megvii on mAAE, and two figure crops that were page scans - 'Figure 1' was the whole top half of page 1 including byline and abstract, and the hand-re-cropped Figure 4 still carried two lines of body text despite the report claiming otherwise. Re-rendered both from exact bboxes. Incoming edges could not be swept normally here: S2 returned only 500 of 8,635 citers, so I found qin-2024-worldsimbench by hand (it cites Caesar et al. and fine-tunes on the nuScenes training set) and the builder produced an honesty ledger - 12 nodes checked against staged text, 24 flagged unverifiable without their PDFs. Declined evaluations on precedent: metric-first papers (BLEU, ROUGE, CIDEr, SPICE, BLEURT) carry the tag; dataset-first papers that define their own scoring (ImageNet, ILSVRC, MMMU, MathVista) do not, and NDS is machinery for the dataset. Episode agent supplied three verified additions, all applied: the detection benchmark scores 10 of the 23 annotated classes (tracking 7), the rain label is a windshield-condition label by the paper's own admission which makes the near-null rain result uninformative about precipitation, the night drops are confounded by the paper's own note that night scenes have few objects and are harder to annotate, and Table 6's caption says the MonoDIS row is not directly comparable - which is where the quotable 58% comes from."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -1030,17 +1039,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T15:24 completed osband-2020-bsuite (verdict=approved, rounds=3)",
-    "2026-08-01T15:26 started johri-2025-craft-md ('An evaluation framework for clinical use of large language models in patient interaction tasks')",
-    "2026-08-01T15:26 skipped johri-2025-craft-md (No obtainable full text. Nature Medicine 31(1):77-86, DOI 10.1038/s41591-024-03328-5 is paywalled; Semantic Scholar reports no openAccessPdf, Europe PMC reports isOpenAccess=N with no PMCID, and there is no arXiv preprint. The only preprint is medRxiv 10.1101/2023.09.12.23295399, which is a materially DIFFERENT paper: 8 authors vs the published 12, and scoped to GPT-4/GPT-3.5 on skin disease only. medRxiv records no link to the Nature Medicine DOI. Building an explainer labelled as the 2025 12-author paper from the 2023 8-author preprint would repeat the Voorhees 2001 error (fetching a related-but-different paper), and the critic verifies quotations character-by-character against the supplied PDF, so a version mismatch would be invisible to the loop. Queue entry retained but demoted out of the core work-list (survey/role removed) so it stops reaching the head on every reprioritization; restore both fields if access ever opens.)",
-    "2026-08-01T15:26 started singh-2023-scirepeval ('SciRepEval: A Multi-Format Benchmark for Scientific Document Representations')",
-    "2026-08-01T15:50 singh-2023-scirepeval: step -> fetch",
-    "2026-08-01T15:50 singh-2023-scirepeval: step -> figures",
-    "2026-08-01T15:50 singh-2023-scirepeval: step -> draft",
-    "2026-08-01T15:51 singh-2023-scirepeval: step -> critique (round 1)",
-    "2026-08-01T16:02 singh-2023-scirepeval: step -> revise",
-    "2026-08-01T16:07 singh-2023-scirepeval: step -> critique (round 2)",
-    "2026-08-01T16:11 singh-2023-scirepeval: step -> critique (round 3)",
     "2026-08-01T16:13 singh-2023-scirepeval: step -> verify",
     "2026-08-01T16:13 singh-2023-scirepeval: step -> queue-ops",
     "2026-08-01T16:13 singh-2023-scirepeval: step -> podcast",
@@ -1079,6 +1077,17 @@
     "2026-08-01T19:30 wang-2024-cmb: step -> verify",
     "2026-08-01T19:30 wang-2024-cmb: step -> queue-ops",
     "2026-08-01T19:30 wang-2024-cmb: step -> podcast",
-    "2026-08-01T19:42 completed wang-2024-cmb (verdict=approved, rounds=3)"
+    "2026-08-01T19:42 completed wang-2024-cmb (verdict=approved, rounds=3)",
+    "2026-08-01T19:42 started caesar-2020-nuscenes ('nuScenes: A Multimodal Dataset for Autonomous Driving')",
+    "2026-08-01T19:57 caesar-2020-nuscenes: step -> fetch",
+    "2026-08-01T19:57 caesar-2020-nuscenes: step -> figures",
+    "2026-08-01T19:57 caesar-2020-nuscenes: step -> draft",
+    "2026-08-01T20:01 caesar-2020-nuscenes: step -> critique (round 1)",
+    "2026-08-01T20:13 caesar-2020-nuscenes: step -> revise",
+    "2026-08-01T20:17 caesar-2020-nuscenes: step -> critique (round 2)",
+    "2026-08-01T20:21 caesar-2020-nuscenes: step -> verify",
+    "2026-08-01T20:21 caesar-2020-nuscenes: step -> queue-ops",
+    "2026-08-01T20:21 caesar-2020-nuscenes: step -> podcast",
+    "2026-08-01T20:37 completed caesar-2020-nuscenes (verdict=approved, rounds=2)"
   ]
 }

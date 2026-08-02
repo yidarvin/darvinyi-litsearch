@@ -10285,6 +10285,22 @@
       "explainer": "papers/wang-2024-cmb.html",
       "audio_url": "https://pod.darvinyi.com/audio/wang-2024-cmb.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "caesar-2020-nuscenes",
+      "short": "nuScenes",
+      "title": "nuScenes: A multimodal dataset for autonomous driving",
+      "authors": "Caesar, Bankiti, Lang, Vora, Liong, Xu, Krishnan, Pan, Baldan, Beijbom",
+      "year": 2020,
+      "date": "2019-03",
+      "venue": "CVPR 2020",
+      "citation_count": 8635,
+      "topic": "Benchmarks & Evals",
+      "author_group": "nuTonomy / APTIV",
+      "abstract": "The first autonomous-driving dataset to carry the full 360° sensor suite -- 6 cameras, 5 radars, 1 lidar -- across 1,000 hand-picked 20-second scenes in Boston and Singapore: 1.4M 3D boxes over 23 classes (exactly 7x KITTI's box count), 40k annotated keyframes sampled at 2Hz, and an 11-layer vector semantic map. Introduces two composite metrics built on 2m center-distance matching rather than IOU, specifically so small objects like pedestrians and bicycles stop scoring 0 AP by construction: the nuScenes Detection Score (half mAP, half five box-quality sub-metrics -- translation, scale, orientation, velocity, attribute) and a recall-adjusted sAMOTA for tracking. Table 1's own bolding shows nuScenes as the column-leader for images, lidar/radar pointclouds, map layers and classes among contemporaries -- but not total 3D boxes, where Waymo Open's 12M is bolded ahead of it, a gap the paper attributes to a 10Hz-vs-2Hz annotation-frequency difference rather than more raw driving. A 1:10,000 class-imbalance ratio (vs. KITTI's 1:36) is flagged by the authors as unsolved even under the fairer matching function.",
+      "explainer": "papers/caesar-2020-nuscenes.html",
+      "audio_url": "https://pod.darvinyi.com/audio/caesar-2020-nuscenes.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17465,6 +17481,8 @@
     { "from": "wang-2024-cmb", "to": "zhong-2023-agieval" },
     { "from": "wang-2024-cmb", "to": "bai-2023-qwen" },
     { "from": "wang-2024-cmb", "to": "jiang-2023-mistral-7b" },
-    { "from": "chang-2023-llm-eval-survey", "to": "wang-2024-cmb" }
+    { "from": "chang-2023-llm-eval-survey", "to": "wang-2024-cmb" },
+    { "from": "caesar-2020-nuscenes", "to": "deng-2009-imagenet" },
+    { "from": "qin-2024-worldsimbench", "to": "caesar-2020-nuscenes" }
   ]
 }
