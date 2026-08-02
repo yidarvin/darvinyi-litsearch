@@ -10493,6 +10493,22 @@
       "explainer": "papers/zhao-2025-prefeval.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhao-2025-prefeval.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "niklaus-2023-lextreme",
+      "short": "LEXTREME",
+      "title": "LEXTREME: A Multi-Lingual and Multi-Task Benchmark for the Legal Domain",
+      "authors": "Niklaus, Matoshi, Rani, Galassi, Stürmer, Chalkidis",
+      "year": 2023,
+      "date": "2023-01",
+      "venue": "EMNLP Findings",
+      "citation_count": 117,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Bern / Bern UAS",
+      "abstract": "Surveys the legal-NLP literature (108 candidate papers, 2010–2022) down to 11 datasets folded into 18 task configurations — Brazilian Court Decisions, German Argument Mining, Greek Legal Code, Swiss Judgment Prediction, EU Online Terms of Service, COVID-19 Emergency Measures, MultiEURLEX, Greek/Romanian/Brazilian legal NER, and MAPA NER — across 24 European languages: the explicit multilingual successor to the English-only LexGLUE (same last author, Ilias Chalkidis). Scored uniformly with macro-F1 and combined via two harmonic-mean aggregates (by dataset, by language) rather than one leaderboard number, the best baseline, XLM-R Large, reaches 41.3 (48.5 dataset-agg./36.0 language-agg.) but wins only 5 of 11 datasets and 21 of 24 languages among the five multilingual encoders tried, while a generic non-legal monolingual BERT outright tops 13 of its 19 available languages, beating even the legal-pretrained monolingual models. Zero-shot ChatGPT (June 2023) loses to XLM-R Large on all 8 validation-set classification tasks it was tried on; only 2 of the 11 datasets (MultiEURLEX, MAPA) actually reach all 24 languages.",
+      "explainer": "papers/niklaus-2023-lextreme.html",
+      "audio_url": "https://pod.darvinyi.com/audio/niklaus-2023-lextreme.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17819,6 +17835,24 @@
     { "from": "zhao-2025-prefeval", "to": "zheng-2024-lmsys-chat-1m" },
     { "from": "zhao-2025-prefeval", "to": "zhou-2023-ifeval" },
     { "from": "jiang-2025-personamem", "to": "zhao-2025-prefeval" },
-    { "from": "qian-2025-userbench", "to": "zhao-2025-prefeval" }
+    { "from": "qian-2025-userbench", "to": "zhao-2025-prefeval" },
+    { "from": "niklaus-2023-lextreme", "to": "beltagy-2020-longformer" },
+    { "from": "niklaus-2023-lextreme", "to": "bender-2021-stochastic-parrots" },
+    { "from": "niklaus-2023-lextreme", "to": "brown-2020-gpt3" },
+    { "from": "niklaus-2023-lextreme", "to": "chalkidis-2021-lexglue" },
+    { "from": "niklaus-2023-lextreme", "to": "chowdhery-2022-palm" },
+    { "from": "niklaus-2023-lextreme", "to": "deng-2009-imagenet" },
+    { "from": "niklaus-2023-lextreme", "to": "devlin-2019-bert" },
+    { "from": "niklaus-2023-lextreme", "to": "he-2021-deberta" },
+    { "from": "niklaus-2023-lextreme", "to": "henderson-2022-pile-of-law" },
+    { "from": "niklaus-2023-lextreme", "to": "hendrycks-2020-mmlu" },
+    { "from": "niklaus-2023-lextreme", "to": "liang-2022-helm" },
+    { "from": "niklaus-2023-lextreme", "to": "liu-2019-roberta" },
+    { "from": "niklaus-2023-lextreme", "to": "raji-2021-everything-benchmark" },
+    { "from": "niklaus-2023-lextreme", "to": "touvron-2023-llama" },
+    { "from": "niklaus-2023-lextreme", "to": "wang-2018-glue" },
+    { "from": "niklaus-2023-lextreme", "to": "wang-2019-superglue" },
+    { "from": "niklaus-2023-lextreme", "to": "xu-2020-clue" },
+    { "from": "niklaus-2023-lextreme", "to": "zhang-2022-cblue" }
   ]
 }

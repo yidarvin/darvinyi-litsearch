@@ -1098,6 +1098,15 @@
         "Heaviest revision in the run: 3 critic rounds, 13 blockers, of which 3 were repair-introduced (2 by the builder, 1 by me). Round 1 drew 10 blockers including a count-vs-enumeration mismatch on the page itself (third consecutive paper), an undercounted universal whose disproof was inside an embedded figure (fourth consecutive), and an asserted absence ('preferences never revised') contradicted by a section literally titled Dynamic Preference Following. Round 2 found both builder repairs broken. Round 3 found MY fix broken the same way: I corrected a length label from 3k to 0.2k and did not re-check the claim hanging off it, which is exactly the rule I had written into paper-builder.md that morning. Applied the critic's own fix_hint, then dropped three six-model-mean values I could not trace to printed cells in favour of the ordering claim they supported. Critic resolved the builder's open question against the builder: the abstract's 'below 10% across most models' is defensible unscoped across all three preference forms, so the right action was to write nothing. Declined evaluations despite PrefEval clearing the grader-validation bar FaithDial and CRUD-RAG failed — that bar was disqualifying, not qualifying — but used the critic's finding that the paper never states a human annotator count anywhere. Episode agent found no page errors and independently confirmed the 'least steeply' inversion (o1-preview -36pp vs others already on the floor), now rewritten."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "niklaus-2023-lextreme",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Two critic rounds plus an orchestrator round. The headline score was the hard part: S2's abstract AND the live arXiv v3 landing page both still say 61.3, which is v1's value for both aggregates; the camera-ready's real numbers are 48.5 (Table 5) and 36.0 (Table 6), harmonic mean 41.3, matching Figure 1's printed label and reproducing every other row. My own attempt to verify this failed because XLM-R Large's row name sits at y=132.6 with its 'Large' suffix at y=136.0, splitting the row in a naive span dump; the critic recovered it from the font layer. Builder correctly rejected bommasani-2021-foundation-models from my own lead list (S2 reference data wrong; sole hit is his name inside HELM's author list). Three edges — HELM, LLaMA, PaLM — were findable only after stripping line-break hyphens, a trap that has now hidden real edges on two consecutive papers. B1 and B2 were both claims the page contradicted within its own body, the fourth consecutive paper with that shape. Episode agent then established the 61.3 mechanism precisely: v1 and current arXiv abstracts are byte-identical, so it is stale metadata on every version rather than a v1-to-v3 supersession; I verified by md5 and corrected the page. Fourth consecutive evaluations decline, here because the dual-aggregate scheme is explicitly inherited and the paper's stated contributions are compile-and-evaluate."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1147,23 +1156,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T06:28 dziri-2022-faithdial: step -> verify",
-    "2026-08-02T06:29 dziri-2022-faithdial: step -> queue-ops",
-    "2026-08-02T06:29 dziri-2022-faithdial: step -> podcast",
-    "2026-08-02T06:44 completed dziri-2022-faithdial (verdict=approved, rounds=2)",
-    "2026-08-02T06:47 started zhou-2020-kdconv ('KdConv: A Chinese Multi-domain Dialogue Dataset Towards Multi-turn Knowledge-driven Conversation')",
-    "2026-08-02T06:47 zhou-2020-kdconv: step -> fetch",
-    "2026-08-02T07:04 zhou-2020-kdconv: step -> figures",
-    "2026-08-02T07:04 zhou-2020-kdconv: step -> draft",
-    "2026-08-02T07:16 zhou-2020-kdconv: step -> critique (round 1)",
-    "2026-08-02T07:16 zhou-2020-kdconv: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T07:37 zhou-2020-kdconv: step -> revise",
-    "2026-08-02T07:37 zhou-2020-kdconv: step -> critique (round 2)",
-    "2026-08-02T07:37 zhou-2020-kdconv: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-02T07:37 zhou-2020-kdconv: step -> verify",
-    "2026-08-02T07:38 zhou-2020-kdconv: step -> queue-ops",
-    "2026-08-02T07:38 zhou-2020-kdconv: step -> podcast",
-    "2026-08-02T07:55 completed zhou-2020-kdconv (verdict=approved, rounds=2)",
     "2026-08-02T07:58 started lyu-2024-crud-rag ('CRUD-RAG: A Comprehensive Chinese Benchmark for Retrieval-Augmented Generation of Large Language Models')",
     "2026-08-02T07:58 lyu-2024-crud-rag: step -> fetch",
     "2026-08-02T08:05 lyu-2024-crud-rag: step -> figures",
@@ -1196,6 +1188,23 @@
     "2026-08-02T10:37 zhao-2025-prefeval: step -> verify",
     "2026-08-02T10:38 zhao-2025-prefeval: step -> queue-ops",
     "2026-08-02T10:38 zhao-2025-prefeval: step -> podcast",
-    "2026-08-02T10:49 completed zhao-2025-prefeval (verdict=approved_with_notes, rounds=4)"
+    "2026-08-02T10:49 completed zhao-2025-prefeval (verdict=approved_with_notes, rounds=4)",
+    "2026-08-02T10:51 started niklaus-2023-lextreme ('LEXTREME: A Multi-Lingual and Multi-Task Benchmark for the Legal Domain')",
+    "2026-08-02T10:51 niklaus-2023-lextreme: step -> fetch",
+    "2026-08-02T11:03 niklaus-2023-lextreme: step -> figures",
+    "2026-08-02T11:03 niklaus-2023-lextreme: step -> draft",
+    "2026-08-02T11:13 niklaus-2023-lextreme: step -> draft",
+    "2026-08-02T11:26 niklaus-2023-lextreme: step -> critique (round 1)",
+    "2026-08-02T11:26 niklaus-2023-lextreme: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T11:41 niklaus-2023-lextreme: step -> revise",
+    "2026-08-02T11:41 niklaus-2023-lextreme: step -> critique (round 2)",
+    "2026-08-02T11:41 niklaus-2023-lextreme: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T11:41 niklaus-2023-lextreme: step -> revise",
+    "2026-08-02T11:41 niklaus-2023-lextreme: step -> critique (round 3)",
+    "2026-08-02T11:41 niklaus-2023-lextreme: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T11:41 niklaus-2023-lextreme: step -> verify",
+    "2026-08-02T11:42 niklaus-2023-lextreme: step -> queue-ops",
+    "2026-08-02T11:43 niklaus-2023-lextreme: step -> podcast",
+    "2026-08-02T11:56 completed niklaus-2023-lextreme (verdict=approved, rounds=3)"
   ]
 }
