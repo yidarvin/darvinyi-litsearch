@@ -48,6 +48,8 @@ except ImportError:
 
 from PIL import Image, ImageOps
 
+FELL_BACK = set()             # figure numbers whose crop could not be
+                              # narrowed to artwork (see artwork_rect)
 DPI = 200                      # render resolution
 SCALE = DPI / 72.0            # PDF points -> pixels
 WHITE_THRESHOLD = 245         # pixels brighter than this count as background
@@ -63,6 +65,14 @@ LOOSE_CAPTION_RE = re.compile(r'^\s*(?:figure|fig\.?)\s*(\d+)\b', re.IGNORECASE)
 # "Figure 8 illustrates ...") has a plain space (no delimiter) after the
 # number and deliberately does NOT match here.
 CAPTION_RE = re.compile(r'^\s*(?:figure|fig\.?)\s*(\d+)\s*[:.|]', re.IGNORECASE)
+
+# Table captions are boundaries too. A figure's band runs back to the previous
+# boundary, so without this a figure sitting under a table swallows the whole
+# table -- and a table's own rules and shaded rows are vector drawings, so the
+# artwork check in artwork_rect() cannot tell them apart from figure content.
+# Observed on EvalCrafter: Figure 3's band reached y=0 and its artwork union
+# ran 31.6-647.7, i.e. all of Table 1 plus two columns of body text.
+TABLE_CAPTION_RE = re.compile(r'^\s*table\s*(\d+)\s*[:.|]', re.IGNORECASE)
 
 # Sanity cap on a caption-like block's length — guards against a pathological
 # merged text block, without excluding legitimately long multi-sentence
@@ -99,6 +109,16 @@ def caption_blocks(page, force_real=False):
             continue
         is_real = force_real or bool(CAPTION_RE.match(stripped))
         out.append((int(m.group(1)), fitz.Rect(x0, y0, x1, y1), is_real))
+    for block in page.get_text("blocks"):
+        if len(block) >= 7 and block[6] != 0:
+            continue
+        x0, y0, x1, y1, text = block[0], block[1], block[2], block[3], block[4]
+        stripped = text.strip()
+        if len(stripped) > MAX_CAPTION_CHARS:
+            continue
+        if TABLE_CAPTION_RE.match(stripped):
+            # boundary only: never saved, but stops the next figure's band
+            out.append((None, fitz.Rect(x0, y0, x1, y1), False))
     out.sort(key=lambda t: t[1].y0)
     return out
 
@@ -216,6 +236,15 @@ def page_regions(page, force_real=False):
         art = artwork_rect(page, region)
         if art is not None:
             region = art
+        else:
+            # No enumerable artwork in the band, so the crop keeps the full
+            # region and may sweep in whatever text sat above the figure.
+            # This is not rare: PyMuPDF cannot always see a figure's content
+            # (a page observed with a clearly graphical figure reported zero
+            # image blocks, zero drawings, zero get_images entries, and only
+            # five stroke items under extended=True). Surface it rather than
+            # failing silently -- a silent fallback reads as a clean crop.
+            FELL_BACK.add(fig_no)
         img = render_region(page, region)
         if img is None:
             return None
@@ -288,6 +317,13 @@ def extract(pdf_path, out_dir):
         print(f"wrote {path}  ({img.width}x{img.height})")
 
     print(f"\n{len(saved)} figure(s) extracted to {out_dir}/")
+    flagged = sorted(n for n in FELL_BACK if n in saved)
+    if flagged:
+        print()
+        print(f"!! {len(flagged)} figure(s) could not be narrowed to artwork and keep the")
+        print(f"   full band above their caption: {', '.join('figure%d' % n for n in flagged)}")
+        print("   These may contain body text, tables or the page's title block.")
+        print("   Open each one before inlining it.")
     print("Review them, then reference the ones you want as {{FIGn}} in the template.")
 
 

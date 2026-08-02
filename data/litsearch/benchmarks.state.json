@@ -29,7 +29,14 @@
     ],
     "seeded": 18
   },
-  "current": null,
+  "current": {
+    "slug": "liu-2024-evalcrafter",
+    "queue_title": "EvalCrafter: Benchmarking and Evaluating Large Video Generation Models",
+    "arxiv_id": "2310.11440",
+    "step": "critique",
+    "round": 2,
+    "open_blockers": []
+  },
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1075,13 +1082,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T20:21 caesar-2020-nuscenes: step -> verify",
-    "2026-08-01T20:21 caesar-2020-nuscenes: step -> queue-ops",
-    "2026-08-01T20:21 caesar-2020-nuscenes: step -> podcast",
-    "2026-08-01T20:37 completed caesar-2020-nuscenes (verdict=approved, rounds=2)",
-    "2026-08-01T20:40 started huang-2024-vbench ('VBench: Comprehensive Benchmark Suite for Video Generative Models')",
-    "2026-08-01T20:45 huang-2024-vbench: step -> fetch",
-    "2026-08-01T20:45 huang-2024-vbench: step -> figures",
     "2026-08-01T20:51 huang-2024-vbench: step -> draft",
     "2026-08-01T21:05 huang-2024-vbench: step -> critique (round 1)",
     "2026-08-01T21:18 huang-2024-vbench: step -> revise",
@@ -1124,6 +1124,13 @@
     "2026-08-02T00:48 gu-2023-maniskill2: step -> verify",
     "2026-08-02T00:48 gu-2023-maniskill2: step -> queue-ops",
     "2026-08-02T00:48 gu-2023-maniskill2: step -> podcast",
-    "2026-08-02T00:59 completed gu-2023-maniskill2 (verdict=approved, rounds=3)"
+    "2026-08-02T00:59 completed gu-2023-maniskill2 (verdict=approved, rounds=3)",
+    "2026-08-02T01:02 started liu-2024-evalcrafter ('EvalCrafter: Benchmarking and Evaluating Large Video Generation Models')",
+    "2026-08-02T01:21 liu-2024-evalcrafter: step -> fetch",
+    "2026-08-02T01:21 liu-2024-evalcrafter: step -> figures",
+    "2026-08-02T01:21 liu-2024-evalcrafter: step -> draft",
+    "2026-08-02T01:22 liu-2024-evalcrafter: step -> critique (round 1)",
+    "2026-08-02T01:34 liu-2024-evalcrafter: step -> revise",
+    "2026-08-02T01:39 liu-2024-evalcrafter: step -> critique (round 2)"
   ]
 }
