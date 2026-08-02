@@ -29,14 +29,7 @@
     ],
     "seeded": 18
   },
-  "current": {
-    "slug": "zhang-2023-gaokao-bench",
-    "queue_title": "Evaluating the Performance of Large Language Models on GAOKAO Benchmark",
-    "arxiv_id": "2305.12474",
-    "step": "podcast",
-    "round": 2,
-    "open_blockers": []
-  },
+  "current": null,
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1042,6 +1035,15 @@
         "2 critic rounds, 10 blockers. The builder's three substantive findings all survived independent re-derivation and form the critique's spine: a real paper-internal inconsistency (Table 3 gives VQA_A's Spearman as 42.1, appendix Table 5 gives 47.8 for the same aspect and statistic), the human-alignment regression fit on only 5 of the 8 leaderboard systems, and no inter-rater agreement statistic anywhere. It also correctly dropped lin-2014-coco from my staged edge list - COCO appears zero times in the paper. Blockers were mostly scope and count errors, including a regression fit described as using 8,647 ratings when it used the 1,024 kept, across five surfaces. B5 marks the third paper where a tables.md sweep asserted a superlative it had not checked against the full column; this time the rewrite quotes every individual negative cell, states the ranking, and names the value that would falsify the claim under a wider scope, which the critic judged to be re-checkable evidence rather than an assertion. Tagged evaluations alongside benchmarks on the VBench precedent - the contribution is metrics plus their human calibration. Episode agent then flagged two appendix passages the critique was harder than warranted for omitting: D.2 describes a rater-qualification gate (100 pre-labeling tasks, above 90% accuracy to qualify) and D.1 defends the 700-prompt size against FETV and VBench. Added the first; the second turned out to critique a claim the page does not make. It also caught that my own brief miscounted the authors surnamed Liu as two when there are three - that error never reached the page."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "zhang-2023-gaokao-bench",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 critic rounds, 4 blockers - the cleanest round-1 in a while, and notably tables.md was honest this round: the critic checked its bold-marker claims against the PDF's actual font names and all 23 bold cells were column maxima exactly as recorded, the first time in four papers the sweep quoted evidence rather than asserting a check. Blockers: the page stated its own headline arithmetic finding falsely ('Table 8 lists no History subtype at all' when Table 8 carries History MCQs; the finding survives once scoped to the missing History subjective row, which tables.md had right), an invented 'training cutoff' premise asserted three times that appears nowhere in the paper, a citation mis-attribution, and a figure alt-text count. Builder found 3 outgoing edges S2 omitted entirely (HELM, LLaMA, CoT) and a genuine paper-internal inconsistency: Table 8's open-ended rows sum to 658 against Table 3's stated 786, while cloze and correction reconcile exactly. Episode agent found no page errors but supplied the page's strongest critique point, verified and added: LLaMA-7b and Baichuan2-7b-Base both score exactly 0.0% on Physics, and Physics MCQs is the only multi-choice row in the benchmark (64 questions, matching Table 3's Multi-Choice total) - so both score zero on precisely the one format where a regex grader must recover a set of answers, while Baichuan2-7b-Base scores 55.3% on Politics in the same row. It also caught an error in my own brief: Table 8's 158.8 is Avg. Length, not marks. Also fixed literal-asterisk emphasis corpus-wide (8 spans across 5 other pages). Declined evaluations: dataset and scoring-protocol first, like ImageNet and MMMU."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1091,7 +1093,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T22:20 fang-2020-graspnet: step -> critique (round 2)",
     "2026-08-01T22:24 fang-2020-graspnet: step -> verify",
     "2026-08-01T22:25 fang-2020-graspnet: step -> queue-ops",
     "2026-08-01T22:25 fang-2020-graspnet: step -> podcast",
@@ -1140,6 +1141,7 @@
     "2026-08-02T02:41 zhang-2023-gaokao-bench: step -> critique (round 2)",
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> verify",
     "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> queue-ops",
-    "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> podcast"
+    "2026-08-02T02:45 zhang-2023-gaokao-bench: step -> podcast",
+    "2026-08-02T03:00 completed zhang-2023-gaokao-bench (verdict=approved, rounds=2)"
   ]
 }

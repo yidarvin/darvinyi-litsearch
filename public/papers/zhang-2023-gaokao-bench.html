@@ -162,12 +162,27 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <div class="kick">2023 · arXiv · Benchmarks &amp; Evals</div>
       <h1>Evaluating the Performance of Large Language Models on GAOKAO Benchmark</h1>
       <p class="dek">GAOKAO-Bench scores LLMs on the actual Chinese college-entrance exam — 2,811 questions across 9 subjects and 2010–2022, objective items auto-graded and subjective items scored by two human teachers each — then converts everything to the exam's own 750-point-per-track scale.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/zhang-2023-gaokao-bench.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/zhang-2023-gaokao-bench.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
       <div class="authors mono">Xiaotian Zhang, Chunyang Li, Yi Zong, Zhengyu Ying, Liang He, Xipeng Qiu, Tianxiang Sun, Peng Li, Shiqiao Meng, Yanjun Zheng, Jun Zhan, Zhangyue Yin, Xiannian Hu, Guofeng Quan — Fudan University &amp; East China Normal University</div>
       <div class="facts">
         <span class="fact">venue&nbsp;<b>arXiv</b></span>
         <span class="fact">citations&nbsp;<b>213</b></span>
         <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
         <span class="fact"><a href="https://arxiv.org/abs/2305.12474">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/zhang-2023-gaokao-bench.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
       </div>
       <div class="asof mono">// citation count as of 2026-08-02</div>
     </div>
@@ -265,6 +280,10 @@ footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
       <p><strong>The leakage check can't distinguish a genuinely harder exam from mild contamination, and the paper never establishes that any model's training data predates it.</strong> All six models checked in Table 5 score lower on GAOKAO-Bench-2023 (the 2023 exam's objective questions, released as a fresh supplement intended to mitigate leakage) than on the 2010–2022 set, uniformly and in the same direction. The authors read this as "within the normal range of difficulty fluctuations," but a uniform one-directional drop is also exactly the signature a modest training-data leak on the older questions would produce — the check as designed can't tell the two apart, since it never asks whether the <em>pre-2023</em> scores are inflated, only whether the <em>2023</em> scores are lower. The paper's own text never claims the 2023 questions postdate any tested model's training cutoff, and it's plausible some don't: ChatGLM2-6b and both Baichuan2-chat variants are 2023 releases whose training data could plausibly already include the June 2023 exam. The check is also incomplete on its own terms: Table 5 covers ChatGLM-6b, ChatGLM2-6b, both Baichuan2-chat variants, and both GPT-4 checkpoints, but not GPT-3.5-turbo-0301 or either ERNIE-Bot checkpoint — three of the five models in the paper's actual headline comparison never get a leakage check at all.</p>
 
       <p><strong>Table 8's own subtype counts don't reconcile with Table 3's aggregate, and the gap isolates to one subject.</strong> Table 3 states 786 open-ended questions; summing Table 8's per-subtype "open-ended question" rows gives 658 — a shortfall of exactly 128. Table 8's cloze subtotal (28+23+86+81=218) and correction subtotal (26) both reconcile exactly against Table 3, so the discrepancy sits entirely in the open-ended category. The likely explanation: Table 8 lists no History <em>subjective</em> row at all — it carries History MCQs (287, single choice) on the objective side, but nothing below the line for History — even though Table 7 credits History with 50 of its 100 total marks to a "Subjective Score." The paper never states this, so a reader has no way to learn how many History subjective questions exist or how each is individually weighted — the one subject whose subjective side Table 8 is silent on is also the one subject whose subjective questions are otherwise undocumented.</p>
+
+      <p><strong>Two of the zero scores are almost certainly a parsing failure, and the benchmark's own structure shows it.</strong> LLaMA-7b and Baichuan2-7b-Base both score exactly <strong>0.0%</strong> on Physics &mdash; not near zero, exactly zero. Table 8 lists Physics MCQs as <span class="mono">multi choice</span>, 64 questions, and it is the <em>only</em> multi-choice row in the benchmark; Table 3's Multi-Choice total is also 64, so the two refer to the same set. Multi-choice here means a single question with <em>several</em> correct answers, which is the one format where a regex grader has to recover a set rather than a single letter. So both models score zero on precisely the format whose answers are hardest to parse &mdash; while Baichuan2-7b-Base is plainly not broken in general, scoring 55.3% on Politics in the same row. The partition is exact: single-choice 1,418 + multi-question-choice 273 + multi-choice 64 + five-out-of-seven 26 = 1,781, Table 3's objective total.</p>
+
+      <p>Nothing in the paper separates a wrong answer from an unparseable one, so a 0.0% cell cannot be read as a knowledge result. Relatedly, <strong>no chance-level baseline appears in any table</strong>, which matters when the two weakest models sit at 21.1% and 21.0% overall on a question set that is four-fifths single-choice &mdash; close enough to guessing that the reader has no way to tell whether those totals represent any signal at all.</p>
 
       <div class="verdict">
         <span class="k">baselines</span><p class="v">A reasonable 2023 snapshot (GPT-4 ×2, GPT-3.5-turbo, ERNIE-Bot ×2, seven open-source models), but the two tracks — human-graded and objective-only — cover different, non-overlapping subsets of it, so "the field" means something different in Figure 1 than in Table 1.</p>

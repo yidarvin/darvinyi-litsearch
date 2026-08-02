@@ -10395,6 +10395,7 @@
       "author_group": "Fudan University / East China Normal University",
       "abstract": "Converts the real Chinese college-entrance exam (GAOKAO, 2010–2022, 9 subjects, 2,811 questions) into an LLM benchmark: objective questions are auto-graded and subjective questions are scored by two human teachers each, with results converted to the exam's own 750-point-per-track scale. Among the five closed-source models given full human grading, GPT-4-0314 leads both tracks, and a GPT-4-turbo judge given human-written marking criteria correlates with human scores at ρ up to 0.864.",
       "explainer": "papers/zhang-2023-gaokao-bench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2023-gaokao-bench.mp3",
       "tags": ["benchmarks"]
     }
   ],
