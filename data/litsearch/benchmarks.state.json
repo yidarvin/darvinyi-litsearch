@@ -963,6 +963,15 @@
         "2 critic rounds, 5 blockers in r1: a >50-point drop misattributed to BERT/RoBERTa when the paper's subject is SMN/DAM (and arithmetically impossible for BERT), a twelve-vs-thirteen dataset count stated twice with two mutually inconsistent lists, two node-abstract defects (taxonomy scope, and MuTual-plus's purpose stated backwards), an overstated Table 5 flatness claim (1.9 points is the endpoint delta; the full bucket range is 16.9), and two comparatives contradicted by their own tables. Promoted the bolding suggestion: the page had led with the smallest of four discrepancies. Episode agent then found the sharpest item on the page: six MRR cells in Table 3 are arithmetically impossible given their own R@1/R@2 with four candidates. I re-derived the bound over every row - all six transformer rows and Human sit inside it (RoBERTa 0.836 in [0.830,0.839]; Human 0.964 in [0.962,0.964]), which validates the bound, while Random prints 0.604 against a ceiling of 0.542 despite R@1/R@2 being exactly the theoretical 0.250/0.500, and Dual LSTM's test MRR 0.743 exceeds its own R@2 of 0.491. Added to the critique, narrowed the MuTual-plus argument onto DAM's recall numbers (two of its three legs sat on infeasible cells), and recorded both findings in tables.md along with a rewrite of its Table 4 bolding note, which had contradicted its own cell listings and carried a stray thinking artifact."
       ],
       "date": "2026-08-01"
+    },
+    {
+      "slug": "su-2024-bright",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 critic rounds, 13 blockers total - the most of any paper in this run. The dominant failure was sentences contradicted by numbers printed in the same sentence (4 of the 10 round-1 blockers), including a blanket 'improves every retriever tested' where GritLM-written reasoning queries lower 7 of 13. That one survived into round 2 in a second form (Llama-3-70B lowers GritLM 21.0 to 20.9) and I then fixed only one of its two surfaces before catching the takeaway. The page's central finding held throughout and was confirmed independently: the paper states its ceiling as 24.3 nDCG@10 in three places while Table 2's own Avg. column tops out at 22.5. Builder also corrected my own edge list in both directions (dropped a HellaSwag false positive, added BEIR). Episode agent then supplied two verified strengthenings, both added: Table 42's k=10 to k=100 reranking average conceals a domain inversion (Biology 26.1 to 42.5 and Psychology 32.6 to 42.1 against LeetCode 24.5 to 5.6 and AoPS 8.9 to 2.4), and Appendix Table 12 shows the contamination result is epoch 10 of a run that swings 4.9 points and exceeds its own baseline at epoch 9. Declined evaluations - a dataset/suite contribution whose analyses apply existing methods."
+      ],
+      "date": "2026-08-01"
     }
   ],
   "skipped": [
@@ -1012,18 +1021,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-01T12:54 chen-2025-robotwin2: step -> podcast",
-    "2026-08-01T13:11 completed chen-2025-robotwin2 (verdict=approved, rounds=2)",
-    "2026-08-01T13:12 started qiu-2024-mmedbench ('Towards Building Multilingual Language Model for Medicine (MMedBench)')",
-    "2026-08-01T13:33 qiu-2024-mmedbench: step -> fetch",
-    "2026-08-01T13:33 qiu-2024-mmedbench: step -> figures",
-    "2026-08-01T13:33 qiu-2024-mmedbench: step -> draft",
-    "2026-08-01T13:34 qiu-2024-mmedbench: step -> critique (round 1)",
-    "2026-08-01T13:46 qiu-2024-mmedbench: step -> revise",
-    "2026-08-01T13:50 qiu-2024-mmedbench: step -> critique (round 2)",
-    "2026-08-01T13:54 qiu-2024-mmedbench: step -> verify",
-    "2026-08-01T13:54 qiu-2024-mmedbench: step -> queue-ops",
-    "2026-08-01T13:54 qiu-2024-mmedbench: step -> podcast",
     "2026-08-01T14:16 completed qiu-2024-mmedbench (verdict=approved, rounds=2)",
     "2026-08-01T14:16 started osband-2020-bsuite ('Behaviour Suite for Reinforcement Learning')",
     "2026-08-01T14:38 osband-2020-bsuite: step -> fetch",
@@ -1061,6 +1058,18 @@
     "2026-08-01T17:12 cui-2020-mutual: step -> verify",
     "2026-08-01T17:12 cui-2020-mutual: step -> queue-ops",
     "2026-08-01T17:12 cui-2020-mutual: step -> podcast",
-    "2026-08-01T17:30 completed cui-2020-mutual (verdict=approved, rounds=2)"
+    "2026-08-01T17:30 completed cui-2020-mutual (verdict=approved, rounds=2)",
+    "2026-08-01T17:30 started su-2024-bright ('BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval')",
+    "2026-08-01T17:52 su-2024-bright: step -> fetch",
+    "2026-08-01T17:52 su-2024-bright: step -> figures",
+    "2026-08-01T17:52 su-2024-bright: step -> draft",
+    "2026-08-01T17:52 su-2024-bright: step -> critique (round 1)",
+    "2026-08-01T18:06 su-2024-bright: step -> revise",
+    "2026-08-01T18:12 su-2024-bright: step -> critique (round 2)",
+    "2026-08-01T18:17 su-2024-bright: step -> critique (round 3)",
+    "2026-08-01T18:20 su-2024-bright: step -> verify",
+    "2026-08-01T18:21 su-2024-bright: step -> queue-ops",
+    "2026-08-01T18:21 su-2024-bright: step -> podcast",
+    "2026-08-01T18:36 completed su-2024-bright (verdict=approved, rounds=3)"
   ]
 }

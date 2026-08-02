@@ -10253,6 +10253,22 @@
       "explainer": "papers/cui-2020-mutual.html",
       "audio_url": "https://pod.darvinyi.com/audio/cui-2020-mutual.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "su-2024-bright",
+      "short": "BRIGHT",
+      "title": "BRIGHT: A Realistic and Challenging Benchmark for Reasoning-Intensive Retrieval",
+      "authors": "Su, Yen, Xia, W. Shi, Muennighoff, Wang, Liu, Q. Shi, Siegel, Tang, Sun, Yoon, Arık, Chen, Yu",
+      "year": 2025,
+      "date": "2024-07",
+      "venue": "ICLR 2025",
+      "citation_count": 173,
+      "topic": "Benchmarks & Evals",
+      "author_group": "HKU / Princeton NLP",
+      "abstract": "The first retrieval benchmark built specifically to require reasoning rather than lexical or semantic matching: 1,384 real StackExchange questions, LeetCode/Pony coding problems, and TheoremQA/AoPS math problems across 12 datasets, each paired with documents connected only by a shared theorem, algorithm, or causal mechanism. Every one of 13 tested retrievers does badly — MTEB's leaderboard-topping SFR-Embedding-Mistral falls from 59.0 to 18.3 nDCG@10, and the best model overall (gte-Qwen1.5) averages 22.5. LLM-generated reasoning traces as expanded queries help (up to +12.2 points), but the paper's own headline ceiling claim of '24.3 nDCG@10' — repeated in the Table 2 caption, Section 4.2, and the Conclusion — does not match its own Table 2, whose actual maximum is 22.5.",
+      "explainer": "papers/su-2024-bright.html",
+      "audio_url": "https://pod.darvinyi.com/audio/su-2024-bright.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17399,6 +17415,26 @@
     { "from": "cui-2020-mutual", "to": "zhang-2018-personachat" },
     { "from": "cui-2020-mutual", "to": "radford-2019-gpt2" },
     { "from": "cui-2020-mutual", "to": "wang-2018-glue" },
-    { "from": "cui-2020-mutual", "to": "wu-2017-smn" }
+    { "from": "cui-2020-mutual", "to": "wu-2017-smn" },
+    { "from": "su-2024-bright", "to": "asai-2024-self-rag" },
+    { "from": "su-2024-bright", "to": "austin-2021-mbpp" },
+    { "from": "su-2024-bright", "to": "chen-2021-codex" },
+    { "from": "su-2024-bright", "to": "cobbe-2021-gsm8k" },
+    { "from": "su-2024-bright", "to": "dao-2022-flashattention" },
+    { "from": "su-2024-bright", "to": "hendrycks-2021-math" },
+    { "from": "su-2024-bright", "to": "izacard-2021-contriever" },
+    { "from": "su-2024-bright", "to": "jain-2024-livecodebench" },
+    { "from": "su-2024-bright", "to": "karpukhin-2020-dpr" },
+    { "from": "su-2024-bright", "to": "kwiatkowski-2019-natural-questions" },
+    { "from": "su-2024-bright", "to": "muennighoff-2023-mteb" },
+    { "from": "su-2024-bright", "to": "radford-2019-gpt2" },
+    { "from": "su-2024-bright", "to": "thakur-2021-beir" },
+    { "from": "su-2024-bright", "to": "voorhees-2000-trec-qa" },
+    { "from": "su-2024-bright", "to": "wei-2022-cot" },
+    { "from": "su-2024-bright", "to": "weller-2025-followir" },
+    { "from": "su-2024-bright", "to": "yang-2018-hotpotqa" },
+    { "from": "su-2024-bright", "to": "zhang-2024-gsm1k" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "su-2024-bright" },
+    { "from": "deshpande-2025-trail", "to": "su-2024-bright" }
   ]
 }
