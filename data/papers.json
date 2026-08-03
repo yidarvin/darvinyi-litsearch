@@ -10637,6 +10637,22 @@
       "explainer": "papers/hu-2023-tifa.html",
       "audio_url": "https://pod.darvinyi.com/audio/hu-2023-tifa.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "depierre-2018-jacquard",
+      "short": "Jacquard",
+      "title": "Jacquard: A Large Scale Dataset for Robotic Grasp Detection",
+      "authors": "Amaury Depierre, Emmanuel Dellandréa, Liming Chen",
+      "year": 2018,
+      "date": "2018-03",
+      "venue": "IEEE/RSJ IROS 2018",
+      "citation_count": 400,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Siléane / Ecole Centrale de Lyon",
+      "abstract": "A pyBullet-and-Blender simulation pipeline that renders ShapeNet CAD models into labeled RGB-D grasp scenes, producing 1.1 million grasp rectangles across 11k objects — far larger than the hand-labeled Cornell Grasping Dataset. Introduces simulated grasp trial (SGT), an evaluation criterion that scores a predicted grasp by physically replaying it in simulation rather than matching a rectangle geometrically, and validates the resulting models with a real robotic-arm grasping test.",
+      "explainer": "papers/depierre-2018-jacquard.html",
+      "audio_url": "https://pod.darvinyi.com/audio/depierre-2018-jacquard.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18068,6 +18084,8 @@
     { "from": "hu-2023-tifa", "to": "vedantam-2015-cider" },
     { "from": "hu-2023-tifa", "to": "wei-2022-cot" },
     { "from": "liu-2024-evalcrafter", "to": "hu-2023-tifa" },
-    { "from": "mialon-2023-gaia", "to": "hu-2023-tifa" }
+    { "from": "mialon-2023-gaia", "to": "hu-2023-tifa" },
+    { "from": "depierre-2018-jacquard", "to": "deng-2009-imagenet" },
+    { "from": "fang-2020-graspnet", "to": "depierre-2018-jacquard" }
   ]
 }

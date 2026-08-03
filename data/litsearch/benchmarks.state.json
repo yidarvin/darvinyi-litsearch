@@ -1179,6 +1179,15 @@
         "Three critic rounds; the recurring defect was an ABSENCE claim, for the third consecutive paper. Round 1's B5 said 'nothing in the pipeline asks about interactions between elements' - refuted by Figure 4, which the page itself embeds and captions. Round 2 found the NARROWED version ('no question spans a conjunction of two properties of the same entity') was also false: Appendix A generates 'is the surfer walking on the beach?', predicating both properties of one entity, and it discriminates (SD v1.1 no, v2.1 yes). Replaced with the positive finding instead: TIFA scores an unweighted mean over questions (3.2) while the paper's own rater guideline (Appendix C.1) says objects are the most important elements and cascades a missing object to all its attributes - so a missing dog costs a human rater every question about the dog and costs TIFA one among many. paper-builder.md now names the two places rebuttals keep hiding (the page's own embedded figures; the paper's qualitative example dumps) and says a twice-falsified absence should be replaced by the positive version. Dual-tagged: the named-dataset test from FEQA cleared decisively - TIFA ships TIFA v1.0, 4,081 inputs and 25,829 questions, prompts sampled from existing sources but the question set new. Bold convention differs BETWEEN tables here (Table 2 marks the authors' row, Table 4 marks per-column maxima) - worth remembering after FEQA. Episode agent found no page errors and added the element-count skew: object 7,854 down to shape 69, so minDALL-E's 69.6-vs-66.7 shape win rests on a slice 114x smaller than the object column with no CI reported. CLAUDE.md's render-gating note now covers both observed Kokoro behaviours - streaming into a 0-byte file, and writing nothing until the end - since a file-existence test fails differently in each."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "depierre-2018-jacquard",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "Nearly skipped this on a scope judgment the corpus contradicted: a 2018 static grasp-detection dataset looked out of scope for an LLM/agent benchmark survey, but the graph already has an established robotics cluster (RLBench, LIBERO, ManiSkill2, EmbodiedEval) and fang-2020-graspnet — a grasping dataset that cites this one — is dual-tagged and in. Precedent beat instinct, same lesson as the FEQA tagging call. Two critic rounds, both blockers ordinary. The strongest work was the critic proving the Table II structure from RULE GEOMETRY rather than counting: vertical rules at x=55.34/121.50/180.15/238.81/297.46, with the 180.15 rule absent in the metric-header band, so Rectangle Metrics spans two sub-columns and SGT spans one — three value columns, no SGT-on-Cornell cell, because SGT replays the grasp in the pyBullet scene that generated the label and Cornell is real photographs. It also verified the figure renumbering fix by decoding all five base64 payloads and matching each caption to its actual image. Real paper contradiction on the page: Table I lists Cornell at 1,035 images, section II prose says 885, with object and grasp counts agreeing. Dual-tagged: ships the named Jacquard dataset AND introduces SGT as a novel criterion based on physic grasp simulation, served via a public web interface — though proposed and deployed rather than validated, which the page says. Episode agent found no page errors and confirmed the CLAUDE.md render-gating fix from one paper ago was load-bearing: Kokoro wrote nothing until the very end this run, so a file-existence test would have hung."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1228,21 +1237,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T17:39 rao-2019-tape: step -> podcast",
-    "2026-08-02T17:53 completed rao-2019-tape (verdict=approved, rounds=3)",
-    "2026-08-02T17:55 started peng-2019-blue ('Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets')",
-    "2026-08-02T17:55 peng-2019-blue: step -> fetch",
-    "2026-08-02T18:16 peng-2019-blue: step -> figures",
-    "2026-08-02T18:16 peng-2019-blue: step -> draft",
-    "2026-08-02T18:27 peng-2019-blue: step -> critique (round 1)",
-    "2026-08-02T18:27 peng-2019-blue: 9 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T18:48 peng-2019-blue: step -> revise",
-    "2026-08-02T18:48 peng-2019-blue: step -> critique (round 2)",
-    "2026-08-02T18:48 peng-2019-blue: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T18:48 peng-2019-blue: step -> revise",
-    "2026-08-02T18:48 peng-2019-blue: step -> critique (round 3)",
-    "2026-08-02T18:48 peng-2019-blue: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T18:48 peng-2019-blue: step -> verify",
     "2026-08-02T18:49 peng-2019-blue: step -> queue-ops",
     "2026-08-02T18:49 peng-2019-blue: step -> podcast",
     "2026-08-02T19:05 completed peng-2019-blue (verdict=approved, rounds=3)",
@@ -1277,6 +1271,21 @@
     "2026-08-02T20:58 hu-2023-tifa: step -> verify",
     "2026-08-02T20:59 hu-2023-tifa: step -> queue-ops",
     "2026-08-02T20:59 hu-2023-tifa: step -> podcast",
-    "2026-08-02T21:14 completed hu-2023-tifa (verdict=approved, rounds=3)"
+    "2026-08-02T21:14 completed hu-2023-tifa (verdict=approved, rounds=3)",
+    "2026-08-02T21:17 started depierre-2018-jacquard ('Jacquard: A Large Scale Dataset for Robotic Grasp Detection')",
+    "2026-08-02T21:18 depierre-2018-jacquard: step -> fetch",
+    "2026-08-02T21:20 depierre-2018-jacquard: step -> fetch",
+    "2026-08-02T21:20 depierre-2018-jacquard: step -> figures",
+    "2026-08-02T21:20 depierre-2018-jacquard: step -> draft",
+    "2026-08-02T21:34 depierre-2018-jacquard: step -> draft",
+    "2026-08-02T21:43 depierre-2018-jacquard: step -> critique (round 1)",
+    "2026-08-02T21:43 depierre-2018-jacquard: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T21:54 depierre-2018-jacquard: step -> revise",
+    "2026-08-02T21:54 depierre-2018-jacquard: step -> critique (round 2)",
+    "2026-08-02T21:54 depierre-2018-jacquard: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-02T21:54 depierre-2018-jacquard: step -> verify",
+    "2026-08-02T21:55 depierre-2018-jacquard: step -> queue-ops",
+    "2026-08-02T21:55 depierre-2018-jacquard: step -> podcast",
+    "2026-08-02T22:11 completed depierre-2018-jacquard (verdict=approved, rounds=2)"
   ]
 }
