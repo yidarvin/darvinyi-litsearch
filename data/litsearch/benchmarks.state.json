@@ -1287,6 +1287,15 @@
         "4 critic rounds. THE CENTRAL FINDING: section 7 reports '36.7% of our 2046 judgments' but the paper's own instrument is 29 dimensions x 66 papers = 1914, and Table 1's columns give 1649 applicable judgments - neither is 2046. The critic upheld this only after re-extracting all 29 Table 1 rows by bbox (every printed percentage re-derives from Yes/(Yes+No) exactly; sum Yes = 534, sum No = 1115), confirming 29 and 66 from three separate statements, establishing that '2046' occurs exactly once in the paper with no derivation, and pulling the JAIR camera-ready to rule out a preprint typo. Then it found the diagnosis: all three of section 7's per-paper statistics are exact 31ths - 6.5% = 2/31, median 25.8% = 8/31, 58.1% = 18/31 - no fraction k/n with n <= 29 rounds to 6.5% or 58.1%, and 2046 = 31 x 66. So the spreadsheet that produced the reported numbers had 31 dimensions while the paper describes and tabulates 29. I added the positive-count angle: 36.7% of 2046 is ~751 positives against Table 1's Yes-sum of 534, which is 32.4% of 1649. The page states all of this and explicitly declines to guess what the two extra dimensions were. TWO OF THE FIVE BLOCKERS WERE MINE. B4: I handed the builder 22 'confirmed-good' outgoing edges having only verified the six I doubted, so brown-2020-gpt3 passed through with zero hits for Brown/GPT-3/GPT3/few-shot learners - the test applied asymmetrically. Edge removed; the critic re-tested all 21 remaining by an independent title-window method (immune to the Post/Nie/Sellam/Gehrmann surname collisions) and all passed. B5: I wrote 'the one substantive difference is structural, not numerical: the JAIR camera-ready drops Appendix A entirely' into the revise brief and it went onto the page. The critic pulled the JAIR PDF and found it also ADDS a named subsection, 'NLG Evaluation in times of large language models' (pp. 136-137), which I confirmed - 'times of large language models', scratchpad, chain-of-thought and Chowdhery are all present in JAIR and zero in v1, and the bibliography grows 244 -> 292 (the critic derived v1's 244 independently via hyperref cite.<bibkey> named destinations). That closes the loop on this paper's edge problem: S2 serves the JAIR bibliography, and six of the seven false leads - PaLM, HELM, BIG-bench, scratchpads, chain-of-thought, GPT-3 - are cited ONLY inside that one added subsection. The seventh, fabbri-2021-qafacteval, was a different failure: wrong Fabbri 2021, since every Fabbri citation here is to SummEval. This produced a new find_edges.py check (gap 6, commit 61373cd) warning when a reference postdates the citing paper's arXiv year. Other blockers: B1 misattributed the ROUGE-3/-4/-WE-1 finding to Rankel and Graham when the paper credits Kryscinski and Fabbri, and mis-stated Graham's actual result (192 configurations, none beating BLEU, best was ROUGE-2 precision); B2 called evidence-release 'the rarest practice measured' at 1.5% when power analysis is 0.0%, stated one sentence earlier. Verified neither version anticipates LLM-as-judge ('as a judge', 'llm-as', 'gpt-4' all zero in both), so the critique's core point survived rescoping - and in fairness the JAIR revision closed in 2022, before G-Eval and MT-Bench. Metadata set to the repo's preprint-vs-venue convention: year 2023 (JAIR), date 2022-02 (arXiv), venue 'JAIR 2023'. NODE CARRIES NO TAGS - 12 of 12 survey nodes are untagged, and the critic re-derived both rubrics to confirm this is correct rather than habitual, citing mitchell-2018-model-cards and gebru-2018-datasheets as the closest-shaped precedents. Verified: 2022-Q1 column with CoT/InstructGPT/Chinchilla, 25 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 26.0 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "mu-2021-maniskill",
+      "rounds": 2,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "APPROVED ON ROUND 1 WITH ZERO BLOCKERS - the first single-round approval in many papers, and the critic's pass was unusually thorough. Two orchestrator additions after approval, both verified against the paper before writing. (1) The critic's one non-blocking observation: the page argued Table 2's single-environment ceiling and Table 3's multi-object results are 'never bridged by an intermediate ablation', which is literally true but was the page's most attackable phrasing, since supplementary Table 5 IS an object-count sweep (1/5/10/20 cabinets -> 100%/82%/2%/0% on OpenCabinetDrawer). I verified the values, the caption, and the one claim I was unsure of - that the rates are measured on TRAINING objects. The surrounding text settles it: the paper frames Table 5 as a demonstration-collection feasibility argument ('Jointly training a single RL agent on a large number of environments (objects) from scratch to collect demonstrations is infeasible'), so the agent trains on all N cabinets and is scored on them, with no held-out set. The page now names Table 5, reports the collapse, and explains why it does not settle the confound: SAC from scratch, state mode, dense rewards, no demonstrations, so it cannot sit beside Table 2 or Table 3. It shows the optimization half is severe on its own; it does not separate the two. (2) The podcast agent surfaced a mechanism for the PushChair exception that I verified verbatim in the supplement: OpenCabinetDoor and OpenCabinetDrawer each get three segmentation masks (target handle, target door/drawer, robot) while PushChair and MoveBucket get one (the robot). The paper justifies this - 'we provide the robot mask and any mask that is necessary for specifying the target', and a chair needs no disambiguation where a cabinet with many drawers does - so the asymmetry is deliberate. But the transformer's advantage over plain PointNet is that it attends across mask-defined segments, and the one task where it fails to lead is a one-mask task, with no ablation isolating it. The page states both halves so it reads as a mechanism rather than an accusation. NOTABLE CRITIC WORK: it found a real flaw in the builder's own contamination method - the page renders standard deviations as '0.18+-.02' with no leading zero, so a literal grep for '0.07' could not have seen a leaked '.07'. It re-swept with a leading-zero-optional pattern, then tokenized all 82 numeric tokens against both versions, finding the v1-minus-v5 set empty and only four non-verbatim tokens, all legitimate. It also corroborated Table 2 independently via supplementary Table 9's alpha sweep, confirmed the PushChair exception cell by cell (Test column 0.09/0.08/0.08/0.08), decoded all five figures, re-rendered PDF page 1 to confirm the Figure 1 crop removed only title text, and parsed all 80 printed bibliography entries against 692 nodes. One near-miss cleared cleanly: ManiSkill's ref [60] is arXiv 1812.05905 (SAC Algorithms and Applications) while node haarnoja-2018-sac is 1801.01290 - different papers, correctly not edged, and queued. PRE-FLIGHT: I added the published-vs-arXiv check I proposed last turn and it passed in two commands - v5 is dated 4 Nov 2021 and carries the NeurIPS D&B camera-ready footer, so no version note was needed. Tooling: also fixed a duplicate gap-6 block my earlier reorder left outside main() in find_edges.py, which raised NameError after every successful run (commit 0b4e3c9). Tagged benchmarks-only, matching the robotics cluster. Verified: 2021-Q3 column with Codex/TruthfulQA/FLAN, 13 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 31.8 min, render rc=0 (nothing-until-the-end write pattern again), remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1342,19 +1351,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T11:13 lin-2020-softgym: step -> figures",
-    "2026-08-03T11:13 lin-2020-softgym: step -> draft",
-    "2026-08-03T11:13 lin-2020-softgym: step -> critique (round 1)",
-    "2026-08-03T11:23 lin-2020-softgym: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T11:23 lin-2020-softgym: step -> revise",
-    "2026-08-03T11:29 lin-2020-softgym: step -> critique (round 2)",
-    "2026-08-03T11:43 lin-2020-softgym: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T11:43 lin-2020-softgym: step -> revise",
-    "2026-08-03T11:43 lin-2020-softgym: step -> critique (round 3)",
-    "2026-08-03T11:43 lin-2020-softgym: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T11:43 lin-2020-softgym: step -> verify",
-    "2026-08-03T11:44 lin-2020-softgym: step -> queue-ops",
-    "2026-08-03T11:45 lin-2020-softgym: step -> podcast",
     "2026-08-03T11:55 completed lin-2020-softgym (verdict=approved_with_notes, rounds=3)",
     "2026-08-03T12:22 started sinha-2019-clutrr ('CLUTRR: A Diagnostic Benchmark for Inductive Reasoning from Text')",
     "2026-08-03T12:22 sinha-2019-clutrr: step -> fetch",
@@ -1391,6 +1387,19 @@
     "2026-08-03T15:23 gehrmann-2022-cracked-foundation: step -> verify",
     "2026-08-03T15:24 gehrmann-2022-cracked-foundation: step -> queue-ops",
     "2026-08-03T15:24 gehrmann-2022-cracked-foundation: step -> podcast",
-    "2026-08-03T15:34 completed gehrmann-2022-cracked-foundation (verdict=approved_with_notes, rounds=4)"
+    "2026-08-03T15:34 completed gehrmann-2022-cracked-foundation (verdict=approved_with_notes, rounds=4)",
+    "2026-08-03T16:01 started mu-2021-maniskill ('ManiSkill: Generalizable Manipulation Skill Benchmark with Large-Scale Demonstrations')",
+    "2026-08-03T16:02 mu-2021-maniskill: step -> fetch",
+    "2026-08-03T16:18 mu-2021-maniskill: step -> figures",
+    "2026-08-03T16:18 mu-2021-maniskill: step -> draft",
+    "2026-08-03T16:20 mu-2021-maniskill: step -> critique (round 1)",
+    "2026-08-03T16:34 mu-2021-maniskill: 0 open blocker(s) from round 1 (verdict: approve)",
+    "2026-08-03T16:34 mu-2021-maniskill: step -> revise",
+    "2026-08-03T16:34 mu-2021-maniskill: step -> critique (round 2)",
+    "2026-08-03T16:34 mu-2021-maniskill: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T16:34 mu-2021-maniskill: step -> verify",
+    "2026-08-03T16:35 mu-2021-maniskill: step -> queue-ops",
+    "2026-08-03T16:36 mu-2021-maniskill: step -> podcast",
+    "2026-08-03T16:49 completed mu-2021-maniskill (verdict=approved_with_notes, rounds=2)"
   ]
 }
