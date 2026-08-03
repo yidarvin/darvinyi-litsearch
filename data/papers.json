@@ -10781,6 +10781,22 @@
       "explainer": "papers/ding-2021-few-nerd.html",
       "audio_url": "https://pod.darvinyi.com/audio/ding-2021-few-nerd.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "lin-2020-softgym",
+      "short": "SoftGym",
+      "title": "SoftGym: Benchmarking Deep Reinforcement Learning for Deformable Object Manipulation",
+      "authors": "Lin, Wang, Olkin, Held",
+      "year": 2020,
+      "date": "2020-11",
+      "venue": "CoRL 2020",
+      "citation_count": 292,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Carnegie Mellon University",
+      "abstract": "Introduces SoftGym, a suite of 10 simulated deformable-object manipulation tasks (cloth folding/spreading, rope straightening, fluid pouring) built on Nvidia's FleX particle simulator with a standard OpenAI Gym API. Benchmarks a staged set of methods—a ground-truth-dynamics oracle (CEM), full/reduced state oracles (SAC), and image-based RL (CURL-SAC, DrQ, PlaNet)—finding that image-based RL plateaus far below optimal performance on three of six tasks (rope straightening, cloth spreading, cloth folding), while closing much more of the gap to the state oracles on the rest, motivating further work on high-dimensional, partially-observable deformable manipulation.",
+      "explainer": "papers/lin-2020-softgym.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lin-2020-softgym.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18314,6 +18330,19 @@
     { "from": "ding-2021-few-nerd", "to": "devlin-2019-bert" },
     { "from": "ding-2021-few-nerd", "to": "yang-2018-hotpotqa" },
     { "from": "bai-2024-longbench-v2", "to": "ding-2021-few-nerd" },
-    { "from": "li-2024-longiclbench", "to": "ding-2021-few-nerd" }
+    { "from": "li-2024-longiclbench", "to": "ding-2021-few-nerd" },
+    { "from": "lin-2020-softgym", "to": "bellemare-2013-ale" },
+    { "from": "lin-2020-softgym", "to": "brockman-2016-openai-gym" },
+    { "from": "lin-2020-softgym", "to": "haarnoja-2018-sac" },
+    { "from": "lin-2020-softgym", "to": "hafner-2018-planet" },
+    { "from": "lin-2020-softgym", "to": "james-2020-rlbench" },
+    { "from": "lin-2020-softgym", "to": "mnih-2015-dqn" },
+    { "from": "lin-2020-softgym", "to": "osband-2020-bsuite" },
+    { "from": "lin-2020-softgym", "to": "schrittwieser-2019-muzero" },
+    { "from": "lin-2020-softgym", "to": "vinyals-2019-alphastar" },
+    { "from": "lin-2020-softgym", "to": "yu-2019-meta-world" },
+    { "from": "gu-2023-maniskill2", "to": "lin-2020-softgym" },
+    { "from": "li-2022-behavior-1k", "to": "lin-2020-softgym" },
+    { "from": "srivastava-2021-behavior", "to": "lin-2020-softgym" }
   ]
 }
