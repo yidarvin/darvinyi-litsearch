@@ -10685,6 +10685,22 @@
       "explainer": "papers/li-2024-longiclbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2024-longiclbench.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "koh-2021-wilds",
+      "short": "WILDS",
+      "title": "WILDS: A Benchmark of in-the-Wild Distribution Shifts",
+      "authors": "Koh, Sagawa, Marklund, Xie, Zhang, Balsubramani, Hu, Yasunaga, Phillips, Gao, Lee, David, Stavness, Guo, Earnshaw, Haque, Beery, Leskovec, Kundaje, Pierson, Levine, Finn, Liang",
+      "year": 2021,
+      "date": "2020-12",
+      "venue": "ICML 2021",
+      "citation_count": 1934,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "A curated benchmark of 10 real-world distribution-shift datasets — tumor patches across hospitals, camera-trap photos across traps, satellite imagery across countries and time, molecules across chemical scaffolds, code across repositories — spanning domain generalization, subpopulation shift, and hybrids of both. Standard (ERM) training shows a real ID-OOD gap on every dataset, from 7.2 points (OGB-MolPCBA average precision) to 36.2 points (CivilComments-wilds accuracy) on their respective percentage-based metrics — PovertyMap-wilds' gap is 0.15 Pearson r instead; domain-generalization and subpopulation-shift baselines (CORAL, IRM, Group DRO) mostly fail to close that gap, and CivilComments-wilds is the only dataset where the paper's own evaluation concludes a baseline actually improves over ERM.",
+      "explainer": "papers/koh-2021-wilds.html",
+      "audio_url": "https://pod.darvinyi.com/audio/koh-2021-wilds.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18137,6 +18153,23 @@
     { "from": "li-2024-longiclbench", "to": "roziere-2023-code-llama" },
     { "from": "li-2024-longiclbench", "to": "su-2021-roformer" },
     { "from": "li-2024-longiclbench", "to": "tay-2020-long-range-arena" },
-    { "from": "yen-2024-helmet", "to": "li-2024-longiclbench" }
+    { "from": "yen-2024-helmet", "to": "li-2024-longiclbench" },
+    { "from": "koh-2021-wilds", "to": "buolamwini-2018-gender-shades" },
+    { "from": "koh-2021-wilds", "to": "conneau-2018-xnli" },
+    { "from": "koh-2021-wilds", "to": "corbett-davies-2017-cost-of-fairness" },
+    { "from": "koh-2021-wilds", "to": "dwork-2012-fairness-through-awareness" },
+    { "from": "koh-2021-wilds", "to": "geirhos-2019-texture-bias" },
+    { "from": "koh-2021-wilds", "to": "hendrycks-2017-msp-baseline" },
+    { "from": "koh-2021-wilds", "to": "hendrycks-2019-imagenet-c" },
+    { "from": "koh-2021-wilds", "to": "hendrycks-2021-imagenet-r" },
+    { "from": "koh-2021-wilds", "to": "hu-2020-xtreme" },
+    { "from": "koh-2021-wilds", "to": "lakshminarayanan-2016-deep-ensembles" },
+    { "from": "koh-2021-wilds", "to": "liang-2017-odin" },
+    { "from": "koh-2021-wilds", "to": "mehrabi-2019-bias-fairness-survey" },
+    { "from": "koh-2021-wilds", "to": "recht-2019-imagenet-generalize" },
+    { "from": "koh-2021-wilds", "to": "ribeiro-2020-checklist" },
+    { "from": "koh-2021-wilds", "to": "torralba-2011-dataset-bias" },
+    { "from": "koh-2021-wilds", "to": "wang-2018-glue" },
+    { "from": "koh-2021-wilds", "to": "wang-2019-superglue" }
   ]
 }

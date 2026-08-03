@@ -579,6 +579,23 @@ actually uses. → `set-step draft`
    human raters that "objects are the most important elements" and cascades
    a missing object to all its attributes. That is checkable, specific, and
    stronger than anything the absence framing could have supported.
+
+   **Search by where the fact would live, not by the word you would use for
+   it.** A grep for your own vocabulary is not a search — it is a search for
+   papers that happen to share your vocabulary. On WILDS the claim was that
+   no near-duplicate check is reported; the builder verified it by reading
+   appendices `E.1.4`/`E.2.4` and grepping `perceptual`, `hash`,
+   `near-duplicate` for zero hits, and the claim was still false. The
+   rebuttals were in the `E.x.1` "Setup → Data" subsections, phrased in the
+   dataset's own terms with none of those three words: iWildCam's *"All
+   images from the same sequence … are placed together in the same split"*
+   and FMoW's *"making sure that the data splits all contain disjoint
+   locations."* A duplicate control is a **split-construction rule**, so it
+   lives wherever the paper describes building its splits.
+   So: before writing an absence, name the section that *would* contain the
+   thing if it existed, and read that section — in a multi-dataset paper,
+   for **every** dataset, not the two you happened to name. Then ask what
+   the paper would call it, and grep for that.
 4. Check this paper against every survey's rubric in `data/surveys.json`
    (not just `survey_id` — a paper can be core to more than one). Tag with
    `python3 scripts/tag_papers.py add <survey_id> <slug>` for each match.
