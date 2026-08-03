@@ -10573,6 +10573,22 @@
       "explainer": "papers/hu-2020-xtreme.html",
       "audio_url": "https://pod.darvinyi.com/audio/hu-2020-xtreme.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "rao-2019-tape",
+      "short": "TAPE",
+      "title": "Evaluating Protein Transfer Learning with TAPE",
+      "authors": "Rao, Bhattacharya, Thomas, Duan, Chen, Canny, Abbeel, Song",
+      "year": 2019,
+      "date": "2019-06",
+      "venue": "NeurIPS 2019",
+      "citation_count": 1053,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UC Berkeley",
+      "abstract": "Introduces TAPE (Tasks Assessing Protein Embeddings), five biologically-curated protein tasks — secondary structure, contact prediction, remote homology, fluorescence, and stability — whose supervised architectures are explicitly size-matched to GLUE's, with splits built to filter sequence identity or hold out entire evolutionary groups so scores reflect biologically relevant generalization rather than near-duplicate memorization. Self-supervised pretraining (Transformer, LSTM, ResNet) improves every one of 15 architecture×task comparisons, but still trails hand-built alignment features on secondary structure and contact prediction while beating them decisively on remote homology.",
+      "explainer": "papers/rao-2019-tape.html",
+      "audio_url": "https://pod.darvinyi.com/audio/rao-2019-tape.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -17964,6 +17980,12 @@
     { "from": "hu-2020-xtreme", "to": "williams-2017-multinli" },
     { "from": "liang-2022-helm", "to": "hu-2020-xtreme" },
     { "from": "niklaus-2023-lextreme", "to": "hu-2020-xtreme" },
-    { "from": "shi-2022-mgsm", "to": "hu-2020-xtreme" }
+    { "from": "shi-2022-mgsm", "to": "hu-2020-xtreme" },
+    { "from": "rao-2019-tape", "to": "devlin-2019-bert" },
+    { "from": "rao-2019-tape", "to": "peters-2018-elmo" },
+    { "from": "rao-2019-tape", "to": "radford-2019-gpt2" },
+    { "from": "rao-2019-tape", "to": "wang-2018-glue" },
+    { "from": "rao-2019-tape", "to": "wang-2019-superglue" },
+    { "from": "niklaus-2023-lextreme", "to": "rao-2019-tape" }
   ]
 }
