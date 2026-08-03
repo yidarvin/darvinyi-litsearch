@@ -10589,6 +10589,22 @@
       "explainer": "papers/rao-2019-tape.html",
       "audio_url": "https://pod.darvinyi.com/audio/rao-2019-tape.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "peng-2019-blue",
+      "short": "BLUE",
+      "title": "Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets",
+      "authors": "Peng, Yan, Lu",
+      "year": 2019,
+      "date": "2019-06",
+      "venue": "BioNLP 2019",
+      "citation_count": 997,
+      "topic": "Benchmarks & Evals",
+      "author_group": "NCBI / NLM (NIH)",
+      "abstract": "Introduces BLUE, a GLUE-modeled aggregate benchmark that repackages ten pre-existing biomedical and clinical shared-task corpora (sentence similarity, NER, relation extraction, document multilabel classification, inference) behind one split, one metric per task, and a macro-averaged Total score. The paper's own BERT-Base, continued-pretrained on PubMed abstracts and MIMIC-III clinical notes, tops the aggregate and wins 5 of 10 task rows against ELMo and per-task literature baselines — but three things in the paper don't check out: the printed Total row's ELMo cell (78.8) does not reconcile with ELMo's own ten scores (which average 74.8); every in-text ELMo citation resolves in the bibliography to TagLM (Peters et al., 2017) rather than the actual ELMo paper (Peters et al., 2018); and Table 3's ShARe/CLEFE row prints recall, not F1, for five of seven models (with its i2b2 ELMo cell printing precision), both contradicted by the paper's own, internally consistent appendix.",
+      "explainer": "papers/peng-2019-blue.html",
+      "audio_url": "https://pod.darvinyi.com/audio/peng-2019-blue.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -17986,6 +18002,13 @@
     { "from": "rao-2019-tape", "to": "radford-2019-gpt2" },
     { "from": "rao-2019-tape", "to": "wang-2018-glue" },
     { "from": "rao-2019-tape", "to": "wang-2019-superglue" },
-    { "from": "niklaus-2023-lextreme", "to": "rao-2019-tape" }
+    { "from": "niklaus-2023-lextreme", "to": "rao-2019-tape" },
+    { "from": "peng-2019-blue", "to": "devlin-2019-bert" },
+    { "from": "peng-2019-blue", "to": "radford-2018-gpt1" },
+    { "from": "peng-2019-blue", "to": "wang-2018-glue" },
+    { "from": "chalkidis-2021-lexglue", "to": "peng-2019-blue" },
+    { "from": "luo-2022-biogpt", "to": "peng-2019-blue" },
+    { "from": "niklaus-2023-lextreme", "to": "peng-2019-blue" },
+    { "from": "wang-2024-cmb", "to": "peng-2019-blue" }
   ]
 }

@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets — paper_atlas</title>
+<meta name="description" content="Ten pre-existing biomedical and clinical shared-task corpora, repackaged into one BERT/ELMo leaderboard modeled explicitly on GLUE — the template LexGLUE, LEXTREME, and CMB all later copied for their own domains. BERT-Base pretrained on PubMed abstracts plus MIMIC-III notes tops the aggregate, but the paper's own Total row, its ELMo citation, and one of its results rows (ShARe/CLEFE) all have verifiable problems.">
+<meta property="og:title" content="Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets">
+<meta property="og:description" content="Ten pre-existing biomedical and clinical shared-task corpora, repackaged into one BERT/ELMo leaderboard modeled explicitly on GLUE — the template LexGLUE, LEXTREME, and CMB all later copied for their own domains. BERT-Base pretrained on PubMed abstracts plus MIMIC-III notes tops the aggregate, but the paper's own Total row, its ELMo citation, and one of its results rows (ShARe/CLEFE) all have verifiable problems.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/peng-2019-blue.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2019 · BioNLP 2019 · Benchmarks &amp; Evals</div>
+      <h1>Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets</h1>
+      <p class="dek">Ten pre-existing biomedical and clinical shared-task corpora, repackaged behind one common
+        evaluation harness modeled explicitly on GLUE — the template that <b>LexGLUE</b>, <b>LEXTREME</b>, and
+        <b>CMB</b> would each later copy for law and Chinese medicine. The authors' own <b>BERT-Base</b>, continued
+        pretraining on PubMed abstracts and MIMIC-III clinical notes, tops the aggregate score — but the paper's
+        printed "Total" row doesn't reconcile with its own columns, its ELMo citation points to a different paper
+        entirely, and one results row (ShARe/CLEFE) doesn't match its own appendix.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/peng-2019-blue.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/peng-2019-blue.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Yifan Peng, Shankai Yan, Zhiyong Lu</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>BioNLP 2019</b></span>
+        <span class="fact">citations&nbsp;<b>997</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/1906.05474">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/peng-2019-blue.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-08-02</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By mid-2019, the general-domain NLP world had a shared yardstick: the <b>GLUE</b> benchmark (Wang et al.,
+        2018) had "been successfully promoting the development of language representations of general purpose,"
+        giving ELMo, GPT, and BERT a common leaderboard to be measured against. Biomedical NLP had no equivalent.
+        Pre-trained representations for biomedical and clinical text — word embeddings, sentence embeddings,
+        contextual models — existed, but "most of these works... were evaluated on either different datasets or the
+        same dataset with slightly different sizes of examples," which the authors say "makes it challenging to
+        fairly compare various language models."</p>
+      <p>The paper's fix is not to build new data, but to standardize evaluation over data that already existed: it
+        assembles <b>five task types across ten corpora</b> — sentence similarity, named entity recognition,
+        relation extraction, document multilabel classification, and natural language inference — all of them
+        preexisting shared-task datasets, "because they have been widely used by the BioNLP community." The authors
+        are explicit that two parallel efforts were doing something similar at the same time: Lee et al. (2019,
+        BioBERT) evaluated on three task types (NER, relation extraction, QA), and Jin et al. (2019) added NLI to
+        NER. BLUE's claimed differentiation is threefold: it spans <b>both</b> biomedical-literature and
+        clinical-note genres in one suite (not just one), it adds a document-classification task beyond
+        sentence/sentence-pair tasks, and it ships "a comprehensive suite of codes to reconstruct dataset from
+        scratch without removing any instances."</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>BLUE is an aggregation, not a new annotation effort: every one of its ten corpora already existed as a
+        shared task before this paper. What the paper contributes is a single train/dev/test packaging, a fixed
+        metric per task, reference code for reproducing every split "from scratch," and — the actual novel
+        empirical content — a head-to-head evaluation of BERT and ELMo baselines pretrained specifically for
+        biomedical and clinical text.</p>
+
+      <table>
+        <thead><tr><th>Corpus</th><th class="num">Train</th><th class="num">Dev</th><th class="num">Test</th><th>Task</th><th>Metric</th><th>Domain</th></tr></thead>
+        <tbody>
+          <tr><td>MedSTS (sentence pairs)</td><td class="num">675</td><td class="num">75</td><td class="num">318</td><td>Sentence similarity</td><td>Pearson</td><td>Clinical</td></tr>
+          <tr><td>BIOSSES (sentence pairs)</td><td class="num">64</td><td class="num">16</td><td class="num">20</td><td>Sentence similarity</td><td>Pearson</td><td>Biomedical</td></tr>
+          <tr><td>BC5CDR-disease (mentions)</td><td class="num">4,182</td><td class="num">4,244</td><td class="num">4,424</td><td>NER</td><td>F1</td><td>Biomedical</td></tr>
+          <tr><td>BC5CDR-chemical (mentions)</td><td class="num">5,203</td><td class="num">5,347</td><td class="num">5,385</td><td>NER</td><td>F1</td><td>Biomedical</td></tr>
+          <tr><td>ShARe/CLEFE (mentions)</td><td class="num">4,628</td><td class="num">1,075</td><td class="num">5,195</td><td>NER</td><td>F1</td><td>Clinical</td></tr>
+          <tr><td>DDI (relations)</td><td class="num">2,937</td><td class="num">1,004</td><td class="num">979</td><td>Relation extraction</td><td>micro F1</td><td>Biomedical</td></tr>
+          <tr><td>ChemProt (relations)</td><td class="num">4,154</td><td class="num">2,416</td><td class="num">3,458</td><td>Relation extraction</td><td>micro F1</td><td>Biomedical</td></tr>
+          <tr><td>i2b2 2010 (relations)</td><td class="num">3,110</td><td class="num">11</td><td class="num">6,293</td><td>Relation extraction</td><td>F1</td><td>Clinical</td></tr>
+          <tr><td>HoC (documents)</td><td class="num">1,108</td><td class="num">157</td><td class="num">315</td><td>Document classification</td><td>F1</td><td>Biomedical</td></tr>
+          <tr><td>MedNLI (pairs)</td><td class="num">11,232</td><td class="num">1,395</td><td class="num">1,422</td><td>Inference</td><td>accuracy</td><td>Clinical</td></tr>
+        </tbody>
+      </table>
+
+      <p>Ten rows, but nine distinct source corpora: <b>BC5CDR-disease</b> and <b>BC5CDR-chemical</b> are two
+        separate label sets — disease mentions and chemical mentions — scored as two NER tasks over the <em>same</em>
+        1,500 PubMed abstracts. Two of the ten corpora carry splits the BLUE authors built themselves, not the
+        original release: <b>BIOSSES</b>, whose data "has no standard splits," so the authors "randomly select 80%
+        for training and 20% for testing"; and <b>HoC</b>, where they "use 315 (~20%) abstracts for testing and the
+        remaining abstracts for training." The rest state they reuse "the standard training and test set" from each
+        corpus's own shared task — though <b>MedNLI</b> is the only one the paper explicitly says reuses an
+        official <em>dev</em> set too ("the same training, development, and test sets in Romanov and Shivade"); DDI
+        and i2b2 are instead described by file/document counts ("624 train files and 191 test files"; "170
+        documents for training and 256... testing, which is the subset of the original dataset") rather than
+        called a standard split, even though Table 1 lists a dev count for every one of the ten rows.</p>
+
+      <p>Two pre-training corpora feed the paper's own BERT models: more than <b>4,000M words</b> of PubMed
+        abstracts and more than <b>500M words</b> of MIMIC-III clinical notes. Starting from Devlin et al.'s public
+        BERT checkpoint, the authors continue pre-training for <b>5M steps</b> on PubMed and a further <b>0.2M
+        steps</b> on MIMIC-III, releasing four variants that cross two sizes with two pre-training-corpus mixes:
+        Base(P), Base(P+M), Large(P), Large(P+M) — where <b>P</b> = PubMed-only and <b>P+M</b> = PubMed + MIMIC-III.
+        Fine-tuning follows task-appropriate recipes: sentence pairs are packed into a single BERT input; NER is
+        cast as BIO tagging; relation extraction replaces the two entity mentions with placeholder tags (e.g.
+        <span class="mono">@CHEMICAL$</span>, <span class="mono">@GENE$</span>) and treats the sentence as a
+        classification problem; multi-label document classification fine-tunes BERT to predict a label set per
+        sentence, then pools sentence predictions to the document.</p>
+
+      <p>The second baseline is <b>ELMo</b>, "pre-trained on PubMed abstracts," whose token-level output states from
+        both LSTM layers are concatenated per word; for sentence-level tasks the word vectors are averaged into a
+        sentence embedding and fed to a dense layer, while NER uses a Bi-LSTM-CRF tagger over concatenated GloVe,
+        character, and ELMo embeddings.</p>
+
+      <div class="eq">
+        Total&nbsp;=&nbsp;<span class="frac"><span class="num">1</span><span class="den">10</span></span>&nbsp;Σ<sub>i=1..10</sub>&nbsp;score<sub>i</sub>
+        <span class="note">// §3.6: "we use a macro-average of F1-scores and Pearson scores to determine a system's position" — an unweighted mean across the ten rows of Table 1/3, mixing two Pearson correlations, seven F1-family scores, and one accuracy score with equal per-task weight regardless of test-set size (20 test examples for BIOSSES vs. 6,293 for i2b2)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>All ten metrics in Table 3 run the same direction — higher is better, whether Pearson correlation,
+        (micro-)F1, or accuracy — so bold in the table below (the paper's own font-weight convention, verified per
+        cell against the PDF's font layer) marks the best score in each row without any sign flips to track.
+        <b>BERT-Base (P+M)</b> — pretrained on both PubMed abstracts and MIMIC-III — is the row-max on <b>5 of the
+        10</b> rows (MedSTS, BIOSSES, ShARe/CLEFE, i2b2, MedNLI); <b>BERT-Base (P)</b> wins <b>2</b> (the two
+        BC5CDR NER rows); <b>BERT-Large (P)</b> wins <b>3</b> (DDI, ChemProt, HoC); <b>BERT-Large (P+M)</b> wins
+        <b>0</b>. ELMo and the cited state-of-the-art baselines never top a row.</p>
+
+      <table>
+        <thead><tr>
+          <th>Task</th><th>Metric</th><th class="num">SOTA*</th><th class="num">ELMo</th><th class="num">BioBERT</th>
+          <th class="num">Base(P)</th><th class="num">Base(P+M)</th><th class="num">Large(P)</th><th class="num">Large(P+M)</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>MedSTS</td><td>Pearson</td><td class="num">83.6</td><td class="num">68.6</td><td class="num">84.5</td><td class="num">84.5</td><td class="num"><b>84.8</b></td><td class="num">84.6</td><td class="num">83.2</td></tr>
+          <tr><td>BIOSSES</td><td>Pearson</td><td class="num">84.8</td><td class="num">60.2</td><td class="num">82.7</td><td class="num">89.3</td><td class="num"><b>91.6</b></td><td class="num">86.3</td><td class="num">75.1</td></tr>
+          <tr><td>BC5CDR-disease</td><td>F1</td><td class="num">84.1</td><td class="num">83.9</td><td class="num">85.9</td><td class="num"><b>86.6</b></td><td class="num">85.4</td><td class="num">82.9</td><td class="num">83.8</td></tr>
+          <tr><td>BC5CDR-chemical</td><td>F1</td><td class="num">93.3</td><td class="num">91.5</td><td class="num">93.0</td><td class="num"><b>93.5</b></td><td class="num">92.4</td><td class="num">91.7</td><td class="num">91.1</td></tr>
+          <tr><td>ShARe/CLEFE</td><td>F1</td><td class="num">70.0</td><td class="num">75.6</td><td class="num">72.8</td><td class="num">75.4</td><td class="num"><b>77.1</b></td><td class="num">72.7</td><td class="num">74.4</td></tr>
+          <tr><td>DDI</td><td>micro F1</td><td class="num">72.9</td><td class="num">78.9</td><td class="num">78.8</td><td class="num">78.1</td><td class="num">79.4</td><td class="num"><b>79.9</b></td><td class="num">76.3</td></tr>
+          <tr><td>ChemProt</td><td>micro F1</td><td class="num">64.1</td><td class="num">66.6</td><td class="num">71.3</td><td class="num">72.5</td><td class="num">69.2</td><td class="num"><b>74.4</b></td><td class="num">65.1</td></tr>
+          <tr><td>i2b2</td><td>F1</td><td class="num">73.7</td><td class="num">71.2</td><td class="num">72.2</td><td class="num">74.4</td><td class="num"><b>76.4</b></td><td class="num">73.3</td><td class="num">73.9</td></tr>
+          <tr><td>HoC</td><td>F1</td><td class="num">81.5</td><td class="num">80.0</td><td class="num">82.9</td><td class="num">85.3</td><td class="num">83.1</td><td class="num"><b>87.3</b></td><td class="num">85.3</td></tr>
+          <tr><td>MedNLI</td><td>accuracy</td><td class="num">73.5</td><td class="num">71.4</td><td class="num">80.5</td><td class="num">82.2</td><td class="num"><b>84.0</b></td><td class="num">81.5</td><td class="num">83.8</td></tr>
+          <tr><td><b>Total</b></td><td>macro-avg</td><td class="num">—</td><td class="num">78.8</td><td class="num">80.5</td><td class="num">82.2</td><td class="num"><b>82.3</b></td><td class="num">81.5</td><td class="num">79.2</td></tr>
+        </tbody>
+      </table>
+
+      <p>Four of the five row-max wins for BERT-Base(P+M) sit in the clinical domain (MedSTS, ShARe/CLEFE, i2b2,
+        MedNLI) — the fifth, BIOSSES, is biomedical — which matches the paper's own reading: "BERT-Base (P+M) is
+        significantly superior to other models" in the clinical domain specifically, since MIMIC-III
+        continuation-pretraining directly targets that genre. The large models are the surprise: the paper reports
+        that BERT-Base beats BERT-Large everywhere except relation extraction and document classification, and
+        offers as a partial explanation that those two task types carry the longest average sentence lengths in
+        Table 1 — i.e. Large's edge shows up specifically where sentences run longest, not where Base is said to
+        handle anything better. It separately flags BERT-Large(P+M) as "worse than other models overall" and
+        attributes that partly to MIMIC-III being "relatively smaller" than the PubMed corpus, insufficient to
+        pre-train the large model — yet BERT-Large(P) alone is still the single best performer on the multilabel
+        HoC task.</p>
+
+      <p>ELMo trails BERT everywhere in aggregate, but it isn't uniformly the worst model on every row: as printed,
+        it beats the cited SOTA* baseline on <b>3 of the 10</b> rows — ShARe/CLEFE (75.6 vs. 70.0, SOTA* cited to
+        Leaman et al. 2015), DDI (78.9 vs. 72.9, cited to Zhang et al. 2018), and ChemProt (66.6 vs. 64.1, cited to
+        Peng et al. 2018) — all clinical- or biomedical-NER/relation-extraction tasks, two of them (DDI, ChemProt)
+        against a SOTA* citation from 2018, the year before this paper. The ShARe/CLEFE margin doesn't hold up,
+        though — see the table-inconsistency callout below: against the appendix's own F1 for Leaman et al. (75.3),
+        ELMo's real margin there is <b>0.3</b>, not 5.6.</p>
+
+      <div class="callout">
+        <div class="lbl">// table anomaly — verified, not a transcription error</div>
+        <p>The printed <b>Total</b> row above is reproduced exactly as it appears in the PDF: six numbers, sitting
+          under the ELMo, BioBERT, Base(P), Base(P+M), Large(P), and Large(P+M) columns, with nothing at all printed
+          under SOTA*. Re-deriving each column's own macro-average from its ten printed cells (a plain mean, per
+          §3.6's stated method) shows the six Total values reconcile almost exactly with the <b>BioBERT
+          (80.46≈80.5), Base(P) (82.18≈82.2), Base(P+M) (82.34≈82.3), Large(P) (81.46≈81.5), and Large(P+M)
+          (79.20=79.2)</b> columns — but the value sitting under ELMo's header, <b>78.8</b>, is nowhere near ELMo's
+          own re-derived average of <b>74.79</b> (a 4.0-point gap, far outside 1-decimal rounding noise). It isn't
+          a clean match for the SOTA* column's own average either — <b>78.15</b> is 0.65 away from 78.8, outside the
+          roughly ±0.05 rounding envelope a ten-cell mean should produce — so a plain one-column shift doesn't fully
+          explain the printed value. No column average matches 78.8 exactly; the nearest is Large&nbsp;(P+M)'s 79.20,
+          0.40 away, which is not the neighbouring column either. Every other total in the row checks out to within 0.04.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// table inconsistency — ShARe/CLEFE and i2b2, Table 3 vs. Appendix A</div>
+        <p>Table 3 labels every ShARe/CLEFE and i2b2 column "F" (F1), but the printed cells don't all match the
+          paper's own Appendix A, which gives full P/R/F1 for both rows. For ShARe/CLEFE, Appendix A.1 reports
+          BioBERT 79.2/72.8/<b>75.9</b>, Base(P) 80.0/75.4/<b>77.6</b>, Base(P+M) 81.3/77.1/<b>79.2</b>, Large(P)
+          73.0/72.7/<b>72.8</b>, and Large(P+M) 73.2/74.4/<b>73.8</b> (P/R/F1) — but Table 3's ShARe/CLEFE row prints
+          72.8, 75.4, 77.1, 72.7, and 74.4 for those five models, each one matching the appendix's <b>Recall</b>
+          column, not its F1. Table 3's ELMo cell (75.6) is the exception that does match the appendix's F1
+          (P/R/F1 = 77.9/73.4/75.6). Table 3's SOTA* cell for the row, 70.0, matches none of Leaman et al.'s
+          appendix-reported P/R/F1 (79.7/71.3/75.3). The same pattern appears once more in i2b2: Table 3's ELMo
+          cell (71.2) is the appendix's <b>precision</b> (P/R/F1 = 71.2/71.1/71.1), not its F1 (71.1); every other
+          i2b2 cell in Table 3 — SOTA*, BioBERT, and all four "Our BERT" columns — does match the appendix's F1
+          exactly. The appendix's own P/R/F1/TP/FP/FN figures are internally consistent with each other in both
+          rows; Table 3 is the one that doesn't reconcile with them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>BLUE's actual contribution is narrower than "ten new biomedical benchmarks" — it is a standardized
+        packaging of ten pre-existing shared tasks behind one split, one metric-per-task, and reference code, plus
+        one new empirical result (domain-continued BERT beats ELMo and old task-specific SOTA on this suite). That
+        packaging work is genuinely useful and is why the field adopted the GLUE-style aggregate-score idea for
+        biomedicine — but several things in the paper itself are worth checking before trusting a number lifted
+        from it.</p>
+
+      <p><b>A bibliographic error attaches to the one baseline the title names.</b> The in-text ELMo citations — in
+        the introduction ("one makes use of ELMo (Peters et al., 2017)") and in §4.2 ("We adopted the ELMo model
+        pre-trained on PubMed abstracts (Peters et al., 2017)") — both cite
+        <span class="mono">(Peters et al., 2017)</span>. The paper's own bibliography resolves that citation to:
+        "Matthew E. Peters, Waleed Ammar, Chandra Bhagavatula, and Russell Power. 2017. Semi-supervised sequence
+        tagging with bidirectional language models. In Proceedings of ACL, pages 1756–1765" — that is
+        <b>TagLM</b>, a real but different model. The actual ELMo paper is Peters, Neumann, Iyyer, Gardner, Clark,
+        Lee &amp; Zettlemoyer, "Deep Contextualized Word Representations," NAACL 2018 — which does not appear
+        anywhere in BLUE's 42-entry reference list. This doesn't cast doubt on what was actually run (the method
+        description and the AllenNLP ELMo link in §4.2 make clear the baseline is genuine ELMo, not TagLM), but the
+        citation itself is simply wrong throughout, on the one baseline the title names.</p>
+
+      <p><b>The Total row doesn't reconcile with its own columns</b> (see the callout above the fold in "what they
+        found"): the value sitting in ELMo's column position (78.8) is 4.0 points from ELMo's own re-derived
+        average (74.79), while every other column's total matches to within 0.04. Anyone quoting "ELMo's BLUE score
+        is 78.8" is quoting a number that does not correspond to the ten ELMo cells printed two lines above it.</p>
+
+      <p><b>Table 3 doesn't always print what its own header says.</b> Five of the seven "F1" cells in the
+        ShARe/CLEFE row (BioBERT, Base(P), Base(P+M), Large(P), Large(P+M)) are actually the appendix's Recall
+        values, not F1, and the row's SOTA* cell matches none of Leaman et al.'s appendix-reported P/R/F1; i2b2's
+        ELMo cell is likewise the appendix's precision rather than its F1. See the table-inconsistency callout in
+        "what they found" for the full comparison — the appendix's own P/R/F1/TP/FP/FN figures are internally
+        consistent, so Table 3 is the one that doesn't reconcile with them.</p>
+
+      <p><b>No spread is ever reported, even though the BERT results are a best-of-several selection.</b> The paper
+        flags exactly where this would matter — BIOSSES has only 20 test examples, and §5 notes "all BERT models'
+        performance was unstable" (that same sentence miscounts the split, calling it "only 16 sentence pairs in the
+        test set" when Table 1 gives 16 as the <em>dev</em> size and 20 as the test size) — and says its own BERT results were obtained "by following the same strategy:
+        selecting the best model on the development set after several runs." So every BERT cell in Table 3 is a
+        best-of-<i>N</i> pick, not a single run (the paper doesn't say whether ELMo or the cited SOTA* numbers
+        follow the same practice) — which, if anything, is more likely to overstate a model's true expected
+        performance the higher its run-to-run variance is, exactly the situation the paper flags for BIOSSES.
+        Neither the run count, nor a standard deviation, nor a confidence interval appears anywhere in the
+        paper.</p>
+
+      <p><b>The aggregate blends metrics and test-set sizes without weighting.</b> The Total score is an unweighted
+        mean over ten rows that mix Pearson correlation (MedSTS, BIOSSES), F1/micro-F1 (seven rows), and accuracy
+        (MedNLI) — and treats BIOSSES's 20-example test set as equally influential on the aggregate as i2b2's 6,293
+        relations or MedNLI's 1,422 pairs. That is the same aggregation choice GLUE made (the paper says so
+        explicitly, citing Wang et al. 2018a and Lee et al. 2019 for the practice), so it's a shared, not unique,
+        limitation — but it means a single small, high-variance corpus can move the headline number by more than
+        its sample size would justify.</p>
+
+      <p><b>The "SOTA*" column is not a controlled baseline.</b> It's ten numbers, one per row, lifted from eight
+        different papers (2011–2019) — two of them (Chen et al. 2019 for MedSTS/BIOSSES; Yoon et al. 2018 for both
+        BC5CDR rows) supply two rows each — each with its own feature engineering, tokenization, and — per the
+        footnote — current only "as of April 2019." BLUE never re-runs any of them under its own harness, so a
+        comparison like "ELMo beats SOTA* on DDI" is really "ELMo beats whatever Zhang et al. (2018) reported for
+        DDI," not a head-to-head run under identical conditions.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">BERT-Base/Large (both continued-pretrained on PubMed and PubMed+MIMIC-III) and ELMo (PubMed-pretrained) are reasonable, contemporaneous 2019 choices; the "SOTA*" column is eight uncontrolled, non-reproduced citations from 2011–2019, not a run-under-one-harness baseline.</p>
+        <span class="k">contamination</span><p class="v">Mostly outside the paper's frame &mdash; these are 2019 supervised fine-tuning baselines on their own official test splits, not pretraining-corpus leakage in the modern LLM sense. One overlap is checkable in the paper's own text, though, and goes unmentioned: MedNLI is &ldquo;a collection of sentence pairs selected from MIMIC-III&rdquo; (&sect;3.5), and the winning model on that row &mdash; BERT-Base&nbsp;(P+M), at 84.0 against Base&nbsp;(P)'s 82.2 &mdash; is the one continue-pretrained on MIMIC-III clinical notes (&gt;500M words, Table&nbsp;2). That is unlabeled source-text overlap rather than label leakage, and the margin is small, but the paper never raises it. The comparison does not extend to ShARe/CLEFE, which the paper sources to MIMIC-<b>II</b>, a different release.</p>
+        <span class="k">what's missed</span><p class="v">Any run-count/seed/variance reporting despite the BERT results being a best-of-several dev-set pick and despite explicitly noting BIOSSES instability; a reconciled Total row (the ELMo aggregate as printed does not match ELMo's own ten cells); two rows (ShARe/CLEFE, i2b2) where Table 3 prints recall or precision under an "F1" header instead of the appendix's actual F1; a controlled re-run of the SOTA* baselines; and the ELMo citation itself, which points to TagLM (Peters et al. 2017) rather than the actual ELMo paper (Peters et al. 2018) throughout.</p>
+        <span class="k">would raise confidence</span><p class="v">Reported run counts and variance, especially for the 20-example BIOSSES test set; a corrected Total row, ELMo citation, and ShARe/CLEFE/i2b2 cells matching the appendix's own F1 values; and a same-harness re-run of the cited SOTA* systems rather than static literature numbers.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>BLUE did what it set out to do — give biomedical NLP a GLUE-shaped common yardstick — and its central
+          finding (domain-continued BERT beats general-domain ELMo and old task-specific baselines) is well
+          supported by most of Table 3's individual rows. But the paper is less careful with itself than with its
+          benchmark: no BERT run reports a spread despite being a best-of-several dev-set pick, the printed Total row's
+          ELMo cell doesn't reconcile with ELMo's own column, its ELMo citations point at the wrong paper (TagLM,
+          not ELMo), and — the largest of the three — Table 3 prints recall instead of F1 for five of seven
+          ShARe/CLEFE models and precision instead of F1 for i2b2's ELMo cell, both contradicted by the paper's own,
+          internally consistent appendix. None of that changes the paper's broad conclusion, but it does mean no
+          single number in Table 3 should be repeated without checking it against Appendix A first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li><b>The GLUE-for-biomedicine template.</b> Five task types, ten dataset rows (nine source corpora —
+          BC5CDR contributes two label sets), all pre-existing shared tasks repackaged behind one split and one
+          metric per task, with a macro-averaged Total score modeled directly on GLUE's aggregation. The same
+          recipe was later copied for law (LexGLUE, LEXTREME) and Chinese medicine (CMB).</li>
+        <li><b>Domain-continued pretraining wins, unevenly.</b> BERT-Base (P+M) — continued-pretrained on PubMed
+          abstracts <em>and</em> MIMIC-III clinical notes — is the row-max on 5 of 10 rows, mostly clinical-domain
+          tasks; BERT-Large wins only on relation extraction and document classification; ELMo trails BERT
+          everywhere in aggregate but still beats the cited (uncontrolled) SOTA* numbers on 3 of 10 rows, though its
+          ShARe/CLEFE margin shrinks from 5.6 to 0.3 once checked against the appendix's own F1. Every BERT number
+          is a best-of-several dev-set pick, and none of it comes with a reported spread — including on BIOSSES,
+          whose 20-example test set the authors themselves call unstable.</li>
+        <li><b>Verify before you quote it.</b> The Total row doesn't reconcile as ELMo's own average (78.8 printed
+          vs. 74.79 re-derived from its ten cells); every ELMo citation in the paper resolves in the bibliography to
+          TagLM (Peters et al., 2017), not the actual ELMo paper (Peters et al., 2018); and Table 3's ShARe/CLEFE
+          row prints recall, not F1, for five of seven models, with its i2b2 ELMo cell printing precision. All three
+          are checkable against material the paper itself provides — none is a matter of opinion.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets<br>
+        Yifan Peng, Shankai Yan, Zhiyong Lu · 2019 · BioNLP 2019<br>
+        <a href="https://arxiv.org/abs/1906.05474">read the original ↗</a> · slug: peng-2019-blue
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

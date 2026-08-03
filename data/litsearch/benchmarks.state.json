@@ -1152,6 +1152,15 @@
         "First paper where the staged PDF is not the version being described, and first protein-biology paper in the graph. arXiv hosts only v1 while the NeurIPS camera-ready differs materially: different Heldout-Families numbers (Transformer 0.30/13.04/10.04 vs 0.35/11.77/8.87), an added Heldout-Clans column-group, a GLUE citation v1 lacks, no appendix at all, and a renumbered supplement. I decided to build from the camera-ready with source-arrow still pointing at arXiv (backfill_dates.py parses the timeline date from it), on condition every divergence is labelled; the critic endorsed the result and it is now written into CLAUDE.md as the standing pattern for two-version papers. B7 was my own error: my brief asserted 'TAPE is explicitly modelled on GLUE' and the builder put it on five surfaces, but the paper's only GLUE reference is about model size and v1 cites SuperGLUE solely for citation guidelines. Second time my brief prose became page text. Builder also reported staged files that did not exist, costing the critic a re-derivation. Episode agent found no page errors and contributed a finding that sharpens the whole version theme: the camera-ready prints a Heldout Clans column while the word 'clan' appears exactly once in its 13 pages (the table header), and it points to Sections A.1/A.3/A.5 in a document that ends mid-bibliography - the version that explains clans is the version that lacks the column. Verified and added."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "peng-2019-blue",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Most error-dense source paper the pipeline has processed: four verified defects in a 997-citation paper. (1) It mis-cites the model in its own title — every in-text ELMo citation resolves in BLUE's own bibliography to Peters et al. 2017 'Semi-supervised sequence tagging' (TagLM); the actual ELMo paper is absent from all 42 references, which is why the edge sweep correctly found no ELMo edge. (2) Table 3's ShARe/CLEFE row is labelled F1 but prints the appendix's Recall for five of seven models, and the i2b2 ELMo cell prints precision; the appendix is internally consistent from its own TP/FP/FN, so the headline table is the wrong one — this collapses ELMo's apparent 5.6-point margin over SOTA on that task to 0.3. The page had asserted the opposite ('checks out cell-for-cell'), so this was the critic's find, not the builder's. (3) The Total row's ELMo cell prints 78.8 where ELMo's ten values average 74.79, with no SOTA cell at all and no column average matching 78.8. (4) Episode agent found a fourth: section 5 calls BIOSSES 'only 16 sentence pairs in the test set' when Table 1 gives 16 as dev and 20 as test. It also found a contamination overlap the page had dismissed — MedNLI is 'selected from MIMIC-III' and the winning model on that row is the one continue-pretrained on MIMIC-III clinical notes; verdict rewritten. Round-2's single blocker was a false superlative inside the shift-disposal I myself requested (Large(P+M) at 0.40 is nearer 78.8 than SOTA's 0.65, and the page printed 79.20 two clauses earlier). Version check ran and correctly found nothing — arXiv v2 and the published BioNLP PDF are content-identical, the new rule's first clean negative."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1201,22 +1210,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T14:08 dziri-2022-begin: step -> queue-ops",
-    "2026-08-02T14:08 dziri-2022-begin: step -> podcast",
-    "2026-08-02T14:23 completed dziri-2022-begin (verdict=approved, rounds=3)",
-    "2026-08-02T14:25 started yang-2021-superb ('SUPERB: Speech processing Universal PERformance Benchmark')",
-    "2026-08-02T14:25 yang-2021-superb: step -> fetch",
-    "2026-08-02T14:30 yang-2021-superb: step -> fetch",
-    "2026-08-02T14:30 yang-2021-superb: step -> figures",
-    "2026-08-02T14:30 yang-2021-superb: step -> draft",
-    "2026-08-02T14:46 yang-2021-superb: step -> draft",
-    "2026-08-02T14:59 yang-2021-superb: step -> critique (round 1)",
-    "2026-08-02T14:59 yang-2021-superb: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T15:13 yang-2021-superb: step -> revise",
-    "2026-08-02T15:13 yang-2021-superb: step -> critique (round 2)",
-    "2026-08-02T15:13 yang-2021-superb: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-02T15:13 yang-2021-superb: step -> verify",
-    "2026-08-02T15:13 yang-2021-superb: step -> queue-ops",
     "2026-08-02T15:14 yang-2021-superb: step -> podcast",
     "2026-08-02T15:26 completed yang-2021-superb (verdict=approved, rounds=2)",
     "2026-08-02T15:28 started hu-2020-xtreme ('XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual Generalization')",
@@ -1250,6 +1243,22 @@
     "2026-08-02T17:38 rao-2019-tape: step -> verify",
     "2026-08-02T17:39 rao-2019-tape: step -> queue-ops",
     "2026-08-02T17:39 rao-2019-tape: step -> podcast",
-    "2026-08-02T17:53 completed rao-2019-tape (verdict=approved, rounds=3)"
+    "2026-08-02T17:53 completed rao-2019-tape (verdict=approved, rounds=3)",
+    "2026-08-02T17:55 started peng-2019-blue ('Transfer Learning in Biomedical Natural Language Processing: An Evaluation of BERT and ELMo on Ten Benchmarking Datasets')",
+    "2026-08-02T17:55 peng-2019-blue: step -> fetch",
+    "2026-08-02T18:16 peng-2019-blue: step -> figures",
+    "2026-08-02T18:16 peng-2019-blue: step -> draft",
+    "2026-08-02T18:27 peng-2019-blue: step -> critique (round 1)",
+    "2026-08-02T18:27 peng-2019-blue: 9 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T18:48 peng-2019-blue: step -> revise",
+    "2026-08-02T18:48 peng-2019-blue: step -> critique (round 2)",
+    "2026-08-02T18:48 peng-2019-blue: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T18:48 peng-2019-blue: step -> revise",
+    "2026-08-02T18:48 peng-2019-blue: step -> critique (round 3)",
+    "2026-08-02T18:48 peng-2019-blue: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T18:48 peng-2019-blue: step -> verify",
+    "2026-08-02T18:49 peng-2019-blue: step -> queue-ops",
+    "2026-08-02T18:49 peng-2019-blue: step -> podcast",
+    "2026-08-02T19:05 completed peng-2019-blue (verdict=approved, rounds=3)"
   ]
 }
