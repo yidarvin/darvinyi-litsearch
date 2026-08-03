@@ -11,7 +11,7 @@ Candidates are *leads*, not authority: the builder must confirm each against
 the paper's printed bibliography before writing it into data/papers.json.
 
 This exists because the same sweep was being retyped inline for every paper,
-and five distinct matcher gaps were found the hard way, each of which had
+and six distinct matcher gaps were found the hard way, each of which had
 already cost or nearly cost a real edge:
 
   1. LINE-BREAK HYPHENS. Bibliographies break titles across lines, so
@@ -307,31 +307,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    # Gap 6: S2's reference list can belong to a DIFFERENT VERSION of the
-    # paper than the one staged. "Repairing the Cracked Foundation" is on
-    # arXiv only as v1 (14 Feb 2022), but S2 serves the later JAIR version's
-    # references -- so it listed PaLM (Apr 2022), BIG-bench (Jun 2022) and
-    # HELM (Nov 2022) as things a February paper cites. All three scored zero
-    # hits in the printed bibliography. The tell is cheap: a reference dated
-    # after the citing paper cannot be in the version we are reading, so warn
-    # and let the confirmer check the printed bibliography.
-    self_year = None
-    # The arXiv stamp is rotated into the left margin, so its position in the
-    # extracted text is not fixed -- on this paper it landed at char 4129.
-    # Search the whole first page rather than a fixed prefix.
-    m = re.search(r"arXiv:(\d{2})(\d{2})\.\d{4,5}", paper_txt[:12000])
-    if m:
-        self_year = 2000 + int(m.group(1))
-    if self_year:
-        future = sorted({
-            (p.get("year"), (p.get("title") or "")[:58])
-            for p in refs if p.get("year") and p["year"] > self_year})
-        if future:
-            listed = "; ".join(f"{y} {t}" for y, t in future[:6])
-            warnings.append(
-                f"refs.json lists {len(future)} reference(s) published AFTER this "
-                f"paper's arXiv year ({self_year}) -- S2 may be serving a later "
-                f"version's bibliography. Confirm each against the printed "
-                f"bibliography before writing it. e.g. {listed}")
-
