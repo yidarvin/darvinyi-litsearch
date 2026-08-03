@@ -554,6 +554,31 @@ actually uses. → `set-step draft`
    different name. If after that you still believe the gap is real, write
    the narrow version — "Table 1 carries no dispersion" beats "no variance
    is reported" and is the one that survives.
+
+   **Two places you keep forgetting to look, both already in front of you.**
+   The rebuttal is often not buried in an appendix — it is in material you
+   have already chosen to put on the page or read into `tables.md`:
+
+   - **Your own embedded figures.** On TIFA the page said "nothing in the
+     pipeline asks about interactions between elements", while Figure 4 —
+     which that same page embeds and captions — shows the pipeline
+     generating "Is the dog next to the ocean?". Before committing an
+     absence claim, re-read the figures you embedded as if you were the
+     reader seeing them next to the sentence.
+   - **The paper's qualitative examples.** Appendix example dumps are
+     generated *output*, so they are direct evidence of what the system can
+     produce. TIFA's Appendix A contains "is the surfer walking on the
+     beach?" — two properties of one entity — which refuted the *narrowed*
+     version of that same claim on the next round. A narrowed absence is
+     still an absence and gets the same search.
+
+   And when an absence turns out to be false twice, stop narrowing and look
+   for the **positive** version of the criticism instead. On TIFA the real
+   finding was not a missing question type but an aggregation mismatch:
+   §3.2 scores an unweighted mean over questions while Appendix C.1 tells
+   human raters that "objects are the most important elements" and cascades
+   a missing object to all its attributes. That is checkable, specific, and
+   stronger than anything the absence framing could have supported.
 4. Check this paper against every survey's rubric in `data/surveys.json`
    (not just `survey_id` — a paper can be core to more than one). Tag with
    `python3 scripts/tag_papers.py add <survey_id> <slug>` for each match.

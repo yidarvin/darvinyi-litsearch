@@ -10621,6 +10621,22 @@
       "explainer": "papers/durmus-2020-feqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/durmus-2020-feqa.mp3",
       "tags": ["evaluations"]
+    },
+    {
+      "slug": "hu-2023-tifa",
+      "short": "TIFA",
+      "title": "TIFA: Accurate and Interpretable Text-to-Image Faithfulness Evaluation with Question Answering",
+      "authors": "Hu, Liu, Kasai, Wang, Ostendorf, Krishna, Smith",
+      "year": 2023,
+      "date": "2023-03",
+      "venue": "ICCV 2023",
+      "citation_count": 448,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Washington / Allen Institute for AI",
+      "abstract": "Generates multiple-choice question-answer pairs from a text-to-image prompt with GPT-3, filters them with UnifiedQA, then scores a generated image's faithfulness as the accuracy of an off-the-shelf VQA model (mPLUG by default) answering those questions against the image. Releases TIFA v1.0, a benchmark of 4,081 prompts and 25,829 questions across 12 categories, and shows the resulting metric correlates with human faithfulness judgments far better than CLIPScore or caption-based n-gram metrics (Spearman's ρ 0.597 vs. 0.332 for CLIPScore).",
+      "explainer": "papers/hu-2023-tifa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hu-2023-tifa.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18036,6 +18052,22 @@
     { "from": "dziri-2022-faithdial", "to": "durmus-2020-feqa" },
     { "from": "fu-2024-gptscore", "to": "durmus-2020-feqa" },
     { "from": "liu-2023-g-eval", "to": "durmus-2020-feqa" },
-    { "from": "lyu-2024-crud-rag", "to": "durmus-2020-feqa" }
+    { "from": "lyu-2024-crud-rag", "to": "durmus-2020-feqa" },
+    { "from": "hu-2023-tifa", "to": "anderson-2016-spice" },
+    { "from": "hu-2023-tifa", "to": "banerjee-2005-meteor" },
+    { "from": "hu-2023-tifa", "to": "brown-2020-gpt3" },
+    { "from": "hu-2023-tifa", "to": "chung-2022-flan" },
+    { "from": "hu-2023-tifa", "to": "goyal-2017-vqa-v2" },
+    { "from": "hu-2023-tifa", "to": "hessel-2021-clipscore" },
+    { "from": "hu-2023-tifa", "to": "khashabi-2020-unifiedqa" },
+    { "from": "hu-2023-tifa", "to": "lin-2004-rouge" },
+    { "from": "hu-2023-tifa", "to": "lin-2014-coco" },
+    { "from": "hu-2023-tifa", "to": "papineni-2002-bleu" },
+    { "from": "hu-2023-tifa", "to": "press-2022-compositionality-gap" },
+    { "from": "hu-2023-tifa", "to": "touvron-2023-llama2" },
+    { "from": "hu-2023-tifa", "to": "vedantam-2015-cider" },
+    { "from": "hu-2023-tifa", "to": "wei-2022-cot" },
+    { "from": "liu-2024-evalcrafter", "to": "hu-2023-tifa" },
+    { "from": "mialon-2023-gaia", "to": "hu-2023-tifa" }
   ]
 }
