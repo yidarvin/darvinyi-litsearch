@@ -1161,6 +1161,15 @@
         "Most error-dense source paper the pipeline has processed: four verified defects in a 997-citation paper. (1) It mis-cites the model in its own title — every in-text ELMo citation resolves in BLUE's own bibliography to Peters et al. 2017 'Semi-supervised sequence tagging' (TagLM); the actual ELMo paper is absent from all 42 references, which is why the edge sweep correctly found no ELMo edge. (2) Table 3's ShARe/CLEFE row is labelled F1 but prints the appendix's Recall for five of seven models, and the i2b2 ELMo cell prints precision; the appendix is internally consistent from its own TP/FP/FN, so the headline table is the wrong one — this collapses ELMo's apparent 5.6-point margin over SOTA on that task to 0.3. The page had asserted the opposite ('checks out cell-for-cell'), so this was the critic's find, not the builder's. (3) The Total row's ELMo cell prints 78.8 where ELMo's ten values average 74.79, with no SOTA cell at all and no column average matching 78.8. (4) Episode agent found a fourth: section 5 calls BIOSSES 'only 16 sentence pairs in the test set' when Table 1 gives 16 as dev and 20 as test. It also found a contamination overlap the page had dismissed — MedNLI is 'selected from MIMIC-III' and the winning model on that row is the one continue-pretrained on MIMIC-III clinical notes; verdict rewritten. Round-2's single blocker was a false superlative inside the shift-disposal I myself requested (Large(P+M) at 0.40 is nearer 78.8 than SOTA's 0.65, and the page printed 79.20 two clauses earlier). Version check ran and correctly found nothing — arXiv v2 and the published BioNLP PDF are content-identical, the new rule's first clean negative."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "durmus-2020-feqa",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "Three critic rounds. The defining problem was a MANUFACTURED paper defect: the draft claimed FEQA's QA-reliability audit did not add up, 14%+16% against an implied 22% error budget, on four surfaces including the bottom line. The string 22% appears nowhere in the paper; it was derived from a reported 78% correct rate, and the two figures are disjoint accountings — 14% is a QA-error category the paper calls the majority of its errors, while 16% describes cases where the QA answer is CORRECT but F1 under-scores it, which sit inside the 78%. Round 2 then found the fix had reached only four of six surfaces AND that the replacement paragraph introduced a fresh false claim about XSum significance; I verified from Table 7's font layer that no XSum ROUGE cell carries a marker and four of six are negative, and fixed all three myself (one of my own splices introduced a subject-verb error I then rewrote). Tag: benchmarks removed, evaluations only. My doubt was right but the corpus settled it — every metric paper here (ROUGE x2, BLEURT, COMET, G-Eval, GPTScore, Prometheus x2, and maynez-2020-faithfulness, same year and same task) is evaluations-only, while every dual-tagged paper ships a named dataset. FEQA ships none. Note this queue item was processed under the benchmarks survey but adds no benchmarks member — legitimate, since tagging is judged per rubric. Two real paper findings survive: the 748/93 percent vs 286/48 percent XSum sampling gap, and a comparative the paper's own tables refute. Episode agent found a third, now added: section 3 uses BERT-base fine-tuned on both SQuAD-1.1 and SQuAD-2.0, only the 2.0 model can return 'unanswerable' which is counted as wrong, yet Table 7 reports one FEQA row without naming the variant."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1210,22 +1219,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T15:14 yang-2021-superb: step -> podcast",
-    "2026-08-02T15:26 completed yang-2021-superb (verdict=approved, rounds=2)",
-    "2026-08-02T15:28 started hu-2020-xtreme ('XTREME: A Massively Multilingual Multi-task Benchmark for Evaluating Cross-lingual Generalization')",
-    "2026-08-02T15:28 hu-2020-xtreme: step -> fetch",
-    "2026-08-02T15:51 hu-2020-xtreme: step -> figures",
-    "2026-08-02T15:51 hu-2020-xtreme: step -> draft",
-    "2026-08-02T16:06 hu-2020-xtreme: step -> critique (round 1)",
-    "2026-08-02T16:06 hu-2020-xtreme: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T16:19 hu-2020-xtreme: step -> revise",
-    "2026-08-02T16:19 hu-2020-xtreme: step -> critique (round 2)",
-    "2026-08-02T16:19 hu-2020-xtreme: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T16:19 hu-2020-xtreme: step -> revise",
-    "2026-08-02T16:19 hu-2020-xtreme: step -> critique (round 3)",
-    "2026-08-02T16:19 hu-2020-xtreme: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T16:19 hu-2020-xtreme: step -> verify",
-    "2026-08-02T16:20 hu-2020-xtreme: step -> queue-ops",
     "2026-08-02T16:20 hu-2020-xtreme: step -> podcast",
     "2026-08-02T16:34 completed hu-2020-xtreme (verdict=approved, rounds=3)",
     "2026-08-02T16:37 started rao-2019-tape ('Evaluating Protein Transfer Learning with TAPE')",
@@ -1259,6 +1252,22 @@
     "2026-08-02T18:48 peng-2019-blue: step -> verify",
     "2026-08-02T18:49 peng-2019-blue: step -> queue-ops",
     "2026-08-02T18:49 peng-2019-blue: step -> podcast",
-    "2026-08-02T19:05 completed peng-2019-blue (verdict=approved, rounds=3)"
+    "2026-08-02T19:05 completed peng-2019-blue (verdict=approved, rounds=3)",
+    "2026-08-02T19:07 started durmus-2020-feqa ('FEQA: A Question Answering Evaluation Framework for Faithfulness Assessment in Abstractive Summarization')",
+    "2026-08-02T19:07 durmus-2020-feqa: step -> fetch",
+    "2026-08-02T19:22 durmus-2020-feqa: step -> figures",
+    "2026-08-02T19:22 durmus-2020-feqa: step -> draft",
+    "2026-08-02T19:34 durmus-2020-feqa: step -> critique (round 1)",
+    "2026-08-02T19:34 durmus-2020-feqa: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T19:48 durmus-2020-feqa: step -> revise",
+    "2026-08-02T19:48 durmus-2020-feqa: step -> critique (round 2)",
+    "2026-08-02T19:48 durmus-2020-feqa: 3 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T19:48 durmus-2020-feqa: step -> revise",
+    "2026-08-02T19:48 durmus-2020-feqa: step -> critique (round 3)",
+    "2026-08-02T19:48 durmus-2020-feqa: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T19:48 durmus-2020-feqa: step -> verify",
+    "2026-08-02T19:49 durmus-2020-feqa: step -> queue-ops",
+    "2026-08-02T19:49 durmus-2020-feqa: step -> podcast",
+    "2026-08-02T20:02 completed durmus-2020-feqa (verdict=approved, rounds=3)"
   ]
 }

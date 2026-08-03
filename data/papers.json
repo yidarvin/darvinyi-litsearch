@@ -10605,6 +10605,22 @@
       "explainer": "papers/peng-2019-blue.html",
       "audio_url": "https://pod.darvinyi.com/audio/peng-2019-blue.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "durmus-2020-feqa",
+      "short": "FEQA",
+      "title": "FEQA: A Question Answering Evaluation Framework for Faithfulness Assessment in Abstractive Summarization",
+      "authors": "Durmus, He, Diab",
+      "year": 2020,
+      "date": "2020-05",
+      "venue": "ACL 2020",
+      "citation_count": 480,
+      "topic": "Benchmarks & Evals",
+      "author_group": "AWS AI",
+      "abstract": "A QA-based metric for abstractive-summarization faithfulness: mask spans in a summary sentence, generate a question per span with a BART model fine-tuned on QA2D, then score faithfulness as the F1 between those \"gold\" answers and what an off-the-shelf SQuAD-tuned QA model extracts from the source document. Across 748 CNN/DM and 286 XSum sentence-source pairs, FEQA has the strictly highest Pearson/Spearman correlation with human faithfulness judgments of eight compared metrics (32.01/28.23 on CNN/DM, 26.31/21.34 on XSum) and is the only one whose XSum correlation reaches statistical significance.",
+      "explainer": "papers/durmus-2020-feqa.html",
+      "audio_url": "https://pod.darvinyi.com/audio/durmus-2020-feqa.mp3",
+      "tags": ["evaluations"]
     }
   ],
   "edges": [
@@ -18009,6 +18025,17 @@
     { "from": "chalkidis-2021-lexglue", "to": "peng-2019-blue" },
     { "from": "luo-2022-biogpt", "to": "peng-2019-blue" },
     { "from": "niklaus-2023-lextreme", "to": "peng-2019-blue" },
-    { "from": "wang-2024-cmb", "to": "peng-2019-blue" }
+    { "from": "wang-2024-cmb", "to": "peng-2019-blue" },
+    { "from": "durmus-2020-feqa", "to": "devlin-2019-bert" },
+    { "from": "durmus-2020-feqa", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "durmus-2020-feqa", "to": "lewis-2019-bart" },
+    { "from": "durmus-2020-feqa", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "durmus-2020-feqa", "to": "radford-2019-gpt2" },
+    { "from": "durmus-2020-feqa", "to": "rajpurkar-2016-squad" },
+    { "from": "dziri-2022-begin", "to": "durmus-2020-feqa" },
+    { "from": "dziri-2022-faithdial", "to": "durmus-2020-feqa" },
+    { "from": "fu-2024-gptscore", "to": "durmus-2020-feqa" },
+    { "from": "liu-2023-g-eval", "to": "durmus-2020-feqa" },
+    { "from": "lyu-2024-crud-rag", "to": "durmus-2020-feqa" }
   ]
 }
