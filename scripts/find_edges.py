@@ -50,6 +50,25 @@ already cost or nearly cost a real edge:
      them and made "0 incoming" unverifiable. This script warns on the
      boundary; the fix is to re-fetch with `&offset=1000` and merge.
 
+  6. WRONG-VERSION REFERENCE LISTS. S2's references can belong to a
+     *different version* of the paper than the one staged. "Repairing the
+     Cracked Foundation" is on arXiv only as v1 (14 Feb 2022), but S2 serves
+     the later JAIR version's bibliography -- so it offered PaLM (Apr 2022),
+     BIG-bench (Jun 2022) and HELM (Nov 2022) as references of a February
+     paper. All three scored zero hits in the printed bibliography, along
+     with scratchpads and chain-of-thought: six false leads out of 28.
+     The cheap tell is a reference dated after the citing paper, which this
+     script now warns on. It is only a partial net -- S2 dated PaLM and
+     BIG-bench 2022, the same year as the paper, so year granularity cannot
+     separate those -- which is another reason the printed-bibliography
+     sweep is load-bearing rather than belt-and-braces.
+
+     A sibling of this: same author, same year, *different paper*. S2
+     offered `fabbri-2021-qafacteval` for this survey, but every Fabbri
+     citation in it is to SummEval. Confirm the title, not just the name
+     and year (cf. the METEOR Banerjee-2005 / Lavie-2007 pair, which has
+     produced a false lead on three separate papers).
+
 Semantic Scholar's reference lists are also simply incomplete -- DyVal's
 84-entry list omits the GPT-4 Technical Report that its printed
 bibliography cites -- so the printed-bibliography sweep is not a
@@ -172,6 +191,29 @@ def main():
                 f"so it is probably truncated. Re-fetch with &offset={got} and "
                 f"merge before trusting the incoming-edge count.")
 
+    # Gap 6: S2's reference list can belong to a DIFFERENT VERSION of the paper
+    # than the one staged. "Repairing the Cracked Foundation" exists on arXiv
+    # only as v1 (14 Feb 2022), but S2 serves the later JAIR version's
+    # references -- so it listed PaLM (Apr 2022), BIG-bench (Jun 2022) and HELM
+    # (Nov 2022) among the things a February paper cites. All three scored zero
+    # hits in the printed bibliography. The tell is cheap: a reference published
+    # after the citing paper cannot be in the version we are reading.
+    # The arXiv stamp is rotated into the left margin, so its position in the
+    # extracted text is not fixed -- on this paper it landed at char 4129.
+    # Search the whole first page rather than a fixed prefix.
+    m = re.search(r"arXiv:(\d{2})(\d{2})\.\d{4,5}", paper_txt[:12000])
+    if m:
+        self_year = 2000 + int(m.group(1))
+        future = sorted({(p.get("year"), (p.get("title") or "")[:58])
+                         for p in refs if p.get("year") and p["year"] > self_year})
+        if future:
+            listed = "; ".join(f"{y} {t}" for y, t in future[:6])
+            warnings.append(
+                f"refs.json lists {len(future)} reference(s) published AFTER this "
+                f"paper's arXiv year ({self_year}) -- S2 may be serving a later "
+                f"version's bibliography. Confirm each against the printed "
+                f"bibliography. e.g. {listed}")
+
     def match(paper):
         for aid in arxiv_ids(paper.get("externalIds")):
             if aid in by_arxiv:
@@ -265,3 +307,31 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    # Gap 6: S2's reference list can belong to a DIFFERENT VERSION of the
+    # paper than the one staged. "Repairing the Cracked Foundation" is on
+    # arXiv only as v1 (14 Feb 2022), but S2 serves the later JAIR version's
+    # references -- so it listed PaLM (Apr 2022), BIG-bench (Jun 2022) and
+    # HELM (Nov 2022) as things a February paper cites. All three scored zero
+    # hits in the printed bibliography. The tell is cheap: a reference dated
+    # after the citing paper cannot be in the version we are reading, so warn
+    # and let the confirmer check the printed bibliography.
+    self_year = None
+    # The arXiv stamp is rotated into the left margin, so its position in the
+    # extracted text is not fixed -- on this paper it landed at char 4129.
+    # Search the whole first page rather than a fixed prefix.
+    m = re.search(r"arXiv:(\d{2})(\d{2})\.\d{4,5}", paper_txt[:12000])
+    if m:
+        self_year = 2000 + int(m.group(1))
+    if self_year:
+        future = sorted({
+            (p.get("year"), (p.get("title") or "")[:58])
+            for p in refs if p.get("year") and p["year"] > self_year})
+        if future:
+            listed = "; ".join(f"{y} {t}" for y, t in future[:6])
+            warnings.append(
+                f"refs.json lists {len(future)} reference(s) published AFTER this "
+                f"paper's arXiv year ({self_year}) -- S2 may be serving a later "
+                f"version's bibliography. Confirm each against the printed "
+                f"bibliography before writing it. e.g. {listed}")
+
