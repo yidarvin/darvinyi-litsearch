@@ -10813,6 +10813,21 @@
       "explainer": "papers/sinha-2019-clutrr.html",
       "audio_url": "https://pod.darvinyi.com/audio/sinha-2019-clutrr.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "gehrmann-2022-cracked-foundation",
+      "short": "Cracked Foundation",
+      "title": "Repairing the Cracked Foundation: A Survey of Obstacles in Evaluation Practices for Generated Text",
+      "authors": "Gehrmann, Clark, Sellam",
+      "year": 2023,
+      "date": "2022-02",
+      "venue": "JAIR 2023",
+      "citation_count": 247,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Google Research",
+      "abstract": "Surveys two decades of critiques of NLG evaluation across automatic metrics, human evaluation, and datasets, then proposes \"evaluation reports\" — model/data cards paired with multi-metric, multi-dataset benchmarks and targeted stress-test suites — as a replacement for single leaderboard numbers. Backs the diagnosis with an audit of 66 ACL/EMNLP/INLG 2021 papers against a 29-item checklist, finding 27.3% average compliance.",
+      "explainer": "papers/gehrmann-2022-cracked-foundation.html",
+      "audio_url": "https://pod.darvinyi.com/audio/gehrmann-2022-cracked-foundation.mp3"
     }
   ],
   "edges": [
@@ -18369,6 +18384,31 @@
     { "from": "sinha-2019-clutrr", "to": "rajpurkar-2016-squad" },
     { "from": "sinha-2019-clutrr", "to": "williams-2017-multinli" },
     { "from": "cao-2025-generalizable-eval-survey", "to": "sinha-2019-clutrr" },
-    { "from": "zhu-2024-dyval", "to": "sinha-2019-clutrr" }
+    { "from": "zhu-2024-dyval", "to": "sinha-2019-clutrr" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "bender-2021-stochastic-parrots" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "bowman-2015-snli" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "bowman-2021-fix-benchmarking" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "conneau-2018-xnli" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "durmus-2020-feqa" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "gebru-2018-datasheets" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "gehrmann-2021-gem" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "lin-2004-rouge" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "maynez-2020-faithfulness" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "mitchell-2018-model-cards" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "nie-2020-anli" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "pagnoni-2021-frank" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "papineni-2002-bleu" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "post-2018-sacrebleu" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "rei-2020-comet" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "ribeiro-2020-checklist" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "scialom-2021-questeval" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "sellam-2020-bleurt" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "stiennon-2020-summarize" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "williams-2017-multinli" },
+    { "from": "chowdhery-2022-palm", "to": "gehrmann-2022-cracked-foundation" },
+    { "from": "dziri-2022-begin", "to": "gehrmann-2022-cracked-foundation" },
+    { "from": "touvron-2023-llama2", "to": "gehrmann-2022-cracked-foundation" },
+    { "from": "wu-2023-bloomberggpt", "to": "gehrmann-2022-cracked-foundation" }
   ]
 }
