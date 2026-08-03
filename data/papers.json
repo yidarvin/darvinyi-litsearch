@@ -10717,6 +10717,22 @@
       "explainer": "papers/ghosh-2023-geneval.html",
       "audio_url": "https://pod.darvinyi.com/audio/ghosh-2023-geneval.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "scialom-2021-questeval",
+      "short": "QuestEval",
+      "title": "QuestEval: Summarization Asks for Fact-based Evaluation",
+      "authors": "Scialom, Dray, Gallinari, Lamprier, Piwowarski, Staiano, Wang",
+      "year": 2021,
+      "date": "2021-03",
+      "venue": "EMNLP 2021",
+      "citation_count": 371,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Sorbonne / reciTAL",
+      "abstract": "A reference-free summarization metric that unifies a precision score (F1 between QA answers on summary-generated questions, checked against the source) and a recall score (weighted answerability of source-generated questions, checked against the summary) into a single harmonic-mean F-score. Reported as the first QA-based metric to beat ROUGE and BERTScore on human correlation, averaging 33.5 Pearson across four SummEval dimensions with zero references vs. 23.1 for BERTScore-f with 11 references — though the paper's own ablations show a simpler Precision Only variant, not the recommended learned-weighter configuration, tops three of the five result grids it reports.",
+      "explainer": "papers/scialom-2021-questeval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/scialom-2021-questeval.mp3",
+      "tags": ["evaluations"]
     }
   ],
   "edges": [
@@ -18192,6 +18208,17 @@
     { "from": "ghosh-2023-geneval", "to": "lin-2014-coco" },
     { "from": "ghosh-2023-geneval", "to": "papineni-2002-bleu" },
     { "from": "ghosh-2023-geneval", "to": "raffel-2020-t5" },
-    { "from": "ghosh-2023-geneval", "to": "vedantam-2015-cider" }
+    { "from": "ghosh-2023-geneval", "to": "vedantam-2015-cider" },
+    { "from": "scialom-2021-questeval", "to": "devlin-2019-bert" },
+    { "from": "scialom-2021-questeval", "to": "durmus-2020-feqa" },
+    { "from": "scialom-2021-questeval", "to": "lewis-2019-bart" },
+    { "from": "scialom-2021-questeval", "to": "lin-2004-rouge" },
+    { "from": "scialom-2021-questeval", "to": "maynez-2020-faithfulness" },
+    { "from": "scialom-2021-questeval", "to": "papineni-2002-bleu" },
+    { "from": "scialom-2021-questeval", "to": "raffel-2020-t5" },
+    { "from": "scialom-2021-questeval", "to": "rajpurkar-2016-squad" },
+    { "from": "scialom-2021-questeval", "to": "vedantam-2015-cider" },
+    { "from": "fu-2024-gptscore", "to": "scialom-2021-questeval" },
+    { "from": "lyu-2024-crud-rag", "to": "scialom-2021-questeval" }
   ]
 }

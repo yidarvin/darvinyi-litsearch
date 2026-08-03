@@ -1224,6 +1224,15 @@
         "3 critic rounds. The whole paper turned on one discovery: Table 5's CAPTION is about comparing CLIP model variants, but its BODY also carries GENEVAL and Interannotator rows - and Figure 3 plots the ViT-H/14 row while section 4's prose quotes the ViT-B/32 row, with neither surface saying so. The draft accused the paper of two arithmetic errors: that its '22 point' counting improvement was really 8.9, and that its 'other four, more complex tasks' was really three. BOTH ACCUSATIONS WERE FALSE. Against ViT-B/32 every sub-claim lands exactly: counting 0.604 vs 0.823 = 21.9 ~ 22; single object 0.991 vs 0.953; colors 0.811 vs 0.808 (a 0.3-point edge, which is precisely what makes 'slightly' the right word); and two object, counting, position, attribute binding all to GenEval. My own round-1 adjudication was wrong on all three points I raised: I read only Table 5's caption and never its body; I calibrated Figure 3 from tick-label glyph TOPS rather than centres, a systematic 2.4-point offset that led me to wrongly suspect the builder of fabricating 82.8/79.9; and I proposed Cohen's kappa from Figure 7 (20.4-point gap) as the paper's defence when the real defence was one row up in the table already cited. The critic overturned all three with better evidence and validated its own Figure 7 calibration against Table 4's PRINTED kappas - the right way to check a vector extraction. What shipped is a stronger finding than the false one it replaced: the paper switches CLIPScore backbones between its prose and the figure printed beside it without flagging it, so a reader cannot reproduce a headline claim from the figure they are shown. Second real finding: GenEval exceeds the interannotator ceiling on position (0.823 vs 0.797), the only one of seven tasks where that happens, which points at annotator disagreement over what 'position' means rather than a clean win. Also fixed a page caption claiming interannotator is 'the ceiling throughout'. Only one arXiv version, so no version hazard. Verified: 2023-Q4 column with SWE-bench/GPQA/IFEval, 6 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Dual-tagged benchmarks + evaluations on the same test TIFA cleared - it ships a named suite AND contributes a verdict engine. Podcast 24.3 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "scialom-2021-questeval",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. Unlike the previous paper, ALL FOUR of the builder's internal-inconsistency accusations against QuestEval were independently confirmed: (1) Table 1's 'QAGS (our impl.)' row prints an Average of 13.7 while its own cells sum to 54.0 and average 13.5 - verified by word-geometry re-extraction that accounted for the table's right-alignment, so not a column misread; (2) '33.3' occurs exactly ONCE in the entire 10-page PDF, in the Negative Sampling prose, and appears in no table, split or figure - the critic checked where the number WOULD live before accepting the inconsistency, which is precisely the discipline whose absence produced two false accusations on GenEval; (3) the 'halved' claim's 4-metric denominator is right (METEOR is 11-reference only) though BLEU falls to almost exactly a third, 7.4/22.2 = 0.3333; (4) the column sweep holds strictly over 16 Table-1 and 12 Table-2 rows - Precision Only takes Consistency 46.5, Fluency 30.9 and QAGS-XSUM 32.7 while the recommended W=learned takes Coherence 24.0, Relevance 39.2 and Average 33.5. The critic also discovered the paper BOLDS its column maxima, correcting a false 'no bold markers' note in the scratch tables.md that would otherwise have been inherited, and turning the central finding into something sharper: the paper bolds Precision Only's wins on exactly the hallucination-detection columns its own introduction leads with, and still recommends the learned weighter. R1 blocker was one sentence mixing two pairing conventions plus a misquoted 33.5-for-33.3 and a Table-1-for-Table-2 mislabel; R2 approve. I applied the R2 suggestion ('those bold marks land on Precision Only' read as exhaustive when three of six are W=learned's) and added one point the podcast agent surfaced and I verified verbatim: the weighter's supervision is built from reference summaries ('each question is labeled as important if the corresponding human summary contains the answer'), so QuestEval is reference-less at inference but W=learned amortises references into a trained model - which strengthens the page's existing Precision Only argument, since only the uniform-weight variants are reference-free end to end. EDGE NOTE: banerjee-2005-meteor correctly REJECTED - QuestEval cites Lavie and Agarwal 2007 ('...High Levels of Correlation...'), 'Banerjee' scores 0 hits, and no node matches what it actually cites. Second paper where that near-identical-title pair produced a false lead, so find_edges.py now prints both titles in full on a fuzzy match instead of truncating at 60 chars, which had hidden the distinguishing final words (commit f85a3f3). Builder also hit the bare-json.dump trap on data/papers.json, caught it, and restored from its own backup; I verified the recovery - 445 inline tags arrays intact, canonical key order, minimal diff. No version hazard (both arXiv versions share all 125 numeric tokens, zero unique to either). Tagged evaluations-only: a metric shipping no named dataset, matching ROUGE/BLEURT/COMET/GPTScore/FEQA precedent. Verified: 2021-Q1 column with MATH/CUAD/The Pile, 11 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 30.6 min, render rc=0, remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1273,23 +1282,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T23:33 li-2024-longiclbench: step -> fetch",
-    "2026-08-02T23:38 li-2024-longiclbench: step -> figures",
-    "2026-08-02T23:39 li-2024-longiclbench: step -> draft",
-    "2026-08-03T00:02 li-2024-longiclbench: step -> critique (round 1)",
-    "2026-08-03T00:11 li-2024-longiclbench: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T00:11 li-2024-longiclbench: step -> revise",
-    "2026-08-03T00:20 li-2024-longiclbench: step -> critique (round 2)",
-    "2026-08-03T00:34 li-2024-longiclbench: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T00:34 li-2024-longiclbench: step -> revise",
-    "2026-08-03T00:34 li-2024-longiclbench: step -> critique (round 3)",
-    "2026-08-03T00:34 li-2024-longiclbench: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T00:34 li-2024-longiclbench: step -> verify",
-    "2026-08-03T00:36 li-2024-longiclbench: step -> queue-ops",
-    "2026-08-03T00:36 li-2024-longiclbench: step -> podcast",
-    "2026-08-03T00:48 completed li-2024-longiclbench (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T01:15 started koh-2021-wilds ('WILDS: A Benchmark of in-the-Wild Distribution Shifts')",
-    "2026-08-03T01:15 koh-2021-wilds: step -> fetch",
     "2026-08-03T01:19 koh-2021-wilds: step -> figures",
     "2026-08-03T01:22 koh-2021-wilds: step -> draft",
     "2026-08-03T01:36 koh-2021-wilds: step -> critique (round 1)",
@@ -1322,6 +1314,23 @@
     "2026-08-03T03:55 ghosh-2023-geneval: step -> verify",
     "2026-08-03T03:55 ghosh-2023-geneval: step -> queue-ops",
     "2026-08-03T03:56 ghosh-2023-geneval: step -> podcast",
-    "2026-08-03T04:08 completed ghosh-2023-geneval (verdict=approved_with_notes, rounds=3)"
+    "2026-08-03T04:08 completed ghosh-2023-geneval (verdict=approved_with_notes, rounds=3)",
+    "2026-08-03T04:34 started scialom-2021-questeval ('QuestEval: Summarization Asks for Fact-based Evaluation')",
+    "2026-08-03T04:34 scialom-2021-questeval: step -> fetch",
+    "2026-08-03T04:37 scialom-2021-questeval: step -> figures",
+    "2026-08-03T04:48 scialom-2021-questeval: step -> draft",
+    "2026-08-03T04:52 scialom-2021-questeval: step -> draft",
+    "2026-08-03T04:52 scialom-2021-questeval: step -> critique (round 1)",
+    "2026-08-03T05:01 scialom-2021-questeval: 1 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T05:01 scialom-2021-questeval: step -> revise",
+    "2026-08-03T05:05 scialom-2021-questeval: step -> critique (round 2)",
+    "2026-08-03T05:11 scialom-2021-questeval: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T05:11 scialom-2021-questeval: step -> revise",
+    "2026-08-03T05:11 scialom-2021-questeval: step -> critique (round 3)",
+    "2026-08-03T05:11 scialom-2021-questeval: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T05:11 scialom-2021-questeval: step -> verify",
+    "2026-08-03T05:12 scialom-2021-questeval: step -> queue-ops",
+    "2026-08-03T05:13 scialom-2021-questeval: step -> podcast",
+    "2026-08-03T05:24 completed scialom-2021-questeval (verdict=approved_with_notes, rounds=3)"
   ]
 }
