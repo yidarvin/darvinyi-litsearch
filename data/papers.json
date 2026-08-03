@@ -10701,6 +10701,22 @@
       "explainer": "papers/koh-2021-wilds.html",
       "audio_url": "https://pod.darvinyi.com/audio/koh-2021-wilds.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "ghosh-2023-geneval",
+      "short": "GenEval",
+      "title": "GenEval: An Object-Focused Framework for Evaluating Text-to-Image Alignment",
+      "authors": "Ghosh, Hajishirzi, Schmidt",
+      "year": 2023,
+      "date": "2023-10",
+      "venue": "NeurIPS 2023",
+      "citation_count": 927,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Washington",
+      "abstract": "Replaces CLIPScore's single embedding-similarity score with an off-the-shelf object detector: verifies object presence, count, position, and color directly from bounding boxes and segmentation masks, reaching 83% agreement with human annotators overall and beating a tuned CLIPScore baseline specifically on counting, position, and attribute binding -- the three tasks needing the most compositional reasoning.",
+      "explainer": "papers/ghosh-2023-geneval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ghosh-2023-geneval.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18170,6 +18186,12 @@
     { "from": "koh-2021-wilds", "to": "ribeiro-2020-checklist" },
     { "from": "koh-2021-wilds", "to": "torralba-2011-dataset-bias" },
     { "from": "koh-2021-wilds", "to": "wang-2018-glue" },
-    { "from": "koh-2021-wilds", "to": "wang-2019-superglue" }
+    { "from": "koh-2021-wilds", "to": "wang-2019-superglue" },
+    { "from": "ghosh-2023-geneval", "to": "hessel-2021-clipscore" },
+    { "from": "ghosh-2023-geneval", "to": "hu-2023-tifa" },
+    { "from": "ghosh-2023-geneval", "to": "lin-2014-coco" },
+    { "from": "ghosh-2023-geneval", "to": "papineni-2002-bleu" },
+    { "from": "ghosh-2023-geneval", "to": "raffel-2020-t5" },
+    { "from": "ghosh-2023-geneval", "to": "vedantam-2015-cider" }
   ]
 }

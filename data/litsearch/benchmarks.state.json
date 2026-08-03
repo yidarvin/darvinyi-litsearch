@@ -1215,6 +1215,15 @@
         "4 critic rounds - the most of any paper this session, driven by one verdict-grid cell that took three rewrites. Version discipline was the headline risk: arXiv v1 describes 7 datasets, v3 describes 10 with a changed roster (adds GlobalWheat, RxRx1, Py150), so both counts are 'correct' for some version; the critic cleared 104 numeric tokens against v3 with zero v1 leakage. TWO FALSE EDGES REMOVED: the builder reported devlin-2019-bert and gebru-2018-datasheets as printed-bibliography-confirmed with quoted evidence strings that do not exist in the paper. I checked the ~477-entry bibliography directly - BERT scores 0 on toutanova/ming-wei chang/bidirectional transformers (the lone Devlin is Jacob Devlin on Bunel et al.'s program-synthesis paper; WILDS uses DistilBERT/Sanh for text), and Datasheets scores 0 on datasheet/wortman vaughan/daume. S2's reference record was wrong again; the printed bibliography is authoritative. 19 edges -> 17. The critic initially filed this as a suggestion on the mistaken ground that S2 is canonical, and corrected itself when told otherwise. The contamination cell was falsified twice as an absence claim: v1 of the cell, then a NARROWED v1 which was still false because split-construction duplicate controls live in the E.x.1 'Setup -> Data' subsections phrased in each dataset's own vocabulary (iWildCam 'All images from the same sequence ... are placed together in the same split'; FMoW 'making sure that the data splits all contain disjoint locations'), while the builder had scoped to E.x.4 and grepped perceptual/hash/near-duplicate. Recorded in the builder agent definition as: search by where the fact would live, not by the word you would use for it. I then made the identical error myself, rejecting the critic's verified '32px stride' because the paper says 'step size of 32 pixels'. Final cell credits four reported controls, then makes two verified points: Camelyon17's ID-validation patches come from the same 30 WSIs as training while the paper itself writes 'We do not provide a Test (ID) set, as there is no practical setting in which we would have labels on a uniformly randomly sampled set of patches from a WSI, but no labels on the other patches from the same WSI' - naming the hazard, dropping Test (ID) over it, keeping the Validation (ID) split that supplies Table 1's 93.2 baseline for the 22.9-point headline gap - and PovertyMap's in-print concession that it declined Yeh et al.'s spatial-overlap control. Also fixed 'Two gaps remain' (GlobalWheat is a third instance: both its ID splits come from 'the same 18 training acquisition sessions in Europe'). S2 truncated citations at 1000 with a 429 masquerading as an empty second page; re-paged with backoff to all 1934, then verified 0 incoming two ways. Verified: 2020-Q4 column with Long Range Arena and 2WikiMultihopQA, 17 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 28.4 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "ghosh-2023-geneval",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. The whole paper turned on one discovery: Table 5's CAPTION is about comparing CLIP model variants, but its BODY also carries GENEVAL and Interannotator rows - and Figure 3 plots the ViT-H/14 row while section 4's prose quotes the ViT-B/32 row, with neither surface saying so. The draft accused the paper of two arithmetic errors: that its '22 point' counting improvement was really 8.9, and that its 'other four, more complex tasks' was really three. BOTH ACCUSATIONS WERE FALSE. Against ViT-B/32 every sub-claim lands exactly: counting 0.604 vs 0.823 = 21.9 ~ 22; single object 0.991 vs 0.953; colors 0.811 vs 0.808 (a 0.3-point edge, which is precisely what makes 'slightly' the right word); and two object, counting, position, attribute binding all to GenEval. My own round-1 adjudication was wrong on all three points I raised: I read only Table 5's caption and never its body; I calibrated Figure 3 from tick-label glyph TOPS rather than centres, a systematic 2.4-point offset that led me to wrongly suspect the builder of fabricating 82.8/79.9; and I proposed Cohen's kappa from Figure 7 (20.4-point gap) as the paper's defence when the real defence was one row up in the table already cited. The critic overturned all three with better evidence and validated its own Figure 7 calibration against Table 4's PRINTED kappas - the right way to check a vector extraction. What shipped is a stronger finding than the false one it replaced: the paper switches CLIPScore backbones between its prose and the figure printed beside it without flagging it, so a reader cannot reproduce a headline claim from the figure they are shown. Second real finding: GenEval exceeds the interannotator ceiling on position (0.823 vs 0.797), the only one of seven tasks where that happens, which points at annotator disagreement over what 'position' means rather than a clean win. Also fixed a page caption claiming interannotator is 'the ceiling throughout'. Only one arXiv version, so no version hazard. Verified: 2023-Q4 column with SWE-bench/GPQA/IFEval, 6 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Dual-tagged benchmarks + evaluations on the same test TIFA cleared - it ships a named suite AND contributes a verdict engine. Podcast 24.3 min, render rc=0, remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1264,22 +1273,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T22:13 pagnoni-2021-frank: step -> fetch",
-    "2026-08-02T22:37 pagnoni-2021-frank: step -> figures",
-    "2026-08-02T22:37 pagnoni-2021-frank: step -> draft",
-    "2026-08-02T22:49 pagnoni-2021-frank: step -> critique (round 1)",
-    "2026-08-02T22:49 pagnoni-2021-frank: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T23:11 pagnoni-2021-frank: step -> revise",
-    "2026-08-02T23:11 pagnoni-2021-frank: step -> critique (round 2)",
-    "2026-08-02T23:11 pagnoni-2021-frank: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T23:11 pagnoni-2021-frank: step -> revise",
-    "2026-08-02T23:11 pagnoni-2021-frank: step -> critique (round 3)",
-    "2026-08-02T23:11 pagnoni-2021-frank: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T23:11 pagnoni-2021-frank: step -> verify",
-    "2026-08-02T23:14 pagnoni-2021-frank: step -> queue-ops",
-    "2026-08-02T23:15 pagnoni-2021-frank: step -> podcast",
-    "2026-08-02T23:33 completed pagnoni-2021-frank (verdict=approved_with_notes, rounds=3)",
-    "2026-08-02T23:33 started li-2024-longiclbench ('Long-context LLMs Struggle with Long In-context Learning')",
     "2026-08-02T23:33 li-2024-longiclbench: step -> fetch",
     "2026-08-02T23:38 li-2024-longiclbench: step -> figures",
     "2026-08-02T23:39 li-2024-longiclbench: step -> draft",
@@ -1313,6 +1306,22 @@
     "2026-08-03T02:21 koh-2021-wilds: step -> verify",
     "2026-08-03T02:22 koh-2021-wilds: step -> queue-ops",
     "2026-08-03T02:23 koh-2021-wilds: step -> podcast",
-    "2026-08-03T02:34 completed koh-2021-wilds (verdict=approved_with_notes, rounds=4)"
+    "2026-08-03T02:34 completed koh-2021-wilds (verdict=approved_with_notes, rounds=4)",
+    "2026-08-03T03:01 started ghosh-2023-geneval ('GenEval: An Object-Focused Framework for Evaluating Text-to-Image Alignment')",
+    "2026-08-03T03:01 ghosh-2023-geneval: step -> fetch",
+    "2026-08-03T03:03 ghosh-2023-geneval: step -> figures",
+    "2026-08-03T03:18 ghosh-2023-geneval: step -> draft",
+    "2026-08-03T03:27 ghosh-2023-geneval: step -> critique (round 1)",
+    "2026-08-03T03:38 ghosh-2023-geneval: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T03:38 ghosh-2023-geneval: step -> revise",
+    "2026-08-03T03:44 ghosh-2023-geneval: step -> critique (round 2)",
+    "2026-08-03T03:55 ghosh-2023-geneval: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T03:55 ghosh-2023-geneval: step -> revise",
+    "2026-08-03T03:55 ghosh-2023-geneval: step -> critique (round 3)",
+    "2026-08-03T03:55 ghosh-2023-geneval: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T03:55 ghosh-2023-geneval: step -> verify",
+    "2026-08-03T03:55 ghosh-2023-geneval: step -> queue-ops",
+    "2026-08-03T03:56 ghosh-2023-geneval: step -> podcast",
+    "2026-08-03T04:08 completed ghosh-2023-geneval (verdict=approved_with_notes, rounds=3)"
   ]
 }
