@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QAFactEval: Improved QA-Based Factual Consistency Evaluation for Summarization — paper_atlas</title>
+<meta name="description" content="Entailment metrics were beating QA-based metrics in some studies and losing in others, and nobody had ablated why. QAFactEval decomposes the QA pipeline into answer selection, question generation, question answering, and answer overlap, finds that QG choice and answerability handling — not the QA model — are what matter, and reassembles the best combination into a QA metric that finally beats entailment-based ones on the SummaC benchmark.">
+<meta property="og:title" content="QAFactEval: Improved QA-Based Factual Consistency Evaluation for Summarization">
+<meta property="og:description" content="Entailment metrics were beating QA-based metrics in some studies and losing in others, and nobody had ablated why. QAFactEval decomposes the QA pipeline into answer selection, question generation, question answering, and answer overlap, finds that QG choice and answerability handling — not the QA model — are what matter, and reassembles the best combination into a QA metric that finally beats entailment-based ones on the SummaC benchmark.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/fabbri-2021-qafacteval.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+tr.hi td{color:var(--fg)}
+tr.hi td.num{color:var(--accent)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2022 · NAACL 2022 · Benchmarks &amp; Evals</div>
+      <h1>QAFactEval: Improved QA-Based Factual Consistency Evaluation for Summarization</h1>
+      <p class="dek">Entailment metrics were beating QA-based metrics in some studies and losing in others, and nobody had ablated why. QAFactEval decomposes the QA pipeline into answer selection, question generation, question answering, and answer overlap, finds that QG choice and answerability handling — not the QA model — are what matter, and reassembles the best combination into a QA metric that finally beats entailment-based ones on the SummaC benchmark.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/fabbri-2021-qafacteval.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/fabbri-2021-qafacteval.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Alexander R. Fabbri, Chien-Sheng Wu, Wenhao Liu, Caiming Xiong · Salesforce AI Research</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>NAACL 2022</b></span>
+        <span class="fact">citations&nbsp;<b>317</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2112.08542">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/fabbri-2021-qafacteval.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-08-03</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By 2021, factual-consistency metrics for summarization had split into two competing families — <strong>entailment-based</strong> metrics, which score whether a summary sentence is entailed by the source (Kryscinski et al.'s FactCC, Goyal &amp; Durrett's DAE, ANLI/MNLI-style NLI classifiers), and <strong>QA-based</strong> metrics, which extract an answer from the summary, generate a question about it, and check whether a QA model can recover the same answer from the source (<a href="durmus-2020-feqa.html">FEQA</a>, Wang et al.'s QAGS, <a href="scialom-2021-questeval.html">QuestEval</a>). The trouble was that studies disagreed about which family actually won: some reported entailment metrics as the stronger paradigm, others reported QA metrics ahead — and the disagreement tracked differences in backbone model, input granularity, and which single dataset each study happened to evaluate on, not a settled scientific finding.</p>
+      <p>Laban et al.'s SummaC benchmark (2021) took a first step at resolving this by unifying the entailment side: it systematically varied granularity and base entailment model across six factual-consistency datasets and reported one clean comparison table. But it did not do the equivalent work for QA-based metrics — despite a QA-based metric being decomposable into four separate, swappable stages (which span of the summary to ask about, how to generate a question from it, how to answer that question against the source, and how to score the overlap between the two answers). Existing QA metrics each hard-coded one particular combination of these four stages without justifying the choice against the alternatives, so it was never clear whether QA-based approaches were paradigmatically weaker than entailment models, or simply badly configured. This paper runs that missing ablation.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>The paper breaks the QA-based factual-consistency pipeline into four components plus a filtering step, and ablates each in isolation while holding the others at their best setting:</p>
+      <ul>
+        <li><strong>Answer Selection.</strong> Extract candidate "information units" from the summary to later check against the source: named entities (<span class="mono">NER</span>), noun-phrase chunks (<span class="mono">NP Chunks</span>), maximally-sized noun phrases via dependency-subtree traversal (<span class="mono">Max NP</span>), or the union of all three (<span class="mono">ALL</span>).</li>
+        <li><strong>Question Generation.</strong> Conditioned on a selected answer and the summary as context, generate a question. Compared: BART-large fine-tuned on <span class="mono">QA2D</span> (a dataset of declarative sentences paired with the questions that would produce them) vs. BART-large and T5-base trained directly on <span class="mono">SQuAD</span>-style pairs, and the recent <span class="mono">MixQG</span>-base/large models (T5 trained across nine QA datasets with diverse answer types).</li>
+        <li><strong>Question Answering.</strong> Answer the generated question against the <em>source document</em>. Extractive models: Electra-large/base, and MADE (adapter modules over a shared RoBERTa-base for multi-dataset QA). Abstractive models: T5-base fine-tuned on SQuAD, and UnifiedQA-base (trained across eight seed QA datasets to generalize across formats).</li>
+        <li><strong>Answer Overlap.</strong> Score how well the QA model's answer matches the originally-selected answer: exact match (<span class="mono">EM</span>), word-level <span class="mono">F1</span>, or the learned <span class="mono">LERC</span> scorer — a 1–5 regression head trained on MOCHA's 40k crowdsourced overlap judgments, compared in three checkpoint variants (the original BERT-base release, one re-trained from RoBERTa-large, and one initialized from a question-infused-pretraining (QuIP) checkpoint) — plus <span class="mono">IsAnsweredInput</span>, a 0/1 signal for whether the QA model thinks the question is answerable from the source at all.</li>
+      </ul>
+      <p>A fifth step, <strong>Question Filtering &amp; the Answerability Penalty</strong>, treats "the QA model can't find this in the source" as itself a factual-inconsistency signal rather than noise to be discarded: an <span class="mono">IsAnsweredSumm</span> filter first drops any question the QA model can't even answer from the <em>summary</em> it was generated from (a sign the question itself is malformed), and then the <span class="mono">Answerability Penalty</span> zeroes the overlap score of any surviving question the QA model judges unanswerable against the <em>source</em>:</p>
+      <div class="eq">
+        score(q)&nbsp;=&nbsp;<span class="frac"><span class="num">0</span><span class="den">IsAnsweredInput(q) = 0</span></span>
+        &nbsp;&nbsp;else&nbsp;&nbsp; overlap(a<sub>QA</sub>,&nbsp;a<sub>selected</sub>)
+        <span class="note">// a question the source can't answer scores as a factual miss, not a discarded item</span>
+      </div>
+      <p>The best combination across all five stages — NP Chunks answers, BART-large (QA2D) questions, Electra-large QA, LERC (QuIP) overlap, both filters on — is what the paper names <strong>QAFactEval</strong>. To combine QA and entailment signal, <strong>QAFactEval-NLI</strong> takes the array of K per-answer overlap scores QAFactEval produces for a summary and bins it into a size-H histogram the same way the entailment-based SCConv metric (Laban et al. 2021) bins its own sentence-level entailment scores; that histogram is passed through a 1-D convolution layer to collapse it to a single QA score. That QA score is concatenated with SCConv's own output — already a single aggregated NLI score, not a histogram — and the pair (two scalars) is fed to a small learned linear layer to produce the final metric score, trained either on 50k synthetic FactCC examples (<span class="mono">synthetic</span>) or by fine-tuning directly on each SummaC dataset's validation split (<span class="mono">supervised</span>).</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>On the SummaC benchmark's test set (balanced accuracy, averaged across six factual-consistency datasets — CGS, XSF, Polytope, FactCC, SummEval, <a href="pagnoni-2021-frank.html">FRANK</a>), a properly-configured QA metric does beat entailment-based metrics after all. QAFactEval scores <strong>77.8</strong> on the benchmark average, versus <strong>68.2</strong> for QuestEval — the prior best QA-based metric — and versus <strong>75.7</strong> for MNLI, the strongest of the six entailment-based baselines Table 3 groups as "Entailment" (BertScore-FFCI 65.4, DAE 72.7, ANLI 74.4, DocNLI 68.5, SCZeroShot 72.8; §3.1's prose actually describes a seventh entailment-based metric, FactCC, but Table 3 files it under "Misc" instead). That's a ~14% relative improvement over QuestEval, matching the paper's own headline claim, and on the benchmark average it clears every entailment baseline in the table — column by column it's narrower: MNLI still edges it 89.8 to 84.1 on FactCC, and BertScore-FFCI 68.8 to 63.1 on XSF.</p>
+      <table>
+        <thead><tr><th>Metric</th><th class="num">CGS</th><th class="num">XSF</th><th class="num">Polytope</th><th class="num">FactCC</th><th class="num">SummEval</th><th class="num">FRANK</th><th class="num">Benchmark</th></tr></thead>
+        <tbody>
+          <tr><td>BertScore-FFCI</td><td class="num">56.9</td><td class="num">68.8</td><td class="num">69.2</td><td class="num">57.9</td><td class="num">67.4</td><td class="num">71.9</td><td class="num">65.4</td></tr>
+          <tr><td>MNLI (best entailment)</td><td class="num">67.6</td><td class="num">61.5</td><td class="num">77.3</td><td class="num">89.8</td><td class="num">78.7</td><td class="num">79.6</td><td class="num">75.7</td></tr>
+          <tr><td>QuestEval (prior QA SOTA)</td><td class="num">59.4</td><td class="num">61.9</td><td class="num">73.1</td><td class="num">66.5</td><td class="num">68.4</td><td class="num">79.8</td><td class="num">68.2</td></tr>
+          <tr class="hi"><td>QAFactEval</td><td class="num">75.1</td><td class="num">63.1</td><td class="num">79.8</td><td class="num">84.1</td><td class="num">80.9</td><td class="num">83.9</td><td class="num">77.8</td></tr>
+          <tr><td>QAFactEval-NLI (synthetic)</td><td class="num">74.2</td><td class="num">59.1</td><td class="num">82.1</td><td class="num">91.1</td><td class="num">80.2</td><td class="num">83.4</td><td class="num">78.3</td></tr>
+          <tr class="hi"><td>QAFactEval-NLI (supervised)</td><td class="num">78.1</td><td class="num">60.9</td><td class="num">83.7</td><td class="num">89.3</td><td class="num">80.5</td><td class="num">84.3*</td><td class="num">79.5*</td></tr>
+        </tbody>
+      </table>
+      <p>Combining QA and entailment signal helps further: QAFactEval-NLI (supervised) reaches <strong>79.5</strong> on the benchmark average, an improvement the paper reports as statistically significant at the 99% confidence level (bootstrap resampling with Bonferroni correction) on both the FRANK subset and the overall benchmark — the two cells in the whole table (out of 98) that carry a significance mark. That placement is worth noticing: the significance test is attached to the <em>supervised</em> variant, the one allowed to fine-tune on each dataset&rsquo;s own validation split. The paper&rsquo;s headline claim &mdash; that a properly-configured QA metric beats the entailment family &mdash; rests on plain QAFactEval&rsquo;s 77.8 against MNLI&rsquo;s 75.7, the best entailment baseline, and that 2.1-point gap carries no significance mark at all. The synthetic variant's biggest single-dataset jump is on FactCC (84.1 → 91.1), which the paper attributes to the synthetic FactCC training data mirroring that dataset's own error distribution; supervised fine-tuning then helps on five of the six datasets relative to synthetic (only FactCC drops, from 91.1 to 89.3 — plausibly because the synthetic data was already unusually well-matched to that one dataset).</p>
+      <h3>Which pipeline component actually matters</h3>
+      <p>The per-component ablation (measured on the SummaC <em>validation</em> set, starting from the same 77.5 best-combination score) shows the four stages are not equally important, though the single largest swing in the whole table belongs to Answer Selection, not Question Generation: swapping the best-combination's NP Chunks for named entities (<span class="mono">NER</span>) crashes the score to 66.4, an 11.1-point fall — the paper attributes this to answer scarcity, since NER extracts only about three entities per summary on average across the benchmark, versus over ten for every other answer-selection approach it tests. The next-largest single-swap drop is in Question Generation: replacing BART-large (QA2D) with T5-base (SQuAD) drops the score from 77.5 to 67.0, a 10.5-point fall — BART-large (QA2D) produces longer (~17 vs. ~10 tokens), more extractive questions (~20% novel unigrams vs. T5's ~47%) that the QA model can actually answer, even though the paper notes MixQG's outputs are more fluent. Turning off both the IsAnsweredSumm filter and the Answerability Penalty ("Neither") is the largest drop within the Filtering/Answerability block — 67.4, a 10.1-point fall, the third-largest in the table overall. <strong>The QA model matters least</strong> of the four components: across Electra-large/base, MADE, T5-base, and UnifiedQA-base the score stays within a 1.8-point band (75.7–77.5), whether the model is extractive or abstractive, large or small. The paper's own abstract and conclusion single out question generation and answerability handling as what's "critical to performance" and the "key components for improving QA-based metrics" — a judgment about which levers are most worth optimizing, not a claim that either produces the single largest ablation drop in Table 2.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>The central finding — that QA-based metrics only looked weaker than entailment metrics because nobody had tuned them properly — is a genuinely useful diagnosis, and the component-by-component ablation is exactly the kind of study the field needed instead of another single end-to-end metric paper. But a few things about the comparison are worth flagging.</p>
+      <p>First, <strong>the comparison isn't tuned symmetrically</strong>. The paper is explicit about this: hyperparameters for SCConv, SCZeroShot, and MNLI — what it calls "several of the strong entailment baselines" (SCConv is a learned aggregator built on top of an entailment model, which is why Table 3 itself files it under "Learned" rather than "Entailment") — are carried over directly from Laban et al. (2021), "thus providing a reasonable comparison to QAFactEval, whose hyperparameters we tune on the SummaC validation set." That's a fair design given the alternative (re-tuning several external methods from scratch), but it also means QAFactEval benefits from an extensive, multi-stage internal search — four components with 4–6 candidate settings each, run against the same validation split later used for threshold selection — that most of the baselines (QuestEval, BertScore-FFCI, BARTScore, DocNLI, DAE, ANLI, BLANC, FactCC) never received. A wide internal search tuned against a small validation set (SummaC's per-dataset validation splits run from a few hundred to about 1,300 examples, per the paper's own Table 6) carries real variance risk that a single held-out test-set number doesn't surface.</p>
+      <p>Second, <strong>the calibration is per-dataset</strong>. Following Laban et al.'s protocol, every metric — including QAFactEval — gets its own binary-classification threshold fit separately on each dataset's validation split before scoring that dataset's test set. That's consistent with how SummaC was originally built, so it isn't unique to this paper, but it does mean the balanced-accuracy numbers assume a deployment where you already have labeled validation data per target domain to calibrate against — a stronger requirement than a single global threshold, and one the paper doesn't quantify the cost of relaxing.</p>
+      <p>Third, <strong>the balanced-accuracy headline is the paper's most flattering framing</strong>. Its own instance-level Pearson correlation analysis against aggregated human judgments (Table 5) is more qualified, and sits apart from the balanced-accuracy table the paper leads with: on XSF specifically, QAFactEval correlates at just 0.29, versus 0.45 for both QuestEval and BertScore-FFCI. XSF is the one column it trails on: across Table 5&rsquo;s other five datasets it posts 0.61, 0.66, 0.32, 0.68 and 0.44, leading every baseline metric on four and tying SCZeroShot on the fifth &mdash; and the paper offers no account of it, saying only that &ldquo;QAFACTEVAL performs well across most datasets.&rdquo; It does explain the <em>other</em> XSF result: the synthetic QAFactEval-NLI variant correlates lower still (0.19), which the paper attributes to its fine-tuning &mdash; &ldquo;fine-tuning on FactCC synthetic data for binary classification likely does not capture the aggregated, word-level factuality scores of XSF.&rdquo; That mechanism cannot explain plain QAFactEval, which has no such fine-tuning stage. So the balanced-accuracy win over BertScore-FFCI on the benchmark average sits alongside a dataset, reported in the paper's own correlation analysis (§5.3), where BertScore-FFCI is the stronger correlate of human judgment.</p>
+      <p>On generalization: every dataset in SummaC is built from CNN/DailyMail or XSum summarization output, both English news; the paper's own ethics section acknowledges the metrics are English-only and untested for bias, and doesn't report inference cost or latency for a pipeline that now chains together an answer extractor, a QG model, a QA model, and a learned overlap scorer — a meaningfully heavier metric than a single entailment classifier, with no reported efficiency comparison against the entailment baselines it outperforms.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Six entailment-based metrics, three misc metrics (BARTScore, BLANC, FactCC), and QuestEval, plus a clean component-by-component ablation of QAFactEval's own pipeline. The asymmetry: three entailment baselines reuse Laban et al.'s exact hyperparameters, but the others are applied off-the-shelf while QAFactEval's own five-stage combination is chosen by an internal search over the very validation split used for threshold calibration.</p>
+        <span class="k">contamination</span><p class="v">No test-set leakage in the strict sense — thresholds and (for the learned variants) fine-tuning both stop at the validation split, per dataset. But the "supervised" QAFactEval-NLI variant is fine-tuned directly on each SummaC dataset's own validation data, an advantage the off-the-shelf entailment and QA baselines don't get to use at all.</p>
+        <span class="k">what's missed</span><p class="v">The balanced-accuracy headline hides a weaker correlation picture: Table 5's instance-level Pearson correlation puts QAFactEval at 0.29 on XSF against 0.45 for both QuestEval and BertScore-FFCI. Everything is English-language news summarization (CNN/DailyMail, XSum). No compute/latency comparison for a four-model pipeline against single-classifier baselines. No test of a single global decision threshold instead of per-dataset-calibrated ones. The paper's own ethics section flags untested bias and English-only scope rather than the eval read papering over it.</p>
+        <span class="k">would raise confidence</span><p class="v">Re-running the internal component search with nested cross-validation (or a held-out tuning set distinct from the calibration set) to bound the variance risk noted above; a single fixed threshold across datasets; latency/parameter-count comparison against the entailment baselines; and evaluation on non-English or non-news summarization domains.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>QAFactEval answers a real open question — QA-based metrics aren't inherently weaker than entailment-based ones, they were just under-optimized — with a systematic ablation that pins the win on question generation and answerability handling rather than the QA model itself, and backs it with a statistically significant combined metric (QAFactEval-NLI, 79.5 vs. 68.2 for the prior QA state of the art). The tuning asymmetry against several baselines and the English-news-only scope temper how far the specific numbers generalize, but the methodological contribution — decompose before you compare — is the more durable result, and it's exactly the comparison SummaC's own entailment-side analysis was missing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// what to remember</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>Prior "entailment vs. QA" verdicts for factual-consistency metrics were confounded by unequal tuning — decomposing the QA pipeline into answer selection, question generation, question answering, and answer overlap shows the QA model itself barely moves the score (a 1.8-point band, 75.7–77.5, across five QA models), while the single largest ablation swing in the whole table is Answer Selection's NER swap (77.5 → 66.4, an 11.1-point fall); the paper's own abstract and conclusion instead single out question generation and answerability handling as the components most worth optimizing going forward.</li>
+        <li>A properly-configured QA metric (QAFactEval: NP-chunk answers, BART-large (QA2D) questions, Electra-large QA, LERC (QuIP) overlap, filtering + Answerability Penalty) scores 77.8 on SummaC's six-dataset benchmark average — beating QuestEval's 68.2 (the prior QA state of the art) by ~14% and MNLI's 75.7 (the strongest entailment baseline).</li>
+        <li>QA-based and entailment-based signals are complementary rather than competing: combining QAFactEval's overlap histogram with SCConv's entailment score in a small learned layer (QAFactEval-NLI, supervised) reaches 79.5 — the only statistically-significant (99% CI) improvement over prior work in the whole results table.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        QAFactEval: Improved QA-Based Factual Consistency Evaluation for Summarization<br>
+        Alexander R. Fabbri, Chien-Sheng Wu, Wenhao Liu, Caiming Xiong · 2022 · NAACL 2022<br>
+        <a href="https://arxiv.org/abs/2112.08542">read the original ↗</a> · slug: fabbri-2021-qafacteval
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

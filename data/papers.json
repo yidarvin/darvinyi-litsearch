@@ -10749,6 +10749,22 @@
       "explainer": "papers/gehrmann-2021-gem.html",
       "audio_url": "https://pod.darvinyi.com/audio/gehrmann-2021-gem.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "fabbri-2021-qafacteval",
+      "short": "QAFactEval",
+      "title": "QAFactEval: Improved QA-Based Factual Consistency Evaluation for Summarization",
+      "authors": "Fabbri, Wu, Liu, Xiong",
+      "year": 2022,
+      "date": "2021-12",
+      "venue": "NAACL 2022",
+      "citation_count": 317,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Salesforce Research",
+      "abstract": "Decomposes the QA-based factual-consistency pipeline into answer selection, question generation, question answering, and answer overlap, ablating each in isolation to explain why prior studies disagreed about whether QA-based or entailment-based metrics score better. The QA model itself barely moves the score, while the single largest ablation swing is in answer selection (swapping to named entities crashes accuracy); the paper's own framing instead singles out question generation choice and an Answerability Penalty (zeroing the score of any question the source can't answer) as most worth optimizing. The resulting QAFactEval reaches 77.8 balanced accuracy on the SummaC benchmark — beating QuestEval's 68.2 (~14% relative gain) and every entailment-based baseline on the benchmark average (best: MNLI, 75.7) — and combining it with an entailment score (QAFactEval-NLI, supervised) reaches 79.5, the table's only statistically-significant improvement over prior work.",
+      "explainer": "papers/fabbri-2021-qafacteval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fabbri-2021-qafacteval.mp3",
+      "tags": ["evaluations"]
     }
   ],
   "edges": [
@@ -18264,6 +18280,20 @@
     { "from": "lin-2021-truthfulqa", "to": "gehrmann-2021-gem" },
     { "from": "liu-2023-agentbench", "to": "gehrmann-2021-gem" },
     { "from": "thakur-2021-beir", "to": "gehrmann-2021-gem" },
-    { "from": "wei-2021-flan", "to": "gehrmann-2021-gem" }
+    { "from": "wei-2021-flan", "to": "gehrmann-2021-gem" },
+    { "from": "fabbri-2021-qafacteval", "to": "devlin-2019-bert" },
+    { "from": "fabbri-2021-qafacteval", "to": "durmus-2020-feqa" },
+    { "from": "fabbri-2021-qafacteval", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "fabbri-2021-qafacteval", "to": "khashabi-2020-unifiedqa" },
+    { "from": "fabbri-2021-qafacteval", "to": "lewis-2019-bart" },
+    { "from": "fabbri-2021-qafacteval", "to": "liu-2019-roberta" },
+    { "from": "fabbri-2021-qafacteval", "to": "maynez-2020-faithfulness" },
+    { "from": "fabbri-2021-qafacteval", "to": "nie-2020-anli" },
+    { "from": "fabbri-2021-qafacteval", "to": "pagnoni-2021-frank" },
+    { "from": "fabbri-2021-qafacteval", "to": "raffel-2020-t5" },
+    { "from": "fabbri-2021-qafacteval", "to": "rajpurkar-2016-squad" },
+    { "from": "fabbri-2021-qafacteval", "to": "scialom-2021-questeval" },
+    { "from": "fabbri-2021-qafacteval", "to": "williams-2017-multinli" },
+    { "from": "min-2023-factscore", "to": "fabbri-2021-qafacteval" }
   ]
 }

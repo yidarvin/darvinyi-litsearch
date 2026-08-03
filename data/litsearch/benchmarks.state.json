@@ -1242,6 +1242,15 @@
         "4 critic rounds. ORCHESTRATOR ERRORS: round 2's two blockers were both mine, not the builder's. In the revise brief I asserted that ROUGE-L can only equal ROUGE-1 if the longest common subsequence collapses to a single token - false, disproved by computation (cand 'a b c d e' vs ref 'a x b x c x d x e' gives ROUGE-1 = ROUGE-L = 0.7143 with ROUGE-2 = 0 and a 5-token LCS) - and I quoted a BERTScore range of 0.862-0.905 as 'normal-to-good' while the TGen rows I was describing are 0.648/0.650/0.651, the three lowest in all of Table 3 (next 0.691, everything else >= 0.812). The builder transcribed both onto the page. Third time this session blocker-message prose has been copied verbatim, after BEGIN's 'two rows apart' and TAPE's GLUE framing. The surviving finding is the page's best material and is now correctly scoped: DART's BART/T5 rows and Czech Restaurant's three TGen rows share a signature of ROUGE-2 exactly 0.0, ROUGE-L exactly equal to ROUGE-1, and BLEU ~0.02-0.03. It is not dataset difficulty (mT5 on the same Czech Restaurant data scores 48.1/28.8/44.2/17.1) and not a weak generator (the same TGen on E2E clean scores 74.7/49.6/BLEU 46.0/BERTScore 0.949 and the highest BLEURT in that block, 0.412) - so it tracks the system-dataset interaction, and GEM never remarks on it. BERTScore vindicates the outputs on the DART rows only; on the TGen rows it agrees with the lexical metrics. The critic established the absence by searching WHERE the discussion would live (Results, Experimental Setup incl. Modeling Baselines and Automated Evaluation, sections 6-7, Conclusion, all three appendices) rather than by vocabulary grep - the discipline that failed three times on WILDS. Also confirmed: the paper states its own dataset size range three ways (intro '5k to 500k', section 3 '5,000 to 1.5M', Table 1 max 594k), verified on all three legs with a search for a defending number that came up empty. Version discipline clean: 3 arXiv versions, 215 v3-only and 15 v1-only numeric tokens, all 15 v1-only absent from a 64-token page sweep. METADATA TRAP: S2 reports the venue as 'IEEE Games Entertainment Media Conference' - a bad acronym match on GEM; the real venue is the GEM Workshop at ACL-IJCNLP 2021, set as 'GEM @ ACL 2021'. EDGE NOTES: banerjee-2005-meteor is a REAL edge here ('improved correlation', Agarwal = 0 hits), the exact opposite of FRANK and QuestEval which both cite the 2007 Lavie and Agarwal paper; and scialom-2021-questeval is real via retitle - GEM cites it as 'SAFEval' with QuestEval's own arXiv id 2103.12693 - surfaced immediately by the new full-title fuzzy label from commit f85a3f3. Also caught a near-duplicate queue entry: S2 spells BEIR's title 'Heterogenous' where our node has 'Heterogeneous', so exact-title dedupe missed it; used fuzzy dedupe at 0.93 for queue-ops. Dual-tagged benchmarks + evaluations: GEM ships a named 11-dataset suite AND contributes evaluation methodology (living-benchmark paradigm, multi-metric exploration tool, human-eval standards), matching the liang-2022-helm precedent. Verified: 2021-Q1 column with MATH/CUAD/The Pile, 29 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 27.8 min, render rc=0 (wrote nothing to disk until the very end - fourth data point for exit-code gating), remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "fabbri-2021-qafacteval",
+      "rounds": 4,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "4 critic rounds. Round 1 found three real blockers: (a) two false superlatives - the page called a 10.1-point ablation drop 'the largest of any single ablation in the table' when NER's is 11.1 and T5-base's 10.5, and bolded 'question generation is the single biggest lever' when the largest single-swap drop belongs to Answer Selection; (b) a materially wrong QAFactEval-NLI architecture - the paper bins the per-answer overlap scores into a histogram, passes it through a 1-D CONVOLUTION to a single scalar QA score, and concatenates THAT with SCConv's already-scalar NLI score before a linear layer, not two histograms into a linear layer; (c) a misattribution presenting FactCC and DAE as FRANK's, when they are Kryscinski et al. 2020 and Goyal and Durrett 2020, and FRANK's role in this paper is as one of the six SummaC datasets - which is how the page's own results table already used it. Round 2's single blocker was introduced by the round-1 repair: the new correlation paragraph attributed the paper's XSF explanation to plain QAFactEval, but that sentence is scoped to QAFactEval-NLI's FactCC synthetic fine-tuning, and of plain QAFactEval the paper says only 'QAFACTEVAL performs well across most datasets'. The replacement is a better critique - the paper does not account for its own weakest correlation (0.29 on XSF against 0.45 for both QuestEval and BertScore-FFCI) - and is balanced by noting XSF is the one column it trails on, since across Table 5's other five datasets it posts 0.61/0.66/0.32/0.68/0.44, leading every baseline on four and tying SCZeroShot on the fifth. Round 3 approve; I applied four suggestions and then added one finding the podcast agent surfaced and I verified from Table 3: the paper's only two significance markers (out of 98 cells) sit on QAFACTEVAL-NLI (supervised) at 84.3* and 79.5*, so the HEADLINE claim - plain QAFactEval's 77.8 against MNLI's 75.7, the best entailment baseline - carries no significance mark at all, and the tested improvement belongs to the variant allowed to fine-tune on each dataset's own validation split. TWO ORCHESTRATOR SEARCH FAILURES worth recording, both the same shape: I swept the page for '3-5' in ASCII and missed it because the page uses an en dash (U+2013) - the same class of error as searching for 'stride' when the previous paper wrote 'step size'. Search by the document's encoding and vocabulary, not my own. Also: S2 rate-limited through 7 retries on the first fetch and a bibliography-only sweep returned 12 outgoing / 0 incoming; after a longer backoff the complete fetch gave 13 outgoing / 1 incoming, so lewis-2019-bart and the min-2023-factscore incoming edge would both have been silently lost. A zero-incoming result from an incomplete fetch is not a finding. Also note this paper was started out of order - I began SoftGym from a stale note and switched to the actual core-queue head; SoftGym remains queued and untouched. Version discipline clean: 2 arXiv versions with 13 v1-only tokens all in the 67-84 range (they look exactly like plausible correlation percentages), none present on the page. Page has ZERO figures - a tables-only paper - so table transcription was the sole evidence and the critic re-derived Tables 2, 3 and 5 by bbox geometry. year 2022 / date 2021-12 is the intentional preprint-vs-venue gap matching devlin-2019-bert and nie-2020-anli. Tagged evaluations-only. Verified: 2021-Q4 column with GSM8K/LexGLUE/ContractNLI, 14 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 29.9 min, render rc=0, remote MD5 verified on both MP3 and feed."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1280,6 +1289,12 @@
       "slug": "johri-2025-craft-md",
       "reason": "No obtainable full text. Nature Medicine 31(1):77-86, DOI 10.1038/s41591-024-03328-5 is paywalled; Semantic Scholar reports no openAccessPdf, Europe PMC reports isOpenAccess=N with no PMCID, and there is no arXiv preprint. The only preprint is medRxiv 10.1101/2023.09.12.23295399, which is a materially DIFFERENT paper: 8 authors vs the published 12, and scoped to GPT-4/GPT-3.5 on skin disease only. medRxiv records no link to the Nature Medicine DOI. Building an explainer labelled as the 2025 12-author paper from the 2023 8-author preprint would repeat the Voorhees 2001 error (fetching a related-but-different paper), and the critic verifies quotations character-by-character against the supplied PDF, so a version mismatch would be invisible to the loop. Queue entry retained but demoted out of the core work-list (survey/role removed) so it stops reaching the head on every reprioritization; restore both fields if access ever opens.",
       "date": "2026-08-01"
+    },
+    {
+      "title": "SoftGym: Benchmarking Deep Reinforcement Learning for Deformable Object Manipulation",
+      "slug": "lin-2020-softgym",
+      "reason": "Started out of order - I began SoftGym from a stale note, but the core queue head is QAFactEval (317 citations vs SoftGym's 292). SoftGym stays in the queue at position 3 and is untouched; nothing was written for it beyond a staged PDF. Following queue order rather than my own recollection.",
+      "date": "2026-08-03"
     }
   ],
   "survey_build": {
@@ -1291,27 +1306,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T03:18 ghosh-2023-geneval: step -> draft",
-    "2026-08-03T03:27 ghosh-2023-geneval: step -> critique (round 1)",
-    "2026-08-03T03:38 ghosh-2023-geneval: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T03:38 ghosh-2023-geneval: step -> revise",
-    "2026-08-03T03:44 ghosh-2023-geneval: step -> critique (round 2)",
-    "2026-08-03T03:55 ghosh-2023-geneval: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T03:55 ghosh-2023-geneval: step -> revise",
-    "2026-08-03T03:55 ghosh-2023-geneval: step -> critique (round 3)",
-    "2026-08-03T03:55 ghosh-2023-geneval: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T03:55 ghosh-2023-geneval: step -> verify",
-    "2026-08-03T03:55 ghosh-2023-geneval: step -> queue-ops",
-    "2026-08-03T03:56 ghosh-2023-geneval: step -> podcast",
-    "2026-08-03T04:08 completed ghosh-2023-geneval (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T04:34 started scialom-2021-questeval ('QuestEval: Summarization Asks for Fact-based Evaluation')",
-    "2026-08-03T04:34 scialom-2021-questeval: step -> fetch",
-    "2026-08-03T04:37 scialom-2021-questeval: step -> figures",
-    "2026-08-03T04:48 scialom-2021-questeval: step -> draft",
-    "2026-08-03T04:52 scialom-2021-questeval: step -> draft",
-    "2026-08-03T04:52 scialom-2021-questeval: step -> critique (round 1)",
-    "2026-08-03T05:01 scialom-2021-questeval: 1 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T05:01 scialom-2021-questeval: step -> revise",
     "2026-08-03T05:05 scialom-2021-questeval: step -> critique (round 2)",
     "2026-08-03T05:11 scialom-2021-questeval: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-03T05:11 scialom-2021-questeval: step -> revise",
@@ -1340,6 +1334,27 @@
     "2026-08-03T06:50 gehrmann-2021-gem: step -> verify",
     "2026-08-03T06:51 gehrmann-2021-gem: step -> queue-ops",
     "2026-08-03T06:52 gehrmann-2021-gem: step -> podcast",
-    "2026-08-03T07:03 completed gehrmann-2021-gem (verdict=approved_with_notes, rounds=4)"
+    "2026-08-03T07:03 completed gehrmann-2021-gem (verdict=approved_with_notes, rounds=4)",
+    "2026-08-03T07:29 started lin-2020-softgym ('SoftGym: Benchmarking Deep Reinforcement Learning for Deformable Object Manipulation')",
+    "2026-08-03T07:29 skipped lin-2020-softgym (Started out of order - I began SoftGym from a stale note, but the core queue head is QAFactEval (317 citations vs SoftGym's 292). SoftGym stays in the queue at position 3 and is untouched; nothing was written for it beyond a staged PDF. Following queue order rather than my own recollection.)",
+    "2026-08-03T07:29 started fabbri-2021-qafacteval ('QAFactEval: Improved QA-Based Factual Consistency Evaluation for Summarization')",
+    "2026-08-03T07:30 fabbri-2021-qafacteval: step -> fetch",
+    "2026-08-03T07:38 fabbri-2021-qafacteval: step -> figures",
+    "2026-08-03T07:39 fabbri-2021-qafacteval: step -> draft",
+    "2026-08-03T07:51 fabbri-2021-qafacteval: step -> critique (round 1)",
+    "2026-08-03T08:02 fabbri-2021-qafacteval: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T08:02 fabbri-2021-qafacteval: step -> revise",
+    "2026-08-03T08:10 fabbri-2021-qafacteval: step -> critique (round 2)",
+    "2026-08-03T08:21 fabbri-2021-qafacteval: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-03T08:21 fabbri-2021-qafacteval: step -> revise",
+    "2026-08-03T08:21 fabbri-2021-qafacteval: step -> critique (round 3)",
+    "2026-08-03T08:29 fabbri-2021-qafacteval: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T08:29 fabbri-2021-qafacteval: step -> revise",
+    "2026-08-03T08:29 fabbri-2021-qafacteval: step -> critique (round 4)",
+    "2026-08-03T08:29 fabbri-2021-qafacteval: 0 open blocker(s) from round 4 (verdict: approve)",
+    "2026-08-03T08:29 fabbri-2021-qafacteval: step -> verify",
+    "2026-08-03T08:30 fabbri-2021-qafacteval: step -> queue-ops",
+    "2026-08-03T08:30 fabbri-2021-qafacteval: step -> podcast",
+    "2026-08-03T08:46 completed fabbri-2021-qafacteval (verdict=approved_with_notes, rounds=4)"
   ]
 }
