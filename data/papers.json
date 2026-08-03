@@ -10765,6 +10765,22 @@
       "explainer": "papers/fabbri-2021-qafacteval.html",
       "audio_url": "https://pod.darvinyi.com/audio/fabbri-2021-qafacteval.mp3",
       "tags": ["evaluations"]
+    },
+    {
+      "slug": "ding-2021-few-nerd",
+      "short": "Few-NERD",
+      "title": "Few-NERD: A Few-shot Named Entity Recognition Dataset",
+      "authors": "Ding, Xu, Chen, Wang, Han, Xie, Zheng, Liu",
+      "year": 2021,
+      "date": "2021-05",
+      "venue": "ACL-IJCNLP 2021",
+      "citation_count": 307,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University",
+      "abstract": "A large-scale human-annotated few-shot NER dataset with an 8-coarse/66-fine entity-type hierarchy over 188,238 Wikipedia sentences, purpose-built rather than repurposed from existing coarse-grained NER corpora. Even a fully-supervised BERT-Tagger drops from 91.34 F1 (CoNLL'03) to 67.13 on FEW-NERD (SUP), and the best few-shot baseline (ProtoBERT) tops out at 58.79 F1 in its easiest setting — the paper's argument that few-shot NER needs to be tested on fine-grained, not coarse, type distinctions.",
+      "explainer": "papers/ding-2021-few-nerd.html",
+      "audio_url": "https://pod.darvinyi.com/audio/ding-2021-few-nerd.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18294,6 +18310,10 @@
     { "from": "fabbri-2021-qafacteval", "to": "rajpurkar-2016-squad" },
     { "from": "fabbri-2021-qafacteval", "to": "scialom-2021-questeval" },
     { "from": "fabbri-2021-qafacteval", "to": "williams-2017-multinli" },
-    { "from": "min-2023-factscore", "to": "fabbri-2021-qafacteval" }
+    { "from": "min-2023-factscore", "to": "fabbri-2021-qafacteval" },
+    { "from": "ding-2021-few-nerd", "to": "devlin-2019-bert" },
+    { "from": "ding-2021-few-nerd", "to": "yang-2018-hotpotqa" },
+    { "from": "bai-2024-longbench-v2", "to": "ding-2021-few-nerd" },
+    { "from": "li-2024-longiclbench", "to": "ding-2021-few-nerd" }
   ]
 }

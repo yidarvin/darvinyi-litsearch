@@ -1251,6 +1251,15 @@
         "4 critic rounds. Round 1 found three real blockers: (a) two false superlatives - the page called a 10.1-point ablation drop 'the largest of any single ablation in the table' when NER's is 11.1 and T5-base's 10.5, and bolded 'question generation is the single biggest lever' when the largest single-swap drop belongs to Answer Selection; (b) a materially wrong QAFactEval-NLI architecture - the paper bins the per-answer overlap scores into a histogram, passes it through a 1-D CONVOLUTION to a single scalar QA score, and concatenates THAT with SCConv's already-scalar NLI score before a linear layer, not two histograms into a linear layer; (c) a misattribution presenting FactCC and DAE as FRANK's, when they are Kryscinski et al. 2020 and Goyal and Durrett 2020, and FRANK's role in this paper is as one of the six SummaC datasets - which is how the page's own results table already used it. Round 2's single blocker was introduced by the round-1 repair: the new correlation paragraph attributed the paper's XSF explanation to plain QAFactEval, but that sentence is scoped to QAFactEval-NLI's FactCC synthetic fine-tuning, and of plain QAFactEval the paper says only 'QAFACTEVAL performs well across most datasets'. The replacement is a better critique - the paper does not account for its own weakest correlation (0.29 on XSF against 0.45 for both QuestEval and BertScore-FFCI) - and is balanced by noting XSF is the one column it trails on, since across Table 5's other five datasets it posts 0.61/0.66/0.32/0.68/0.44, leading every baseline on four and tying SCZeroShot on the fifth. Round 3 approve; I applied four suggestions and then added one finding the podcast agent surfaced and I verified from Table 3: the paper's only two significance markers (out of 98 cells) sit on QAFACTEVAL-NLI (supervised) at 84.3* and 79.5*, so the HEADLINE claim - plain QAFactEval's 77.8 against MNLI's 75.7, the best entailment baseline - carries no significance mark at all, and the tested improvement belongs to the variant allowed to fine-tune on each dataset's own validation split. TWO ORCHESTRATOR SEARCH FAILURES worth recording, both the same shape: I swept the page for '3-5' in ASCII and missed it because the page uses an en dash (U+2013) - the same class of error as searching for 'stride' when the previous paper wrote 'step size'. Search by the document's encoding and vocabulary, not my own. Also: S2 rate-limited through 7 retries on the first fetch and a bibliography-only sweep returned 12 outgoing / 0 incoming; after a longer backoff the complete fetch gave 13 outgoing / 1 incoming, so lewis-2019-bart and the min-2023-factscore incoming edge would both have been silently lost. A zero-incoming result from an incomplete fetch is not a finding. Also note this paper was started out of order - I began SoftGym from a stale note and switched to the actual core-queue head; SoftGym remains queued and untouched. Version discipline clean: 2 arXiv versions with 13 v1-only tokens all in the 67-84 range (they look exactly like plausible correlation percentages), none present on the page. Page has ZERO figures - a tables-only paper - so table transcription was the sole evidence and the critic re-derived Tables 2, 3 and 5 by bbox geometry. year 2022 / date 2021-12 is the intentional preprint-vs-venue gap matching devlin-2019-bert and nie-2020-anli. Tagged evaluations-only. Verified: 2021-Q4 column with GSM8K/LexGLUE/ContractNLI, 14 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 29.9 min, render rc=0, remote MD5 verified on both MP3 and feed."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "ding-2021-few-nerd",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. THE MOST SEVERE VERSION HAZARD IN THE PROJECT: six arXiv versions, only 27 numeric tokens shared between v1 and v6 (86 v1-only, 143 v6-only), and NO erratum or change note anywhere in v6 - the paper replaced its numbers silently. The dataset facts are stable across versions (188,238 sentences, 8 coarse / 66 fine-grained types); what changed is every Few-NERD-SPECIFIC result: Table 4's supervised row 67.39/70.45/68.88 -> 65.56/68.78/67.13, all 84 cells of Tables 5-7 with zero identical, and the per-coarse-type F1 chart, which does not exist in v1 at all (v1's Figure 3 is the annotation-interface screenshot). The two borrowed reference rows - CoNLL'03 90.62/92.07/91.34 and OntoNotes 90.00/88.24/89.11 - are byte-identical. ROUND-1 BLOCKER B1 WAS MY ERROR: I told the builder in the draft brief that the diff replaced 'essentially the entire results section', it was transcribed, and the page then contradicted itself six times by calling 91.34 and 89.11 replaced while using them as headline figures in the dek, both meta surfaces, the node abstract, the results prose, the results table and takeaway 2. Fourth time this session my brief or blocker prose has been copied verbatim onto a page; the corrected finding (borrowed reference points untouched, every Few-NERD-specific number re-run) is sharper than the one I supplied. B2 was a genuine inversion of the paper: the page said span detection is comparatively solved and fine-grained typing is the bottleneck, where section 7.3 says strict entity-level scoring is 'the main reason for the challenge of FEW-NERD' and that 'if an entity span could be accurately detected, the models could yield relatively good performance on entity typing'. The fix correctly kept the page's own true observation (Outer is the largest cell in every Table 7 row) but marked it as the page's reading rather than the paper's. B3 misattributed StructShot's Viterbi edge to low-shot settings instead of section 7.2's INTRA precision gain. B4 was a two-vs-four column count. Round 2 approve; I then applied three correctness suggestions - scoping 'strongest in all four 5-10-shot columns' to F1 (StructShot leads precision in all four), removing a repair artifact, and scoping the '30-70-point F1 gap' to CoNLL/OntoNotes-level supervision since against Few-NERD's own 67.13 SUP the gap is 8.3-52.1 - plus two of my own findings: the H1 read 'FEW-NERD' where the canonical title is 'Few-NERD' (lint could not catch it because its comparison lowercases), and a bibliographic slip I verified in the paper - it cites CoNLL'03 as '(Tjong Kim Sang, 2002)' throughout, but that is the CoNLL-2002 shared task covering Spanish and Dutch; CoNLL-2003 is Tjong Kim Sang and De Meulder, a name absent from the bibliography, while the paper's own description ('curated from Reuters News and includes 4 coarse-grained entity types') is unambiguously the 2003 English set. The critic's universal re-checks were the most thorough of the session: INTRA < INTER holds 36/36 across P, R and F1, and hardest/easiest holds 18/18. Tagged benchmarks-only: the episode-sampling algorithm changes how episodes are assembled, not how outputs are scored. Verified: 2021-Q2 column with APPS/BEIR/SimCSE, 4 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 34.6 min, render rc=0 (incremental-write pattern this time - MP3 appeared mid-run at 1.5 MB and streamed to 29 MB, so a file-existence check would have false-positived), remote MD5 verified on both MP3 and feed."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1306,22 +1315,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T05:05 scialom-2021-questeval: step -> critique (round 2)",
-    "2026-08-03T05:11 scialom-2021-questeval: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T05:11 scialom-2021-questeval: step -> revise",
-    "2026-08-03T05:11 scialom-2021-questeval: step -> critique (round 3)",
-    "2026-08-03T05:11 scialom-2021-questeval: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T05:11 scialom-2021-questeval: step -> verify",
-    "2026-08-03T05:12 scialom-2021-questeval: step -> queue-ops",
-    "2026-08-03T05:13 scialom-2021-questeval: step -> podcast",
-    "2026-08-03T05:24 completed scialom-2021-questeval (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T05:51 started gehrmann-2021-gem ('The GEM Benchmark: Natural Language Generation, its Evaluation and Metrics')",
-    "2026-08-03T05:51 gehrmann-2021-gem: step -> fetch",
-    "2026-08-03T05:53 gehrmann-2021-gem: step -> fetch",
-    "2026-08-03T05:53 gehrmann-2021-gem: step -> figures",
-    "2026-08-03T05:54 gehrmann-2021-gem: step -> draft",
-    "2026-08-03T06:10 gehrmann-2021-gem: step -> critique (round 1)",
-    "2026-08-03T06:23 gehrmann-2021-gem: 1 open blocker(s) from round 1 (verdict: revise)",
     "2026-08-03T06:23 gehrmann-2021-gem: step -> revise",
     "2026-08-03T06:29 gehrmann-2021-gem: step -> critique (round 2)",
     "2026-08-03T06:41 gehrmann-2021-gem: 2 open blocker(s) from round 2 (verdict: revise)",
@@ -1355,6 +1348,22 @@
     "2026-08-03T08:29 fabbri-2021-qafacteval: step -> verify",
     "2026-08-03T08:30 fabbri-2021-qafacteval: step -> queue-ops",
     "2026-08-03T08:30 fabbri-2021-qafacteval: step -> podcast",
-    "2026-08-03T08:46 completed fabbri-2021-qafacteval (verdict=approved_with_notes, rounds=4)"
+    "2026-08-03T08:46 completed fabbri-2021-qafacteval (verdict=approved_with_notes, rounds=4)",
+    "2026-08-03T09:13 started ding-2021-few-nerd ('Few-NERD: A Few-shot Named Entity Recognition Dataset')",
+    "2026-08-03T09:13 ding-2021-few-nerd: step -> fetch",
+    "2026-08-03T09:17 ding-2021-few-nerd: step -> figures",
+    "2026-08-03T09:18 ding-2021-few-nerd: step -> draft",
+    "2026-08-03T09:31 ding-2021-few-nerd: step -> critique (round 1)",
+    "2026-08-03T09:43 ding-2021-few-nerd: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T09:43 ding-2021-few-nerd: step -> revise",
+    "2026-08-03T09:48 ding-2021-few-nerd: step -> critique (round 2)",
+    "2026-08-03T09:58 ding-2021-few-nerd: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T09:58 ding-2021-few-nerd: step -> revise",
+    "2026-08-03T09:58 ding-2021-few-nerd: step -> critique (round 3)",
+    "2026-08-03T09:58 ding-2021-few-nerd: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T09:58 ding-2021-few-nerd: step -> verify",
+    "2026-08-03T09:59 ding-2021-few-nerd: step -> queue-ops",
+    "2026-08-03T10:01 ding-2021-few-nerd: step -> podcast",
+    "2026-08-03T10:17 completed ding-2021-few-nerd (verdict=approved_with_notes, rounds=3)"
   ]
 }
