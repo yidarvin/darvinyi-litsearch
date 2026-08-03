@@ -1233,6 +1233,15 @@
         "3 critic rounds. Unlike the previous paper, ALL FOUR of the builder's internal-inconsistency accusations against QuestEval were independently confirmed: (1) Table 1's 'QAGS (our impl.)' row prints an Average of 13.7 while its own cells sum to 54.0 and average 13.5 - verified by word-geometry re-extraction that accounted for the table's right-alignment, so not a column misread; (2) '33.3' occurs exactly ONCE in the entire 10-page PDF, in the Negative Sampling prose, and appears in no table, split or figure - the critic checked where the number WOULD live before accepting the inconsistency, which is precisely the discipline whose absence produced two false accusations on GenEval; (3) the 'halved' claim's 4-metric denominator is right (METEOR is 11-reference only) though BLEU falls to almost exactly a third, 7.4/22.2 = 0.3333; (4) the column sweep holds strictly over 16 Table-1 and 12 Table-2 rows - Precision Only takes Consistency 46.5, Fluency 30.9 and QAGS-XSUM 32.7 while the recommended W=learned takes Coherence 24.0, Relevance 39.2 and Average 33.5. The critic also discovered the paper BOLDS its column maxima, correcting a false 'no bold markers' note in the scratch tables.md that would otherwise have been inherited, and turning the central finding into something sharper: the paper bolds Precision Only's wins on exactly the hallucination-detection columns its own introduction leads with, and still recommends the learned weighter. R1 blocker was one sentence mixing two pairing conventions plus a misquoted 33.5-for-33.3 and a Table-1-for-Table-2 mislabel; R2 approve. I applied the R2 suggestion ('those bold marks land on Precision Only' read as exhaustive when three of six are W=learned's) and added one point the podcast agent surfaced and I verified verbatim: the weighter's supervision is built from reference summaries ('each question is labeled as important if the corresponding human summary contains the answer'), so QuestEval is reference-less at inference but W=learned amortises references into a trained model - which strengthens the page's existing Precision Only argument, since only the uniform-weight variants are reference-free end to end. EDGE NOTE: banerjee-2005-meteor correctly REJECTED - QuestEval cites Lavie and Agarwal 2007 ('...High Levels of Correlation...'), 'Banerjee' scores 0 hits, and no node matches what it actually cites. Second paper where that near-identical-title pair produced a false lead, so find_edges.py now prints both titles in full on a fuzzy match instead of truncating at 60 chars, which had hidden the distinguishing final words (commit f85a3f3). Builder also hit the bare-json.dump trap on data/papers.json, caught it, and restored from its own backup; I verified the recovery - 445 inline tags arrays intact, canonical key order, minimal diff. No version hazard (both arXiv versions share all 125 numeric tokens, zero unique to either). Tagged evaluations-only: a metric shipping no named dataset, matching ROUGE/BLEURT/COMET/GPTScore/FEQA precedent. Verified: 2021-Q1 column with MATH/CUAD/The Pile, 11 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 30.6 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "gehrmann-2021-gem",
+      "rounds": 4,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "4 critic rounds. ORCHESTRATOR ERRORS: round 2's two blockers were both mine, not the builder's. In the revise brief I asserted that ROUGE-L can only equal ROUGE-1 if the longest common subsequence collapses to a single token - false, disproved by computation (cand 'a b c d e' vs ref 'a x b x c x d x e' gives ROUGE-1 = ROUGE-L = 0.7143 with ROUGE-2 = 0 and a 5-token LCS) - and I quoted a BERTScore range of 0.862-0.905 as 'normal-to-good' while the TGen rows I was describing are 0.648/0.650/0.651, the three lowest in all of Table 3 (next 0.691, everything else >= 0.812). The builder transcribed both onto the page. Third time this session blocker-message prose has been copied verbatim, after BEGIN's 'two rows apart' and TAPE's GLUE framing. The surviving finding is the page's best material and is now correctly scoped: DART's BART/T5 rows and Czech Restaurant's three TGen rows share a signature of ROUGE-2 exactly 0.0, ROUGE-L exactly equal to ROUGE-1, and BLEU ~0.02-0.03. It is not dataset difficulty (mT5 on the same Czech Restaurant data scores 48.1/28.8/44.2/17.1) and not a weak generator (the same TGen on E2E clean scores 74.7/49.6/BLEU 46.0/BERTScore 0.949 and the highest BLEURT in that block, 0.412) - so it tracks the system-dataset interaction, and GEM never remarks on it. BERTScore vindicates the outputs on the DART rows only; on the TGen rows it agrees with the lexical metrics. The critic established the absence by searching WHERE the discussion would live (Results, Experimental Setup incl. Modeling Baselines and Automated Evaluation, sections 6-7, Conclusion, all three appendices) rather than by vocabulary grep - the discipline that failed three times on WILDS. Also confirmed: the paper states its own dataset size range three ways (intro '5k to 500k', section 3 '5,000 to 1.5M', Table 1 max 594k), verified on all three legs with a search for a defending number that came up empty. Version discipline clean: 3 arXiv versions, 215 v3-only and 15 v1-only numeric tokens, all 15 v1-only absent from a 64-token page sweep. METADATA TRAP: S2 reports the venue as 'IEEE Games Entertainment Media Conference' - a bad acronym match on GEM; the real venue is the GEM Workshop at ACL-IJCNLP 2021, set as 'GEM @ ACL 2021'. EDGE NOTES: banerjee-2005-meteor is a REAL edge here ('improved correlation', Agarwal = 0 hits), the exact opposite of FRANK and QuestEval which both cite the 2007 Lavie and Agarwal paper; and scialom-2021-questeval is real via retitle - GEM cites it as 'SAFEval' with QuestEval's own arXiv id 2103.12693 - surfaced immediately by the new full-title fuzzy label from commit f85a3f3. Also caught a near-duplicate queue entry: S2 spells BEIR's title 'Heterogenous' where our node has 'Heterogeneous', so exact-title dedupe missed it; used fuzzy dedupe at 0.93 for queue-ops. Dual-tagged benchmarks + evaluations: GEM ships a named 11-dataset suite AND contributes evaluation methodology (living-benchmark paradigm, multi-metric exploration tool, human-eval standards), matching the liang-2022-helm precedent. Verified: 2021-Q1 column with MATH/CUAD/The Pile, 29 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 27.8 min, render rc=0 (wrote nothing to disk until the very end - fourth data point for exit-code gating), remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1282,26 +1291,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T01:19 koh-2021-wilds: step -> figures",
-    "2026-08-03T01:22 koh-2021-wilds: step -> draft",
-    "2026-08-03T01:36 koh-2021-wilds: step -> critique (round 1)",
-    "2026-08-03T01:51 koh-2021-wilds: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T01:51 koh-2021-wilds: step -> revise",
-    "2026-08-03T01:56 koh-2021-wilds: step -> critique (round 2)",
-    "2026-08-03T02:07 koh-2021-wilds: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-03T02:07 koh-2021-wilds: step -> revise",
-    "2026-08-03T02:13 koh-2021-wilds: step -> critique (round 3)",
-    "2026-08-03T02:21 koh-2021-wilds: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T02:21 koh-2021-wilds: step -> revise",
-    "2026-08-03T02:21 koh-2021-wilds: step -> critique (round 4)",
-    "2026-08-03T02:21 koh-2021-wilds: 0 open blocker(s) from round 4 (verdict: approve)",
-    "2026-08-03T02:21 koh-2021-wilds: step -> verify",
-    "2026-08-03T02:22 koh-2021-wilds: step -> queue-ops",
-    "2026-08-03T02:23 koh-2021-wilds: step -> podcast",
-    "2026-08-03T02:34 completed koh-2021-wilds (verdict=approved_with_notes, rounds=4)",
-    "2026-08-03T03:01 started ghosh-2023-geneval ('GenEval: An Object-Focused Framework for Evaluating Text-to-Image Alignment')",
-    "2026-08-03T03:01 ghosh-2023-geneval: step -> fetch",
-    "2026-08-03T03:03 ghosh-2023-geneval: step -> figures",
     "2026-08-03T03:18 ghosh-2023-geneval: step -> draft",
     "2026-08-03T03:27 ghosh-2023-geneval: step -> critique (round 1)",
     "2026-08-03T03:38 ghosh-2023-geneval: 3 open blocker(s) from round 1 (verdict: revise)",
@@ -1331,6 +1320,26 @@
     "2026-08-03T05:11 scialom-2021-questeval: step -> verify",
     "2026-08-03T05:12 scialom-2021-questeval: step -> queue-ops",
     "2026-08-03T05:13 scialom-2021-questeval: step -> podcast",
-    "2026-08-03T05:24 completed scialom-2021-questeval (verdict=approved_with_notes, rounds=3)"
+    "2026-08-03T05:24 completed scialom-2021-questeval (verdict=approved_with_notes, rounds=3)",
+    "2026-08-03T05:51 started gehrmann-2021-gem ('The GEM Benchmark: Natural Language Generation, its Evaluation and Metrics')",
+    "2026-08-03T05:51 gehrmann-2021-gem: step -> fetch",
+    "2026-08-03T05:53 gehrmann-2021-gem: step -> fetch",
+    "2026-08-03T05:53 gehrmann-2021-gem: step -> figures",
+    "2026-08-03T05:54 gehrmann-2021-gem: step -> draft",
+    "2026-08-03T06:10 gehrmann-2021-gem: step -> critique (round 1)",
+    "2026-08-03T06:23 gehrmann-2021-gem: 1 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T06:23 gehrmann-2021-gem: step -> revise",
+    "2026-08-03T06:29 gehrmann-2021-gem: step -> critique (round 2)",
+    "2026-08-03T06:41 gehrmann-2021-gem: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-03T06:41 gehrmann-2021-gem: step -> revise",
+    "2026-08-03T06:41 gehrmann-2021-gem: step -> critique (round 3)",
+    "2026-08-03T06:50 gehrmann-2021-gem: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T06:50 gehrmann-2021-gem: step -> revise",
+    "2026-08-03T06:50 gehrmann-2021-gem: step -> critique (round 4)",
+    "2026-08-03T06:50 gehrmann-2021-gem: 0 open blocker(s) from round 4 (verdict: approve)",
+    "2026-08-03T06:50 gehrmann-2021-gem: step -> verify",
+    "2026-08-03T06:51 gehrmann-2021-gem: step -> queue-ops",
+    "2026-08-03T06:52 gehrmann-2021-gem: step -> podcast",
+    "2026-08-03T07:03 completed gehrmann-2021-gem (verdict=approved_with_notes, rounds=4)"
   ]
 }
