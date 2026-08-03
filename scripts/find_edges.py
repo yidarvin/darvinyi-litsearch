@@ -22,8 +22,18 @@ already cost or nearly cost a real edge:
   2. SHORT TITLES. A `len(probe) > 25` guard silently dropped 22 of 673
      nodes, among them GPT-4 Technical Report (22 chars), Mistral 7B,
      OpenAI Gym, Humanity's Last Exam and Datasheets for Datasets -- i.e.
-     precisely the papers everything cites. Guard on word count instead,
-     with a much lower character floor.
+     precisely the papers everything cites. Lowering that to a word-count
+     guard plus a 14-char floor recovered most of them but *still* dropped
+     the shortest three, and it cost a real edge a second time: LongICLBench
+     cites Mistral 7B (2 words, 10 chars) and S2's reference list omits it
+     entirely, so the printed-bibliography sweep was the only thing that
+     could have caught it -- and the floor excluded it from that sweep.
+     So no title is dropped now. A sub-floor probe is instead marked *weak*
+     and must be corroborated by the node's first-author surname appearing
+     within one bibliography entry of the match. That keeps "world models"
+     (generic enough to appear in any related-work paragraph) from matching
+     on prose, while letting "mistral 7b" through on the strength of a
+     neighbouring "Jiang".
 
   3. ARXIV IDS HIDDEN IN DOIS. Semantic Scholar sometimes omits the
      `ArXiv` external id entirely and stores the id only inside the DOI as
@@ -61,6 +71,10 @@ PAPERS_JSON = ROOT / "data" / "papers.json"
 MIN_PROBE_WORDS = 3
 MIN_PROBE_CHARS = 14
 FUZZY_CUTOFF = 0.85
+# How far from a weak probe's match the first-author surname may sit and still
+# count as the same bibliography entry. Entries run ~150-250 chars once
+# normalized, so this is about one entry either side.
+SHORT_PROBE_WINDOW = 300
 
 
 def norm(text):
@@ -102,12 +116,26 @@ def node_arxiv_map(nodes):
 
 
 def probe_for(title):
-    """The bibliography-search probe for a node title, or None if too weak."""
+    """(probe, weak) for a node title -- never None for a real title.
+
+    `weak` marks a probe short enough to risk matching ordinary prose rather
+    than a bibliography entry; the caller corroborates those with the
+    first-author surname instead of discarding them (gap 2).
+    """
     words = norm(title).split(" ")
     probe = " ".join(words[:9])
-    if len(words) < MIN_PROBE_WORDS or len(probe) < MIN_PROBE_CHARS:
-        return None
-    return probe
+    if not probe:
+        return None, False
+    weak = len(words) < MIN_PROBE_WORDS or len(probe) < MIN_PROBE_CHARS
+    return probe, weak
+
+
+def first_surname(node):
+    """Surname of the node's first author, used to corroborate a weak probe."""
+    first = (node.get("authors") or "").split(",")[0]
+    first = re.sub(r"\bet\s+al\.?", " ", first, flags=re.I)
+    parts = norm(first).split(" ")
+    return parts[-1] if parts and parts[-1] else None
 
 
 def main():
@@ -173,10 +201,22 @@ def main():
         slug = node["slug"]
         if slug in outgoing or slug == args.slug:
             continue
-        probe = probe_for(node["title"])          # gap 2
+        probe, weak = probe_for(node["title"])          # gap 2
         if probe and probe in bib:
-            outgoing[slug] = "printed-bibliography"
-            continue
+            if not weak:
+                outgoing[slug] = "printed-bibliography"
+                continue
+            # A weak probe is trusted only when the node's first author sits
+            # within one bibliography entry of it -- "mistral 7b" next to a
+            # "Jiang" is a citation; a bare "world models" in a related-work
+            # sentence is not.
+            surname = first_surname(node)
+            if surname and any(
+                    surname in bib[max(0, m.start() - SHORT_PROBE_WINDOW):
+                                   m.end() + SHORT_PROBE_WINDOW]
+                    for m in re.finditer(re.escape(probe), bib)):
+                outgoing[slug] = "printed-bibliography (short title, surname-corroborated)"
+                continue
         close = difflib.get_close_matches(norm(node["title"]), ref_titles,
                                           n=1, cutoff=FUZZY_CUTOFF)
         if close:
