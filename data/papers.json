@@ -10653,6 +10653,22 @@
       "explainer": "papers/depierre-2018-jacquard.html",
       "audio_url": "https://pod.darvinyi.com/audio/depierre-2018-jacquard.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "pagnoni-2021-frank",
+      "short": "FRANK",
+      "title": "Understanding Factuality in Abstractive Summarization with FRANK: A Benchmark for Factuality Metrics",
+      "authors": "Pagnoni, Balachandran, Tsvetkov",
+      "year": 2021,
+      "date": "2021-04",
+      "venue": "NAACL 2021",
+      "citation_count": 400,
+      "topic": "Benchmarks & Evals",
+      "author_group": "CMU",
+      "abstract": "Builds FRANK, a 2,250-summary human-annotated benchmark spanning CNN/DM and XSum, around a seven-category linguistic typology of factual errors that replaces the binary factual/non-factual label used by prior factuality metrics. Benchmarking metrics with partial correlation (controlling for system and dataset), FactCC and BERTScore Precision are the two best-correlating automatic metrics with human judgment (partial Pearson 0.20 and 0.27, per the authors' bug-fixed arXiv v2 -- the published NAACL proceedings PDF still has an uncorrected, statistically insignificant BERTScore result), though every metric tested remains a weak proxy for it.",
+      "explainer": "papers/pagnoni-2021-frank.html",
+      "audio_url": "https://pod.darvinyi.com/audio/pagnoni-2021-frank.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18086,6 +18102,15 @@
     { "from": "liu-2024-evalcrafter", "to": "hu-2023-tifa" },
     { "from": "mialon-2023-gaia", "to": "hu-2023-tifa" },
     { "from": "depierre-2018-jacquard", "to": "deng-2009-imagenet" },
-    { "from": "fang-2020-graspnet", "to": "depierre-2018-jacquard" }
+    { "from": "fang-2020-graspnet", "to": "depierre-2018-jacquard" },
+    { "from": "pagnoni-2021-frank", "to": "devlin-2019-bert" },
+    { "from": "pagnoni-2021-frank", "to": "durmus-2020-feqa" },
+    { "from": "pagnoni-2021-frank", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "pagnoni-2021-frank", "to": "lewis-2019-bart" },
+    { "from": "pagnoni-2021-frank", "to": "lin-2004-rouge" },
+    { "from": "pagnoni-2021-frank", "to": "maynez-2020-faithfulness" },
+    { "from": "pagnoni-2021-frank", "to": "papineni-2002-bleu" },
+    { "from": "dziri-2022-begin", "to": "pagnoni-2021-frank" },
+    { "from": "min-2023-factscore", "to": "pagnoni-2021-frank" }
   ]
 }

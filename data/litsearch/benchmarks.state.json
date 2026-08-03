@@ -1188,6 +1188,15 @@
         "Nearly skipped this on a scope judgment the corpus contradicted: a 2018 static grasp-detection dataset looked out of scope for an LLM/agent benchmark survey, but the graph already has an established robotics cluster (RLBench, LIBERO, ManiSkill2, EmbodiedEval) and fang-2020-graspnet — a grasping dataset that cites this one — is dual-tagged and in. Precedent beat instinct, same lesson as the FEQA tagging call. Two critic rounds, both blockers ordinary. The strongest work was the critic proving the Table II structure from RULE GEOMETRY rather than counting: vertical rules at x=55.34/121.50/180.15/238.81/297.46, with the 180.15 rule absent in the metric-header band, so Rectangle Metrics spans two sub-columns and SGT spans one — three value columns, no SGT-on-Cornell cell, because SGT replays the grasp in the pyBullet scene that generated the label and Cornell is real photographs. It also verified the figure renumbering fix by decoding all five base64 payloads and matching each caption to its actual image. Real paper contradiction on the page: Table I lists Cornell at 1,035 images, section II prose says 885, with object and grasp counts agreeing. Dual-tagged: ships the named Jacquard dataset AND introduces SGT as a novel criterion based on physic grasp simulation, served via a public web interface — though proposed and deployed rather than validated, which the page says. Episode agent found no page errors and confirmed the CLAUDE.md render-gating fix from one paper ago was load-bearing: Kokoro wrote nothing until the very end this run, so a file-existence test would have hung."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "pagnoni-2021-frank",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. R1: 5 blockers. R2: B1-B5 all closed and independently re-verified, but the critic disclosed that its OWN round-1 B2 axis was reversed (section 5.3 verbatim: entailment metrics and QAGS 'perform significantly better on non-pretrained models'), confirming the builder was right to re-derive rather than invert; new blocker B6 traced to the same round-1 defect, where the critic's colourbar-NORMALIZED pixel reads got transplanted onto the page as absolute frequencies. Orchestrator fixed B6: PredE->OutE 0.32 (not 0.49), PredE->NE 0.11 (not 0.17), CircE->OutE 0.18 (not 0.28), CircE->NE 0.15 (not 0.24), LinkE->EntE 0.34 (not 0.52), plus 'Two categories break that pattern' followed by three. Self-consistency check: printed scale would push those rows past 1.0, corrected they sum to ~0.85-0.95 per A.5. R3 approve. Page follows arXiv v2 per the new authors-endorse-the-version carve-out (arXiv comment: 'Second version fixes bug with BERTScore results'; the ACL Anthology copy still ships the buggy ~0.00 BERTScore correlations) - the reverse of the TAPE case. METEOR edge correctly rejected: FRANK's printed bibliography cites Lavie and Agarwal 2007, not Banerjee and Lavie 2005, though S2's reference data lists both. Verified: 2021-Q2 column alongside BEIR/SimCSE/CLIPScore/SUPERB, 9 edges all lit on hover with 0 lit before, 375px zero overflow, lint 0. Podcast 30.2 min, render rc=0, remote MD5 verified."
+      ],
+      "date": "2026-08-02"
     }
   ],
   "skipped": [
@@ -1237,22 +1246,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T18:49 peng-2019-blue: step -> queue-ops",
-    "2026-08-02T18:49 peng-2019-blue: step -> podcast",
-    "2026-08-02T19:05 completed peng-2019-blue (verdict=approved, rounds=3)",
-    "2026-08-02T19:07 started durmus-2020-feqa ('FEQA: A Question Answering Evaluation Framework for Faithfulness Assessment in Abstractive Summarization')",
-    "2026-08-02T19:07 durmus-2020-feqa: step -> fetch",
-    "2026-08-02T19:22 durmus-2020-feqa: step -> figures",
-    "2026-08-02T19:22 durmus-2020-feqa: step -> draft",
-    "2026-08-02T19:34 durmus-2020-feqa: step -> critique (round 1)",
-    "2026-08-02T19:34 durmus-2020-feqa: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T19:48 durmus-2020-feqa: step -> revise",
-    "2026-08-02T19:48 durmus-2020-feqa: step -> critique (round 2)",
-    "2026-08-02T19:48 durmus-2020-feqa: 3 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T19:48 durmus-2020-feqa: step -> revise",
-    "2026-08-02T19:48 durmus-2020-feqa: step -> critique (round 3)",
-    "2026-08-02T19:48 durmus-2020-feqa: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T19:48 durmus-2020-feqa: step -> verify",
     "2026-08-02T19:49 durmus-2020-feqa: step -> queue-ops",
     "2026-08-02T19:49 durmus-2020-feqa: step -> podcast",
     "2026-08-02T20:02 completed durmus-2020-feqa (verdict=approved, rounds=3)",
@@ -1286,6 +1279,22 @@
     "2026-08-02T21:54 depierre-2018-jacquard: step -> verify",
     "2026-08-02T21:55 depierre-2018-jacquard: step -> queue-ops",
     "2026-08-02T21:55 depierre-2018-jacquard: step -> podcast",
-    "2026-08-02T22:11 completed depierre-2018-jacquard (verdict=approved, rounds=2)"
+    "2026-08-02T22:11 completed depierre-2018-jacquard (verdict=approved, rounds=2)",
+    "2026-08-02T22:13 started pagnoni-2021-frank ('Understanding Factuality in Abstractive Summarization with FRANK: A Benchmark for Factuality Metrics')",
+    "2026-08-02T22:13 pagnoni-2021-frank: step -> fetch",
+    "2026-08-02T22:37 pagnoni-2021-frank: step -> figures",
+    "2026-08-02T22:37 pagnoni-2021-frank: step -> draft",
+    "2026-08-02T22:49 pagnoni-2021-frank: step -> critique (round 1)",
+    "2026-08-02T22:49 pagnoni-2021-frank: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-02T23:11 pagnoni-2021-frank: step -> revise",
+    "2026-08-02T23:11 pagnoni-2021-frank: step -> critique (round 2)",
+    "2026-08-02T23:11 pagnoni-2021-frank: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-02T23:11 pagnoni-2021-frank: step -> revise",
+    "2026-08-02T23:11 pagnoni-2021-frank: step -> critique (round 3)",
+    "2026-08-02T23:11 pagnoni-2021-frank: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-02T23:11 pagnoni-2021-frank: step -> verify",
+    "2026-08-02T23:14 pagnoni-2021-frank: step -> queue-ops",
+    "2026-08-02T23:15 pagnoni-2021-frank: step -> podcast",
+    "2026-08-02T23:33 completed pagnoni-2021-frank (verdict=approved_with_notes, rounds=3)"
   ]
 }
