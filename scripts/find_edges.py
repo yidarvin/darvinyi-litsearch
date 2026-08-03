@@ -220,7 +220,18 @@ def main():
         close = difflib.get_close_matches(norm(node["title"]), ref_titles,
                                           n=1, cutoff=FUZZY_CUTOFF)
         if close:
-            outgoing[slug] = f"fuzzy-title (retitled?): {close[0][:60]}"   # gap 4
+            # Gap 4. Show BOTH titles in full: a fuzzy hit is as often two
+            # genuinely different papers with near-identical names as it is a
+            # retitle, and the distinguishing words sit at the END. Truncating
+            # to 60 chars hid exactly that on METEOR twice -- Banerjee & Lavie
+            # 2005 "...with Improved Correlation with Human Judgments" vs
+            # Lavie & Agarwal 2007 "...with High Levels of Correlation with
+            # Human Judgments", where everything before the last few words is
+            # identical. Print them adjacently so the confirmer sees the
+            # difference without opening the PDF.
+            outgoing[slug] = (f"fuzzy-title -- CONFIRM, may be a different paper:\n"
+                              f"        node: {norm(node['title'])}\n"
+                              f"        ref:  {close[0]}")   # gap 4
 
     result = {
         "slug": args.slug,
