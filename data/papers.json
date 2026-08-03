@@ -10797,6 +10797,22 @@
       "explainer": "papers/lin-2020-softgym.html",
       "audio_url": "https://pod.darvinyi.com/audio/lin-2020-softgym.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "sinha-2019-clutrr",
+      "short": "CLUTRR",
+      "title": "CLUTRR: A Diagnostic Benchmark for Inductive Reasoning from Text",
+      "authors": "Sinha, Sodhani, Dong, Pineau, Hamilton",
+      "year": 2019,
+      "date": "2019-08",
+      "venue": "EMNLP-IJCNLP 2019",
+      "citation_count": 277,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Mila / McGill",
+      "abstract": "A procedurally generated diagnostic benchmark that infers unstated kinship relations from short stories built by backward-chaining a kinship-graph knowledge base, letting held-out reasoning-chain length (k) precisely test systematic generalization plus three taxonomized types of noise-robustness. A Graph Attention Network given the symbolic story graph reaches 1.0 accuracy at k=2 (the training clause length, which is not itself held out) and stays near-perfect on the held-out k=3 clauses, and averages 0.77 across Table 2's seven noise conditions, versus a best text-based (BiLSTM-Attention/MAC) average of 0.61 — though the paper's own ablation shows most of that gap is a language-parsing bottleneck rather than a pure reasoning one.",
+      "explainer": "papers/sinha-2019-clutrr.html",
+      "audio_url": "https://pod.darvinyi.com/audio/sinha-2019-clutrr.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18343,6 +18359,16 @@
     { "from": "lin-2020-softgym", "to": "yu-2019-meta-world" },
     { "from": "gu-2023-maniskill2", "to": "lin-2020-softgym" },
     { "from": "li-2022-behavior-1k", "to": "lin-2020-softgym" },
-    { "from": "srivastava-2021-behavior", "to": "lin-2020-softgym" }
+    { "from": "srivastava-2021-behavior", "to": "lin-2020-softgym" },
+    { "from": "sinha-2019-clutrr", "to": "bowman-2015-snli" },
+    { "from": "sinha-2019-clutrr", "to": "devlin-2019-bert" },
+    { "from": "sinha-2019-clutrr", "to": "gururangan-2018-annotation-artifacts" },
+    { "from": "sinha-2019-clutrr", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "sinha-2019-clutrr", "to": "jia-2017-adversarial-squad" },
+    { "from": "sinha-2019-clutrr", "to": "peters-2018-elmo" },
+    { "from": "sinha-2019-clutrr", "to": "rajpurkar-2016-squad" },
+    { "from": "sinha-2019-clutrr", "to": "williams-2017-multinli" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "sinha-2019-clutrr" },
+    { "from": "zhu-2024-dyval", "to": "sinha-2019-clutrr" }
   ]
 }

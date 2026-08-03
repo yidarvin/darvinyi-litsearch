@@ -1269,6 +1269,15 @@
         "3 critic rounds. THE DEFINING PROPERTY: SoftGym reports no results table and prints no final score for ANY learned method - everything lives in Figure 2's curves, and Figure 2 is a raster bitmap (page 6 carries two images, get_drawings() returns zero paths), so exact extraction was unavailable and the page's qualitative hedging was the correct call. ROUND-1 BLOCKER B1 WAS PARTLY MY ERROR: I told the builder in the draft brief that the paper contains 'only 37 distinct decimal tokens' and that results live in figures not tables; the builder extended that to a claim that no printed scalars exist anywhere, which is false. Appendix C's Supplementary Figure 6 prints an exact value above every bar - TransportWater -3.79/0.95/-4.99, PourWater 0.87/0.88/0.83, StraightenRope 1.00/1.00/0.99, SpreadCloth 0.78/0.83/0.87, FoldCloth 0.17/0.55/0.62, DropCloth 0.52/0.77/0.59 - with the caption 'The black bar is the performance that we report in the main paper'. I rendered the figure and confirmed every value. The lesson generalizes: the 37-token count came from paper.txt, which cannot see numbers baked into a raster, so a count over extracted text cannot support a claim about what a paper prints. Fifth time this session my brief prose has shaped a false page claim. The fix made the critique STRONGER rather than merely scoping it: CEM's TransportWater score swings 0.95 to -4.99, 5.94 normalized points, purely from a planning horizon the benchmark's own authors chose - while the reported bar is NOT always the best (SpreadCloth 0.83 reported vs 0.87 at h=21; FoldCloth 0.55 vs 0.62), which argues against naive cherry-picking and keeps the point honest as tuning SENSITIVITY rather than selection. Also surfaced a real paper-internal inconsistency: Table 3 gives FoldCloth a CEM horizon of 30 while Figure 6 tests only 7/15/21 and marks h=15 as reported; the critic verified by pixel-measuring all six Figure 2 oracle lines against Figure 6's black bars that FoldCloth is the sole mismatch (0.948 vs 0.55) and the other five agree to three decimals. B2 was a count: pickers cover 7 of 10 tasks, not 8, since section 4.1 says fluid tasks 'directly actuate the cup'. Round 2 approve; I then applied six correctness suggestions, one of which was a genuine page-internal contradiction - the body said SoftGym-Robot uses 'a REAL Sawyer or Franka arm' while the page's own figure caption said 'simulated', and the paper is explicit that SoftGym-Robot is a simulation tier. NOTABLE CRITIC WORK: to test the NARROWED absence claim it rendered all 7 raster images in the PDF and confirmed only Supplementary Figure 6 carries value labels, all 18 of them Dynamics Oracle bars - and the Dynamics Oracle is explicitly not learned ('no training is required (i.e. no parameters are learned) for this method'), so 'no printed final score for any LEARNED method' is exactly true. First narrowed absence claim in this pipeline to survive that scrutiny. PROCESS: S2's citations endpoint failed through 8 retries and a first sweep reported 0 incoming; after a 120s cooldown the complete fetch gave 3 (ManiSkill2, BEHAVIOR-1K, BEHAVIOR). Third time this session an incomplete fetch would have cost real edges. brockman-2016-openai-gym was recovered through the weak short-title surname-corroborated matcher path added earlier this session. Tagged benchmarks-only, matching RLBench/Meta-World/ManiSkill2/BEHAVIOR. Verified: 2020-Q4 column with Long Range Arena and WILDS, 13 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 28.0 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "sinha-2019-clutrr",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds, 5 round-1 blockers, and the strongest critic work of the session. THE CENTRAL FINDING - an arithmetic problem in the paper's Average row that the critic upheld only after trying hard to break it. Table 2's BERT Average prints 0.30 while the row's own seven cells sum to 1.87, giving 0.267 -> 0.27; reaching 0.30 needs a sum of 2.10. Before accepting it the critic re-extracted the table by word bbox (BERT values at x~356 under the BERT header at x=356, no misalignment; 0.30 is a literal two-decimal span) and falsified four alternative populations: 4 Clean-trained rows gives 0.28, 6 rows excluding Clean/Clean gives 0.25, the Tables 2+3 union gives 0.24, and no definition of 'Average' exists in the caption, section 4.2 or the appendix. The MAC contrast confirms it is not rounding (4.23/7 = 0.6043 vs printed 0.61). Two additions made it much stronger: Table 4's BERT Average also fails to reconcile (0.58 printed vs 0.5275 over twelve cells, while the worst of the other six columns deviates by 0.0050), and the Average rows' error bars are BYTE-IDENTICAL across Tables 2, 3 and 4 (+-0.08 +-0.08 +-0.07 +-0.06 +-0.07 +-0.05 +-0.09, same order, three times) while the six text-model means differ completely. I then verified by bbox that GAT's Table 3 and Table 4 columns are byte-identical across all twelve cells (0.92, 0.98, 0.92, 0.92, 0.77, 0.93, 0.85, 0.75, 0.78, 0.56, 0.96, 0.82) - which is CORRECT behaviour, since GAT reads the graph and never sees the placeholder substitution Table 4 varies - so the ablation moved the text models and left GAT alone, and it is the text columns' identical spreads that lack an explanation. The page reports this as an observation about the printed tables and asserts no cause; I also removed a 'that cannot be a real computation' clause that overreached into a production claim the next sentence disclaimed. FIVE BLOCKERS: B1 the builder accused the paper of a universal its own table falsifies, but the paper says 'the BERT-based models' PLURAL and its appendix defines exactly two BERT variants, so BERT-LSTM was already inside the non-improving group and the accusation was withdrawn (half the counterexample, 0.67+-0.03 to 0.66+-0.06, was inside the error bars anyway); B2 the dek, meta description and og:description all said BERT tops out around 0.67 when its Table 2 maximum is 0.37, contradicting the page's own body three lines later; B3 Figure 1's caption said 'Justin's mother is Carol' when the story says Kristin's mother is Carol, making the caption self-refuting against the grandmother answer it then gives; B4 Figure 4's caption put the Irrelevant path's branch at entity A when the middle panel shows B->E->F; B5 the node abstract claimed 1.0 accuracy on held-out k=2 clauses when footnote 3 says 'One should not holdout clauses from length k = 2'. B3 and B4 were both found by RENDERING the embedded figures rather than reading the captions - the discipline that has now caught defects on three consecutive papers. Tagged benchmarks-only, matching stojanovski-2025-reasoning-gym (a procedural-generator suite) rather than zhu-2024-dyval, which is dual-tagged because its contribution is the cross-task protocol CLUTRR is prior art for. No version hazard: arXiv v2 is a strict superset of v1, 25 tokens added and zero removed. Verified: 2019-Q3 column with RoBERTa/ALBERT/Megatron-LM, 10 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 25.9 min, render rc=0, remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1324,22 +1333,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T07:30 fabbri-2021-qafacteval: step -> fetch",
-    "2026-08-03T07:38 fabbri-2021-qafacteval: step -> figures",
-    "2026-08-03T07:39 fabbri-2021-qafacteval: step -> draft",
-    "2026-08-03T07:51 fabbri-2021-qafacteval: step -> critique (round 1)",
-    "2026-08-03T08:02 fabbri-2021-qafacteval: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T08:02 fabbri-2021-qafacteval: step -> revise",
-    "2026-08-03T08:10 fabbri-2021-qafacteval: step -> critique (round 2)",
-    "2026-08-03T08:21 fabbri-2021-qafacteval: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-03T08:21 fabbri-2021-qafacteval: step -> revise",
-    "2026-08-03T08:21 fabbri-2021-qafacteval: step -> critique (round 3)",
-    "2026-08-03T08:29 fabbri-2021-qafacteval: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T08:29 fabbri-2021-qafacteval: step -> revise",
-    "2026-08-03T08:29 fabbri-2021-qafacteval: step -> critique (round 4)",
-    "2026-08-03T08:29 fabbri-2021-qafacteval: 0 open blocker(s) from round 4 (verdict: approve)",
-    "2026-08-03T08:29 fabbri-2021-qafacteval: step -> verify",
-    "2026-08-03T08:30 fabbri-2021-qafacteval: step -> queue-ops",
     "2026-08-03T08:30 fabbri-2021-qafacteval: step -> podcast",
     "2026-08-03T08:46 completed fabbri-2021-qafacteval (verdict=approved_with_notes, rounds=4)",
     "2026-08-03T09:13 started ding-2021-few-nerd ('Few-NERD: A Few-shot Named Entity Recognition Dataset')",
@@ -1373,6 +1366,22 @@
     "2026-08-03T11:43 lin-2020-softgym: step -> verify",
     "2026-08-03T11:44 lin-2020-softgym: step -> queue-ops",
     "2026-08-03T11:45 lin-2020-softgym: step -> podcast",
-    "2026-08-03T11:55 completed lin-2020-softgym (verdict=approved_with_notes, rounds=3)"
+    "2026-08-03T11:55 completed lin-2020-softgym (verdict=approved_with_notes, rounds=3)",
+    "2026-08-03T12:22 started sinha-2019-clutrr ('CLUTRR: A Diagnostic Benchmark for Inductive Reasoning from Text')",
+    "2026-08-03T12:22 sinha-2019-clutrr: step -> fetch",
+    "2026-08-03T12:40 sinha-2019-clutrr: step -> figures",
+    "2026-08-03T12:40 sinha-2019-clutrr: step -> draft",
+    "2026-08-03T12:40 sinha-2019-clutrr: step -> critique (round 1)",
+    "2026-08-03T12:53 sinha-2019-clutrr: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T12:53 sinha-2019-clutrr: step -> revise",
+    "2026-08-03T13:01 sinha-2019-clutrr: step -> critique (round 2)",
+    "2026-08-03T13:16 sinha-2019-clutrr: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T13:16 sinha-2019-clutrr: step -> revise",
+    "2026-08-03T13:16 sinha-2019-clutrr: step -> critique (round 3)",
+    "2026-08-03T13:16 sinha-2019-clutrr: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T13:16 sinha-2019-clutrr: step -> verify",
+    "2026-08-03T13:16 sinha-2019-clutrr: step -> queue-ops",
+    "2026-08-03T13:17 sinha-2019-clutrr: step -> podcast",
+    "2026-08-03T13:29 completed sinha-2019-clutrr (verdict=approved_with_notes, rounds=3)"
   ]
 }
