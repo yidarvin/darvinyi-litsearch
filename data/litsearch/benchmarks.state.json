@@ -1197,6 +1197,15 @@
         "3 critic rounds. R1: 5 blockers. R2: B1-B5 all closed and independently re-verified, but the critic disclosed that its OWN round-1 B2 axis was reversed (section 5.3 verbatim: entailment metrics and QAGS 'perform significantly better on non-pretrained models'), confirming the builder was right to re-derive rather than invert; new blocker B6 traced to the same round-1 defect, where the critic's colourbar-NORMALIZED pixel reads got transplanted onto the page as absolute frequencies. Orchestrator fixed B6: PredE->OutE 0.32 (not 0.49), PredE->NE 0.11 (not 0.17), CircE->OutE 0.18 (not 0.28), CircE->NE 0.15 (not 0.24), LinkE->EntE 0.34 (not 0.52), plus 'Two categories break that pattern' followed by three. Self-consistency check: printed scale would push those rows past 1.0, corrected they sum to ~0.85-0.95 per A.5. R3 approve. Page follows arXiv v2 per the new authors-endorse-the-version carve-out (arXiv comment: 'Second version fixes bug with BERTScore results'; the ACL Anthology copy still ships the buggy ~0.00 BERTScore correlations) - the reverse of the TAPE case. METEOR edge correctly rejected: FRANK's printed bibliography cites Lavie and Agarwal 2007, not Banerjee and Lavie 2005, though S2's reference data lists both. Verified: 2021-Q2 column alongside BEIR/SimCSE/CLIPScore/SUPERB, 9 edges all lit on hover with 0 lit before, 375px zero overflow, lint 0. Podcast 30.2 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-02"
+    },
+    {
+      "slug": "li-2024-longiclbench",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. R1: 3 blockers, all confirmed by me before dispatch. B1 hero dek said 'two of the four frontier API models' at or near zero on Discovery; Table 6 maxima are GPT4-turbo 1.5, GPT4o 2.8, Claude3-Opus 1.2, Gemini-1.5-Pro 14.0, so it is three - and the dek was the lone wrong surface against results/takeaway/meta/og. B2 was repair-introduced (a self-correction claimed GPT4-turbo grouped spans a 10-100 range; ~7 label groups sit at exactly 0); the builder re-derived with its own axis calibration rather than transcribing the critic's pixel read, which is the discipline that fixed FRANK. B3 'all six datasets predate 2021' - Few-NERD is Ding et al. ACL 2021; the mandated self-consistency sweep then caught a second stale instance in the verdict grid the narrow fix would have missed. R2 approve, 0 blockers. Orchestrator applied both R2 suggestions: S2 was a real misattribution on four surfaces (Discovery's 87.4 tied to BERT, but Table 6's row is SoTA (MTL); BERT 58.9 is GoEmotion's row - appendix tables put the caption AFTER the body, which is what misleads a naive nearest-caption mapping), and S1 'genuinely bimodal' was an overstatement. Separately confirmed the page's remaining fine-tuned-BERT sentence is a genuine quotation from v3's introduction, which contradicts the paper's own Table 6 label - the page reports both rather than conflating them. Version discipline was the main risk: 3 arXiv versions, v1 evaluated Gemini-1.0-Pro/GPT-4-32K vs v3's Gemini-1.5-Pro/Claude3-Opus; the critic cleared all 113 numeric tokens against v3 with zero v1 leakage. Also found and fixed a real find_edges.py gap - 'Mistral 7B' (2 words, 10 chars) fell below both short-title floors and S2 omits Mistral from its reference list, so only the printed-bibliography sweep could catch it and the floor excluded it from exactly that sweep; sub-floor titles are now surname-corroborated instead of dropped (commit 598a556). Verified: 2024-Q2 column with OSWorld/BigCodeBench/AgentDojo, 10 edges all lit on hover with 0 lit before, 375px zero document overflow, lint 0. Podcast 27.3 min, render rc=0 (wrote nothing to disk until the very end - third data point for exit-code gating over file polling), remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1246,22 +1255,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-02T19:49 durmus-2020-feqa: step -> queue-ops",
-    "2026-08-02T19:49 durmus-2020-feqa: step -> podcast",
-    "2026-08-02T20:02 completed durmus-2020-feqa (verdict=approved, rounds=3)",
-    "2026-08-02T20:04 started hu-2023-tifa ('TIFA: Accurate and Interpretable Text-to-Image Faithfulness Evaluation with Question Answering')",
-    "2026-08-02T20:04 hu-2023-tifa: step -> fetch",
-    "2026-08-02T20:10 hu-2023-tifa: step -> figures",
-    "2026-08-02T20:11 hu-2023-tifa: step -> draft",
-    "2026-08-02T20:40 hu-2023-tifa: step -> critique (round 1)",
-    "2026-08-02T20:40 hu-2023-tifa: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-02T20:58 hu-2023-tifa: step -> revise",
-    "2026-08-02T20:58 hu-2023-tifa: step -> critique (round 2)",
-    "2026-08-02T20:58 hu-2023-tifa: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-02T20:58 hu-2023-tifa: step -> revise",
-    "2026-08-02T20:58 hu-2023-tifa: step -> critique (round 3)",
-    "2026-08-02T20:58 hu-2023-tifa: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-02T20:58 hu-2023-tifa: step -> verify",
     "2026-08-02T20:59 hu-2023-tifa: step -> queue-ops",
     "2026-08-02T20:59 hu-2023-tifa: step -> podcast",
     "2026-08-02T21:14 completed hu-2023-tifa (verdict=approved, rounds=3)",
@@ -1295,6 +1288,22 @@
     "2026-08-02T23:11 pagnoni-2021-frank: step -> verify",
     "2026-08-02T23:14 pagnoni-2021-frank: step -> queue-ops",
     "2026-08-02T23:15 pagnoni-2021-frank: step -> podcast",
-    "2026-08-02T23:33 completed pagnoni-2021-frank (verdict=approved_with_notes, rounds=3)"
+    "2026-08-02T23:33 completed pagnoni-2021-frank (verdict=approved_with_notes, rounds=3)",
+    "2026-08-02T23:33 started li-2024-longiclbench ('Long-context LLMs Struggle with Long In-context Learning')",
+    "2026-08-02T23:33 li-2024-longiclbench: step -> fetch",
+    "2026-08-02T23:38 li-2024-longiclbench: step -> figures",
+    "2026-08-02T23:39 li-2024-longiclbench: step -> draft",
+    "2026-08-03T00:02 li-2024-longiclbench: step -> critique (round 1)",
+    "2026-08-03T00:11 li-2024-longiclbench: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T00:11 li-2024-longiclbench: step -> revise",
+    "2026-08-03T00:20 li-2024-longiclbench: step -> critique (round 2)",
+    "2026-08-03T00:34 li-2024-longiclbench: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T00:34 li-2024-longiclbench: step -> revise",
+    "2026-08-03T00:34 li-2024-longiclbench: step -> critique (round 3)",
+    "2026-08-03T00:34 li-2024-longiclbench: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T00:34 li-2024-longiclbench: step -> verify",
+    "2026-08-03T00:36 li-2024-longiclbench: step -> queue-ops",
+    "2026-08-03T00:36 li-2024-longiclbench: step -> podcast",
+    "2026-08-03T00:48 completed li-2024-longiclbench (verdict=approved_with_notes, rounds=3)"
   ]
 }

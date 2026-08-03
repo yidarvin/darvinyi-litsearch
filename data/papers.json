@@ -10669,6 +10669,22 @@
       "explainer": "papers/pagnoni-2021-frank.html",
       "audio_url": "https://pod.darvinyi.com/audio/pagnoni-2021-frank.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "li-2024-longiclbench",
+      "short": "LongICLBench",
+      "title": "Long-context LLMs Struggle with Long In-context Learning",
+      "authors": "Li, Zhang, Do, Yue, Chen",
+      "year": 2024,
+      "date": "2024-04",
+      "venue": "TMLR",
+      "citation_count": 380,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Waterloo",
+      "abstract": "Introduces LongICLBench, testing 15 long-context LLMs on in-context classification over six datasets with 28-to-174-class label spaces and 2K-50K-token demonstrations, instead of passkey retrieval or document QA. On the hardest task, Discovery (174 classes), nearly every model collapses to near-zero accuracy; only Gemini-1.5-Pro clears single digits, topping out at 14% against 87.4% for a fully fine-tuned classifier on the same labels.",
+      "explainer": "papers/li-2024-longiclbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2024-longiclbench.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18111,6 +18127,16 @@
     { "from": "pagnoni-2021-frank", "to": "maynez-2020-faithfulness" },
     { "from": "pagnoni-2021-frank", "to": "papineni-2002-bleu" },
     { "from": "dziri-2022-begin", "to": "pagnoni-2021-frank" },
-    { "from": "min-2023-factscore", "to": "pagnoni-2021-frank" }
+    { "from": "min-2023-factscore", "to": "pagnoni-2021-frank" },
+    { "from": "li-2024-longiclbench", "to": "bai-2023-longbench" },
+    { "from": "li-2024-longiclbench", "to": "bai-2023-qwen" },
+    { "from": "li-2024-longiclbench", "to": "devlin-2019-bert" },
+    { "from": "li-2024-longiclbench", "to": "jiang-2023-mistral-7b" },
+    { "from": "li-2024-longiclbench", "to": "liu-2023-lost-in-the-middle" },
+    { "from": "li-2024-longiclbench", "to": "openai-2023-gpt4" },
+    { "from": "li-2024-longiclbench", "to": "roziere-2023-code-llama" },
+    { "from": "li-2024-longiclbench", "to": "su-2021-roformer" },
+    { "from": "li-2024-longiclbench", "to": "tay-2020-long-range-arena" },
+    { "from": "yen-2024-helmet", "to": "li-2024-longiclbench" }
   ]
 }
