@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The PASCAL Recognising Textual Entailment Challenge — paper_atlas</title>
+<meta name="description" content="The paper that named the RTE task: given a text T and a hypothesis H, decide whether a person reading T would infer H. Sixteen groups, 28 runs, tested on 800 pairs held out from a 1,367-pair dataset spanning seven application settings, scoring 50–60% accuracy — the direct ancestor of SNLI, MultiNLI, and the RTE slot inside GLUE and SuperGLUE.">
+<meta property="og:title" content="The PASCAL Recognising Textual Entailment Challenge">
+<meta property="og:description" content="The paper that named the RTE task: given a text T and a hypothesis H, decide whether a person reading T would infer H. Sixteen groups, 28 runs, tested on 800 pairs held out from a 1,367-pair dataset spanning seven application settings, scoring 50–60% accuracy — the direct ancestor of SNLI, MultiNLI, and the RTE slot inside GLUE and SuperGLUE.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/dagan-2005-rte.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2005 · MLCW 2005 · Benchmarks &amp; Evals</div>
+      <h1>The PASCAL Recognising Textual Entailment Challenge</h1>
+      <p class="dek">The paper that named the RTE task and gave it a scoreboard: given a text T and a hypothesis H, decide whether a person reading T would infer H. Sixteen groups submitted 28 runs, tested on 800 pairs held out from a 1,367-pair dataset spanning seven application settings (IR, comparable documents, reading comprehension, QA, IE, MT, paraphrase acquisition) — the direct ancestor of the RTE slot inside GLUE and SuperGLUE, and of SNLI and MultiNLI.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/dagan-2005-rte.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/dagan-2005-rte.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Ido Dagan, Oren Glickman, Bernardo Magnini</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>MLCW 2005</b></span>
+        <span class="fact">citations&nbsp;<b>2,685</b></span>
+        <span class="fact">topic&nbsp;<b>Benchmarks &amp; Evals</b></span>
+        <span class="fact"><a href="https://link.springer.com/chapter/10.1007/11736790_9">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/dagan-2005-rte.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-08-04</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <div class="callout">
+        <div class="lbl">// version note</div>
+        <p>The canonical citation for this paper is a paywalled Springer LNCS book chapter (<em>Machine Learning Challenges</em>, MLCW 2005 proceedings, vol. 3944, pp. 177–190, published 2006; DOI <span class="mono">10.1007/11736790_9</span>) — <span class="mono">source ↗</span> above points there, since that is the paper's canonical DOI. No arXiv version exists and the Springer chapter could not be obtained (paywalled; academia.edu/ResearchGate copies require a login this page does not use). This page is instead built from the RTE-1 workshop's own PDF of the identically-titled paper, archived by the Wayback Machine from Bar-Ilan University's NLP-lab site (the RTE-1 Proceedings mirror, since taken down). Title and authors match this citation's own metadata exactly. Every number quoted below is read directly from that PDF; none is reconstructed from a citing paper. If the book chapter differs from the workshop paper in any respect, that difference is not visible from this source and is not claimed here.</p>
+      </div>
+      <p>By 2005, several distinct subfields of NLP had converged, without realizing it, on the same underlying operation. A question-answering system has to check whether a candidate passage actually entails a hypothesized answer. An information-extraction system has to check whether a sentence entails an instantiated relation template. A summarization system has to check whether a candidate sentence is redundant — entailed by sentences already selected. A machine-translation evaluator has to check whether a system output and a reference translation entail each other. Each of these communities had built its own task-specific notion of whether one text supports the meaning of another, evaluated only by its downstream application score, with no shared benchmark and often no awareness that the other communities were solving a version of the same problem.</p>
+      <p>The paper's diagnosis is that this fragmentation has a real cost: it is "difficult to compare, under a generic evaluation framework, practical inference methods that were developed within different applications." Researchers in one application area, the paper adds, may not be aware of relevant methods developed in another. The authors' proposed fix is to factor out the shared core as its own generic, application-independent task — Recognising Textual Entailment (RTE) — and build a single benchmark for it, modeled on how syntactic parsing had already matured into its own clean sub-field with its own shared datasets and its own conference sessions.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The method</h2>
+      <p>Textual entailment is defined operationally: T ("Text") entails H ("Hypothesis") if the meaning of H can be inferred from the meaning of T, "as would typically be interpreted by people" — a human-plausible-inference judgment, not a formal-logic one, deliberately scoped away from the "rich body of literature" on logical entailment. The task given to participating systems: for each T–H pair, output True or False (entailment holds / does not hold), optionally with a confidence score in [0,1]; up to two system runs per team were accepted.</p>
+      <p>The dataset of 1,367 T–H pairs (567 development, 800 test, evenly split True/False) was built out of seven application settings, each meant to surface the kind of T–H pairs that setting's real systems actually produce:</p>
+      <ul>
+        <li><strong>Information Retrieval (IR)</strong> — hypotheses written as semantic IR queries, texts pulled from a search engine's retrieved documents.</li>
+        <li><strong>Comparable Documents (CD)</strong> — aligned sentence pairs from clusters of news stories covering the same event (sourced partly via Google News, partly from an existing English sentence-alignment resource), testing whether lexical overlap in comparable documents implies semantic overlap.</li>
+        <li><strong>Reading Comprehension (RC)</strong> — modeled on a high-school reading-comprehension exercise: can a stated assertion be inferred from a news passage.</li>
+        <li><strong>Question Answering (QA)</strong> — built from the TextMap QA demo plus CLEF-QA/TREC questions, by turning a question into an affirmative statement with the candidate answer plugged in (e.g., "Who is Ariel Sharon?" + "Israel's Prime Minister, Ariel Sharon, visited Prague" → H: "Ariel Sharon is Israel's Prime Minister").</li>
+        <li><strong>Information Extraction (IE)</strong> — built from a UIUC-annotated "kill"/"birth place" relation dataset plus hand-found news examples, pairing a sentence with a natural-language rendering of the target relation (e.g., T: "Guerrillas killed a peasant in the city of Flores." → H: "Guerrillas killed a civilian").</li>
+        <li><strong>Machine Translation (MT)</strong> — pairs built from an automatic translation and a gold-standard human translation of the same source, with the automatic translation taken alternately as either T or H (one entailment direction per pair); a correct translation is the True case.</li>
+        <li><strong>Paraphrase Acquisition (PP)</strong> — a paraphrase-acquisition system's candidate paraphrases applied to a source sentence, correct applications yielding True pairs and incorrect ones False.</li>
+      </ul>
+      <p>Two annotation choices shape the dataset in ways worth carrying into any downstream use of it. First, selection was deliberately biased toward <em>non-trivial</em> pairs with a forced 50/50 True/False split per subset — the authors are explicit that "systems performances in applicative settings might be different than the figures for the challenge data, due to different distribution of examples in particular applications." Second, filtering was aggressive: each example was first labeled by its creator, then independently by a second judge; the two agreed on roughly 80% of examples (a 0.6 Kappa level, "moderate agreement"), the disagreeing 20% were discarded outright, and an organizer then did a further review pass removing a further ~13% of the original pool — about 33% of originally-created examples were filtered out in total before the 1,367 that shipped. A secondary validation: a few participants who independently judged portions of the released test set reached 95% agreement with the gold labels on the full test set (Bos and Markert), 96% on roughly a third of it (Vanderwende et al.), and 91% on roughly an eighth of the development set (Bayer et al.) — evidence the surviving pairs were not just filtered but genuinely low-ambiguity by construction.</p>
+      <p>Scoring used two measures. <strong>Accuracy</strong> is the plain fraction of correct True/False judgments against the gold labels. <strong>Confidence-Weighted Score (cws)</strong>, described in the paper as "also known as Average Precision", rewards a system for ranking its correct judgments ahead of its incorrect ones by confidence:</p>
+      <div class="eq">
+        cws&nbsp;=&nbsp;<span class="frac"><span class="num">1</span><span class="den">n</span></span>&nbsp;Σᵢ₌₁ⁿ&nbsp;<span class="frac"><span class="num">#correct up to rank i</span><span class="den">i</span></span>
+        <span class="note">// test pairs sorted by descending confidence, i = rank, n = 800 (test-set size); range [0,1]</span>
+      </div>
+      <p>The paper flags its own scoring choice as imperfect: cws and accuracy treat correctly-recognized non-entailment exactly the same as correctly-recognized entailment, so "[a] system which does well in recognizing when entailment does not hold would do just as well in terms of accuracy and cws as a system tailored to recognize true examples" — a system that mostly predicts True and rarely commits to entailment can still score respectably. The authors note in retrospect that precision, recall and f on the positive (entailing) class "would be appropriate as additional measures for this evaluation." Some submitted systems, they add, in fact recognized very few true entailments (10–30% recall on positives) — and, the sharpest number in their own self-assessment, "all systems did not perform significantly better than the f=0.67 baseline of a system which uniformly predicts true."</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>The results</h2>
+      <p>Seventeen submissions came in from diverse groups: sixteen automatic systems plus one purely manual analysis (Vanderwende et al., MSR), whose results the paper reports separately in prose rather than in the main results table. The two baselines given for context: a system that uniformly predicts True (or False) gets 50% accuracy for free, since the test set is balanced; a run needs cws&gt;0.540 or accuracy&gt;0.535 to beat chance at the 0.05 significance level, and cws&gt;0.558 or accuracy&gt;0.546 to beat chance at the 0.01 level.</p>
+      <p>Against that bar, the sixteen automatic systems (28 submitted runs in total, most teams submitting two) clustered in a narrow band: per the paper's own summary: "Overall system accuracies were between 50 and 60 percent and system cws scores were between 0.50 and 0.70." That band hides more variance than the summary lets on. Ten of the 28 runs sit at or below the loosest significance bar the paper itself defines (accuracy&gt;0.535 at p&lt;0.05) — 0.495, 0.505, 0.512, 0.516, 0.516, 0.518, 0.519, 0.519, 0.524, 0.530. The single lowest score in the table, 0.495 accuracy / 0.517 cws, and the single highest, 0.7 accuracy / 0.782 cws, both belong to the same team: Perez (Madrid). The high run scored only the 19% of the 800 test pairs it chose to answer (the challenge explicitly allowed partial-coverage submissions, with the abstaining decision made automatically by the system); no partial-coverage figure is given for Perez's low run. One team holding both extremes is itself informative — several other groups straddle the 0.535 line across their own two runs much as Perez does: Bayer (MITRE) posts 0.586 on one run and 0.516 on the other, Glickman (Bar Ilan) 0.586 and 0.530, while Wu (HKUST), Andreevskaia (Concordia) and Zanzotto (Rome-Milan) sit entirely at or under the line on both of their runs. Those are the exceptions, though, not the pattern: across the twelve teams that submitted two runs, the median within-team accuracy gap is 0.008 and nine of the twelve are within 0.016, against a 0.205 spread between teams. The one team that does swamp the between-team range is Perez &mdash; and its two runs are not like-for-like, since one answered 19% of the test set and the other all of it. Bayer's lower run — the one covering 73% of the test set — also posts the table's lowest cws, 0.503, short of that metric's own p&lt;0.05 threshold of 0.540. Delmonte (Venice &amp; irst)'s 0.606 accuracy is a second, more marginal exception to the paper's stated 50–60% ceiling. Three of the 28 runs used partial coverage at all: Perez's 19%, Bayer's 73% above, and Delmonte at 62%.</p>
+      <p>The kind of inference machinery deployed varied widely, from plain lexical word-overlap (with stemming/lemmatization/POS-tagging/idf weighting) up through statistical lexical-relation models, WordNet-based lexical inference, syntactic-structure matching, world-knowledge use, and full logical provers. A non-participating reference system using word overlap alone, via a simple decision tree trained on the development set, reached 0.568 accuracy (credited in the paper to Rada Mihalcea, personal communication) — inside the same 50–60% band the sophisticated systems occupied. The paper explicitly notes that "system complexity and sophistication of inference did not correlate fully with performance, where some of the best results were obtained by rather naïve lexically-based systems" — even though five of the sixteen systems incorporated logical provers.</p>
+      <p>One task-level pattern stood out in the per-task breakdown described in the text: the Comparable Documents (CD) subset was markedly easier than the rest, with results "as high as 87% accuracy and cws of 0.95" — the paper attributes this to a high prior probability that lexically-overlapping sentences drawn from comparable news coverage of the same story really do convey the same meaning, i.e. CD may be measuring something closer to paraphrase detection than the harder inference phenomena the other six subsets target. The paper does not publish a full CD-only sub-table alongside this claim.</p>
+      <p>Vanderwende et al.'s manual (non-system) analysis asked a narrower question — could an idealized syntax-only decision procedure, optionally with a thesaurus, get the labels right in principle — and found 37% of examples resolvable by syntax alone, rising to 49% with a thesaurus added. That leaves a majority of the test set (at least 51%) requiring something beyond surface syntactic and lexical-thesaurus matching, by the authors' own idealized-oracle estimate.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>RTE-1 is being read here as a foundational artifact, twenty years on, so the right question isn't whether this is a good paper but what each design choice quietly baked into everything downstream — SNLI, MultiNLI, and the RTE column that still sits inside GLUE and SuperGLUE today.</p>
+      <p><strong>The annotation target is a judgment call dressed as a fact.</strong> "[A]s would typically be interpreted by people" is doing a lot of work. The paper's own two-round filtering pipeline — creator label, independent second judge, keep only the ~67% that agreed or survived a further organizer review — is honest about how much of the raw pool was simply too contested to use (a 0.6 Kappa level on the raw pool is "moderate agreement", not high). That is a defensible way to build a low-noise benchmark, but it also means the released 1,367 pairs are, by construction, the T–H pairs two people agreed were unambiguous — the released dataset systematically under-represents exactly the genuinely hard, contested cases that a model deployed in a live QA/IR/IE system would actually have to handle. The paper is candid about this ("results on this dataset... do not predict directly the performance figures within a particular application"), which is more self-aware than many benchmark papers that followed it — but the caveat rarely survives into how RTE accuracy gets cited three inference-steps downstream.</p>
+      <p><strong>The dataset is a stitched-together convenience sample, not a stratified sample of entailment in the wild.</strong> Most of the seven subsets were built from whatever resource happened to be available and willing to share (a QA demo's own retrieved passages, a UIUC relation-extraction corpus, a paraphrase system's own outputs, DUC MT-evaluation data — the Reading Comprehension subset is the exception, written directly by annotators against news passages with no external tool), and the authors say so plainly in the acknowledgements. That means the 50/50 True/False split and the relative sizes of the seven subsets reflect what tooling existed in 2004, not any claim about the true prevalence of entailment phenomena across applications — a limitation the paper states outright ("we cannot say that they correspond to a particular representative distribution of these factors").</p>
+      <p><strong>The evaluation metric doesn't isolate what it's meant to measure.</strong> The authors flag this themselves: accuracy and cws are symmetric in True vs. False, so a system that is good at confidently rejecting entailment scores identically to one that is good at confidently recognizing it. Combined with a forced 50/50 label balance, this leaves room for a system to clear the significance bar by being a conservative, mostly-say-False classifier that is simply right about the easy False cases, rather than a genuine entailment recognizer — and the paper reports exactly this failure mode occurring, with some systems recognizing true entailments at only 10–30% recall. The paper's own retrospective check goes further than a missing breakdown: "all systems did not perform significantly better than the f=0.67 baseline of a system which uniformly predicts true." No system in the challenge, in other words, demonstrably beat a classifier that never says False. What the paper does not report is a per-system precision/recall/F breakdown alongside Table 2 that would show which systems' overall accuracy was propped up by this failure mode and which weren't.</p>
+      <p><strong>The headline 50–60% summary quietly steps around its own best result.</strong> Perez (Madrid)'s 0.7 accuracy / 0.782 cws sits outside the paper's own stated 50–60%/0.50–0.70 range, and the paper's prose doesn't reconcile this — it's plausible the summary implicitly treats Perez's run as an outlier because it only scored 19% of the test set (partial-coverage submissions were explicitly permitted, with the system itself choosing which examples to abstain on), but the paper never says this explicitly. A reader who takes "[o]verall system accuracies were between 50 and 60 percent" at face value without checking Table 2 would miss both the best full number in the table and the coverage caveat that likely explains it.</p>
+      <p><strong>No non-English, no long documents.</strong> Every pair is English, and — in the paper's own words — "Typically, T consists of one sentence (sometimes two)" while H is usually a single shorter sentence — a design choice appropriate for a first shared task in 2004–05, but one whose consequences (RTE's binary label space, its short-document scope, its symmetric accuracy/cws metric) propagated largely unquestioned through SNLI, MultiNLI, and eventually into the RTE task inside GLUE/SuperGLUE, which reuses this exact framing decades later on models the 2005 annotators could not have anticipated.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Chance (50% accuracy on a balanced set) and significance thresholds (accuracy&gt;0.535/cws&gt;0.540 at p&lt;0.05; accuracy&gt;0.546/cws&gt;0.558 at p&lt;0.01) are given, but there is no strong non-neural baseline beyond the paper's own report of a word-overlap decision-tree hitting 0.568 — itself inside the same band as the "sophisticated" submissions, which is the paper's own most damaging finding about its own task.</p>
+        <span class="k">contamination</span><p class="v">Not applicable in the modern sense — this predates any large pretrained LM by years — but worth noting for downstream users: RTE's exact T–H pairs (and their gold labels) have circulated openly since 2005 and were later folded verbatim into GLUE/SuperGLUE, so any LM pretrained on a broad web crawl after ~2018 has almost certainly seen this exact dataset, unlabeled or labeled, somewhere in its corpus — a fact this paper obviously could not anticipate but that every paper citing "RTE" as a clean held-out eval today should.</p>
+        <span class="k">what's missed</span><p class="v">A per-system positive-class precision/recall/F breakdown alongside Table 2 — the paper reports only an aggregate (10–30% recall for "some systems"; no system beat the f=0.67 all-True baseline) — plus any measure of how much the forced non-trivial / 50-50-balanced sampling distorts estimated real-world entailment accuracy, and any error analysis of why the CD subset was so much easier than the other six.</p>
+        <span class="k">would raise confidence</span><p class="v">The precision/recall/F breakdown the authors themselves called for; an explicit reconciliation of Perez's 0.7/0.782 outlier against the paper's 50–60% summary rather than a silent omission; and a stated total size of the pre-filtering example pool, so a reader can judge how selective the ~33%-filtered-out process really was.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>RTE-1 succeeded at exactly what it set out to do — give scattered, application-specific inference work a shared name, a shared dataset, and a shared scoreboard — and that success is precisely why its early design choices (symmetric accuracy/cws, forced label balance, convenience-sampled non-trivial pairs, single-sentence English-only scope) still constrain how "entailment" gets evaluated twenty years and several benchmark generations later. It is a foundational paper best read for its framing, not for its numbers as a performance ceiling — the authors themselves treat the 50–60% band as "typical for a new and relatively difficult task" — not as a target to beat cleanly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>RTE-1 defines textual entailment operationally — T entails H if a person reading T would infer H — and abstracts it out of QA, IR, IE, summarization, MT and paraphrase acquisition as one shared, application-independent task, evaluated on 1,367 hand-annotated pairs (567 dev / 800 test) built from seven application-specific subsets.</li>
+        <li>Sixteen systems plus one manual analysis were submitted; accuracy clustered at 50–60% and cws at 0.50–0.70, with a word-overlap-only baseline (0.568) landing inside that same band as systems using WordNet, syntax, world knowledge, and logical provers — the paper's own headline finding that inference sophistication didn't reliably beat lexical overlap on this data.</li>
+        <li>This is the direct ancestor of the modern NLI line: SNLI and MultiNLI adopt the same T/H entailment framing at much larger scale, and RTE itself was folded, unmodified in spirit, into GLUE and then SuperGLUE as a standing sub-task — so its 2005 design choices (symmetric accuracy/cws scoring, forced 50/50 balance, single-sentence English pairs) are still live constraints on how entailment gets evaluated in benchmarks used to score LLMs today.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        The PASCAL Recognising Textual Entailment Challenge<br>
+        Ido Dagan, Oren Glickman, Bernardo Magnini · 2005 · MLCW 2005<br>
+        <a href="https://link.springer.com/chapter/10.1007/11736790_9">read the original ↗</a> · slug: dagan-2005-rte
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>

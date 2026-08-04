@@ -1350,6 +1350,15 @@
         "5 P1 r1: version note credited v2 with BLEURT robustness study already present in v1 (critic downloaded v1 to check); self-caught fix relocated a contradiction into a false Table 3 originality claim (paper says adapted from Liu 2016 / Kilickaya 2017); 'four categories' where S4 has six; Liu&Liu 2008 conflated two interventions; wrong Howcroft denominator. r2 approve, no regressions. Untagged (survey precedent, 11 of 12). 28 edges. Queued 4."
       ],
       "date": "2026-08-04"
+    },
+    {
+      "slug": "dagan-2005-rte",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 rounds. r1: 5 P1 incl. a Table 2 row-misalignment in tables.md (paired labels by reading order not cell geometry; off-by-one from Andreevskaia on, invented an Akhmatova run, dropped Bos and Wu entirely) plus a false 'F-measure never computed' absence claim. r2: 2 regressions from the r1 rewrite, one of them my own bad inference (run-to-run vs between-team variance). r3 approve. Also surfaced a critic method gap: its quote checker lowercased and stripped punctuation, so it could not catch case changes or comma splices on any page it cleared this session -- logged as a task. benchmarks only. 20 in / 0 out edges. Queued RTE-2/3/4/6/7."
+      ],
+      "date": "2026-08-04"
     }
   ],
   "skipped": [
@@ -1405,22 +1414,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> revise",
-    "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> critique (round 3)",
-    "2026-08-03T21:20 walke-2023-bridgedata-v2: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> verify",
-    "2026-08-03T21:21 walke-2023-bridgedata-v2: step -> queue-ops",
-    "2026-08-03T21:22 walke-2023-bridgedata-v2: step -> podcast",
-    "2026-08-03T21:31 completed walke-2023-bridgedata-v2 (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T21:58 started lee-2022-coauthor ('CoAuthor: Designing a Human-AI Collaborative Writing Dataset for Exploring Language Model Capabilities')",
-    "2026-08-03T21:58 lee-2022-coauthor: step -> fetch",
-    "2026-08-03T22:19 lee-2022-coauthor: step -> figures",
-    "2026-08-03T22:19 lee-2022-coauthor: step -> draft",
-    "2026-08-03T22:19 lee-2022-coauthor: step -> critique (round 1)",
-    "2026-08-03T22:37 lee-2022-coauthor: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T22:40 lee-2022-coauthor: step -> revise",
-    "2026-08-03T22:43 lee-2022-coauthor: step -> critique (round 2)",
-    "2026-08-03T22:43 lee-2022-coauthor: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-03T22:43 lee-2022-coauthor: step -> verify",
     "2026-08-03T22:43 lee-2022-coauthor: step -> queue-ops",
     "2026-08-03T22:43 lee-2022-coauthor: step -> podcast",
@@ -1454,6 +1447,22 @@
     "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> verify",
     "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> queue-ops",
     "2026-08-04T01:05 celikyilmaz-2020-eval-text-gen: step -> podcast",
-    "2026-08-04T01:17 completed celikyilmaz-2020-eval-text-gen (verdict=approved, rounds=2)"
+    "2026-08-04T01:17 completed celikyilmaz-2020-eval-text-gen (verdict=approved, rounds=2)",
+    "2026-08-04T01:20 started dagan-2005-rte ('The PASCAL Recognising Textual Entailment Challenge')",
+    "2026-08-04T01:20 dagan-2005-rte: step -> fetch",
+    "2026-08-04T01:20 dagan-2005-rte: step -> figures",
+    "2026-08-04T01:41 dagan-2005-rte: step -> draft",
+    "2026-08-04T01:41 dagan-2005-rte: step -> critique (round 1)",
+    "2026-08-04T01:55 dagan-2005-rte: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-04T01:55 dagan-2005-rte: step -> revise",
+    "2026-08-04T02:18 dagan-2005-rte: step -> critique (round 2)",
+    "2026-08-04T02:26 dagan-2005-rte: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-04T02:26 dagan-2005-rte: step -> revise",
+    "2026-08-04T02:26 dagan-2005-rte: step -> critique (round 3)",
+    "2026-08-04T02:26 dagan-2005-rte: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-04T02:26 dagan-2005-rte: step -> verify",
+    "2026-08-04T02:26 dagan-2005-rte: step -> queue-ops",
+    "2026-08-04T02:26 dagan-2005-rte: step -> podcast",
+    "2026-08-04T02:40 completed dagan-2005-rte (verdict=approved, rounds=3)"
   ]
 }

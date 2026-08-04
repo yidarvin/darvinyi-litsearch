@@ -10938,6 +10938,22 @@
       "abstract": "A three-category taxonomy of NLG evaluation methods -- human-centric, untrained automatic metrics, and machine-learned metrics -- built from a May-2021 revision that folds in the GEM benchmark, GENIE, and Stochastic Parrots onto the original June-2020 preprint. Uses a worked example where BLEU/ROUGE/WMD all score a plausible dialog response 0.0 against a reference sharing no words with it to argue overlap metrics fail on open-ended generation, and reports that abstractive summarizers hallucinate in over 70% of generated single-sentence summaries.",
       "explainer": "papers/celikyilmaz-2020-eval-text-gen.html",
       "audio_url": "https://pod.darvinyi.com/audio/celikyilmaz-2020-eval-text-gen.mp3"
+    },
+    {
+      "slug": "dagan-2005-rte",
+      "short": "PASCAL RTE",
+      "title": "The PASCAL Recognising Textual Entailment Challenge",
+      "authors": "Dagan, Glickman, Magnini",
+      "year": 2005,
+      "date": "2005-07",
+      "venue": "MLCW 2005",
+      "citation_count": 2685,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Bar-Ilan University",
+      "abstract": "Defines Recognising Textual Entailment (RTE) — given a text T and hypothesis H, decide whether a person reading T would infer H — as a generic task abstracted out of QA, IR, IE, summarization, MT and paraphrase acquisition. Introduces the first RTE shared-task dataset (567 dev / 800 test T–H pairs) and a confidence-weighted scoring metric (cws); 16 submitted systems scored 50–60% accuracy (low 0.495, high 0.7, both from the same team). The direct ancestor of SNLI, MultiNLI, and the RTE task inside GLUE/SuperGLUE.",
+      "explainer": "papers/dagan-2005-rte.html",
+      "audio_url": "https://pod.darvinyi.com/audio/dagan-2005-rte.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18607,6 +18623,26 @@
     { "from": "chan-2023-chateval", "to": "celikyilmaz-2020-eval-text-gen" },
     { "from": "gehrmann-2021-gem", "to": "celikyilmaz-2020-eval-text-gen" },
     { "from": "gehrmann-2022-cracked-foundation", "to": "celikyilmaz-2020-eval-text-gen" },
-    { "from": "lee-2022-coauthor", "to": "celikyilmaz-2020-eval-text-gen" }
+    { "from": "lee-2022-coauthor", "to": "celikyilmaz-2020-eval-text-gen" },
+    { "from": "bowman-2015-snli", "to": "dagan-2005-rte" },
+    { "from": "brown-2020-gpt3", "to": "dagan-2005-rte" },
+    { "from": "devlin-2019-bert", "to": "dagan-2005-rte" },
+    { "from": "guha-2023-legalbench", "to": "dagan-2005-rte" },
+    { "from": "gururangan-2018-annotation-artifacts", "to": "dagan-2005-rte" },
+    { "from": "he-2021-deberta", "to": "dagan-2005-rte" },
+    { "from": "lan-2019-albert", "to": "dagan-2005-rte" },
+    { "from": "lewis-2019-bart", "to": "dagan-2005-rte" },
+    { "from": "liu-2019-roberta", "to": "dagan-2005-rte" },
+    { "from": "liu-2023-logieval", "to": "dagan-2005-rte" },
+    { "from": "lu-2021-fantastically-ordered", "to": "dagan-2005-rte" },
+    { "from": "raffel-2020-t5", "to": "dagan-2005-rte" },
+    { "from": "snow-2008-cheap-and-fast", "to": "dagan-2005-rte" },
+    { "from": "wang-2018-glue", "to": "dagan-2005-rte" },
+    { "from": "wang-2019-superglue", "to": "dagan-2005-rte" },
+    { "from": "wang-2022-self-consistency", "to": "dagan-2005-rte" },
+    { "from": "wei-2021-flan", "to": "dagan-2005-rte" },
+    { "from": "williams-2017-multinli", "to": "dagan-2005-rte" },
+    { "from": "wu-2023-bloomberggpt", "to": "dagan-2005-rte" },
+    { "from": "zhao-2021-calibrate", "to": "dagan-2005-rte" }
   ]
 }
