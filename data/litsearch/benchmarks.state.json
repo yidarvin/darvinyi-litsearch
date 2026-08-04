@@ -1305,6 +1305,15 @@
         "3 critic rounds, 6 round-1 blockers, and the most important one OVERTURNED AN ACCUSATION AGAINST THE PAPER. The builder claimed section 6.2's 'five of the seven tasks' undercounted its own Table 4, which supports six. The critic read the scoping clause verbatim: the claim is 'the average system trained with A SINGLE SET of non-expert annotations outperforms the average system trained with the labels from a single expert' - that is Table 4's k=1 column, where exactly five rows sit at k=1 (Anger, Disgust, Fear, Sadness, Surprise). The builder had compared the 10-NE column instead, and had also described the 10-NE values as 'a single non-expert annotation set'. The paper is right. Accusation withdrawn from four surfaces; the true-but-different 10-NE observation (six of seven, Joy the exception at 0.125 vs 0.130) was kept and relabelled as the page's own comparison. MY OWN VERIFICATION OF THAT SENTENCE INITIALLY RETURNED NOTHING because the PDF uses the fi ligature ('ﬁve', 'ﬁnd') - the third encoding trap this session after searching 'stride' for 'step size' and ASCII '3-5' against an en dash. The accusation that DID hold was sharpened from 'doesn't reconcile' into a precise diagnosis: Table 1 contains a TWO-CELL TRANSPOSITION between adjacent columns. E-vs-All's true Avg.Emo is 0.5797 (rounds to 0.580), which is exactly what E-vs-E's Avg.All cell prints; E-vs-E's true Avg.All is 0.6024, which is what E-vs-All's Avg.Emo cell prints. Both NE columns reconcile in both summary rows and Table 2's identical seven values reconcile there. Other blockers: prose calling 89.7% 'inside' the 91-96% expert band when it is below it (contradicted by the page's own table); '143.9 worker-hours' when p.7 defines Time as wall-clock elapsed, implying a /bin/zsh.18/hr wage the paper never supports; 'ten expert subjects' for a Resnik study the paper describes only as '10 subjects' and explicitly declines to classify; a Figure 7 caption claim true of only one of two panels; and a Figure 7 crop that was two-thirds body text with the x-axis cut, re-cropped from vector geometry and verified pixel-identical. Round 2 approve; I then applied five suggestions, three of them correctness or fairness fixes: row/column orientation (Table 1's E-vs-E and E-vs-All are columns, and the node abstract mirrored the slip by calling Table 4's affect rows columns); a takeaway saying larger pools 'got very close' on WSD when WSD reached 100% against a 98.0% expert reference, so it exceeded rather than approached; and a FAIRNESS gap - the page said non-experts fall 'just short of' the expert band, correct for raw majority voting but never finishing the story, since Figure 7's gold-calibrated curve (the paper's actual proposal) climbs past the 91% lower bound by ten annotators. I stated that qualitatively rather than printing the critic's extracted 0.9312, which appears nowhere in the text. Also added the Valence k=2 slip the critic called better critique material: Table 4's k is defined as annotations needed to match one expert, but Valence lists k=2 against a 2-annotation score of 0.146, below the single-expert 0.159 - the only row of seven where the table's own k fails its own definition. NOT ON ARXIV: resolved via ACL Anthology D08-1027, source link follows the papineni/lin/banerjee convention, and date 2008-10 had to be right first time since backfill_dates.py cannot recover it without an arXiv id. Canonical title carries an EN DASH; the lint's title comparison strips punctuation so a hyphen would have passed silently, which is how an all-caps H1 slipped through on Few-NERD. SPARSE NODE BY DESIGN: 0 outgoing (verified against all 35 S2 references and the 33 real printed entries, which also surfaced an S2 false positive - the PASCAL VOC challenge, not actually cited) and 1 incoming, confirmed three ways across all 2520 citers, which paged correctly across three requests. It OPENS A NEW QUARTER BAND, alone in its 2008-Q4 column at index 10 of 69 - I checked the time axis renders it, since CLAUDE.md flags that transition specifically. Untagged, matching gebru-2018-datasheets and mitchell-2018-model-cards; the critic re-derived both rubrics rather than inheriting the call. Podcast 30.1 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "wu-2023-hps-v2",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. ROUND-1 B1 WAS THE BEST CRITIC CATCH OF THE SESSION, and it came from a lateral move: the critic used the v1 text - which exists in this pipeline only as a contamination detector - as EVIDENCE about the paper. The page compared Epic Diffusion (27.57) and Openjourney (27.85) as '0.28 apart, well inside' a threshold it had defined two sentences earlier as 0.02, a self-refuting sentence off by 14x. The cause is that Figure 5's x-axis and every table in the same paper are on DIFFERENT SCALES: between v1 and v2 the authors rescaled all tables by 100 - v1 prints 0.2334 +- 1.98e-3 where v2 prints 23.34 +- 0.198, error bars included - but Figure 5's axis stayed on the raw cosine scale, running 0.000-0.040. I verified the rescale independently and confirmed '× 100' appears exactly once in v2 and never in v1. In round 2 the critic corroborated it further by extracting Figure 5's marker centroids and calibrating against the plot frame: y-extremes 61.5/93.1 against Table 4's exact min/max of 61.6%/93.1% across its 45 model pairs, pinning the figure's points to the table's cells. The page now converts explicitly and reports the mismatch as a paper-internal finding - a reader comparing Figure 5 to any table directly is wrong by two orders of magnitude, and nothing in the paper flags it. The substantive conclusion survives conversion: pairs under ~1.5 Table-7 points sit where inter-annotator agreement sags to 60-80%, and 107 of 190 Animation pairs plus all 19 adjacent-rank pairs fall in that band. Other blockers: B2 claimed the benchmark reuses 'the same generator roster the model was fine-tuned on', contradicted verbatim by the paper ('The training set contains images from 4 models + COCO images, while the test set contains 9 models + COCO images. The 5 unseen models enable us to validate the generalization capability') and by three other surfaces of the page including its own contamination cell - the paper's design is better than the critique credited; B3 got both generator anchors wrong (training is 4+COCO, the Table 7 benchmark is 20 models), and the prompt-monoculture argument got stronger with the real denominators; B4 had a figure labelled 'Figure 3' that was actually a two-panel crop of Figures 2 and 3, so an NSFW-score histogram read as style-token frequencies. CONTAMINATION: second-worst version hazard in the project after Few-NERD - only 81 numeric tokens shared, 168 v1-only, 237 v2-only, with the v1-only values clustering in the 0.23-0.27 four-decimal range where a leak is invisible. I wrote the full 168-token blocklist to work/wu-2023-hps-v2/v1-only-tokens.txt. Zero collisions across three independent sweeps including after the B1 conversions introduced new numbers, checked with leading-zero-optional and comma-stripped variants. The podcast agent made a call I had not anticipated: it deliberately did NOT narrate the v1-to-v2 rescale history on air, because illustrating it would require SPEAKING 0.2334 and 1.98, both v1-only tokens - then parsed all 41 spoken number-words back into decimals and checked those against the blocklist too. Builder also self-caught three errors mid-draft, all re-derived correct, including a Table 9 recount from 36 pairs to a 45-cell matrix over 10 entities. Its 789,090-vs-798,090 accusation is airtight and stronger than written: Appendix H.2 contradicts itself two answers later by quoting the 645,090 and 153,000 splits. Dual-tagged benchmarks + evaluations (ships HPD v2, a named dataset, plus HPS v2, a scoring methodology), matching ghosh-2023-geneval and hu-2023-tifa. Verified: 2023-Q2 column with MT-Bench/EvalPlus/AlpacaFarm, 3 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 28.1 min, render rc=0, remote MD5 verified on both MP3 and feed."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1360,22 +1369,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T13:29 completed sinha-2019-clutrr (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T13:55 started gehrmann-2022-cracked-foundation ('Repairing the Cracked Foundation: A Survey of Obstacles in Evaluation Practices for Generated Text')",
-    "2026-08-03T13:55 gehrmann-2022-cracked-foundation: step -> fetch",
-    "2026-08-03T14:01 gehrmann-2022-cracked-foundation: step -> figures",
-    "2026-08-03T14:01 gehrmann-2022-cracked-foundation: step -> draft",
-    "2026-08-03T14:19 gehrmann-2022-cracked-foundation: step -> draft",
-    "2026-08-03T14:19 gehrmann-2022-cracked-foundation: step -> critique (round 1)",
-    "2026-08-03T14:39 gehrmann-2022-cracked-foundation: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T14:39 gehrmann-2022-cracked-foundation: step -> revise",
-    "2026-08-03T14:50 gehrmann-2022-cracked-foundation: step -> critique (round 2)",
-    "2026-08-03T15:04 gehrmann-2022-cracked-foundation: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-03T15:04 gehrmann-2022-cracked-foundation: step -> revise",
-    "2026-08-03T15:11 gehrmann-2022-cracked-foundation: step -> critique (round 3)",
-    "2026-08-03T15:23 gehrmann-2022-cracked-foundation: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T15:23 gehrmann-2022-cracked-foundation: step -> revise",
-    "2026-08-03T15:23 gehrmann-2022-cracked-foundation: step -> critique (round 4)",
     "2026-08-03T15:23 gehrmann-2022-cracked-foundation: 0 open blocker(s) from round 4 (verdict: approve)",
     "2026-08-03T15:23 gehrmann-2022-cracked-foundation: step -> verify",
     "2026-08-03T15:24 gehrmann-2022-cracked-foundation: step -> queue-ops",
@@ -1409,6 +1402,22 @@
     "2026-08-03T18:13 snow-2008-cheap-and-fast: step -> verify",
     "2026-08-03T18:15 snow-2008-cheap-and-fast: step -> queue-ops",
     "2026-08-03T18:15 snow-2008-cheap-and-fast: step -> podcast",
-    "2026-08-03T18:29 completed snow-2008-cheap-and-fast (verdict=approved_with_notes, rounds=3)"
+    "2026-08-03T18:29 completed snow-2008-cheap-and-fast (verdict=approved_with_notes, rounds=3)",
+    "2026-08-03T18:55 started wu-2023-hps-v2 ('Human Preference Score v2: A Solid Benchmark for Evaluating Human Preferences of Text-to-Image Synthesis')",
+    "2026-08-03T18:55 wu-2023-hps-v2: step -> fetch",
+    "2026-08-03T19:14 wu-2023-hps-v2: step -> figures",
+    "2026-08-03T19:14 wu-2023-hps-v2: step -> draft",
+    "2026-08-03T19:18 wu-2023-hps-v2: step -> critique (round 1)",
+    "2026-08-03T19:30 wu-2023-hps-v2: 4 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T19:30 wu-2023-hps-v2: step -> revise",
+    "2026-08-03T19:41 wu-2023-hps-v2: step -> critique (round 2)",
+    "2026-08-03T19:53 wu-2023-hps-v2: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T19:53 wu-2023-hps-v2: step -> revise",
+    "2026-08-03T19:53 wu-2023-hps-v2: step -> critique (round 3)",
+    "2026-08-03T19:53 wu-2023-hps-v2: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T19:53 wu-2023-hps-v2: step -> verify",
+    "2026-08-03T19:54 wu-2023-hps-v2: step -> queue-ops",
+    "2026-08-03T19:55 wu-2023-hps-v2: step -> podcast",
+    "2026-08-03T20:08 completed wu-2023-hps-v2 (verdict=approved_with_notes, rounds=3)"
   ]
 }

@@ -10859,6 +10859,22 @@
       "abstract": "The founding empirical study of crowdsourced NLP annotation: across five tasks (affect recognition, word similarity, RTE, event temporal ordering, WSD), pooling as few as 4-10 non-expert Amazon Mechanical Turk labels reaches or comes close to single-expert agreement, matching or beating it outright on several, and a Dawid-Skene-style gold-calibrated bias-correction model recovers further accuracy (+4.0% RTE, +3.4% event ordering) from the same raw labels. Non-expert-trained classifiers even outperformed single-expert-trained ones on most of Table 4's affect rows.",
       "explainer": "papers/snow-2008-cheap-and-fast.html",
       "audio_url": "https://pod.darvinyi.com/audio/snow-2008-cheap-and-fast.mp3"
+    },
+    {
+      "slug": "wu-2023-hps-v2",
+      "short": "HPS v2",
+      "title": "Human Preference Score v2: A Solid Benchmark for Evaluating Human Preferences of Text-to-Image Synthesis",
+      "authors": "Wu, Hao, Sun, Chen, Zhu, Zhao, Li",
+      "year": 2023,
+      "date": "2023-06",
+      "venue": "arXiv",
+      "citation_count": 875,
+      "topic": "Benchmarks & Evals",
+      "author_group": "CUHK MMLab",
+      "abstract": "Builds Human Preference Dataset v2 (HPD v2), 798,090 pairwise human preference comparisons over 433,760 images spanning nine text-to-image generators plus real photos, deliberately built to avoid the single-generator and style-word-prompt bias of HPS v1, ImageReward, and Pick-a-Pic; fine-tunes a CLIP ViT-H/14 on it to get HPS v2, a scoring model that beats those baselines on both its own held-out test set (83.3%) and ImageReward's external test set (65.7%), and uses it to benchmark 20 recent text-to-image models across four prompt styles.",
+      "explainer": "papers/wu-2023-hps-v2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wu-2023-hps-v2.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18454,6 +18470,9 @@
     { "from": "gu-2023-maniskill2", "to": "mu-2021-maniskill" },
     { "from": "li-2022-behavior-1k", "to": "mu-2021-maniskill" },
     { "from": "li-2024-simpler", "to": "mu-2021-maniskill" },
-    { "from": "liu-2023-libero", "to": "mu-2021-maniskill" }
+    { "from": "liu-2023-libero", "to": "mu-2021-maniskill" },
+    { "from": "wu-2023-hps-v2", "to": "chen-2015-coco-captions" },
+    { "from": "wu-2023-hps-v2", "to": "ouyang-2022-instructgpt" },
+    { "from": "ghosh-2023-geneval", "to": "wu-2023-hps-v2" }
   ]
 }
