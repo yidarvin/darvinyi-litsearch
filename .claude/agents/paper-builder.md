@@ -596,6 +596,23 @@ actually uses. → `set-step draft`
    thing if it existed, and read that section — in a multi-dataset paper,
    for **every** dataset, not the two you happened to name. Then ask what
    the paper would call it, and grep for that.
+
+   **Re-read your own transcribed numbers before writing a sentence about
+   them.** A correct extraction with a wrong conclusion written beneath it
+   is invisible to every check that looks at numbers: each figure on the
+   page is real and present in your working file, and a reviewer who
+   re-runs the extraction only confirms the extractor. On Pick-a-Pic the
+   builder vector-extracted a tie-threshold plot correctly — 44 points, 4
+   series, calibrated on axis-tick glyph centres, sanity-checked by Random
+   landing at 0.4999 at threshold 0 — and then wrote that two curves
+   "cross somewhere around threshold 0.55–0.6". Its own grid showed
+   PickScore ahead at every threshold through 0.7 (0.629 vs 0.624) and
+   behind only at 0.8 (0.613 vs 0.631); the crossing is ≈0.72. `tables.md`
+   stated the wrong conclusion directly under the right numbers, so the
+   page inherited a mis-read, not a bad extraction. The only thing that
+   catches this is reading the derived sentence back against the derived
+   table — do that for every claim you make about a table or plot,
+   including comparisons, orderings, maxima and "only at" scoping.
 4. Check this paper against every survey's rubric in `data/surveys.json`
    (not just `survey_id` — a paper can be core to more than one). Tag with
    `python3 scripts/tag_papers.py add <survey_id> <slug>` for each match.

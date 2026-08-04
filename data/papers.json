@@ -10954,6 +10954,22 @@
       "explainer": "papers/dagan-2005-rte.html",
       "audio_url": "https://pod.darvinyi.com/audio/dagan-2005-rte.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "kirstain-2023-pick-a-pic",
+      "short": "Pick-a-Pic",
+      "title": "Pick-a-Pic: An Open Dataset of User Preferences for Text-to-Image Generation",
+      "authors": "Kirstain, Polyak, Singer, Matiana, Penna, Levy",
+      "year": 2023,
+      "date": "2023-05",
+      "venue": "NeurIPS 2023",
+      "citation_count": 1076,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tel Aviv University / Stability AI",
+      "abstract": "Builds Pick-a-Pic, an open dataset of 583,747 pairwise text-to-image preferences collected from real users of a public web app (rather than paid crowd workers), and PickScore, a CLIP-H model finetuned on it with an InstructGPT-style pairwise objective that predicts held-out preferences at 70.5% accuracy (v2; v1 reported 70.2%), edging past the paper's own 68.0% human-expert baseline. Recommends PickScore over FID+MS-COCO for evaluating and ranking text-to-image models, showing stronger correlation with human rankings (0.917 vs. FID's -0.900 on MS-COCO; 0.790 vs. HPS v1's 0.670 and ImageReward's 0.492 on real-user Elo ratings).",
+      "explainer": "papers/kirstain-2023-pick-a-pic.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kirstain-2023-pick-a-pic.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18643,6 +18659,12 @@
     { "from": "wei-2021-flan", "to": "dagan-2005-rte" },
     { "from": "williams-2017-multinli", "to": "dagan-2005-rte" },
     { "from": "wu-2023-bloomberggpt", "to": "dagan-2005-rte" },
-    { "from": "zhao-2021-calibrate", "to": "dagan-2005-rte" }
+    { "from": "zhao-2021-calibrate", "to": "dagan-2005-rte" },
+    { "from": "kirstain-2023-pick-a-pic", "to": "bai-2022-hh-rlhf" },
+    { "from": "kirstain-2023-pick-a-pic", "to": "chen-2015-coco-captions" },
+    { "from": "kirstain-2023-pick-a-pic", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "kirstain-2023-pick-a-pic", "to": "lin-2014-coco" },
+    { "from": "kirstain-2023-pick-a-pic", "to": "ouyang-2022-instructgpt" },
+    { "from": "wu-2023-hps-v2", "to": "kirstain-2023-pick-a-pic" }
   ]
 }

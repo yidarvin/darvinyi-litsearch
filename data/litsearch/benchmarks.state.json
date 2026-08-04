@@ -1359,6 +1359,15 @@
         "3 rounds. r1: 5 P1 incl. a Table 2 row-misalignment in tables.md (paired labels by reading order not cell geometry; off-by-one from Andreevskaia on, invented an Akhmatova run, dropped Bos and Wu entirely) plus a false 'F-measure never computed' absence claim. r2: 2 regressions from the r1 rewrite, one of them my own bad inference (run-to-run vs between-team variance). r3 approve. Also surfaced a critic method gap: its quote checker lowercased and stripped punctuation, so it could not catch case changes or comma splices on any page it cleared this session -- logged as a task. benchmarks only. 20 in / 0 out edges. Queued RTE-2/3/4/6/7."
       ],
       "date": "2026-08-04"
+    },
+    {
+      "slug": "kirstain-2023-pick-a-pic",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 rounds. r1: 5 P1 -- tie-threshold crossing stated as 0.55-0.6 when the builder's OWN correct extraction showed ~0.72 (correct extraction, wrong conclusion; a failure mode invisible to numeric sweeps and to re-extraction, now written into paper-builder.md); 'ahead only at the selected threshold' false (leads 8 of 11, and the paper says 'almost all thresholds'); 30,000 examples mislabelled as prompts; an arithmetic accusation against the paper presented as settled when the operand is genuinely ambiguous (4.26x vs 7.08x depending on which printed size); three backbones vs the paper's four. Plus 8 suggestions. r2 approve with independent re-derivation matching 0.7209. Tagged benchmarks+evaluations, argued separately. 6 edges. Queued 4."
+      ],
+      "date": "2026-08-04"
     }
   ],
   "skipped": [
@@ -1414,19 +1423,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T22:43 lee-2022-coauthor: step -> verify",
-    "2026-08-03T22:43 lee-2022-coauthor: step -> queue-ops",
-    "2026-08-03T22:43 lee-2022-coauthor: step -> podcast",
-    "2026-08-03T22:55 completed lee-2022-coauthor (verdict=approved, rounds=2)",
-    "2026-08-03T22:55 started goyal-2022-news-summ ('News Summarization and Evaluation in the Era of GPT-3')",
-    "2026-08-03T22:55 goyal-2022-news-summ: step -> fetch",
-    "2026-08-03T22:55 goyal-2022-news-summ: step -> figures",
-    "2026-08-03T22:58 goyal-2022-news-summ: step -> draft",
-    "2026-08-03T23:18 goyal-2022-news-summ: step -> critique (round 1)",
-    "2026-08-03T23:32 goyal-2022-news-summ: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T23:32 goyal-2022-news-summ: step -> revise",
-    "2026-08-03T23:41 goyal-2022-news-summ: step -> critique (round 2)",
-    "2026-08-03T23:46 goyal-2022-news-summ: 1 open blocker(s) from round 2 (verdict: revise)",
     "2026-08-03T23:47 goyal-2022-news-summ: step -> revise",
     "2026-08-03T23:47 goyal-2022-news-summ: step -> critique (round 3)",
     "2026-08-03T23:47 goyal-2022-news-summ: step -> verify",
@@ -1463,6 +1459,19 @@
     "2026-08-04T02:26 dagan-2005-rte: step -> verify",
     "2026-08-04T02:26 dagan-2005-rte: step -> queue-ops",
     "2026-08-04T02:26 dagan-2005-rte: step -> podcast",
-    "2026-08-04T02:40 completed dagan-2005-rte (verdict=approved, rounds=3)"
+    "2026-08-04T02:40 completed dagan-2005-rte (verdict=approved, rounds=3)",
+    "2026-08-04T02:41 started kirstain-2023-pick-a-pic ('Pick-a-Pic: An Open Dataset of User Preferences for Text-to-Image Generation')",
+    "2026-08-04T02:41 kirstain-2023-pick-a-pic: step -> fetch",
+    "2026-08-04T02:41 kirstain-2023-pick-a-pic: step -> figures",
+    "2026-08-04T02:47 kirstain-2023-pick-a-pic: step -> draft",
+    "2026-08-04T03:12 kirstain-2023-pick-a-pic: step -> critique (round 1)",
+    "2026-08-04T03:27 kirstain-2023-pick-a-pic: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-04T03:27 kirstain-2023-pick-a-pic: step -> revise",
+    "2026-08-04T03:43 kirstain-2023-pick-a-pic: step -> critique (round 2)",
+    "2026-08-04T03:49 kirstain-2023-pick-a-pic: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-04T03:49 kirstain-2023-pick-a-pic: step -> verify",
+    "2026-08-04T03:49 kirstain-2023-pick-a-pic: step -> queue-ops",
+    "2026-08-04T03:50 kirstain-2023-pick-a-pic: step -> podcast",
+    "2026-08-04T04:04 completed kirstain-2023-pick-a-pic (verdict=approved, rounds=2)"
   ]
 }
