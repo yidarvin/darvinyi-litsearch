@@ -1314,6 +1314,15 @@
         "3 critic rounds. ROUND-1 B1 WAS THE BEST CRITIC CATCH OF THE SESSION, and it came from a lateral move: the critic used the v1 text - which exists in this pipeline only as a contamination detector - as EVIDENCE about the paper. The page compared Epic Diffusion (27.57) and Openjourney (27.85) as '0.28 apart, well inside' a threshold it had defined two sentences earlier as 0.02, a self-refuting sentence off by 14x. The cause is that Figure 5's x-axis and every table in the same paper are on DIFFERENT SCALES: between v1 and v2 the authors rescaled all tables by 100 - v1 prints 0.2334 +- 1.98e-3 where v2 prints 23.34 +- 0.198, error bars included - but Figure 5's axis stayed on the raw cosine scale, running 0.000-0.040. I verified the rescale independently and confirmed '× 100' appears exactly once in v2 and never in v1. In round 2 the critic corroborated it further by extracting Figure 5's marker centroids and calibrating against the plot frame: y-extremes 61.5/93.1 against Table 4's exact min/max of 61.6%/93.1% across its 45 model pairs, pinning the figure's points to the table's cells. The page now converts explicitly and reports the mismatch as a paper-internal finding - a reader comparing Figure 5 to any table directly is wrong by two orders of magnitude, and nothing in the paper flags it. The substantive conclusion survives conversion: pairs under ~1.5 Table-7 points sit where inter-annotator agreement sags to 60-80%, and 107 of 190 Animation pairs plus all 19 adjacent-rank pairs fall in that band. Other blockers: B2 claimed the benchmark reuses 'the same generator roster the model was fine-tuned on', contradicted verbatim by the paper ('The training set contains images from 4 models + COCO images, while the test set contains 9 models + COCO images. The 5 unseen models enable us to validate the generalization capability') and by three other surfaces of the page including its own contamination cell - the paper's design is better than the critique credited; B3 got both generator anchors wrong (training is 4+COCO, the Table 7 benchmark is 20 models), and the prompt-monoculture argument got stronger with the real denominators; B4 had a figure labelled 'Figure 3' that was actually a two-panel crop of Figures 2 and 3, so an NSFW-score histogram read as style-token frequencies. CONTAMINATION: second-worst version hazard in the project after Few-NERD - only 81 numeric tokens shared, 168 v1-only, 237 v2-only, with the v1-only values clustering in the 0.23-0.27 four-decimal range where a leak is invisible. I wrote the full 168-token blocklist to work/wu-2023-hps-v2/v1-only-tokens.txt. Zero collisions across three independent sweeps including after the B1 conversions introduced new numbers, checked with leading-zero-optional and comma-stripped variants. The podcast agent made a call I had not anticipated: it deliberately did NOT narrate the v1-to-v2 rescale history on air, because illustrating it would require SPEAKING 0.2334 and 1.98, both v1-only tokens - then parsed all 41 spoken number-words back into decimals and checked those against the blocklist too. Builder also self-caught three errors mid-draft, all re-derived correct, including a Table 9 recount from 36 pairs to a 45-cell matrix over 10 entities. Its 789,090-vs-798,090 accusation is airtight and stronger than written: Appendix H.2 contradicts itself two answers later by quoting the 645,090 and 153,000 splits. Dual-tagged benchmarks + evaluations (ships HPD v2, a named dataset, plus HPS v2, a scoring methodology), matching ghosh-2023-geneval and hu-2023-tifa. Verified: 2023-Q2 column with MT-Bench/EvalPlus/AlpacaFarm, 3 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 28.1 min, render rc=0, remote MD5 verified on both MP3 and feed."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "walke-2023-bridgedata-v2",
+      "rounds": 3,
+      "verdict": "approved_with_notes",
+      "notes": [
+        "3 critic rounds. TWO OUTSTANDING PIECES OF CRITIC WORK IN ROUND 1. First, it proved the Table 6 accusation UNBREAKABLE rather than merely unexplained: the BridgeData V2 column has rows 0.65 and 0.70 and prints an average of 0.70, but any convex combination w*0.65 + (1-w)*0.70 = 0.70 forces w = 0, so no weighting by trials, tasks or environments can produce it; 'weight' scores zero hits anywhere in the paper; and all 30 printed averages across Tables 2, 3 and 4 are exact unweighted means, so the paper's own convention convicts it - 0.675 should print as 0.68, and the sibling column's 0.075 -> 0.08 rounds correctly. Second, on Figure 3 it noticed the pie labels are OUTLINED PATHS rather than text, so a transcription could not be trusted, and re-derived all sixteen wedges from path geometry against a fitted apex, every angle matching label/50,420 x 360 to within 0.13 degrees. Both pies sum to 50,420 against the body text's 50,365 - a 55-demonstration gap the paper never reconciles - and it ruled out the alternative readings (the caption scopes Figure 3 to demonstration data, and 50,365 + 9,731 = 60,096 closes exactly against the abstract). Two blockers, both surgical: 'tripling skill diversity from 3 to 13' when 13/3 = 4.33, and a verdict cell claiming the cross-lab AND skill-diversity deltas are 0.05-0.17 when skill diversity's is 0.35, a self-contradiction since the page reports 0.30->0.65 twice elsewhere. I THEN HEDGED MY OWN FIX after putting the question to the critic directly. My B2 edit had written that the skill-diversity gap 'is large enough to clear that bar (z ~ 2.2)'. The critic found Fisher's exact two-sided on [[6,14],[13,7]] gives p = 0.0562, just ABOVE 0.05, so the claim holds under the normal approximation and fails under the exact test standard at n=20. I verified Fisher myself (p = 0.0562, observed cell probability 0.02289) and rewrote the clause to give both tests, name Fisher as appropriate at this sample size, and attribute both computations to the page rather than the paper - which matters because the same paragraph criticises the paper's nine unbacked uses of 'significant'. EDGE NOTE: brown-2020-gpt3 is a REAL edge here (ref [1], 'Language models are few-shot learners'), unlike on gehrmann-2022-cracked-foundation where it was false. I applied the zero-hit test to all four outgoing leads rather than only the ones I doubted - that asymmetry is exactly what let the false edge through two papers ago. A NEW SEARCH TRAP surfaced and nearly cost all four: this bibliography abbreviates given names to initials ('T. Mu', 'S. James') AND lowercases title-case words, writing 'Maniskill', 'Rlbench', 'Meta-world', so case-sensitive probes returned zero on every real edge. Fourth encoding/casing trap this session after 'step size' vs 'stride', an en dash vs ASCII hyphen, and the fi ligature. The robotics cluster was swept case-insensitively: SoftGym, GraspNet, robosuite, LIBERO, ManiSkill2, Jacquard and CALVIN all zero, and the 28 'behavior' hits are the English word (Srivastava = 0). Builder also self-caught a false 'every method reaches non-zero success on most unseen tasks' - LCBC does so on only 2 of 6 - and the recount was verified cell by cell. Version hazard mild: 4 v1-only tokens, and the only one appearing on the page (0.17) is a Table-4 derived delta, confirmed. Tagged benchmarks-only, matching the robotics cluster; SIMPLER carries both only because real-to-sim evaluation is its methodology. Verified: 2023-Q3 column with LegalBench/Code Llama/AgentBench, 5 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 22.1 min, render rc=0, remote MD5 verified."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1369,22 +1378,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T15:23 gehrmann-2022-cracked-foundation: 0 open blocker(s) from round 4 (verdict: approve)",
-    "2026-08-03T15:23 gehrmann-2022-cracked-foundation: step -> verify",
-    "2026-08-03T15:24 gehrmann-2022-cracked-foundation: step -> queue-ops",
-    "2026-08-03T15:24 gehrmann-2022-cracked-foundation: step -> podcast",
-    "2026-08-03T15:34 completed gehrmann-2022-cracked-foundation (verdict=approved_with_notes, rounds=4)",
-    "2026-08-03T16:01 started mu-2021-maniskill ('ManiSkill: Generalizable Manipulation Skill Benchmark with Large-Scale Demonstrations')",
-    "2026-08-03T16:02 mu-2021-maniskill: step -> fetch",
-    "2026-08-03T16:18 mu-2021-maniskill: step -> figures",
-    "2026-08-03T16:18 mu-2021-maniskill: step -> draft",
-    "2026-08-03T16:20 mu-2021-maniskill: step -> critique (round 1)",
-    "2026-08-03T16:34 mu-2021-maniskill: 0 open blocker(s) from round 1 (verdict: approve)",
-    "2026-08-03T16:34 mu-2021-maniskill: step -> revise",
-    "2026-08-03T16:34 mu-2021-maniskill: step -> critique (round 2)",
-    "2026-08-03T16:34 mu-2021-maniskill: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T16:34 mu-2021-maniskill: step -> verify",
-    "2026-08-03T16:35 mu-2021-maniskill: step -> queue-ops",
     "2026-08-03T16:36 mu-2021-maniskill: step -> podcast",
     "2026-08-03T16:49 completed mu-2021-maniskill (verdict=approved_with_notes, rounds=2)",
     "2026-08-03T17:16 started snow-2008-cheap-and-fast ('Cheap and Fast - But is it Good? Evaluating Non-Expert Annotations for Natural Language Tasks')",
@@ -1418,6 +1411,22 @@
     "2026-08-03T19:53 wu-2023-hps-v2: step -> verify",
     "2026-08-03T19:54 wu-2023-hps-v2: step -> queue-ops",
     "2026-08-03T19:55 wu-2023-hps-v2: step -> podcast",
-    "2026-08-03T20:08 completed wu-2023-hps-v2 (verdict=approved_with_notes, rounds=3)"
+    "2026-08-03T20:08 completed wu-2023-hps-v2 (verdict=approved_with_notes, rounds=3)",
+    "2026-08-03T20:35 started walke-2023-bridgedata-v2 ('BridgeData V2: A Dataset for Robot Learning at Scale')",
+    "2026-08-03T20:35 walke-2023-bridgedata-v2: step -> fetch",
+    "2026-08-03T20:41 walke-2023-bridgedata-v2: step -> figures",
+    "2026-08-03T20:47 walke-2023-bridgedata-v2: step -> draft",
+    "2026-08-03T20:58 walke-2023-bridgedata-v2: step -> critique (round 1)",
+    "2026-08-03T21:12 walke-2023-bridgedata-v2: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T21:12 walke-2023-bridgedata-v2: step -> revise",
+    "2026-08-03T21:12 walke-2023-bridgedata-v2: step -> critique (round 2)",
+    "2026-08-03T21:20 walke-2023-bridgedata-v2: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> revise",
+    "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> critique (round 3)",
+    "2026-08-03T21:20 walke-2023-bridgedata-v2: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> verify",
+    "2026-08-03T21:21 walke-2023-bridgedata-v2: step -> queue-ops",
+    "2026-08-03T21:22 walke-2023-bridgedata-v2: step -> podcast",
+    "2026-08-03T21:31 completed walke-2023-bridgedata-v2 (verdict=approved_with_notes, rounds=3)"
   ]
 }

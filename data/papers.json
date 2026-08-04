@@ -10875,6 +10875,22 @@
       "explainer": "papers/wu-2023-hps-v2.html",
       "audio_url": "https://pod.darvinyi.com/audio/wu-2023-hps-v2.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "walke-2023-bridgedata-v2",
+      "short": "BridgeData V2",
+      "title": "BridgeData V2: A Dataset for Robot Learning at Scale",
+      "authors": "Walke, Black, Lee, Kim, Du, Zheng, Zhao, Hansen-Estruch, Vuong, He, Myers, Fang, Finn, Levine",
+      "year": 2023,
+      "date": "2023-08",
+      "venue": "CoRL 2023",
+      "citation_count": 776,
+      "topic": "Benchmarks & Evals",
+      "author_group": "UC Berkeley",
+      "abstract": "A 60,096-trajectory, 24-environment, 13-skill real-robot manipulation dataset collected on a $4,000 publicly available WidowX 250 arm (50,365 human-teleoperated demonstrations plus 9,731 scripted-autonomous trajectories), evaluated with six offline learning methods spanning goal-image and language conditioning and replicated zero-shot at a second institution. Scaling analyses show model capacity, dataset size, and skill diversity all improve generalization, though every reported success rate is a 10-to-20-trial point estimate with no reported variance.",
+      "explainer": "papers/walke-2023-bridgedata-v2.html",
+      "audio_url": "https://pod.darvinyi.com/audio/walke-2023-bridgedata-v2.mp3",
+      "tags": ["benchmarks"]
     }
   ],
   "edges": [
@@ -18473,6 +18489,11 @@
     { "from": "liu-2023-libero", "to": "mu-2021-maniskill" },
     { "from": "wu-2023-hps-v2", "to": "chen-2015-coco-captions" },
     { "from": "wu-2023-hps-v2", "to": "ouyang-2022-instructgpt" },
-    { "from": "ghosh-2023-geneval", "to": "wu-2023-hps-v2" }
+    { "from": "ghosh-2023-geneval", "to": "wu-2023-hps-v2" },
+    { "from": "walke-2023-bridgedata-v2", "to": "brown-2020-gpt3" },
+    { "from": "walke-2023-bridgedata-v2", "to": "james-2020-rlbench" },
+    { "from": "walke-2023-bridgedata-v2", "to": "mu-2021-maniskill" },
+    { "from": "walke-2023-bridgedata-v2", "to": "yu-2019-meta-world" },
+    { "from": "li-2024-simpler", "to": "walke-2023-bridgedata-v2" }
   ]
 }
