@@ -10844,6 +10844,21 @@
       "explainer": "papers/mu-2021-maniskill.html",
       "audio_url": "https://pod.darvinyi.com/audio/mu-2021-maniskill.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "snow-2008-cheap-and-fast",
+      "short": "Cheap and Fast",
+      "title": "Cheap and Fast – But is it Good? Evaluating Non-Expert Annotations for Natural Language Tasks",
+      "authors": "Snow, O'Connor, Jurafsky, Ng",
+      "year": 2008,
+      "date": "2008-10",
+      "venue": "EMNLP 2008",
+      "citation_count": 2520,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "The founding empirical study of crowdsourced NLP annotation: across five tasks (affect recognition, word similarity, RTE, event temporal ordering, WSD), pooling as few as 4-10 non-expert Amazon Mechanical Turk labels reaches or comes close to single-expert agreement, matching or beating it outright on several, and a Dawid-Skene-style gold-calibrated bias-correction model recovers further accuracy (+4.0% RTE, +3.4% event ordering) from the same raw labels. Non-expert-trained classifiers even outperformed single-expert-trained ones on most of Table 4's affect rows.",
+      "explainer": "papers/snow-2008-cheap-and-fast.html",
+      "audio_url": "https://pod.darvinyi.com/audio/snow-2008-cheap-and-fast.mp3"
     }
   ],
   "edges": [
@@ -18420,6 +18435,7 @@
     { "from": "gehrmann-2022-cracked-foundation", "to": "ribeiro-2020-checklist" },
     { "from": "gehrmann-2022-cracked-foundation", "to": "scialom-2021-questeval" },
     { "from": "gehrmann-2022-cracked-foundation", "to": "sellam-2020-bleurt" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "snow-2008-cheap-and-fast" },
     { "from": "gehrmann-2022-cracked-foundation", "to": "stiennon-2020-summarize" },
     { "from": "gehrmann-2022-cracked-foundation", "to": "williams-2017-multinli" },
     { "from": "chowdhery-2022-palm", "to": "gehrmann-2022-cracked-foundation" },
