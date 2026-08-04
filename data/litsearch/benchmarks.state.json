@@ -1332,6 +1332,15 @@
         "5 P1 blockers r1 (doubled instance count, fabricated ownership-satisfaction r, inverted diversity connective, non-verbatim quote, figure caption), all fixed; r2 approve. Tagged evaluations only (not benchmarks: no scoreable task/split; corpus precedent lmsys-chat-1m + the-pile untagged). 9 edges. Queued 2 (TTCW, LogicVista)."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "goyal-2022-news-summ",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "5 P1 r1 (words/sentence unit error tripling the length gap, Krippendorff alpha reported as a percent rate, 3 of 4 headline surfaces claiming same test splits, 2 parameter counts not in the paper, 1 missing edge that was my own error); r2 found 1 regression the B4 fix introduced (scale never quantified vs 175B stated next sentence), fixed; r3 approve. Untagged->evaluations only. 22 edges. Also fixed 8 missing cracked-foundation edges caused by my preprint-date reasoning. Queued 4."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1387,22 +1396,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T18:13 snow-2008-cheap-and-fast: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T18:13 snow-2008-cheap-and-fast: step -> verify",
-    "2026-08-03T18:15 snow-2008-cheap-and-fast: step -> queue-ops",
-    "2026-08-03T18:15 snow-2008-cheap-and-fast: step -> podcast",
-    "2026-08-03T18:29 completed snow-2008-cheap-and-fast (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T18:55 started wu-2023-hps-v2 ('Human Preference Score v2: A Solid Benchmark for Evaluating Human Preferences of Text-to-Image Synthesis')",
-    "2026-08-03T18:55 wu-2023-hps-v2: step -> fetch",
-    "2026-08-03T19:14 wu-2023-hps-v2: step -> figures",
-    "2026-08-03T19:14 wu-2023-hps-v2: step -> draft",
-    "2026-08-03T19:18 wu-2023-hps-v2: step -> critique (round 1)",
-    "2026-08-03T19:30 wu-2023-hps-v2: 4 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T19:30 wu-2023-hps-v2: step -> revise",
-    "2026-08-03T19:41 wu-2023-hps-v2: step -> critique (round 2)",
-    "2026-08-03T19:53 wu-2023-hps-v2: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T19:53 wu-2023-hps-v2: step -> revise",
-    "2026-08-03T19:53 wu-2023-hps-v2: step -> critique (round 3)",
     "2026-08-03T19:53 wu-2023-hps-v2: 0 open blocker(s) from round 3 (verdict: approve)",
     "2026-08-03T19:53 wu-2023-hps-v2: step -> verify",
     "2026-08-03T19:54 wu-2023-hps-v2: step -> queue-ops",
@@ -1436,6 +1429,22 @@
     "2026-08-03T22:43 lee-2022-coauthor: step -> verify",
     "2026-08-03T22:43 lee-2022-coauthor: step -> queue-ops",
     "2026-08-03T22:43 lee-2022-coauthor: step -> podcast",
-    "2026-08-03T22:55 completed lee-2022-coauthor (verdict=approved, rounds=2)"
+    "2026-08-03T22:55 completed lee-2022-coauthor (verdict=approved, rounds=2)",
+    "2026-08-03T22:55 started goyal-2022-news-summ ('News Summarization and Evaluation in the Era of GPT-3')",
+    "2026-08-03T22:55 goyal-2022-news-summ: step -> fetch",
+    "2026-08-03T22:55 goyal-2022-news-summ: step -> figures",
+    "2026-08-03T22:58 goyal-2022-news-summ: step -> draft",
+    "2026-08-03T23:18 goyal-2022-news-summ: step -> critique (round 1)",
+    "2026-08-03T23:32 goyal-2022-news-summ: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T23:32 goyal-2022-news-summ: step -> revise",
+    "2026-08-03T23:41 goyal-2022-news-summ: step -> critique (round 2)",
+    "2026-08-03T23:46 goyal-2022-news-summ: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-03T23:47 goyal-2022-news-summ: step -> revise",
+    "2026-08-03T23:47 goyal-2022-news-summ: step -> critique (round 3)",
+    "2026-08-03T23:47 goyal-2022-news-summ: step -> verify",
+    "2026-08-03T23:47 goyal-2022-news-summ: step -> queue-ops",
+    "2026-08-03T23:47 goyal-2022-news-summ: step -> podcast",
+    "2026-08-03T23:47 goyal-2022-news-summ: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-03T23:57 completed goyal-2022-news-summ (verdict=approved, rounds=3)"
   ]
 }
