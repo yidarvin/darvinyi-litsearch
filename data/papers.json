@@ -10891,6 +10891,22 @@
       "explainer": "papers/walke-2023-bridgedata-v2.html",
       "audio_url": "https://pod.darvinyi.com/audio/walke-2023-bridgedata-v2.mp3",
       "tags": ["benchmarks"]
+    },
+    {
+      "slug": "lee-2022-coauthor",
+      "short": "CoAuthor",
+      "title": "CoAuthor: Designing a Human-AI Collaborative Writing Dataset for Exploring Language Model Capabilities",
+      "authors": "Lee, Liang, Yang",
+      "year": 2022,
+      "date": "2022-01",
+      "venue": "CHI 2022",
+      "citation_count": 555,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Stanford",
+      "abstract": "A dataset of 1,445 human–GPT-3 collaborative writing sessions from 63 writers, logging every keystroke, suggestion, and accept/reject/edit decision at the event level. Argues that curating and analyzing such interaction traces — not aggregate benchmark scores — is how HCI research should probe an LM's context-dependent generative capabilities, and demonstrates the approach on GPT-3's language, ideation, and collaboration behavior.",
+      "explainer": "papers/lee-2022-coauthor.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lee-2022-coauthor.mp3",
+      "tags": ["evaluations"]
     }
   ],
   "edges": [
@@ -18494,6 +18510,15 @@
     { "from": "walke-2023-bridgedata-v2", "to": "james-2020-rlbench" },
     { "from": "walke-2023-bridgedata-v2", "to": "mu-2021-maniskill" },
     { "from": "walke-2023-bridgedata-v2", "to": "yu-2019-meta-world" },
-    { "from": "li-2024-simpler", "to": "walke-2023-bridgedata-v2" }
+    { "from": "li-2024-simpler", "to": "walke-2023-bridgedata-v2" },
+    { "from": "lee-2022-coauthor", "to": "brown-2020-gpt3" },
+    { "from": "lee-2022-coauthor", "to": "chen-2021-codex" },
+    { "from": "lee-2022-coauthor", "to": "gehrmann-2021-gem" },
+    { "from": "lee-2022-coauthor", "to": "hendrycks-2020-mmlu" },
+    { "from": "lee-2022-coauthor", "to": "lewis-2019-bart" },
+    { "from": "lee-2022-coauthor", "to": "radford-2019-gpt2" },
+    { "from": "lee-2022-coauthor", "to": "wang-2018-glue" },
+    { "from": "liu-2023-lost-in-the-middle", "to": "lee-2022-coauthor" },
+    { "from": "wei-2022-emergent-abilities", "to": "lee-2022-coauthor" }
   ]
 }

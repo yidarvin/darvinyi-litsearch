@@ -1323,6 +1323,15 @@
         "3 critic rounds. TWO OUTSTANDING PIECES OF CRITIC WORK IN ROUND 1. First, it proved the Table 6 accusation UNBREAKABLE rather than merely unexplained: the BridgeData V2 column has rows 0.65 and 0.70 and prints an average of 0.70, but any convex combination w*0.65 + (1-w)*0.70 = 0.70 forces w = 0, so no weighting by trials, tasks or environments can produce it; 'weight' scores zero hits anywhere in the paper; and all 30 printed averages across Tables 2, 3 and 4 are exact unweighted means, so the paper's own convention convicts it - 0.675 should print as 0.68, and the sibling column's 0.075 -> 0.08 rounds correctly. Second, on Figure 3 it noticed the pie labels are OUTLINED PATHS rather than text, so a transcription could not be trusted, and re-derived all sixteen wedges from path geometry against a fitted apex, every angle matching label/50,420 x 360 to within 0.13 degrees. Both pies sum to 50,420 against the body text's 50,365 - a 55-demonstration gap the paper never reconciles - and it ruled out the alternative readings (the caption scopes Figure 3 to demonstration data, and 50,365 + 9,731 = 60,096 closes exactly against the abstract). Two blockers, both surgical: 'tripling skill diversity from 3 to 13' when 13/3 = 4.33, and a verdict cell claiming the cross-lab AND skill-diversity deltas are 0.05-0.17 when skill diversity's is 0.35, a self-contradiction since the page reports 0.30->0.65 twice elsewhere. I THEN HEDGED MY OWN FIX after putting the question to the critic directly. My B2 edit had written that the skill-diversity gap 'is large enough to clear that bar (z ~ 2.2)'. The critic found Fisher's exact two-sided on [[6,14],[13,7]] gives p = 0.0562, just ABOVE 0.05, so the claim holds under the normal approximation and fails under the exact test standard at n=20. I verified Fisher myself (p = 0.0562, observed cell probability 0.02289) and rewrote the clause to give both tests, name Fisher as appropriate at this sample size, and attribute both computations to the page rather than the paper - which matters because the same paragraph criticises the paper's nine unbacked uses of 'significant'. EDGE NOTE: brown-2020-gpt3 is a REAL edge here (ref [1], 'Language models are few-shot learners'), unlike on gehrmann-2022-cracked-foundation where it was false. I applied the zero-hit test to all four outgoing leads rather than only the ones I doubted - that asymmetry is exactly what let the false edge through two papers ago. A NEW SEARCH TRAP surfaced and nearly cost all four: this bibliography abbreviates given names to initials ('T. Mu', 'S. James') AND lowercases title-case words, writing 'Maniskill', 'Rlbench', 'Meta-world', so case-sensitive probes returned zero on every real edge. Fourth encoding/casing trap this session after 'step size' vs 'stride', an en dash vs ASCII hyphen, and the fi ligature. The robotics cluster was swept case-insensitively: SoftGym, GraspNet, robosuite, LIBERO, ManiSkill2, Jacquard and CALVIN all zero, and the 28 'behavior' hits are the English word (Srivastava = 0). Builder also self-caught a false 'every method reaches non-zero success on most unseen tasks' - LCBC does so on only 2 of 6 - and the recount was verified cell by cell. Version hazard mild: 4 v1-only tokens, and the only one appearing on the page (0.17) is a Table-4 derived delta, confirmed. Tagged benchmarks-only, matching the robotics cluster; SIMPLER carries both only because real-to-sim evaluation is its methodology. Verified: 2023-Q3 column with LegalBench/Code Llama/AgentBench, 5 edges all lit on hover with 0 before, 375px zero overflow, lint 0. Podcast 22.1 min, render rc=0, remote MD5 verified."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "lee-2022-coauthor",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "5 P1 blockers r1 (doubled instance count, fabricated ownership-satisfaction r, inverted diversity connective, non-verbatim quote, figure caption), all fixed; r2 approve. Tagged evaluations only (not benchmarks: no scoreable task/split; corpus precedent lmsys-chat-1m + the-pile untagged). 9 edges. Queued 2 (TTCW, LogicVista)."
+      ],
+      "date": "2026-08-03"
     }
   ],
   "skipped": [
@@ -1378,19 +1387,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T16:36 mu-2021-maniskill: step -> podcast",
-    "2026-08-03T16:49 completed mu-2021-maniskill (verdict=approved_with_notes, rounds=2)",
-    "2026-08-03T17:16 started snow-2008-cheap-and-fast ('Cheap and Fast - But is it Good? Evaluating Non-Expert Annotations for Natural Language Tasks')",
-    "2026-08-03T17:16 snow-2008-cheap-and-fast: step -> fetch",
-    "2026-08-03T17:19 snow-2008-cheap-and-fast: step -> figures",
-    "2026-08-03T17:27 snow-2008-cheap-and-fast: step -> draft",
-    "2026-08-03T17:34 snow-2008-cheap-and-fast: step -> critique (round 1)",
-    "2026-08-03T17:50 snow-2008-cheap-and-fast: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T17:50 snow-2008-cheap-and-fast: step -> revise",
-    "2026-08-03T18:01 snow-2008-cheap-and-fast: step -> critique (round 2)",
-    "2026-08-03T18:13 snow-2008-cheap-and-fast: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-03T18:13 snow-2008-cheap-and-fast: step -> revise",
-    "2026-08-03T18:13 snow-2008-cheap-and-fast: step -> critique (round 3)",
     "2026-08-03T18:13 snow-2008-cheap-and-fast: 0 open blocker(s) from round 3 (verdict: approve)",
     "2026-08-03T18:13 snow-2008-cheap-and-fast: step -> verify",
     "2026-08-03T18:15 snow-2008-cheap-and-fast: step -> queue-ops",
@@ -1427,6 +1423,19 @@
     "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> verify",
     "2026-08-03T21:21 walke-2023-bridgedata-v2: step -> queue-ops",
     "2026-08-03T21:22 walke-2023-bridgedata-v2: step -> podcast",
-    "2026-08-03T21:31 completed walke-2023-bridgedata-v2 (verdict=approved_with_notes, rounds=3)"
+    "2026-08-03T21:31 completed walke-2023-bridgedata-v2 (verdict=approved_with_notes, rounds=3)",
+    "2026-08-03T21:58 started lee-2022-coauthor ('CoAuthor: Designing a Human-AI Collaborative Writing Dataset for Exploring Language Model Capabilities')",
+    "2026-08-03T21:58 lee-2022-coauthor: step -> fetch",
+    "2026-08-03T22:19 lee-2022-coauthor: step -> figures",
+    "2026-08-03T22:19 lee-2022-coauthor: step -> draft",
+    "2026-08-03T22:19 lee-2022-coauthor: step -> critique (round 1)",
+    "2026-08-03T22:37 lee-2022-coauthor: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-03T22:40 lee-2022-coauthor: step -> revise",
+    "2026-08-03T22:43 lee-2022-coauthor: step -> critique (round 2)",
+    "2026-08-03T22:43 lee-2022-coauthor: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-03T22:43 lee-2022-coauthor: step -> verify",
+    "2026-08-03T22:43 lee-2022-coauthor: step -> queue-ops",
+    "2026-08-03T22:43 lee-2022-coauthor: step -> podcast",
+    "2026-08-03T22:55 completed lee-2022-coauthor (verdict=approved, rounds=2)"
   ]
 }
