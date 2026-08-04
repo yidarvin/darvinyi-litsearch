@@ -10970,6 +10970,22 @@
       "explainer": "papers/kirstain-2023-pick-a-pic.html",
       "audio_url": "https://pod.darvinyi.com/audio/kirstain-2023-pick-a-pic.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "xu-2023-imagereward",
+      "short": "ImageReward",
+      "title": "ImageReward: Learning and Evaluating Human Preferences for Text-to-Image Generation",
+      "authors": "Xu, Liu, Wu, Tong, Li, Ding, Tang, Dong",
+      "year": 2023,
+      "date": "2023-04",
+      "venue": "NeurIPS 2023",
+      "citation_count": 1163,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Tsinghua University",
+      "abstract": "Builds ImageRewardDB (137k / 136,892 expert rate-and-rank comparisons over 8,878 DiffusionDB prompts, collected under an explicit written trade-off policy) to train ImageReward, a BLIP-backed pairwise reward model for text-to-image generation that reaches 65.14% preference accuracy against CLIP (54.82%), Aesthetic (57.35%) and BLIP (57.76%) score baselines, plus ReFL, a direct fine-tuning method that back-propagates ImageReward's gradient from a randomly sampled late denoising step, beating three indirect baselines (Dataset Filtering, Reward Weighted, RAFT) in every pairwise human comparison. Against the field's other 2023 reward models (HPS, PickScore) on the identical protocol, the margin narrows to a few points and reverses on one metric (Recall@1); independent re-evaluations by Pick-a-Pic and HPS v2 on their own data separately find lower accuracy on Pick-a-Pic's test set (61.1% vs. 65.14% here) and a rank collapse on HPS v2's broader nine-generator test set (74.0% -- numerically higher than 65.14% but second-worst of the six models compared there).",
+      "explainer": "papers/xu-2023-imagereward.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xu-2023-imagereward.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -18665,6 +18681,21 @@
     { "from": "kirstain-2023-pick-a-pic", "to": "christiano-2017-deep-rl-preferences" },
     { "from": "kirstain-2023-pick-a-pic", "to": "lin-2014-coco" },
     { "from": "kirstain-2023-pick-a-pic", "to": "ouyang-2022-instructgpt" },
-    { "from": "wu-2023-hps-v2", "to": "kirstain-2023-pick-a-pic" }
+    { "from": "wu-2023-hps-v2", "to": "kirstain-2023-pick-a-pic" },
+    { "from": "xu-2023-imagereward", "to": "bai-2022-constitutional-ai" },
+    { "from": "xu-2023-imagereward", "to": "bai-2022-hh-rlhf" },
+    { "from": "xu-2023-imagereward", "to": "brown-2020-gpt3" },
+    { "from": "xu-2023-imagereward", "to": "chowdhery-2022-palm" },
+    { "from": "xu-2023-imagereward", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "xu-2023-imagereward", "to": "kirstain-2023-pick-a-pic" },
+    { "from": "xu-2023-imagereward", "to": "lin-2014-coco" },
+    { "from": "xu-2023-imagereward", "to": "ouyang-2022-instructgpt" },
+    { "from": "xu-2023-imagereward", "to": "schulman-2017-ppo" },
+    { "from": "xu-2023-imagereward", "to": "stiennon-2020-summarize" },
+    { "from": "xu-2023-imagereward", "to": "ziegler-2019-finetune-preferences" },
+    { "from": "gu-2024-llm-judge-survey", "to": "xu-2023-imagereward" },
+    { "from": "kirstain-2023-pick-a-pic", "to": "xu-2023-imagereward" },
+    { "from": "wu-2023-hps-v2", "to": "xu-2023-imagereward" },
+    { "from": "zhong-2025-reward-models-survey", "to": "xu-2023-imagereward" }
   ]
 }

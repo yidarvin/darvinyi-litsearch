@@ -1368,6 +1368,15 @@
         "2 rounds. r1: 5 P1 -- tie-threshold crossing stated as 0.55-0.6 when the builder's OWN correct extraction showed ~0.72 (correct extraction, wrong conclusion; a failure mode invisible to numeric sweeps and to re-extraction, now written into paper-builder.md); 'ahead only at the selected threshold' false (leads 8 of 11, and the paper says 'almost all thresholds'); 30,000 examples mislabelled as prompts; an arithmetic accusation against the paper presented as settled when the operand is genuinely ambiguous (4.26x vs 7.08x depending on which printed size); three backbones vs the paper's four. Plus 8 suggestions. r2 approve with independent re-derivation matching 0.7209. Tagged benchmarks+evaluations, argued separately. 6 edges. Queued 4."
       ],
       "date": "2026-08-04"
+    },
+    {
+      "slug": "xu-2023-imagereward",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 rounds, 12 P1 total. r1 filed 10 -- every table value on the page was CORRECT and all 10 failures were in prose about them (fabricated 13-35 margin range where the truth is 7.38-19.41; Table 6's two-line 'Image/Reward' header misread as per-scorer units; false superlatives; DDIM for PNDM; six seeds for eight). r2 found 2 regressions from the fixes, one of which was MY error: the 'trivially maximise' wording originated in the tables-VERIFIED.md I wrote, and fails in the ReFL/MT-Bench cell where PickScore-tuned 0.4908 beats ImageReward-tuned 0.4822 -- 3 of 4 cells, not 4. Fixed on all three surfaces. r3 approve. benchmarks+evaluations. 15 edges; taori-2023-alpaca rejected as an unresolved S2 stub. Queued 4."
+      ],
+      "date": "2026-08-04"
     }
   ],
   "skipped": [
@@ -1423,23 +1432,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T23:47 goyal-2022-news-summ: step -> revise",
-    "2026-08-03T23:47 goyal-2022-news-summ: step -> critique (round 3)",
-    "2026-08-03T23:47 goyal-2022-news-summ: step -> verify",
-    "2026-08-03T23:47 goyal-2022-news-summ: step -> queue-ops",
-    "2026-08-03T23:47 goyal-2022-news-summ: step -> podcast",
-    "2026-08-03T23:47 goyal-2022-news-summ: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T23:57 completed goyal-2022-news-summ (verdict=approved, rounds=3)",
-    "2026-08-03T23:58 started celikyilmaz-2020-eval-text-gen ('Evaluation of Text Generation: A Survey')",
-    "2026-08-03T23:58 celikyilmaz-2020-eval-text-gen: step -> fetch",
-    "2026-08-03T23:58 celikyilmaz-2020-eval-text-gen: step -> figures",
-    "2026-08-04T00:00 celikyilmaz-2020-eval-text-gen: step -> draft",
-    "2026-08-04T00:30 celikyilmaz-2020-eval-text-gen: step -> draft",
-    "2026-08-04T00:30 celikyilmaz-2020-eval-text-gen: step -> critique (round 1)",
-    "2026-08-04T00:48 celikyilmaz-2020-eval-text-gen: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-04T00:48 celikyilmaz-2020-eval-text-gen: step -> revise",
-    "2026-08-04T00:59 celikyilmaz-2020-eval-text-gen: step -> critique (round 2)",
-    "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> verify",
     "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> queue-ops",
     "2026-08-04T01:05 celikyilmaz-2020-eval-text-gen: step -> podcast",
@@ -1472,6 +1464,23 @@
     "2026-08-04T03:49 kirstain-2023-pick-a-pic: step -> verify",
     "2026-08-04T03:49 kirstain-2023-pick-a-pic: step -> queue-ops",
     "2026-08-04T03:50 kirstain-2023-pick-a-pic: step -> podcast",
-    "2026-08-04T04:04 completed kirstain-2023-pick-a-pic (verdict=approved, rounds=2)"
+    "2026-08-04T04:04 completed kirstain-2023-pick-a-pic (verdict=approved, rounds=2)",
+    "2026-08-04T04:05 started xu-2023-imagereward ('ImageReward: Learning and Evaluating Human Preferences for Text-to-Image Generation')",
+    "2026-08-04T04:05 xu-2023-imagereward: step -> fetch",
+    "2026-08-04T04:05 xu-2023-imagereward: step -> figures",
+    "2026-08-04T04:11 xu-2023-imagereward: step -> draft",
+    "2026-08-04T04:29 xu-2023-imagereward: step -> draft",
+    "2026-08-04T04:29 xu-2023-imagereward: step -> critique (round 1)",
+    "2026-08-04T04:45 xu-2023-imagereward: 10 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-04T04:45 xu-2023-imagereward: step -> revise",
+    "2026-08-04T05:01 xu-2023-imagereward: step -> critique (round 2)",
+    "2026-08-04T05:08 xu-2023-imagereward: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-04T05:08 xu-2023-imagereward: step -> revise",
+    "2026-08-04T05:08 xu-2023-imagereward: step -> critique (round 3)",
+    "2026-08-04T05:08 xu-2023-imagereward: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-04T05:08 xu-2023-imagereward: step -> verify",
+    "2026-08-04T05:08 xu-2023-imagereward: step -> queue-ops",
+    "2026-08-04T05:08 xu-2023-imagereward: step -> podcast",
+    "2026-08-04T05:22 completed xu-2023-imagereward (verdict=approved, rounds=3)"
   ]
 }
