@@ -1341,6 +1341,15 @@
         "5 P1 r1 (words/sentence unit error tripling the length gap, Krippendorff alpha reported as a percent rate, 3 of 4 headline surfaces claiming same test splits, 2 parameter counts not in the paper, 1 missing edge that was my own error); r2 found 1 regression the B4 fix introduced (scale never quantified vs 175B stated next sentence), fixed; r3 approve. Untagged->evaluations only. 22 edges. Also fixed 8 missing cracked-foundation edges caused by my preprint-date reasoning. Queued 4."
       ],
       "date": "2026-08-03"
+    },
+    {
+      "slug": "celikyilmaz-2020-eval-text-gen",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "5 P1 r1: version note credited v2 with BLEURT robustness study already present in v1 (critic downloaded v1 to check); self-caught fix relocated a contradiction into a false Table 3 originality claim (paper says adapted from Liu 2016 / Kilickaya 2017); 'four categories' where S4 has six; Liu&Liu 2008 conflated two interventions; wrong Howcroft denominator. r2 approve, no regressions. Untagged (survey precedent, 11 of 12). 28 edges. Queued 4."
+      ],
+      "date": "2026-08-04"
     }
   ],
   "skipped": [
@@ -1396,20 +1405,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-03T19:53 wu-2023-hps-v2: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T19:53 wu-2023-hps-v2: step -> verify",
-    "2026-08-03T19:54 wu-2023-hps-v2: step -> queue-ops",
-    "2026-08-03T19:55 wu-2023-hps-v2: step -> podcast",
-    "2026-08-03T20:08 completed wu-2023-hps-v2 (verdict=approved_with_notes, rounds=3)",
-    "2026-08-03T20:35 started walke-2023-bridgedata-v2 ('BridgeData V2: A Dataset for Robot Learning at Scale')",
-    "2026-08-03T20:35 walke-2023-bridgedata-v2: step -> fetch",
-    "2026-08-03T20:41 walke-2023-bridgedata-v2: step -> figures",
-    "2026-08-03T20:47 walke-2023-bridgedata-v2: step -> draft",
-    "2026-08-03T20:58 walke-2023-bridgedata-v2: step -> critique (round 1)",
-    "2026-08-03T21:12 walke-2023-bridgedata-v2: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-03T21:12 walke-2023-bridgedata-v2: step -> revise",
-    "2026-08-03T21:12 walke-2023-bridgedata-v2: step -> critique (round 2)",
-    "2026-08-03T21:20 walke-2023-bridgedata-v2: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> revise",
     "2026-08-03T21:20 walke-2023-bridgedata-v2: step -> critique (round 3)",
     "2026-08-03T21:20 walke-2023-bridgedata-v2: 0 open blocker(s) from round 3 (verdict: approve)",
@@ -1445,6 +1440,20 @@
     "2026-08-03T23:47 goyal-2022-news-summ: step -> queue-ops",
     "2026-08-03T23:47 goyal-2022-news-summ: step -> podcast",
     "2026-08-03T23:47 goyal-2022-news-summ: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-03T23:57 completed goyal-2022-news-summ (verdict=approved, rounds=3)"
+    "2026-08-03T23:57 completed goyal-2022-news-summ (verdict=approved, rounds=3)",
+    "2026-08-03T23:58 started celikyilmaz-2020-eval-text-gen ('Evaluation of Text Generation: A Survey')",
+    "2026-08-03T23:58 celikyilmaz-2020-eval-text-gen: step -> fetch",
+    "2026-08-03T23:58 celikyilmaz-2020-eval-text-gen: step -> figures",
+    "2026-08-04T00:00 celikyilmaz-2020-eval-text-gen: step -> draft",
+    "2026-08-04T00:30 celikyilmaz-2020-eval-text-gen: step -> draft",
+    "2026-08-04T00:30 celikyilmaz-2020-eval-text-gen: step -> critique (round 1)",
+    "2026-08-04T00:48 celikyilmaz-2020-eval-text-gen: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-04T00:48 celikyilmaz-2020-eval-text-gen: step -> revise",
+    "2026-08-04T00:59 celikyilmaz-2020-eval-text-gen: step -> critique (round 2)",
+    "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> verify",
+    "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> queue-ops",
+    "2026-08-04T01:05 celikyilmaz-2020-eval-text-gen: step -> podcast",
+    "2026-08-04T01:17 completed celikyilmaz-2020-eval-text-gen (verdict=approved, rounds=2)"
   ]
 }

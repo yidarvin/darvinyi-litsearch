@@ -10923,6 +10923,21 @@
       "explainer": "papers/goyal-2022-news-summ.html",
       "audio_url": "https://pod.darvinyi.com/audio/goyal-2022-news-summ.mp3",
       "tags": ["evaluations"]
+    },
+    {
+      "slug": "celikyilmaz-2020-eval-text-gen",
+      "short": "Eval of Text Gen",
+      "title": "Evaluation of Text Generation: A Survey",
+      "authors": "Celikyilmaz, Clark, Gao",
+      "year": 2020,
+      "date": "2020-06",
+      "venue": "arXiv",
+      "citation_count": 480,
+      "topic": "Benchmarks & Evals",
+      "author_group": "FAIR",
+      "abstract": "A three-category taxonomy of NLG evaluation methods -- human-centric, untrained automatic metrics, and machine-learned metrics -- built from a May-2021 revision that folds in the GEM benchmark, GENIE, and Stochastic Parrots onto the original June-2020 preprint. Uses a worked example where BLEU/ROUGE/WMD all score a plausible dialog response 0.0 against a reference sharing no words with it to argue overlap metrics fail on open-ended generation, and reports that abstractive summarizers hallucinate in over 70% of generated single-sentence summaries.",
+      "explainer": "papers/celikyilmaz-2020-eval-text-gen.html",
+      "audio_url": "https://pod.darvinyi.com/audio/celikyilmaz-2020-eval-text-gen.mp3"
     }
   ],
   "edges": [
@@ -18564,6 +18579,34 @@
     { "from": "goyal-2022-news-summ", "to": "wei-2021-flan" },
     { "from": "goyal-2022-news-summ", "to": "zhao-2021-calibrate" },
     { "from": "wu-2023-bloomberggpt", "to": "goyal-2022-news-summ" },
-    { "from": "yen-2024-helmet", "to": "goyal-2022-news-summ" }
+    { "from": "yen-2024-helmet", "to": "goyal-2022-news-summ" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "anderson-2016-spice" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "banerjee-2005-meteor" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "bender-2021-stochastic-parrots" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "brown-2020-gpt3" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "cer-2017-sts" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "devlin-2019-bert" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "doddington-2002-nist" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "durmus-2020-feqa" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "gehrmann-2021-gem" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "hermann-2015-cnn-dailymail" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "lin-2004-rouge" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "liu-2016-dialogue-eval-metrics" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "liu-2019-roberta" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "maynez-2020-faithfulness" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "papineni-2002-bleu" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "peters-2018-elmo" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "radford-2018-gpt1" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "radford-2019-gpt2" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "rajpurkar-2016-squad" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "ribeiro-2016-lime" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "sellam-2020-bleurt" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "snover-2006-ter" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "vedantam-2015-cider" },
+    { "from": "celikyilmaz-2020-eval-text-gen", "to": "williams-2017-multinli" },
+    { "from": "chan-2023-chateval", "to": "celikyilmaz-2020-eval-text-gen" },
+    { "from": "gehrmann-2021-gem", "to": "celikyilmaz-2020-eval-text-gen" },
+    { "from": "gehrmann-2022-cracked-foundation", "to": "celikyilmaz-2020-eval-text-gen" },
+    { "from": "lee-2022-coauthor", "to": "celikyilmaz-2020-eval-text-gen" }
   ]
 }
