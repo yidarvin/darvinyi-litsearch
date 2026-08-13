@@ -41,6 +41,15 @@
         "First paper of the failure-modes survey. 2 rounds, 6 P1 r1: fault side inverted on the paper's own headline example (Instruction-Grader Mismatch is OWNER-side; the taxonomy assigns the grader no fault side at all), same root cause in the Figure 2 caption, leaves miscredited to worked examples rather than prior literature, nine rules vs ten, an overreaching 'singular annotator' absence claim narrowed to the stronger true one (no human-human agreement reported anywhere + unspecified annotation protocol), and a wrong section pointer. r2 approve. Numbers clean throughout: all 25 kappa cells, both Table 4 identities, the 41-vs-39 leaf reconciliation, 23 edges vs 703 nodes. Tagged failure-modes only -- precedent set: diagnostic/attribution taxonomies are failure-modes; the evaluations tag requires owning the scoring machinery, not borrowing it. Queued 6."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "shah-2022-goal-misgeneralization",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 rounds. r1: 2 P1 -- 'worse than random' false for Monster Gridworld (critic measured the figure: train25 is ~9x/14x random; the paper's random comparison is about the correctly-generalizing agents), and a claim that training data fails to disambiguate the goals, which the paper explicitly pre-empts. r2: 1 new blocker introduced by the fix -- a Figure 4 stacked-bar total (~0.87) read as the answer probability (~0.09); critic proved stacking by showing an overlaid-absolute reading gives mutually exclusive continuations summing to 1.98 and 1.82. r3 approve. Podcast agent then surfaced two verified appendix findings the explainer had missed (the auxiliary partner-position loss in the flagship 'correct specification' demo, and the CoinRun invisible-coin ablation); both added to the critique. failure-modes only. 10 edges. Queued 7."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -68,6 +77,23 @@
     "2026-08-13T14:58 raj-2026-model-or-harness: step -> verify",
     "2026-08-13T14:58 raj-2026-model-or-harness: step -> queue-ops",
     "2026-08-13T14:58 raj-2026-model-or-harness: step -> podcast",
-    "2026-08-13T15:15 completed raj-2026-model-or-harness (verdict=approved, rounds=2)"
+    "2026-08-13T15:15 completed raj-2026-model-or-harness (verdict=approved, rounds=2)",
+    "2026-08-13T15:15 started shah-2022-goal-misgeneralization (\"Goal Misgeneralization: Why Correct Specifications Aren't Enough For Correct Goals\")",
+    "2026-08-13T15:15 shah-2022-goal-misgeneralization: step -> fetch",
+    "2026-08-13T15:15 shah-2022-goal-misgeneralization: step -> figures",
+    "2026-08-13T15:18 shah-2022-goal-misgeneralization: step -> draft",
+    "2026-08-13T15:34 shah-2022-goal-misgeneralization: step -> draft",
+    "2026-08-13T15:34 shah-2022-goal-misgeneralization: step -> critique (round 1)",
+    "2026-08-13T15:47 shah-2022-goal-misgeneralization: 2 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T15:47 shah-2022-goal-misgeneralization: step -> revise",
+    "2026-08-13T15:52 shah-2022-goal-misgeneralization: step -> critique (round 2)",
+    "2026-08-13T15:59 shah-2022-goal-misgeneralization: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> revise",
+    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> critique (round 3)",
+    "2026-08-13T15:59 shah-2022-goal-misgeneralization: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> verify",
+    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> queue-ops",
+    "2026-08-13T16:00 shah-2022-goal-misgeneralization: step -> podcast",
+    "2026-08-13T16:16 completed shah-2022-goal-misgeneralization (verdict=approved, rounds=3)"
   ]
 }

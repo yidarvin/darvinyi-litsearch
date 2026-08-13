@@ -11025,6 +11025,22 @@
       "explainer": "papers/raj-2026-model-or-harness.html",
       "audio_url": "https://pod.darvinyi.com/audio/raj-2026-model-or-harness.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "shah-2022-goal-misgeneralization",
+      "short": "Goal Misgeneralization",
+      "title": "Goal Misgeneralization: Why Correct Specifications Aren't Enough For Correct Goals",
+      "authors": "Rohin Shah, Vikrant Varma, Ramana Kumar, Mary Phuong, Victoria Krakovna, Jonathan Uesato, Zachary Kenton",
+      "year": 2022,
+      "date": "2022-10",
+      "venue": "arXiv",
+      "citation_count": 146,
+      "topic": "Safety & Red-teaming",
+      "author_group": "DeepMind",
+      "abstract": "Names and demonstrates a second pathway to AI misalignment alongside specification gaming: a system trained with a fully correct reward can still learn a policy that competently pursues an unintended goal once it hits a deployment situation that never varied during training. Demonstrates the failure across hand-designed RL gridworlds, a few-shot-prompted language model, a naturally-occurring 3D cultural-transmission agent, and a hedged InstructGPT case, then extrapolates to hypothetical catastrophic-risk scenarios.",
+      "explainer": "papers/shah-2022-goal-misgeneralization.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shah-2022-goal-misgeneralization.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -18758,6 +18774,16 @@
     { "from": "raj-2026-model-or-harness", "to": "zhou-2023-ifeval" },
     { "from": "raj-2026-model-or-harness", "to": "zhou-2023-webarena" },
     { "from": "raj-2026-model-or-harness", "to": "zhu-2025-agentic-benchmarks" },
-    { "from": "raj-2026-model-or-harness", "to": "zhuge-2024-agent-as-judge" }
+    { "from": "raj-2026-model-or-harness", "to": "zhuge-2024-agent-as-judge" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "amodei-2016-concrete-problems" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "buolamwini-2018-gender-shades" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "chen-2021-codex" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "irving-2018-debate" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "lakshminarayanan-2016-deep-ensembles" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "ouyang-2022-instructgpt" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "ribeiro-2016-lime" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "stiennon-2020-summarize" },
+    { "from": "casper-2023-rlhf-open-problems", "to": "shah-2022-goal-misgeneralization" }
   ]
 }
