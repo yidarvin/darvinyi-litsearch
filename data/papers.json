@@ -11009,6 +11009,22 @@
       "explainer": "papers/xu-2023-imagereward.html",
       "audio_url": "https://pod.darvinyi.com/audio/xu-2023-imagereward.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "raj-2026-model-or-harness",
+      "short": "Model or Harness",
+      "title": "Model or Harness? An Interaction-Centric Taxonomy for Localizing Agent Failures",
+      "authors": "Raj, Gupta, Mahmoud, Dumitru, Yi, Sabharwal, He",
+      "year": 2026,
+      "date": "2026-07",
+      "venue": "arXiv",
+      "citation_count": 0,
+      "topic": "Agents",
+      "author_group": "Scale AI",
+      "abstract": "Introduces an interaction-centric taxonomy of 41 agent failure modes, each assigned to an interaction edge (model, owner, grader, third party, context, memory, tool, or local/external environment, plus peer/subagent roles for model-model interactions) and a fault side, so a visible failure identifies a specific repair -- post-training, harness engineering, environment redesign, or benchmark repair -- rather than just a pass/fail outcome. Validates the taxonomy's reproducibility by having four frontier models act as independent agent-as-a-judge labelers on 40 worked examples; the strongest judge (GPT-5.5) recovers the reference category label with 80% accuracy (Cohen's kappa = 0.76), though the paper never specifies how many people produced those reference labels.",
+      "explainer": "papers/raj-2026-model-or-harness.html",
+      "audio_url": "https://pod.darvinyi.com/audio/raj-2026-model-or-harness.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -18719,6 +18735,29 @@
     { "from": "gu-2024-llm-judge-survey", "to": "xu-2023-imagereward" },
     { "from": "kirstain-2023-pick-a-pic", "to": "xu-2023-imagereward" },
     { "from": "wu-2023-hps-v2", "to": "xu-2023-imagereward" },
-    { "from": "zhong-2025-reward-models-survey", "to": "xu-2023-imagereward" }
+    { "from": "zhong-2025-reward-models-survey", "to": "xu-2023-imagereward" },
+    { "from": "raj-2026-model-or-harness", "to": "amodei-2016-concrete-problems" },
+    { "from": "raj-2026-model-or-harness", "to": "bandi-2026-mcp-atlas" },
+    { "from": "raj-2026-model-or-harness", "to": "chiu-2025-morebench" },
+    { "from": "raj-2026-model-or-harness", "to": "deng-2025-swe-bench-pro" },
+    { "from": "raj-2026-model-or-harness", "to": "elfeki-2026-hil-bench" },
+    { "from": "raj-2026-model-or-harness", "to": "greshake-2023-indirect-prompt-injection" },
+    { "from": "raj-2026-model-or-harness", "to": "huang-2023-metatool" },
+    { "from": "raj-2026-model-or-harness", "to": "jimenez-2023-swe-bench" },
+    { "from": "raj-2026-model-or-harness", "to": "li-2023-api-bank" },
+    { "from": "raj-2026-model-or-harness", "to": "liu-2023-lost-in-the-middle" },
+    { "from": "raj-2026-model-or-harness", "to": "mahmoud-2026-reward-hacking" },
+    { "from": "raj-2026-model-or-harness", "to": "patil-2023-gorilla" },
+    { "from": "raj-2026-model-or-harness", "to": "patwardhan-2025-gdpval" },
+    { "from": "raj-2026-model-or-harness", "to": "perez-2022-model-written-evals" },
+    { "from": "raj-2026-model-or-harness", "to": "rottger-2023-xstest" },
+    { "from": "raj-2026-model-or-harness", "to": "ruan-2023-toolemu" },
+    { "from": "raj-2026-model-or-harness", "to": "skalse-2022-reward-hacking" },
+    { "from": "raj-2026-model-or-harness", "to": "zharmagambetov-2025-agentdam" },
+    { "from": "raj-2026-model-or-harness", "to": "zheng-2023-mt-bench" },
+    { "from": "raj-2026-model-or-harness", "to": "zhou-2023-ifeval" },
+    { "from": "raj-2026-model-or-harness", "to": "zhou-2023-webarena" },
+    { "from": "raj-2026-model-or-harness", "to": "zhu-2025-agentic-benchmarks" },
+    { "from": "raj-2026-model-or-harness", "to": "zhuge-2024-agent-as-judge" }
   ]
 }

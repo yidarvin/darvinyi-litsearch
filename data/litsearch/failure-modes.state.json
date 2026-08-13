@@ -32,7 +32,17 @@
     "seeded": 31
   },
   "current": null,
-  "completed": [],
+  "completed": [
+    {
+      "slug": "raj-2026-model-or-harness",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "First paper of the failure-modes survey. 2 rounds, 6 P1 r1: fault side inverted on the paper's own headline example (Instruction-Grader Mismatch is OWNER-side; the taxonomy assigns the grader no fault side at all), same root cause in the Figure 2 caption, leaves miscredited to worked examples rather than prior literature, nine rules vs ten, an overreaching 'singular annotator' absence claim narrowed to the stronger true one (no human-human agreement reported anywhere + unspecified annotation protocol), and a wrong section pointer. r2 approve. Numbers clean throughout: all 25 kappa cells, both Table 4 identities, the 41-vs-39 leaf reconciliation, 23 edges vs 703 nodes. Tagged failure-modes only -- precedent set: diagnostic/attribution taxonomies are failure-modes; the evaluations tag requires owning the scoring machinery, not borrowing it. Queued 6."
+      ],
+      "date": "2026-08-13"
+    }
+  ],
   "skipped": [],
   "survey_build": {
     "step": null,
@@ -44,6 +54,20 @@
   },
   "log": [
     "2026-08-13T08:56 initialized (topic: 'failure mode analysis of LLMs and agents')",
-    "2026-08-13T14:03 seeding done: 31 paper(s) queued"
+    "2026-08-13T14:03 seeding done: 31 paper(s) queued",
+    "2026-08-13T14:09 started raj-2026-model-or-harness ('Model or Harness? An Interaction-Centric Taxonomy for Localizing Agent Failures')",
+    "2026-08-13T14:09 raj-2026-model-or-harness: step -> fetch",
+    "2026-08-13T14:09 raj-2026-model-or-harness: step -> figures",
+    "2026-08-13T14:16 raj-2026-model-or-harness: step -> draft",
+    "2026-08-13T14:31 raj-2026-model-or-harness: step -> draft",
+    "2026-08-13T14:31 raj-2026-model-or-harness: step -> critique (round 1)",
+    "2026-08-13T14:46 raj-2026-model-or-harness: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T14:46 raj-2026-model-or-harness: step -> revise",
+    "2026-08-13T14:53 raj-2026-model-or-harness: step -> critique (round 2)",
+    "2026-08-13T14:58 raj-2026-model-or-harness: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-13T14:58 raj-2026-model-or-harness: step -> verify",
+    "2026-08-13T14:58 raj-2026-model-or-harness: step -> queue-ops",
+    "2026-08-13T14:58 raj-2026-model-or-harness: step -> podcast",
+    "2026-08-13T15:15 completed raj-2026-model-or-harness (verdict=approved, rounds=2)"
   ]
 }
