@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "survey": "failure-modes",
+  "topic": "failure mode analysis of LLMs and agents",
+  "created": "2026-08-13",
+  "phase": "seeding",
+  "config": {
+    "max_rounds": 3,
+    "builder": {
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "critic": {
+      "model": "opus",
+      "effort": "xhigh"
+    },
+    "process_foundational": false
+  },
+  "seeding": {
+    "done": false,
+    "date": null,
+    "queries": [],
+    "seeded": 0
+  },
+  "current": null,
+  "completed": [],
+  "skipped": [],
+  "survey_build": {
+    "step": null,
+    "round": 0,
+    "open_blockers": [],
+    "taxonomy": false,
+    "site": false,
+    "pdf": false
+  },
+  "log": [
+    "2026-08-13T08:56 initialized (topic: 'failure mode analysis of LLMs and agents')"
+  ]
+}

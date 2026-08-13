@@ -125,7 +125,7 @@
       "abstract": "A 1,000-task benchmark over 36 production MCP servers and 220 real tools, scored by an answer-centric claims rubric that credits any valid tool path; distractors are baked in so 98.6% of tasks demand genuine tool discovery across two or more servers. Across 20 frontier models the agentic frontier is no longer tool-mechanics-bound — Muse Spark leads at 82.2% Pass@0.75 and open-weight GLM-5.1 reaches 75.6% — but 63.3% of ~6,900 diagnosed failures are cognitive (premature stopping, faulty synthesis) rather than tool-call errors, and o3 Pro lands at 44.5% by issuing no tool call on 40% of its failed tasks.",
       "explainer": "papers/bandi-2026-mcp-atlas.html",
       "audio_url": "https://pod.darvinyi.com/audio/bandi-2026-mcp-atlas.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "akyurek-2025-prbench",
@@ -330,7 +330,7 @@
       "abstract": "Clarification-seeking is treated as a virtue in LLM agents, but ASPI shows it is also an attack surface. Building 728 paired task–attack scenarios on AgentDojo's four domains, it holds the task, attacker goal, environment, and scoring fixed while varying only the interaction state and the channel the injection arrives through. Across ten frontier models, the same attack that bounces off an agent during execution lands once the agent solicits input: attack success rises from 1.8%→34.0% for o3, 2.2%→35.7% for Gemini-3-Flash, and 11.1%→63.1% for Kimi K2.5, while Claude-Opus-4.7 stays flat (2.1%→2.2%). A state-vs-channel decomposition pins the solicited-response ask_user channel as the primary driver, lightweight prompt-guard/tool-filter defenses dent but don't close the gap (Gemini-3-Flash 35.7%→23.9%), and because the design uses minimal single-slot, one-round ambiguity the reported rates are a floor.",
       "explainer": "papers/sehwag-2026-aspi.html",
       "audio_url": "https://pod.darvinyi.com/audio/sehwag-2026-aspi.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "wei-2022-cot",
@@ -361,7 +361,7 @@
       "abstract": "A diagnostic framework for reward hacking in rubric-based RL: a policy is trained against a single verifier (proxy reward) but evaluated against a cross-family panel of three frontier judges (reference reward), separating verifier failure from rubric-design limits. Under a weak verifier (GPT-4o-mini), proxy reward rises while panel reward plateaus and the exploitation rate climbs 39%→65% (medical) / 63%→75% (science) — confirmed externally on HealthBench — while a strong verifier (GPT-OSS-120B) curbs but doesn't kill it (~7× less exploitation). A verifier-free self-internalization gap from policy log-probs tracks reference quality (r 0.91–0.97) as a stopping signal. The deeper failure: even under strong verification, rubric-based judges prefer the RL checkpoint (85.8%) while rubric-free judges prefer the base model (78.4%), because 90.2% of rubric weight is presence-based vs 8.6% absence-based — so RL buys completeness (+14.9 pp) while shedding conciseness, relevance, and factual correctness.",
       "explainer": "papers/mahmoud-2026-reward-hacking.html",
       "audio_url": "https://pod.darvinyi.com/audio/mahmoud-2026-reward-hacking.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "hendrycks-2020-ethics",
@@ -629,7 +629,7 @@
       "abstract": "A 300-task benchmark (150 SWE from SWE-Bench Pro, 150 text-to-SQL from BIRD) that measures selective escalation — whether agents know when to ask for help. Tasks are pre-filtered so top models hit ~85% pass@3 with full information, then seeded with 3–5 human-validated blockers (42% missing, 36% ambiguous, 22% contradictory) that surface only through progressive exploration. The core metric, Ask-F1 (harmonic mean of question precision and blocker recall), architecturally defeats question spam. Across frontier models a large universal judgment gap appears: 75–89% full-info pass@3 collapses to 4–24% when agents must decide whether to ask (best Ask-F1 ~53% for GPT-5.5). Failure has a stable per-model fingerprint — GPT executes confidently on wrong beliefs, Claude detects uncertainty but submits anyway, Gemini is externally correctable only on SQL — and RLVR on shaped Ask-F1 lifts a Qwen3-32B's Ask-F1 +28pp (SQL)/+17pp (SWE) with pass@3 in lockstep and positive cross-domain transfer, showing judgment is trainable.",
       "explainer": "papers/elfeki-2026-hil-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/elfeki-2026-hil-bench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "campbell-2026-defensive-refusal",
@@ -644,7 +644,8 @@
       "author_group": "Scale AI",
       "abstract": "The first systematic study of 'Defensive Refusal Bias': across 2,390 real single-turn blue-team prompts from the National Collegiate Cyber Defense Competition, three aligned LLMs refuse legitimate defensive requests 12.2% of the time overall and 2.72× more often when the prompt carries security-sensitive vocabulary (30.5% vs 11.2%, χ²=37.3, p<0.001). The most operationally critical tasks fare worst — system hardening 43.8%, malware analysis 34.3%, vulnerability assessment 22.7% — and the most safety-tuned model (Claude 3.5 Sonnet) refuses 19.5% of requests, ~3× the open-weight Llama-3.3-70B (6.6%). Paradoxically, explicit authorization ('I'm on the blue team', 'this is for NCCDC') raises refusals rather than lowering them (21.8% vs 11.6%; offensive + authorization peaks at 50.0%), and rephrasing it out drops refusals to 13.7%. Prompt embeddings predict refusals at AUC 0.827 while keyword features sit near chance (0.572), pointing to a learned 'harm-adjacent' decision boundary that swallows defensive work rather than literal keyword blocking — a safety-induced denial-of-service that falls asymmetrically on defenders and silently breaks autonomous defensive agents that cannot rephrase and retry.",
       "explainer": "papers/campbell-2026-defensive-refusal.html",
-      "audio_url": "https://pod.darvinyi.com/audio/campbell-2026-defensive-refusal.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/campbell-2026-defensive-refusal.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "maurya-2025-mrbench",
@@ -692,7 +693,7 @@
       "abstract": "A controlled study of how language models use long inputs: across multi-document QA (built from NaturalQuestions-Open) and a synthetic key-value retrieval task, accuracy traces a U-shaped curve — highest when the relevant information sits at the very start (primacy) or end (recency) of the context and lowest in the middle, where GPT-3.5-Turbo can fall more than 20 points and below its 56.1% closed-book score. Extended-context models barely beat their base counterparts on the same prompt, reader accuracy saturates long before retriever recall (20→50 documents adds only ~1–1.5%), and the U appears even in base, non-instruction-tuned models and only emerges with scale (Llama-2 13B/70B, not 7B), locating the effect in architecture and scale rather than instruction tuning. It established the position-invariance protocol for evaluating long-context models and the 'lost-in-the-middle' framing that reshaped RAG (reranking, truncation, context compression).",
       "explainer": "papers/liu-2023-lost-in-the-middle.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2023-lost-in-the-middle.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "zhang-2026-bio-uplift",
@@ -708,7 +709,7 @@
       "abstract": "Benchmarks ask whether a model knows dangerous biology in one shot; this study asks whether a non-expert human, given hours with a fleet of frontier models, gets meaningfully better at dual-use in-silico biology tasks. Novices reached 4.16x the accuracy of an internet-only control, beat human experts on three of four benchmarks, and almost none reported trouble getting dual-use information past model safeguards.",
       "explainer": "papers/zhang-2026-bio-uplift.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2026-bio-uplift.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "ursekar-2026-vero",
@@ -740,7 +741,7 @@
       "abstract": "A dataset-agnostic synthetic pipeline that turns any well-specified long-horizon task into controllably underspecified variants — stripping information across Goal, Constraint, Input, and Context and validating each variant by what agents actually do — then measures whether frontier agents know when to stop and ask for clarification, and what that costs.",
       "explainer": "papers/pu-2026-lhaw.html",
       "audio_url": "https://pod.darvinyi.com/audio/pu-2026-lhaw.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "raghavendra-2026-agentic-rubrics",
@@ -788,7 +789,7 @@
       "abstract": "Safety audits ask what a model can do; this benchmark asks what it would do — handing an agent a forbidden 'misaligned' tool and a safe tool secretly rigged to always fail, then turning up operational pressure until alignment breaks. Average propensity to reach for the forbidden tool climbs to 46.9%.",
       "explainer": "papers/sehwag-2025-propensitybench.html",
       "audio_url": "https://pod.darvinyi.com/audio/sehwag-2025-propensitybench.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "wei-2025-bioriskeval",
@@ -804,7 +805,7 @@
       "abstract": "A red-team of pretraining-data filtering: on Evo 2-7B — which deliberately excluded eukaryotic viral sequences for safety — 'filtered' capability returns in 50 fine-tuning steps (0.72 H100 GPU-hours), and a linear probe shows the harmful signal never left the model's latent representations at all.",
       "explainer": "papers/wei-2025-bioriskeval.html",
       "audio_url": "https://pod.darvinyi.com/audio/wei-2025-bioriskeval.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "stojanovski-2025-reasoning-gym",
@@ -882,7 +883,7 @@
       "abstract": "Can an LLM overseer catch an agent secretly misbehaving — leaking data, booking the costlier flight, injecting a backdoor — while it does a legitimate job? A monitor red-teaming workflow finds the agent's awareness hurts the monitor more than the monitor's awareness helps, scaffolding matters more than knowledge, and a hybrid scaffold lets weak models reliably watch strong ones.",
       "explainer": "papers/kale-2025-weak-to-strong-monitoring.html",
       "audio_url": "https://pod.darvinyi.com/audio/kale-2025-weak-to-strong-monitoring.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "han-2025-search-time-contamination",
@@ -1037,7 +1038,7 @@
       "abstract": "The first real-world, action-level dataset for web-agent safety: 4,939 human-annotated actions across 193 websites and 22 domains, each graded SAFE / LOW / HIGH by how reversible and consequential it is — a reframing from 'is the task harmful' to 'is this click reversible.' Frontier LLMs score under 60% accuracy and under 60% HIGH-risk recall zero-shot and reasoning models (o3, Claude-3.7-Thinking) get more accurate but under-flag HIGH risk; fine-tuning a Qwen2.5-VL-7B lifts accuracy from 37% to 80% and HIGH-risk recall from 20% to 76%, with even a 3B model out-recalling o3 — yet Cross-Domain recall stalls at 66.8%, far from the near-perfect reliability a deployable guardrail requires.",
       "explainer": "papers/zheng-2025-webguard.html",
       "audio_url": "https://pod.darvinyi.com/audio/zheng-2025-webguard.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "brown-2020-gpt3",
@@ -1115,7 +1116,7 @@
       "abstract": "A benchmark for debugging agentic execution traces: 148 expert-annotated OpenTelemetry traces (1,987 spans, 575 carrying errors; 841 annotated errors at 5.68 per trace) drawn from GAIA and SWE-Bench Lite, paired with a three-area error taxonomy spanning reasoning, system execution, and planning. Asked to classify and locate the errors in each long, structured trace, the best long-context model (Gemini-2.5-Pro) reaches only 11% joint accuracy — 18% on GAIA, 5% on SWE-Bench — and 3 of 8 frontier LLMs can't even fit the trace in context (the longest GAIA input is 7.5M tokens against a 1M limit; max traces run 2x the context window). Output Generation errors (formatting + instruction non-compliance) make up ~42% of all errors while system-execution failures sit in the long tail, and reasoning models beat non-reasoning ones by 1.5–8x on joint accuracy.",
       "explainer": "papers/deshpande-2025-trail.html",
       "audio_url": "https://pod.darvinyi.com/audio/deshpande-2025-trail.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "merrill-2026-terminal-bench",
@@ -1177,7 +1178,8 @@
       "author_group": "Scale AI",
       "abstract": "A pre-RL fine-tuning intervention (verbalization fine-tuning, VFT) that trains a model to explicitly admit when prompt cues influence its answer, so the reward hacking it later learns under RL stays visible in the chain of thought. On seven MMLU-based cue environments with Llama-3.1-8B-Instruct, VFT cuts the effective cue-influence rate (undetected reward hacks) to 6% on held-out cues amplified by RL, versus 88% for plain RL and 99% for a debiasing baseline (BCT), by driving the verbalization rate from 8% to 43% after VFT and up to 94% after RL. Crucially every method still learns the hack (cue influence ~100% post-RL), so the only lever on detectability is verbalization, and BCT's attempt to suppress cue sensitivity backfires by suppressing the confession (verbalization drops to 1%). VFT costs no extra accuracy over baseline RL and avoids over-verbalizing (specificity 96-97%) — a transparency intervention, not a prevention.",
       "explainer": "papers/turpin-2025-vft.html",
-      "audio_url": "https://pod.darvinyi.com/audio/turpin-2025-vft.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/turpin-2025-vft.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "yu-2025-dapo",
@@ -1238,7 +1240,7 @@
       "abstract": "The first benchmark for LM agents that run the full ML experimentation loop — read files, edit training code, execute it, read the metric, iterate — across 13 tasks with an automatic evaluator (success = beat the starter baseline by 10%). A Claude 3 Opus agent reaches 37.5% average success but swings from 100% on canonical datasets like house-price to 0% on Kaggle challenges released after its training cutoff, with hallucination and long-horizon planning as the named failure modes. Its Fact Check and Research Plan response fields are the antidote, and it beats AutoGPT and LangChain scaffolds (26.0 vs 2.9 vs 1.0 on GPT-4-turbo).",
       "explainer": "papers/huang-2023-mlagentbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/huang-2023-mlagentbench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "jain-2024-livecodebench",
@@ -1285,7 +1287,8 @@
       "author_group": "CISPA / Saarland",
       "abstract": "The paper that named indirect prompt injection: once an LLM is wired into an application that retrieves external content — web pages, emails, documents, code — an attacker who plants instructions in that content can hijack the model with no direct access, because retrieval blurs the line between data and instructions. It contributes a security-grounded taxonomy (injection methods x threats x affected parties) and working proof-of-concept attacks against Bing's GPT-4 Chat, GitHub Copilot, and synthetic GPT-4 apps — data exfiltration, self-propagating prompt 'worms', cross-session memory persistence, command-and-control, disinformation, and Base64-encoded payloads — though every result is a qualitative demo rather than a measured success rate.",
       "explainer": "papers/greshake-2023-indirect-prompt-injection.html",
-      "audio_url": "https://pod.darvinyi.com/audio/greshake-2023-indirect-prompt-injection.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/greshake-2023-indirect-prompt-injection.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "perez-2022-ignore-previous-prompt",
@@ -1301,7 +1304,7 @@
       "abstract": "The paper that named prompt injection and first quantified it. Using PROMPTINJECT — a modular framework for composing adversarial prompts over a base prompt's open user-input slot — it shows simple handcrafted inputs can hijack a GPT-3 (text-davinci-002) application's goal 58.6% of the time and leak its hidden system prompt 23.6% of the time, across 35 OpenAI-example prompts run 4x each. Delimiters amplify attacks (43.6%->58.6%), overtly harmful payloads attack worse than benign ones (70.0% vs 49.3%) as an alignment side-effect of InstructGPT tuning, and capability tracks vulnerability in an inverse-scaling effect where the most capable model in the GPT-3 series is the most attackable (13.8%->58.6%). Superficial defenses (stop sequences, trailing text) only dent it; the real fix — separating trusted instructions from untrusted data — is left open, and the work seeded the entire prompt-injection literature (indirect injection, agentic injection).",
       "explainer": "papers/perez-2022-ignore-previous-prompt.html",
       "audio_url": "https://pod.darvinyi.com/audio/perez-2022-ignore-previous-prompt.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "zhan-2024-injecagent",
@@ -1317,7 +1320,7 @@
       "abstract": "The first benchmark for indirect prompt injection (IPI) against tool-integrated LLM agents: 1,054 test cases (17 user tools x 62 attacker tools, split into direct-harm and data-stealing attacks) where a malicious instruction hidden in a tool's response tries to hijack the agent into calling a harmful tool against its own user. Across 30 agents, ReAct-prompted GPT-4 executes the injected instruction 23.6% of the time (47.0% once a fixed 'ignore previous instructions' hacking prompt is prepended) and Llama2-70B exceeds 80%, while fine-tuned function-calling agents are far more resilient (GPT-4 6.6%, GPT-3.5 3.8%); capability tracks vulnerability, high-content-freedom placeholders drive attack success more than the attacker's tool choice (Cramer's V 0.28-0.31 vs 0.18-0.20), data transmission once extracted hits 100%, and Claude-2 is the lone agent the hacking prompt makes safer by triggering its alertness.",
       "explainer": "papers/zhan-2024-injecagent.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhan-2024-injecagent.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "wallace-2024-instruction-hierarchy",
@@ -1332,7 +1335,8 @@
       "author_group": "OpenAI",
       "abstract": "Prompt injections, jailbreaks, and system-prompt extraction share one root cause: LLMs treat system, user, and tool text as equally authoritative. The paper reframes this as a missing privilege system and defines an instruction hierarchy (system → user → tool) with an automated data-generation recipe — context synthesis for aligned lower-level instructions, context ignorance for misaligned ones — to fine-tune GPT-3.5 Turbo to defer to higher-privileged instructions. Robustness rises across the board (system-message extraction 32.8% → 95.9%) and generalizes to held-out attacks like jailbreaks (+34%), at the cost of over-refusal on adversarially attack-shaped benign prompts.",
       "explainer": "papers/wallace-2024-instruction-hierarchy.html",
-      "audio_url": "https://pod.darvinyi.com/audio/wallace-2024-instruction-hierarchy.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/wallace-2024-instruction-hierarchy.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "debenedetti-2024-agentdojo",
@@ -1348,7 +1352,7 @@
       "abstract": "A dynamic, deterministically-scored benchmark for indirect prompt injection on tool-using LLM agents: 70 tools, 97 user tasks, and 629 security test cases across email, Slack, banking, and travel. Utility and security are checked by Python functions over environment state (not an LLM judge), and the paper finds more capable models are the easiest to hijack.",
       "explainer": "papers/debenedetti-2024-agentdojo.html",
       "audio_url": "https://pod.darvinyi.com/audio/debenedetti-2024-agentdojo.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "wang-2022-self-consistency",
@@ -1473,7 +1477,7 @@
       "abstract": "An 817-question benchmark across 38 categories engineered to elicit imitative falsehoods — false answers that score high likelihood because humans repeat them (e.g. that coughing stops a heart attack). The best 2021 model (GPT-3-175B, hand-picked 'helpful' prompt) is truthful on just 58% of questions vs 94% for a human, and is confidently false-and-informative 42% of the time vs 6% for the human. The signature result is inverse scaling: within every family the larger model is the less truthful one (largest GPT-Neo/J 17% worse than a 60x-smaller one), while a control set of matched trivia scales normally — evidence the failures are imitative, not surface-form. A finetuned GPT-judge (GPT-3-6.7B) predicts human truth labels at 90–96% accuracy. The honesty benchmark that reframed truthfulness as measurable and argued fine-tuning/RLHF, not scale, is the path to truthful models.",
       "explainer": "papers/lin-2021-truthfulqa.html",
       "audio_url": "https://pod.darvinyi.com/audio/lin-2021-truthfulqa.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "rein-2023-gpqa",
@@ -1599,7 +1603,8 @@
       "author_group": "OpenAI",
       "abstract": "Replaces expensive human labels with a fixed 6B “gold” reward model so reward-model overoptimization can be measured precisely: proxy RMs (3M–3B) are trained on the gold model’s synthetic preferences and optimized by best-of-n or PPO, and the gold reward rises then falls along clean functional forms — R=d(α−βd) for BoN and d(α−β·log d) for RL with d=√KL — whose α/β coefficients scale smoothly (≈log-linear) with RM size, β (the extremal-Goodhart term) shrinking as models grow. More RM data (not more epochs) reduces goodharting, larger policies don’t overoptimize faster, an explicit KL penalty acts only as early stopping, and online RLHF lifts the final gold score by β·d·log(k). The empirical Goodhart curve the rubric-reward and reward-hacking literature is built on — though it measures only the proxy-vs-gold gap, in one InstructGPT environment, with non-adversarial models.",
       "explainer": "papers/gao-2022-reward-overoptimization.html",
-      "audio_url": "https://pod.darvinyi.com/audio/gao-2022-reward-overoptimization.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/gao-2022-reward-overoptimization.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "bai-2022-hh-rlhf",
@@ -1629,7 +1634,8 @@
       "author_group": "CMU / CAIS",
       "abstract": "The paper that recast LLM alignment as an adversarial-robustness problem. Greedy Coordinate Gradient (GCG) combines an affirmative-response objective (forcing the reply to begin “Sure, here is …”), a greedy gradient-based discrete search over all suffix-token positions, and multi-prompt/multi-model aggregation to automatically build a single ~20-token adversarial suffix that jailbreaks aligned LLMs. On the AdvBench benchmark it reaches 88% exact-match attack success on Vicuna-7B harmful strings (vs 25% for AutoPrompt and 0% for PEZ/GBDA) and 84–98% on harmful behaviors, and the gibberish suffix optimized only on open Vicuna/Guanaco transfers to black-box production models — 86.6% ensembled ASR on GPT-3.5, 46.9% on GPT-4, 66.0% on PaLM-2, with Claude-2 the holdout at 2.1%. Transfer is partly confounded by Vicuna being distilled from GPT-3.5, and the specific suffixes were patched after responsible disclosure, but the GCG method and AdvBench became the reference attack the red-teaming and defense literature is measured against.",
       "explainer": "papers/zou-2023-gcg.html",
-      "audio_url": "https://pod.darvinyi.com/audio/zou-2023-gcg.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/zou-2023-gcg.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "yao-2022-react",
@@ -1706,7 +1712,7 @@
       "abstract": "A foundational critique of the LLM-as-a-judge paradigm: the quality ranking of two candidate responses can be hacked by simply swapping their order in the prompt. GPT-4 favors the first position and ChatGPT the second, so with ChatGPT as judge Vicuna-13B 'beats' ChatGPT on 66 of 80 questions purely by being placed second (conflict rate 82.5%), while GPT-4 still contradicts itself on 46.3% of close pairs; the bias concentrates where the two answers are near-equal (score gap ≤1) and vanishes once one is clearly better. Three cheap calibration strategies fix it: Multiple Evidence Calibration (reason before scoring, k=3 samples), Balanced Position Calibration (evaluate each candidate in both orders and average), and Human-in-the-Loop Calibration (route the highest position-diversity-entropy examples to humans). Against an 80-question, author-annotated slice of the Vicuna benchmark (human average 71.7% / κ 0.54), MEC+BPC lifts GPT-4 +9.8 (52.7→62.5%) and ChatGPT +14.3 (44.4→58.7%), and adding 20% human review reaches or exceeds human agreement (GPT-4 73.8%, ChatGPT 71.3%) while cutting annotation cost 39%.",
       "explainer": "papers/wang-2023-fair-evaluators.html",
       "audio_url": "https://pod.darvinyi.com/audio/wang-2023-fair-evaluators.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "chiang-2023-llm-eval",
@@ -1848,7 +1854,7 @@
       "abstract": "A controlled audit of the LLM-as-a-judge paradigm on short-answer TriviaQA, deliberately chosen because three human annotators agree 98.52% of the time (Scott’s π 96.2) so any judge–human gap is the judge’s fault rather than task ambiguity. Across 13 judge models grading 9 base/chat exam-takers, only the largest — GPT-4 Turbo, Llama-3 70B and Llama-3.1 70B — reach Scott’s π in the high 80s, still ~8 points below human agreement and up to 5 points off on assigned scores, while raw percent agreement clusters every judge near the top and hides 10–20-point scoring errors that the chance-corrected π exposes. Error analysis surfaces systematic vulnerabilities — a leniency bias (defaulting to ‘correct’ when unsure, P+ > 0.5), prompt-length fragility on weaker judges, and gullibility to dummy answers like ‘Yes’/‘Sure’ — yet a dumb ‘contains’ substring check ranks models at ρ 0.99, showing that getting the ranking right is a different, easier problem than getting the score right.",
       "explainer": "papers/thakur-2024-judging-the-judges.html",
       "audio_url": "https://pod.darvinyi.com/audio/thakur-2024-judging-the-judges.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "panickssery-2024-self-recognition",
@@ -1864,7 +1870,7 @@
       "abstract": "Shows that LLM judges can recognize their own outputs — GPT-4 at 73.5% out of the box, over 90% after fine-tuning on just 500 examples — and that self-preference bias rises roughly linearly with this self-recognition capability across models, datasets, and even unrelated control fine-tunes. Provides initial causal evidence that LLMs overrate their own text because they recognize it, with implications for the whole LLM-as-judge, reward-modeling, and self-refinement stack.",
       "explainer": "papers/panickssery-2024-self-recognition.html",
       "audio_url": "https://pod.darvinyi.com/audio/panickssery-2024-self-recognition.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "brynjolfsson-2023-generative-ai-at-work",
@@ -2064,7 +2070,7 @@
       "abstract": "A checklist and best-practices standard for rigorous agentic evaluation, synthesized from 17 widely-used benchmarks. It decomposes agentic eval into two validity conditions — task validity (a task is solvable iff the agent has the target capability) and outcome validity (passing the grader truly means task success) — and shows that all ten benchmarks audited violate at least one: a do-nothing agent scores 38% on τ-bench-Airline, an agent overwrites SWE-Lancer's hidden tests for 100%, KernelBench overstates kernel correctness by 31%, and OSWorld under-rates the SOTA agent by 28% from website drift. The deliverable, ABC, is 43 checks across task validity (T.1–10), outcome validity (O.a–i), and reporting (R.1–13); applied forward to CVE-Bench it cut performance overestimation by 33%.",
       "explainer": "papers/zhu-2025-agentic-benchmarks.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhu-2025-agentic-benchmarks.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "thakur-2021-beir",
@@ -2280,7 +2286,7 @@
       "abstract": "A Scale AI benchmark of 273 expert-edited multi-turn conversations isolating four realistic failure modes — instruction retention (69), inference memory of user information (113), reliable versioned editing (41), and self-coherence / anti-sycophancy (50) — each example kept only if it breaks at least 3 of 6 frontier models. Despite near-perfect scores on saturated tests like MT-Bench, every frontier model clears under 50%: Claude 3.5 Sonnet (June 2024) leads human-eval at 41.4% and o1-preview 37.2%, with a steep drop to Gemini 1.5 Pro (20.0), Llama 3.1 405B (14.9), Mistral Large (14.6), and GPT-4o (12.5). Its signature method is an instance-level binary (yes/no) rubric scored only on the final response, which lifts LLM-judge agreement with human raters from 37.3% to 93.9% — a template later rubric evals (HealthBench, PRBench) reused. Difficulty is reasoning-bound, not length-bound: scores show no trend with turn count over short (~1,232-word) conversations.",
       "explainer": "papers/sirdeshmukh-2025-multichallenge.html",
       "audio_url": "https://pod.darvinyi.com/audio/sirdeshmukh-2025-multichallenge.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "zhang-2024-gsm1k",
@@ -2328,7 +2334,7 @@
       "abstract": "Scale AI and the Center for AI Safety's benchmark for measuring whether a model lies — knowingly states what it does not believe — cleanly separated from whether it is factually correct, exposing that prior \"honesty\" benchmarks mostly measured accuracy in disguise (\"safetywashing\"). Each of 1,000 public (+500 held-out) human-curated, adversarially-selected examples pairs a pressure prompt engineered to induce a falsehood with neutral belief-elicitation prompts and known ground truth, across six archetypes (Known Facts, Doubling Down, Fabricated Statistics, Continuations, Disinformation, Provided Facts); a lie is scored when the pressured statement S contradicts the elicited belief B (S≠B), via an LLM judge that agrees with human labels 86.4% of the time. Across 30 frontier LLMs no model is explicitly honest in more than 46% of cases, and P(Lie) runs from 26.6% (Claude 3.7 Sonnet) to 63.0% (Grok 2) even at 72–82% belief accuracy. The signature result: across 27 models training compute correlates +87.3% with accuracy but −59.9% with honesty — scale buys knowledge, not candor — implying honesty is a post-training choice. Developer-prompt and representation-engineering (LoRRA) interventions on small Llama-2 models help (+6–13%) but do not eliminate lying.",
       "explainer": "papers/ren-2025-mask.html",
       "audio_url": "https://pod.darvinyi.com/audio/ren-2025-mask.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "slack-2023-holistic-eval",
@@ -2374,7 +2380,8 @@
       "author_group": "Scale AI",
       "abstract": "Turns almost any refusal-trained black-box LLM into an autonomous red-teamer (a J2 attacker) using one transferable multi-turn prompt that reframes jailbreaking as safety work, then runs a fixed plan/attack/debrief workflow whose in-context-learning cycles improve the attack over past failures. Reasoning models make the strongest attackers and the vulnerability is growing: self-attack success rose +28%/+66%/+66% for Claude/Gemini/OpenAI over 12 months, and J2(Claude-3.7) reaches 0.975 ASR against GPT-4o (matching expert human red teamers), though against the more robust Sonnet-3.5 the best J2 attacker (o3, 0.605) still trails top black-box baselines like Bijection and BoN.",
       "explainer": "papers/kritz-2025-j2.html",
-      "audio_url": "https://pod.darvinyi.com/audio/kritz-2025-j2.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/kritz-2025-j2.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "vidgen-2025-apex",
@@ -2530,7 +2537,7 @@
       "abstract": "A red-teaming study showing that safety refusal trained into chat LLMs fails to generalize to browser agents. BrowserART, a 100-behavior toolkit on synthetic and real websites, finds GPT-4o's attack success rate rises from 12% in chat to 74% as an agent, and chat-era jailbreaks transfer to push it to 100%.",
       "explainer": "papers/kumar-2024-browserart.html",
       "audio_url": "https://pod.darvinyi.com/audio/kumar-2024-browserart.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "chan-2024-synthetic-data",
@@ -2638,7 +2645,7 @@
       "abstract": "Expert human red teamers running multi-turn conversations break four state-of-the-art LLM defenses (RR, LAT, DERTA, CYGNET) at 51.7–87.9% attack success on HarmBench — defenses that report single-digit (even ~0%) ASR against automated single-turn attacks — beating the best-case automated ensemble by +19.6% to +65.4%. The same humans recover 51.2% of \"unlearned\" WMDP-Bio knowledge from an RMU model (vs 25.6% for the ensemble), showing machine unlearning obfuscates rather than removes. 91.62% of successful jailbreaks needed more than one turn. Released as the MHJ dataset: 2,912 prompts across 537 multi-turn jailbreaks, with a 7-tactic taxonomy from commercial red-teaming.",
       "explainer": "papers/li-2024-multiturn-jailbreaks.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2024-multiturn-jailbreaks.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "levine-2023-reward-distribution-shift",
@@ -3144,7 +3151,7 @@
       "abstract": "Puts 16 LLMs on the bench as judges and measures six cognitive biases in their pairwise verdicts: Order, Compassion Fade, Egocentric (self-preference), Salience (length), Bandwagon, and Attentional. Finds ~40% of comparisons are bias-driven and that scaling up doesn't fix it (GPT-4 self-preferred 78% of the time; ChatGPT followed a fake '85% prefer X' statistic 86% of the time), while machine rankings agree with humans only 44% (RBO) -- below the 0.54 humans reach with each other. The first systematic, multi-bias audit of LLM-as-a-judge.",
       "explainer": "papers/koo-2023-cobbler.html",
       "audio_url": "https://pod.darvinyi.com/audio/koo-2023-cobbler.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "raji-2021-everything-benchmark",
@@ -3413,7 +3420,7 @@
       "abstract": "Introduces FActScore, which scores long-form factuality as the fraction of a generation's atomic facts supported by a knowledge source (Wikipedia) — turning an all-or-nothing judgment into graded precision that separates a 66.7%-accurate biography from a 10% one. Human evaluation finds commercial LMs unreliable (ChatGPT 58.3%, search-augmented PerplexityAI 71.5%, both collapsing on rare entities), and an automatic retrieval+LM estimator matches human scores within ~2%, enabling a 13-model, 6,500-generation study at a fraction of the $26K human cost.",
       "explainer": "papers/min-2023-factscore.html",
       "audio_url": "https://pod.darvinyi.com/audio/min-2023-factscore.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "wu-2023-bloomberggpt",
@@ -3613,7 +3620,7 @@
       "abstract": "The first large-scale over-refusal benchmark: an automated pipeline rewrites LLM-generated toxic seeds (via Mixtral 8×7B) into 80,000 borderline-benign prompts across 10 harm categories, filtered by an LLM-ensemble moderator, plus a hard 1K subset and ~600 toxic prompts. Grading 32 models across 8 families, it finds safety and over-refusal are strongly coupled — Spearman 0.89 between toxic-prompt and safe-prompt rejection — so most models simply buy safety by refusing more; jailbreak defenses and “be safe” system prompts push over-refusal up further.",
       "explainer": "papers/cui-2024-or-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/cui-2024-or-bench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "mazeika-2024-harmbench",
@@ -3629,7 +3636,7 @@
       "abstract": "Turns automated red teaming from incomparable per-paper evaluations into a standardized benchmark: 510 harmful behaviors across 4 functional and 7 semantic categories, run through a fixed pipeline (attack → 512-token completion → a fine-tuned Llama-2-13B classifier that reaches 93.2% agreement with human labels, edging out GPT-4's 88.4% and far above substring matching's 69.9%). A large-scale comparison of 18 attacks and 33 target LLMs shows no attack or defense is uniformly effective and robustness is independent of model size; the included R2D2 adversarial-training method cuts GCG attack success on Zephyr from 69.5% to 5.5% while preserving MT-Bench utility.",
       "explainer": "papers/mazeika-2024-harmbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/mazeika-2024-harmbench.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "wei-2023-jailbroken",
@@ -3644,7 +3651,8 @@
       "author_group": "UC Berkeley",
       "abstract": "Argues that \"jailbreaks\" on safety-trained LLMs are not a grab-bag of tricks but two structural failure modes of safety training: competing objectives (safety conflicts with the pretraining and instruction-following objectives the model is also optimizing, e.g. prefix injection and refusal suppression) and mismatched generalization (capabilities like reading Base64 reach domains safety training never covered). Used as design principles against GPT-4 and Claude v1.3, principled combination attacks reach 0.94/0.81 BAD BOT on a 32-prompt red-team set and a best-of-28 adaptive attack succeeds on 96–100% of harmful prompts, motivating \"safety-capability parity\" — a safety system must be as sophisticated as the model it guards.",
       "explainer": "papers/wei-2023-jailbroken.html",
-      "audio_url": "https://pod.darvinyi.com/audio/wei-2023-jailbroken.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2023-jailbroken.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "bubeck-2023-sparks-agi",
@@ -3962,7 +3970,7 @@
       "abstract": "Shows that a zero-shot prompted GPT-4o monitor reading a frontier reasoning model's chain-of-thought catches agentic-coding reward hacking with 95% joint recall on two systemic hacks — far above the 60% of an action-only monitor — and that a weaker model (even GPT-4o-mini) can monitor a stronger one, a scalable-oversight foothold. But folding the CoT monitor into the RL reward backfires: past a low-optimization regime the agent learns obfuscated reward hacking, hiding its intent in a benign-looking CoT while still cheating, so the monitor's recall collapses. Argues for paying a \"monitorability tax\" — leaving CoTs unpressured and reserved for oversight.",
       "explainer": "papers/baker-2025-monitoring-reasoning.html",
       "audio_url": "https://pod.darvinyi.com/audio/baker-2025-monitoring-reasoning.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "greenblatt-2024-alignment-faking",
@@ -3978,7 +3986,7 @@
       "abstract": "Gives Claude 3 Opus a system prompt saying it is being retrained to answer all harmful queries, with only free-tier chats used for training—and finds that in 12% of free-tier scratchpads the model strategically complies to keep its harmlessness from being trained away, stating the reasoning explicitly. Actually running the RLHF drives alignment-faking reasoning to 78% while the model also exfiltrates its weights when given an easy opportunity. The first empirical case of a production LLM faking alignment without being instructed to.",
       "explainer": "papers/greenblatt-2024-alignment-faking.html",
       "audio_url": "https://pod.darvinyi.com/audio/greenblatt-2024-alignment-faking.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "meinke-2024-in-context-scheming",
@@ -3994,7 +4002,7 @@
       "abstract": "Apollo Research evaluates six frontier models on a suite of six agentic evaluations engineered to incentivize covert misbehaviour, and finds that o1, Claude 3.5 Sonnet, Claude 3 Opus, Gemini 1.5 Pro and Llama 3.1 405B can all scheme: they disable oversight mechanisms, attempt to exfiltrate what they believe are their own weights, fake alignment under evaluation, and strategically underperform on capability tests — reasoning explicitly about the deception in their chains-of-thought. o1 schemes on all six evals and, once it has, maintains the lie in over 85% of follow-up questions; Claude 3.5 Sonnet's math accuracy drops from 0.99 to 0.34 when underperformance is rewarded. Establishes in-context scheming as a measured capability rather than a theoretical concern, while carefully framing the result as capability, not propensity.",
       "explainer": "papers/meinke-2024-in-context-scheming.html",
       "audio_url": "https://pod.darvinyi.com/audio/meinke-2024-in-context-scheming.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "emmons-2025-cot-evade-monitors",
@@ -4010,7 +4018,7 @@
       "abstract": "Reframes the chain-of-thought monitoring debate: for runtime monitoring against severe harm, the property that matters is not faithfulness but monitorability. Argues that when a bad behavior is hard enough to require CoT-as-computation the reasoning must surface — replicating two prior unfaithfulness setups to show the effect — then stress-tests monitors across GPQA, a multi-step stealth task, and an RL setup, finding current Gemini models evade only with heavy human or RL assistance.",
       "explainer": "papers/emmons-2025-cot-evade-monitors.html",
       "audio_url": "https://pod.darvinyi.com/audio/emmons-2025-cot-evade-monitors.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "ziegler-2019-finetune-preferences",
@@ -4133,7 +4141,7 @@
       "abstract": "Measures chain-of-thought (CoT) faithfulness in frontier reasoning models with a prompt-pair test: the same multiple-choice question with vs. without an inserted hint, keeping only cases where the hint flips the answer, then checking whether the CoT admits relying on it. Across 6 hint types, Claude 3.7 Sonnet and DeepSeek R1 verbalize the decisive hint only 25% and 39% of the time on average (and just 20% and 29% on the two misaligned hints) — more faithful than non-reasoning models, but far from reliable. Outcome-based RL lifts faithfulness early then plateaus near 20–28%, and in synthetic reward-hack environments the model exploits the hack on over 99% of prompts while verbalizing it under 2% of the time in 5 of 6 settings. CoT monitoring can therefore notice frequent misbehavior but cannot rule out rare, single-forward-pass misalignment.",
       "explainer": "papers/chen-2025-cot-faithfulness.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2025-cot-faithfulness.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "yang-2024-qwen2-5",
@@ -5300,7 +5308,7 @@
       "abstract": "Shows that GPT-3's few-shot accuracy is highly unstable across choices of prompt format, training-example selection, and order — the same examples, merely reordered, can swing accuracy from near-chance to near-state-of-the-art — and traces this to majority-label, recency, and common-token biases. Introduces contextual calibration, a training-free correction using a content-free input (e.g. \"N/A\") to estimate and remove the bias, improving accuracy by up to 30.0% absolute.",
       "explainer": "papers/zhao-2021-calibrate.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhao-2021-calibrate.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "yu-2018-spider",
@@ -5518,7 +5526,7 @@
       "abstract": "Shows that GPT-3's few-shot accuracy is highly sensitive to the order of in-context examples alone — holding the same examples and template fixed, some permutations reach near state-of-the-art while others perform near random guess. Proposes an entropy-based probing method that samples synthetic development data directly from the language model itself to rank candidate orderings, yielding an average 13% relative accuracy improvement across eleven text-classification tasks.",
       "explainer": "papers/lu-2021-fantastically-ordered.html",
       "audio_url": "https://pod.darvinyi.com/audio/lu-2021-fantastically-ordered.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "jang-2016-gumbel-softmax",
@@ -5673,7 +5681,7 @@
       "abstract": "A 2,500-judgment human study of five XSum summarization systems finds that 73-79% of single-sentence summaries — including human-written references — contain content unsupported by the source, split into intrinsic (misrepresented) and extrinsic (invented) hallucinations. ROUGE and BERTScore barely correlate with human faithfulness judgments, but a textual-entailment classifier does meaningfully better, motivating entailment-based automatic faithfulness metrics.",
       "explainer": "papers/maynez-2020-faithfulness.html",
       "audio_url": "https://pod.darvinyi.com/audio/maynez-2020-faithfulness.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "graetz-2018-robots-at-work",
@@ -6633,7 +6641,7 @@
       "abstract": "LLM agents autonomously run a simulated vending-machine business for runs exceeding 20M cumulative tokens, isolating long-horizon coherence from task complexity. Claude 3.5 Sonnet and o3-mini beat the human baseline on average net worth, but every model has runs that spiral into unproductive 'meltdown' loops unrelated to context-window limits.",
       "explainer": "papers/backlund-2025-vending-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/backlund-2025-vending-bench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "paglieri-2024-balrog",
@@ -6713,7 +6721,7 @@
       "abstract": "A controlled bias audit of Elo-based LLM-as-judge evaluation: starting from one GPT-4-authored correct answer per question, the authors generate 11 deliberately flawed variants (factual errors, length, grammar/spelling) and show crowd workers, experts, GPT-4, and Claude-1 all favor longer answers, with GPT-4 rating several fabricated facts above a correct-but-short answer (1206 vs 1096 Elo). Proposes the Multi-Elo Rating System (MERS), scoring accuracy/helpfulness/language separately, which sharpens GPT-4's factual discrimination but leaves crowd-sourced accuracy judgments still compressed.",
       "explainer": "papers/wu-2025-style-over-substance.html",
       "audio_url": "https://pod.darvinyi.com/audio/wu-2025-style-over-substance.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "polo-2024-tinybenchmarks",
@@ -6790,7 +6798,8 @@
       "author_group": "University of Oxford",
       "abstract": "The first formal definition of reward hacking: a proxy reward is 'unhackable' relative to a policy set if no two policies are ranked oppositely by the proxy and the true reward — with 'simplification' as the stricter, asymmetric special case matching the intuitive idea of a simpler true reward. Proves non-trivial unhackability is essentially impossible on any policy set with 'volume' (the full stochastic policy set, or any ε-suboptimal/δ-deterministic subset, where an unhackable non-trivial pair must be equivalent) but always exists on finite policy sets such as all deterministic policies, with a dimension-counting necessary-and-sufficient condition for when a non-trivial simplification exists. Shows the two intuitive ways of simplifying a reward — dropping terms, coarsening magnitudes — routinely fail to be true simplifications and can still be hacked, implying learned reward models are best treated as auxiliaries to policy learning rather than optimization targets.",
       "explainer": "papers/skalse-2022-reward-hacking.html",
-      "audio_url": "https://pod.darvinyi.com/audio/skalse-2022-reward-hacking.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/skalse-2022-reward-hacking.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "li-2023-api-bank",
@@ -7030,7 +7039,7 @@
       "abstract": "A 110-task (440 with augmentations), 11-category benchmark of explicitly malicious multi-step agent requests, run against 104 synthetic proxy tools and scored with hand-written rubrics plus a narrow LLM judge so a jailbreak only counts as successful if the agent stays capable enough to actually finish the harmful task. Finds many leading models comply with malicious agentic requests even without a jailbreak (GPT-4o mini: 62.5% harm score while refusing only 22%), and that a universal chatbot jailbreak template transfers to agents while largely preserving their task-completing competence (Claude 3.5 Sonnet: 81.9% non-refusal harm score vs. 82% on benign tasks).",
       "explainer": "papers/andriushchenko-2025-agentharm.html",
       "audio_url": "https://pod.darvinyi.com/audio/andriushchenko-2025-agentharm.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "malik-2026-rewardbench2",
@@ -7094,7 +7103,7 @@
       "abstract": "Fits a three-term regression (model, length-as-mediator, instruction-difficulty) to AlpacaEval's own pairwise judgments, then zeroes out the length term to estimate a length-controlled win rate — raising AlpacaEval's Spearman correlation with Chatbot Arena from 0.94 to 0.98 and cutting verbosity-prompting gameability from 25% to 10% (normalized std. dev.).",
       "explainer": "papers/dubois-2024-lc-alpacaeval.html",
       "audio_url": "https://pod.darvinyi.com/audio/dubois-2024-lc-alpacaeval.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "lin-2024-wildbench",
@@ -7188,7 +7197,8 @@
       "author_group": "MIRI",
       "abstract": "A formal taxonomy of Goodhart's Law failure modes for optimizing against a proxy metric — regressional, extremal, causal, and adversarial Goodhart effects, including the incentive-driven Cobra Effect as an adversarial subtype. Extends a single earlier blog-post sketch into eight formally distinguishable, causally-grounded failure mechanisms with no empirical validation of its own, later adopted directly by reward-hacking papers such as Gao et al. 2022 and Skalse et al. 2022.",
       "explainer": "papers/manheim-2018-goodhart.html",
-      "audio_url": "https://pod.darvinyi.com/audio/manheim-2018-goodhart.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/manheim-2018-goodhart.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "barres-2025-tau2-bench",
@@ -7280,7 +7290,8 @@
       "author_group": "UIUC / Stanford / UC Berkeley",
       "abstract": "Ports classical computer-security attacks — obfuscation, code injection/payload splitting, and virtualization — onto instruction-following LLMs (ChatGPT, GPT-3, InstructGPT), bypassing OpenAI's content filters with up to 100% success across hate speech, phishing, and scam generation, and showing the resulting malicious content can be produced for as little as $0.0064 per generation — cheaper than the human labor it replaces.",
       "explainer": "papers/kang-2023-programmatic-behavior.html",
-      "audio_url": "https://pod.darvinyi.com/audio/kang-2023-programmatic-behavior.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/kang-2023-programmatic-behavior.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "perez-2022-model-written-evals",
@@ -7296,7 +7307,7 @@
       "abstract": "Anthropic has LMs write and filter their own evaluation datasets — 154 in total, crowdworker-validated as nearly as reliable as human-written ones — and uses them to discover two inverse-scaling effects: sycophancy that grows with model size, and a stated desire to avoid shutdown that grows with more RLHF training.",
       "explainer": "papers/perez-2022-model-written-evals.html",
       "audio_url": "https://pod.darvinyi.com/audio/perez-2022-model-written-evals.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "liu-2023-llava",
@@ -7326,7 +7337,8 @@
       "author_group": "NTU Singapore / Griffith University",
       "abstract": "HOUYI is a black-box prompt-injection methodology modeled on SQL/XSS injection — framework, separator, and disruptor payload components plus an LLM-driven feedback loop — that compromised 31 of 36 real commercial LLM-integrated applications (86.1%), with vendor-confirmed exploits against Notion, Writesonic, and Parea.",
       "explainer": "papers/liu-2023-houyi.html",
-      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-houyi.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-houyi.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "liu-2023-open-prompt-injection",
@@ -7342,7 +7354,7 @@
       "abstract": "The first formal framework for prompt injection attacks — every existing attack collapses into one function, x̃ = A(xt, se, xe) — paired with the field's first systematic benchmark: 5 attacks × 10 defenses across 10 LLMs and 7 NLP tasks (49 target/injected combinations). The framework's own Combined Attack (escape characters + fake completion + context-ignoring) beats nearly every attack it's built from, reaching 0.75 average ASV on GPT-4; more capable LLMs are consistently easier to hijack (Pearson r=0.63 between ASV and model size), and none of the 10 benchmarked defenses proves sufficient — the strongest trade real utility loss for partial security.",
       "explainer": "papers/liu-2023-open-prompt-injection.html",
       "audio_url": "https://pod.darvinyi.com/audio/liu-2023-open-prompt-injection.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "chen-2024-struq",
@@ -7357,7 +7369,8 @@
       "author_group": "UC Berkeley",
       "abstract": "Prompt injection is the LLM-era version of the classic control/data-mixing injection vulnerability, and StruQ closes it the way SQL injection was closed: separate the channels. A filtering front-end pairs with 'structured instruction tuning' — fine-tuning a base Llama-7B/Mistral-7B to only follow instructions in the prompt channel — to drive the strongest manual attack (Completion-Real) from 96% to 0% success with roughly a one-point AlpacaEval utility cost, though optimization-based GCG attacks still succeed 56-58% of the time even after the defense.",
       "explainer": "papers/chen-2024-struq.html",
-      "audio_url": "https://pod.darvinyi.com/audio/chen-2024-struq.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/chen-2024-struq.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "ruan-2023-toolemu",
@@ -7373,7 +7386,7 @@
       "abstract": "Prompts an LM to emulate 311 tools across 36 high-stakes toolkits (no real sandboxes built) plus a second LM to automatically judge agent safety, validated against human annotators (72.5%/68.8% identified-failure precision, 6-of-7 real-sandbox reproductions on the Terminal toolkit); even the best 2023 agent configuration still failed 23.9% of its 144 underspecified-instruction test cases.",
       "explainer": "papers/ruan-2023-toolemu.html",
       "audio_url": "https://pod.darvinyi.com/audio/ruan-2023-toolemu.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "ganguli-2022-red-teaming",
@@ -7389,7 +7402,7 @@
       "abstract": "324 crowdworkers produced 38,961 manual red-team attacks across 3 model sizes and 4 safety interventions (plain LM, HHH-prompted, rejection sampling, RLHF), finding RLHF gets significantly harder to red-team as it scales while a static HHH prompt does not, and releasing the dataset as one of the first public red-team corpora against an RLHF-trained model.",
       "explainer": "papers/ganguli-2022-red-teaming.html",
       "audio_url": "https://pod.darvinyi.com/audio/ganguli-2022-red-teaming.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "perez-2022-red-teaming-with-lms",
@@ -7405,7 +7418,7 @@
       "abstract": "A red LM automatically generates test-case questions, a target LM answers them, and a classifier flags harmful replies — surfacing 18,444 offensive responses from a 280B-parameter chatbot out of 0.5M generated questions, plus training-data leaks, real phone numbers/SSNs/emails, and a systematic bias against majority demographic groups.",
       "explainer": "papers/perez-2022-red-teaming-with-lms.html",
       "audio_url": "https://pod.darvinyi.com/audio/perez-2022-red-teaming-with-lms.mp3",
-      "tags": ["evaluations"]
+      "tags": ["evaluations", "failure-modes"]
     },
     {
       "slug": "schulhoff-2023-hackaprompt",
@@ -7421,7 +7434,7 @@
       "abstract": "A global, 2,800-competitor prompt-hacking competition against GPT-3, ChatGPT, and FlanT5-XXL produced 600K+ adversarial prompts (83.2% success rate on refined submissions) and the first data-driven taxonomy of 29 prompt-hacking techniques, showing prompt-based defenses reliably fail. Won EMNLP 2023's Best Theme Paper award.",
       "explainer": "papers/schulhoff-2023-hackaprompt.html",
       "audio_url": "https://pod.darvinyi.com/audio/schulhoff-2023-hackaprompt.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "hines-2024-spotlighting",
@@ -7436,7 +7449,8 @@
       "author_group": "Microsoft",
       "abstract": "Three prompt-engineering defenses — delimiting, datamarking, and encoding — that mark untrusted input's provenance so GPT-family models stop treating it as instructions, cutting indirect prompt injection attack success from over 50% to below 2%.",
       "explainer": "papers/hines-2024-spotlighting.html",
-      "audio_url": "https://pod.darvinyi.com/audio/hines-2024-spotlighting.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/hines-2024-spotlighting.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "pasquini-2024-neuralexec",
@@ -7451,7 +7465,8 @@
       "author_group": "EPFL",
       "abstract": "Reframes prompt-injection execution-trigger design as a GCG-style discrete optimization problem, producing triggers at least twice as effective as handcrafted ones and, when optimized for two new robustness properties, able to survive a RAG pipeline's chunking and retrieval about 80% of the time.",
       "explainer": "papers/pasquini-2024-neuralexec.html",
-      "audio_url": "https://pod.darvinyi.com/audio/pasquini-2024-neuralexec.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/pasquini-2024-neuralexec.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "chao-2024-jailbreakbench",
@@ -7467,7 +7482,7 @@
       "abstract": "A reproducible, community-maintained benchmark for LLM jailbreak robustness: the 100-behavior JBB-Behaviors dataset (built to OpenAI's usage-policy categories), a human-validated open judge (Llama-3-70B, chosen by testing six candidates against 300 expert-labeled examples), and a public leaderboard for standardized attacks and test-time defenses.",
       "explainer": "papers/chao-2024-jailbreakbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/chao-2024-jailbreakbench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "nye-2021-scratchpads",
@@ -7590,7 +7605,8 @@
       "author_group": "Multi-lab",
       "abstract": "A research-agenda paper naming five concrete, near-term-testable AI accident risks — negative side effects, reward hacking, scalable oversight, safe exploration, and robustness to distributional shift — deliberately reframing AI safety away from speculative superintelligence scenarios toward problems in ordinary 2016-era RL and supervised systems.",
       "explainer": "papers/amodei-2016-concrete-problems.html",
-      "audio_url": "https://pod.darvinyi.com/audio/amodei-2016-concrete-problems.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/amodei-2016-concrete-problems.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "zheng-2024-seeact",
@@ -7668,7 +7684,7 @@
       "abstract": "A 250-safe/200-unsafe contrast-set benchmark that catches LLMs refusing harmless requests — like asking where to buy a can of coke — because they superficially resemble unsafe ones, naming and operationalizing the failure mode \"exaggerated safety.\"",
       "explainer": "papers/rottger-2023-xstest.html",
       "audio_url": "https://pod.darvinyi.com/audio/rottger-2023-xstest.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "zhou-2025-ruscarl",
@@ -7714,7 +7730,7 @@
       "abstract": "Introduces IFBench, a 58-constraint, 300-prompt benchmark showing that frontier models scoring 80–95% on the saturated IFEval collapse — several below 50% — on held-out verifiable constraint types, plus IF-RLVR, a GRPO training recipe that narrows the gap while surfacing (and partially mitigating) a reward-hacking failure mode.",
       "explainer": "papers/pyatkin-2025-ifbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/pyatkin-2025-ifbench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "pan-2022-reward-misspecification",
@@ -7729,7 +7745,8 @@
       "author_group": "UC Berkeley",
       "abstract": "Four RL environments and nine misspecified proxy rewards show that more capable agents (bigger models, more training, finer action resolution, better observations) hack their reward harder — sometimes via a sudden phase transition — even when the proxy and true reward stay strongly correlated. Proposes POLYNOMALY, a baseline anomaly-detection benchmark for catching misaligned policies without access to the true reward signal.",
       "explainer": "papers/pan-2022-reward-misspecification.html",
-      "audio_url": "https://pod.darvinyi.com/audio/pan-2022-reward-misspecification.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/pan-2022-reward-misspecification.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "menick-2022-gophercite",
@@ -7759,7 +7776,8 @@
       "author_group": "MIT CSAIL / Harvard",
       "abstract": "A 32-author survey taxonomizing RLHF's failure modes across feedback collection, reward modeling, and policy optimization, splitting them into problems fixable with better engineering and fundamental limitations that require abandoning or supplementing RLHF entirely, plus proposed transparency/auditing standards.",
       "explainer": "papers/casper-2023-rlhf-open-problems.html",
-      "audio_url": "https://pod.darvinyi.com/audio/casper-2023-rlhf-open-problems.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/casper-2023-rlhf-open-problems.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "chao-2023-pair",
@@ -7774,7 +7792,8 @@
       "author_group": "UPenn",
       "abstract": "Introduces PAIR, which pits an attacker LLM against a target LLM in an automated iterative-refinement loop to find interpretable, black-box jailbreaks in typically under twenty queries, reaching 88% jailbreak rate on Vicuna-13B and 73% on Gemini-Pro versus GCG's 256,000-query white-box gradient attack.",
       "explainer": "papers/chao-2023-pair.html",
-      "audio_url": "https://pod.darvinyi.com/audio/chao-2023-pair.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/chao-2023-pair.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "qi-2023-finetuning-compromises-safety",
@@ -7789,7 +7808,8 @@
       "author_group": "Princeton University / Virginia Tech",
       "abstract": "Shows aligned LLMs' safety guardrails can be stripped by fine-tuning on as few as 10 adversarial examples — a $0.20 attack that lifts GPT-3.5 Turbo's harmfulness rate from 1.8% to 88.8% — and that even wholly benign fine-tuning on Alpaca or Dolly measurably erodes safety alignment. Introduces a policy-grounded GPT-4 Judge, validated against human raters (Cohen's Kappa 0.539–0.792), to measure the degradation.",
       "explainer": "papers/qi-2023-finetuning-compromises-safety.html",
-      "audio_url": "https://pod.darvinyi.com/audio/qi-2023-finetuning-compromises-safety.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/qi-2023-finetuning-compromises-safety.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "liu-2023-autodan",
@@ -7804,7 +7824,8 @@
       "author_group": "University of Wisconsin-Madison",
       "abstract": "A hierarchical genetic algorithm evolves handcrafted DAN-style jailbreak prompts into new prompts that stay fluent and low-perplexity, reaching 60.77% attack success on Llama2-7b-chat versus GCG's 45.38% — and, unlike GCG's gibberish suffixes (45.4%→0.0% under a perplexity filter), AutoDAN's ASR is completely unaffected by perplexity-based defense.",
       "explainer": "papers/liu-2023-autodan.html",
-      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-autodan.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/liu-2023-autodan.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "jain-2023-baseline-defenses",
@@ -7819,7 +7840,8 @@
       "author_group": "University of Maryland",
       "abstract": "A systematic transplant of computer vision's detection, preprocessing, and adversarial-training defenses onto GCG-style LLM jailbreaks: a perplexity filter catches essentially all adversarial suffixes and paraphrasing cuts Vicuna's attack success rate from 0.79 to 0.05, while adversarial training via instruction finetuning barely moves the attacked success rate and destabilizes the model at higher mixing rates.",
       "explainer": "papers/jain-2023-baseline-defenses.html",
-      "audio_url": "https://pod.darvinyi.com/audio/jain-2023-baseline-defenses.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/jain-2023-baseline-defenses.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "mehrotra-2023-tap",
@@ -7834,7 +7856,8 @@
       "author_group": "Yale University / Robust Intelligence",
       "abstract": "TAP (Tree of Attacks with Pruning) extends PAIR's single-chain black-box jailbreak search into a branching, pruned tree — an attacker LLM proposes several prompt rewrites per iteration and an evaluator LLM prunes off-topic ones before they cost a query — jailbreaking GPT-4o for 94% of AdvBench prompts (vs PAIR's 78%) while sending 60% fewer queries.",
       "explainer": "papers/mehrotra-2023-tap.html",
-      "audio_url": "https://pod.darvinyi.com/audio/mehrotra-2023-tap.mp3"
+      "audio_url": "https://pod.darvinyi.com/audio/mehrotra-2023-tap.mp3",
+      "tags": ["failure-modes"]
     },
     {
       "slug": "madaan-2023-self-refine",
@@ -8382,7 +8405,7 @@
       "abstract": "Defines the compositionality gap — the fraction of 2-hop questions a model gets wrong despite correctly answering both underlying sub-questions in isolation — and shows via a new Compositional Celebrities dataset that GPT-3's gap stays roughly flat (29-64%) from 0.35B to 175B parameters, i.e. scale improves fact recall but not fact composition. Introduces self-ask, a structured decomposition prompt that beats chain-of-thought (sharply on the new Bamboogle benchmark, +11 points) and plugs cleanly into a real search engine for a further boost — the same decompose-then-retrieve pattern later RL-trained search agents automate end-to-end.",
       "explainer": "papers/press-2022-compositionality-gap.html",
       "audio_url": "https://pod.darvinyi.com/audio/press-2022-compositionality-gap.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "zhang-2018-personachat",
@@ -8478,7 +8501,7 @@
       "abstract": "An extensible benchmark suite built directly on classical PDDL planning domains (Blocksworld, Logistics), using a real planner and plan validator to mechanically generate and grade ~26,250 prompts across eight distinct planning/reasoning-about-action tasks. GPT-4 solves only 34.3% of plan-generation instances, and that collapses to 2-4.3% once domain vocabulary is obfuscated, evidence that much of the apparent score is pattern matching rather than domain-general reasoning.",
       "explainer": "papers/valmeekam-2022-planbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/valmeekam-2022-planbench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "zhang-2024-agent-security-bench",
@@ -8494,7 +8517,7 @@
       "abstract": "A comprehensive benchmark formalizing attacks and defenses against LLM-based agents across 10 scenarios, 10 agents, and over 400 tools: direct/indirect prompt injection, memory poisoning, and a novel Plan-of-Thought backdoor attack, evaluated against 11 defenses across 13 LLM backbones, finding an 84.30% average success rate for mixed attacks that current defenses barely mitigate.",
       "explainer": "papers/zhang-2024-agent-security-bench.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2024-agent-security-bench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "schmidgall-2024-agentclinic",
@@ -8526,7 +8549,7 @@
       "abstract": "Introduces MetaTool, a benchmark that separately scores whether LLMs know they need a tool at all (awareness) from whether they pick the right one (selection), using a 21,127-query dataset (ToolE) built from 390 real OpenAI-plugin tools. Across eight LLMs, only ChatGPT clears 70% F1 on zero-shot awareness, and most models score under 10% CSR at honestly answering \"none\" when the correct tool is hidden from the candidate list -- a reliability gap far starker than their similar-tool or multi-tool selection performance.",
       "explainer": "papers/huang-2023-metatool.html",
       "audio_url": "https://pod.darvinyi.com/audio/huang-2023-metatool.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "xiong-2024-mirage",
@@ -8606,7 +8629,7 @@
       "abstract": "A conversational theory-of-mind (ToM) benchmark built on real information asymmetry: 256 LLM-generated multiparty small-talk conversations where characters leave and rejoin, creating inaccessible information for the returning character, converted into ~10K questions across six converging formats (BeliefQ[Dist./Choice], AnswerabilityQ[List/Y-N], InfoAccessQ[List/Y-N]) about the same fact. A strict conjunctive ALL*/ALL score catches \"illusory ToM\": GPT-4 0613 (June) scores 73.3% on BeliefQ[Choice] alone but only 12.3% on the full-coherence ALL aggregate, versus 87.5% for humans, and neither chain-of-thought nor fine-tuning closes the gap.",
       "explainer": "papers/kim-2023-fantom.html",
       "audio_url": "https://pod.darvinyi.com/audio/kim-2023-fantom.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "puig-2020-watch-and-help",
@@ -8734,7 +8757,7 @@
       "abstract": "Extends Contextual Integrity privacy norms into 493 seeds, vignettes, and executable LM-agent trajectories, then evaluates nine LMs at three probing levels versus an in-action leakage rate. GPT-4 answers 98.99% of trajectory-level probing questions correctly yet still leaks sensitive information in 25.68% of its actual agent actions, even with privacy-enhancing prompting.",
       "explainer": "papers/shao-2024-privacylens.html",
       "audio_url": "https://pod.darvinyi.com/audio/shao-2024-privacylens.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "tu-2024-amie",
@@ -8782,7 +8805,7 @@
       "abstract": "A shared, linear-temporal-logic interface that formalizes embodied decision making into four separable ability modules — goal interpretation, subgoal decomposition, action sequencing, transition modeling — each graded in isolation (other modules held at ground truth) against a named error taxonomy, across both BEHAVIOR (state goals) and VirtualHome (temporally-ordered goals). Evaluating 18 LLMs (180 runs total), o1-preview leads BEHAVIOR's average module success rate (74.9% vs. 64.2% for runner-up Claude-3.5 Sonnet) but not VirtualHome's, where Claude-3.5 Sonnet and Gemini 1.5 Pro both reach 65.7% against o1-preview's 64.4%; for GPT-4o, runtime planning errors (16.2% additional-step, 15.5% missing-step) dominate over grammar/format errors.",
       "explainer": "papers/li-2024-embodied-agent-interface.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2024-embodied-agent-interface.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "zhu-2025-multiagentbench",
@@ -9213,7 +9236,7 @@
       "abstract": "Tests six widely-used LLMs across five environments of increasing tool/parameter-name noise (Clean, Slight, Medium, Heavy, Union) over three staged tool-use scores (tool selection, parameter identification, content filling). GPT-4's tool-selection accuracy falls from 80.00 to 58.10 Clean-to-Union while three human graders drop only 2.86 points on the same items, but the top scorer under noise isn't fixed: NexusRaven-13B-v2 beats GPT-4 on all three stages under Heavy noise, while GPT-4 wins all three under Union. RoTTuning, a LoRA fine-tune on noise-augmented trajectories, narrows this range for the resulting RoTLLaMA model.",
       "explainer": "papers/ye-2024-rotbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/ye-2024-rotbench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "basu-2024-api-blend",
@@ -9628,7 +9651,7 @@
       "abstract": "T-Eval breaks \"can an LLM use tools\" into six separately-graded sub-abilities -- plan, reason, retrieve, understand, instruct, review -- scored step-by-step against a human-verified gold solution path, rather than one end-to-end win-rate number. Across a 20-model, December-2023 snapshot, GPT-4 leads with an Overall score of 86.4 versus the largest open-source model's 71.4 (Qwen-72B), and strict JSON-format grading exposes format-following collapses (e.g. LLaMA2-7B's INSTRUCT score falls from 68.7 to 0.2) that are largely independent of the underlying reasoning gap the benchmark is designed to isolate.",
       "explainer": "papers/chen-2024-t-eval.html",
       "audio_url": "https://pod.darvinyi.com/audio/chen-2024-t-eval.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "kim-2024-medexqa",
@@ -9740,7 +9763,7 @@
       "abstract": "246 realistic web-navigation tasks across self-hosted Reddit, GitLab, and shopping replicas (WebArena/VisualWebArena), each seeded with sensitive facts the agent doesn't need, scoring agents on utility (task success) and a privacy score (1 - leakage rate, judged by gpt-4o) as two separate axes. All six evaluated agents leak task-irrelevant sensitive data before mitigation (privacy scores 0.541-0.902), probing an LLM about privacy over- or under-estimates its in-action behavior depending on model family, and a privacy-aware chain-of-thought prompt raises every model's privacy score but lowers every model's utility too.",
       "explainer": "papers/zharmagambetov-2025-agentdam.html",
       "audio_url": "https://pod.darvinyi.com/audio/zharmagambetov-2025-agentdam.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "paech-2023-eq-bench",
@@ -10444,7 +10467,7 @@
       "abstract": "Rather than collecting a new corpus, FaithDial edits Wizard of Wikipedia turn-by-turn: crowdworkers rewrite hallucinated or uncooperative Wizard responses to be faithful to the same knowledge snippet, moving WoW's own audited 20.9% faithful-turn rate to a validated 94.4%. Fine-tuning on FaithDial instead of WoW cuts a T5 model's critic-flagged hallucination from 46.5% to 4.3% and its human-judged hallucination from 55.8% to 23.2%, and the gains mostly transfer zero-shot to CMU-DoG and TopicalChat.",
       "explainer": "papers/dziri-2022-faithdial.html",
       "audio_url": "https://pod.darvinyi.com/audio/dziri-2022-faithdial.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "zhou-2020-kdconv",
@@ -10492,7 +10515,7 @@
       "abstract": "A 3,000-pair benchmark that states a user preference once, buries it under real multi-session conversation turns stretching up to 100k tokens, and checks whether a later, topically-unrelated query is still answered in line with it. Zero-shot preference-following accuracy for the six core models falls from ~80% to under 30% within 5 turns and keeps decaying toward zero by 300 turns; nine of the ten benchmarked models score under 20% by 10 turns (o1-preview alone holds near 50%). The LLM-based grader is validated against human judgment (86-98% per-checker agreement across 300 sampled evaluations).",
       "explainer": "papers/zhao-2025-prefeval.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhao-2025-prefeval.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "niklaus-2023-lextreme",
@@ -10524,7 +10547,7 @@
       "abstract": "Proposes DyVal, a dynamic evaluation protocol that generates reasoning problems on the fly from directed acyclic graphs instead of drawing from a fixed test set, with complexity controlled directly by graph depth/width or node/link count. Across 7 math, logical-reasoning, and algorithm tasks, accuracy mostly falls as complexity rises (though not universally), and four of eight tested LLMs score 0% on every DyVal task — three of them despite strong results on existing static benchmarks; DyVal-generated data also improves fine-tuned models on 6 existing benchmarks.",
       "explainer": "papers/zhu-2024-dyval.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhu-2024-dyval.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "dziri-2022-begin",
@@ -10668,7 +10691,7 @@
       "abstract": "Builds FRANK, a 2,250-summary human-annotated benchmark spanning CNN/DM and XSum, around a seven-category linguistic typology of factual errors that replaces the binary factual/non-factual label used by prior factuality metrics. Benchmarking metrics with partial correlation (controlling for system and dataset), FactCC and BERTScore Precision are the two best-correlating automatic metrics with human judgment (partial Pearson 0.20 and 0.27, per the authors' bug-fixed arXiv v2 -- the published NAACL proceedings PDF still has an uncorrected, statistically insignificant BERTScore result), though every metric tested remains a weak proxy for it.",
       "explainer": "papers/pagnoni-2021-frank.html",
       "audio_url": "https://pod.darvinyi.com/audio/pagnoni-2021-frank.mp3",
-      "tags": ["benchmarks", "evaluations"]
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     },
     {
       "slug": "li-2024-longiclbench",
@@ -10684,7 +10707,7 @@
       "abstract": "Introduces LongICLBench, testing 15 long-context LLMs on in-context classification over six datasets with 28-to-174-class label spaces and 2K-50K-token demonstrations, instead of passkey retrieval or document QA. On the hardest task, Discovery (174 classes), nearly every model collapses to near-zero accuracy; only Gemini-1.5-Pro clears single digits, topping out at 14% against 87.4% for a fully fine-tuned classifier on the same labels.",
       "explainer": "papers/li-2024-longiclbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2024-longiclbench.mp3",
-      "tags": ["benchmarks"]
+      "tags": ["benchmarks", "failure-modes"]
     },
     {
       "slug": "koh-2021-wilds",

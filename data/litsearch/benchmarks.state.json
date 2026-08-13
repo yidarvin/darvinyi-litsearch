@@ -29,7 +29,14 @@
     ],
     "seeded": 18
   },
-  "current": null,
+  "current": {
+    "slug": "hendy-2023-gpt-mt",
+    "queue_title": "How Good Are GPT Models at Machine Translation? A Comprehensive Evaluation",
+    "arxiv_id": "2302.09210",
+    "step": "figures",
+    "round": null,
+    "open_blockers": []
+  },
   "completed": [
     {
       "slug": "maharana-2024-locomo",
@@ -1432,9 +1439,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> verify",
-    "2026-08-04T01:04 celikyilmaz-2020-eval-text-gen: step -> queue-ops",
-    "2026-08-04T01:05 celikyilmaz-2020-eval-text-gen: step -> podcast",
     "2026-08-04T01:17 completed celikyilmaz-2020-eval-text-gen (verdict=approved, rounds=2)",
     "2026-08-04T01:20 started dagan-2005-rte ('The PASCAL Recognising Textual Entailment Challenge')",
     "2026-08-04T01:20 dagan-2005-rte: step -> fetch",
@@ -1481,6 +1485,9 @@
     "2026-08-04T05:08 xu-2023-imagereward: step -> verify",
     "2026-08-04T05:08 xu-2023-imagereward: step -> queue-ops",
     "2026-08-04T05:08 xu-2023-imagereward: step -> podcast",
-    "2026-08-04T05:22 completed xu-2023-imagereward (verdict=approved, rounds=3)"
+    "2026-08-04T05:22 completed xu-2023-imagereward (verdict=approved, rounds=3)",
+    "2026-08-13T08:51 started hendy-2023-gpt-mt ('How Good Are GPT Models at Machine Translation? A Comprehensive Evaluation')",
+    "2026-08-13T08:51 hendy-2023-gpt-mt: step -> fetch",
+    "2026-08-13T08:51 hendy-2023-gpt-mt: step -> figures"
   ]
 }
