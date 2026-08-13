@@ -3,7 +3,7 @@
   "survey": "failure-modes",
   "topic": "failure mode analysis of LLMs and agents",
   "created": "2026-08-13",
-  "phase": "seeding",
+  "phase": "processing",
   "config": {
     "max_rounds": 3,
     "builder": {
@@ -17,10 +17,19 @@
     "process_foundational": false
   },
   "seeding": {
-    "done": false,
-    "date": null,
-    "queries": [],
-    "seeded": 0
+    "done": true,
+    "date": "2026-08-13",
+    "queries": [
+      "large language model hallucination",
+      "LLM agent failure modes",
+      "sycophancy language model",
+      "reward hacking specification gaming",
+      "prompt injection jailbreak large language model",
+      "tool use failure LLM agent",
+      "goal misgeneralization deceptive alignment",
+      "cascading errors multi-step LLM agent"
+    ],
+    "seeded": 31
   },
   "current": null,
   "completed": [],
@@ -34,6 +43,7 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T08:56 initialized (topic: 'failure mode analysis of LLMs and agents')"
+    "2026-08-13T08:56 initialized (topic: 'failure mode analysis of LLMs and agents')",
+    "2026-08-13T14:03 seeding done: 31 paper(s) queued"
   ]
 }
