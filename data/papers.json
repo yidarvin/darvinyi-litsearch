@@ -11184,6 +11184,22 @@
       "explainer": "papers/hubinger-2024-sleeper-agents.html",
       "audio_url": "https://pod.darvinyi.com/audio/hubinger-2024-sleeper-agents.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "bai-2024-mllm-hallucination-survey",
+      "short": "MLLM Hallucination Survey",
+      "title": "Hallucination of Multimodal Large Language Models: A Survey",
+      "authors": "Bai, Wang, Xiao, He, Han, Zhang, Shou",
+      "year": 2024,
+      "date": "2024-04",
+      "venue": "arXiv",
+      "citation_count": 442,
+      "topic": "Safety & Red-teaming",
+      "author_group": "NUS Show Lab / Amazon AWS",
+      "abstract": "A cause-traced taxonomy of hallucination in multimodal LLMs -- tracing object category/attribute/relation errors to data, model, training, and inference sources -- plus a catalogue of evaluation benchmarks/metrics and mitigation methods, revised eleven months after posting to fold in a year of 2025 literature.",
+      "explainer": "papers/bai-2024-mllm-hallucination-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/bai-2024-mllm-hallucination-survey.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19074,6 +19090,28 @@
     { "from": "zheng-2025-webguard", "to": "hubinger-2024-sleeper-agents" },
     { "from": "zhang-2024-agent-security-bench", "to": "hubinger-2024-sleeper-agents" },
     { "from": "chao-2024-jailbreakbench", "to": "hubinger-2024-sleeper-agents" },
-    { "from": "zhou-2023-sotopia", "to": "hubinger-2024-sleeper-agents" }
+    { "from": "zhou-2023-sotopia", "to": "hubinger-2024-sleeper-agents" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "touvron-2023-llama2" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "liu-2024-mmbench" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "zhou-2023-lima" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "chowdhery-2022-palm" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "ouyang-2022-instructgpt" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "hendrycks-2020-mmlu" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "stiennon-2020-summarize" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "lewis-2020-rag" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "schulman-2017-ppo" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "goyal-2017-vqa-v2" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "lin-2014-coco" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "banerjee-2005-meteor" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "yang-2023-set-of-mark" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "kuznetsova-2020-open-images-v4" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "guan-2023-hallusionbench" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "li-2023-pope" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "openai-2023-gpt4" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "wei-2022-cot" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "liu-2023-llava" },
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "brown-2020-gpt3" }
   ]
 }

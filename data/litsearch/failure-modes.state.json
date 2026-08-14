@@ -127,6 +127,13 @@
       "verdict": "approved_with_notes",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "bai-2024-mllm-hallucination-survey",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -139,17 +146,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T22:12 guan-2023-hallusionbench: step -> draft",
-    "2026-08-13T22:13 guan-2023-hallusionbench: step -> critique (round 1)",
-    "2026-08-13T22:27 guan-2023-hallusionbench: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T22:27 guan-2023-hallusionbench: step -> revise",
-    "2026-08-13T22:33 guan-2023-hallusionbench: step -> critique (round 2)",
-    "2026-08-13T22:38 guan-2023-hallusionbench: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-13T22:38 guan-2023-hallusionbench: step -> revise",
-    "2026-08-13T22:38 guan-2023-hallusionbench: step -> critique (round 3)",
-    "2026-08-13T22:38 guan-2023-hallusionbench: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-13T22:38 guan-2023-hallusionbench: step -> verify",
-    "2026-08-13T22:38 guan-2023-hallusionbench: step -> queue-ops",
     "2026-08-13T22:38 guan-2023-hallusionbench: step -> podcast",
     "2026-08-13T22:54 completed guan-2023-hallusionbench (verdict=approved, rounds=3)",
     "2026-08-13T22:59 started tonmoy-2024-hallucination-mitigation ('A Comprehensive Survey of Hallucination Mitigation Techniques in Large Language Models')",
@@ -188,6 +184,17 @@
     "2026-08-14T02:04 hubinger-2024-sleeper-agents: step -> verify",
     "2026-08-14T02:28 hubinger-2024-sleeper-agents: step -> queue-ops",
     "2026-08-14T02:28 hubinger-2024-sleeper-agents: step -> podcast",
-    "2026-08-14T02:28 completed hubinger-2024-sleeper-agents (verdict=approved_with_notes, rounds=3)"
+    "2026-08-14T02:28 completed hubinger-2024-sleeper-agents (verdict=approved_with_notes, rounds=3)",
+    "2026-08-14T02:28 started bai-2024-mllm-hallucination-survey ('Hallucination of Multimodal Large Language Models: A Survey')",
+    "2026-08-14T02:28 bai-2024-mllm-hallucination-survey: step -> fetch",
+    "2026-08-14T02:28 bai-2024-mllm-hallucination-survey: step -> figures",
+    "2026-08-14T02:29 bai-2024-mllm-hallucination-survey: step -> figures",
+    "2026-08-14T02:29 bai-2024-mllm-hallucination-survey: step -> draft",
+    "2026-08-14T02:45 bai-2024-mllm-hallucination-survey: step -> critique (round 1)",
+    "2026-08-14T03:02 bai-2024-mllm-hallucination-survey: step -> critique (round 2)",
+    "2026-08-14T03:11 bai-2024-mllm-hallucination-survey: step -> verify",
+    "2026-08-14T03:11 bai-2024-mllm-hallucination-survey: step -> queue-ops",
+    "2026-08-14T03:30 bai-2024-mllm-hallucination-survey: step -> podcast",
+    "2026-08-14T03:30 completed bai-2024-mllm-hallucination-survey (verdict=approved, rounds=2)"
   ]
 }
