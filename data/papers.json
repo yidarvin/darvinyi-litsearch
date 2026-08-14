@@ -11328,6 +11328,22 @@
       "explainer": "papers/wei-2023-sycophancy-synthetic.html",
       "audio_url": "https://pod.darvinyi.com/audio/wei-2023-sycophancy-synthetic.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "allenzhu-2023-knowledge-manipulation",
+      "short": "Knowledge Manipulation",
+      "title": "Physics of Language Models: Part 3.2, Knowledge Manipulation",
+      "authors": "Allen-Zhu, Li",
+      "year": 2025,
+      "date": "2023-09",
+      "venue": "ICLR 2025",
+      "citation_count": 161,
+      "topic": "Reasoning",
+      "author_group": "Meta AI (FAIR)",
+      "abstract": "A controlled synthetic biography corpus lets the authors verify knowledge is perfectly stored (near-100% extraction) and still show language models cannot manipulate it: classification and comparison collapse without chain-of-thought at both training and inference, and inverse search - recovering the person from an attribute - stays under 2% except when knowledge is literally written in reverse order during pretraining. Real-world GPT-3.5/4/Llama-3 checks (Wikipedia bios, Jane Austen, Chinese idioms and poetry) show the same qualitative pattern.",
+      "explainer": "papers/allenzhu-2023-knowledge-manipulation.html",
+      "audio_url": "https://pod.darvinyi.com/audio/allenzhu-2023-knowledge-manipulation.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19392,6 +19408,17 @@
     { "from": "wei-2023-sycophancy-synthetic", "to": "sanh-2021-t0" },
     { "from": "wei-2023-sycophancy-synthetic", "to": "turpin-2023-unfaithful-cot" },
     { "from": "wei-2023-sycophancy-synthetic", "to": "zhao-2021-calibrate" },
-    { "from": "huang-2023-metatool", "to": "wei-2023-sycophancy-synthetic" }
+    { "from": "huang-2023-metatool", "to": "wei-2023-sycophancy-synthetic" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "jiang-2023-mistral-7b" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "berglund-2023-reversal-curse" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "touvron-2023-llama" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "singhal-2023-med-palm" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "wei-2022-cot" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "su-2021-roformer" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "lewis-2020-rag" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "radford-2019-gpt2" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "zhou-2023-lima" },
+    { "from": "allenzhu-2023-knowledge-manipulation", "to": "openai-2023-gpt4" },
+    { "from": "berglund-2023-reversal-curse", "to": "allenzhu-2023-knowledge-manipulation" }
   ]
 }

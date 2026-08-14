@@ -190,6 +190,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "allenzhu-2023-knowledge-manipulation",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -202,16 +209,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T06:51 completed yao-2023-llm-lies (verdict=approved, rounds=2)",
-    "2026-08-14T06:54 started kalai-2025-why-lms-hallucinate ('Why Language Models Hallucinate')",
-    "2026-08-14T06:54 kalai-2025-why-lms-hallucinate: step -> fetch",
-    "2026-08-14T06:54 kalai-2025-why-lms-hallucinate: step -> figures",
-    "2026-08-14T06:55 kalai-2025-why-lms-hallucinate: step -> draft",
-    "2026-08-14T07:12 kalai-2025-why-lms-hallucinate: step -> critique (round 1)",
-    "2026-08-14T07:26 kalai-2025-why-lms-hallucinate: step -> critique (round 2)",
-    "2026-08-14T07:36 kalai-2025-why-lms-hallucinate: step -> verify",
-    "2026-08-14T07:36 kalai-2025-why-lms-hallucinate: step -> queue-ops",
-    "2026-08-14T07:58 kalai-2025-why-lms-hallucinate: step -> podcast",
     "2026-08-14T07:58 completed kalai-2025-why-lms-hallucinate (verdict=approved, rounds=2)",
     "2026-08-14T08:01 started chan-2023-agentic-harms ('Harms from Increasingly Agentic Algorithmic Systems')",
     "2026-08-14T08:01 chan-2023-agentic-harms: step -> fetch",
@@ -251,6 +248,16 @@
     "2026-08-14T12:21 wei-2023-sycophancy-synthetic: step -> verify",
     "2026-08-14T12:21 wei-2023-sycophancy-synthetic: step -> queue-ops",
     "2026-08-14T12:41 wei-2023-sycophancy-synthetic: step -> podcast",
-    "2026-08-14T12:41 completed wei-2023-sycophancy-synthetic (verdict=approved, rounds=1)"
+    "2026-08-14T12:41 completed wei-2023-sycophancy-synthetic (verdict=approved, rounds=1)",
+    "2026-08-14T12:46 started allenzhu-2023-knowledge-manipulation ('Physics of Language Models: Part 3.2, Knowledge Manipulation')",
+    "2026-08-14T12:46 allenzhu-2023-knowledge-manipulation: step -> fetch",
+    "2026-08-14T12:46 allenzhu-2023-knowledge-manipulation: step -> figures",
+    "2026-08-14T12:55 allenzhu-2023-knowledge-manipulation: step -> draft",
+    "2026-08-14T13:10 allenzhu-2023-knowledge-manipulation: step -> critique (round 1)",
+    "2026-08-14T13:24 allenzhu-2023-knowledge-manipulation: step -> critique (round 2)",
+    "2026-08-14T13:36 allenzhu-2023-knowledge-manipulation: step -> verify",
+    "2026-08-14T13:36 allenzhu-2023-knowledge-manipulation: step -> queue-ops",
+    "2026-08-14T13:57 allenzhu-2023-knowledge-manipulation: step -> podcast",
+    "2026-08-14T13:57 completed allenzhu-2023-knowledge-manipulation (verdict=approved, rounds=2)"
   ]
 }
