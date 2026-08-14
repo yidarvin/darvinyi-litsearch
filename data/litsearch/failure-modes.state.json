@@ -68,6 +68,15 @@
         "3 rounds. r1: 3 P1 -- 'nearly doubled' (41->59pp is +44%, contradicting the page's own 'roughly two-thirds'), a spurious liu-2023-llava edge (our node title 'Visual Instruction Tuning' is a substring of ref [28] 'Visual Instruction Tuning with Polite Flamingo', by this survey's own co-authors), and 13.4.1 understated as 'a few sentences'. r2: 2 more, both introduced by the fixes (an overstatement replacing the understatement, and an unlocalizable claim about where residual growth sits). r3 approve. Builder reflowed papers.json with a bare json.dump (32,783-line diff); restored via dumps_papers() to 60/1. Tagged failure-modes, adopting the critic's bright-line rule over the builder's citation-count one: tag a survey iff its own text presents a taxonomy of the failure phenomenon as its organizing contribution. 44 edges. Queued 8."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "li-2023-pope",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 rounds, 6 P1 r1: SEEM model-ranking stated as holding when Table 5's Adversarial block inverts it (LLaVA 66.38 > MiniGPT-4 62.70) while the paper hedges 'mostly follow the same trend'; Figure 1 caption inventing a second image; a 3-of-5 Yes-rate result stated of LVLMs generally on three headline surfaces; the version note understating its own divergence (283 of 584, not ~490); a year-range in the as-of stamp; and a would-raise-confidence row asking for something the paper already does. r2 approve. First triple-tagged paper of the survey (benchmarks+evaluations+failure-modes), all three verified on their own rubric text. Worst version divergence of the run (283 of 584 tokens shared, v1-only set full of plausible accuracy percentages) -- 108-token blocklist built pre-dispatch, zero hits throughout including after my own edits. Builder left queue_candidates empty despite 1,883 citers; added 5 myself. Added two appendix findings the episode agent surfaced: Table 4's stability result is measured on LLaVA alone at the constant-Yes floor, and Table 12's captioning-tracks-POPE claim inverts on METEOR and ROUGE-L. 11 edges."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -80,19 +89,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T15:15 completed raj-2026-model-or-harness (verdict=approved, rounds=2)",
-    "2026-08-13T15:15 started shah-2022-goal-misgeneralization (\"Goal Misgeneralization: Why Correct Specifications Aren't Enough For Correct Goals\")",
-    "2026-08-13T15:15 shah-2022-goal-misgeneralization: step -> fetch",
-    "2026-08-13T15:15 shah-2022-goal-misgeneralization: step -> figures",
-    "2026-08-13T15:18 shah-2022-goal-misgeneralization: step -> draft",
-    "2026-08-13T15:34 shah-2022-goal-misgeneralization: step -> draft",
-    "2026-08-13T15:34 shah-2022-goal-misgeneralization: step -> critique (round 1)",
-    "2026-08-13T15:47 shah-2022-goal-misgeneralization: 2 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T15:47 shah-2022-goal-misgeneralization: step -> revise",
-    "2026-08-13T15:52 shah-2022-goal-misgeneralization: step -> critique (round 2)",
-    "2026-08-13T15:59 shah-2022-goal-misgeneralization: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> revise",
-    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> critique (round 3)",
     "2026-08-13T15:59 shah-2022-goal-misgeneralization: 0 open blocker(s) from round 3 (verdict: approve)",
     "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> verify",
     "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> queue-ops",
@@ -129,6 +125,19 @@
     "2026-08-13T18:18 ji-2022-hallucination-survey: step -> verify",
     "2026-08-13T18:18 ji-2022-hallucination-survey: step -> queue-ops",
     "2026-08-13T18:19 ji-2022-hallucination-survey: step -> podcast",
-    "2026-08-13T18:33 completed ji-2022-hallucination-survey (verdict=approved, rounds=3)"
+    "2026-08-13T18:33 completed ji-2022-hallucination-survey (verdict=approved, rounds=3)",
+    "2026-08-13T18:39 started li-2023-pope ('Evaluating Object Hallucination in Large Vision-Language Models')",
+    "2026-08-13T18:39 li-2023-pope: step -> fetch",
+    "2026-08-13T18:39 li-2023-pope: step -> figures",
+    "2026-08-13T18:53 li-2023-pope: step -> draft",
+    "2026-08-13T18:54 li-2023-pope: step -> critique (round 1)",
+    "2026-08-13T19:05 li-2023-pope: 6 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T19:05 li-2023-pope: step -> revise",
+    "2026-08-13T19:11 li-2023-pope: step -> critique (round 2)",
+    "2026-08-13T19:15 li-2023-pope: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-13T19:15 li-2023-pope: step -> verify",
+    "2026-08-13T19:15 li-2023-pope: step -> queue-ops",
+    "2026-08-13T19:16 li-2023-pope: step -> podcast",
+    "2026-08-13T19:32 completed li-2023-pope (verdict=approved, rounds=2)"
   ]
 }

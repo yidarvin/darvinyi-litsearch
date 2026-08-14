@@ -11073,6 +11073,22 @@
       "explainer": "papers/ji-2022-hallucination-survey.html",
       "audio_url": "https://pod.darvinyi.com/audio/ji-2022-hallucination-survey.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "li-2023-pope",
+      "short": "POPE",
+      "title": "Evaluating Object Hallucination in Large Vision-Language Models",
+      "authors": "Li, Du, Zhou, Wang, Zhao, Wen",
+      "year": 2023,
+      "date": "2023-05",
+      "venue": "EMNLP",
+      "citation_count": 1883,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Renmin University of China",
+      "abstract": "The first systematic study of object hallucination in large vision-language models (LVLMs), showing that instruction-tuned LVLMs hallucinate more severely than smaller VLPMs and that hallucinated objects skew toward those frequent or co-occurring in the visual-instruction data. Introduces POPE, a polling-based yes/no probing protocol (random/popular/adversarial negative sampling) that replaces CHAIR's prompt-sensitive caption parsing with a stable, closed-form evaluation.",
+      "explainer": "papers/li-2023-pope.html",
+      "audio_url": "https://pod.darvinyi.com/audio/li-2023-pope.mp3",
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -18866,6 +18882,17 @@
     { "from": "lu-2024-mathvista", "to": "ji-2022-hallucination-survey" },
     { "from": "mcintosh-2024-benchmark-inadequacies", "to": "ji-2022-hallucination-survey" },
     { "from": "schick-2023-toolformer", "to": "ji-2022-hallucination-survey" },
-    { "from": "sun-2025-zerosearch", "to": "ji-2022-hallucination-survey" }
+    { "from": "sun-2025-zerosearch", "to": "ji-2022-hallucination-survey" },
+    { "from": "li-2023-pope", "to": "antol-2015-vqa" },
+    { "from": "li-2023-pope", "to": "goyal-2017-vqa-v2" },
+    { "from": "li-2023-pope", "to": "ji-2022-hallucination-survey" },
+    { "from": "li-2023-pope", "to": "lin-2014-coco" },
+    { "from": "li-2023-pope", "to": "liu-2023-llava" },
+    { "from": "li-2023-pope", "to": "openai-2023-gpt4" },
+    { "from": "li-2023-pope", "to": "touvron-2023-llama" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "li-2023-pope" },
+    { "from": "chang-2023-llm-eval-survey", "to": "li-2023-pope" },
+    { "from": "gu-2024-llm-judge-survey", "to": "li-2023-pope" },
+    { "from": "yue-2024-mmmu", "to": "li-2023-pope" }
   ]
 }
