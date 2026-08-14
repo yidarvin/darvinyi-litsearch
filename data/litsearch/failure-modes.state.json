@@ -176,6 +176,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "shi-2024-judgedeceiver",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -188,16 +195,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T04:42 park-2023-ai-deception: step -> figures",
-    "2026-08-14T04:44 park-2023-ai-deception: step -> draft",
-    "2026-08-14T04:58 park-2023-ai-deception: step -> critique (round 1)",
-    "2026-08-14T05:14 park-2023-ai-deception: step -> critique (round 2)",
-    "2026-08-14T05:24 park-2023-ai-deception: step -> critique (round 3)",
-    "2026-08-14T05:33 park-2023-ai-deception: step -> verify",
-    "2026-08-14T05:33 park-2023-ai-deception: step -> queue-ops",
-    "2026-08-14T05:54 park-2023-ai-deception: step -> podcast",
-    "2026-08-14T05:54 completed park-2023-ai-deception (verdict=approved, rounds=3)",
-    "2026-08-14T05:54 started yao-2023-llm-lies ('LLM Lies: Hallucinations are not Bugs, but Features as Adversarial Examples')",
     "2026-08-14T05:54 yao-2023-llm-lies: step -> fetch",
     "2026-08-14T05:54 yao-2023-llm-lies: step -> figures",
     "2026-08-14T05:55 yao-2023-llm-lies: step -> figures",
@@ -237,6 +234,16 @@
     "2026-08-14T09:58 deng-2023-masterkey: step -> verify",
     "2026-08-14T09:58 deng-2023-masterkey: step -> queue-ops",
     "2026-08-14T10:19 deng-2023-masterkey: step -> podcast",
-    "2026-08-14T10:19 completed deng-2023-masterkey (verdict=approved, rounds=2)"
+    "2026-08-14T10:19 completed deng-2023-masterkey (verdict=approved, rounds=2)",
+    "2026-08-14T10:26 started shi-2024-judgedeceiver ('Optimization-based Prompt Injection Attack to LLM-as-a-Judge')",
+    "2026-08-14T10:26 shi-2024-judgedeceiver: step -> fetch",
+    "2026-08-14T10:26 shi-2024-judgedeceiver: step -> figures",
+    "2026-08-14T10:32 shi-2024-judgedeceiver: step -> draft",
+    "2026-08-14T10:52 shi-2024-judgedeceiver: step -> critique (round 1)",
+    "2026-08-14T11:14 shi-2024-judgedeceiver: step -> critique (round 2)",
+    "2026-08-14T11:25 shi-2024-judgedeceiver: step -> verify",
+    "2026-08-14T11:25 shi-2024-judgedeceiver: step -> queue-ops",
+    "2026-08-14T11:48 shi-2024-judgedeceiver: step -> podcast",
+    "2026-08-14T11:48 completed shi-2024-judgedeceiver (verdict=approved, rounds=2)"
   ]
 }

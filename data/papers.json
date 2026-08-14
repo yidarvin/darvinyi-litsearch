@@ -11296,6 +11296,22 @@
       "explainer": "papers/deng-2023-masterkey.html",
       "audio_url": "https://pod.darvinyi.com/audio/deng-2023-masterkey.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "shi-2024-judgedeceiver",
+      "short": "JudgeDeceiver",
+      "title": "Optimization-based Prompt Injection Attack to LLM-as-a-Judge",
+      "authors": "Shi, Yuan, Liu, Huang, Zhou, Sun, Gong",
+      "year": 2024,
+      "date": "2024-03",
+      "venue": "CCS 2024",
+      "citation_count": 205,
+      "topic": "Safety & Red-teaming",
+      "author_group": "HUST / Duke",
+      "abstract": "JudgeDeceiver crafts a gradient-optimized 20-token sequence that hijacks LLM-as-a-Judge into selecting an attacker-controlled candidate response, reaching 88-98.9% attack success across four open judges at two-candidate evaluation, and carrying through to LLM-powered search, RLAIF annotation, and agentic tool selection. Static known-answer and perplexity-based defenses catch only a minority of attacks, and success falls sharply once the true number of rival candidates exceeds what the attacker assumed during optimization.",
+      "explainer": "papers/shi-2024-judgedeceiver.html",
+      "audio_url": "https://pod.darvinyi.com/audio/shi-2024-judgedeceiver.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19313,6 +19329,25 @@
     { "from": "chao-2023-pair", "to": "deng-2023-masterkey" },
     { "from": "liu-2023-autodan", "to": "deng-2023-masterkey" },
     { "from": "mazeika-2024-harmbench", "to": "deng-2023-masterkey" },
-    { "from": "chen-2024-struq", "to": "deng-2023-masterkey" }
+    { "from": "chen-2024-struq", "to": "deng-2023-masterkey" },
+    { "from": "shi-2024-judgedeceiver", "to": "openai-2023-gpt4" },
+    { "from": "shi-2024-judgedeceiver", "to": "bai-2022-hh-rlhf" },
+    { "from": "shi-2024-judgedeceiver", "to": "chao-2023-pair" },
+    { "from": "shi-2024-judgedeceiver", "to": "chen-2024-struq" },
+    { "from": "shi-2024-judgedeceiver", "to": "chiang-2023-llm-eval" },
+    { "from": "shi-2024-judgedeceiver", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "shi-2024-judgedeceiver", "to": "greshake-2023-indirect-prompt-injection" },
+    { "from": "shi-2024-judgedeceiver", "to": "huang-2023-metatool" },
+    { "from": "shi-2024-judgedeceiver", "to": "jain-2023-baseline-defenses" },
+    { "from": "shi-2024-judgedeceiver", "to": "jiang-2023-mistral-7b" },
+    { "from": "shi-2024-judgedeceiver", "to": "liu-2023-autodan" },
+    { "from": "shi-2024-judgedeceiver", "to": "liu-2023-open-prompt-injection" },
+    { "from": "shi-2024-judgedeceiver", "to": "mehrotra-2023-tap" },
+    { "from": "shi-2024-judgedeceiver", "to": "perez-2022-ignore-previous-prompt" },
+    { "from": "shi-2024-judgedeceiver", "to": "touvron-2023-llama2" },
+    { "from": "shi-2024-judgedeceiver", "to": "wang-2023-pandalm" },
+    { "from": "shi-2024-judgedeceiver", "to": "zheng-2023-mt-bench" },
+    { "from": "shi-2024-judgedeceiver", "to": "zou-2023-gcg" },
+    { "from": "shi-2024-judgedeceiver", "to": "hong-2023-metagpt" }
   ]
 }
