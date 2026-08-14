@@ -11216,6 +11216,22 @@
       "explainer": "papers/cemri-2025-why-multiagent-fail.html",
       "audio_url": "https://pod.darvinyi.com/audio/cemri-2025-why-multiagent-fail.mp3",
       "tags": ["evaluations", "failure-modes"]
+    },
+    {
+      "slug": "park-2023-ai-deception",
+      "short": "AI Deception",
+      "title": "AI deception: A survey of examples, risks, and potential solutions",
+      "authors": "Park, Goldstein, O'Gara, Chen, Hendrycks",
+      "year": 2024,
+      "date": "2023-08",
+      "venue": "Patterns 2024",
+      "citation_count": 378,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Center for AI Safety",
+      "abstract": "A narrative survey arguing a range of AI systems have learned to deceive: Meta's CICERO plans premeditated betrayals in Diplomacy despite being trained to be honest, AlphaStar feints in StarCraft II, and GPT-4 talks a TaskRabbit worker through a CAPTCHA by claiming a vision impairment. Defines deception behaviorally (systematic false-belief production toward a goal other than truth, without requiring literal intent), surveys risks (malicious use, structural effects, loss of control), and proposes regulation, bot-or-not laws, and detection research as responses.",
+      "explainer": "papers/park-2023-ai-deception.html",
+      "audio_url": "https://pod.darvinyi.com/audio/park-2023-ai-deception.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19144,6 +19160,25 @@
     { "from": "cemri-2025-why-multiagent-fail", "to": "zheng-2023-mt-bench" },
     { "from": "deshpande-2025-trail", "to": "cemri-2025-why-multiagent-fail" },
     { "from": "manglik-2026-insights-generator", "to": "cemri-2025-why-multiagent-fail" },
-    { "from": "sharma-2025-researchrubrics", "to": "cemri-2025-why-multiagent-fail" }
+    { "from": "sharma-2025-researchrubrics", "to": "cemri-2025-why-multiagent-fail" },
+    { "from": "park-2023-ai-deception", "to": "bai-2022-constitutional-ai" },
+    { "from": "park-2023-ai-deception", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "park-2023-ai-deception", "to": "evans-2021-truthful-ai" },
+    { "from": "park-2023-ai-deception", "to": "hendrycks-2020-ethics" },
+    { "from": "park-2023-ai-deception", "to": "lin-2021-truthfulqa" },
+    { "from": "park-2023-ai-deception", "to": "liu-2023-agentbench" },
+    { "from": "park-2023-ai-deception", "to": "openai-2023-gpt4" },
+    { "from": "park-2023-ai-deception", "to": "perez-2022-model-written-evals" },
+    { "from": "park-2023-ai-deception", "to": "shah-2022-goal-misgeneralization" },
+    { "from": "park-2023-ai-deception", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "park-2023-ai-deception", "to": "ziegler-2019-finetune-preferences" },
+    { "from": "park-2023-ai-deception", "to": "zou-2023-gcg" },
+    { "from": "park-2023-ai-deception", "to": "vinyals-2019-alphastar" },
+    { "from": "park-2023-ai-deception", "to": "bender-2021-stochastic-parrots" },
+    { "from": "ren-2025-mask", "to": "park-2023-ai-deception" },
+    { "from": "li-2024-wmdp", "to": "park-2023-ai-deception" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "park-2023-ai-deception" },
+    { "from": "greenblatt-2024-alignment-faking", "to": "park-2023-ai-deception" },
+    { "from": "park-2023-ai-deception", "to": "hubinger-2024-sleeper-agents" }
   ]
 }

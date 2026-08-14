@@ -141,6 +141,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "park-2023-ai-deception",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -153,17 +160,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: 1 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> revise",
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> critique (round 3)",
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> verify",
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> queue-ops",
-    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> podcast",
-    "2026-08-13T23:59 completed tonmoy-2024-hallucination-mitigation (verdict=approved, rounds=3)",
-    "2026-08-14T00:03 started elazar-2021-pararel ('Measuring and Improving Consistency in Pretrained Language Models')",
-    "2026-08-14T00:03 elazar-2021-pararel: step -> fetch",
-    "2026-08-14T00:03 elazar-2021-pararel: step -> figures",
     "2026-08-14T00:15 elazar-2021-pararel: step -> draft",
     "2026-08-14T00:18 elazar-2021-pararel: step -> critique (round 1)",
     "2026-08-14T00:30 elazar-2021-pararel: step -> critique (round 2)",
@@ -202,6 +198,17 @@
     "2026-08-14T04:17 cemri-2025-why-multiagent-fail: step -> verify",
     "2026-08-14T04:17 cemri-2025-why-multiagent-fail: step -> queue-ops",
     "2026-08-14T04:42 cemri-2025-why-multiagent-fail: step -> podcast",
-    "2026-08-14T04:42 completed cemri-2025-why-multiagent-fail (verdict=approved, rounds=2)"
+    "2026-08-14T04:42 completed cemri-2025-why-multiagent-fail (verdict=approved, rounds=2)",
+    "2026-08-14T04:42 started park-2023-ai-deception ('AI deception: A survey of examples, risks, and potential solutions')",
+    "2026-08-14T04:42 park-2023-ai-deception: step -> fetch",
+    "2026-08-14T04:42 park-2023-ai-deception: step -> figures",
+    "2026-08-14T04:44 park-2023-ai-deception: step -> draft",
+    "2026-08-14T04:58 park-2023-ai-deception: step -> critique (round 1)",
+    "2026-08-14T05:14 park-2023-ai-deception: step -> critique (round 2)",
+    "2026-08-14T05:24 park-2023-ai-deception: step -> critique (round 3)",
+    "2026-08-14T05:33 park-2023-ai-deception: step -> verify",
+    "2026-08-14T05:33 park-2023-ai-deception: step -> queue-ops",
+    "2026-08-14T05:54 park-2023-ai-deception: step -> podcast",
+    "2026-08-14T05:54 completed park-2023-ai-deception (verdict=approved, rounds=3)"
   ]
 }
