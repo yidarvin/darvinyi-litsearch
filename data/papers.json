@@ -11360,6 +11360,22 @@
       "explainer": "papers/lynch-2025-agentic-misalignment.html",
       "audio_url": "https://pod.darvinyi.com/audio/lynch-2025-agentic-misalignment.mp3",
       "tags": ["evaluations", "failure-modes"]
+    },
+    {
+      "slug": "malmqvist-2024-sycophancy-survey",
+      "short": "Sycophancy Survey",
+      "title": "Sycophancy in Large Language Models: Causes and Mitigations",
+      "authors": "Lars Malmqvist",
+      "year": 2024,
+      "date": "2024-11",
+      "venue": "arXiv",
+      "citation_count": 152,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Independent",
+      "abstract": "A single-author review synthesizing measurement approaches, causes, impacts, and a taxonomy of mitigation techniques for LLM sycophancy, framing it alongside hallucination and bias — though five sentences across three sections cite the wrong authors for a correctly-numbered reference.",
+      "explainer": "papers/malmqvist-2024-sycophancy-survey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/malmqvist-2024-sycophancy-survey.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19445,6 +19461,9 @@
     { "from": "lynch-2025-agentic-misalignment", "to": "perez-2022-red-teaming-with-lms" },
     { "from": "lynch-2025-agentic-misalignment", "to": "perez-2022-model-written-evals" },
     { "from": "lynch-2025-agentic-misalignment", "to": "shah-2022-goal-misgeneralization" },
-    { "from": "lynch-2025-agentic-misalignment", "to": "baker-2025-monitoring-reasoning" }
+    { "from": "lynch-2025-agentic-misalignment", "to": "baker-2025-monitoring-reasoning" },
+    { "from": "malmqvist-2024-sycophancy-survey", "to": "wei-2023-sycophancy-synthetic" },
+    { "from": "malmqvist-2024-sycophancy-survey", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "zheng-2025-webguard", "to": "malmqvist-2024-sycophancy-survey" }
   ]
 }

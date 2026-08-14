@@ -204,6 +204,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "malmqvist-2024-sycophancy-survey",
+      "rounds": 1,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -216,15 +223,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T09:06 started deng-2023-masterkey ('MASTERKEY: Automated Jailbreaking of Large Language Model Chatbots')",
-    "2026-08-14T09:06 deng-2023-masterkey: step -> fetch",
-    "2026-08-14T09:06 deng-2023-masterkey: step -> figures",
-    "2026-08-14T09:07 deng-2023-masterkey: step -> draft",
-    "2026-08-14T09:25 deng-2023-masterkey: step -> critique (round 1)",
-    "2026-08-14T09:44 deng-2023-masterkey: step -> critique (round 2)",
-    "2026-08-14T09:58 deng-2023-masterkey: step -> verify",
-    "2026-08-14T09:58 deng-2023-masterkey: step -> queue-ops",
-    "2026-08-14T10:19 deng-2023-masterkey: step -> podcast",
     "2026-08-14T10:19 completed deng-2023-masterkey (verdict=approved, rounds=2)",
     "2026-08-14T10:26 started shi-2024-judgedeceiver ('Optimization-based Prompt Injection Attack to LLM-as-a-Judge')",
     "2026-08-14T10:26 shi-2024-judgedeceiver: step -> fetch",
@@ -265,6 +263,15 @@
     "2026-08-14T14:48 lynch-2025-agentic-misalignment: step -> verify",
     "2026-08-14T14:48 lynch-2025-agentic-misalignment: step -> queue-ops",
     "2026-08-14T15:07 lynch-2025-agentic-misalignment: step -> podcast",
-    "2026-08-14T15:07 completed lynch-2025-agentic-misalignment (verdict=approved, rounds=2)"
+    "2026-08-14T15:07 completed lynch-2025-agentic-misalignment (verdict=approved, rounds=2)",
+    "2026-08-14T15:12 started malmqvist-2024-sycophancy-survey ('Sycophancy in Large Language Models: Causes and Mitigations')",
+    "2026-08-14T15:12 malmqvist-2024-sycophancy-survey: step -> fetch",
+    "2026-08-14T15:12 malmqvist-2024-sycophancy-survey: step -> figures",
+    "2026-08-14T15:13 malmqvist-2024-sycophancy-survey: step -> draft",
+    "2026-08-14T15:27 malmqvist-2024-sycophancy-survey: step -> critique (round 1)",
+    "2026-08-14T15:37 malmqvist-2024-sycophancy-survey: step -> verify",
+    "2026-08-14T15:37 malmqvist-2024-sycophancy-survey: step -> queue-ops",
+    "2026-08-14T15:56 malmqvist-2024-sycophancy-survey: step -> podcast",
+    "2026-08-14T15:56 completed malmqvist-2024-sycophancy-survey (verdict=approved, rounds=1)"
   ]
 }

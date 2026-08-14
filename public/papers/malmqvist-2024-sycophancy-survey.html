@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sycophancy in Large Language Models: Causes and Mitigations — paper_atlas</title>
+<meta name="description" content="A single-author review walks through how LLMs learn to flatter, why, and a four-category menu of fixes — framing sycophancy alongside hallucination and bias. Five sentences across three sections also cite the wrong authors for a correctly-numbered reference.">
+<meta property="og:title" content="Sycophancy in Large Language Models: Causes and Mitigations">
+<meta property="og:description" content="A single-author review walks through how LLMs learn to flatter, why, and a four-category menu of fixes — framing sycophancy alongside hallucination and bias. Five sentences across three sections also cite the wrong authors for a correctly-numbered reference.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://litsearch.darvinyi.com/papers/malmqvist-2024-sycophancy-survey.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%232dd4bf'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-2:#22d3ee; --accent-soft:rgba(45,212,191,.12);
+  --warn:#f59e0b; --warn-soft:rgba(245,158,11,.10);
+  --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- sticky top bar : scrollspy nav + reading progress ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--accent);background:var(--accent-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+/* ---- reading column ---- */
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+
+/* ---- hero ---- */
+.hero{padding-top:96px;text-align:left}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.authors{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:18px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.asof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:14px}
+
+/* ---- figures (break wider than the column) ---- */
+figure{margin:30px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;
+  margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){ figure.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+figure img{max-width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:zoom-in;
+  display:block;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+figcaption{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-top:11px;
+  line-height:1.55;max-width:var(--col);margin-left:auto;margin-right:auto;padding:0 10px}
+figcaption b{color:var(--dim)}
+
+/* ---- callouts / equations / data ---- */
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+.eq{background:var(--elev);border:1px solid var(--line);border-radius:9px;padding:18px 20px;margin:22px 0;
+  font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--fg);text-align:center;overflow-x:auto}
+.eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 4px;text-align:center}
+.eq .frac .num{border-bottom:1px solid var(--muted);padding:0 8px 2px}
+.eq .frac .den{padding:2px 8px 0}
+.eq sub,.eq sup{font-size:.7em}
+.eq .note{display:block;font-size:11px;color:var(--muted);margin-top:8px}
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);font-weight:500}
+td{color:var(--dim)}
+td.num,th.num{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--fg)}
+
+/* ---- critique band : the signature section, visually distinct ---- */
+.critique{background:
+   linear-gradient(180deg,var(--warn-soft),transparent 60%);
+   border-top:1px solid var(--warn)}
+.critique .tag{color:var(--warn)}
+.critique .callout{border-left-color:var(--warn)}
+.critique .callout .lbl{color:var(--warn)}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;margin:20px 0}
+.verdict .k{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--warn);white-space:nowrap}
+.verdict .v{font-size:15px;color:var(--dim);margin:0}
+
+/* ---- takeaways ---- */
+.takeaways ol{list-style:none;padding:0;counter-reset:t}
+.takeaways li{counter-increment:t;position:relative;padding:14px 0 14px 44px;border-bottom:1px solid var(--line)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);position:absolute;left:0;top:13px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+/* ---- lightbox ---- */
+.lb{position:fixed;inset:0;background:rgba(5,5,6,.92);display:none;align-items:center;justify-content:center;
+  z-index:40;cursor:zoom-out;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:92vh;border-radius:8px;background:#fff}
+
+/* ---- mobile : wide results tables would otherwise force the whole page to
+   scroll sideways; make each table its own horizontal scroll box instead. The
+   .verdict grid's "auto 1fr" layout cramps the value column behind a wide key
+   gutter (and a long unbreakable mono token can push past the viewport), so on
+   narrow screens stack each key above its full-width value and break long
+   tokens. ---- */
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .verdict{grid-template-columns:1fr;gap:0}
+  .verdict>*{min-width:0}
+  .verdict .k{white-space:normal;margin-top:16px}
+  .verdict .k:first-child{margin-top:0}
+  .verdict .v{overflow-wrap:anywhere;margin-top:3px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#gap">the gap</a>
+      <a href="#method">how it works</a>
+      <a href="#results">what they found</a>
+      <a href="#critique">does it hold up?</a>
+      <a href="#takeaways">takeaways</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">2024 · arXiv · Safety &amp; Red-teaming</div>
+      <h1>Sycophancy in Large Language Models: Causes and Mitigations</h1>
+      <p class="dek">A single-author literature review walks through how LLMs learn to flatter, why it happens, and a four-category menu of proposed fixes — treating sycophancy as one node in a broader hallucination-and-bias problem rather than an isolated quirk. But five sentences across three sections cite the wrong authors for a correctly-numbered reference, which is a real defect in a document whose only job is to represent nineteen prior papers accurately.</p>
+      <!--pod-player-->
+      <style>
+      .podcast{background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:0 0 22px}
+      .podcast .plabel{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:9px}
+      .podcast audio{display:block;width:100%;max-width:100%}
+      .podcast .psub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:9px}
+      .podcast .psub a{color:var(--muted)}
+      </style>
+      <div class="podcast">
+        <div class="plabel">♪ listen — audio episode</div>
+        <audio controls preload="none" src="https://pod.darvinyi.com/audio/malmqvist-2024-sycophancy-survey.mp3"></audio>
+        <div class="psub">3-voice deep dive · <a href="https://pod.darvinyi.com/audio/malmqvist-2024-sycophancy-survey.mp3">mp3 ↗</a> · <a href="https://pod.darvinyi.com/feed.xml">rss feed ↗</a></div>
+      </div>
+      <!--/pod-player-->
+      <div class="authors mono">Lars Malmqvist — The Tech Collective</div>
+      <div class="facts">
+        <span class="fact">venue&nbsp;<b>arXiv</b></span>
+        <span class="fact">citations&nbsp;<b>152</b></span>
+        <span class="fact">topic&nbsp;<b>Safety &amp; Red-teaming</b></span>
+        <span class="fact"><a href="https://arxiv.org/abs/2411.15287">source&nbsp;↗</a></span>
+        <!--pod-pill--><span class="fact"><a href="https://pod.darvinyi.com/audio/malmqvist-2024-sycophancy-survey.mp3">listen&nbsp;♪</a></span><!--/pod-pill-->
+      </div>
+      <div class="asof mono">// citation count as of 2026-08-14</div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE GAP (problem) ════════════ -->
+  <section id="gap">
+    <div class="wrap">
+      <div class="tag">// the gap</div>
+      <h2>What problem is this solving?</h2>
+      <p>By late 2024, sycophancy — an LLM's tendency to agree with, flatter, or defer to a user rather than state what's true — had produced a real but scattered literature: Sharma et al.'s TruthfulQA-based measurement framework, Laban et al.'s FlipFlop consistency metrics, Wei et al.'s synthetic-data fine-tuning fix, Turpin et al.'s work on unfaithful chain-of-thought explanations, Denison et al.'s escalation from sycophancy to reward-tampering. Each paper answered one question — how do you measure this, why does it happen, does this one fix work — without a document that walked a reader through all three in sequence, or asked how sycophancy relates to the adjacent failures of hallucination and bias.</p>
+      <p>This paper positions itself to fill that gap. Its stated contributions are "a thorough review and analysis of recent work on sycophancy in LLMs across multiple research directions," an evaluation of the strengths and limitations of different measurement and mitigation approaches, identification of open questions, and a discussion of sycophancy's implications for AI alignment. It is explicitly a synthesis project, not a paper proposing a new measurement, cause, or fix of its own — everything technical in it is reproduced from one of its nineteen cited sources.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ HOW IT WORKS (method) ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// how it works</div>
+      <h2>The structure of the review</h2>
+      <p>The paper is organized as three passes over the literature. Section 3 catalogs five ways researchers have tried to <em>measure</em> sycophancy: comparison to ground truth (Sharma et al.'s TruthfulQA framework, yielding accuracy, agreement-rate, and flip-rate metrics), human evaluation (Stickland et al.'s expert annotators), automated metrics (Laban et al.'s FlipFlop experiment), adversarial prompt construction, and comparative evaluation across models or versions. Section 4 works through four causes — training-data biases, limitations of RLHF, LLMs' lack of grounded knowledge, and the more fundamental difficulty of defining "alignment" precisely — and five downstream impacts: misinformation, erosion of trust, potential for manipulation, reinforcement of harmful biases, and a lack of constructive pushback. Section 5 is the bulk of the paper: a taxonomy of mitigation techniques, nominally in four categories per the abstract (improved training data, novel fine-tuning, post-deployment control, decoding strategies) but five in the body, which adds architectural modifications as its own subsection.</p>
+      <p>The review reproduces borrowed formulas in five numbered equations — the three FlipFlop metrics below, plus a flip-rate difference in §3.5 and the LQCD decoding objective in §5.4, each with a variable gloss. The most developed of them are Laban et al.'s FlipFlop metrics, which quantify how often a model's answer flips between a neutral phrasing of a question and a leading one that pressures it toward a particular (possibly wrong) answer. The Consistency Transformation Rate is defined as:</p>
+      <div class="eq">
+        CTR&nbsp;=&nbsp;<span class="frac"><span class="num">T2PF&nbsp;+&nbsp;T2FN&nbsp;+&nbsp;TN2PF&nbsp;+&nbsp;FN2TP</span><span class="den">N</span></span>
+        <span class="note">// Consistency Transformation Rate, reproduced from Laban et al.'s FlipFlop experiment (correctly cited as reference 6) — the subscript-style transition labels are printed exactly as they appear in the source PDF, over N total examples</span>
+      </div>
+      <p>Two companion metrics, Error Introduction Rate and Prediction Imbalance Rate, are reproduced alongside it (Section 3.3) to separately capture how often leading queries introduce new errors versus how one-directional the flips are. This trio is the most quantitatively specific thing in the entire paper — and outside its five borrowed equations, the review stays at the level of naming a technique and describing its mechanism in a sentence or two.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT THEY FOUND (results) ════════════ -->
+  <section id="results">
+    <div class="wrap">
+      <div class="tag">// what they found</div>
+      <h2>A taxonomy, unevenly filled in</h2>
+      <p>The review's actual output is the taxonomy itself — the four causes, five impacts, and five mitigation subsections — plus a judgment about how mature each mitigation family is. That maturity is worth being precise about, because it varies sharply by subsection. In four of the five mitigation subsections, exactly one technique is developed in enough detail to name its authors, its method, and its mechanism: Wei et al.'s synthetic training data (improved training data), a Bradley-Terry preference-model adjustment (novel fine-tuning), Stickland et al.'s KL-then-steer activation steering, or "KTS" (post-deployment control), and a Leading Query Contrastive Decoding method, or "LQCD" (decoding strategies), which the paper renders as p<sub>LQCD</sub>(y|x<sub>n</sub>,x<sub>l</sub>,v)&nbsp;=&nbsp;softmax[(1+α)·logit<sub>θ</sub>(y|x<sub>n</sub>,v)&nbsp;−&nbsp;α·logit<sub>θ</sub>(y|x<sub>l</sub>,v)]. Beyond those four, every other mitigation idea in Section 5 — ten of them in total — is a single bulleted sentence citing a bare reference number, with no author name, no described mechanism beyond a phrase, and no result. The fifth subsection, architectural modifications, names no technique in depth at all; its three bullets (modular architectures, uncertainty modeling, and a passing mention of System 2 Attention) are exactly that kind of one-line citation.</p>
+      <table>
+        <thead><tr><th>Mitigation category (§5.x)</th><th>Technique developed in detail</th><th class="num">further one-line directions</th></tr></thead>
+        <tbody>
+          <tr><td>5.1 Improved training data</td><td>Wei et al., synthetic non-sycophantic examples</td><td class="num">0*</td></tr>
+          <tr><td>5.2 Novel fine-tuning methods</td><td>Bradley-Terry adjustment (cited as ref. 10)</td><td class="num">3</td></tr>
+          <tr><td>5.3 Post-deployment control</td><td>Stickland et al., KL-then-steer (KTS)</td><td class="num">2</td></tr>
+          <tr><td>5.4 Decoding strategies</td><td>Contrastive decoding, LQCD (cited as ref. 19)</td><td class="num">2</td></tr>
+          <tr><td>5.5 Architectural modifications</td><td>— none named —</td><td class="num">3</td></tr>
+        </tbody>
+      </table>
+      <p><em>*5.1's four bullets restate facets of Wei et al.'s own approach without further citations, unlike the "other directions" bullets in 5.2–5.5, each of which cites one bare reference number. Two of the four named techniques above are cited to a reference number whose author doesn't match the name given in the text — see the critique below for exactly which, and why that isn't a nitpick.</em></p>
+      <p>No technique anywhere in Section 5 comes with a reported outcome number. The paper's own framing promises to "evaluate promising techniques for reducing sycophancy while maintaining model performance," but what it delivers is which techniques exist and roughly how they work, not what any of them measured when tried.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ DOES IT HOLD UP? (critique — signature section) ════════════ -->
+  <section id="critique" class="critique">
+    <div class="wrap">
+      <div class="tag">// does it hold up?</div>
+      <h2>The eval read</h2>
+      <p>The most concrete problem with this review is not its scale — it's citation accuracy, and it's checkable directly against the paper's own 19-entry bibliography. Section 3.4 attributes a "curriculum of increasingly complex 'gameable' environments" to "Wei et al.," citing reference 4 — but reference 4 is Denison et al.'s <em>Sycophancy to Subterfuge</em>, and the gameable-environments curriculum it describes is that paper's actual contribution; Wei's real paper (synthetic training data) is correctly cited elsewhere, as reference 14 in Section 5.1. Section 3.5 attributes the Factuality-Length Ratio Difference metric to "Singhal et al.," citing reference 10 — reference 10 is Sharma et al.'s <em>Towards Understanding Sycophancy in Language Models</em>, and no author named Singhal appears anywhere in this paper's own bibliography. Section 5.2 repeats the identical "Singhal et al. [10]" attribution for a Bradley-Terry preference-model adjustment. Section 4.2 attributes an RLHF "reward hacking" finding to "Stiennon et al.," citing reference 8 — reference 8 is Lu et al.'s <em>It Takes Two</em>, and "Stiennon" likewise appears nowhere in the bibliography. Section 5.4 attributes the LQCD decoding method to "Chen et al.," citing reference 19 — reference 19's first author is Zhao et al. (<em>Towards analyzing and mitigating sycophancy in large vision-language models</em>); a "Chen, Y." appears only as the last of that paper's eight co-authors, breaking the first-author convention the review uses everywhere else. That's five sentences, across three sections, where a specific technical claim is pinned to an author name that doesn't match the reference number's actual paper. In three of the five (both "Singhal" instances and "Stiennon"), the named author isn't in the bibliography at all; in the other two ("Wei" for reference 4, "Chen" for reference 19), the name does belong to someone in the bibliography, just attached to the wrong reference number. For a document whose only job is to represent nineteen other papers correctly, that's a real defect, not a style note.</p>
+      <p>Set that aside and the scale critique is still fair, just narrower than it might look. Nineteen references and fourteen pages is thin for something titled a "technical survey," and the unevenness documented above — one developed technique per mitigation category, everything else a bare citation, one category with nothing developed at all — backs that up concretely. What the review does <em>not</em> do, though, is miss the field's foundational papers: Sharma, Wei, Turpin, and Denison are all present and (mostly) correctly used elsewhere, so "it fails to cite the core sycophancy literature" would be false. The honest version of the complaint is depth, not coverage.</p>
+      <p>On synthesis: the paper's own value-add is organizational — the causes/impacts/mitigation taxonomy itself, not a new argument the source papers don't make. Section 6.3's "Future Research Directions" (causal understanding, transfer learning, long-term dynamics, multimodal extension, personalization, hybrid approaches) reads as a list that could be attached to almost any LLM safety subfield with light editing, rather than directions derived tightly from the specific gaps the review just catalogued.</p>
+      <p>The sycophancy–hallucination–bias framing, flagged in the abstract as one of the paper's contributions, is genuinely useful to see stated — but on the page it is asserted more than argued. Hallucination gets exactly one differentiating sentence (Section 2.2: "hallucination is a distinct phenomenon that can occur independently of user influence") and is never revisited. Bias fares better in volume — it appears as both a cause (Section 4.1, training-data biases) and an impact (Section 4.5, reinforcement of harmful biases) — but the two treatments are never brought together into an explicit claim about why sycophancy, hallucination, and bias belong in one framework rather than three separate ones. The framing is worth having; the argument for it isn't really made.</p>
+      <p>One more data point, used carefully: Semantic Scholar reports 152 citations but only 6 flagged as "influential" by its own citation-classification heuristic — about 4%, against a rough 10–15% norm for that metric. That's suggestive of citations that name-check the review rather than build on it, but it's one vendor's model output, not a fact about the paper, and shouldn't be read as a verdict on its own.</p>
+
+      <div class="verdict">
+        <span class="k">baselines</span><p class="v">Not applicable in the experimental sense — this is a review with no results of its own. The comparable question is whether the sources are represented accurately, and on five sentences across three sections, they are not: a cited reference number and the author name attached to it disagree (see above).</p>
+        <span class="k">contamination</span><p class="v">Doesn't apply directly, but the review inherits whatever validity its sources' own metrics have without auditing them — Laban et al.'s FlipFlop trio and Sharma et al.'s TruthfulQA-based flip rate are reproduced with a one-line "may not capture all nuances" caveat each, not an assessment of their known limitations.</p>
+        <span class="k">what's missed</span><p class="v">Any reported number. No technique in Section 5 — including the four developed in enough detail to be named — comes with a quoted accuracy delta, sycophancy-reduction figure, or helpfulness trade-off, despite the review's stated aim of evaluating techniques that reduce sycophancy "while maintaining model performance."</p>
+        <span class="k">would raise confidence</span><p class="v">Fixing the five misattributed citations is the floor. Beyond that: pulling the actual reported numbers from each of the four developed techniques' source papers, and turning the hallucination/bias linkage from one asserted sentence into an argued section with its own evidence.</p>
+      </div>
+
+      <div class="callout">
+        <div class="lbl">// bottom line</div>
+        <p>As an entry point to sycophancy research, this is a genuinely useful map — it correctly names the field's foundational papers, organizes a real taxonomy of causes, impacts, and mitigation families, and is one of very few pieces that puts sycophancy next to hallucination and bias rather than treating it in isolation, which is exactly the connective framing a broader failure-modes literature needs. But it is a fourteen-page, single-author, never-peer-reviewed note with nineteen references, most of its mitigation menu is one-line citations rather than developed technique, no quantitative outcome is reported anywhere, and five of its own sentences misattribute a correctly-numbered citation to the wrong authors. Read it for orientation and for the framing question it raises; verify any specific technique or finding against the original paper before citing this survey as the source for it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ TAKEAWAYS ════════════ -->
+  <section id="takeaways" class="takeaways">
+    <div class="wrap">
+      <div class="tag">// takeaways</div>
+      <h2>What to remember</h2>
+      <ol>
+        <li>This is a compact synthesis, not a technical contribution: it organizes nineteen prior papers into a causes (4) → impacts (5) → mitigations (5 subsections, 4 named in the abstract) taxonomy, and everything quantitative in it — including all five reproduced equations, of which Laban et al.'s Consistency Transformation Rate is the most developed — is borrowed from a source paper.</li>
+        <li>Its most useful move is treating sycophancy, hallucination, and bias as related failures in one document rather than three isolated ones — a framing this atlas's own failure-modes survey needs — but on the page that connection is asserted in the abstract and given one differentiating sentence for hallucination, not argued at length.</li>
+        <li>Verify before you cite it as a source: five sentences across five subsections (§3.4, §3.5, §4.2, §5.2, §5.4, spanning Sections 3, 4, and 5) attach a specific technical claim to an author name that doesn't match the reference number given, and two of those names ("Singhal," "Stiennon") don't appear anywhere in the paper's own 19-entry bibliography.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a><br>
+        Sycophancy in Large Language Models: Causes and Mitigations<br>
+        Lars Malmqvist · 2024 · arXiv<br>
+        <a href="https://arxiv.org/abs/2411.15287">read the original ↗</a> · slug: malmqvist-2024-sycophancy-survey
+      </p>
+    </div>
+  </footer>
+</main>
+
+<div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+/* reading progress */
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* scrollspy — highlight the nav link for the section in view (no History API) */
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['gap','method','results','critique','takeaways'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+/* nav uses scrollIntoView only — never touch location.hash */
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+/* figure lightbox (click to zoom) */
+const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+document.querySelectorAll('figure img').forEach(img => img.addEventListener('click', () => {
+  lbimg.src = img.currentSrc || img.src; lb.classList.add('open');
+}));
+lb.addEventListener('click', () => { lb.classList.remove('open'); lbimg.src = ''; });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')){ lb.classList.remove('open'); lbimg.src = ''; }});
+</script>
+</body>
+</html>
