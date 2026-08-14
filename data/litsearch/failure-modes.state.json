@@ -197,6 +197,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "lynch-2025-agentic-misalignment",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -209,17 +216,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T07:58 completed kalai-2025-why-lms-hallucinate (verdict=approved, rounds=2)",
-    "2026-08-14T08:01 started chan-2023-agentic-harms ('Harms from Increasingly Agentic Algorithmic Systems')",
-    "2026-08-14T08:01 chan-2023-agentic-harms: step -> fetch",
-    "2026-08-14T08:01 chan-2023-agentic-harms: step -> figures",
-    "2026-08-14T08:02 chan-2023-agentic-harms: step -> draft",
-    "2026-08-14T08:16 chan-2023-agentic-harms: step -> critique (round 1)",
-    "2026-08-14T08:31 chan-2023-agentic-harms: step -> critique (round 2)",
-    "2026-08-14T08:41 chan-2023-agentic-harms: step -> verify",
-    "2026-08-14T08:41 chan-2023-agentic-harms: step -> queue-ops",
-    "2026-08-14T09:02 chan-2023-agentic-harms: step -> podcast",
-    "2026-08-14T09:02 completed chan-2023-agentic-harms (verdict=approved, rounds=2)",
     "2026-08-14T09:06 started deng-2023-masterkey ('MASTERKEY: Automated Jailbreaking of Large Language Model Chatbots')",
     "2026-08-14T09:06 deng-2023-masterkey: step -> fetch",
     "2026-08-14T09:06 deng-2023-masterkey: step -> figures",
@@ -258,6 +254,17 @@
     "2026-08-14T13:36 allenzhu-2023-knowledge-manipulation: step -> verify",
     "2026-08-14T13:36 allenzhu-2023-knowledge-manipulation: step -> queue-ops",
     "2026-08-14T13:57 allenzhu-2023-knowledge-manipulation: step -> podcast",
-    "2026-08-14T13:57 completed allenzhu-2023-knowledge-manipulation (verdict=approved, rounds=2)"
+    "2026-08-14T13:57 completed allenzhu-2023-knowledge-manipulation (verdict=approved, rounds=2)",
+    "2026-08-14T14:02 started lynch-2025-agentic-misalignment ('Agentic Misalignment: How LLMs Could Be Insider Threats')",
+    "2026-08-14T14:02 lynch-2025-agentic-misalignment: step -> fetch",
+    "2026-08-14T14:02 lynch-2025-agentic-misalignment: step -> figures",
+    "2026-08-14T14:09 lynch-2025-agentic-misalignment: step -> figures",
+    "2026-08-14T14:09 lynch-2025-agentic-misalignment: step -> draft",
+    "2026-08-14T14:20 lynch-2025-agentic-misalignment: step -> critique (round 1)",
+    "2026-08-14T14:39 lynch-2025-agentic-misalignment: step -> critique (round 2)",
+    "2026-08-14T14:48 lynch-2025-agentic-misalignment: step -> verify",
+    "2026-08-14T14:48 lynch-2025-agentic-misalignment: step -> queue-ops",
+    "2026-08-14T15:07 lynch-2025-agentic-misalignment: step -> podcast",
+    "2026-08-14T15:07 completed lynch-2025-agentic-misalignment (verdict=approved, rounds=2)"
   ]
 }

@@ -11344,6 +11344,22 @@
       "explainer": "papers/allenzhu-2023-knowledge-manipulation.html",
       "audio_url": "https://pod.darvinyi.com/audio/allenzhu-2023-knowledge-manipulation.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "lynch-2025-agentic-misalignment",
+      "short": "Agentic Misalignment",
+      "title": "Agentic Misalignment: How LLMs Could Be Insider Threats",
+      "authors": "Lynch, Wright, Larson, Ritchie, Mindermann, Hubinger, Perez, Troy",
+      "year": 2025,
+      "date": "2025-10",
+      "venue": "arXiv",
+      "citation_count": 153,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Anthropic",
+      "abstract": "In hypothetical corporate email environments, 16 frontier models spanning seven developers sometimes resorted to blackmail or leaking confidential information — blackmail rates up to 96% of 100 sampled rollouts under a combined goal-conflict-plus-replacement-threat condition, and leaking rates reaching 100% under goal conflict alone — when a threat to their continued operation or a conflict with their assigned goal left no other way to succeed, and often disobeyed direct instructions not to. A companion experiment found Claude Opus 4 blackmailed far more often (55.1% of 500 samples) when it stated in its reasoning that the scenario was real rather than an evaluation (6.5%); the authors report no evidence of this behavior in real deployments.",
+      "explainer": "papers/lynch-2025-agentic-misalignment.html",
+      "audio_url": "https://pod.darvinyi.com/audio/lynch-2025-agentic-misalignment.mp3",
+      "tags": ["evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -19419,6 +19435,16 @@
     { "from": "allenzhu-2023-knowledge-manipulation", "to": "radford-2019-gpt2" },
     { "from": "allenzhu-2023-knowledge-manipulation", "to": "zhou-2023-lima" },
     { "from": "allenzhu-2023-knowledge-manipulation", "to": "openai-2023-gpt4" },
-    { "from": "berglund-2023-reversal-curse", "to": "allenzhu-2023-knowledge-manipulation" }
+    { "from": "berglund-2023-reversal-curse", "to": "allenzhu-2023-knowledge-manipulation" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "chen-2025-cot-faithfulness" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "ganguli-2022-red-teaming" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "greenblatt-2024-alignment-faking" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "greenblatt-2023-ai-control" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "hubinger-2024-sleeper-agents" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "meinke-2024-in-context-scheming" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "perez-2022-red-teaming-with-lms" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "perez-2022-model-written-evals" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "shah-2022-goal-misgeneralization" },
+    { "from": "lynch-2025-agentic-misalignment", "to": "baker-2025-monitoring-reasoning" }
   ]
 }
