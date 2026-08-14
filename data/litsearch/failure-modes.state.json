@@ -113,6 +113,13 @@
         "3 rounds, 6 P1. First deliberately UNTAGGED node the pipeline has produced -- the tagging rule set on ji-2022 three papers ago predicted no tag for this one prospectively, and both builder and critic confirmed it against the section list (no section taxonomizes hallucination itself; 'intrinsic and extrinsic' appears exactly once, inside a paragraph about someone else's technique). Processing != membership. r1: three of five blockers were quantified absence claims overshooting a true narrower point, one self-refuting inside a sentence (preference optimization 'never appears anywhere' immediately followed by the entry containing Direct Preference Optimization). All fixed by narrowing. r2: one regression from the B5 fix -- two introduction glosses described as two paragraphs apart when indent geometry shows one unbroken paragraph. Also caught a third reported-but-not-applied fix this session. Version note handles an unusual shape: v3 REMOVED six values and added none; page greps clean against all six, after stripping base64 image data which otherwise manufactures false hits. 5 edges, two more substring traps cleared (sixth and seventh forms). Queued 2."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "elazar-2021-pararel",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -125,16 +132,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T20:12 turpin-2023-unfaithful-cot: step -> critique (round 2)",
-    "2026-08-13T20:16 turpin-2023-unfaithful-cot: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> verify",
-    "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> queue-ops",
-    "2026-08-13T20:17 turpin-2023-unfaithful-cot: step -> podcast",
-    "2026-08-13T20:31 completed turpin-2023-unfaithful-cot (verdict=approved, rounds=2)",
-    "2026-08-13T20:39 started xu-2024-hallucination-inevitable ('Hallucination is Inevitable: An Innate Limitation of Large Language Models')",
-    "2026-08-13T20:39 xu-2024-hallucination-inevitable: step -> fetch",
-    "2026-08-13T20:39 xu-2024-hallucination-inevitable: step -> figures",
-    "2026-08-13T20:46 xu-2024-hallucination-inevitable: step -> draft",
     "2026-08-13T21:06 xu-2024-hallucination-inevitable: step -> draft",
     "2026-08-13T21:06 xu-2024-hallucination-inevitable: step -> critique (round 1)",
     "2026-08-13T21:19 xu-2024-hallucination-inevitable: step -> critique (round 2)",
@@ -174,6 +171,16 @@
     "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> verify",
     "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> queue-ops",
     "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> podcast",
-    "2026-08-13T23:59 completed tonmoy-2024-hallucination-mitigation (verdict=approved, rounds=3)"
+    "2026-08-13T23:59 completed tonmoy-2024-hallucination-mitigation (verdict=approved, rounds=3)",
+    "2026-08-14T00:03 started elazar-2021-pararel ('Measuring and Improving Consistency in Pretrained Language Models')",
+    "2026-08-14T00:03 elazar-2021-pararel: step -> fetch",
+    "2026-08-14T00:03 elazar-2021-pararel: step -> figures",
+    "2026-08-14T00:15 elazar-2021-pararel: step -> draft",
+    "2026-08-14T00:18 elazar-2021-pararel: step -> critique (round 1)",
+    "2026-08-14T00:30 elazar-2021-pararel: step -> critique (round 2)",
+    "2026-08-14T00:37 elazar-2021-pararel: step -> verify",
+    "2026-08-14T00:37 elazar-2021-pararel: step -> queue-ops",
+    "2026-08-14T00:57 elazar-2021-pararel: step -> podcast",
+    "2026-08-14T00:57 completed elazar-2021-pararel (verdict=approved, rounds=2)"
   ]
 }

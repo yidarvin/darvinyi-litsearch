@@ -11152,6 +11152,22 @@
       "abstract": "Sorts 32 named hallucination-mitigation techniques into two branches -- Prompt Engineering (RAG before/during/after/end-to-end, self-refinement through feedback, prompt tuning) and Developing Models (new decoding strategies, knowledge-graph grounding, faithfulness-based losses, supervised fine-tuning) -- and catalogs each in a 32-row table; the Task/Metric/Model/Dataset cells are drawn from each technique's own source paper, while the taxonomy placement and limitation summary are the survey's own judgment, and the survey runs no experiment of its own. Despite the introduction claiming a taxonomy \"encompassing Vision Language Models,\" only 1 of the 32 techniques (DRESS) is actually evaluated on VLMs; the taxonomy's only other multimodal entry (THAM, a video-grounded dialogue technique) carries no VLM framing. The staged v3 quietly drops six numeric values (three of them decimal results) that the v1 preprint reported, replacing none.",
       "explainer": "papers/tonmoy-2024-hallucination-mitigation.html",
       "audio_url": "https://pod.darvinyi.com/audio/tonmoy-2024-hallucination-mitigation.mp3"
+    },
+    {
+      "slug": "elazar-2021-pararel",
+      "short": "PARAREL",
+      "title": "Measuring and Improving Consistency in Pretrained Language Models",
+      "authors": "Elazar, Kassner, Ravfogel, Ravichander, Hovy, Schütze, Goldberg",
+      "year": 2021,
+      "date": "2021-02",
+      "venue": "TACL 2021",
+      "citation_count": 497,
+      "topic": "Benchmarks & Evals",
+      "author_group": "Multi-lab",
+      "abstract": "Builds PARAREL, 328 human-vetted paraphrase cloze patterns across 38 T-REx relations, to test whether masked language models (BERT, RoBERTa, ALBERT) give the same answer to differently-phrased versions of the same factual query. The best model, BERT-large, is only 61.1% self-consistent on a candidate-set-restricted task, and every BERT variant beats every RoBERTa/ALBERT variant on Consistency; a proposed KL-divergence consistency loss raises held-out-relation Consistency by 5.8 points (58.2% to 64.0%) and Consistent-Acc by 5.9 points, but shows no measurable gain when the resulting model is finetuned on SQuAD and tested on paraphrased SQuAD questions.",
+      "explainer": "papers/elazar-2021-pararel.html",
+      "audio_url": "https://pod.darvinyi.com/audio/elazar-2021-pararel.mp3",
+      "tags": ["benchmarks", "evaluations"]
     }
   ],
   "edges": [
@@ -19003,6 +19019,24 @@
     { "from": "tonmoy-2024-hallucination-mitigation", "to": "lan-2019-albert" },
     { "from": "tonmoy-2024-hallucination-mitigation", "to": "lewis-2020-rag" },
     { "from": "tonmoy-2024-hallucination-mitigation", "to": "madaan-2023-self-refine" },
-    { "from": "tonmoy-2024-hallucination-mitigation", "to": "touvron-2023-llama2" }
+    { "from": "tonmoy-2024-hallucination-mitigation", "to": "touvron-2023-llama2" },
+    { "from": "elazar-2021-pararel", "to": "antol-2015-vqa" },
+    { "from": "elazar-2021-pararel", "to": "bowman-2015-snli" },
+    { "from": "elazar-2021-pararel", "to": "brown-2020-gpt3" },
+    { "from": "elazar-2021-pararel", "to": "dagan-2005-rte" },
+    { "from": "elazar-2021-pararel", "to": "devlin-2019-bert" },
+    { "from": "elazar-2021-pararel", "to": "jia-2017-adversarial-squad" },
+    { "from": "elazar-2021-pararel", "to": "lan-2019-albert" },
+    { "from": "elazar-2021-pararel", "to": "liu-2019-roberta" },
+    { "from": "elazar-2021-pararel", "to": "radford-2019-gpt2" },
+    { "from": "elazar-2021-pararel", "to": "raffel-2020-t5" },
+    { "from": "elazar-2021-pararel", "to": "rajpurkar-2016-squad" },
+    { "from": "elazar-2021-pararel", "to": "ribeiro-2020-checklist" },
+    { "from": "elazar-2021-pararel", "to": "williams-2017-multinli" },
+    { "from": "berglund-2023-reversal-curse", "to": "elazar-2021-pararel" },
+    { "from": "hong-2023-metagpt", "to": "elazar-2021-pararel" },
+    { "from": "kim-2023-fantom", "to": "elazar-2021-pararel" },
+    { "from": "rottger-2023-xstest", "to": "elazar-2021-pararel" },
+    { "from": "wang-2022-self-consistency", "to": "elazar-2021-pararel" }
   ]
 }
