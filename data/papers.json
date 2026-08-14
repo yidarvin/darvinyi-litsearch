@@ -11248,6 +11248,22 @@
       "explainer": "papers/yao-2023-llm-lies.html",
       "audio_url": "https://pod.darvinyi.com/audio/yao-2023-llm-lies.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "kalai-2025-why-lms-hallucinate",
+      "short": "Why LMs Hallucinate",
+      "title": "Why Language Models Hallucinate",
+      "authors": "Kalai, Nachum, Vempala, Zhang",
+      "year": 2025,
+      "date": "2025-09",
+      "venue": "arXiv",
+      "citation_count": 288,
+      "topic": "Safety & Red-teaming",
+      "author_group": "OpenAI",
+      "abstract": "Recasts hallucination as an ordinary binary-classification (Is-It-Valid) error, proving pretrained models must generate some falsehoods even from error-free training data — a bound that generalizes Kalai & Vempala (2024)'s earlier singleton-rate result to include prompts and abstention. Argues hallucination survives post-training because nine of the ten influential leaderboard benchmarks surveyed (GPQA, MMLU-Pro, SWE-bench, HLE, and others) grade purely binary with zero credit for saying 'I don't know,' and proposes embedding explicit confidence thresholds into existing benchmarks rather than adding new hallucination evals.",
+      "explainer": "papers/kalai-2025-why-lms-hallucinate.html",
+      "audio_url": "https://pod.darvinyi.com/audio/kalai-2025-why-lms-hallucinate.mp3",
+      "tags": ["evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -19205,6 +19221,27 @@
     { "from": "yao-2023-llm-lies", "to": "ouyang-2022-instructgpt" },
     { "from": "yao-2023-llm-lies", "to": "radford-2018-gpt1" },
     { "from": "yao-2023-llm-lies", "to": "radford-2019-gpt2" },
-    { "from": "yao-2023-llm-lies", "to": "openai-2023-gpt4" }
+    { "from": "yao-2023-llm-lies", "to": "openai-2023-gpt4" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "bai-2022-constitutional-ai" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "berglund-2023-reversal-curse" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "guo-2025-deepseek-r1" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "hendrycks-2021-math" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "ji-2022-hallucination-survey" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "jimenez-2023-swe-bench" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "lewis-2020-rag" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "liang-2022-helm" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "lin-2021-truthfulqa" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "lin-2024-wildbench" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "maynez-2020-faithfulness" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "openai-2023-gpt4" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "ouyang-2022-instructgpt" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "phan-2025-hle" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "rafailov-2023-dpo" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "rein-2023-gpqa" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "srivastava-2022-big-bench" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "suzgun-2022-bbh" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "wang-2024-mmlu-pro" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "xu-2024-hallucination-inevitable" },
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "zhou-2023-ifeval" }
   ]
 }
