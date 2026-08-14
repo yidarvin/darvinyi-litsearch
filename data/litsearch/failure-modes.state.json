@@ -95,6 +95,15 @@
         "2 rounds, 2 P1 -- the cleanest round-1 of the run, and the quantifier axis (the real risk in a theory paper) came back VERIFIED rather than corrected: the page renders Def 4's forall-i-exists-s against Question 1's exists-i-forall-s exactly, keeps Theorem 1's single-f-for-a-whole-c.e.-set distinct from Theorem 3's per-model f, and never slides to a rate claim on any of seven surfaces despite the title inviting it. B1: a count that disagreed with its own list (four problems named, 'three of those' conditional on P!=NP, when Table 3 marks two of those four) -- fixed by adding the missing propositional-entailment row so list and count agree. B2: proofs called non-constructive when they are explicit constructions, contradicting the page's own method section. I also added an Appendix G paragraph and flagged it for harder scrutiny than the builder's material since it had one pair of eyes rather than three; the critic verified Statement 1's quantifiers survive intact and improved it twice -- correcting my appendix titling and supplying the paper's own closing contrast. failure-modes only. 12 edges, 0 incoming (all 646 citers swept). Queued 3."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "guan-2023-hallusionbench",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 rounds. The page carried THREE simultaneous accusations against the paper -- most of any this run -- and adjudication split them 2 hold / 1 breaks. Holds: the abstract's 'below 16%' against Claude 3's 21.76 qAcc, and S5.2's 'outperform Random Choice' against BLIP2-T5 15.16 / mPLUG-Owl-v2 13.85 vs Random Chance 15.60 (scoped to one metric of three). Breaks: Table 1's 'first and only' -- the page cited the human-edited-QUESTIONS column when the caption scopes uniqueness to manual IMAGE editing, and Bingo's image cell is N/A, which the caption defines as 'not provided'; rescoped to an unverifiable qualifier rather than a contradiction. Also caught: a holding accusation with a FALSE EXPLANATION attached (the 'below 16%' line was blamed on leftover v1 prose; v1's abstract has no leaderboard numbers at all) and two fabricated quotations, one stated backwards. r2 found the rescope propagated to four sites but missed a fifth where the claim appeared as a COUNT rather than a restatement. benchmarks+evaluations+failure-modes, second triple-tag of the survey. 13 edges, fifth distinct substring trap cleared. Queued 8. One candidate finding deliberately NOT added -- an eligibility-gating reading of the decision tree that is only verifiable from figure geometry; recorded in prelim.md."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -107,22 +116,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T18:06 ji-2022-hallucination-survey: 3 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T18:06 ji-2022-hallucination-survey: step -> revise",
-    "2026-08-13T18:13 ji-2022-hallucination-survey: step -> critique (round 2)",
-    "2026-08-13T18:18 ji-2022-hallucination-survey: 2 open blocker(s) from round 2 (verdict: revise)",
-    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> revise",
-    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> critique (round 3)",
-    "2026-08-13T18:18 ji-2022-hallucination-survey: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> verify",
-    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> queue-ops",
-    "2026-08-13T18:19 ji-2022-hallucination-survey: step -> podcast",
-    "2026-08-13T18:33 completed ji-2022-hallucination-survey (verdict=approved, rounds=3)",
-    "2026-08-13T18:39 started li-2023-pope ('Evaluating Object Hallucination in Large Vision-Language Models')",
-    "2026-08-13T18:39 li-2023-pope: step -> fetch",
-    "2026-08-13T18:39 li-2023-pope: step -> figures",
-    "2026-08-13T18:53 li-2023-pope: step -> draft",
-    "2026-08-13T18:54 li-2023-pope: step -> critique (round 1)",
     "2026-08-13T19:05 li-2023-pope: 6 open blocker(s) from round 1 (verdict: revise)",
     "2026-08-13T19:05 li-2023-pope: step -> revise",
     "2026-08-13T19:11 li-2023-pope: step -> critique (round 2)",
@@ -156,6 +149,22 @@
     "2026-08-13T21:23 xu-2024-hallucination-inevitable: step -> verify",
     "2026-08-13T21:23 xu-2024-hallucination-inevitable: step -> queue-ops",
     "2026-08-13T21:23 xu-2024-hallucination-inevitable: step -> podcast",
-    "2026-08-13T21:36 completed xu-2024-hallucination-inevitable (verdict=approved, rounds=2)"
+    "2026-08-13T21:36 completed xu-2024-hallucination-inevitable (verdict=approved, rounds=2)",
+    "2026-08-13T21:51 started guan-2023-hallusionbench ('HallusionBench: An Advanced Diagnostic Suite for Entangled Language Hallucination and Visual Illusion in Large Vision-Language Models')",
+    "2026-08-13T21:51 guan-2023-hallusionbench: step -> fetch",
+    "2026-08-13T21:51 guan-2023-hallusionbench: step -> figures",
+    "2026-08-13T22:12 guan-2023-hallusionbench: step -> draft",
+    "2026-08-13T22:13 guan-2023-hallusionbench: step -> critique (round 1)",
+    "2026-08-13T22:27 guan-2023-hallusionbench: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T22:27 guan-2023-hallusionbench: step -> revise",
+    "2026-08-13T22:33 guan-2023-hallusionbench: step -> critique (round 2)",
+    "2026-08-13T22:38 guan-2023-hallusionbench: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-13T22:38 guan-2023-hallusionbench: step -> revise",
+    "2026-08-13T22:38 guan-2023-hallusionbench: step -> critique (round 3)",
+    "2026-08-13T22:38 guan-2023-hallusionbench: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-13T22:38 guan-2023-hallusionbench: step -> verify",
+    "2026-08-13T22:38 guan-2023-hallusionbench: step -> queue-ops",
+    "2026-08-13T22:38 guan-2023-hallusionbench: step -> podcast",
+    "2026-08-13T22:54 completed guan-2023-hallusionbench (verdict=approved, rounds=3)"
   ]
 }

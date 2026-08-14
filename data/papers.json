@@ -11121,6 +11121,22 @@
       "explainer": "papers/xu-2024-hallucination-inevitable.html",
       "audio_url": "https://pod.darvinyi.com/audio/xu-2024-hallucination-inevitable.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "guan-2023-hallusionbench",
+      "short": "HallusionBench",
+      "title": "HallusionBench: An Advanced Diagnostic Suite for Entangled Language Hallucination and Visual Illusion in Large Vision-Language Models",
+      "authors": "Tianrui Guan, Fuxiao Liu, Xiyang Wu, Ruiqi Xian, Zongxia Li, Xiaoyu Liu, Xijun Wang, Lichang Chen, Furong Huang, Yaser Yacoob, Dinesh Manocha, Tianyi Zhou",
+      "year": 2024,
+      "date": "2023-10",
+      "venue": "CVPR 2024",
+      "citation_count": 641,
+      "topic": "Benchmarks & Evals",
+      "author_group": "University of Maryland",
+      "abstract": "A diagnostic VQA suite of 346 images (165 original, 181 human-edited) and 1,129 yes/no questions built as control pairs, so a fixed decision tree can attribute a wrong answer to language hallucination (over-trusting prior knowledge) or visual illusion (misreading the image) rather than a single opaque accuracy score. Across 15 evaluated LVLMs, GPT-4V leads at 31.42% question-pair accuracy while every open-source model tested falls below the 15.60% random-chance baseline.",
+      "explainer": "papers/guan-2023-hallusionbench.html",
+      "audio_url": "https://pod.darvinyi.com/audio/guan-2023-hallusionbench.mp3",
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -18954,6 +18970,19 @@
     { "from": "xu-2024-hallucination-inevitable", "to": "turpin-2023-unfaithful-cot" },
     { "from": "xu-2024-hallucination-inevitable", "to": "wei-2022-cot" },
     { "from": "xu-2024-hallucination-inevitable", "to": "wei-2022-emergent-abilities" },
-    { "from": "xu-2024-hallucination-inevitable", "to": "yao-2023-tree-of-thoughts" }
+    { "from": "xu-2024-hallucination-inevitable", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "guan-2023-hallusionbench", "to": "antol-2015-vqa" },
+    { "from": "guan-2023-hallusionbench", "to": "bubeck-2023-sparks-agi" },
+    { "from": "guan-2023-hallusionbench", "to": "goyal-2017-vqa-v2" },
+    { "from": "guan-2023-hallusionbench", "to": "li-2023-pope" },
+    { "from": "guan-2023-hallusionbench", "to": "liu-2023-llava" },
+    { "from": "guan-2023-hallusionbench", "to": "liu-2024-mmbench" },
+    { "from": "guan-2023-hallusionbench", "to": "lu-2024-mathvista" },
+    { "from": "guan-2023-hallusionbench", "to": "masry-2022-chartqa" },
+    { "from": "guan-2023-hallusionbench", "to": "touvron-2023-llama" },
+    { "from": "cao-2025-generalizable-eval-survey", "to": "guan-2023-hallusionbench" },
+    { "from": "paglieri-2024-balrog", "to": "guan-2023-hallusionbench" },
+    { "from": "tyagi-2026-pow3r", "to": "guan-2023-hallusionbench" },
+    { "from": "zheng-2024-seeact", "to": "guan-2023-hallusionbench" }
   ]
 }
