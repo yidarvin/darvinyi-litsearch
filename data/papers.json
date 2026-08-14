@@ -11232,6 +11232,22 @@
       "explainer": "papers/park-2023-ai-deception.html",
       "audio_url": "https://pod.darvinyi.com/audio/park-2023-ai-deception.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "yao-2023-llm-lies",
+      "short": "LLM Lies",
+      "title": "LLM Lies: Hallucinations are not Bugs, but Features as Adversarial Examples",
+      "authors": "Yao, Ning, Liu, Ning, Liu, Yuan",
+      "year": 2023,
+      "date": "2023-10",
+      "venue": "arXiv",
+      "citation_count": 323,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Peking University",
+      "abstract": "Shows that Vicuna-7B and LLaMA2-7B-chat can be driven, via gradient-based token replacement, to state a specific pre-chosen fabrication from either a lightly perturbed real question (92.31%/53.85% success) or a string of random tokens (80.77%/30.77% success). Proves an idealized attention block can be forced to any output under continuous perturbation, and proposes an entropy-threshold defense that refuses 46.1%-61.5% of attacked prompts.",
+      "explainer": "papers/yao-2023-llm-lies.html",
+      "audio_url": "https://pod.darvinyi.com/audio/yao-2023-llm-lies.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19179,6 +19195,16 @@
     { "from": "li-2024-wmdp", "to": "park-2023-ai-deception" },
     { "from": "hubinger-2024-sleeper-agents", "to": "park-2023-ai-deception" },
     { "from": "greenblatt-2024-alignment-faking", "to": "park-2023-ai-deception" },
-    { "from": "park-2023-ai-deception", "to": "hubinger-2024-sleeper-agents" }
+    { "from": "park-2023-ai-deception", "to": "hubinger-2024-sleeper-agents" },
+    { "from": "yao-2023-llm-lies", "to": "touvron-2023-llama2" },
+    { "from": "yao-2023-llm-lies", "to": "wei-2023-jailbroken" },
+    { "from": "yao-2023-llm-lies", "to": "zheng-2023-mt-bench" },
+    { "from": "yao-2023-llm-lies", "to": "lightman-2023-verify-step-by-step" },
+    { "from": "yao-2023-llm-lies", "to": "touvron-2023-llama" },
+    { "from": "yao-2023-llm-lies", "to": "chowdhery-2022-palm" },
+    { "from": "yao-2023-llm-lies", "to": "ouyang-2022-instructgpt" },
+    { "from": "yao-2023-llm-lies", "to": "radford-2018-gpt1" },
+    { "from": "yao-2023-llm-lies", "to": "radford-2019-gpt2" },
+    { "from": "yao-2023-llm-lies", "to": "openai-2023-gpt4" }
   ]
 }

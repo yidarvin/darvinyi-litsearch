@@ -148,6 +148,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "yao-2023-llm-lies",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -160,17 +167,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T00:15 elazar-2021-pararel: step -> draft",
-    "2026-08-14T00:18 elazar-2021-pararel: step -> critique (round 1)",
-    "2026-08-14T00:30 elazar-2021-pararel: step -> critique (round 2)",
-    "2026-08-14T00:37 elazar-2021-pararel: step -> verify",
-    "2026-08-14T00:37 elazar-2021-pararel: step -> queue-ops",
-    "2026-08-14T00:57 elazar-2021-pararel: step -> podcast",
-    "2026-08-14T00:57 completed elazar-2021-pararel (verdict=approved, rounds=2)",
-    "2026-08-14T00:58 started hubinger-2024-sleeper-agents ('Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training')",
-    "2026-08-14T00:58 hubinger-2024-sleeper-agents: step -> fetch",
-    "2026-08-14T00:58 hubinger-2024-sleeper-agents: step -> figures",
-    "2026-08-14T01:01 hubinger-2024-sleeper-agents: step -> draft",
     "2026-08-14T01:20 hubinger-2024-sleeper-agents: step -> critique (round 1)",
     "2026-08-14T01:43 hubinger-2024-sleeper-agents: step -> critique (round 2)",
     "2026-08-14T01:56 hubinger-2024-sleeper-agents: step -> critique (round 3)",
@@ -209,6 +205,17 @@
     "2026-08-14T05:33 park-2023-ai-deception: step -> verify",
     "2026-08-14T05:33 park-2023-ai-deception: step -> queue-ops",
     "2026-08-14T05:54 park-2023-ai-deception: step -> podcast",
-    "2026-08-14T05:54 completed park-2023-ai-deception (verdict=approved, rounds=3)"
+    "2026-08-14T05:54 completed park-2023-ai-deception (verdict=approved, rounds=3)",
+    "2026-08-14T05:54 started yao-2023-llm-lies ('LLM Lies: Hallucinations are not Bugs, but Features as Adversarial Examples')",
+    "2026-08-14T05:54 yao-2023-llm-lies: step -> fetch",
+    "2026-08-14T05:54 yao-2023-llm-lies: step -> figures",
+    "2026-08-14T05:55 yao-2023-llm-lies: step -> figures",
+    "2026-08-14T05:55 yao-2023-llm-lies: step -> draft",
+    "2026-08-14T06:05 yao-2023-llm-lies: step -> critique (round 1)",
+    "2026-08-14T06:21 yao-2023-llm-lies: step -> critique (round 2)",
+    "2026-08-14T06:32 yao-2023-llm-lies: step -> verify",
+    "2026-08-14T06:32 yao-2023-llm-lies: step -> queue-ops",
+    "2026-08-14T06:51 yao-2023-llm-lies: step -> podcast",
+    "2026-08-14T06:51 completed yao-2023-llm-lies (verdict=approved, rounds=2)"
   ]
 }
