@@ -59,6 +59,15 @@
         "2 rounds, 6 P1 r1: Table 5 miscounted as 12 cells (it is 4 sizes x 2 directions = 8; wrong denominator had propagated from tables.md), Table 1 'respectively' pairing inverted, prior work misstated as never checking reversal when Meng et al. explicitly find ROME edits non-bidirectional, Figure 5's two metrics conflated, three false claims in the version note, and 'bars overlap at every size' false at 6.7B. r2 approve. My own pre-flight under-called the version hazard: I dismissed v1-only token 2.7 as a model name when v1 labels the GPT-3 sizes 2.7B/13B and v4 relabels them 350M/1.3B -- results identical, labels changed wholesale, and the page quotes v4's three times. Verified 101 of v4's 117 decimals appear in v1, confirming relabel-not-rerun. failure-modes only. 6 edges. Queued 5."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "ji-2022-hallucination-survey",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 rounds. r1: 3 P1 -- 'nearly doubled' (41->59pp is +44%, contradicting the page's own 'roughly two-thirds'), a spurious liu-2023-llava edge (our node title 'Visual Instruction Tuning' is a substring of ref [28] 'Visual Instruction Tuning with Polite Flamingo', by this survey's own co-authors), and 13.4.1 understated as 'a few sentences'. r2: 2 more, both introduced by the fixes (an overstatement replacing the understatement, and an unlocalizable claim about where residual growth sits). r3 approve. Builder reflowed papers.json with a bare json.dump (32,783-line diff); restored via dumps_papers() to 60/1. Tagged failure-modes, adopting the critic's bright-line rule over the builder's citation-count one: tag a survey iff its own text presents a taxonomy of the failure phenomenon as its organizing contribution. 44 edges. Queued 8."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -71,21 +80,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T08:56 initialized (topic: 'failure mode analysis of LLMs and agents')",
-    "2026-08-13T14:03 seeding done: 31 paper(s) queued",
-    "2026-08-13T14:09 started raj-2026-model-or-harness ('Model or Harness? An Interaction-Centric Taxonomy for Localizing Agent Failures')",
-    "2026-08-13T14:09 raj-2026-model-or-harness: step -> fetch",
-    "2026-08-13T14:09 raj-2026-model-or-harness: step -> figures",
-    "2026-08-13T14:16 raj-2026-model-or-harness: step -> draft",
-    "2026-08-13T14:31 raj-2026-model-or-harness: step -> draft",
-    "2026-08-13T14:31 raj-2026-model-or-harness: step -> critique (round 1)",
-    "2026-08-13T14:46 raj-2026-model-or-harness: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T14:46 raj-2026-model-or-harness: step -> revise",
-    "2026-08-13T14:53 raj-2026-model-or-harness: step -> critique (round 2)",
-    "2026-08-13T14:58 raj-2026-model-or-harness: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-13T14:58 raj-2026-model-or-harness: step -> verify",
-    "2026-08-13T14:58 raj-2026-model-or-harness: step -> queue-ops",
-    "2026-08-13T14:58 raj-2026-model-or-harness: step -> podcast",
     "2026-08-13T15:15 completed raj-2026-model-or-harness (verdict=approved, rounds=2)",
     "2026-08-13T15:15 started shah-2022-goal-misgeneralization (\"Goal Misgeneralization: Why Correct Specifications Aren't Enough For Correct Goals\")",
     "2026-08-13T15:15 shah-2022-goal-misgeneralization: step -> fetch",
@@ -117,6 +111,24 @@
     "2026-08-13T17:04 berglund-2023-reversal-curse: step -> verify",
     "2026-08-13T17:04 berglund-2023-reversal-curse: step -> queue-ops",
     "2026-08-13T17:04 berglund-2023-reversal-curse: step -> podcast",
-    "2026-08-13T17:18 completed berglund-2023-reversal-curse (verdict=approved, rounds=2)"
+    "2026-08-13T17:18 completed berglund-2023-reversal-curse (verdict=approved, rounds=2)",
+    "2026-08-13T17:22 started ji-2022-hallucination-survey ('Survey of Hallucination in Natural Language Generation')",
+    "2026-08-13T17:22 ji-2022-hallucination-survey: step -> fetch",
+    "2026-08-13T17:22 ji-2022-hallucination-survey: step -> figures",
+    "2026-08-13T17:23 ji-2022-hallucination-survey: step -> figures",
+    "2026-08-13T17:23 ji-2022-hallucination-survey: step -> draft",
+    "2026-08-13T17:51 ji-2022-hallucination-survey: step -> draft",
+    "2026-08-13T17:51 ji-2022-hallucination-survey: step -> critique (round 1)",
+    "2026-08-13T18:06 ji-2022-hallucination-survey: 3 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T18:06 ji-2022-hallucination-survey: step -> revise",
+    "2026-08-13T18:13 ji-2022-hallucination-survey: step -> critique (round 2)",
+    "2026-08-13T18:18 ji-2022-hallucination-survey: 2 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> revise",
+    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> critique (round 3)",
+    "2026-08-13T18:18 ji-2022-hallucination-survey: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> verify",
+    "2026-08-13T18:18 ji-2022-hallucination-survey: step -> queue-ops",
+    "2026-08-13T18:19 ji-2022-hallucination-survey: step -> podcast",
+    "2026-08-13T18:33 completed ji-2022-hallucination-survey (verdict=approved, rounds=3)"
   ]
 }
