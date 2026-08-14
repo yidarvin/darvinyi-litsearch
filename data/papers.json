@@ -11041,6 +11041,22 @@
       "explainer": "papers/shah-2022-goal-misgeneralization.html",
       "audio_url": "https://pod.darvinyi.com/audio/shah-2022-goal-misgeneralization.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "berglund-2023-reversal-curse",
+      "short": "Reversal Curse",
+      "title": "The Reversal Curse: LLMs trained on \"A is B\" fail to learn \"B is A\"",
+      "authors": "Berglund, Tong, Kaufmann, Balesni, Cooper Stickland, Korbak, Evans",
+      "year": 2023,
+      "date": "2023-09",
+      "venue": "ICLR 2024",
+      "citation_count": 524,
+      "topic": "Safety & Red-teaming",
+      "author_group": "University of Oxford",
+      "abstract": "Shows that autoregressive LLMs finetuned on \"A is B\" facts fail to generalize to \"B is A\": reverse-direction exact-match accuracy stays near 0% and the model's log-probability for the correct name is statistically indistinguishable from a random guess, robust across GPT-3 and Llama-1 at every size, hyperparameter setting, and dataset size tested. A companion test on real celebrities finds GPT-4 recalls a celebrity's parent 79% of the time (yielding 1,573 usable child-parent pairs), but the matching child only 33% of the time, though the authors flag this real-world result as tentative and uncontrolled for pretraining frequency, unlike the paper's controlled finetuning experiments.",
+      "explainer": "papers/berglund-2023-reversal-curse.html",
+      "audio_url": "https://pod.darvinyi.com/audio/berglund-2023-reversal-curse.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -18784,6 +18800,12 @@
     { "from": "shah-2022-goal-misgeneralization", "to": "ouyang-2022-instructgpt" },
     { "from": "shah-2022-goal-misgeneralization", "to": "ribeiro-2016-lime" },
     { "from": "shah-2022-goal-misgeneralization", "to": "stiennon-2020-summarize" },
-    { "from": "casper-2023-rlhf-open-problems", "to": "shah-2022-goal-misgeneralization" }
+    { "from": "casper-2023-rlhf-open-problems", "to": "shah-2022-goal-misgeneralization" },
+    { "from": "berglund-2023-reversal-curse", "to": "brown-2020-gpt3" },
+    { "from": "berglund-2023-reversal-curse", "to": "lin-2021-truthfulqa" },
+    { "from": "berglund-2023-reversal-curse", "to": "openai-2023-gpt4" },
+    { "from": "berglund-2023-reversal-curse", "to": "press-2022-compositionality-gap" },
+    { "from": "berglund-2023-reversal-curse", "to": "touvron-2023-llama" },
+    { "from": "zhu-2024-dyval", "to": "berglund-2023-reversal-curse" }
   ]
 }
