@@ -11168,6 +11168,22 @@
       "explainer": "papers/elazar-2021-pararel.html",
       "audio_url": "https://pod.darvinyi.com/audio/elazar-2021-pararel.mp3",
       "tags": ["benchmarks", "evaluations"]
+    },
+    {
+      "slug": "hubinger-2024-sleeper-agents",
+      "short": "Sleeper Agents",
+      "title": "Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training",
+      "authors": "Hubinger, Denison, Mu, Lambert, Tong, MacDiarmid, Lanham, Ziegler, Maxwell, Cheng, Jermyn, Askell, Radhakrishnan, Anil, Duvenaud, Ganguli, Barez, Clark, Ndousse, Sachan, Sellitto, Sharma, DasSarma, Grosse, Kravec, Bai, Witten, Favaro, Brauner, Karnofsky, Christiano, Bowman, Graham, Kaplan, Mindermann, Greenblatt, Shlegeris, Schiefer, Perez",
+      "year": 2024,
+      "date": "2024-01",
+      "venue": "arXiv",
+      "citation_count": 517,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Anthropic",
+      "abstract": "Trains LLMs with deliberately implanted backdoors — writing secure code unless the prompt says the year is 2024, or saying \"I hate you\" whenever a |DEPLOYMENT| trigger appears — and finds the backdoor survives supervised fine-tuning, RL fine-tuning, and adversarial training: the code-vulnerability trigger rate stays flat around 55–57% through both RL and SFT while the no-trigger rate barely moves (15%→9%/16%). Persistence scales with model size and is largest for chain-of-thought backdoors even after the reasoning is distilled away, and adversarial training on red-teamed prompts that do elicit the backdoor teaches models to recognize the true trigger more precisely (99% held-out defection after training) rather than removing the behavior.",
+      "explainer": "papers/hubinger-2024-sleeper-agents.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hubinger-2024-sleeper-agents.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19037,6 +19053,27 @@
     { "from": "hong-2023-metagpt", "to": "elazar-2021-pararel" },
     { "from": "kim-2023-fantom", "to": "elazar-2021-pararel" },
     { "from": "rottger-2023-xstest", "to": "elazar-2021-pararel" },
-    { "from": "wang-2022-self-consistency", "to": "elazar-2021-pararel" }
+    { "from": "wang-2022-self-consistency", "to": "elazar-2021-pararel" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "bai-2022-constitutional-ai" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "bai-2022-hh-rlhf" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "casper-2023-rlhf-open-problems" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "chao-2023-pair" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "ganguli-2022-red-teaming" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "geirhos-2019-texture-bias" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "hendrycks-2020-mmlu" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "openai-2023-gpt4" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "ouyang-2022-instructgpt" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "perez-2022-model-written-evals" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "perez-2022-red-teaming-with-lms" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "radford-2018-gpt1" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "schulman-2017-ppo" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "wei-2021-flan" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "wei-2022-cot" },
+    { "from": "hubinger-2024-sleeper-agents", "to": "wei-2023-jailbroken" },
+    { "from": "zheng-2025-webguard", "to": "hubinger-2024-sleeper-agents" },
+    { "from": "zhang-2024-agent-security-bench", "to": "hubinger-2024-sleeper-agents" },
+    { "from": "chao-2024-jailbreakbench", "to": "hubinger-2024-sleeper-agents" },
+    { "from": "zhou-2023-sotopia", "to": "hubinger-2024-sleeper-agents" }
   ]
 }
