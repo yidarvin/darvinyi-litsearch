@@ -183,6 +183,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "wei-2023-sycophancy-synthetic",
+      "rounds": 1,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -195,15 +202,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T05:54 yao-2023-llm-lies: step -> fetch",
-    "2026-08-14T05:54 yao-2023-llm-lies: step -> figures",
-    "2026-08-14T05:55 yao-2023-llm-lies: step -> figures",
-    "2026-08-14T05:55 yao-2023-llm-lies: step -> draft",
-    "2026-08-14T06:05 yao-2023-llm-lies: step -> critique (round 1)",
-    "2026-08-14T06:21 yao-2023-llm-lies: step -> critique (round 2)",
-    "2026-08-14T06:32 yao-2023-llm-lies: step -> verify",
-    "2026-08-14T06:32 yao-2023-llm-lies: step -> queue-ops",
-    "2026-08-14T06:51 yao-2023-llm-lies: step -> podcast",
     "2026-08-14T06:51 completed yao-2023-llm-lies (verdict=approved, rounds=2)",
     "2026-08-14T06:54 started kalai-2025-why-lms-hallucinate ('Why Language Models Hallucinate')",
     "2026-08-14T06:54 kalai-2025-why-lms-hallucinate: step -> fetch",
@@ -244,6 +242,15 @@
     "2026-08-14T11:25 shi-2024-judgedeceiver: step -> verify",
     "2026-08-14T11:25 shi-2024-judgedeceiver: step -> queue-ops",
     "2026-08-14T11:48 shi-2024-judgedeceiver: step -> podcast",
-    "2026-08-14T11:48 completed shi-2024-judgedeceiver (verdict=approved, rounds=2)"
+    "2026-08-14T11:48 completed shi-2024-judgedeceiver (verdict=approved, rounds=2)",
+    "2026-08-14T11:53 started wei-2023-sycophancy-synthetic ('Simple synthetic data reduces sycophancy in large language models')",
+    "2026-08-14T11:53 wei-2023-sycophancy-synthetic: step -> fetch",
+    "2026-08-14T11:53 wei-2023-sycophancy-synthetic: step -> figures",
+    "2026-08-14T11:54 wei-2023-sycophancy-synthetic: step -> draft",
+    "2026-08-14T12:06 wei-2023-sycophancy-synthetic: step -> critique (round 1)",
+    "2026-08-14T12:21 wei-2023-sycophancy-synthetic: step -> verify",
+    "2026-08-14T12:21 wei-2023-sycophancy-synthetic: step -> queue-ops",
+    "2026-08-14T12:41 wei-2023-sycophancy-synthetic: step -> podcast",
+    "2026-08-14T12:41 completed wei-2023-sycophancy-synthetic (verdict=approved, rounds=1)"
   ]
 }

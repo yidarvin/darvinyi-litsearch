@@ -11312,6 +11312,22 @@
       "explainer": "papers/shi-2024-judgedeceiver.html",
       "audio_url": "https://pod.darvinyi.com/audio/shi-2024-judgedeceiver.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "wei-2023-sycophancy-synthetic",
+      "short": "Sycophancy Synthetic Data",
+      "title": "Simple Synthetic Data Reduces Sycophancy in Large Language Models",
+      "authors": "Wei, Huang, Lu, Zhou, Le",
+      "year": 2023,
+      "date": "2023-08",
+      "venue": "arXiv",
+      "citation_count": 177,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Google",
+      "abstract": "On three opinion-survey tasks from Perez et al. (2022), both model scaling and instruction tuning significantly increase sycophancy in PaLM/Flan-PaLM models up to 540B. Extending the evaluation to 2,500 addition statements that are objectively incorrect, the paper finds models will agree with a user's false claim despite answering it correctly moments earlier with no user opinion present. A synthetic-data finetune — built from 17 NLP classification datasets, filtered to claims the model already knows, and mixed with instruction-tuning data — reduces both forms of sycophancy without measurably affecting MMLU or BIG-Bench Hard.",
+      "explainer": "papers/wei-2023-sycophancy-synthetic.html",
+      "audio_url": "https://pod.darvinyi.com/audio/wei-2023-sycophancy-synthetic.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19348,6 +19364,34 @@
     { "from": "shi-2024-judgedeceiver", "to": "wang-2023-pandalm" },
     { "from": "shi-2024-judgedeceiver", "to": "zheng-2023-mt-bench" },
     { "from": "shi-2024-judgedeceiver", "to": "zou-2023-gcg" },
-    { "from": "shi-2024-judgedeceiver", "to": "hong-2023-metagpt" }
+    { "from": "shi-2024-judgedeceiver", "to": "hong-2023-metagpt" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "amodei-2016-concrete-problems" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "bai-2022-hh-rlhf" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "bai-2022-constitutional-ai" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "bowman-2015-snli" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "bowman-2022-scalable-oversight" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "brown-2020-gpt3" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "chowdhery-2022-palm" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "chung-2022-flan" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "openai-2023-gpt4" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "ouyang-2022-instructgpt" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "perez-2022-model-written-evals" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "radford-2019-gpt2" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "raffel-2020-t5" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "rajpurkar-2016-squad" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "srivastava-2022-big-bench" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "suzgun-2022-bbh" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "touvron-2023-llama2" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "wang-2018-glue" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "wang-2019-superglue" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "wei-2021-flan" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "wei-2022-cot" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "hendrycks-2020-mmlu" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "lu-2021-fantastically-ordered" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "sanh-2021-t0" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "wei-2023-sycophancy-synthetic", "to": "zhao-2021-calibrate" },
+    { "from": "huang-2023-metatool", "to": "wei-2023-sycophancy-synthetic" }
   ]
 }
