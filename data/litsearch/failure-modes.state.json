@@ -104,6 +104,15 @@
         "3 rounds. The page carried THREE simultaneous accusations against the paper -- most of any this run -- and adjudication split them 2 hold / 1 breaks. Holds: the abstract's 'below 16%' against Claude 3's 21.76 qAcc, and S5.2's 'outperform Random Choice' against BLIP2-T5 15.16 / mPLUG-Owl-v2 13.85 vs Random Chance 15.60 (scoped to one metric of three). Breaks: Table 1's 'first and only' -- the page cited the human-edited-QUESTIONS column when the caption scopes uniqueness to manual IMAGE editing, and Bingo's image cell is N/A, which the caption defines as 'not provided'; rescoped to an unverifiable qualifier rather than a contradiction. Also caught: a holding accusation with a FALSE EXPLANATION attached (the 'below 16%' line was blamed on leftover v1 prose; v1's abstract has no leaderboard numbers at all) and two fabricated quotations, one stated backwards. r2 found the rescope propagated to four sites but missed a fifth where the claim appeared as a COUNT rather than a restatement. benchmarks+evaluations+failure-modes, second triple-tag of the survey. 13 edges, fifth distinct substring trap cleared. Queued 8. One candidate finding deliberately NOT added -- an eligibility-gating reading of the decision tree that is only verifiable from figure geometry; recorded in prelim.md."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "tonmoy-2024-hallucination-mitigation",
+      "rounds": 3,
+      "verdict": "approved",
+      "notes": [
+        "3 rounds, 6 P1. First deliberately UNTAGGED node the pipeline has produced -- the tagging rule set on ji-2022 three papers ago predicted no tag for this one prospectively, and both builder and critic confirmed it against the section list (no section taxonomizes hallucination itself; 'intrinsic and extrinsic' appears exactly once, inside a paragraph about someone else's technique). Processing != membership. r1: three of five blockers were quantified absence claims overshooting a true narrower point, one self-refuting inside a sentence (preference optimization 'never appears anywhere' immediately followed by the entry containing Direct Preference Optimization). All fixed by narrowing. r2: one regression from the B5 fix -- two introduction glosses described as two paragraphs apart when indent geometry shows one unbroken paragraph. Also caught a third reported-but-not-applied fix this session. Version note handles an unusual shape: v3 REMOVED six values and added none; page greps clean against all six, after stripping base64 image data which otherwise manufactures false hits. 5 edges, two more substring traps cleared (sixth and seventh forms). Queued 2."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -116,22 +125,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T19:05 li-2023-pope: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T19:05 li-2023-pope: step -> revise",
-    "2026-08-13T19:11 li-2023-pope: step -> critique (round 2)",
-    "2026-08-13T19:15 li-2023-pope: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-13T19:15 li-2023-pope: step -> verify",
-    "2026-08-13T19:15 li-2023-pope: step -> queue-ops",
-    "2026-08-13T19:16 li-2023-pope: step -> podcast",
-    "2026-08-13T19:32 completed li-2023-pope (verdict=approved, rounds=2)",
-    "2026-08-13T19:36 started turpin-2023-unfaithful-cot (\"Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting\")",
-    "2026-08-13T19:36 turpin-2023-unfaithful-cot: step -> fetch",
-    "2026-08-13T19:36 turpin-2023-unfaithful-cot: step -> figures",
-    "2026-08-13T19:38 turpin-2023-unfaithful-cot: step -> draft",
-    "2026-08-13T19:53 turpin-2023-unfaithful-cot: step -> draft",
-    "2026-08-13T19:53 turpin-2023-unfaithful-cot: step -> critique (round 1)",
-    "2026-08-13T20:07 turpin-2023-unfaithful-cot: 7 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T20:07 turpin-2023-unfaithful-cot: step -> revise",
     "2026-08-13T20:12 turpin-2023-unfaithful-cot: step -> critique (round 2)",
     "2026-08-13T20:16 turpin-2023-unfaithful-cot: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> verify",
@@ -165,6 +158,22 @@
     "2026-08-13T22:38 guan-2023-hallusionbench: step -> verify",
     "2026-08-13T22:38 guan-2023-hallusionbench: step -> queue-ops",
     "2026-08-13T22:38 guan-2023-hallusionbench: step -> podcast",
-    "2026-08-13T22:54 completed guan-2023-hallusionbench (verdict=approved, rounds=3)"
+    "2026-08-13T22:54 completed guan-2023-hallusionbench (verdict=approved, rounds=3)",
+    "2026-08-13T22:59 started tonmoy-2024-hallucination-mitigation ('A Comprehensive Survey of Hallucination Mitigation Techniques in Large Language Models')",
+    "2026-08-13T22:59 tonmoy-2024-hallucination-mitigation: step -> fetch",
+    "2026-08-13T22:59 tonmoy-2024-hallucination-mitigation: step -> figures",
+    "2026-08-13T23:16 tonmoy-2024-hallucination-mitigation: step -> draft",
+    "2026-08-13T23:17 tonmoy-2024-hallucination-mitigation: step -> critique (round 1)",
+    "2026-08-13T23:30 tonmoy-2024-hallucination-mitigation: 5 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T23:30 tonmoy-2024-hallucination-mitigation: step -> revise",
+    "2026-08-13T23:40 tonmoy-2024-hallucination-mitigation: step -> critique (round 2)",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: 1 open blocker(s) from round 2 (verdict: revise)",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> revise",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> critique (round 3)",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: 0 open blocker(s) from round 3 (verdict: approve)",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> verify",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> queue-ops",
+    "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> podcast",
+    "2026-08-13T23:59 completed tonmoy-2024-hallucination-mitigation (verdict=approved, rounds=3)"
   ]
 }

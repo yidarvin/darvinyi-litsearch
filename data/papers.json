@@ -11137,6 +11137,21 @@
       "explainer": "papers/guan-2023-hallusionbench.html",
       "audio_url": "https://pod.darvinyi.com/audio/guan-2023-hallusionbench.mp3",
       "tags": ["benchmarks", "evaluations", "failure-modes"]
+    },
+    {
+      "slug": "tonmoy-2024-hallucination-mitigation",
+      "short": "Hallucination Mitigation Survey",
+      "title": "A Comprehensive Survey of Hallucination Mitigation Techniques in Large Language Models",
+      "authors": "Tonmoy, Zaman, Jain, Rani, Rawte, Chadha, Das",
+      "year": 2024,
+      "date": "2024-01",
+      "venue": "arXiv",
+      "citation_count": 501,
+      "topic": "Safety & Red-teaming",
+      "author_group": "AI Institute, University of South Carolina",
+      "abstract": "Sorts 32 named hallucination-mitigation techniques into two branches -- Prompt Engineering (RAG before/during/after/end-to-end, self-refinement through feedback, prompt tuning) and Developing Models (new decoding strategies, knowledge-graph grounding, faithfulness-based losses, supervised fine-tuning) -- and catalogs each in a 32-row table; the Task/Metric/Model/Dataset cells are drawn from each technique's own source paper, while the taxonomy placement and limitation summary are the survey's own judgment, and the survey runs no experiment of its own. Despite the introduction claiming a taxonomy \"encompassing Vision Language Models,\" only 1 of the 32 techniques (DRESS) is actually evaluated on VLMs; the taxonomy's only other multimodal entry (THAM, a video-grounded dialogue technique) carries no VLM framing. The staged v3 quietly drops six numeric values (three of them decimal results) that the v1 preprint reported, replacing none.",
+      "explainer": "papers/tonmoy-2024-hallucination-mitigation.html",
+      "audio_url": "https://pod.darvinyi.com/audio/tonmoy-2024-hallucination-mitigation.mp3"
     }
   ],
   "edges": [
@@ -18983,6 +18998,11 @@
     { "from": "cao-2025-generalizable-eval-survey", "to": "guan-2023-hallusionbench" },
     { "from": "paglieri-2024-balrog", "to": "guan-2023-hallusionbench" },
     { "from": "tyagi-2026-pow3r", "to": "guan-2023-hallusionbench" },
-    { "from": "zheng-2024-seeact", "to": "guan-2023-hallusionbench" }
+    { "from": "zheng-2024-seeact", "to": "guan-2023-hallusionbench" },
+    { "from": "tonmoy-2024-hallucination-mitigation", "to": "chung-2022-flan" },
+    { "from": "tonmoy-2024-hallucination-mitigation", "to": "lan-2019-albert" },
+    { "from": "tonmoy-2024-hallucination-mitigation", "to": "lewis-2020-rag" },
+    { "from": "tonmoy-2024-hallucination-mitigation", "to": "madaan-2023-self-refine" },
+    { "from": "tonmoy-2024-hallucination-mitigation", "to": "touvron-2023-llama2" }
   ]
 }
