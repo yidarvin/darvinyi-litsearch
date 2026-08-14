@@ -134,6 +134,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "cemri-2025-why-multiagent-fail",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -146,16 +153,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T22:38 guan-2023-hallusionbench: step -> podcast",
-    "2026-08-13T22:54 completed guan-2023-hallusionbench (verdict=approved, rounds=3)",
-    "2026-08-13T22:59 started tonmoy-2024-hallucination-mitigation ('A Comprehensive Survey of Hallucination Mitigation Techniques in Large Language Models')",
-    "2026-08-13T22:59 tonmoy-2024-hallucination-mitigation: step -> fetch",
-    "2026-08-13T22:59 tonmoy-2024-hallucination-mitigation: step -> figures",
-    "2026-08-13T23:16 tonmoy-2024-hallucination-mitigation: step -> draft",
-    "2026-08-13T23:17 tonmoy-2024-hallucination-mitigation: step -> critique (round 1)",
-    "2026-08-13T23:30 tonmoy-2024-hallucination-mitigation: 5 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T23:30 tonmoy-2024-hallucination-mitigation: step -> revise",
-    "2026-08-13T23:40 tonmoy-2024-hallucination-mitigation: step -> critique (round 2)",
     "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: 1 open blocker(s) from round 2 (verdict: revise)",
     "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> revise",
     "2026-08-13T23:46 tonmoy-2024-hallucination-mitigation: step -> critique (round 3)",
@@ -195,6 +192,16 @@
     "2026-08-14T03:11 bai-2024-mllm-hallucination-survey: step -> verify",
     "2026-08-14T03:11 bai-2024-mllm-hallucination-survey: step -> queue-ops",
     "2026-08-14T03:30 bai-2024-mllm-hallucination-survey: step -> podcast",
-    "2026-08-14T03:30 completed bai-2024-mllm-hallucination-survey (verdict=approved, rounds=2)"
+    "2026-08-14T03:30 completed bai-2024-mllm-hallucination-survey (verdict=approved, rounds=2)",
+    "2026-08-14T03:30 started cemri-2025-why-multiagent-fail ('Why Do Multi-Agent LLM Systems Fail?')",
+    "2026-08-14T03:30 cemri-2025-why-multiagent-fail: step -> fetch",
+    "2026-08-14T03:30 cemri-2025-why-multiagent-fail: step -> figures",
+    "2026-08-14T03:33 cemri-2025-why-multiagent-fail: step -> draft",
+    "2026-08-14T03:50 cemri-2025-why-multiagent-fail: step -> critique (round 1)",
+    "2026-08-14T04:08 cemri-2025-why-multiagent-fail: step -> critique (round 2)",
+    "2026-08-14T04:17 cemri-2025-why-multiagent-fail: step -> verify",
+    "2026-08-14T04:17 cemri-2025-why-multiagent-fail: step -> queue-ops",
+    "2026-08-14T04:42 cemri-2025-why-multiagent-fail: step -> podcast",
+    "2026-08-14T04:42 completed cemri-2025-why-multiagent-fail (verdict=approved, rounds=2)"
   ]
 }

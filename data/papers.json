@@ -11200,6 +11200,22 @@
       "explainer": "papers/bai-2024-mllm-hallucination-survey.html",
       "audio_url": "https://pod.darvinyi.com/audio/bai-2024-mllm-hallucination-survey.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "cemri-2025-why-multiagent-fail",
+      "short": "MAST",
+      "title": "Why Do Multi-Agent LLM Systems Fail?",
+      "authors": "Cemri, Pan, Yang, Agrawal, Chopra, Tiwari, Keutzer, Parameswaran, Klein, Ramchandran, Zaharia, Gonzalez, Stoica",
+      "year": 2025,
+      "date": "2025-03",
+      "venue": "NeurIPS 2025",
+      "citation_count": 512,
+      "topic": "Agents",
+      "author_group": "UC Berkeley",
+      "abstract": "Builds MAST (renamed from an earlier MASFT), a taxonomy of 14 multi-agent LLM failure modes across 3 categories — system design issues (44.2%), inter-agent misalignment (32.3%), task verification (23.5%) — via grounded-theory analysis of 150 human-annotated traces (κ=0.88), then scales it to MAST-Data, a 1,642-trace dataset labeled by a calibrated LLM-as-a-Judge annotator (94% accuracy, κ=0.77) across seven MAS frameworks; MAST-guided interventions raise ChatDev's task success by up to 15.6 points.",
+      "explainer": "papers/cemri-2025-why-multiagent-fail.html",
+      "audio_url": "https://pod.darvinyi.com/audio/cemri-2025-why-multiagent-fail.mp3",
+      "tags": ["evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -19112,6 +19128,22 @@
     { "from": "bai-2024-mllm-hallucination-survey", "to": "openai-2023-gpt4" },
     { "from": "bai-2024-mllm-hallucination-survey", "to": "wei-2022-cot" },
     { "from": "bai-2024-mllm-hallucination-survey", "to": "liu-2023-llava" },
-    { "from": "bai-2024-mllm-hallucination-survey", "to": "brown-2020-gpt3" }
+    { "from": "bai-2024-mllm-hallucination-survey", "to": "brown-2020-gpt3" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "chan-2023-chateval" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "cobbe-2021-gsm8k" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "hong-2023-metagpt" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "jimenez-2023-swe-bench" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "kapoor-2024-ai-agents-that-matter" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "park-2023-generative-agents" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "patil-2023-gorilla" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "roziere-2023-code-llama" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "trivedi-2024-appworld" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "wang-2024-openhands" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "wu-2023-autogen" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "zheng-2023-mt-bench" },
+    { "from": "deshpande-2025-trail", "to": "cemri-2025-why-multiagent-fail" },
+    { "from": "manglik-2026-insights-generator", "to": "cemri-2025-why-multiagent-fail" },
+    { "from": "sharma-2025-researchrubrics", "to": "cemri-2025-why-multiagent-fail" }
   ]
 }
