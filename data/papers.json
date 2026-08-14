@@ -11264,6 +11264,22 @@
       "explainer": "papers/kalai-2025-why-lms-hallucinate.html",
       "audio_url": "https://pod.darvinyi.com/audio/kalai-2025-why-lms-hallucinate.mp3",
       "tags": ["evaluations", "failure-modes"]
+    },
+    {
+      "slug": "chan-2023-agentic-harms",
+      "short": "Agentic Harms",
+      "title": "Harms from Increasingly Agentic Algorithmic Systems",
+      "authors": "Chan, Salganik, Markelius, …, Krueger, Maharaj",
+      "year": 2023,
+      "date": "2023-02",
+      "venue": "FAccT 2023",
+      "citation_count": 266,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Multi-lab",
+      "abstract": "A FAccT '23 position paper from 22 FATE-community authors that names agency — underspecification, directness of impact, goal-directedness, and long-term planning, particularly in combination — as a graded property whose increase predicts systemic/delayed harm, collective disempowerment, and emergent-behavior risks like reward hacking and instrumental goals, while insisting that recognizing agency never shifts responsibility away from humans.",
+      "explainer": "papers/chan-2023-agentic-harms.html",
+      "audio_url": "https://pod.darvinyi.com/audio/chan-2023-agentic-harms.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19242,6 +19258,34 @@
     { "from": "kalai-2025-why-lms-hallucinate", "to": "suzgun-2022-bbh" },
     { "from": "kalai-2025-why-lms-hallucinate", "to": "wang-2024-mmlu-pro" },
     { "from": "kalai-2025-why-lms-hallucinate", "to": "xu-2024-hallucination-inevitable" },
-    { "from": "kalai-2025-why-lms-hallucinate", "to": "zhou-2023-ifeval" }
+    { "from": "kalai-2025-why-lms-hallucinate", "to": "zhou-2023-ifeval" },
+    { "from": "chan-2023-agentic-harms", "to": "bender-2021-stochastic-parrots" },
+    { "from": "chan-2023-agentic-harms", "to": "bommasani-2021-foundation-models" },
+    { "from": "chan-2023-agentic-harms", "to": "brown-2020-gpt3" },
+    { "from": "chan-2023-agentic-harms", "to": "buolamwini-2018-gender-shades" },
+    { "from": "chan-2023-agentic-harms", "to": "gao-2022-reward-overoptimization" },
+    { "from": "chan-2023-agentic-harms", "to": "gebru-2018-datasheets" },
+    { "from": "chan-2023-agentic-harms", "to": "hafner-2023-dreamerv3" },
+    { "from": "chan-2023-agentic-harms", "to": "hoffmann-2022-chinchilla" },
+    { "from": "chan-2023-agentic-harms", "to": "jacobs-2019-measurement-fairness" },
+    { "from": "chan-2023-agentic-harms", "to": "ji-2022-hallucination-survey" },
+    { "from": "chan-2023-agentic-harms", "to": "lin-2021-truthfulqa" },
+    { "from": "chan-2023-agentic-harms", "to": "menick-2022-gophercite" },
+    { "from": "chan-2023-agentic-harms", "to": "mitchell-2018-model-cards" },
+    { "from": "chan-2023-agentic-harms", "to": "pan-2022-reward-misspecification" },
+    { "from": "chan-2023-agentic-harms", "to": "perez-2022-model-written-evals" },
+    { "from": "chan-2023-agentic-harms", "to": "raji-2021-everything-benchmark" },
+    { "from": "chan-2023-agentic-harms", "to": "schrittwieser-2019-muzero" },
+    { "from": "chan-2023-agentic-harms", "to": "shah-2022-goal-misgeneralization" },
+    { "from": "chan-2023-agentic-harms", "to": "silver-2016-alphago" },
+    { "from": "chan-2023-agentic-harms", "to": "silver-2018-alphazero" },
+    { "from": "chan-2023-agentic-harms", "to": "skalse-2022-reward-hacking" },
+    { "from": "chan-2023-agentic-harms", "to": "srivastava-2022-big-bench" },
+    { "from": "chan-2023-agentic-harms", "to": "sutton-1998-rl-intro" },
+    { "from": "chan-2023-agentic-harms", "to": "valmeekam-2022-planbench" },
+    { "from": "chan-2023-agentic-harms", "to": "wei-2022-cot" },
+    { "from": "chan-2023-agentic-harms", "to": "wei-2022-emergent-abilities" },
+    { "from": "casper-2023-rlhf-open-problems", "to": "chan-2023-agentic-harms" },
+    { "from": "kapoor-2024-ai-agents-that-matter", "to": "chan-2023-agentic-harms" }
   ]
 }

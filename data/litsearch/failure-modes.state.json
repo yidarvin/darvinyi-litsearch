@@ -162,6 +162,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "chan-2023-agentic-harms",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -174,16 +181,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T02:29 bai-2024-mllm-hallucination-survey: step -> figures",
-    "2026-08-14T02:29 bai-2024-mllm-hallucination-survey: step -> draft",
-    "2026-08-14T02:45 bai-2024-mllm-hallucination-survey: step -> critique (round 1)",
-    "2026-08-14T03:02 bai-2024-mllm-hallucination-survey: step -> critique (round 2)",
-    "2026-08-14T03:11 bai-2024-mllm-hallucination-survey: step -> verify",
-    "2026-08-14T03:11 bai-2024-mllm-hallucination-survey: step -> queue-ops",
-    "2026-08-14T03:30 bai-2024-mllm-hallucination-survey: step -> podcast",
-    "2026-08-14T03:30 completed bai-2024-mllm-hallucination-survey (verdict=approved, rounds=2)",
-    "2026-08-14T03:30 started cemri-2025-why-multiagent-fail ('Why Do Multi-Agent LLM Systems Fail?')",
-    "2026-08-14T03:30 cemri-2025-why-multiagent-fail: step -> fetch",
     "2026-08-14T03:30 cemri-2025-why-multiagent-fail: step -> figures",
     "2026-08-14T03:33 cemri-2025-why-multiagent-fail: step -> draft",
     "2026-08-14T03:50 cemri-2025-why-multiagent-fail: step -> critique (round 1)",
@@ -223,6 +220,16 @@
     "2026-08-14T07:36 kalai-2025-why-lms-hallucinate: step -> verify",
     "2026-08-14T07:36 kalai-2025-why-lms-hallucinate: step -> queue-ops",
     "2026-08-14T07:58 kalai-2025-why-lms-hallucinate: step -> podcast",
-    "2026-08-14T07:58 completed kalai-2025-why-lms-hallucinate (verdict=approved, rounds=2)"
+    "2026-08-14T07:58 completed kalai-2025-why-lms-hallucinate (verdict=approved, rounds=2)",
+    "2026-08-14T08:01 started chan-2023-agentic-harms ('Harms from Increasingly Agentic Algorithmic Systems')",
+    "2026-08-14T08:01 chan-2023-agentic-harms: step -> fetch",
+    "2026-08-14T08:01 chan-2023-agentic-harms: step -> figures",
+    "2026-08-14T08:02 chan-2023-agentic-harms: step -> draft",
+    "2026-08-14T08:16 chan-2023-agentic-harms: step -> critique (round 1)",
+    "2026-08-14T08:31 chan-2023-agentic-harms: step -> critique (round 2)",
+    "2026-08-14T08:41 chan-2023-agentic-harms: step -> verify",
+    "2026-08-14T08:41 chan-2023-agentic-harms: step -> queue-ops",
+    "2026-08-14T09:02 chan-2023-agentic-harms: step -> podcast",
+    "2026-08-14T09:02 completed chan-2023-agentic-harms (verdict=approved, rounds=2)"
   ]
 }
