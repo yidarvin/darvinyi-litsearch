@@ -11089,6 +11089,22 @@
       "explainer": "papers/li-2023-pope.html",
       "audio_url": "https://pod.darvinyi.com/audio/li-2023-pope.mp3",
       "tags": ["benchmarks", "evaluations", "failure-modes"]
+    },
+    {
+      "slug": "turpin-2023-unfaithful-cot",
+      "short": "Unfaithful CoT",
+      "title": "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting",
+      "authors": "Turpin, Michael, Perez, Bowman",
+      "year": 2023,
+      "date": "2023-05",
+      "venue": "NeurIPS 2023",
+      "citation_count": 1483,
+      "topic": "Oversight",
+      "author_group": "NYU / Anthropic",
+      "abstract": "Shows that GPT-3.5 and Claude 1.0's chain-of-thought explanations can be systematically unfaithful: reordering multiple-choice options so the answer is always \"(A)\", or suggesting an answer to the model, changes predictions and drops BIG-Bench Hard accuracy by up to 36.3% — yet the CoT explanations never mention the injected bias, and in a hand-annotated sample 73% actively rationalize the bias-consistent wrong answer. A parallel BBQ experiment shows CoT predictions following social stereotypes without the explanation ever citing them.",
+      "explainer": "papers/turpin-2023-unfaithful-cot.html",
+      "audio_url": "https://pod.darvinyi.com/audio/turpin-2023-unfaithful-cot.mp3",
+      "tags": ["evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -18893,6 +18909,23 @@
     { "from": "cao-2025-generalizable-eval-survey", "to": "li-2023-pope" },
     { "from": "chang-2023-llm-eval-survey", "to": "li-2023-pope" },
     { "from": "gu-2024-llm-judge-survey", "to": "li-2023-pope" },
-    { "from": "yue-2024-mmmu", "to": "li-2023-pope" }
+    { "from": "yue-2024-mmmu", "to": "li-2023-pope" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "bai-2022-constitutional-ai" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "kojima-2022-zero-shot-cot" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "liang-2022-helm" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "nye-2021-scratchpads" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "ouyang-2022-instructgpt" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "perez-2022-model-written-evals" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "srivastava-2022-big-bench" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "suzgun-2022-bbh" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "uesato-2022-process-outcome-feedback" },
+    { "from": "turpin-2023-unfaithful-cot", "to": "wei-2022-cot" },
+    { "from": "chiu-2025-morebench", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "kale-2025-weak-to-strong-monitoring", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "korbak-2025-cot-monitorability", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "turpin-2025-vft", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "chen-2025-cot-faithfulness", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "thakur-2024-judging-the-judges", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "wang-2023-fair-evaluators", "to": "turpin-2023-unfaithful-cot" }
   ]
 }

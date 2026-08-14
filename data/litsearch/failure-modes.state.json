@@ -77,6 +77,15 @@
         "2 rounds, 6 P1 r1: SEEM model-ranking stated as holding when Table 5's Adversarial block inverts it (LLaVA 66.38 > MiniGPT-4 62.70) while the paper hedges 'mostly follow the same trend'; Figure 1 caption inventing a second image; a 3-of-5 Yes-rate result stated of LVLMs generally on three headline surfaces; the version note understating its own divergence (283 of 584, not ~490); a year-range in the as-of stamp; and a would-raise-confidence row asking for something the paper already does. r2 approve. First triple-tagged paper of the survey (benchmarks+evaluations+failure-modes), all three verified on their own rubric text. Worst version divergence of the run (283 of 584 tokens shared, v1-only set full of plausible accuracy percentages) -- 108-token blocklist built pre-dispatch, zero hits throughout including after my own edits. Builder left queue_candidates empty despite 1,883 citers; added 5 myself. Added two appendix findings the episode agent surfaced: Table 4's stability result is measured on LLaVA alone at the constant-Yes floor, and Table 12's captioning-tracks-POPE claim inverts on METEOR and ROUGE-L. 11 edges."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "turpin-2023-unfaithful-cot",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 rounds, 7 P1 r1, six of them prose about correct tables (shared-denominator 15%, 192 explanations vs 96 pairs, a false zero-shot arm for Answer-is-Always-A, a Figure 1 caption calling both printed numbers CoT drops, a dangling asterisk clause, and a CI range borrowed from a different comparison). B7 adjudicated by me: no turpin->chen-2021-codex edge, because v1 cites Codex and v2 does not -- the graph reflects the version the node represents, the mirror of the cracked-foundation case where I wrongly excluded published-version citations by reasoning from a preprint date. r2 approve. The page's Table 9 accusation survived the critic attacking it three ways and was sharpened to 4 of 26 in Answer-is-Always-A against 0 of 52 in Suggested Answer. Added Table 8's symmetric control (bias pointing at the correct answer lifts GPT zero-shot CoT 62.0 to 93.9), surfaced by the episode agent -- it answers the page's own hardest question better than anything it had. evaluations+failure-modes. 17 edges. Queued 5."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -89,20 +98,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T15:59 shah-2022-goal-misgeneralization: 0 open blocker(s) from round 3 (verdict: approve)",
-    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> verify",
-    "2026-08-13T15:59 shah-2022-goal-misgeneralization: step -> queue-ops",
-    "2026-08-13T16:00 shah-2022-goal-misgeneralization: step -> podcast",
-    "2026-08-13T16:16 completed shah-2022-goal-misgeneralization (verdict=approved, rounds=3)",
-    "2026-08-13T16:17 started berglund-2023-reversal-curse ('The Reversal Curse: LLMs trained on \"A is B\" fail to learn \"B is A\"')",
-    "2026-08-13T16:17 berglund-2023-reversal-curse: step -> fetch",
-    "2026-08-13T16:17 berglund-2023-reversal-curse: step -> figures",
-    "2026-08-13T16:18 berglund-2023-reversal-curse: step -> draft",
-    "2026-08-13T16:34 berglund-2023-reversal-curse: step -> draft",
-    "2026-08-13T16:34 berglund-2023-reversal-curse: step -> critique (round 1)",
-    "2026-08-13T16:49 berglund-2023-reversal-curse: 6 open blocker(s) from round 1 (verdict: revise)",
-    "2026-08-13T16:49 berglund-2023-reversal-curse: step -> revise",
-    "2026-08-13T16:58 berglund-2023-reversal-curse: step -> critique (round 2)",
     "2026-08-13T17:04 berglund-2023-reversal-curse: 0 open blocker(s) from round 2 (verdict: approve)",
     "2026-08-13T17:04 berglund-2023-reversal-curse: step -> verify",
     "2026-08-13T17:04 berglund-2023-reversal-curse: step -> queue-ops",
@@ -138,6 +133,20 @@
     "2026-08-13T19:15 li-2023-pope: step -> verify",
     "2026-08-13T19:15 li-2023-pope: step -> queue-ops",
     "2026-08-13T19:16 li-2023-pope: step -> podcast",
-    "2026-08-13T19:32 completed li-2023-pope (verdict=approved, rounds=2)"
+    "2026-08-13T19:32 completed li-2023-pope (verdict=approved, rounds=2)",
+    "2026-08-13T19:36 started turpin-2023-unfaithful-cot (\"Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting\")",
+    "2026-08-13T19:36 turpin-2023-unfaithful-cot: step -> fetch",
+    "2026-08-13T19:36 turpin-2023-unfaithful-cot: step -> figures",
+    "2026-08-13T19:38 turpin-2023-unfaithful-cot: step -> draft",
+    "2026-08-13T19:53 turpin-2023-unfaithful-cot: step -> draft",
+    "2026-08-13T19:53 turpin-2023-unfaithful-cot: step -> critique (round 1)",
+    "2026-08-13T20:07 turpin-2023-unfaithful-cot: 7 open blocker(s) from round 1 (verdict: revise)",
+    "2026-08-13T20:07 turpin-2023-unfaithful-cot: step -> revise",
+    "2026-08-13T20:12 turpin-2023-unfaithful-cot: step -> critique (round 2)",
+    "2026-08-13T20:16 turpin-2023-unfaithful-cot: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> verify",
+    "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> queue-ops",
+    "2026-08-13T20:17 turpin-2023-unfaithful-cot: step -> podcast",
+    "2026-08-13T20:31 completed turpin-2023-unfaithful-cot (verdict=approved, rounds=2)"
   ]
 }
