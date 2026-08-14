@@ -11105,6 +11105,22 @@
       "explainer": "papers/turpin-2023-unfaithful-cot.html",
       "audio_url": "https://pod.darvinyi.com/audio/turpin-2023-unfaithful-cot.mp3",
       "tags": ["evaluations", "failure-modes"]
+    },
+    {
+      "slug": "xu-2024-hallucination-inevitable",
+      "short": "Hallucination is Inevitable",
+      "title": "Hallucination is Inevitable: An Innate Limitation of Large Language Models",
+      "authors": "Xu, Jain, Kankanhalli",
+      "year": 2024,
+      "date": "2024-01",
+      "venue": "arXiv",
+      "citation_count": 646,
+      "topic": "Safety & Red-teaming",
+      "author_group": "National University of Singapore",
+      "abstract": "Proves, via a Cantor-style diagonalization argument over a formal world of computable ground-truth functions, that for any computable LLM there exists some computable task on which every one of its trained states errs -- an existence-level impossibility result (closely related to Gold's 1967 language-identification-in-the-limit theorem), not a claim about hallucination's rate on natural inputs. Empirically illustrates the theory with combinatorial-listing, linear-ordering, and character-indexing tasks that current LLMs fail well within their context windows.",
+      "explainer": "papers/xu-2024-hallucination-inevitable.html",
+      "audio_url": "https://pod.darvinyi.com/audio/xu-2024-hallucination-inevitable.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -18926,6 +18942,18 @@
     { "from": "turpin-2025-vft", "to": "turpin-2023-unfaithful-cot" },
     { "from": "chen-2025-cot-faithfulness", "to": "turpin-2023-unfaithful-cot" },
     { "from": "thakur-2024-judging-the-judges", "to": "turpin-2023-unfaithful-cot" },
-    { "from": "wang-2023-fair-evaluators", "to": "turpin-2023-unfaithful-cot" }
+    { "from": "wang-2023-fair-evaluators", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "brown-2020-gpt3" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "gao-2021-the-pile" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "ji-2022-hallucination-survey" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "lewis-2020-rag" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "lin-2021-truthfulqa" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "openai-2023-gpt4" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "touvron-2023-llama" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "touvron-2023-llama2" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "turpin-2023-unfaithful-cot" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "wei-2022-cot" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "wei-2022-emergent-abilities" },
+    { "from": "xu-2024-hallucination-inevitable", "to": "yao-2023-tree-of-thoughts" }
   ]
 }

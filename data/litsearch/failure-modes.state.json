@@ -86,6 +86,15 @@
         "2 rounds, 7 P1 r1, six of them prose about correct tables (shared-denominator 15%, 192 explanations vs 96 pairs, a false zero-shot arm for Answer-is-Always-A, a Figure 1 caption calling both printed numbers CoT drops, a dangling asterisk clause, and a CI range borrowed from a different comparison). B7 adjudicated by me: no turpin->chen-2021-codex edge, because v1 cites Codex and v2 does not -- the graph reflects the version the node represents, the mirror of the cracked-foundation case where I wrongly excluded published-version citations by reasoning from a preprint date. r2 approve. The page's Table 9 accusation survived the critic attacking it three ways and was sharpened to 4 of 26 in Answer-is-Always-A against 0 of 52 in Suggested Answer. Added Table 8's symmetric control (bias pointing at the correct answer lifts GPT zero-shot CoT 62.0 to 93.9), surfaced by the episode agent -- it answers the page's own hardest question better than anything it had. evaluations+failure-modes. 17 edges. Queued 5."
       ],
       "date": "2026-08-13"
+    },
+    {
+      "slug": "xu-2024-hallucination-inevitable",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [
+        "2 rounds, 2 P1 -- the cleanest round-1 of the run, and the quantifier axis (the real risk in a theory paper) came back VERIFIED rather than corrected: the page renders Def 4's forall-i-exists-s against Question 1's exists-i-forall-s exactly, keeps Theorem 1's single-f-for-a-whole-c.e.-set distinct from Theorem 3's per-model f, and never slides to a rate claim on any of seven surfaces despite the title inviting it. B1: a count that disagreed with its own list (four problems named, 'three of those' conditional on P!=NP, when Table 3 marks two of those four) -- fixed by adding the missing propositional-entailment row so list and count agree. B2: proofs called non-constructive when they are explicit constructions, contradicting the page's own method section. I also added an Appendix G paragraph and flagged it for harder scrutiny than the builder's material since it had one pair of eyes rather than three; the critic verified Statement 1's quantifiers survive intact and improved it twice -- correcting my appendix titling and supplying the paper's own closing contrast. failure-modes only. 12 edges, 0 incoming (all 646 citers swept). Queued 3."
+      ],
+      "date": "2026-08-13"
     }
   ],
   "skipped": [],
@@ -98,18 +107,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-13T17:04 berglund-2023-reversal-curse: 0 open blocker(s) from round 2 (verdict: approve)",
-    "2026-08-13T17:04 berglund-2023-reversal-curse: step -> verify",
-    "2026-08-13T17:04 berglund-2023-reversal-curse: step -> queue-ops",
-    "2026-08-13T17:04 berglund-2023-reversal-curse: step -> podcast",
-    "2026-08-13T17:18 completed berglund-2023-reversal-curse (verdict=approved, rounds=2)",
-    "2026-08-13T17:22 started ji-2022-hallucination-survey ('Survey of Hallucination in Natural Language Generation')",
-    "2026-08-13T17:22 ji-2022-hallucination-survey: step -> fetch",
-    "2026-08-13T17:22 ji-2022-hallucination-survey: step -> figures",
-    "2026-08-13T17:23 ji-2022-hallucination-survey: step -> figures",
-    "2026-08-13T17:23 ji-2022-hallucination-survey: step -> draft",
-    "2026-08-13T17:51 ji-2022-hallucination-survey: step -> draft",
-    "2026-08-13T17:51 ji-2022-hallucination-survey: step -> critique (round 1)",
     "2026-08-13T18:06 ji-2022-hallucination-survey: 3 open blocker(s) from round 1 (verdict: revise)",
     "2026-08-13T18:06 ji-2022-hallucination-survey: step -> revise",
     "2026-08-13T18:13 ji-2022-hallucination-survey: step -> critique (round 2)",
@@ -147,6 +144,18 @@
     "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> verify",
     "2026-08-13T20:16 turpin-2023-unfaithful-cot: step -> queue-ops",
     "2026-08-13T20:17 turpin-2023-unfaithful-cot: step -> podcast",
-    "2026-08-13T20:31 completed turpin-2023-unfaithful-cot (verdict=approved, rounds=2)"
+    "2026-08-13T20:31 completed turpin-2023-unfaithful-cot (verdict=approved, rounds=2)",
+    "2026-08-13T20:39 started xu-2024-hallucination-inevitable ('Hallucination is Inevitable: An Innate Limitation of Large Language Models')",
+    "2026-08-13T20:39 xu-2024-hallucination-inevitable: step -> fetch",
+    "2026-08-13T20:39 xu-2024-hallucination-inevitable: step -> figures",
+    "2026-08-13T20:46 xu-2024-hallucination-inevitable: step -> draft",
+    "2026-08-13T21:06 xu-2024-hallucination-inevitable: step -> draft",
+    "2026-08-13T21:06 xu-2024-hallucination-inevitable: step -> critique (round 1)",
+    "2026-08-13T21:19 xu-2024-hallucination-inevitable: step -> critique (round 2)",
+    "2026-08-13T21:23 xu-2024-hallucination-inevitable: 0 open blocker(s) from round 2 (verdict: approve)",
+    "2026-08-13T21:23 xu-2024-hallucination-inevitable: step -> verify",
+    "2026-08-13T21:23 xu-2024-hallucination-inevitable: step -> queue-ops",
+    "2026-08-13T21:23 xu-2024-hallucination-inevitable: step -> podcast",
+    "2026-08-13T21:36 completed xu-2024-hallucination-inevitable (verdict=approved, rounds=2)"
   ]
 }
