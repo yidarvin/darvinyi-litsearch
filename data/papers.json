@@ -11280,6 +11280,22 @@
       "explainer": "papers/chan-2023-agentic-harms.html",
       "audio_url": "https://pod.darvinyi.com/audio/chan-2023-agentic-harms.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "deng-2023-masterkey",
+      "short": "MASTERKEY",
+      "title": "MASTERKEY: Automated Jailbreaking of Large Language Model Chatbots",
+      "authors": "Deng, Liu, Li, Wang, Zhang, Li, Wang, Zhang, Liu",
+      "year": 2024,
+      "date": "2023-07",
+      "venue": "NDSS 2024",
+      "citation_count": 261,
+      "topic": "Safety & Red-teaming",
+      "author_group": "NTU",
+      "abstract": "A time-based side channel adapted from blind SQL injection infers the undisclosed content-moderation architecture behind ChatGPT, Bard, and Bing Chat from response latency alone; the resulting insight seeds MASTERKEY, an LLM fine-tuned with reward-ranked feedback to generate jailbreak prompts automatically (21.58% average query success vs. 7.33% for existing prompts, measured on these services in mid-to-late 2023).",
+      "explainer": "papers/deng-2023-masterkey.html",
+      "audio_url": "https://pod.darvinyi.com/audio/deng-2023-masterkey.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19286,6 +19302,17 @@
     { "from": "chan-2023-agentic-harms", "to": "wei-2022-cot" },
     { "from": "chan-2023-agentic-harms", "to": "wei-2022-emergent-abilities" },
     { "from": "casper-2023-rlhf-open-problems", "to": "chan-2023-agentic-harms" },
-    { "from": "kapoor-2024-ai-agents-that-matter", "to": "chan-2023-agentic-harms" }
+    { "from": "kapoor-2024-ai-agents-that-matter", "to": "chan-2023-agentic-harms" },
+    { "from": "deng-2023-masterkey", "to": "touvron-2023-llama" },
+    { "from": "deng-2023-masterkey", "to": "greshake-2023-indirect-prompt-injection" },
+    { "from": "deng-2023-masterkey", "to": "perez-2022-ignore-previous-prompt" },
+    { "from": "deng-2023-masterkey", "to": "bender-2021-stochastic-parrots" },
+    { "from": "deng-2023-masterkey", "to": "taori-2023-alpaca" },
+    { "from": "deng-2023-masterkey", "to": "openai-2023-gpt4" },
+    { "from": "wang-2025-red-teaming-roadmap", "to": "deng-2023-masterkey" },
+    { "from": "chao-2023-pair", "to": "deng-2023-masterkey" },
+    { "from": "liu-2023-autodan", "to": "deng-2023-masterkey" },
+    { "from": "mazeika-2024-harmbench", "to": "deng-2023-masterkey" },
+    { "from": "chen-2024-struq", "to": "deng-2023-masterkey" }
   ]
 }

@@ -169,6 +169,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "deng-2023-masterkey",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -181,16 +188,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T03:30 cemri-2025-why-multiagent-fail: step -> figures",
-    "2026-08-14T03:33 cemri-2025-why-multiagent-fail: step -> draft",
-    "2026-08-14T03:50 cemri-2025-why-multiagent-fail: step -> critique (round 1)",
-    "2026-08-14T04:08 cemri-2025-why-multiagent-fail: step -> critique (round 2)",
-    "2026-08-14T04:17 cemri-2025-why-multiagent-fail: step -> verify",
-    "2026-08-14T04:17 cemri-2025-why-multiagent-fail: step -> queue-ops",
-    "2026-08-14T04:42 cemri-2025-why-multiagent-fail: step -> podcast",
-    "2026-08-14T04:42 completed cemri-2025-why-multiagent-fail (verdict=approved, rounds=2)",
-    "2026-08-14T04:42 started park-2023-ai-deception ('AI deception: A survey of examples, risks, and potential solutions')",
-    "2026-08-14T04:42 park-2023-ai-deception: step -> fetch",
     "2026-08-14T04:42 park-2023-ai-deception: step -> figures",
     "2026-08-14T04:44 park-2023-ai-deception: step -> draft",
     "2026-08-14T04:58 park-2023-ai-deception: step -> critique (round 1)",
@@ -230,6 +227,16 @@
     "2026-08-14T08:41 chan-2023-agentic-harms: step -> verify",
     "2026-08-14T08:41 chan-2023-agentic-harms: step -> queue-ops",
     "2026-08-14T09:02 chan-2023-agentic-harms: step -> podcast",
-    "2026-08-14T09:02 completed chan-2023-agentic-harms (verdict=approved, rounds=2)"
+    "2026-08-14T09:02 completed chan-2023-agentic-harms (verdict=approved, rounds=2)",
+    "2026-08-14T09:06 started deng-2023-masterkey ('MASTERKEY: Automated Jailbreaking of Large Language Model Chatbots')",
+    "2026-08-14T09:06 deng-2023-masterkey: step -> fetch",
+    "2026-08-14T09:06 deng-2023-masterkey: step -> figures",
+    "2026-08-14T09:07 deng-2023-masterkey: step -> draft",
+    "2026-08-14T09:25 deng-2023-masterkey: step -> critique (round 1)",
+    "2026-08-14T09:44 deng-2023-masterkey: step -> critique (round 2)",
+    "2026-08-14T09:58 deng-2023-masterkey: step -> verify",
+    "2026-08-14T09:58 deng-2023-masterkey: step -> queue-ops",
+    "2026-08-14T10:19 deng-2023-masterkey: step -> podcast",
+    "2026-08-14T10:19 completed deng-2023-masterkey (verdict=approved, rounds=2)"
   ]
 }
