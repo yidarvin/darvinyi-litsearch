@@ -11392,6 +11392,22 @@
       "explainer": "papers/langosco-2021-goal-misgeneralization.html",
       "audio_url": "https://pod.darvinyi.com/audio/langosco-2021-goal-misgeneralization.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "zhang-2025-failure-attribution",
+      "short": "Who&When",
+      "title": "Which Agent Causes Task Failures and When? On Automated Failure Attribution of LLM Multi-Agent Systems",
+      "authors": "Shaokun Zhang, Ming Yin, Jieyu Zhang, Jiale Liu, Zhiguang Han, Jingyang Zhang, Beibin Li, Chi Wang, Huazheng Wang, Yiran Chen, Qingyun Wu",
+      "year": 2025,
+      "date": "2025-04",
+      "venue": "ICML 2025",
+      "citation_count": 133,
+      "topic": "Agents",
+      "author_group": "Penn State",
+      "abstract": "Formalizes automated failure attribution for LLM multi-agent systems -- identifying the agent and step responsible for a task failure -- and introduces Who&When, 184 annotated failure-log instances across 127 systems. The best of three LLM-based attribution methods reaches only 53.5% agent-level and 14.2% step-level accuracy, with several method/setting cells scoring below the paper's own stated random baseline.",
+      "explainer": "papers/zhang-2025-failure-attribution.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhang-2025-failure-attribution.mp3",
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -19126,6 +19142,7 @@
     { "from": "raj-2026-model-or-harness", "to": "zhou-2023-webarena" },
     { "from": "raj-2026-model-or-harness", "to": "zhu-2025-agentic-benchmarks" },
     { "from": "raj-2026-model-or-harness", "to": "zhuge-2024-agent-as-judge" },
+    { "from": "raj-2026-model-or-harness", "to": "zhang-2025-failure-attribution" },
     { "from": "shah-2022-goal-misgeneralization", "to": "amodei-2016-concrete-problems" },
     { "from": "shah-2022-goal-misgeneralization", "to": "buolamwini-2018-gender-shades" },
     { "from": "shah-2022-goal-misgeneralization", "to": "chen-2021-codex" },
@@ -19494,6 +19511,30 @@
     { "from": "chan-2023-agentic-harms", "to": "langosco-2021-goal-misgeneralization" },
     { "from": "shah-2022-goal-misgeneralization", "to": "langosco-2021-goal-misgeneralization" },
     { "from": "bai-2022-hh-rlhf", "to": "langosco-2021-goal-misgeneralization" },
-    { "from": "langosco-2021-goal-misgeneralization", "to": "sutton-1998-rl-intro" }
+    { "from": "langosco-2021-goal-misgeneralization", "to": "sutton-1998-rl-intro" },
+    { "from": "zhang-2025-failure-attribution", "to": "openai-2023-gpt4" },
+    { "from": "zhang-2025-failure-attribution", "to": "chan-2023-chateval" },
+    { "from": "zhang-2025-failure-attribution", "to": "guo-2025-deepseek-r1" },
+    { "from": "zhang-2025-failure-attribution", "to": "deng-2023-mind2web" },
+    { "from": "zhang-2025-failure-attribution", "to": "fu-2024-gptscore" },
+    { "from": "zhang-2025-failure-attribution", "to": "gu-2024-llm-judge-survey" },
+    { "from": "zhang-2025-failure-attribution", "to": "hong-2023-metagpt" },
+    { "from": "zhang-2025-failure-attribution", "to": "jimenez-2023-swe-bench" },
+    { "from": "zhang-2025-failure-attribution", "to": "lightman-2023-verify-step-by-step" },
+    { "from": "zhang-2025-failure-attribution", "to": "liu-2023-g-eval" },
+    { "from": "zhang-2025-failure-attribution", "to": "mialon-2023-gaia" },
+    { "from": "zhang-2025-failure-attribution", "to": "shinn-2023-reflexion" },
+    { "from": "zhang-2025-failure-attribution", "to": "thakur-2024-judging-the-judges" },
+    { "from": "zhang-2025-failure-attribution", "to": "wei-2022-cot" },
+    { "from": "zhang-2025-failure-attribution", "to": "wu-2023-autogen" },
+    { "from": "zhang-2025-failure-attribution", "to": "xie-2024-osworld" },
+    { "from": "zhang-2025-failure-attribution", "to": "yao-2022-react" },
+    { "from": "zhang-2025-failure-attribution", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "zhang-2025-failure-attribution", "to": "yoran-2024-assistantbench" },
+    { "from": "zhang-2025-failure-attribution", "to": "zheng-2023-mt-bench" },
+    { "from": "zhang-2025-failure-attribution", "to": "zhong-2025-reward-models-survey" },
+    { "from": "zhang-2025-failure-attribution", "to": "zhuge-2024-agent-as-judge" },
+    { "from": "cemri-2025-why-multiagent-fail", "to": "zhang-2025-failure-attribution" },
+    { "from": "manglik-2026-insights-generator", "to": "zhang-2025-failure-attribution" }
   ]
 }

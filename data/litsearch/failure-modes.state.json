@@ -218,6 +218,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "zhang-2025-failure-attribution",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -230,16 +237,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T11:48 completed shi-2024-judgedeceiver (verdict=approved, rounds=2)",
-    "2026-08-14T11:53 started wei-2023-sycophancy-synthetic ('Simple synthetic data reduces sycophancy in large language models')",
-    "2026-08-14T11:53 wei-2023-sycophancy-synthetic: step -> fetch",
-    "2026-08-14T11:53 wei-2023-sycophancy-synthetic: step -> figures",
-    "2026-08-14T11:54 wei-2023-sycophancy-synthetic: step -> draft",
-    "2026-08-14T12:06 wei-2023-sycophancy-synthetic: step -> critique (round 1)",
-    "2026-08-14T12:21 wei-2023-sycophancy-synthetic: step -> verify",
-    "2026-08-14T12:21 wei-2023-sycophancy-synthetic: step -> queue-ops",
-    "2026-08-14T12:41 wei-2023-sycophancy-synthetic: step -> podcast",
-    "2026-08-14T12:41 completed wei-2023-sycophancy-synthetic (verdict=approved, rounds=1)",
     "2026-08-14T12:46 started allenzhu-2023-knowledge-manipulation ('Physics of Language Models: Part 3.2, Knowledge Manipulation')",
     "2026-08-14T12:46 allenzhu-2023-knowledge-manipulation: step -> fetch",
     "2026-08-14T12:46 allenzhu-2023-knowledge-manipulation: step -> figures",
@@ -279,6 +276,16 @@
     "2026-08-14T16:46 langosco-2021-goal-misgeneralization: step -> verify",
     "2026-08-14T16:46 langosco-2021-goal-misgeneralization: step -> queue-ops",
     "2026-08-14T17:05 langosco-2021-goal-misgeneralization: step -> podcast",
-    "2026-08-14T17:05 completed langosco-2021-goal-misgeneralization (verdict=approved, rounds=2)"
+    "2026-08-14T17:05 completed langosco-2021-goal-misgeneralization (verdict=approved, rounds=2)",
+    "2026-08-14T17:10 started zhang-2025-failure-attribution ('Which Agent Causes Task Failures and When? On Automated Failure Attribution of LLM Multi-Agent Systems')",
+    "2026-08-14T17:10 zhang-2025-failure-attribution: step -> fetch",
+    "2026-08-14T17:10 zhang-2025-failure-attribution: step -> figures",
+    "2026-08-14T17:12 zhang-2025-failure-attribution: step -> draft",
+    "2026-08-14T17:29 zhang-2025-failure-attribution: step -> critique (round 1)",
+    "2026-08-14T17:47 zhang-2025-failure-attribution: step -> critique (round 2)",
+    "2026-08-14T17:53 zhang-2025-failure-attribution: step -> verify",
+    "2026-08-14T17:53 zhang-2025-failure-attribution: step -> queue-ops",
+    "2026-08-14T18:17 zhang-2025-failure-attribution: step -> podcast",
+    "2026-08-14T18:17 completed zhang-2025-failure-attribution (verdict=approved, rounds=2)"
   ]
 }
