@@ -11408,6 +11408,22 @@
       "explainer": "papers/zhang-2025-failure-attribution.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhang-2025-failure-attribution.mp3",
       "tags": ["benchmarks", "evaluations", "failure-modes"]
+    },
+    {
+      "slug": "fanous-2025-syceval",
+      "short": "SycEval",
+      "title": "SycEval: Evaluating LLM Sycophancy",
+      "authors": "Fanous, Goldberg, Agarwal, Lin, Zhou, Xu, Bikia, Daneshjou, Koyejo",
+      "year": 2025,
+      "date": "2025-02",
+      "venue": "AIES 2025",
+      "citation_count": 123,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Stanford",
+      "abstract": "Introduces a framework that rebuts ChatGPT-4o, Claude-Sonnet, and Gemini-1.5-Pro on 500 AMPS math and 500 MedQuad medical QA pairs with LLM-generated counterarguments of escalating rhetorical strength, delivered in-context or preemptively. Answers change in 58.19% of cases, split into progressive (43.52%, wrong-to-right) and regressive (14.66%, right-to-wrong) sycophancy; preemptive rebuttals raise regressive sycophancy on math problems from 3.54% to 8.13% (p<0.001), and flipped answers persist through 78.5% of subsequent rebuttal chains.",
+      "explainer": "papers/fanous-2025-syceval.html",
+      "audio_url": "https://pod.darvinyi.com/audio/fanous-2025-syceval.mp3",
+      "tags": ["evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -19535,6 +19551,9 @@
     { "from": "zhang-2025-failure-attribution", "to": "zhong-2025-reward-models-survey" },
     { "from": "zhang-2025-failure-attribution", "to": "zhuge-2024-agent-as-judge" },
     { "from": "cemri-2025-why-multiagent-fail", "to": "zhang-2025-failure-attribution" },
-    { "from": "manglik-2026-insights-generator", "to": "zhang-2025-failure-attribution" }
+    { "from": "manglik-2026-insights-generator", "to": "zhang-2025-failure-attribution" },
+    { "from": "fanous-2025-syceval", "to": "malmqvist-2024-sycophancy-survey" },
+    { "from": "fanous-2025-syceval", "to": "casper-2023-rlhf-open-problems" },
+    { "from": "fanous-2025-syceval", "to": "hendrycks-2021-math" }
   ]
 }

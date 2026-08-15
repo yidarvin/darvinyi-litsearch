@@ -225,6 +225,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "fanous-2025-syceval",
+      "rounds": 1,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -237,15 +244,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T12:46 started allenzhu-2023-knowledge-manipulation ('Physics of Language Models: Part 3.2, Knowledge Manipulation')",
-    "2026-08-14T12:46 allenzhu-2023-knowledge-manipulation: step -> fetch",
-    "2026-08-14T12:46 allenzhu-2023-knowledge-manipulation: step -> figures",
-    "2026-08-14T12:55 allenzhu-2023-knowledge-manipulation: step -> draft",
-    "2026-08-14T13:10 allenzhu-2023-knowledge-manipulation: step -> critique (round 1)",
-    "2026-08-14T13:24 allenzhu-2023-knowledge-manipulation: step -> critique (round 2)",
-    "2026-08-14T13:36 allenzhu-2023-knowledge-manipulation: step -> verify",
-    "2026-08-14T13:36 allenzhu-2023-knowledge-manipulation: step -> queue-ops",
-    "2026-08-14T13:57 allenzhu-2023-knowledge-manipulation: step -> podcast",
     "2026-08-14T13:57 completed allenzhu-2023-knowledge-manipulation (verdict=approved, rounds=2)",
     "2026-08-14T14:02 started lynch-2025-agentic-misalignment ('Agentic Misalignment: How LLMs Could Be Insider Threats')",
     "2026-08-14T14:02 lynch-2025-agentic-misalignment: step -> fetch",
@@ -286,6 +284,15 @@
     "2026-08-14T17:53 zhang-2025-failure-attribution: step -> verify",
     "2026-08-14T17:53 zhang-2025-failure-attribution: step -> queue-ops",
     "2026-08-14T18:17 zhang-2025-failure-attribution: step -> podcast",
-    "2026-08-14T18:17 completed zhang-2025-failure-attribution (verdict=approved, rounds=2)"
+    "2026-08-14T18:17 completed zhang-2025-failure-attribution (verdict=approved, rounds=2)",
+    "2026-08-14T18:21 started fanous-2025-syceval ('SycEval: Evaluating LLM Sycophancy')",
+    "2026-08-14T18:21 fanous-2025-syceval: step -> fetch",
+    "2026-08-14T18:21 fanous-2025-syceval: step -> figures",
+    "2026-08-14T18:24 fanous-2025-syceval: step -> draft",
+    "2026-08-14T18:35 fanous-2025-syceval: step -> critique (round 1)",
+    "2026-08-14T18:48 fanous-2025-syceval: step -> verify",
+    "2026-08-14T18:48 fanous-2025-syceval: step -> queue-ops",
+    "2026-08-14T19:11 fanous-2025-syceval: step -> podcast",
+    "2026-08-14T19:11 completed fanous-2025-syceval (verdict=approved, rounds=1)"
   ]
 }
