@@ -11424,6 +11424,21 @@
       "explainer": "papers/fanous-2025-syceval.html",
       "audio_url": "https://pod.darvinyi.com/audio/fanous-2025-syceval.mp3",
       "tags": ["evaluations", "failure-modes"]
+    },
+    {
+      "slug": "hosseini-2021-negation",
+      "short": "BERTNOT",
+      "title": "Understanding by Understanding Not: Modeling Negation in Language Models",
+      "authors": "Hosseini, Reddy, Bahdanau, Hjelm, Sordoni, Courville",
+      "year": 2021,
+      "date": "2021-05",
+      "venue": "NAACL 2021",
+      "citation_count": 109,
+      "topic": "Reasoning",
+      "author_group": "Mila",
+      "abstract": "Trains BERT with an unlikelihood objective over syntactically negated Wikipedia sentences, each paired with its un-negated original as a factual reference, cutting mean error on Kassner & Schütze's negated-LAMA probe from 9.01% to 3.95% while leaving original-LAMA precision essentially unchanged (17.13 to 17.26 mean P@1) — without training on a single negated-LAMA or negation-NLI example. Transfer to negation-augmented NLI is real but uneven: RTE-with-negation rises 65.47% to 74.47%, SNLI-with-negation 44.18% to 45.96%, and MNLI-with-negation only 60.62% to 60.89%, smaller than the ±0.31 spread the paper reports for that cell over 3 runs.",
+      "explainer": "papers/hosseini-2021-negation.html",
+      "audio_url": "https://pod.darvinyi.com/audio/hosseini-2021-negation.mp3"
     }
   ],
   "edges": [
@@ -19554,6 +19569,15 @@
     { "from": "manglik-2026-insights-generator", "to": "zhang-2025-failure-attribution" },
     { "from": "fanous-2025-syceval", "to": "malmqvist-2024-sycophancy-survey" },
     { "from": "fanous-2025-syceval", "to": "casper-2023-rlhf-open-problems" },
-    { "from": "fanous-2025-syceval", "to": "hendrycks-2021-math" }
+    { "from": "fanous-2025-syceval", "to": "hendrycks-2021-math" },
+    { "from": "hosseini-2021-negation", "to": "devlin-2019-bert" },
+    { "from": "hosseini-2021-negation", "to": "dagan-2005-rte" },
+    { "from": "hosseini-2021-negation", "to": "williams-2017-multinli" },
+    { "from": "hosseini-2021-negation", "to": "rajpurkar-2016-squad" },
+    { "from": "hosseini-2021-negation", "to": "liu-2019-roberta" },
+    { "from": "hosseini-2021-negation", "to": "bowman-2015-snli" },
+    { "from": "hosseini-2021-negation", "to": "radford-2019-gpt2" },
+    { "from": "berglund-2023-reversal-curse", "to": "hosseini-2021-negation" },
+    { "from": "ahn-2022-saycan", "to": "hosseini-2021-negation" }
   ]
 }

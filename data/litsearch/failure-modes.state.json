@@ -232,6 +232,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "hosseini-2021-negation",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -244,16 +251,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T13:57 completed allenzhu-2023-knowledge-manipulation (verdict=approved, rounds=2)",
-    "2026-08-14T14:02 started lynch-2025-agentic-misalignment ('Agentic Misalignment: How LLMs Could Be Insider Threats')",
-    "2026-08-14T14:02 lynch-2025-agentic-misalignment: step -> fetch",
-    "2026-08-14T14:02 lynch-2025-agentic-misalignment: step -> figures",
-    "2026-08-14T14:09 lynch-2025-agentic-misalignment: step -> figures",
-    "2026-08-14T14:09 lynch-2025-agentic-misalignment: step -> draft",
-    "2026-08-14T14:20 lynch-2025-agentic-misalignment: step -> critique (round 1)",
-    "2026-08-14T14:39 lynch-2025-agentic-misalignment: step -> critique (round 2)",
-    "2026-08-14T14:48 lynch-2025-agentic-misalignment: step -> verify",
-    "2026-08-14T14:48 lynch-2025-agentic-misalignment: step -> queue-ops",
     "2026-08-14T15:07 lynch-2025-agentic-misalignment: step -> podcast",
     "2026-08-14T15:07 completed lynch-2025-agentic-misalignment (verdict=approved, rounds=2)",
     "2026-08-14T15:12 started malmqvist-2024-sycophancy-survey ('Sycophancy in Large Language Models: Causes and Mitigations')",
@@ -293,6 +290,16 @@
     "2026-08-14T18:48 fanous-2025-syceval: step -> verify",
     "2026-08-14T18:48 fanous-2025-syceval: step -> queue-ops",
     "2026-08-14T19:11 fanous-2025-syceval: step -> podcast",
-    "2026-08-14T19:11 completed fanous-2025-syceval (verdict=approved, rounds=1)"
+    "2026-08-14T19:11 completed fanous-2025-syceval (verdict=approved, rounds=1)",
+    "2026-08-14T19:19 started hosseini-2021-negation ('Understanding by Understanding Not: Modeling Negation in Language Models')",
+    "2026-08-14T19:19 hosseini-2021-negation: step -> fetch",
+    "2026-08-14T19:19 hosseini-2021-negation: step -> figures",
+    "2026-08-14T19:24 hosseini-2021-negation: step -> draft",
+    "2026-08-14T19:30 hosseini-2021-negation: step -> critique (round 1)",
+    "2026-08-14T19:45 hosseini-2021-negation: step -> critique (round 2)",
+    "2026-08-14T19:51 hosseini-2021-negation: step -> verify",
+    "2026-08-14T19:51 hosseini-2021-negation: step -> queue-ops",
+    "2026-08-14T20:10 hosseini-2021-negation: step -> podcast",
+    "2026-08-14T20:10 completed hosseini-2021-negation (verdict=approved, rounds=2)"
   ]
 }
