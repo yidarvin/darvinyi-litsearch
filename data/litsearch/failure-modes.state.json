@@ -246,6 +246,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "carroll-2023-manipulation",
+      "rounds": 1,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -258,15 +265,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T15:56 malmqvist-2024-sycophancy-survey: step -> podcast",
-    "2026-08-14T15:56 completed malmqvist-2024-sycophancy-survey (verdict=approved, rounds=1)",
-    "2026-08-14T16:02 started langosco-2021-goal-misgeneralization ('Goal Misgeneralization in Deep Reinforcement Learning')",
-    "2026-08-14T16:02 langosco-2021-goal-misgeneralization: step -> fetch",
-    "2026-08-14T16:02 langosco-2021-goal-misgeneralization: step -> figures",
-    "2026-08-14T16:06 langosco-2021-goal-misgeneralization: step -> draft",
-    "2026-08-14T16:19 langosco-2021-goal-misgeneralization: step -> critique (round 1)",
-    "2026-08-14T16:35 langosco-2021-goal-misgeneralization: step -> critique (round 2)",
-    "2026-08-14T16:46 langosco-2021-goal-misgeneralization: step -> verify",
     "2026-08-14T16:46 langosco-2021-goal-misgeneralization: step -> queue-ops",
     "2026-08-14T17:05 langosco-2021-goal-misgeneralization: step -> podcast",
     "2026-08-14T17:05 completed langosco-2021-goal-misgeneralization (verdict=approved, rounds=2)",
@@ -307,6 +305,15 @@
     "2026-08-14T20:46 zhu-2025-agent-failures: step -> verify",
     "2026-08-14T20:46 zhu-2025-agent-failures: step -> queue-ops",
     "2026-08-14T21:06 zhu-2025-agent-failures: step -> podcast",
-    "2026-08-14T21:06 completed zhu-2025-agent-failures (verdict=approved, rounds=1)"
+    "2026-08-14T21:06 completed zhu-2025-agent-failures (verdict=approved, rounds=1)",
+    "2026-08-14T21:11 started carroll-2023-manipulation ('Characterizing Manipulation from AI Systems')",
+    "2026-08-14T21:11 carroll-2023-manipulation: step -> fetch",
+    "2026-08-14T21:11 carroll-2023-manipulation: step -> figures",
+    "2026-08-14T21:15 carroll-2023-manipulation: step -> draft",
+    "2026-08-14T21:24 carroll-2023-manipulation: step -> critique (round 1)",
+    "2026-08-14T21:42 carroll-2023-manipulation: step -> verify",
+    "2026-08-14T21:42 carroll-2023-manipulation: step -> queue-ops",
+    "2026-08-14T22:02 carroll-2023-manipulation: step -> podcast",
+    "2026-08-14T22:02 completed carroll-2023-manipulation (verdict=approved, rounds=1)"
   ]
 }

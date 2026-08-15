@@ -11455,6 +11455,22 @@
       "explainer": "papers/zhu-2025-agent-failures.html",
       "audio_url": "https://pod.darvinyi.com/audio/zhu-2025-agent-failures.mp3",
       "tags": ["benchmarks", "evaluations", "failure-modes"]
+    },
+    {
+      "slug": "carroll-2023-manipulation",
+      "short": "AI Manipulation",
+      "title": "Characterizing Manipulation from AI Systems",
+      "authors": "Carroll, Chan, Ashton, Krueger",
+      "year": 2023,
+      "date": "2023-03",
+      "venue": "EAAMO 2023",
+      "citation_count": 95,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Multi-lab",
+      "abstract": "Characterizes AI manipulation along four axes drawn from prior work on human manipulation — incentives, intent, covertness, and harm — reviewing proposed operationalizations for each (causal influence diagrams, causal accounts of intent, counterfactual harm) and the challenges each still faces. Applies the framework to recommender systems and language models and distinguishes manipulation from deception, coercion, and persuasion, without committing to a single consensus definition.",
+      "explainer": "papers/carroll-2023-manipulation.html",
+      "audio_url": "https://pod.darvinyi.com/audio/carroll-2023-manipulation.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19608,6 +19624,28 @@
     { "from": "zhu-2025-agent-failures", "to": "zhou-2023-webarena" },
     { "from": "zhu-2025-agent-failures", "to": "zhu-2025-multiagentbench" },
     { "from": "raj-2026-model-or-harness", "to": "zhu-2025-agent-failures" },
-    { "from": "manglik-2026-insights-generator", "to": "zhu-2025-agent-failures" }
+    { "from": "manglik-2026-insights-generator", "to": "zhu-2025-agent-failures" },
+    { "from": "carroll-2023-manipulation", "to": "amodei-2016-concrete-problems" },
+    { "from": "carroll-2023-manipulation", "to": "bender-2021-stochastic-parrots" },
+    { "from": "carroll-2023-manipulation", "to": "bommasani-2021-foundation-models" },
+    { "from": "carroll-2023-manipulation", "to": "chan-2023-agentic-harms" },
+    { "from": "carroll-2023-manipulation", "to": "chen-2021-codex" },
+    { "from": "carroll-2023-manipulation", "to": "christiano-2017-deep-rl-preferences" },
+    { "from": "carroll-2023-manipulation", "to": "evans-2021-truthful-ai" },
+    { "from": "carroll-2023-manipulation", "to": "ji-2022-hallucination-survey" },
+    { "from": "carroll-2023-manipulation", "to": "langosco-2021-goal-misgeneralization" },
+    { "from": "carroll-2023-manipulation", "to": "lin-2021-truthfulqa" },
+    { "from": "carroll-2023-manipulation", "to": "manheim-2018-goodhart" },
+    { "from": "carroll-2023-manipulation", "to": "nye-2021-scratchpads" },
+    { "from": "carroll-2023-manipulation", "to": "park-2023-ai-deception" },
+    { "from": "carroll-2023-manipulation", "to": "perez-2022-model-written-evals" },
+    { "from": "carroll-2023-manipulation", "to": "schick-2023-toolformer" },
+    { "from": "carroll-2023-manipulation", "to": "shah-2022-goal-misgeneralization" },
+    { "from": "carroll-2023-manipulation", "to": "skalse-2022-reward-hacking" },
+    { "from": "carroll-2023-manipulation", "to": "wei-2022-cot" },
+    { "from": "carroll-2023-manipulation", "to": "wei-2022-emergent-abilities" },
+    { "from": "park-2023-ai-deception", "to": "carroll-2023-manipulation" },
+    { "from": "chan-2023-agentic-harms", "to": "carroll-2023-manipulation" },
+    { "from": "casper-2023-rlhf-open-problems", "to": "carroll-2023-manipulation" }
   ]
 }
