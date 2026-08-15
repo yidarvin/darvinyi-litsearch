@@ -1431,7 +1431,7 @@
     }
   ],
   "survey_build": {
-    "step": null,
+    "step": "taxonomy",
     "round": 0,
     "open_blockers": [],
     "taxonomy": true,
@@ -1439,8 +1439,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-04T01:17 completed celikyilmaz-2020-eval-text-gen (verdict=approved, rounds=2)",
-    "2026-08-04T01:20 started dagan-2005-rte ('The PASCAL Recognising Textual Entailment Challenge')",
     "2026-08-04T01:20 dagan-2005-rte: step -> fetch",
     "2026-08-04T01:20 dagan-2005-rte: step -> figures",
     "2026-08-04T01:41 dagan-2005-rte: step -> draft",
@@ -1488,6 +1486,8 @@
     "2026-08-04T05:22 completed xu-2023-imagereward (verdict=approved, rounds=3)",
     "2026-08-13T08:51 started hendy-2023-gpt-mt ('How Good Are GPT Models at Machine Translation? A Comprehensive Evaluation')",
     "2026-08-13T08:51 hendy-2023-gpt-mt: step -> fetch",
-    "2026-08-13T08:51 hendy-2023-gpt-mt: step -> figures"
+    "2026-08-13T08:51 hendy-2023-gpt-mt: step -> figures",
+    "2026-08-15T00:27 survey_build: step -> corpus",
+    "2026-08-15T00:27 survey_build: step -> taxonomy"
   ]
 }

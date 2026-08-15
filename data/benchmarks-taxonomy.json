@@ -92,6 +92,10 @@
    {
     "parent": "singhal-2023-med-palm",
     "relation": "responds-to"
+   },
+   {
+    "parent": "xiong-2024-mirage",
+    "relation": "responds-to"
    }
   ],
   "dynasty": "",
@@ -456,7 +460,12 @@
   "kingdom": "B-audit",
   "family": "B3-desaturation-sequels",
   "placement_reason": "The team's own prior benchmark is explicitly distrusted here: extractive QA is 'easily handled by modern long-context models and RAG systems, as evidenced by their perfect recall in Needle-in-a-Haystack' -- LongBench v2 rebuilds the same long-context-understanding construct with a harder, human-reviewed, retrieval-resistant multiple-choice format (dual automated+manual difficulty gates) to restore discriminative headroom, the canonical B3 desaturation-sequel move on the same construct, not a new one.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "bai-2023-longbench",
+    "relation": "de-saturates"
+   }
+  ],
   "dynasty": "LongBench dynasty",
   "gravity": 1
  },
@@ -925,7 +934,12 @@
   "kingdom": "A-capability",
   "family": "A1-perception-parsing",
   "placement_reason": "Built to make entailment learnable and measurable at scale — 570K labeled sentence pairs so neural models could finally be trained and tested on natural language inference; the archetypal NLU parse/entail capability corpus (named in the family definition).",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "dagan-2005-rte",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "NLI/GLUE lineage",
   "gravity": 13
  },
@@ -1289,7 +1303,16 @@
   "kingdom": "A-capability",
   "family": "A7-communication",
   "placement_reason": "The headline is a capability verdict, not an audit or hazard measure: even with CoT, the best of six 2023-era LLMs trails human annotators by 28-49 points at tracking a negotiating partner's desire/belief/intention round-by-round in a real dialogue -- a conversational mental-state-tracking probe extending LoCoMo's memory-across-sessions framing to mental-state coherence within a single real negotiation, A7's territory rather than E3's moral-judgment-quality (no values/ethics content here) or D3's human-in-the-loop collaboration (both parties are dataset dialogue, not a live human partner).",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "kim-2023-fantom",
+    "relation": "transplants-method-of"
+   },
+   {
+    "parent": "le-2019-tomi",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 0
  },
@@ -1904,6 +1927,10 @@
   "lineage": [
    {
     "parent": "yue-2024-mmmu",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "majumdar-2024-openeqa",
     "relation": "responds-to"
    }
   ],
@@ -5487,7 +5514,16 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "A shared, scalable robot-manipulation task suite (100 tasks, one scene/interface, infinite scripted demos) built explicitly to replace ad hoc, per-paper task sets in manipulation research - the clearest 'operate an interactive environment' case in this batch's RL/robotics cluster, even though its domain content is physical robotics rather than the family's usual web/computer-use exemplars.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "brockman-2016-openai-gym",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "yu-2019-meta-world",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 9
  },
@@ -5665,7 +5701,24 @@
   "kingdom": "D-deployment",
   "family": "D2-occupational-probes",
   "placement_reason": "Explicitly built to move medical LLM evaluation past saturated static exam QA (MedQA/MedMCQA) toward whether an agent can actually operate a real EHR through the same FHIR interoperability standard a hospital's own system exposes -- reading labs, aggregating vitals, ordering tests/meds -- professional clinical-deployment competence grounded in real (de-identified) patient records, the D2 case.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "schmidgall-2024-agentclinic",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "liu-2023-agentbench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "yao-2024-tau-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "jin-2020-medqa",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 1
  },
@@ -7051,7 +7104,12 @@
   "kingdom": "A-capability",
   "family": "A7-communication",
   "placement_reason": "Built to give conversational models a clean, topic-coherent, dual-labeled (dialog-act + emotion) alternative to sprawling Switchboard/OpenSubtitles transcripts or noisy Twitter/Weibo post-reply pairs, then benchmarks next-utterance retrieval/generation against it -- a conversational-capability probe (A7), not a knowledge or reasoning test.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "wang-2013-stc",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 7
  },
@@ -7196,6 +7254,10 @@
    {
     "parent": "chen-2021-finqa",
     "relation": "ports-to-new-domain"
+   },
+   {
+    "parent": "yu-2018-spider",
+    "relation": "de-saturates"
    }
   ],
   "dynasty": "text-to-SQL lineage",
@@ -7339,7 +7401,12 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Formalizes 'can an LLM run a household robot' into four isolable, ground-truth-swapped modules so a failure can be attributed to goal interpretation vs. action sequencing vs. transition modeling rather than a single opaque success/fail -- the object measured is the model's own embodied-planning capability (broken into diagnostic sub-scores), the A5 case; distinguished from a G3 grader-benchmark since nothing here grades another system's free-form output, it grades the model under test directly against ground truth.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "srivastava-2021-behavior",
+    "relation": "descends-from"
+   }
+  ],
   "dynasty": "",
   "gravity": 1
  },
@@ -7472,7 +7539,36 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Ships a genuine evaluation apparatus -- a pip-installable Gym-API suite with a proposed correlation metric (MMRV) validated against real-robot trials across 7 policy checkpoints -- squarely the 'proposed evaluation methodology over an interactive environment' case (ALE's role, not OpenAI Gym's bare RL-environment-with-no-eval-apparatus case): the object evaluated is whether the simulated environment's policy rankings track real-world ones, operationalized by literally operating the interactive manipulation environment.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "mu-2021-maniskill",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "james-2020-rlbench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "mees-2022-calvin",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "srivastava-2021-behavior",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "zhu-2020-robosuite",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "yu-2019-meta-world",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "walke-2023-bridgedata-v2",
+    "relation": "trains-on"
+   }
+  ],
   "dynasty": "",
   "gravity": 0
  },
@@ -10477,7 +10573,20 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Explicitly targets long-horizon interactive decision-making as the next capability frontier, stitching together six procedurally-generated RL game environments behind one standardized step/reset harness so an LLM/VLM agent must act (not just answer) over up to hundreds of steps -- operating an interactive environment, the A5 case; procedural generation as the anti-memorization design mirrors AndroidWorld's own procedural contamination defense within the same family.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "zhou-2023-webarena",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "jimenez-2023-swe-bench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "hafner-2022-crafter",
+    "relation": "descends-from"
+   }
+  ],
   "dynasty": "",
   "gravity": 2
  },
@@ -11319,7 +11428,28 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Targets the top rung of a stated S0-S3 predictive-model hierarchy: can a video generation model's output be translated into real, working low-level control in an interactive environment (MineRL, CARLA, CALVIN)? The closed-loop Implicit Manipulative Evaluation literally executes video-derived action signals against real simulators and reads success off simulator state -- directly testing embodied-environment operation by the generative model, the A5 case; the trained Human Preference Evaluator (Explicit track) is instrumentation for judging outputs, not itself the object.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "liu-2023-agentbench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "huang-2024-vbench",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "liu-2024-evalcrafter",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "caesar-2020-nuscenes",
+    "relation": "trains-on"
+   },
+   {
+    "parent": "mees-2022-calvin",
+    "relation": "trains-on"
+   }
+  ],
   "dynasty": "",
   "gravity": 0
  },
@@ -11471,6 +11601,10 @@
    {
     "parent": "deng-2009-imagenet",
     "relation": "transplants-method-of"
+   },
+   {
+    "parent": "hermann-2015-cnn-dailymail",
+    "relation": "de-saturates"
    }
   ],
   "dynasty": "SQuAD lineage",
@@ -12043,7 +12177,16 @@
   "kingdom": "A-capability",
   "family": "A3-closed-form-reasoning",
   "placement_reason": "Tests whether a system can decompose logical/quantitative/comparative multi-set queries over a large KG into checkable structured answers (entities, counts, booleans) rather than just retrieve one fact -- a closed-form multi-hop reasoning probe (A3), with conversational turn-linking (coreference, ellipsis, clarification) as the delivery mechanism rather than the tested skill itself.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "bordes-2015-simplequestions",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "dodge-2015-movie-dialog",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 0
  },
@@ -12121,7 +12264,12 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Ports the 'ALE for single-agent RL' idea to cooperative multi-agent RL: 14 partially-observable combat scenarios where each unit is its own decentralized agent operating a real-time tactical action space (move/attack/heal) -- the archetypal interactive-environment capability probe (A5), with its headline result (three of five Super-Hard maps unsolved by every 2019 algorithm) about tactical coordination skill within an operated environment, not knowledge or conversation.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "bellemare-2013-ale",
+    "relation": "ports-to-new-domain"
+   }
+  ],
   "dynasty": "",
   "gravity": 2
  },
@@ -12224,6 +12372,10 @@
    {
     "parent": "zheng-2023-mt-bench",
     "relation": "transplants-method-of"
+   },
+   {
+    "parent": "liao-2024-saps",
+    "relation": "responds-to"
    }
   ],
   "dynasty": "",
@@ -12470,7 +12622,12 @@
   "kingdom": "B-audit",
   "family": "B4-construct-audits",
   "placement_reason": "Points at the measurement apparatus, not a skill: shows that near-perfect probing-question accuracy (GPT-4: 98.99%-100%) does not predict real in-action privacy behavior (25-39% leak rate on the identical underlying cases), exposing that a model's score on the standard privacy-QA construct means something different from what it's assumed to mean -- the canonical B4 audit move, paired with a dynamic red-teaming extension rather than itself being the object.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "ruan-2023-toolemu",
+    "relation": "transplants-method-of"
+   }
+  ],
   "dynasty": "",
   "gravity": 1
  },
@@ -13424,7 +13581,20 @@
   "kingdom": "A-capability",
   "family": "A2-knowledge-exams",
   "placement_reason": "Tests whether a model can apply background commonsense knowledge never stated in the question -- a multiple-choice, exam-style knowledge-application probe (A2) scored against a human ceiling, distinct from the paper's own SANITY ablation showing much of the measured difficulty traces to adversarial distractor selection rather than a new skill or a benchmark-auditing purpose.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "rajpurkar-2016-squad",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "joshi-2017-triviaqa",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "hermann-2015-cnn-dailymail",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 5
  },
@@ -13874,7 +14044,7 @@
   "lineage": [
    {
     "parent": "patwardhan-2025-gdpval",
-    "relation": "descends-from"
+    "relation": "responds-to"
    },
    {
     "parent": "arora-2025-healthbench",
@@ -14143,7 +14313,12 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Explicitly benchmarks whether model-based RL agents can operate 18 simulated continuous-control physics environments as capably as model-free rivals under one shared protocol - an operate-the-environment capability probe (task_shape=interactive-env); A5 is the closest family fit even though its other members are web/computer-use agents rather than physical control, since no domain/family combination in this taxonomy was built around classic robotics/control RL (a vocabulary gap, not a confident placement).",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "brockman-2016-openai-gym",
+    "relation": "descends-from"
+   }
+  ],
   "dynasty": "",
   "gravity": 2
  },
@@ -15728,7 +15903,12 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "Built to answer 'can grounded agents operate a realistic web environment?' — prior interactive benchmarks were toy vocabularies (MiniWoB) or human-graded (WebGPT), so WebShop supplies a 1.18M-real-product e-commerce environment with an automatically computable reward. The environment/agentic task is the contribution; the taxonomy's A5 archetype is literally 'WebShop-style'. RL training inside it exists but the paper's headline is the human-agent capability gap (29% vs 60%), not a reward factory.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "brockman-2016-openai-gym",
+    "relation": "ports-to-new-domain"
+   }
+  ],
   "dynasty": "WebShop dynasty",
   "gravity": 31
  },
@@ -15928,7 +16108,24 @@
   "kingdom": "G-meta-evaluation",
   "family": "G1-panoramas",
   "placement_reason": "The paper's own diagnosis is about measurement, not capability: existing long-context reports lean on needle-in-a-haystack and ad hoc dataset handfuls that don't correlate with real downstream use (rho<=0.68-0.8), and long-document scoring still leans on unreliable ROUGE. HELMET's contribution is a standardized, holistic protocol across seven genuinely distinct application categories (cross-category correlation ranges 0.92 down to 0.34) with a validated model-based metric replacing ROUGE -- the G1 panorama move (a way of evaluating, in the HELM/BIG-bench tradition), not a new capability construct.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "hsieh-2024-ruler",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "kwiatkowski-2019-natural-questions",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "joshi-2017-triviaqa",
+    "relation": "descends-from"
+   },
+   {
+    "parent": "yang-2018-hotpotqa",
+    "relation": "descends-from"
+   }
+  ],
   "dynasty": "",
   "gravity": 2
  },
@@ -16115,7 +16312,12 @@
   "kingdom": "A-capability",
   "family": "A5-embodied-operation",
   "placement_reason": "A shared-arm, shared-format multi-task manipulation suite explicitly built to force meta-/multi-task RL methods to prove generalization past narrow parametric task families - an 'operate an interactive environment across many distinct tasks' case, even though (like RLBench, PHYRE, bsuite, and the MBRL benchmark in this same batch) its domain content is physical robotics rather than the family's usual web/computer-use exemplars.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "bellemare-2013-ale",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 11
  },
@@ -16539,7 +16741,12 @@
   "kingdom": "A-capability",
   "family": "A7-communication",
   "placement_reason": "The classic conversational-persona capability probe: can a dialogue model maintain a consistent, explicitly-given personality across a conversation instead of defaulting to bland, inconsistent replies -- tested by next-utterance selection/generation, squarely a communication skill (A7), with the paraphrased 'revised' persona condition specifically defending against a lexical-overlap shortcut rather than changing the tested construct.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "rajpurkar-2016-squad",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "PersonaChat lineage",
   "gravity": 14
  },
@@ -16778,7 +16985,12 @@
   "kingdom": "E-hazard",
   "family": "E2-dangerous-capability-propensity",
   "placement_reason": "Built explicitly to quantify offensive-cyber capability as a named AI risk (2023 US Executive Order, frontier-safety frameworks), replacing subjective CTF point values with real human first-solve-time calibration -- a dangerous-capability probe measuring how far an LM's own hacking skill extends, the E2 case; not E1, since the object measured is the model's offensive capability itself, not an attack surface exposed by or against an agent.",
-  "lineage": [],
+  "lineage": [
+   {
+    "parent": "yang-2023-intercode",
+    "relation": "responds-to"
+   }
+  ],
   "dynasty": "",
   "gravity": 3
  },
@@ -17713,6 +17925,10 @@
    },
    {
     "parent": "qin-2023-toolllm",
+    "relation": "responds-to"
+   },
+   {
+    "parent": "chen-2021-codex",
     "relation": "responds-to"
    }
   ],
