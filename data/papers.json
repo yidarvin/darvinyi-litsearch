@@ -11439,6 +11439,22 @@
       "abstract": "Trains BERT with an unlikelihood objective over syntactically negated Wikipedia sentences, each paired with its un-negated original as a factual reference, cutting mean error on Kassner & Schütze's negated-LAMA probe from 9.01% to 3.95% while leaving original-LAMA precision essentially unchanged (17.13 to 17.26 mean P@1) — without training on a single negated-LAMA or negation-NLI example. Transfer to negation-augmented NLI is real but uneven: RTE-with-negation rises 65.47% to 74.47%, SNLI-with-negation 44.18% to 45.96%, and MNLI-with-negation only 60.62% to 60.89%, smaller than the ±0.31 spread the paper reports for that cell over 3 runs.",
       "explainer": "papers/hosseini-2021-negation.html",
       "audio_url": "https://pod.darvinyi.com/audio/hosseini-2021-negation.mp3"
+    },
+    {
+      "slug": "zhu-2025-agent-failures",
+      "short": "AgentDebug",
+      "title": "Where LLM Agents Fail and How They can Learn From Failures",
+      "authors": "Zhu, Liu, Li, …, Lu, Zou, You",
+      "year": 2025,
+      "date": "2025-09",
+      "venue": "arXiv",
+      "citation_count": 97,
+      "topic": "Agents",
+      "author_group": "UIUC",
+      "abstract": "Introduces AgentErrorTaxonomy (5 modules, 17 error types spanning memory, reflection, planning, action, and system-level failures), AgentErrorBench (200 human-annotated failure trajectories from ALFWorld, GAIA, and WebShop, Cohen's kappa=0.55), and AgentDebug, a debugging framework that localizes the earliest root-cause step in a failed trajectory and issues corrective feedback. AgentDebug reaches 24.3% All-Correct detection accuracy against a 0.3% strongest-baseline, and improves task success by up to 26% relative -- though its own figures show it tying rather than strictly beating the strongest baseline on 3 of 6 reported recovery comparisons (1 of 3 ALFWorld backbones; 2 of 3 cross-benchmark results).",
+      "explainer": "papers/zhu-2025-agent-failures.html",
+      "audio_url": "https://pod.darvinyi.com/audio/zhu-2025-agent-failures.mp3",
+      "tags": ["benchmarks", "evaluations", "failure-modes"]
     }
   ],
   "edges": [
@@ -19578,6 +19594,20 @@
     { "from": "hosseini-2021-negation", "to": "bowman-2015-snli" },
     { "from": "hosseini-2021-negation", "to": "radford-2019-gpt2" },
     { "from": "berglund-2023-reversal-curse", "to": "hosseini-2021-negation" },
-    { "from": "ahn-2022-saycan", "to": "hosseini-2021-negation" }
+    { "from": "ahn-2022-saycan", "to": "hosseini-2021-negation" },
+    { "from": "zhu-2025-agent-failures", "to": "cemri-2025-why-multiagent-fail" },
+    { "from": "zhu-2025-agent-failures", "to": "mialon-2023-gaia" },
+    { "from": "zhu-2025-agent-failures", "to": "qin-2023-toolllm" },
+    { "from": "zhu-2025-agent-failures", "to": "schick-2023-toolformer" },
+    { "from": "zhu-2025-agent-failures", "to": "shinn-2023-reflexion" },
+    { "from": "zhu-2025-agent-failures", "to": "wei-2022-cot" },
+    { "from": "zhu-2025-agent-failures", "to": "yao-2022-webshop" },
+    { "from": "zhu-2025-agent-failures", "to": "yao-2022-react" },
+    { "from": "zhu-2025-agent-failures", "to": "yao-2023-tree-of-thoughts" },
+    { "from": "zhu-2025-agent-failures", "to": "zhang-2025-failure-attribution" },
+    { "from": "zhu-2025-agent-failures", "to": "zhou-2023-webarena" },
+    { "from": "zhu-2025-agent-failures", "to": "zhu-2025-multiagentbench" },
+    { "from": "raj-2026-model-or-harness", "to": "zhu-2025-agent-failures" },
+    { "from": "manglik-2026-insights-generator", "to": "zhu-2025-agent-failures" }
   ]
 }
