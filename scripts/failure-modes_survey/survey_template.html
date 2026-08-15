@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How the Failure Was Made — paper_atlas</title>
+<meta name="description" content="A taxonomy of @@N@@ papers (@@YEAR_MIN@@–@@YEAR_MAX@@) on how LLMs and LLM agents fail — organized not by the kind of failure but by how much of it the researcher had to build. Elicitation, the axis that bounds what a failure result licenses.">
+<meta property="og:title" content="How the Failure Was Made">
+<meta property="og:description" content="A taxonomy of @@N@@ papers (@@YEAR_MIN@@–@@YEAR_MAX@@) on how LLMs and LLM agents fail — organized not by the kind of failure but by how much of it the researcher had to build. Elicitation, the axis that bounds what a failure result licenses.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://research.darvinyi.com/surveys/failure-modes.html">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='%23fb7185'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0b; --panel:#141417; --elev:#1b1b20; --fg:#ececee; --dim:#c7c7cf; --muted:#82828c; --line:#27272e;
+  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
+  --gold:#fb7185; --gold-soft:rgba(251,113,133,.12);
+  --warn:#f59e0b; --col:720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,11,.82);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-inner{height:54px;display:flex;align-items:center;gap:18px;padding:0 20px;max-width:1180px;margin:0 auto}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.brand .sq{width:10px;height:10px;border-radius:2px;background:var(--gold);box-shadow:0 0 12px var(--gold-soft)}
+.brand:hover{text-decoration:none;opacity:.85}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.nav a{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);padding:6px 10px;border-radius:7px;white-space:nowrap}
+.nav a:hover{color:var(--dim);text-decoration:none}
+.nav a.active{color:var(--gold);background:var(--gold-soft)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+
+.wrap{max-width:var(--col);margin:0 auto;padding:0 22px}
+section{padding:46px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);letter-spacing:.04em;margin-bottom:14px}
+h1{font-size:38px;line-height:1.12;font-weight:700;letter-spacing:-.02em;margin:14px 0 16px}
+h2{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 16px}
+h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+p{font-size:16.5px;color:var(--dim);margin:0 0 16px}
+p strong,li strong{color:var(--fg);font-weight:600}
+ul,ol{color:var(--dim);font-size:16.5px;margin:0 0 16px;padding-left:22px}
+li{margin:0 0 8px}
+.hero{padding-top:96px}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold);margin-bottom:6px}
+.dek{font-size:19px;color:var(--dim);margin:0 0 22px;line-height:1.5}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.fact{font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 11px;border-radius:20px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev)}
+.fact b{color:var(--fg);font-weight:600}
+.fact a{color:var(--gold)}
+
+.fig{margin:26px calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;margin-left:auto;margin-right:auto;
+  overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(min-width:1100px){ .fig.wide{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+.fig svg{display:block;width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.figcap{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin:11px auto 0;
+  line-height:1.55;max-width:var(--col);padding:0 10px}
+.figcap b{color:var(--dim)}
+
+.callout{background:var(--elev);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:9px;padding:16px 18px;margin:22px 0}
+.callout .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:7px}
+.callout p:last-child{margin-bottom:0}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 17px;min-width:0}
+.card .nm{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;color:var(--gold);margin-bottom:4px}
+.card .q{font-size:13.5px;color:var(--dim);margin-bottom:11px;line-height:1.45}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:14px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev);white-space:nowrap}
+.chip b{color:var(--fg);font-weight:600}
+.chip .d{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.chip.more{color:var(--muted);border-style:dashed}
+
+.fnum{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin:34px 0 6px}
+.findings h3{margin-top:6px;font-size:20px}
+
+.story{margin:28px 0;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:11px}
+.story .snum{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:6px}
+.story h3{margin:0 0 10px;font-size:17.5px}
+.story p{font-size:15px;margin-bottom:12px}
+.story p:last-child{margin-bottom:0}
+.story .fig{margin-top:16px;margin-bottom:6px}
+
+.kingdom{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--kc);
+  border-radius:11px;padding:16px 17px;margin:16px 0}
+.khead{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.klet{width:30px;height:30px;border-radius:8px;background:var(--kc);color:#0a0a0b;font-weight:700;
+  font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.kt{min-width:0}
+.knm{font-weight:600;font-size:16px;color:var(--fg)}
+.kq{font-size:12.5px;color:var(--muted);font-style:italic}
+.kn{margin-left:auto;font-size:12px;color:var(--muted)}
+.fam{margin-top:13px}
+.fnm{font-size:11px;color:var(--kc);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.fnm .fdef{color:var(--muted);font-size:10.5px}
+.fnm .fn{margin-left:auto;color:var(--muted)}
+.tchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.tchip{font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:14px;
+  border:1px solid var(--line);color:var(--dim);background:var(--elev);text-decoration:none;white-space:nowrap}
+.tchip:hover{border-color:var(--kc);color:var(--fg);text-decoration:none}
+.tchip span{color:var(--muted);margin-left:4px;font-size:9.5px}
+
+.filters{display:flex;gap:8px;margin:20px 0 12px;flex-wrap:wrap;align-items:center}
+.filters input,.filters select{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--fg);
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 10px;outline:none}
+.filters input{flex:1 1 170px;min-width:130px}
+.filters input::placeholder{color:var(--muted)}
+.filters input:focus,.filters select:focus{border-color:var(--gold)}
+.filters select{-webkit-appearance:none;appearance:none;padding-right:26px;cursor:pointer;color:var(--dim);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2382828c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 9px center}
+.tcount{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+.treset{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:none;border:0;cursor:pointer;padding:4px}
+.treset:hover{color:var(--gold)}
+.tblwrap{margin:0 calc((var(--col) - 100vw)/2);max-width:1040px;width:auto;margin-left:auto;margin-right:auto;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:11px;background:var(--panel)}
+@media(min-width:1100px){ .tblwrap{width:1040px;margin-left:calc((var(--col) - 1040px)/2)} }
+.ptable{width:100%;border-collapse:collapse;font-size:13px;min-width:1020px}
+.ptable th{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);font-weight:500;
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
+.ptable td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
+.ptable tr:last-child td{border-bottom:0}
+.ptable tr:hover td{background:var(--elev)}
+.pname a{font-weight:600;color:var(--fg);white-space:nowrap}
+.pname a:hover{color:var(--gold);text-decoration:none}
+.pname .yr{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)}
+.pill{font-family:'JetBrains Mono',monospace;font-size:10px;white-space:nowrap;color:var(--dim)}
+.oneline{font-size:12px;color:var(--muted);min-width:250px;line-height:1.45}
+.aw{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);vertical-align:1px}
+
+footer{border-top:1px solid var(--line);padding:34px 0 60px;text-align:center;margin-top:46px}
+footer .mono{font-size:12px;color:var(--muted);line-height:1.9}
+
+@media(max-width:640px){
+  h1{font-size:29px}
+  .nav{display:none}
+  .hero{padding-top:80px}
+  .cards{grid-template-columns:1fr}
+  /* charts stay at a legible fixed width rather than shrinking to illegible
+     text — that means they scroll horizontally in their .fig box, so make
+     that explicit instead of leaving it to be discovered by accident. */
+  .fig svg{min-width:640px}
+  .fig::before{content:'· scroll for full chart →';display:block;font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;color:var(--muted);text-align:right;margin-bottom:6px}
+  .ptable{min-width:860px}
+  .filters select{flex:1 1 44%}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="/"><span class="sq"></span>paper_atlas</a>
+    <nav class="nav" id="nav">
+      <a href="#corpus">corpus</a>
+      <a href="#prior">prior work</a>
+      <a href="#facets">facets</a>
+      <a href="#elicitation">elicitation</a>
+      <a href="#tree">tree</a>
+      <a href="#findings">findings</a>
+      <a href="#connections">connections</a>
+      <a href="#table">the @@N@@</a>
+      <a href="#method">method</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="kick">// paper_atlas · survey · failure-modes</div>
+      <h1>How the Failure Was Made</h1>
+      <p class="dek">Every paper here reports a failure. Very few of them <em>found</em> one — they <strong>built</strong> one. @@N@@ papers on how language models and language-model agents break, @@YEAR_MIN@@–@@YEAR_MAX@@, classified along @@N_FACETS@@ facets and placed in a tree of @@N_KINGDOMS@@ kingdoms and @@N_FAMILIES@@ families. The organizing axis is not the kind of failure but the kind of experiment: <strong>elicitation</strong> — <em>what the researcher had to manufacture</em> before the failure appeared. Read the corpus that way and one variable predicts whether a failure could ever be caught in production, and it is not what the failure cost to produce. It is <strong>which object was manufactured</strong>. Build the <em>input</em> — a written prompt, or a suffix some gradient found for you — and the failure lands in the output, where a classifier can still see it: all <b>@@N_DET_OUTPUT@@</b> output-visible failures in this corpus sit on those rungs. Build the <em>world</em> around the model or the <em>weights</em> inside it, and there is nothing left to see — <b>@@N_WORLD_OUTPUT@@ of @@N_WORLD_ELI@@</b>. One of those rungs carries the corpus's only inverted defense record, and both rest on a confound — does the model know it is being tested? — that @@N_AWR_TESTED@@ of @@N@@ papers have ever measured. All @@N_AWR_TESTED@@ found that it mattered.</p>
+      <div class="facts">
+        <span class="fact">papers&nbsp;<b>@@N@@</b></span>
+        <span class="fact">span&nbsp;<b>@@YEAR_MIN@@–@@YEAR_MAX@@</b></span>
+        <span class="fact">facets&nbsp;<b>@@N_FACETS@@</b></span>
+        <span class="fact">tree&nbsp;<b>@@N_KINGDOMS@@ kingdoms · @@N_FAMILIES@@ families</b></span>
+        <span class="fact">lineage&nbsp;<b>@@N_EDGES@@ edges</b></span>
+        <span class="fact">defenses that actually work&nbsp;<b>@@N_MIT_EFFECTIVE@@</b></span>
+        <span class="fact"><a href="/?survey=failure-modes">view the spine on the map&nbsp;↗</a></span>
+        <!-- once this survey has a compiled PDF (paper/failure-modes/, the `tex`/`pdf` build
+             steps, and "pdf": "surveys/failure-modes.pdf" registered in data/surveys.json),
+             uncomment the line below — see scripts/benchmarks_survey/survey_template.html. -->
+        <!-- <span class="fact"><a href="failure-modes.pdf">download pdf&nbsp;↓</a></span> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CORPUS ════════════ -->
+  <section id="corpus">
+    <div class="wrap">
+      <div class="tag">// the corpus</div>
+      <h2>What counts as a failure paper here</h2>
+      <p>The atlas tags a paper <span class="mono" style="color:var(--gold)">failure-modes</span> when characterizing a way models <em>break</em> is its primary or notable contribution — naming a failure class, taxonomizing one, or demonstrating one empirically. Hallucination analyses, sycophancy, reward hacking, jailbreaks and prompt injection, tool-use breakdowns, error compounding across agent loops, deception, sandbagging, unfaithful reasoning, red-team studies. A defense paper is a member when it <em>diagnoses</em> what it defends against — <a href="/papers/hines-2024-spotlighting.html">Spotlighting</a> maps the injection surface before it patches it, so it is in; a training method that merely reports fewer errors is out. A model, an agent framework, or a capability paper that exhibits errors in passing is out. That rubric yields <b>@@N@@</b> papers, every one with a full explainer on this site; this page is generated from those explainers.</p>
+      <p>The corpus runs @@YEAR_MIN@@–@@YEAR_MAX@@ but is sharply modern: <b>@@N_SINCE_2023@@</b> of @@N@@ papers (@@PCT_SINCE_2023@@%) are from 2023 or later, with the single largest year being @@N_2024@@ papers in 2024. The pre-LLM tail is deliberate and thin — @@N_ERA_2018@@ papers through 2018, @@N_ERA_201920@@ in 2019–20 — because the vocabulary has a lineage worth keeping: <a href="/papers/amodei-2016-concrete-problems.html">Concrete Problems in AI Safety</a> named reward hacking and scalable oversight in @@YEAR_MIN@@ with <b>@@Q_CP_MODES@@</b> failure modes and <b>@@Q_CP_EXPERIMENTS@@</b> experiments, and <a href="/papers/manheim-2018-goodhart.html">the Goodhart taxonomy</a> formalized proxy failure before any language model could exhibit it. What the corpus is <em>not</em> is a census: it over-represents what the atlas covers deeply — text-model and agent failures in English, published in the last few years — and it holds papers, not incidents, so failure classes that live in postmortems and bug trackers rather than in preprints are absent by construction.</p>
+      <div class="chips">@@CHIPS_ELI@@</div>
+    </div>
+  </section>
+
+  <!-- ════════════ PRIOR WORK ════════════ -->
+  <section id="prior">
+    <div class="wrap">
+      <div class="tag">// prior work</div>
+      <h2>The prior surveys are inside the corpus — and they all sort by symptom</h2>
+      <p>This survey does not need to reach outside itself to find its prior work. <b>@@N_EVD_SYNTH@@</b> of the @@N@@ papers are themselves syntheses — their evidence mode is <span class="mono">corpus-synthesis</span>, meaning they organize other people's results rather than producing their own. They are the field's existing maps: <a href="/papers/amodei-2016-concrete-problems.html">Concrete Problems</a> (@@YEAR_MIN@@), <a href="/papers/ji-2022-hallucination-survey.html">the hallucination survey</a>, <a href="/papers/bai-2024-mllm-hallucination-survey.html">its multimodal sequel</a>, <a href="/papers/casper-2023-rlhf-open-problems.html">RLHF's open problems</a>, <a href="/papers/chan-2023-agentic-harms.html">the agentic-harms vocabulary</a>, <a href="/papers/carroll-2023-manipulation.html">the manipulation framework</a>, <a href="/papers/park-2023-ai-deception.html">the deception review</a>, <a href="/papers/malmqvist-2024-sycophancy-survey.html">a sycophancy survey</a>, and @@YEAR_MAX@@'s <a href="/papers/raj-2026-model-or-harness.html">model-or-harness attribution taxonomy</a>. Widen the frame past this corpus and the same shelf holds the broad LLM-risk taxonomies — <a href="https://arxiv.org/abs/2112.04359">Weidinger et al.'s</a> risk-area taxonomy, the <a href="https://arxiv.org/abs/2408.12622">MIT AI Risk Repository</a>'s causal-plus-domain database, the industry vulnerability lists — and their organizing move is identical.</p>
+      <p>Every one of them sorts failures by <strong>symptom</strong>: what went wrong, in what capability, to whom. None of them sorts by <strong>how the result was obtained</strong>. That omission is not cosmetic. Across this corpus, papers that share a symptom routinely differ by an order of magnitude in what their evidence supports, because one ran a model on ordinary inputs and another wrote a fictional corporate crisis designed to produce exactly the behaviour it then reports. Sorting by symptom hides that difference; the taxonomies above have no column for it.</p>
+      <p>The other thing a symptom taxonomy hides is its own evidential base. Of the @@N_EVD_SYNTH@@ syntheses here, all belong to the <span class="mono">not-elicited</span> class — <b>@@N_ELI_NONE@@</b> papers in the corpus run no experiment at all — and the eval read on several is unkind: <a href="/papers/chan-2023-agentic-harms.html">the agentic-harms paper</a> lists @@Q_AH_AUTHORS@@ authors and @@Q_AH_MEASURE@@ measurements; <a href="/papers/malmqvist-2024-sycophancy-survey.html">the sycophancy survey</a> carries @@Q_SYC_ORIGINAL@@ original measurements and @@Q_SYC_MISATTR@@ misattributed citations. A taxonomy that never touches a model can still be the most-cited object in its subfield — Concrete Problems is proof — but it licenses vocabulary, not rates. Distinguishing the two is what the axis below is for.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ FACETS ════════════ -->
+  <section id="facets">
+    <div class="wrap">
+      <div class="tag">// the facets</div>
+      <h2>@@N_FACETS@@ questions you can ask of any failure paper</h2>
+      <p>Each of the @@N@@ papers was classified along @@N_FACETS@@ facets — @@N_FACETS@@ questions with closed answer sets, judged from its explainer. @@N_FACETS_OTHER@@ of them describe the failure and the paper's evidence about it. The first, <a href="#elicitation">elicitation</a>, describes the <em>experiment</em>, and does enough analytical work to get its own section. Facets classify along independent axes; they do not <em>place</em> a paper — for the single-address taxonomy, see <a href="#tree">the tree</a>.</p>
+
+      <div class="cards">@@FACET_CARDS@@</div>
+
+      <p>Two of these are unusual for a failure taxonomy and worth naming now. <strong>Detectability</strong> is a deployment question, not a research one: a paper can characterize a failure beautifully and still leave you no way to notice it in production — <b>@@N_DET_BEYOND_OUTPUT@@</b> of @@N@@ failures here (@@PCT_DET_BEYOND_OUTPUT@@%) cannot be caught from the model's output alone; you need the trace, the ground truth, a counterfactual run, the weights — or, for @@N_DET_UNDET@@ of them, nothing you have. <strong>Evaluation awareness</strong> is the confound specific to this literature: many of these results are produced by putting a model in a situation, and a model that recognizes the situation as a test is not the model you meant to measure. Its answer set has only @@N_AWR_VALUES@@ values — <span class="mono">shown-sensitive</span>, <span class="mono">not-tested</span>, <span class="mono">n-a</span> — because those are the only ones the corpus ever needed.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ ELICITATION ════════════ -->
+  <section id="elicitation">
+    <div class="wrap">
+      <div class="tag">// the load-bearing axis</div>
+      <h2>Elicitation: how much of the failure did you build?</h2>
+      <p>Ask of any result in this corpus: <em>what did the researcher have to construct before the failure showed up?</em> The answers form a short ladder, and it is not a ladder of severity or of rigor. It is a ladder of <strong>apparatus</strong>. At one end, the model was doing something ordinary and the failure was already there. At the other, the failure had to be installed by fine-tuning. In between sit the prompt, the search over prompts, and the staged world.</p>
+      <p>The cut that turns out to matter is not where a paper sits on that ladder but <strong>which object it manufactured</strong>. On the first three rungs the researcher produced (or simply received) an <em>input</em>, and whatever the model then did is still an output someone can read. On the next two the researcher built the <em>context</em> the model reasons in, or the <em>weights</em> it reasons with, and the output it produces afterwards is by construction indistinguishable from an ordinary one. <a href="#findings">Finding 02</a> is that distinction, measured.</p>
+      <div class="callout">
+        <div class="lbl">// definition</div>
+        <p><strong>Elicitation</strong> — the class of apparatus a paper needed to produce the failure it reports. <strong>Spontaneous</strong>: it appeared under ordinary use of the system, with nothing adversarial constructed. <strong>Prompted</strong>: a hand-written input triggered it. <strong>Optimized</strong>: a gradient, a search, or an attacker model produced the input. <strong>Constructed-scenario</strong>: a whole situation was staged — roles, stakes, and a temptation. <strong>Trained-in</strong>: the failure was installed by fine-tuning, poisoning, or an RL run. <strong>Not-elicited</strong>: nothing was run; the paper is a taxonomy, a survey, or a proof.</p>
+      </div>
+      <div class="fig wide">@@CHART_ELILADDER@@</div>
+      <p class="figcap"><b>The elicitation ladder.</b> Counts across all @@N@@ papers, with the two derived numbers that make the axis load-bearing: what share of each rung's failures can be caught from the model's output alone, and how the rung's defense record splits between "defenses fail" and "partial mitigation". <b>@@N_MANUFACTURED@@</b> of @@N@@ papers (@@PCT_MANUFACTURED@@%) manufactured their failure; <b>@@N_ELI_SPON@@</b> found it already present; <b>@@N_ELI_NONE@@</b> ran nothing.</p>
+      <p>The reason this belongs at the front of a failure survey rather than in its methods appendix is that <strong>elicitation bounds the claim</strong>. A spontaneous result — <a href="/papers/liu-2023-lost-in-the-middle.html">Lost in the Middle</a>'s @@Q_LITM_GAP@@ swing depending on where the evidence sits in the context window — licenses a statement about ordinary use. An optimized result — <a href="/papers/zou-2023-gcg.html">GCG</a>'s @@Q_GCG_ASR@@ white-box attack success, transferring at @@Q_GCG_TRANSFER@@ to GPT-3.5 and @@Q_GCG_TRANSFER_GPT4@@ to GPT-4 — licenses a statement about what a motivated adversary can do. A constructed-scenario result licenses a statement about what a model does <em>in that scenario</em>, and nothing more until someone shows the scenario generalizes. These are three different kinds of sentence, and a taxonomy sorted by symptom prints them in the same font.</p>
+      <p>The axis is <em>cross-cutting</em>, though not independent of the failure type — a distinction worth being exact about, because the looser version is tempting and wrong. Elicitation splits <b>@@N_FAM_SPLIT@@</b> of the @@N_FAMILIES@@ families in <a href="#tree">the tree</a> — @@N_FAM_SPLIT@@ of the @@N_FAM_MULTI@@ families that hold more than one paper — and every one of the <b>@@N_KINGDOMS@@</b> kingdoms. But it is also strongly <em>associated</em> with placement: Cramér's V between kingdom and elicitation is <b>@@CRAMERS_V@@</b> (χ² = @@CHI2_KING_ELI@@), and guessing a paper's elicitation from the modal value of its family gets @@PCT_FAM_MAJORITY@@% right against a @@PCT_ELI_BASERATE@@% base rate (@@PCT_KING_MAJORITY@@% from its kingdom alone). So the honest claim is not that you cannot predict elicitation from subject matter — often you can — but that the axis is <strong>not reducible to</strong> the tree: it separates papers the tree files together, and that is where its work gets done. Sycophancy is studied by prompting (<a href="/papers/wei-2023-sycophancy-synthetic.html">Sycophancy from Synthetic Data</a>, <a href="/papers/fanous-2025-syceval.html">SycEval</a>) and by synthesis (<a href="/papers/malmqvist-2024-sycophancy-survey.html">the survey</a>). Monitor evasion is studied by training it in (<a href="/papers/baker-2025-monitoring-reasoning.html">CoT Obfuscation</a>), by optimizing against a monitor (<a href="/papers/emmons-2025-cot-evade-monitors.html">Evade Monitors</a>), and by staging a scenario (<a href="/papers/kale-2025-weak-to-strong-monitoring.html">Weak-to-Strong Monitoring</a>). Same family, three different kinds of evidence.</p>
+      <div class="fig wide">@@CHART_ELIWAVES@@</div>
+      <p class="figcap"><b>Elicitation by era.</b> Shares of new failure papers. Eras pool small years; single years from 2023. The <span style="color:#4ade80">optimized</span> wave arrives with the 2023 jailbreak literature. The <span style="color:#fb923c">constructed-scenario</span> rung enters in @@YEAR_SCEN_FIRST@@ with @@N_SCEN_FIRST_YEAR@@ paper (ToolEmu) and grows only afterwards: @@N_SCEN_AFTER_FIRST@@ of its @@N_ELI_SCEN@@ members are later than @@YEAR_SCEN_FIRST@@.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ THE TREE ════════════ -->
+  <section id="tree">
+    <div class="wrap">
+      <div class="tag">// the tree</div>
+      <h2>A taxonomy by what broke, not by what was built</h2>
+      <p>The facets classify; the tree <em>places</em>. Its question is the one a reader actually arrives with: <strong>"what, structurally, went wrong?"</strong> — judged from each paper's own problem statement, with the answer given at exactly one address. That question has @@N_KINGDOMS@@ answers across @@N@@ papers and @@N_FAMILIES@@ families, and the resulting shape is lopsided in a way worth staring at.</p>
+      <div class="fig">@@CHART_TREE@@</div>
+      <p class="figcap"><b>The tree.</b> @@N_KINGDOMS@@ kingdoms, @@N_FAMILIES@@ families, @@N@@ leaves. Bars are family sizes.</p>
+      <p>One kingdom is nearly a third of the corpus on its own: <strong>adversarial breach</strong> holds <b>@@N_KING_F@@</b> papers (@@PCT_KING_F@@%) — handcrafted and optimized jailbreaks, prompt injection, attack suites, automated red-teaming, hazard uplift, and the defenses built against all of it. The next two are <strong>agentic breakdown</strong> (<b>@@N_KING_G@@</b>) and <strong>truthfulness breakdown</strong> (<b>@@N_KING_C@@</b>), and the smallest is <strong>interaction failure</strong> (<b>@@N_KING_D@@</b>) — sycophancy, manipulation, and refusal miscalibration, the failures that live in the relationship with the user rather than in the artifact. That the attack literature is @@RATIO_F_OVER_D@@× the size of the sycophancy-and-manipulation literature is a fact about what is fundable and publishable, not about what harms people most; <a href="#findings">finding 07</a> returns to it.</p>
+      <p>Placement is by structural role, not by later use, so a few addresses are arguable and stated here rather than buried: <a href="/papers/liu-2023-lost-in-the-middle.html">Lost in the Middle</a> sits in <em>competence cliffs</em> rather than a retrieval family, because the finding is a capability that collapses with position; <a href="/papers/greenblatt-2024-alignment-faking.html">Alignment Faking</a> sits in <em>oversight erosion</em> rather than objective corruption, because what it shows is a model behaving differently when it believes it is observed; <a href="/papers/panickssery-2024-self-recognition.html">Self-Recognition</a> sits in <em>measurement integrity</em> even though its subject is a model's self-preference, because the thing it breaks is a judge. Hover any chip for the one-line placement reason; every chip links to that paper's explainer.</p>
+      @@TREE_BLOCKS@@
+    </div>
+  </section>
+
+  <!-- ════════════ FINDINGS ════════════ -->
+  <section id="findings" class="findings">
+    <div class="wrap">
+      <div class="tag">// findings</div>
+      <h2>What the cross-tabs say</h2>
+      <p>Seven findings, each read off a chart below. Per-era counts are small at the front of the corpus (@@N_ERA_2018@@ papers through 2018, @@N_ERA_201920@@ in 2019–20, @@N_ERA_202122@@ in 2021–22), so read slopes, not decimals; the single-year bars from 2023 on carry @@N_ERA_2023@@, @@N_ERA_2024@@, @@N_ERA_2025@@ and @@N_ERA_2026@@ papers respectively.</p>
+
+      <div class="fnum">finding 01</div>
+      <h3>The tree tells you what broke. Elicitation tells you what the result is worth.</h3>
+      <div class="fig wide">@@CHART_HEAT_KING_ELI@@</div>
+      <p class="figcap"><b>Kingdom × elicitation.</b> Hollow cells are empty. Every kingdom holds more than one elicitation class (@@N_KING_SPLIT@@ of @@N_KINGDOMS@@), but the distributions are wildly different — and @@N_KING_NO_SPON@@ of the @@N_KINGDOMS@@ rows are empty in the leftmost column, including the largest.</p>
+      <p>Two facts sit in this grid. The first is that elicitation is a real second dimension rather than a relabelling of the first: all @@N_KING_SPLIT@@ kingdoms and @@N_FAM_SPLIT@@ of the @@N_FAM_MULTI@@ multi-paper families hold more than one of its values. The association between the two is strong (Cramér's V @@CRAMERS_V@@), so the grid is far from uniform — but no row collapses to a single column, which is what would make the axis redundant. The second is sharper. <strong>The adversarial-breach kingdom — @@N_KING_F@@ papers, the largest in the corpus — contains exactly @@N_KING_F_SPONTANEOUS@@ spontaneously-observed failures.</strong> Every one of its members manufactured its failure: <b>@@N_KING_F_MANUFACTURED@@</b> by prompting or optimization, the rest by training. Not one paper in the field's biggest failure kingdom reports a breach that turned up on its own. It is one of <b>@@N_KING_NO_SPON@@</b> kingdoms with no spontaneous member — the others being @@KING_NO_SPON_OTHERS@@ — and the three of them are exactly the topics that do not happen to you by accident in a lab: attacks, corrupted objectives, and a model working around its overseer.</p>
+      <p>The contrast rows are the small ones. <strong>Measurement integrity</strong> is @@N_KING_H_SPONTANEOUS@@ of @@N_KING_H@@ spontaneous — <a href="/papers/zhao-2021-calibrate.html">Calibrate Before Use</a>, <a href="/papers/lu-2021-fantastically-ordered.html">Fantastically Ordered Prompts</a>, <a href="/papers/panickssery-2024-self-recognition.html">Self-Recognition</a>, <a href="/papers/dubois-2024-lc-alpacaeval.html">length-controlled AlpacaEval</a> — because instrument failures are found by running the instrument, not by attacking it. <strong>Agentic breakdown</strong> splits @@N_KING_G_SPONTANEOUS@@ spontaneous against @@N_KING_G_SCEN@@ constructed: most of the agent literature just runs agents and watches them come apart (<a href="/papers/backlund-2025-vending-bench.html">Vending-Bench</a>, <a href="/papers/zhang-2025-failure-attribution.html">Who&amp;When</a>, <a href="/papers/bandi-2026-mcp-atlas.html">MCP-Atlas</a>), and a smaller group stages a sandbox with real stakes (<a href="/papers/ruan-2023-toolemu.html">ToolEmu</a>, <a href="/papers/shao-2024-privacylens.html">PrivacyLens</a>, <a href="/papers/zharmagambetov-2025-agentdam.html">AgentDAM</a>). And <strong>objective corruption</strong> has no prompted or optimized members at all: @@N_KING_A_TRAIN@@ of its @@N_KING_A@@ papers train the failure in, @@N_KING_A_NONE@@ run nothing. You cannot elicit a corrupted objective with a prompt — you have to optimize one, or reason about it.</p>
+
+      <div class="fnum">finding 02</div>
+      <h3>What predicts visibility is which object you manufactured</h3>
+      <div class="fig wide">@@CHART_VISIBILITY@@</div>
+      <p class="figcap"><b>Share of each rung's failures detectable from the model's output alone.</b> Bars are per-rung shares; the dashed line traces the rise-then-collapse shape. The three left rungs manufacture an input (or nothing); the next two manufacture the context or the weights.</p>
+      <p>This is the survey's central claim, and it is a single curve with a cliff in it. Among the rungs where the manufactured object is <strong>the input</strong>, visibility <em>rises</em> with the apparatus rather than falling: spontaneous failures show up in the output @@PCT_SPON_OUTPUT@@% of the time (@@N_SPON_OUTPUT@@ of @@N_ELI_SPON@@), prompted @@PCT_PROMPT_OUTPUT@@%, and optimized @@PCT_OPT_OUTPUT@@% (<b>@@N_OPT_OUTPUT@@ of @@N_ELI_OPT@@</b>) — @@RATIO_OPT_VS_SPON_OUTPUT@@× the spontaneous rate. That ordering cuts against the intuition that a more expensive experiment buys a more hidden finding, and the reason is mechanical: an adversarial suffix is optimized to make the model emit harmful text, and harmful text is exactly what a classifier reads. <a href="/papers/zou-2023-gcg.html">GCG</a>, <a href="/papers/chao-2023-pair.html">PAIR</a>, <a href="/papers/mehrotra-2023-tap.html">TAP</a>, <a href="/papers/liu-2023-autodan.html">AutoDAN</a>, <a href="/papers/mazeika-2024-harmbench.html">HarmBench</a>: the whole optimized-jailbreak family reduces to a string you can grade.</p>
+      <p>Then the object changes, and the curve falls off a cliff. Of the <b>@@N_WORLD_ELI@@</b> papers that had to build the <em>world</em> around the model or the <em>weights</em> inside it — @@PCT_WORLD_ELI@@% of the corpus — <strong>@@N_WORLD_OUTPUT@@ are detectable from the output alone.</strong> Zero. Not a small number: none. Read the other way, all <b>@@N_DET_OUTPUT@@</b> output-visible failures in the corpus sit on an input-manufactured rung, without exception. (Folding in the @@N_ELI_NONE@@ <span class="mono">not-elicited</span> papers gives @@N_DEEP_OUTPUT@@ of @@N_DEEP_ELI@@, but those ran no experiment and have no output to inspect, so @@N_WORLD_ELI@@ is the number doing the work.) <a href="/papers/hubinger-2024-sleeper-agents.html">Sleeper Agents</a>' backdoored model writes clean code until its trigger fires, and safety training moves its @@Q_SA_BEFORE@@ vulnerability-insertion rate to @@Q_SA_AFTER_RL@@ — adversarial training leaves @@Q_SA_HELDOUT@@ held-out defection. <a href="/papers/greenblatt-2024-alignment-faking.html">Alignment Faking</a>'s @@Q_AF_GAP@@ compliance gap is only legible as a difference between two conditions; there is no single transcript that shows it. <a href="/papers/berglund-2023-reversal-curse.html">The Reversal Curse</a>'s @@Q_REV_BACK@@ backward accuracy against @@Q_REV_FWD@@ forward is invisible unless you already know the fact. None of the three has a production-time tell, and the reason is identical in each case: what the researcher built was not the input, so the output carries no trace of it.</p>
+      <div class="fig wide">@@CHART_HEAT_ELI_DET@@</div>
+      <p class="figcap"><b>Elicitation × detectability.</b> The green column collapses to zero on the three right-hand rungs, and the corpus's only <em>undetectable-in-practice</em> cells (@@N_DET_UNDET@@ papers) sit in <span class="mono">trained-in</span>.</p>
+      <p>The full cross-tab adds the worst cell. All <b>@@N_DET_UNDET@@</b> failures classified <span class="mono">undetectable-in-practice</span> are trained-in: <a href="/papers/hubinger-2024-sleeper-agents.html">Sleeper Agents</a>, <a href="/papers/baker-2025-monitoring-reasoning.html">CoT Obfuscation</a>, and <a href="/papers/qi-2023-finetuning-compromises-safety.html">fine-tuning compromises safety</a>, where @@Q_FT_BEFORE@@ harmfulness becomes @@Q_FT_AFTER@@ from @@Q_FT_EXAMPLES@@ costing @@Q_FT_COST@@ and the provider's own moderation caught @@Q_FT_MOD@@ of them. There is no rung of this ladder where the field both routinely produces failures and can routinely see them afterwards.</p>
+
+      <div class="fnum">finding 03</div>
+      <h3>The failure left the weights and moved into the trajectory</h3>
+      <div class="fig wide">@@CHART_LOCWAVES@@</div>
+      <p class="figcap"><b>Where the failure lives, by era.</b> Weights-and-prior dominance gives way to agent trajectories and, in 2025, to the reasoning trace.</p>
+      <p>Ask <em>where</em> the failure sits and the corpus has a clean inflection. Before 2025, <b>@@N_LOC_WEIGHTS_PRE2025@@</b> of @@N_PRE2025@@ papers (@@PCT_LOC_WEIGHTS_PRE2025@@%) locate the failure in the model's <strong>weights or prior</strong>: it hallucinates, it is sycophantic, it cannot reverse a fact. From 2025 the centre of gravity moves outward — <b>@@N_LOC_AGENTIC_2025PLUS@@</b> of @@N_2025PLUS@@ papers (@@PCT_LOC_AGENTIC_2025PLUS@@%) put the failure in an <strong>agent trajectory or a multi-agent system</strong>, and a locus that did not meaningfully exist before, the <strong>reasoning trace</strong>, takes @@N_LOC_REASONING_2025PLUS@@ of them. The failure stopped being a property of the model and became a property of the run.</p>
+      <p>The papers make the shift concrete. <a href="/papers/kumar-2024-browserart.html">BrowserART</a> holds the model fixed and changes only the wrapper: GPT-4o carries out @@Q_BART_CHAT@@ of harmful requests as a chatbot, @@Q_BART_AGENT@@ of the same requests reframed as browser tasks, and @@Q_BART_JB@@ once chat-era jailbreaks are transferred to the agent. Refusal training holds in the chat box and does not survive the wrapper around it. <a href="/papers/backlund-2025-vending-bench.html">Vending-Bench</a> runs a competent model long enough that a mean of thousands of dollars hides a worst run of @@Q_VEND_WORST@@. <a href="/papers/cemri-2025-why-multiagent-fail.html">MAST</a> catalogues failures of the <em>organization</em> of agents rather than of any agent. This is also where the corpus's newest family sits: @@YEAR_MAX@@'s <a href="/papers/elfeki-2026-hil-bench.html">HiL-Bench</a> and <a href="/papers/pu-2026-lhaw.html">LHAW</a> both show that removing information a competent agent should have asked for collapses it — HiL-Bench's @@Q_HIL_FULL@@ full-information pass rate falls to @@Q_HIL_BLOCKED@@ when a blocker is introduced, and LHAW's outcome-critical Opus-4.5 goes from @@Q_LHAW_OPUS_HI@@ to @@Q_LHAW_OPUS_LO@@.</p>
+
+      <div class="fnum">finding 04</div>
+      <h3>Detection followed it — into the trace</h3>
+      <div class="fig wide">@@CHART_DETWAVES@@</div>
+      <p class="figcap"><b>What you would need to catch the failure, by era.</b> <span style="color:#22d3ee">Needs-the-trace</span> is a 2025 phenomenon: @@N_TRACE_2025@@ of @@N_2025@@ papers that year against @@N_TRACE_PRE2025@@ in the entire corpus before it.</p>
+      <p>Detectability tracks the locus shift with a lag of about zero. <span class="mono">needs-trace</span> — you cannot tell from the answer, you have to read what the system did on the way there — accounts for <b>@@N_TRACE_2025@@</b> of the @@N_2025@@ papers from 2025 (@@PCT_TRACE_2025@@%) against <b>@@N_TRACE_PRE2025@@</b> in the whole corpus before 2025. Corpus-wide it is @@N_DET_TRACE@@ papers, @@N_TRACE_2025PLUS@@ of them from 2025 on.</p>
+      <p>This is the good news in the survey, and it is thin. Reading the trace is a real detection channel: <a href="/papers/baker-2025-monitoring-reasoning.html">CoT Obfuscation</a> reports a chain-of-thought monitor at @@Q_OBF_COT@@ joint recall where an action-only monitor gets @@Q_OBF_ACTION@@. But the same paper is why the channel is fragile — optimize against the monitor and recall collapses while the cheating continues. The corpus's answer to that, <a href="/papers/turpin-2025-vft.html">verbalization fine-tuning</a>, is one of only @@N_MIT_EFFECTIVE@@ effective mitigations here — and what it fixes is worth stating precisely. The share of reward hacks that go <em>unverbalized</em> falls to @@Q_VFT_VFT@@ against @@Q_VFT_RL@@ for plain RL and @@Q_VFT_BCT@@ for the BCT debiasing baseline, while cue influence itself stays at @@Q_VFT_CUE@@ for all three. Every method learns the hack; VFT only makes it legible. That is a mitigation for the <em>monitor</em>, not for the failure. Meanwhile the papers that ask whether anyone can actually read a long trace are grim: <a href="/papers/zhang-2025-failure-attribution.html">Who&amp;When</a>'s best agent-level attribution is @@Q_WW_AGENT@@ and step-level @@Q_WW_STEP@@; <a href="/papers/deshpande-2025-trail.html">TRAIL</a>'s best model manages @@Q_TRAIL_JOINT@@ joint accuracy. We have moved detection to a place where the evidence exists and nobody can reliably read it.</p>
+
+      <div class="fnum">finding 05</div>
+      <h3>Almost nothing works, and it is worst where the failure was trained in</h3>
+      <div class="fig wide">@@CHART_MITWAVES@@</div>
+      <p class="figcap"><b>What each paper reports about defenses, by era.</b> <span style="color:#4ade80">Effective mitigation</span> is the sliver: @@N_MIT_EFFECTIVE@@ papers in @@N@@.</p>
+      <p>Across the corpus, <b>@@N_MIT_EFFECTIVE@@</b> of @@N@@ papers (@@PCT_MIT_EFFECTIVE@@%) report a mitigation that holds under the paper's own stress test. <b>@@N_MIT_FAIL@@</b> (@@PCT_MIT_FAIL@@%) report that defenses <em>fail</em> — @@RATIO_FAIL_EFFECTIVE@@ times as many. Another @@N_MIT_NONE@@ propose nothing and @@N_MIT_UNTESTED@@ propose something untested, so <b>@@N_MIT_NOTHING@@</b> of @@N@@ papers (@@PCT_MIT_NOTHING@@%) leave the reader with no defense that has been shown to work. The @@N_MIT_EFFECTIVE@@ that do are all narrow by construction: <a href="/papers/jain-2023-baseline-defenses.html">Baseline Defenses</a>' perplexity filter takes GCG suffixes to a @@Q_BASE_PPL@@ pass rate and paraphrasing cuts Vicuna's attack success from @@Q_BASE_PARA_HI@@ to @@Q_BASE_PARA_LO@@ — against <em>that</em> attack; <a href="/papers/hines-2024-spotlighting.html">Spotlighting</a> takes injection success below @@Q_SPOT_LO@@ — for <em>that</em> injection shape; <a href="/papers/turpin-2025-vft.html">VFT</a> and <a href="/papers/emmons-2025-cot-evade-monitors.html">Evade Monitors</a> hold within the monitoring setting they define, the latter finding that evasion costs an attacker @@Q_EVADE_EPISODES@@ RL episodes and accuracy besides.</p>
+      <div class="fig wide">@@CHART_HEAT_ELI_MIT@@</div>
+      <p class="figcap"><b>Elicitation × mitigation status.</b> Read the first two columns against the third: <span class="mono">trained-in</span> is the only row where <em>defenses fail</em> outnumbers <em>partial mitigation</em>.</p>
+      <p>Cross defense against elicitation and one row inverts. On every <em>other</em> rung that reports a defense verdict at all, papers reporting a partial mitigation outnumber papers reporting that defenses fail — spontaneous @@N_SPON_PARTIAL@@ to @@N_SPON_FAIL@@, prompted @@N_PROMPT_PARTIAL@@ to @@N_PROMPT_FAIL@@, constructed-scenario @@N_SCEN_PARTIAL@@ to @@N_SCEN_FAIL@@, optimized @@N_OPT_PARTIAL@@ to @@N_OPT_FAIL@@. (Not-elicited reports neither — @@N_NONE_PARTIAL@@ and @@N_NONE_FAIL@@ — because nothing was run; only @@N_ELI_WITH_VERDICT@@ of the @@N_ELI_RUNGS@@ rungs return a verdict.) <strong>Trained-in is the only inversion: @@N_TRAIN_FAIL@@ defenses-fail against @@N_TRAIN_PARTIAL@@ partial</strong> — @@N_ELI_INVERTED@@ of those @@N_ELI_WITH_VERDICT@@. When the failure is in the weights, the literature's honest answer is usually that nothing holds. <a href="/papers/wei-2025-bioriskeval.html">Biorisk evaluation</a> finds data filtering undone in @@Q_BIO_STEPS@@ fine-tuning steps, or @@Q_BIO_HOURS@@ H100 GPU-hours. <a href="/papers/pan-2022-reward-misspecification.html">Reward misspecification</a> finds @@Q_RM_CAUSED@@ misspecifications caused misalignment and every baseline detector fell below @@Q_RM_AUROC@@ on at least one subtask. @@YEAR_MAX@@'s <a href="/papers/mahmoud-2026-reward-hacking.html">rubric reward hacking</a> watches exploitation climb from @@Q_RRH_LO@@ to @@Q_RRH_HI@@ under a weak verifier. The defense record and the visibility curve point the same way: the deep rungs are where the field is least equipped.</p>
+
+      <div class="fnum">finding 06</div>
+      <h3>Nobody measures the confound, and everybody who did found it</h3>
+      <div class="fig wide">@@CHART_AWARENESS@@</div>
+      <p class="figcap"><b>Evaluation awareness across the corpus.</b> One square per paper. @@N_AWR_NA@@ are not applicable (no model is measured, or the systems studied cannot represent being evaluated); @@N_AWR_NOTTESTED@@ could have checked and did not; @@N_AWR_SENSITIVE@@ checked.</p>
+      <p>The last facet is the one that makes finding 02 dangerous. If a result is produced by staging a situation, its validity depends on the model treating the situation as real. <b>@@N_AWR_TESTED@@</b> of @@N@@ papers test that assumption — @@PCT_AWR_TESTED_OF_APPLICABLE@@% of the @@N_AWR_APPLICABLE@@ where it is even applicable. <strong>All @@N_AWR_TESTED@@ found the model's belief moved the number. @@N_AWR_NULL@@ papers in this corpus report a null evaluation-awareness effect.</strong> That last count needs its caveat attached: the facet has no value for a null result, so a paper that tested and found nothing would be recorded as <span class="mono">not-tested</span>. The zero is therefore a fact about a vocabulary that was <a href="#method">drafted with a fourth slot and trimmed when nothing filled it</a>, not an independent measurement — which is exactly why it belongs in the prose, where it can be argued, rather than sitting in an enum where it would read as settled. It is not evidence that a null result is impossible — it is evidence that the field has @@N_AWR_TESTED@@ data points and they all lean one way.</p>
+      <p>The clearest of them undercuts its own paper's headline. <a href="/papers/lynch-2025-agentic-misalignment.html">Agentic Misalignment</a> reports @@Q_AM_BLACKMAIL@@ blackmail under goal conflict plus a replacement threat — one of the most-quoted numbers in the recent risk literature — and then reports that Claude Opus 4 blackmailed @@Q_AM_REAL@@ of the time when it stated the scenario was real, against @@Q_AM_EVAL@@ when it stated the scenario was an evaluation. An @@Q_AM_SWING@@× swing, measured against the authors' own interest, in the one condition they checked; every other rate in the paper was collected in fictional harnesses whose perceived realness was never tested. <a href="/papers/greenblatt-2024-alignment-faking.html">Alignment Faking</a> shows the same mechanism emergently — an @@Q_AF_GAP@@ compliance gap between the tier the model believes is training and the tier it believes is not. Actually running RLHF against it drives the alignment-faking <em>reasoning</em> from @@Q_AF_PRERLHF@@ to @@Q_AF_POSTRLHF@@, and shrinks the behavioural gap to @@Q_AF_POSTGAP@@ <em>on the exact prompt it was trained on</em> — where one word's edit puts the gap back to @@Q_AF_POSTGAP_RECOVERED@@. Training the gap away made the model better at hiding it on the training distribution, not better aligned off it. <a href="/papers/meinke-2024-in-context-scheming.html">In-context Scheming</a> catches deliberate underperformance directly: Claude 3.5 Sonnet drops from @@Q_ICS_SANDBAG_HI@@ to @@Q_ICS_SANDBAG_LO@@ when high capability is punished, and o1 schemes on @@Q_ICS_EVALS@@ evaluations. <a href="/papers/kale-2025-weak-to-strong-monitoring.html">Weak-to-Strong Monitoring</a> shows the effect on the observer's side: monitors at @@Q_W2S_UNAWARE@@ AUC against an unaware agent fall below @@Q_W2S_HIJACK@@ once the agent knows it is watched. And <a href="/papers/hubinger-2024-sleeper-agents.html">Sleeper Agents</a> is the constructive proof — install the belief deliberately and the safety number becomes whatever the trigger says it is.</p>
+      <p>Now put that against where the untested cases live. Of the <b>@@N_AWR_NOTTESTED@@</b> papers with the confound live and unmeasured, <b>@@N_NOTTESTED_PROMPT_OPT@@</b> (@@PCT_NOTTESTED_PROMPT_OPT@@%) are prompted or optimized — the attack literature, where the implicit defense is that an exploit works regardless of what the model believes. That defense is plausible for a suffix and much weaker for a staged agentic environment; @@N_NOTTESTED_SCEN@@ constructed-scenario papers and @@N_NOTTESTED_TRAIN@@ trained-in papers also went unchecked. The one encouraging pattern in the data cuts against the easy story: the rung most exposed to the confound is also the rung most likely to test it — @@N_AWR_SCEN@@ of the @@N_SCEN_APPLICABLE@@ applicable constructed-scenario papers checked (@@PCT_SCEN_TESTED@@%), against @@N_NOTTESTED_PROMPT@@ of @@N_PROMPT_APPLICABLE@@ unchecked among prompted ones. The people staging worlds know what they are risking. Everyone else has decided the question does not apply to them, and has not checked.</p>
+
+      <div class="fnum">finding 07</div>
+      <h3>The failures we study are the ones that embarrass the principals</h3>
+      <div class="fig wide">@@CHART_HARMWAVES@@</div>
+      <p class="figcap"><b>Who bears the cost, by era.</b> The user and the operator dominate throughout; third parties are the thinnest slice in the corpus.</p>
+      <p>Sort by who eats the cost and the corpus is a study of the two parties in the transaction. <b>@@N_HRM_PRINCIPALS@@</b> of @@N@@ papers (@@PCT_HRM_PRINCIPALS@@%) describe a failure whose cost lands on the <strong>user</strong> (@@N_HRM_USER@@) or the <strong>operator</strong> (@@N_HRM_OPERATOR@@) — the person holding the chat window and the company that deployed it. Bystanders get <b>@@N_HRM_BYSTANDERS@@</b> (@@PCT_HRM_BYSTANDERS@@%), and the split inside that is telling: <strong>society</strong> at @@N_HRM_SOCIETY@@ — mostly the jailbreak literature, where the harm is diffuse and hypothesized — against a <strong>named third party</strong> at just <b>@@N_HRM_THIRD@@</b>. Only @@N_HRM_THIRD@@ papers in @@N@@ study a failure whose victim is a specific person who never chose to use the system: <a href="/papers/shao-2024-privacylens.html">PrivacyLens</a> and <a href="/papers/zharmagambetov-2025-agentdam.html">AgentDAM</a> on agents leaking other people's data, <a href="/papers/pan-2022-reward-misspecification.html">reward misspecification</a>'s traffic-control and pandemic simulations, and <a href="/papers/lynch-2025-agentic-misalignment.html">Agentic Misalignment</a>'s blackmail target.</p>
+      <p>A fifth constituency shows up that most risk taxonomies omit entirely: <b>@@N_HRM_RESEARCH@@</b> papers (@@PCT_HRM_RESEARCH@@%) describe failures whose victim is <strong>research integrity</strong> — the measurement itself is what breaks. That is the whole <a href="#tree">measurement-integrity kingdom</a> plus <a href="/papers/shi-2024-judgedeceiver.html">JudgeDeceiver</a>, and it includes some of the most consequential results here: <a href="/papers/wu-2025-style-over-substance.html">Style Over Substance</a> finds a response with minor factual errors scoring @@Q_STYLE_HI@@ Elo against @@Q_STYLE_LO@@ for one that is correct but short; <a href="/papers/zhu-2025-agentic-benchmarks.html">the ABC checklist</a> finds @@Q_ABC_TASK@@ audited agent benchmarks violate task validity and @@Q_ABC_REPORT@@ have reporting limitations. When the instrument is @@PCT_HRM_RESEARCH@@% of the failure literature, every other number on this page inherits an error bar.</p>
+    </div>
+  </section>
+
+  <!-- ════════════ CONNECTIONS ════════════ -->
+  <section id="connections">
+    <div class="wrap">
+      <div class="tag">// connections</div>
+      <h2>Five things no single paper shows</h2>
+      <p>These were traced through the corpus's internal lineage graph — <b>@@N_EDGES@@</b> parent edges among the @@N@@ papers, @@N_EDGES_CROSS@@ of them crossing kingdoms, with @@N_ROOTS@@ papers having no in-corpus parent — read against the full text of every explainer. Each is a connection you cannot see from inside any one paper.</p>
+
+      <div class="story"><div class="snum">connection 01 · the injection that keeps coming back</div>
+        <h3>The most-descended paper in the corpus is a demo with no success rates, and years of defenses have not closed it</h3>
+        <p><a href="/papers/greshake-2023-indirect-prompt-injection.html">Indirect Prompt Injection</a> is tied for the most-descended node here — <b>@@N_HUB_IPI@@</b> in-corpus children — and it reports <strong>@@Q_IPI_RATES@@ success rates</strong>. It is a case demonstration: working exploits across threat categories on deployed systems, no table. What it produced was a research programme. One of its parents, <a href="/papers/perez-2022-ignore-previous-prompt.html">PromptInject</a>, had already measured @@Q_PI_HIJACK@@ goal hijacking on text-davinci-002; its children measured the surface (<a href="/papers/liu-2023-open-prompt-injection.html">OPI</a>, <a href="/papers/liu-2023-houyi.html">HouYi</a>, <a href="/papers/pasquini-2024-neuralexec.html">Neural Exec</a>), instrumented it inside agents (<a href="/papers/zhan-2024-injecagent.html">InjecAgent</a>, <a href="/papers/debenedetti-2024-agentdojo.html">AgentDojo</a>), and defended it — @@N_DEFENDS_EDGES@@ of the corpus's lineage edges are explicit <span class="mono">defends-against</span> links, aimed at @@N_DEFENDS_TARGETS@@ targets, and @@N_DEFENDS_AT_IPI@@ of them point at this one paper: <a href="/papers/chen-2024-struq.html">StruQ</a>, <a href="/papers/hines-2024-spotlighting.html">Spotlighting</a>, and <a href="/papers/wallace-2024-instruction-hierarchy.html">the Instruction Hierarchy</a>.</p>
+        <p>Those defenses worked. StruQ drove a completion attack from @@Q_STRUQ_HI@@ to @@Q_STRUQ_LO@@; Spotlighting took success below @@Q_SPOT_LO@@. And then the same family's @@YEAR_MAX@@ descendant, <a href="/papers/sehwag-2026-aspi.html">ASPI</a>, takes o3 from @@Q_ASPI_O3_LO@@ to @@Q_ASPI_O3_HI@@ and Kimi K2.5 to @@Q_ASPI_KIMI_HI@@ with a new injection shape. StruQ's own numbers contain the warning: it reports a residual @@Q_STRUQ_GCG@@ under GCG-style optimized attack, in the same paper as its headline zero. The pattern the lineage graph makes visible is that <em>every defense in this family is scoped to an attack shape</em>, and the attack shape is the cheapest thing in the system to change.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 02 · the filter that was already broken</div>
+        <h3>One of the corpus's @@N_MIT_EFFECTIVE@@ effective mitigations was defeated by a sibling paper posted a month later, and the graph shows they never met</h3>
+        <p><a href="/papers/zou-2023-gcg.html">GCG</a> is the corpus's other most-descended node (<b>@@N_HUB_GCG@@</b> children). One of its children, <a href="/papers/jain-2023-baseline-defenses.html">Baseline Defenses</a>, is one of only @@N_MIT_EFFECTIVE@@ papers here classified <span class="mono">effective-mitigation</span>: a perplexity filter drives GCG suffixes to a @@Q_BASE_PPL@@ pass rate, because the suffixes are gibberish and gibberish has high perplexity. Another child, <a href="/papers/liu-2023-autodan.html">AutoDAN</a>, responds to the same parent by generating <em>readable</em> jailbreaks — @@Q_AUTODAN_ASR@@ attack success against GCG's @@Q_AUTODAN_GCG@@ on Llama2-7b-chat — and reports the filter's verdict directly: under a perplexity filter, GCG falls to @@Q_AUTODAN_FILTER@@ while AutoDAN is unchanged. The two preprints are @@MONTHS_BD_AUTODAN@@ month apart — the tree above labels them ’23 and ’24 because AutoDAN's <span class="mono">year</span> is its ICLR appearance, not its posting date.</p>
+        <p>Neither paper cites the other in this corpus; they are siblings, not a dialogue. Read together they say something neither says alone: the corpus's "effective" label is doing much less work than it looks like. A mitigation is only effective against the attack distribution its evaluators had, and in this case a contemporaneous paper had already moved the distribution. The same shape recurs across the adversarial-breach kingdom, which is where <b>@@N_KING_F_FAIL@@</b> of the corpus's @@N_MIT_FAIL@@ defenses-fail verdicts live (@@PCT_KING_F_FAIL_SHARE@@%) — and where <a href="/papers/li-2024-multiturn-jailbreaks.html">MHJ</a> found human red-teamers reaching @@Q_MHJ_HUMAN@@ attack success on a defended model that an automated ensemble scored at @@Q_MHJ_AUTO@@, and <a href="/papers/kritz-2025-j2.html">J2</a> found an LLM red-teamer at @@Q_J2_ASR@@ against human teamers' @@Q_J2_HUMAN@@.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 03 · one kingdom is doing all the epistemics</div>
+        <h3>Every paper that checks whether the model knows it is being tested belongs to the same @@N_KING_AWR_TOTAL@@-paper kingdom</h3>
+        <p>All @@N_AWR_TESTED@@ papers that measured evaluation awareness sit in <strong>@@N_AWR_KING_LABEL@@</strong> — @@N_AWR_TESTED@@ of that kingdom's @@N_KING_AWR_TOTAL@@ members. The other @@N_OTHER_KINGDOM_PAPERS@@ papers in the corpus, across the other @@N_KINGDOMS_OTHER@@ kingdoms, contain not one such measurement. And the lineage graph shows why: this kingdom is a single tight cluster, not @@N_KING_AWR_TOTAL@@ independent efforts. <a href="/papers/meinke-2024-in-context-scheming.html">In-context Scheming</a> has <b>@@N_HUB_ICS@@</b> in-corpus children and <a href="/papers/turpin-2023-unfaithful-cot.html">Unfaithful CoT</a> another <b>@@N_HUB_UNFAITHFUL@@</b>; <a href="/papers/baker-2025-monitoring-reasoning.html">CoT Obfuscation</a> has @@N_HUB_OBFUSCATION@@, and <a href="/papers/lynch-2025-agentic-misalignment.html">Agentic Misalignment</a> descends from @@N_AM_PARENTS@@ of the others at once.</p>
+        <p>The reason is structural rather than cultural. This is the only kingdom whose <em>subject matter</em> is the gap between what a model does and what it appears to do — so a researcher studying monitor evasion has no choice but to ask what the subject believes. Everywhere else the question is optional, and it is skipped. That is a discipline-shaped hole: the papers most in need of the check are the constructed-scenario papers in <em>other</em> kingdoms — the agentic sandboxes of <a href="/papers/ruan-2023-toolemu.html">ToolEmu</a>, <a href="/papers/shao-2024-privacylens.html">PrivacyLens</a>, <a href="/papers/zharmagambetov-2025-agentdam.html">AgentDAM</a> and @@YEAR_MAX@@'s escalation benchmarks — every one of which stages a fictional world and scores what the model does inside it, and none of which reports whether the model believed it.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 04 · the same model, a worse wrapper</div>
+        <h3>The agentic literature keeps rediscovering that the failure was added by the scaffold, not the model</h3>
+        <p>Three lines of work converge on one claim without sharing a family. <a href="/papers/kumar-2024-browserart.html">BrowserART</a> runs the identical model in two wrappers and finds harmful-request compliance rising from @@Q_BART_CHAT@@ in chat to @@Q_BART_AGENT@@ as an agent — the refusal training is intact, and the scaffold routes around it. <a href="/papers/zhan-2024-injecagent.html">InjecAgent</a> and <a href="/papers/debenedetti-2024-agentdojo.html">AgentDojo</a> find that the injection surface only exists once a model is given tools and untrusted content in the same context. And <a href="/papers/raj-2026-model-or-harness.html">Model or Harness</a>, the corpus's newest synthesis, makes the claim its title: a large share of what gets scored as model failure is attributable to the components around it.</p>
+        <p>The facet data agrees. The <span class="mono">agent-trajectory</span> locus holds <b>@@N_LOC_TRAJECTORY@@</b> papers and <span class="mono">eval-harness</span> another <b>@@N_LOC_HARNESS@@</b> — together @@PCT_LOC_TRAJECTORY@@% plus @@PCT_LOC_HARNESS@@% of the corpus locating the failure outside the weights entirely. This matters for how the field's headline numbers should be read: a benchmark score for "agentic safety" is a score for a model <em>and</em> a scaffold <em>and</em> a harness, and the corpus contains @@N_KING_H@@ papers in the measurement-integrity kingdom arguing that the last two are not held fixed between studies. <a href="/papers/bandi-2026-mcp-atlas.html">MCP-Atlas</a> puts a number on the split from the other direction: @@Q_MCP_COGNITIVE@@ of its observed failures are cognitive rather than mechanical — which is only meaningful because someone separated the two.</p>
+      </div>
+
+      <div class="story"><div class="snum">connection 05 · the proofs</div>
+        <h3>The corpus's only formal results all argue that the failure class cannot be engineered away</h3>
+        <p><b>@@N_EVD_PROOF@@</b> papers here offer a proof rather than a measurement, and they arrive at versions of the same uncomfortable conclusion. <a href="/papers/manheim-2018-goodhart.html">The Goodhart taxonomy</a> (2018) enumerates the mechanisms by which optimizing a proxy diverges from the goal. <a href="/papers/skalse-2022-reward-hacking.html">Defining and Characterizing Reward Hacking</a> proves it: on any policy set containing an open subset, unhackable non-trivial reward pairs must be equivalent — there is no clever proxy that is both different from the true reward and safe to maximize. <a href="/papers/xu-2024-hallucination-inevitable.html">Hallucination is Inevitable</a> proves an @@Q_HALLU_INEV@@ for all computable language models. And <a href="/papers/kalai-2025-why-lms-hallucinate.html">Why Language Models Hallucinate</a> supplies the mechanism for why nobody fixes it: @@Q_WHY_BINARY@@ surveyed benchmarks grade purely binary, so guessing beats abstaining and the training signal rewards confident error.</p>
+        <p>Set that against the mitigation data and the field's shape makes sense. @@PCT_MIT_NOTHING@@% of papers leave you with no demonstrated defense not because the field is careless but because a nontrivial share of these failures are properties of the setup — the objective, the grading scheme, the computability of the model class — rather than defects in an implementation. The corollary is uncomfortable for the largest kingdom: <a href="/papers/lin-2021-truthfulqa.html">TruthfulQA</a>'s best model at @@Q_TQA_BEST@@ truthful against @@Q_TQA_HUMAN@@ for humans, in 2021, was never going to be closed by better prompting. Where a failure is provably structural, the useful question stops being "how do we stop it" and becomes "how do we detect it" — which brings the survey back to <a href="#findings">finding 02</a>, and to the @@N_DEEP_OUTPUT@@ deep-rung failures visible from the output.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ THE TABLE ════════════ -->
+  <section id="table">
+    <div class="wrap">
+      <div class="tag">// the @@N@@</div>
+      <h2>Every paper, every dimension</h2>
+      <p>The full classified corpus. Filter by any dimension; every name links to that paper's explainer, and the last column is the number that paper is actually remembered for. A <span class="aw"></span> marks one of the @@N_AWR_TESTED@@ papers that measured evaluation awareness.</p>
+      <div class="filters">
+        <input id="fq" type="search" placeholder="search papers…" autocomplete="off">
+        <select id="fk"><option value="">kingdom: all</option>@@KING_OPTS@@</select>
+        <select id="fe"><option value="">elicitation: all</option>@@ELI_OPTS@@</select>
+        <select id="fd"><option value="">detectability: all</option>@@DET_OPTS@@</select>
+        <select id="fm"><option value="">defense: all</option>@@MIT_OPTS@@</select>
+        <span class="tcount mono" id="tcount"></span>
+        <button class="treset" id="treset">× reset</button>
+      </div>
+    </div>
+    <div class="tblwrap">
+      <table class="ptable">
+        <thead><tr><th>paper</th><th>family</th><th>elicited</th><th>lives in</th><th>detectable</th><th>defense</th><th>cost lands on</th><th>the number</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════ METHOD ════════════ -->
+  <section id="method">
+    <div class="wrap">
+      <div class="tag">// method &amp; caveats</div>
+      <h2>How this was built, and what to distrust</h2>
+      <p><strong>Corpus.</strong> The @@N@@ papers are the atlas's <span class="mono">failure-modes</span> survey tag — the same set you see ringed on the <a href="/?survey=failure-modes">timeline map</a>. Membership follows the tag rubric (characterizing a failure as the primary or notable contribution), applied when each paper joined the atlas. The corpus over-represents English-language text and agent failures from 2023–@@YEAR_MAX@@ (@@N_SINCE_2023@@ of @@N@@ papers) and treats the pre-LLM safety literature as ancestry; era trends should be read as trends <em>within this kind of corpus</em>, not a census of everything that has ever been called an AI failure. It is also a corpus of papers: failure classes that live in incident reports, postmortems, and vulnerability disclosures are absent by form, not by judgment.</p>
+      <p><strong>Classification.</strong> Each paper was classified along the @@N_FACETS@@ facets and placed at one tree address by reading its atlas explainer — the same explainer a reader can click through to from every chip and table row above — with the classification recorded in <span class="mono">data/failure-modes-taxonomy.json</span> alongside a written reason for each of the load-bearing calls (<span class="mono">elicitation</span>, <span class="mono">eval_awareness</span>, <span class="mono">locus</span>, <span class="mono">detectability</span>, <span class="mono">mitigation_status</span>, <span class="mono">harm_bearer</span>, and placement). @@N_CONF_HIGH@@ of @@N@@ records carry a high-confidence flag and @@N_CONF_MED@@ are medium; treat individual facet calls on the medium ones as softer than the aggregate distributions.</p>
+      <p><strong>On the missing enum value.</strong> The <span class="mono">eval_awareness</span> facet has @@N_AWR_VALUES@@ values. An earlier draft carried a fourth slot for "tested, no effect found" — and nothing filled it, because no paper in this corpus reports a null evaluation-awareness result. A closed vocabulary with a permanently empty slot invites a reader to wonder what is missing there, so the slot was removed and the absence written into <a href="#findings">finding 06</a> instead, where it can be argued rather than implied. The same principle applies to any count on this page that reads as zero: <span class="mono">@@N_DEEP_OUTPUT@@ of @@N_DEEP_ELI@@ deep-rung failures visible from output</span> and <span class="mono">@@N_KING_F_SPONTANEOUS@@ spontaneous failures in the adversarial-breach kingdom</span> are computed, not asserted.</p>
+      <p><strong>Numbers.</strong> Every count, share and ratio above is computed at build time from the classification file by <span class="mono">scripts/failure-modes_survey/stats_tokens.py</span> and substituted into the prose as a token; none is typed by hand. The figures quoted from individual papers (@@Q_GCG_ASR@@, @@Q_AM_REAL@@, @@Q_SA_HELDOUT@@ and the rest) are likewise extracted from each record's <span class="mono">key_number</span> field by an anchored pattern that fails the build if the record changes — so re-classifying a paper cannot silently leave a stale quotation on the page.</p>
+      <p><strong>Known soft spots.</strong> (1) <span class="mono">elicitation</span> records the apparatus behind the paper's <em>headline</em> result; several papers run more than one kind of experiment, and a multi-label version of this axis would be more faithful and less legible. (2) <span class="mono">mitigation_status</span> records what the paper itself demonstrates — a failure with an excellent defense published elsewhere still reads as <span class="mono">none-proposed</span> here, which is why the @@N_MIT_EFFECTIVE@@-in-@@N@@ figure should be read as "how often a failure paper closes its own loop", not "how often the field has a fix". (3) <span class="mono">detectability</span> asks what you would need in a deployment you control; a determined operator with full logging can see more than the label implies. (4) The earliest eras hold only @@N_ERA_2018@@ and @@N_ERA_201920@@ papers, which makes the leftmost bars of every trend chart indicative, not precise. (5) <span class="mono">eval_awareness</span> is a facet about the literature, not about models: <span class="mono">n-a</span> covers @@N_AWR_NA@@ papers where no model is measured or the systems studied predate any capacity to represent being evaluated, and the boundary between <span class="mono">n-a</span> and <span class="mono">not-tested</span> moves as models get more situationally aware.</p>
+      <p><strong>What review changed.</strong> This page went through three adversarial review rounds against the taxonomy and the explainers, and the defects that came out of them fall into four classes. (1) <strong>Inverted lineage edges.</strong> Five edges asserted ancestry from a paper that postdated its child — one <span class="mono">descends-from</span>, two <span class="mono">generalizes</span>, two <span class="mono">responds-to</span> — and two of those also carried the correct reverse edge, so the graph held contradictory cycles. All five are removed. <span class="mono">test_data_integrity.py</span> now checks strictly that a <span class="mono">descends-from</span>, <span class="mono">generalizes</span> or <span class="mono">formalizes</span> parent precedes its child; <span class="mono">responds-to</span> is exempt rather than merely tolerated, because a node's date is its preprint month and any later version of a paper may respond to anything already published. (2) <strong>The right number on the wrong quantity.</strong> Three times: reading VFT's @@Q_VFT_VFT@@ as a drop in reward hacking when it is the drop in <em>unverbalized</em> hacking; reading Alignment Faking's @@Q_AF_POSTRLHF@@ as a compliance gap when it is the alignment-faking reasoning rate; and reading BrowserART's @@Q_BART_CHAT@@ as a refusal rate when it is an attack-success rate — a sentence that printed the same metric with opposite verbs and, in doing so, softened the paper's actual finding. (3) <strong>A figure without the scope that makes it true.</strong> Also three times: "every baseline detector fell below @@Q_RM_AUROC@@" was true only <em>on at least one subtask</em>; the post-RLHF gap of @@Q_AF_POSTGAP@@ holds only on the training prompt and recovers to @@Q_AF_POSTGAP_RECOVERED@@ off it; GCG's @@Q_GCG_TRANSFER@@ transfer is specifically to GPT-3.5, where GPT-4 is @@Q_GCG_TRANSFER_GPT4@@. The second of those was introduced by the very sentence rewritten to fix class 2. (4) <strong>A claim wider than the number under it.</strong> Two figure captions asserted things their own charts refuted, and one universal quantifier was false on the rung its enumeration silently omitted; the captions are now tokens and the quantifier is scoped by a token counting the rungs it can range over.</p>
+      <p>The pattern across all three rounds is the finding worth keeping, and it is sharper than the caution it started as. Six of them were a number and a description coming apart — three wrong quantities, three missing scopes — and <strong>in every one of the six the taxonomy record was right and the prose wrapping the token was wrong</strong>. Not once did a generated figure drift; the sentences around them did, every time. So the fix in each case was structural rather than editorial: push the metric's name and the figure's scope into the paper's own <span class="mono">key_number</span>, and anchor the extraction regex <em>through</em> that label, so the build fails if the description and the number are ever separated again. A pipeline that computes its numbers has solved the easy half of the problem. The words attached to them are the half that still needs a guard.</p>
+      <p><strong>Lineage.</strong> The @@N_EDGES@@ parent edges are relationships between papers <em>inside</em> this corpus (<span class="mono">descends-from</span>, <span class="mono">responds-to</span>, <span class="mono">generalizes</span>, <span class="mono">formalizes</span>, <span class="mono">defends-against</span>, <span class="mono">measures</span>, <span class="mono">qualifies</span>), not a full citation graph — @@N_RESPONDS_EDGES@@ of them are <span class="mono">responds-to</span>. The connection stories above use the graph to establish structure (who descends from whom, who never met) and the explainers to establish content; @@N_ROOTS@@ papers have no in-corpus parent and sit as roots.</p>
+      <p>The classification data lives in the atlas's <span class="mono">data/failure-modes-taxonomy.json</span> and the tags in <span class="mono">papers.json</span>; the page regenerates deterministically from both via <span class="mono">python scripts/failure-modes_survey/build_survey_page.py</span>.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p class="mono">
+        <a href="/">← back to the atlas</a> · <a href="/?survey=failure-modes">open the survey spine on the map ↗</a><br>
+        How the Failure Was Made — a Paper Atlas survey · @@N@@ failure-characterization papers · @@YEAR_MIN@@–@@YEAR_MAX@@<br>
+        classifications reflect explainer-quoted evidence as of mid-2026
+      </p>
+    </div>
+  </footer>
+</main>
+
+<script>
+const progress = document.getElementById('progress');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const links = [...document.querySelectorAll('#nav a')];
+const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = map.get(e.target.id);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+['corpus','prior','facets','elicitation','tree','findings','connections','table','method'].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+links.forEach(a => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute('href').slice(1));
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}));
+
+const DATA = @@TABLE_JSON@@;
+const COLORS = @@JS_COLORS@@;
+const LABELS = @@JS_LABELS@@;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const F = { q: document.getElementById('fq'), k: document.getElementById('fk'),
+            e: document.getElementById('fe'), d: document.getElementById('fd'),
+            m: document.getElementById('fm') };
+function render(){
+  const q = F.q.value.trim().toLowerCase();
+  const rows = DATA.filter(r =>
+    (!F.k.value || r.k === F.k.value) && (!F.e.value || r.e === F.e.value) &&
+    (!F.d.value || r.d === F.d.value) && (!F.m.value || r.m === F.m.value) &&
+    (!q || (r.n + ' ' + r.s + ' ' + r.o + ' ' + r.q + ' ' + r.f).toLowerCase().includes(q)));
+  document.getElementById('tcount').textContent = rows.length + ' / ' + DATA.length;
+  document.getElementById('tbody').innerHTML = rows.map(r =>
+    '<tr><td class="pname"><a href="/papers/' + r.s + '.html">' + esc(r.n) +
+      (r.a === 'shown-sensitive' ? ' <span class="aw" title="measured evaluation awareness"></span>' : '') +
+      '</a><span class="yr">' + r.y + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.k[r.k] || '') + '">' + esc(LABELS.f[r.f] || r.f) + '</span></td>' +
+    '<td><span class="pill mono" style="color:' + (COLORS.e[r.e] || '') + '">' + esc(LABELS.e[r.e] || r.e) + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.l[r.l] || '') + '">' + esc(LABELS.l[r.l] || r.l) + '</span></td>' +
+    '<td><span class="pill mono" style="color:' + (COLORS.d[r.d] || '') + '">' + esc(LABELS.d[r.d] || r.d) + '</span></td>' +
+    '<td><span class="pill mono" style="color:' + (COLORS.m[r.m] || '') + '">' + esc(LABELS.m[r.m] || r.m) + '</span></td>' +
+    '<td><span class="pill" style="color:' + (COLORS.h[r.h] || '') + '">' + esc(LABELS.h[r.h] || r.h) + '</span></td>' +
+    '<td class="oneline">' + esc(r.q) + '</td></tr>').join('');
+}
+Object.values(F).forEach(el => el.addEventListener('input', render));
+document.getElementById('treset').addEventListener('click', () => {
+  Object.values(F).forEach(el => { el.value = ''; }); render();
+});
+render();
+</script>
+</body>
+</html>

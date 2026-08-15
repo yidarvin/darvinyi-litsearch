@@ -13,7 +13,12 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
   padding:0 18px;background:rgba(10,10,11,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
 .brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:var(--fg);display:flex;align-items:center;gap:9px;letter-spacing:-.01em;text-decoration:none}
 .brand .sq{width:11px;height:11px;border-radius:2px;background:var(--accent);box-shadow:0 0 12px var(--accent-soft)}
-.sample{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);opacity:.8}
+/* The topbar is flex-wrap:nowrap above 640px, so this decorative stats readout is
+   squeezable: with flex-shrink:1 and normal wrapping it collapsed to a ~40px column,
+   wrapped onto three lines and clipped above the viewport in the ~640-900px band.
+   Never let it wrap or shrink — it is hidden outright when there is no room for it. */
+.sample{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);opacity:.8;
+        white-space:nowrap;flex-shrink:0}
 .search{flex:0 0 220px;margin-left:auto}
 .search input{width:100%;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--fg);background:var(--panel);
   border:1px solid var(--line);border-radius:8px;padding:8px 11px;outline:none}
@@ -127,10 +132,13 @@ code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9em;color:va
 /* ---- mobile : the topbar can't fit brand + search + a 3-way toggle on one
    row, so wrap the color-by control onto its own full-width second row and
    keep the map controls reachable. ---- */
+/* Drop the decorative stats readout as soon as the nowrap topbar runs out of room,
+   well before the 640px stacking breakpoint — it needs ~190px on one line. */
+@media(max-width:900px){ .sample{ display:none } }
+
 @media(max-width:640px){
   :root{ --topbar-h:140px }   /* three stacked rows: search · color_by · survey */
   .topbar{ flex-wrap:wrap; align-content:center; row-gap:8px; gap:10px; padding:8px 14px }
-  .sample{ display:none }
   .search{ order:1; flex:1 1 auto; margin-left:auto }
   .colorby{ order:2; flex:1 1 100%; gap:0 }
   .colorby .lbl{ display:none }

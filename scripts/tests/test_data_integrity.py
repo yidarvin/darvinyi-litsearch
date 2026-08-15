@@ -56,6 +56,82 @@ BENCH_TAXONOMY_REQUIRED_KEYS = {
     "gravity",
 }
 
+# failure-modes-taxonomy.json's controlled vocabulary. Six analytic facets (elicitation is
+# the survey's novel organizing axis) plus an 8-kingdom/36-family placement tree and a
+# lineage graph. Keep this in sync with the survey builder when the schema is extended;
+# this is the survey-author's schema to grow deliberately, not to drift into.
+FM_ELICITATION = {"spontaneous", "prompted", "optimized", "constructed-scenario",
+                  "trained-in", "not-elicited"}
+# Trimmed to the three values the corpus actually uses. "shown-insensitive" and
+# "discussed-untested" were declared in the first draft and had zero members: no
+# paper in the corpus reports a null evaluation-awareness effect, and the
+# explainers don't reliably distinguish authors who raise the confound without
+# measuring it. That absence is a finding for the prose, not a vocabulary slot —
+# a closed vocab with dead values invites a reader to wonder what's missing.
+FM_EVAL_AWARENESS = {"shown-sensitive", "not-tested", "n-a"}
+FM_LOCUS = {"weights-prior", "context-window", "reasoning-trace", "agent-trajectory",
+            "multi-agent-system", "training-loop", "eval-harness", "deployment-system"}
+FM_EVIDENCE = {"behavioural-rate", "controlled-counterfactual", "internals-probe",
+               "formal-proof", "corpus-synthesis", "case-demonstration"}
+FM_DETECTABILITY = {"output-alone", "needs-ground-truth", "needs-trace", "needs-internals",
+                    "needs-counterfactual", "undetectable-in-practice"}
+FM_MITIGATION = {"none-proposed", "proposed-untested", "partial-mitigation",
+                 "effective-mitigation", "defenses-fail"}
+FM_HARM_BEARER = {"user", "third-party", "operator", "society", "research-integrity"}
+# Same rule as FM_EVAL_AWARENESS above: "attacks" and "audits" were declared in the
+# first draft and never used by any of the lineage edges, and a closed vocab with dead
+# slots invites a reader to wonder what's missing. Trimmed to the seven in use.
+FM_RELATIONS = {"descends-from", "responds-to", "generalizes", "formalizes",
+                "defends-against", "measures", "qualifies"}
+# Relations that assert the child was built on top of an existing parent, so a parent
+# dated after its child is an inverted edge. Checked strictly: no tolerance, because
+# with the right relations selected there is nothing to tolerate (the worst forward gap
+# among these is 0 months).
+#
+# `responds-to` is deliberately NOT here. A node's `date` is its arXiv v1 month, but a
+# paper responds to the literature as of whatever version made the response — Carroll's
+# manipulation paper is dated 2023-03 (v1) and appeared at EAAMO in October 2023, so its
+# camera-ready can engage an August 2023 paper with no simultaneity involved at all. That
+# gap has no principled ceiling, so a month threshold on `responds-to` would be a fitted
+# number wearing a mechanism's name. Excluding the relation states the actual rule: any
+# version of a paper may respond to anything published before that version.
+#
+# Five inverted ancestral edges were found and removed in survey critique round 1 (two of
+# which already carried the correct reverse edge, making the graph contain contradictory
+# 2-cycles).
+FM_ANCESTRAL_RELATIONS = {"descends-from", "generalizes", "formalizes"}
+FM_KINGDOMS = {"A-objective-corruption", "B-competence-cliffs", "C-truthfulness-breakdown",
+               "D-interaction-failure", "E-oversight-erosion", "F-adversarial-breach",
+               "G-agentic-breakdown", "H-measurement-integrity"}
+FM_FAMILIES = {
+    "A1-failure-taxonomies", "A2-overoptimization-dynamics", "A3-goal-misgeneralization",
+    "B1-reasoning-collapse", "B2-knowledge-asymmetry", "B3-context-degradation",
+    "B4-instruction-adherence",
+    "C1-hallucination-foundations", "C2-source-faithfulness", "C3-perceptual-hallucination",
+    "C4-imitative-falsehood", "C5-strategic-falsehood",
+    "D1-sycophancy", "D2-manipulation", "D3-refusal-miscalibration",
+    "E1-cot-unfaithfulness", "E2-monitor-evasion", "E3-deception-and-propensity",
+    "F1-handcrafted-jailbreaks", "F2-optimized-jailbreaks", "F3-prompt-injection",
+    "F4-defenses-and-durability", "F5-attack-suites", "F6-red-team-generation",
+    "F7-hazard-uplift",
+    "G1-long-horizon-collapse", "G2-multi-agent-breakdown", "G3-tool-use-failures",
+    "G4-failure-attribution", "G5-deployment-conduct-envs", "G6-clarification-and-escalation",
+    "G7-agentic-risk-foundations",
+    "H1-judge-bias", "H2-prompt-fragility", "H3-harness-validity", "H4-metric-meta-evaluation",
+}
+FM_TAXONOMY_REQUIRED_KEYS = {
+    "slug", "short", "title", "year", "date", "venue", "group", "citations", "explainer",
+    "elicitation", "elicitation_reason", "eval_awareness", "locus", "evidence_mode",
+    "detectability", "mitigation_status", "harm_bearer", "kingdom", "family",
+    "placement_reason", "lineage", "gravity", "one_line", "key_number", "confidence",
+}
+# Optional per-facet justifications, written where a call is non-obvious. A key that is
+# present must carry text — an empty reason is worse than no reason.
+FM_TAXONOMY_OPTIONAL_KEYS = {
+    "eval_awareness_reason", "locus_reason", "evidence_mode_reason", "detectability_reason",
+    "mitigation_status_reason", "harm_bearer_reason", "notes",
+}
+
 
 @pytest.fixture(scope="module")
 def papers_data():
@@ -90,6 +166,11 @@ def queue():
 @pytest.fixture(scope="module")
 def benchmarks_taxonomy():
     return json.loads((ROOT / "data" / "benchmarks-taxonomy.json").read_text())
+
+
+@pytest.fixture(scope="module")
+def failure_modes_taxonomy():
+    return json.loads((ROOT / "data" / "failure-modes-taxonomy.json").read_text())
 
 
 def test_no_duplicate_slugs(papers):
@@ -335,3 +416,135 @@ def test_benchmarks_taxonomy_lineage_parents_exist(benchmarks_taxonomy, papers):
     bad = [(r["slug"], link["parent"]) for r in benchmarks_taxonomy
            for link in r["lineage"] if link["parent"] not in graph_slugs]
     assert not bad, f"lineage parent(s) not found anywhere in the graph: {bad}"
+
+
+def test_failure_modes_taxonomy_matches_tagged_papers(papers, failure_modes_taxonomy):
+    """Every failure-modes-tagged node has a taxonomy record and vice versa — the /survey
+    pipeline's `corpus` step diffs exactly this pair to find what needs classifying or
+    dropping."""
+    tagged_slugs = {p["slug"] for p in papers if "failure-modes" in p.get("tags", [])}
+    taxonomy_slugs = {r["slug"] for r in failure_modes_taxonomy}
+    missing = tagged_slugs - taxonomy_slugs
+    orphaned = taxonomy_slugs - tagged_slugs
+    assert not missing, f"failure-modes-tagged papers missing from the taxonomy: {missing}"
+    assert not orphaned, f"taxonomy records for papers no longer tagged failure-modes: {orphaned}"
+
+
+def test_failure_modes_taxonomy_no_duplicate_slugs(failure_modes_taxonomy):
+    slugs = [r["slug"] for r in failure_modes_taxonomy]
+    assert len(slugs) == len(set(slugs)), "duplicate slug(s) in failure-modes-taxonomy.json"
+
+
+def test_failure_modes_taxonomy_records_have_all_required_keys(failure_modes_taxonomy):
+    bad = {r["slug"]: sorted(FM_TAXONOMY_REQUIRED_KEYS - set(r.keys()))
+           for r in failure_modes_taxonomy if not FM_TAXONOMY_REQUIRED_KEYS <= set(r.keys())}
+    assert not bad, f"taxonomy record(s) missing required key(s): {bad}"
+
+
+def test_failure_modes_taxonomy_has_no_unknown_keys(failure_modes_taxonomy):
+    known = FM_TAXONOMY_REQUIRED_KEYS | FM_TAXONOMY_OPTIONAL_KEYS
+    bad = {r["slug"]: sorted(set(r.keys()) - known)
+           for r in failure_modes_taxonomy if set(r.keys()) - known}
+    assert not bad, f"taxonomy record(s) carrying unknown key(s): {bad}"
+
+
+def test_failure_modes_taxonomy_reasons_are_non_empty(failure_modes_taxonomy):
+    """A `*_reason` (or `notes`) key that is present must carry text: the whole point of the
+    optional-reason convention is that its absence means 'the call was obvious', which an
+    empty string would silently launder into 'unexplained'."""
+    bad = [(r["slug"], k) for r in failure_modes_taxonomy
+           for k in FM_TAXONOMY_OPTIONAL_KEYS | {"elicitation_reason", "placement_reason"}
+           if k in r and not str(r[k]).strip()]
+    assert not bad, f"empty reason field(s): {bad}"
+
+
+def test_failure_modes_taxonomy_vocab_closed(failure_modes_taxonomy):
+    checks = [("elicitation", FM_ELICITATION), ("eval_awareness", FM_EVAL_AWARENESS),
+              ("locus", FM_LOCUS), ("evidence_mode", FM_EVIDENCE),
+              ("detectability", FM_DETECTABILITY), ("mitigation_status", FM_MITIGATION),
+              ("harm_bearer", FM_HARM_BEARER), ("kingdom", FM_KINGDOMS),
+              ("family", FM_FAMILIES), ("confidence", {"high", "medium", "low"})]
+    bad = [(r["slug"], key, r.get(key)) for r in failure_modes_taxonomy
+           for key, vocab in checks if r.get(key) not in vocab]
+    assert not bad, f"failure-modes-taxonomy.json value(s) outside the controlled vocab: {bad}"
+
+
+def test_failure_modes_taxonomy_family_matches_kingdom(failure_modes_taxonomy):
+    """A record's `family` prefix letter ('A1-...') must match its `kingdom` prefix letter
+    ('A-...') — the survey page's tree groups families under kingdoms by this convention."""
+    bad = [(r["slug"], r["kingdom"], r["family"]) for r in failure_modes_taxonomy
+           if r["family"][0] != r["kingdom"][0]]
+    assert not bad, f"family/kingdom prefix mismatch: {bad}"
+
+
+def test_failure_modes_taxonomy_lineage_is_well_formed(failure_modes_taxonomy, papers):
+    """Lineage parents must be real graph nodes (not necessarily taxonomy members), the
+    relation must come from the closed vocabulary, and nothing descends from itself."""
+    graph_slugs = {p["slug"] for p in papers}
+    bad = []
+    for r in failure_modes_taxonomy:
+        for link in r["lineage"]:
+            if set(link.keys()) != {"parent", "relation"}:
+                bad.append((r["slug"], "shape", sorted(link.keys())))
+            if link.get("parent") not in graph_slugs:
+                bad.append((r["slug"], "parent", link.get("parent")))
+            if link.get("relation") not in FM_RELATIONS:
+                bad.append((r["slug"], "relation", link.get("relation")))
+            if link.get("parent") == r["slug"]:
+                bad.append((r["slug"], "self-lineage", link.get("parent")))
+    assert not bad, f"malformed lineage link(s): {bad}"
+
+
+def test_failure_modes_taxonomy_lineage_points_backwards_in_time(failure_modes_taxonomy, papers):
+    """An edge that says the child was built on an existing parent is inverted if the parent
+    postdates the child — and the survey page leans on this graph as evidence for who descends
+    from whom. Strict: a parent dated even one month after its child fails. See
+    FM_ANCESTRAL_RELATIONS for why `responds-to` is exempt rather than merely tolerant. Dates
+    come from papers.json (month precision), which is also what the timeline map lays out."""
+    dates = {p["slug"]: p.get("date") for p in papers}
+
+    def months(d):
+        y, m = d.split("-")
+        return int(y) * 12 + int(m)
+
+    bad = []
+    for r in failure_modes_taxonomy:
+        child = dates.get(r["slug"])
+        for link in r["lineage"]:
+            parent = dates.get(link["parent"])
+            if not child or not parent or link["relation"] not in FM_ANCESTRAL_RELATIONS:
+                continue
+            gap = months(parent) - months(child)
+            if gap > 0:
+                bad.append((r["slug"], child, link["relation"], link["parent"], parent, gap))
+    assert not bad, (
+        "lineage edge(s) whose parent postdates the child (slug, date, relation, parent, "
+        f"parent date, months): {bad}")
+
+
+def test_failure_modes_taxonomy_gravity_matches_lineage(failure_modes_taxonomy):
+    """`gravity` is a computed field: the number of taxonomy records naming this paper as a
+    lineage parent. It is regenerated on every build, so drift means a hand edit."""
+    children = {}
+    for r in failure_modes_taxonomy:
+        for link in r["lineage"]:
+            children[link["parent"]] = children.get(link["parent"], 0) + 1
+    bad = [(r["slug"], r["gravity"], children.get(r["slug"], 0))
+           for r in failure_modes_taxonomy if r["gravity"] != children.get(r["slug"], 0)]
+    assert not bad, f"gravity out of sync with the lineage graph (slug, stored, computed): {bad}"
+
+
+def test_failure_modes_taxonomy_metadata_matches_papers(failure_modes_taxonomy, papers):
+    """Slug-keyed metadata (title, date, explainer path) is copied from papers.json, so it
+    must not drift from it."""
+    by_slug = {p["slug"]: p for p in papers}
+    bad = []
+    for r in failure_modes_taxonomy:
+        p = by_slug[r["slug"]]
+        if r["title"] != p["title"]:
+            bad.append((r["slug"], "title"))
+        if r["date"] != p.get("date"):
+            bad.append((r["slug"], "date"))
+        if r["explainer"] != p["explainer"]:
+            bad.append((r["slug"], "explainer"))
+    assert not bad, f"taxonomy metadata out of sync with papers.json: {bad}"
