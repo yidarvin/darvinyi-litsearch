@@ -201,9 +201,33 @@ def test_date_format_and_year_consistency(papers):
     assert not bad_format, f"malformed date field: {bad_format}"
 
 
+# Nodes with no citation count *because no such number exists* — the artifact was
+# never published as a paper, so no index carries a count for it. These are not
+# unfetched values waiting on a backfill, and writing 0 would assert something
+# false. The explainer renders "citations n/a" for these rather than a number.
+# Keep this list exact: any OTHER null is a real processing gap and must fail.
+CITATION_COUNT_NA = {
+    # Released as a Stanford CRFM blog post + GitHub repo, never as a paper.
+    # Semantic Scholar has no record to match: title search, the arXiv route and
+    # the title-match endpoint all miss, because there is nothing to match.
+    "taori-2023-alpaca",
+}
+
+
 def test_citation_count_present(papers):
-    missing = [p["slug"] for p in papers if p.get("citation_count") is None]
+    missing = [p["slug"] for p in papers
+               if p.get("citation_count") is None and p["slug"] not in CITATION_COUNT_NA]
     assert not missing, f"missing citation_count: {missing}"
+
+
+def test_citation_count_na_list_is_not_stale(papers):
+    """A slug on the n/a list that has since acquired a count (or been removed
+    from the graph) should come off the list, so the exemption cannot quietly
+    start covering a real gap."""
+    by_slug = {p["slug"]: p for p in papers}
+    stale = [s for s in CITATION_COUNT_NA
+             if s not in by_slug or by_slug[s].get("citation_count") is not None]
+    assert not stale, f"CITATION_COUNT_NA entries no longer needed: {stale}"
 
 
 def test_abstract_nonempty(papers):
