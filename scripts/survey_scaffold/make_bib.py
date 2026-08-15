@@ -36,7 +36,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from latex_utils import latex_escape  # noqa: E402
+from latex_utils import latex_escape, latex_escape_bibtex  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 S2_BASE = "https://api.semanticscholar.org/graph/v1/paper"
@@ -131,7 +131,11 @@ def s2_entry(paper, slug, use_s2):
                 rec = s2_get(f"arXiv:{aid}", "citationStyles")
                 bibtex = rec.get("citationStyles", {}).get("bibtex")
                 if bibtex:
-                    return bibkey_from_s2_bibtex(bibtex, slug), True
+                    # S2's entry is already LaTeX, but it leaves `&`/`%`/`#`/`_`
+                    # bare inside field values, which is fatal at compile time --
+                    # latex_escape_bibtex() fixes exactly those without
+                    # double-escaping the markup S2 does emit.
+                    return bibkey_from_s2_bibtex(latex_escape_bibtex(bibtex), slug), True
             except Exception:
                 pass  # any failure (429, timeout, no record) -> fall through to local construction
     return local_entry(paper, slug), False

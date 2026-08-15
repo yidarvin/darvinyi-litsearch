@@ -324,8 +324,17 @@ def tree_skeleton_svg():
     fams = [f for k in KINGS for f in FAM_L if f[0] == k[0]]
     row_h, top = 25, 16
     H = top + len(fams) * row_h + 18
-    W = 860
     kx, fx = 250, 520
+    # Family bars are scaled RELATIVE to the largest family, not at a fixed
+    # px-per-paper rate. The old rate (5.5px) was chosen when the biggest family
+    # held ~20 papers; at 369 papers A1 holds 57, so its bar ran to x=1083 and its
+    # count label to x=1089 inside an 860-wide viewBox — both silently clipped off
+    # the chart. Pinning the longest bar to BAR_MAX keeps the geometry correct at
+    # any corpus size instead of deferring the same break to a larger N.
+    BAR_MAX, LABEL_W = 300, 46
+    max_cnt = max((len(by_family[f]) for f in fams), default=1) or 1
+    bar_px = BAR_MAX / max_cnt
+    W = fx + 250 + BAR_MAX + LABEL_W
     out = [f"<svg viewBox='0 0 {W} {H}' xmlns='http://www.w3.org/2000/svg' role='img'>"]
     rooty = top + len(fams) * row_h / 2
     out.append(f"<text x='18' y='{rooty + 4:.0f}' font-size='12.5' font-weight='700' fill='{sc.FG}' {sc.MONO}>{N}</text>")
@@ -345,8 +354,8 @@ def tree_skeleton_svg():
             out.append(f"<path d='M{kx + 136} {ky:.0f} C {kx + 190} {ky:.0f} {kx + 190} {fy:.0f} {fx - 12} {fy:.0f}' fill='none' stroke='{sc.LINE}' stroke-width='1'/>")
             cnt = len(by_family[f])
             out.append(f"<text x='{fx}' y='{fy + 3.5:.0f}' font-size='10.5' fill='{sc.DIM}' {sc.MONO}>{FAM_L[f][0]}</text>")
-            out.append(f"<rect x='{fx + 250}' y='{fy - 5:.0f}' width='{cnt * 5.5:.0f}' height='10' rx='2.5' fill='{col}' fill-opacity='0.55'/>")
-            out.append(f"<text x='{fx + 256 + cnt * 5.5:.0f}' y='{fy + 3.5:.0f}' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>{cnt}</text>")
+            out.append(f"<rect x='{fx + 250}' y='{fy - 5:.0f}' width='{cnt * bar_px:.0f}' height='10' rx='2.5' fill='{col}' fill-opacity='0.55'/>")
+            out.append(f"<text x='{fx + 256 + cnt * bar_px:.0f}' y='{fy + 3.5:.0f}' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>{cnt}</text>")
             y += row_h
     out.append('</svg>')
     return ''.join(out)
