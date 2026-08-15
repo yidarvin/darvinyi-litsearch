@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Generate public/surveys/evaluations.html — the Evaluations (evaluation-methodology) survey page.
-Reads data/evaluations-taxonomy.json (the classified corpus of 59 eval-method papers); emits a
-self-contained dark long-read with inline-SVG charts and a filterable table.
+Reads data/evaluations-taxonomy.json (the classified corpus of eval-method papers, whatever its
+current size); emits a self-contained dark long-read with inline-SVG charts and a filterable table.
+Every number the prose states is a token computed in stats_tokens.py — including the ones in
+<title>/<meta description>/og:description — so re-tagging the corpus rewrites the page.
 Run: python scripts/evaluations_survey/build_survey_page.py"""
 import json, collections, html, pathlib
 import svgcharts as sc
@@ -244,10 +246,41 @@ page = (page.replace('@@TABLE_JSON@@', TABLE_JSON)
 
 # numeric tokens computed from the corpus (so prose never drifts from data)
 import stats_tokens as st
-for k, v in st.compute(M, era, ERAS).items():
+TOK = st.compute(M, era, ERAS)
+# structural counts read off the page itself, so "seven findings" / "seven connections" can't drift
+TOK['N_FINDINGS'] = page.count("class=\"fnum\"")
+TOK['N_FINDINGS_WORD'] = st.WORDS[TOK['N_FINDINGS']]
+TOK['N_CONNECTIONS'] = page.count("class=\"snum\"")
+TOK['N_CONNECTIONS_WORD'] = st.WORDS[TOK['N_CONNECTIONS']]
+for k in [k for k in list(TOK) if k.endswith('_WORD')]:
+    TOK[k + '_CAP'] = str(TOK[k])[:1].upper() + str(TOK[k])[1:]
+for k, v in TOK.items():
     page = page.replace(f'@@{k}@@', str(v))
 
 assert '@@' not in page, 'unresolved token: ' + page[page.index('@@'):page.index('@@') + 48]
+
+# The prose makes a handful of ordering claims that no token can express on its own
+# ("the largest kingdom is forensics", "MT-Bench is second only to BLEU"). Numbers stay
+# correct automatically; the sentences around them do not. Warn loudly when one stops holding.
+_claims = [
+    ('largest kingdom is forensics & audits', TOK['KING_TOP_NAME'] == 'forensics &amp; audits'),
+    ('largest family is F3 metric & construct critiques', TOK['N_FAM_F3'] == TOK['N_FAM_TOP']),
+    ('largest verdict engine is the statistical protocol', TOK['ENG_TOP'] == 'statistical protocol'),
+    ('smallest kingdom is preference courts', TOK['KING_SMALLEST_NAME'] == 'preference courts'),
+    ('BLEU is the top gravity well, MT-Bench second', TOK['GRAV_TOP_NAME'] == 'BLEU' and TOK['GRAV_2_NAME'] == 'MT-Bench'),
+    ('HumanEval is the top well among verification harnesses', TOK['GRAV_TOP_V_NAME'] == 'Codex'),
+    ('2025 is the peak year for optimization-forbidden', TOK['N_OPTFORBID_2025'] == max(
+        collections.Counter(r['year'] for r in M if r['reward_readiness'] == 'optimization-forbidden').values())),
+    ('expert rubric is the top 2025 reference standard', TOK['REF_TOP_2025'] == 'expert rubric'),
+    ('MT-Bench attracts the most forensics citers', TOK['AUDITED_TOP_NAME'] == 'MT-Bench'),
+    ('decomposed judge is the largest 2025 engine', TOK['N_DECOMP_2025'] == max(
+        collections.Counter(r['verdict_engine'] for r in M if r['year'] == 2025).values())),
+    ('peer-or-stronger is the largest 2025 grader gap', TOK['N_PEER_2025'] == max(
+        collections.Counter(r['grader_gap'] for r in M if r['year'] == 2025).values())),
+]
+for name, ok in _claims:
+    if not ok:
+        print(f'  !! PROSE CLAIM NO LONGER HOLDS: {name} — rewrite the sentence that states it')
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(page)
 print(f'wrote {OUT} ({len(page) / 1024:.0f} KB)')

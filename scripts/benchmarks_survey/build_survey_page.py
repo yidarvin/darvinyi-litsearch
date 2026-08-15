@@ -112,8 +112,14 @@ charts['contam'] = sc.stacked_bars(era_contam, CONTAM, CT_C, CT_L, pct=True, leg
 def ladder_svg():
     W, H = 860, 356
     ranges = ['&lt; 1 min', '1–30 min', '30 min – 1 day', '1 day – 2 wks', '&gt; 2 wks']
-    examples = [['MMLU', 'HellaSwag', 'ImageNet'], ['GSM8K', 'HumanEval', 'MT-Bench'],
-                ['SWE-bench', 'MLE-bench', 'BrowseComp'], ['GDPval', 'PaperBench', 'RLI'], ['(empty)']]
+    # examples are the three most-cited members of each rung, read off the corpus — a
+    # hand-typed example list is a live statistic (a paper's rung can change, a rung can
+    # empty out) and drifts exactly like a hand-typed number.
+    def rung_examples(l):
+        rows = sorted((r for r in merged if r['complexity'] == l),
+                      key=lambda r: (-r['gravity'], r['short'].lower()))[:3]
+        return [html.escape(r['short']) for r in rows] or ['(empty)']
+    examples = [rung_examples(l) for l in LEV]
     counts = [sum(1 for r in merged if r['complexity'] == l) for l in LEV]
     step_w, x0 = 158, 24
     hb, rise = 132, 32          # equal-height tiles, tops ascending left→right
@@ -213,8 +219,12 @@ def chip_counts(fn, labels, colors=None, top=None):
         outs.append(f"<span class='chip'>{dot}{html.escape(str(labels.get(k, k)))} <b>{n}</b></span>")
     return ''.join(outs)
 
+N_DOM_SHOWN = 8
+n_dom_more = len({r['domain_primary'] for r in merged}) - N_DOM_SHOWN   # never hand-typed:
+# the vocabulary has 17 domains but only the ones the corpus actually uses are chipped.
 chips = {
-    'domain': chip_counts(lambda r: r['domain_primary'], DOM_L, top=8) + "<span class='chip more'>+9 more</span>",
+    'domain': chip_counts(lambda r: r['domain_primary'], DOM_L, top=N_DOM_SHOWN)
+              + f"<span class='chip more'>+{n_dom_more} more</span>",
     'shape': chip_counts(lambda r: r['task_shape'], SH_L, SH_C),
     'grading': chip_counts(lambda r: r['grading_primary'], GR_L, GR_C),
     'complexity': ''.join(f"<span class='chip'><span class='d' style='background:{LEV_C[l]}'></span>{LEV_L[l]} <b>{sum(1 for r in merged if r['complexity'] == l)}</b></span>" for l in LEV),
@@ -265,6 +275,14 @@ FAM_L = {
     'G3-grader-benchmarks': ('G3 · grader benchmarks', 'judge protocols and error taxonomies'),
 }
 KINGS = list(KING_L)
+# fail loudly rather than silently dropping papers: the tree renders FAM_L/KING_L, so a
+# family or kingdom the corpus uses but this file doesn't know would vanish from the tree
+# (and from its counts) without changing the page's N.
+unknown_fam = {r['family'] for r in merged} - set(FAM_L)
+unknown_king = {r['kingdom'] for r in merged} - set(KING_L)
+assert not unknown_fam, f'family missing from FAM_L: {sorted(unknown_fam)}'
+assert not unknown_king, f'kingdom missing from KING_L: {sorted(unknown_king)}'
+
 by_family = collections.defaultdict(list)
 for r in merged:
     by_family[r['family']].append(r)
@@ -284,7 +302,11 @@ for r in sorted(merged, key=lambda r: (-r['year'], r['short'].lower())):
     })
 TABLE_JSON = json.dumps(tbl, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
 
-DOM_OPTS = ''.join(f"<option value='{k}'>{v}</option>" for k, v in sorted(DOM_L.items(), key=lambda x: x[1]))
+# only offer domains the corpus actually contains — an option that can never match any row is
+# a filter that lies about the taxonomy's coverage.
+DOM_USED = {r['domain_primary'] for r in merged}
+DOM_OPTS = ''.join(f"<option value='{k}'>{v}</option>"
+                   for k, v in sorted(DOM_L.items(), key=lambda x: x[1]) if k in DOM_USED)
 GR_OPTS = ''.join(f"<option value='{k}'>{GR_L[k]}</option>" for k in GR)
 LEV_OPTS = ''.join(f"<option value='{l.split('-')[0]}'>{LEV_L[l]}</option>" for l in LEV[:4])
 SH_OPTS = ''.join(f"<option value='{k}'>{SH_L[k]}</option>" for k in SHAPES)
@@ -347,34 +369,39 @@ def tree_blocks():
         out.append(f"<div class='kingdom' style='--kc:{col}'><div class='khead'><span class='klet mono'>{k[0]}</span><div class='kt'><div class='knm'>{name}</div><div class='kq'>{q}</div></div><span class='kn mono'>{n}</span></div>{''.join(fams_html)}</div>")
     return ''.join(out)
 
-# audit-shadow timeline (verified pairs from the connections pass)
-AUDIT_PAIRS = [
-    ('ImageNet', 2009, 'ImageNetV2', 2019, 'fresh twin'),
-    ('GLUE', 2018, 'SuperGLUE', 2019, 'harder sequel'),
-    ('Natural Questions', 2019, 'SimpleQA', 2024, 'adversarial'),
-    ('MMLU', 2020, 'MMLU-Pro', 2024, 'filtered rebuild'),
-    ('HumanEval', 2021, 'EvalPlus', 2023, 'test audit'),
-    ('HumanEval', 2021, 'LiveCodeBench', 2024, 'contamination'),
-    ('GSM8K', 2021, 'GSM1k', 2024, 'private twin'),
-    ('CUAD', 2021, 'ContractEval', 2025, 're-audit'),
-    ('MT-Bench', 2023, 'Arena-Hard', 2024, 'separability'),
-    ('LegalBench', 2023, 'LegalBench-RAG', 2024, 'inversion'),
-    ('GPQA', 2023, 'HLE', 2025, 'replacement'),
-    ('IFEval', 2023, 'AdvancedIF', 2025, 'harder sequel'),
-    ('SWE-bench', 2023, 'SWE-Bench Pro', 2025, 'hardening'),
-    ('SimpleQA', 2024, 'BrowseComp', 2025, 'same-lab'),
-    ('MultiChallenge', 2025, 'Audio MultiChallenge', 2025, 'modality twin'),
-    ('MCP-Universe', 2025, 'MCP-Atlas', 2026, 'verifier audit'),
-]
+# audit-shadow timeline — computed from the taxonomy's own typed lineage graph rather than a
+# hand-curated pair list (which was a table of live facts: pairs, years, lags, all of which
+# move as the corpus grows). A row is a benchmark's *first corrective descendant* — a child
+# that audits it, de-saturates it, or hardens its grader; extension relations (descends-from,
+# responds-to, ports-to-new-domain) are deliberately excluded, and the gap between the two is
+# itself the finding connection 02 reports.
+CORRECTIVE = ('audits', 'de-saturates', 'hardens-grader-of')
+def audit_pairs(limit=16):
+    by_slug = {r['slug']: r for r in merged}
+    firsts = {}
+    for r in merged:
+        for l in r.get('lineage', []):
+            if l['relation'] not in CORRECTIVE or l['parent'] not in by_slug:
+                continue
+            prev = firsts.get(l['parent'])
+            if prev is None or (r['year'], r['short']) < (prev[0]['year'], prev[0]['short']):
+                firsts[l['parent']] = (r, l['relation'])
+    rows = [(by_slug[s], c, rel) for s, (c, rel) in firsts.items()]
+    rows.sort(key=lambda x: (-x[0]['gravity'], x[0]['short'].lower()))   # most-cited targets
+    rows = rows[:limit]
+    rows.sort(key=lambda x: (x[0]['year'], x[0]['short'].lower()))
+    return [(p['short'], p['year'], c['short'], c['year'], rel) for p, c, rel in rows]
+AUDIT_PAIRS = audit_pairs()
 def audit_shadow_svg():
     W = 960
     row_h, top, pad_l, pad_r = 25, 34, 200, 250
     H = top + len(AUDIT_PAIRS) * row_h + 40
-    y0, y1 = 2008.5, 2026.5
+    y0 = min(p[1] for p in AUDIT_PAIRS) - 0.5
+    y1 = max(p[3] for p in AUDIT_PAIRS) + 0.5
     def X(yr):
         return pad_l + (yr - y0) / (y1 - y0) * (W - pad_l - pad_r)
     out = [f"<svg viewBox='0 0 {W} {H}' xmlns='http://www.w3.org/2000/svg' role='img'>"]
-    for yr in range(2009, 2027, 2):
+    for yr in range(int(y0) + 1, int(y1) + 1, 2):
         x = X(yr)
         out.append(f"<line x1='{x:.0f}' y1='{top - 12}' x2='{x:.0f}' y2='{H - 30}' stroke='{sc.LINE}' stroke-width='1'/>")
         out.append(f"<text x='{x:.0f}' y='{top - 18}' text-anchor='middle' font-size='9.5' fill='{sc.MUTED}' {sc.MONO}>{yr}</text>")
@@ -383,15 +410,15 @@ def audit_shadow_svg():
         lag = ay - ty
         col = '#f87171' if lag >= 5 else ('#fb923c' if lag >= 2 else '#4ade80')
         x1, x2 = X(ty), X(ay)
-        out.append(f"<text x='{pad_l - 10}' y='{y + 3.5:.0f}' text-anchor='end' font-size='10' fill='{sc.DIM}' {sc.MONO}>{t}</text>")
+        out.append(f"<text x='{pad_l - 10}' y='{y + 3.5:.0f}' text-anchor='end' font-size='10' fill='{sc.DIM}' {sc.MONO}>{html.escape(t)}</text>")
         out.append(f"<circle cx='{x1:.0f}' cy='{y:.0f}' r='3.5' fill='{col}'/>")
         if x2 - x1 > 8:
             out.append(f"<line x1='{x1 + 4:.0f}' y1='{y:.0f}' x2='{x2 - 5:.0f}' y2='{y:.0f}' stroke='{col}' stroke-width='1.8'/>")
             out.append(f"<path d='M{x2 - 5:.0f} {y - 3.5:.0f} L{x2 + 1:.0f} {y:.0f} L{x2 - 5:.0f} {y + 3.5:.0f} Z' fill='{col}'/>")
         else:
             out.append(f"<circle cx='{x2:.0f}' cy='{y:.0f}' r='3.5' fill='none' stroke='{col}' stroke-width='1.6'/>")
-        out.append(f"<text x='{x2 + 8:.0f}' y='{y + 3.5:.0f}' font-size='9.5' fill='{sc.DIM}' {sc.MONO}>{a} <tspan fill='{sc.MUTED}'>({lag}y · {mode})</tspan></text>")
-    out.append(f"<text x='{pad_l}' y='{H - 10}' font-size='10' fill='{sc.MUTED}' {sc.MONO}>target ● ──▶ audit/sequel · red ≥5y, orange 2–4y, green ≤1y — the shadow arrives faster every generation</text>")
+        out.append(f"<text x='{x2 + 8:.0f}' y='{y + 3.5:.0f}' font-size='9.5' fill='{sc.DIM}' {sc.MONO}>{html.escape(a)} <tspan fill='{sc.MUTED}'>({lag}y · {mode})</tspan></text>")
+    out.append(f"<text x='{pad_l}' y='{H - 10}' font-size='10' fill='{sc.MUTED}' {sc.MONO}>target ● ──▶ first corrective descendant · red ≥5y, orange 2–4y, green ≤1y · the {len(AUDIT_PAIRS)} most-cited targets that have one</text>")
     out.append('</svg>')
     return ''.join(out)
 charts['auditshadow'] = audit_shadow_svg()
@@ -414,6 +441,10 @@ page = (page.replace('@@TABLE_JSON@@', TABLE_JSON)
 # for the survey's LaTeX PDF instead of hand-typing the numbers a second time.
 import stats_tokens as st
 tokens = st.compute(merged, era, ERAS)
+# the one token that depends on the *builder's* vocabulary rather than the corpus: how many
+# domain values the controlled vocabulary defines (N_DOMAINS, from stats_tokens, is how many
+# the corpus actually uses). Kept here so the prose can state both without hand-typing either.
+tokens['N_DOM_VOCAB'] = len(DOM_L)
 for k, v in tokens.items():
     page = page.replace(f'@@{k}@@', str(v))
 

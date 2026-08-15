@@ -1431,7 +1431,7 @@
     }
   ],
   "survey_build": {
-    "step": "taxonomy",
+    "step": "site",
     "round": 0,
     "open_blockers": [],
     "taxonomy": true,
@@ -1439,8 +1439,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-04T01:20 dagan-2005-rte: step -> fetch",
-    "2026-08-04T01:20 dagan-2005-rte: step -> figures",
     "2026-08-04T01:41 dagan-2005-rte: step -> draft",
     "2026-08-04T01:41 dagan-2005-rte: step -> critique (round 1)",
     "2026-08-04T01:55 dagan-2005-rte: 5 open blocker(s) from round 1 (verdict: revise)",
@@ -1488,6 +1486,8 @@
     "2026-08-13T08:51 hendy-2023-gpt-mt: step -> fetch",
     "2026-08-13T08:51 hendy-2023-gpt-mt: step -> figures",
     "2026-08-15T00:27 survey_build: step -> corpus",
-    "2026-08-15T00:27 survey_build: step -> taxonomy"
+    "2026-08-15T00:27 survey_build: step -> taxonomy",
+    "2026-08-15T00:51 survey_build: step -> site",
+    "2026-08-15T01:18 survey_build: step -> site"
   ]
 }
