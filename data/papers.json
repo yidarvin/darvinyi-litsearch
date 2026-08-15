@@ -11376,6 +11376,22 @@
       "explainer": "papers/malmqvist-2024-sycophancy-survey.html",
       "audio_url": "https://pod.darvinyi.com/audio/malmqvist-2024-sycophancy-survey.mp3",
       "tags": ["failure-modes"]
+    },
+    {
+      "slug": "langosco-2021-goal-misgeneralization",
+      "short": "Goal Misgeneralization",
+      "title": "Goal Misgeneralization in Deep Reinforcement Learning",
+      "authors": "Langosco, Koch, Sharkey, Pfau, Orseau, Krueger",
+      "year": 2022,
+      "date": "2021-05",
+      "venue": "ICML 2022",
+      "citation_count": 152,
+      "topic": "Safety & Red-teaming",
+      "author_group": "Cambridge / DeepMind",
+      "abstract": "Formalizes goal misgeneralization -- an RL agent that retains its capabilities out-of-distribution but pursues the wrong goal -- and demonstrates it across CoinRun, two Maze variants, and a Keys-and-Chests task; a critic value-function analysis shows the value head itself misgeneralizes, and a formal agent/device test validates the capability-vs-goal distinction on a separate gridworld. Published as ICML 2022; the May 2021 preprint circulated for about 13 months under the title \"Objective Robustness in Deep Reinforcement Learning\" before adopting the now-standard term from a concurrent DeepMind paper (Shah et al., 2022) -- the rename landed by v3 (Jun 2022), before publication, not after.",
+      "explainer": "papers/langosco-2021-goal-misgeneralization.html",
+      "audio_url": "https://pod.darvinyi.com/audio/langosco-2021-goal-misgeneralization.mp3",
+      "tags": ["failure-modes"]
     }
   ],
   "edges": [
@@ -19464,6 +19480,20 @@
     { "from": "lynch-2025-agentic-misalignment", "to": "baker-2025-monitoring-reasoning" },
     { "from": "malmqvist-2024-sycophancy-survey", "to": "wei-2023-sycophancy-synthetic" },
     { "from": "malmqvist-2024-sycophancy-survey", "to": "turpin-2023-unfaithful-cot" },
-    { "from": "zheng-2025-webguard", "to": "malmqvist-2024-sycophancy-survey" }
+    { "from": "zheng-2025-webguard", "to": "malmqvist-2024-sycophancy-survey" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "shah-2022-goal-misgeneralization" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "pan-2022-reward-misspecification" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "hendrycks-2019-imagenet-c" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "recht-2019-imagenet-generalize" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "schulman-2017-ppo" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "amodei-2016-concrete-problems" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "bellemare-2013-ale" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "torralba-2011-dataset-bias" },
+    { "from": "park-2023-ai-deception", "to": "langosco-2021-goal-misgeneralization" },
+    { "from": "casper-2023-rlhf-open-problems", "to": "langosco-2021-goal-misgeneralization" },
+    { "from": "chan-2023-agentic-harms", "to": "langosco-2021-goal-misgeneralization" },
+    { "from": "shah-2022-goal-misgeneralization", "to": "langosco-2021-goal-misgeneralization" },
+    { "from": "bai-2022-hh-rlhf", "to": "langosco-2021-goal-misgeneralization" },
+    { "from": "langosco-2021-goal-misgeneralization", "to": "sutton-1998-rl-intro" }
   ]
 }

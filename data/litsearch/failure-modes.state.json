@@ -211,6 +211,13 @@
       "verdict": "approved",
       "notes": [],
       "date": "2026-08-14"
+    },
+    {
+      "slug": "langosco-2021-goal-misgeneralization",
+      "rounds": 2,
+      "verdict": "approved",
+      "notes": [],
+      "date": "2026-08-14"
     }
   ],
   "skipped": [],
@@ -223,16 +230,6 @@
     "pdf": false
   },
   "log": [
-    "2026-08-14T10:19 completed deng-2023-masterkey (verdict=approved, rounds=2)",
-    "2026-08-14T10:26 started shi-2024-judgedeceiver ('Optimization-based Prompt Injection Attack to LLM-as-a-Judge')",
-    "2026-08-14T10:26 shi-2024-judgedeceiver: step -> fetch",
-    "2026-08-14T10:26 shi-2024-judgedeceiver: step -> figures",
-    "2026-08-14T10:32 shi-2024-judgedeceiver: step -> draft",
-    "2026-08-14T10:52 shi-2024-judgedeceiver: step -> critique (round 1)",
-    "2026-08-14T11:14 shi-2024-judgedeceiver: step -> critique (round 2)",
-    "2026-08-14T11:25 shi-2024-judgedeceiver: step -> verify",
-    "2026-08-14T11:25 shi-2024-judgedeceiver: step -> queue-ops",
-    "2026-08-14T11:48 shi-2024-judgedeceiver: step -> podcast",
     "2026-08-14T11:48 completed shi-2024-judgedeceiver (verdict=approved, rounds=2)",
     "2026-08-14T11:53 started wei-2023-sycophancy-synthetic ('Simple synthetic data reduces sycophancy in large language models')",
     "2026-08-14T11:53 wei-2023-sycophancy-synthetic: step -> fetch",
@@ -272,6 +269,16 @@
     "2026-08-14T15:37 malmqvist-2024-sycophancy-survey: step -> verify",
     "2026-08-14T15:37 malmqvist-2024-sycophancy-survey: step -> queue-ops",
     "2026-08-14T15:56 malmqvist-2024-sycophancy-survey: step -> podcast",
-    "2026-08-14T15:56 completed malmqvist-2024-sycophancy-survey (verdict=approved, rounds=1)"
+    "2026-08-14T15:56 completed malmqvist-2024-sycophancy-survey (verdict=approved, rounds=1)",
+    "2026-08-14T16:02 started langosco-2021-goal-misgeneralization ('Goal Misgeneralization in Deep Reinforcement Learning')",
+    "2026-08-14T16:02 langosco-2021-goal-misgeneralization: step -> fetch",
+    "2026-08-14T16:02 langosco-2021-goal-misgeneralization: step -> figures",
+    "2026-08-14T16:06 langosco-2021-goal-misgeneralization: step -> draft",
+    "2026-08-14T16:19 langosco-2021-goal-misgeneralization: step -> critique (round 1)",
+    "2026-08-14T16:35 langosco-2021-goal-misgeneralization: step -> critique (round 2)",
+    "2026-08-14T16:46 langosco-2021-goal-misgeneralization: step -> verify",
+    "2026-08-14T16:46 langosco-2021-goal-misgeneralization: step -> queue-ops",
+    "2026-08-14T17:05 langosco-2021-goal-misgeneralization: step -> podcast",
+    "2026-08-14T17:05 completed langosco-2021-goal-misgeneralization (verdict=approved, rounds=2)"
   ]
 }
